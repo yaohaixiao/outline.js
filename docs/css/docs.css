@@ -1,0 +1,16 @@
+.main {
+    margin: 3em auto;
+    width: 1100px;
+    background-color: #FFF;
+    box-shadow: 0 0 15px #ddd;
+    padding: 2em;
+    overflow: hidden;
+}
+
+.name{
+    text-align:center;
+}
+
+.article {
+    padding: 2em;
+}
