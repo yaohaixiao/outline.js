@@ -170,17 +170,7 @@ gulp.task('transform', (cb) => {
                 }
             }),
             gulp.dest('dist'),
-            gulp.dest('docs/js')
-        ],
-        cb
-    )
-})
-
-// 压缩转换后的 outline.js 源代码
-gulp.task('uglify:js', (cb) => {
-    pump(
-        [
-            gulp.src(DIST_JS_PATH),
+            gulp.dest('docs/js'),
             sourcemaps.init({
                 loadMaps: true
             }),
@@ -224,8 +214,7 @@ gulp.task('uglify:css', (cb) => {
 gulp.task('watch:js', () => {
     // 监视 src/js/outline.js，编译并压缩源代码
     gulp.watch(SRC_JS_PATH, [
-        'transform',
-        'uglify:js'
+        'transform'
     ])
 })
 
@@ -280,7 +269,6 @@ gulp.task('watch', [
 gulp.task('build', [
     'lint:js',
     'transform',
-    'uglify:js',
     'uglify:css'
 ])
 

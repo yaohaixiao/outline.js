@@ -1175,3 +1175,16 @@ Outline._generatePid = (chapters, differ, index) => {
 
     return pid
 }
+
+if(window.jQuery) {
+    // 将 outline 扩展为一个 jquery 插件
+    $.extend($.fn, {
+        outline: function (options) {
+            let $article = $(this)
+
+            return new Outline($.extend({}, options, {
+                article: $article
+            }));
+        }
+    })
+}
