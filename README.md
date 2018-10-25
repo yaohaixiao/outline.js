@@ -74,6 +74,96 @@ navigation.reload({
 })
 ```
 
+## Options
+
+### article
+Type: `String`
+Default: `#article`
+
+可选，用来指定页面中显示文章正文的 DOM 节点的 ID 选择器。
+
+### selector
+Type: `String`
+Default: `'h1,h2,h3,h4,h5,h6'`
+
+可选，用来指定 article 节点下，要生成导航的标题标签的选择器。
+
+### title
+Type: `String`
+Default: `'文章导读'`
+
+可选，用来指定文章导读导航菜单的标题文字。
+
+### position
+Type: `String`
+Default: `'outside'`
+
+可选，用来指定文章导读导航菜单的显示位置：outside - 生成侧边栏菜单，inside - 直接在文章正文区域的开始位置生成导航菜单。
+
+只有设置了 isGenerateOutline 为 true，position 参数才会起效。
+
+### anchorURL
+Type: `String`
+Default: `''`
+
+可选，用来指定文章标题锚点链接图标的链接地址：'' - 点击链接页面滚动到标题位置，其它 URL 值 - 就直接跳转到指定页面了
+
+### anchorAt
+Type: `String`
+Default: `'front'`
+
+可选，用来指定文章标题锚点链接图标的显示位置：'front' - 现在在文章标题前面，'end' - 显示到标题末尾。
+
+### isGenerateOutline
+Type: `Boolean`
+Default: `false`
+
+可选，用来指定是否文章导读导航菜单：true - 生成菜单，false - 不生成菜单（这样配置基本和 AnchorJS 功能一样了）。
+
+### isGenerateOutlineChapterCode
+Type: `Boolean`
+Default: `true`
+
+可选，用来指定是否文章导读导航菜单是否显示文章段落层次的索引编号：true - 显示编号，false - 不显示编号。
+
+### isGenerateHeadingChapterCode
+Type: `Boolean`
+Default: `false`
+
+可选，用来指定是否在文章标题前面显示文章段落层次的索引编号：true - 显示编号，false - 不显示编号。
+
+### isGenerateHeadingAnchor
+Type: `Boolean`
+Default: `true`
+
+可选，用来指定是否在文章标题位置生成锚点链接图标：true - 生成锚点链接图标，并给标题添加 ID 属性，false - 不生成锚点链接图标，仅给标题添加 ID 属性。
+
+## Properties
+
+### defaults
+Type: `Objects`
+
+静态属性，存储的是 Outline 对象默认配置信息。
+
+### attributes
+Type: `Objects`
+
+存储的是 Outline 对象当前使用中的配置选项。
+
+### elements
+Type: `Objects`
+
+存储的是 Outline 对象（创建的）相关的 DOM 元素。
+
+### data
+Type: `Objects`
+
+存储的是 Outline 根据标题 DOM 元素分析的数据。
+
+## Example
+
+演示地址：[https://yaohaixiao.github.io/outline/](https://yaohaixiao.github.io/outline/)
+
 ## License
 
 JavaScript Code Licensed under [MIT License](http://opensource.org/licenses/mit-license.html).
