@@ -1,0 +1,23 @@
+div#option-position.api-md
+    div.api-hd
+        h3.api-title position
+    div.api-bd
+        h4 Description
+        dl.api-param
+            dt.api-param-key Type：
+            dd.api-param-value String
+        dl.api-param
+            dt.api-param-key Default：
+            dd.api-param-value 'outside'
+        p 可选，用来指定文章导读导航菜单的显示位置。
+        h4 Usage
+        h5 Default position - （'inside'）默认以侧边栏导航的形式显示
+        pre.api-code
+            code.
+                new Outline();
+        h5 Inside Article - 在文章开始位置插入文章导读导航
+        pre.api-code
+            code.
+                new Outline({
+                    position: 'inside'
+                });

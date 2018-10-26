@@ -1,16 +1,296 @@
-.main {
-    margin: 3em auto;
-    width: 1100px;
-    background-color: #FFF;
-    box-shadow: 0 0 15px #ddd;
-    padding: 2em;
+html,
+body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    background: #fafafa;
+    color: #333;
+    font-size: 14px;
+    line-height: 150%;
+    font-family: "Microsoft YaHei UI", Arial, sans-serif;
     overflow: hidden;
 }
 
-.name{
-    text-align:center;
+a:link {
+    color: #44d032;
+    text-decoration: none;
 }
 
-.article {
+a:visited {
+    color: #44d032;
+    text-decoration: none;
+}
+
+a:hover {
+    color: #44d032;
+    text-decoration: underline;
+}
+
+code {
+    font-family: "Source Code Pro", Monaco, monospace, Arial, sans-serif;
+}
+
+.wrap {
+    position: relative;
+    z-index: 1;
+    height: 100%;
+    width: 100%;
+    margin: 0;
+    overflow: hidden;
+}
+
+/* Side */
+.side {
+    position: absolute;
+    z-index: 2;
+    top: 0;
+    left: 0;
+    width: 280px;
+    margin: 0;
+    height: 100%;
+    background-color: #333;
+    color: #DDD;
+    -moz-box-shadow: 0 0 5px 2px #DDD;
+    -webkit-box-shadow: 0 0 5px 2px #DDD;
+    -o-box-shadow: 0 0 5px 2px #DDD;
+    box-shadow: 0 0 5px 2px #DDD;
+    overflow: auto;
+}
+
+.side a:link {
+    color: #DDD;
+    text-decoration: none;
+}
+
+.side a:visited {
+    color: #DDD;
+    text-decoration: none;
+}
+
+.side a:hover {
+    color: #DDD;
+    text-decoration: underline;
+}
+
+.subject {
+    margin: 0 auto;
+    padding: 15px 0 5px;
+    height: 36px;
+    line-height: 36px;
+    font-size: 22px;
+    font-weight: normal;
+    text-align: center;
+    overflow: hidden;
+}
+
+.chanel {
+    margin: 0 auto;
+    padding: 0 20px;
+    font-size: 13px;
+    color: #999;
+    overflow: hidden;
+}
+
+.methods {
+    margin: 0;
+    padding: 10px 0;
+    overflow: hidden;
+}
+
+.method {
+    height: 26px;
+    line-height: 26px;
+    padding: 0 30px;
+    cursor: pointer;
+    font-size: 13px;
+    overflow: hidden;
+}
+
+.method:hover {
+    background-color: #555;
+}
+
+.method.active {
+    background-color: #555;
+}
+
+/* Main */
+.main {
+    position: relative;
+    z-index: 1;
+    margin-left: 280px;
+    height: 100%;
+    background-color: #FFF;
+    overflow: auto;
+}
+
+.header,
+.footer {
+    margin: 0 auto;
+    padding: 1em;
+    text-align: center;
+    overflow: hidden;
+}
+
+/* Header */
+.title {
+    margin: 0 auto;
+    padding-top: 1em;
+    font-size: 5em;
+    font-weight: normal;
+    line-height: 2.0em;
+    overflow: hidden;
+}
+
+.project {
+    color: #1f8dd6;
+    font-weight: normal;
+}
+
+.tagline {
+    margin: 1em auto;
+    max-width: 660px;
+    line-height: 1.3em;
+    font-size: 2em;
+    color: #999;
+    font-weight: 100;
+    overflow: hidden;
+}
+
+/* CDN */
+.cdn {
+    margin: 2em 0;
     padding: 2em;
+    font-size: 16px;
+    line-height: 150%;
+    text-align: center;
+    background-color: #fafafa;
+    border-top: 1px solid #DDD;
+    border-bottom: 1px solid #DDD;
+    color: #666;
+    overflow: hidden;
+}
+
+/* GitHub */
+.github {
+    margin: 1em auto;
+    width: 200px;
+    text-align: center;
+    overflow: hidden;
+}
+
+.button {
+    display: inline-block;
+    border: 1px solid #DDD;
+    padding: 14px 29px;
+    font-size: 18px;
+    background-color: #fafafa;
+    overflow: hidden;
+}
+
+.button:link {
+    color: #999;
+    text-decoration: none;
+}
+
+.button:visited {
+    color: #999;
+    text-decoration: none;
+}
+
+.button:hover {
+    color: #999;
+    text-decoration: underline;
+}
+
+.api-section {
+    margin: 1.5em auto;
+    overflow: hidden;
+}
+
+.api-chanel {
+    font-size: 2em;
+    margin-right: 1.5em;
+    margin-left: 1.5em;
+    color: #1f8dd6;
+}
+
+.api-md {
+    margin: 1em 0;
+    overflow: hidden;
+}
+
+.api-hd,
+.api-bd,
+.api-ft {
+    margin: 0 auto;
+    padding: 0 3em;
+    overflow: hidden;
+}
+
+.api-title {
+    font-size: 20px;
+}
+
+.api-title,
+.api-param-name {
+    color: #666;
+}
+
+.api-subject {
+    color: #999;
+}
+
+.api-param {
+    position: relative;
+    z-index: 1;
+    overflow: hidden;
+}
+
+.api-param-name {
+    color: #1f8dd6;
+}
+
+.api-param-key {
+    position: absolute;
+    z-index: 2;
+    top: 0;
+    left: 0;
+    width: 280px;
+    margin: 0;
+    overflow: hidden;
+}
+
+.api-param-value {
+    position: relative;
+    z-index: 1;
+    margin: 0 0 0 280px;
+    overflow: hidden;
+}
+
+.api-code {
+    margin: 2em 0;
+    padding: 1em;
+    font-size: 14px;
+    line-height: 200%;
+    text-align: left;
+    background-color: #fafafa;
+    border: 1px solid #DDD;
+    color: #666;
+    overflow: auto;
+}
+
+.api-code code {
+    display: block;
+    margin: 0 auto;
+    padding: 20px 10px;
+    font-family: Georgia, sans-serif;
+    overflow: hidden;
+}
+
+.footer {
+    border-top: 1px solid #DDD;
+    margin-top: 3em;
+    background-color: #fafafa;
+    color: #999;
 }

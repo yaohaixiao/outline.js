@@ -1,4 +1,104 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="keywords" content="JavaScript,Outline.js"><meta name="description" content="Outline.js - Automatically create directory navigation for your article."><title>Outline.js - Automatically create directory navigation for your article.</title><link href="css/outline.css" rel="stylesheet" type="text/css"><link href="css/docs.css" rel="stylesheet" type="text/css"></head><body><div class="main" id="main"><h1 class="name">Outline.js</h1><article class="article" id="article"><h2>创作灵感</h2><p>AnchorJS 是 Outline.js 的创作灵感。既然 AnchorJS 可创建标题的链接，为什么不直接给文章生成一个目录（Table of Contents）导航呢？ 于是就有了 Outline。</p><h2>Outline.js 是做什么的？</h2><p>Outline.js 是一个专门用来生成文章目录（Table of Contents）导航的工具。Outline.js 会查找文章指定区域中的所有 h1~h6 的标签，并自动分析文章的层次结构，生成文章的目录导航（独立的侧边栏菜单，或者在文章的开始处生成文章目录）。</p><h2>为什么选择 Outline.js？</h2><p>AnchorJS 由于不是中国工程师开发的，所以对中文支持不好，无法给中文标题生成锚点。而 Outline 即支持英文也支持中文。Outline 在拥有 AnchorJS 的基础功能同时，还可以自动分析文章的层次结构，生成文章的目录导航。</p><h2>Outline.js 的特点</h2><ul><li>支持 AMD 和 CMD 规范；</li><li>可以作为独立模块使用，也可以作为 jQuery 插件使用；</li><li>支持中文和英文（标题文字）；</li><li>界面简洁大方；</li><li>拥有 AnchorJS 的基础功能；</li><li>即支持生成独立文章目录导航菜单，又可以直接在文章中生成目录导航；</li><li>可直接在段落标题上显示段落层级索引值；</li><li>配置灵活，丰富，让你随心所欲掌控 Outline.js；</li></ul></article></div><script src="js/outline.js"></script><script>new Outline({
-    title: 'Outline.js',
-    position: 'outside'
-})</script></body></html>
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width"><meta content="telephone=no" name="format-detection"><meta name="description" content="Outline.js - Outline.js 是一个专门用来生成文章导读（Table of Contents）导航的 JavaScript 工具。"><meta name="keywords" content="Outline,JavaScript,jQuery,jQuery Plugin"><title>Outline.js - Outline.js 是一个专门用来生成文章导读（Table of Contents）导航的 JavaScript 工具。</title><link href="css/docs.css" rel="stylesheet" type="text/css"></head><body><div class="wrap" id="wrap"><div class="side"><h2 class="subject">OUTLINE.JS</h2><h3 class="chanel">Options</h3><ul class="methods"><li class="method"><a href="#option-article">article</a></li><li class="method"><a href="#option-selector">selector</a></li><li class="method"><a href="#option-title">title</a></li><li class="method"><a href="#option-position">position</a></li><li class="method"><a href="#option-anchorURL">anchorURL</a></li><li class="method"><a href="#option-anchorAt">anchorAt</a></li><li class="method"><a href="#option-isGenerateOutline">isGenerateOutline</a></li><li class="method"><a href="#option-isGenerateOutlineChapterCode">isGenerateOutlineChapterCode</a></li><li class="method"><a href="#option-isGenerateHeadingChapterCode">isGenerateHeadingChapterCode</a></li><li class="method"><a href="#option-isGenerateHeadingAnchor">isGenerateHeadingAnchor</a></li></ul><h3 class="chanel">Properties</h3><ul class="methods"><li class="method"><a href="#property-defaults">defaults</a></li><li class="method"><a href="#property-attributes">attributes</a></li><li class="method"><a href="#property-elements">elements</a></li><li class="method"><a href="#property-data">data</a></li></ul><h3 class="chanel">Methods</h3><ul class="methods"><li class="method"><a href="#method-get">get</a></li><li class="method"><a href="#method-set">set</a></li><li class="method"><a href="#method-getElements">getElements</a></li><li class="method"><a href="#method-getData">getData</a></li><li class="method"><a href="#method-scrollTo">scrollTo</a></li><li class="method"><a href="#method-stop">stop</a></li><li class="method"><a href="#method-show">show</a></li><li class="method"><a href="#method-hide">hide</a></li><li class="method"><a href="#method-toggle">toggle</a></li><li class="method"><a href="#method-remove">remove</a></li><li class="method"><a href="#method-destroy">destroy</a></li><li class="method"><a href="#method-reload">reload</a></li></ul></div><div class="main" id="main"><div class="header" id="header"><h1 class="title"><strong class="project">Outline</strong>.js</h1><p class="tagline">Automatically create directory navigation for your article.</p></div><div class="github"><a class="button" href="https://github.com/yaohaixiao/outline" target="_blank">View on GitHub</a></div><div class="api-section"><h2 class="api-chanel">Options</h2><div class="api-md" id="option-article"><div class="api-hd"><h3 class="api-title">article</h3></div><div class="api-bd"><h4>Description</h4><dl class="api-param"><dt class="api-param-key">Type：</dt><dd class="api-param-value">String</dd></dl><dl class="api-param"><dt class="api-param-key">Default：</dt><dd class="api-param-value">'#article'</dd></dl><p>必选，用来指定页面中显示文章正文的 DOM 节点的 ID 选择器。</p><h4>Usage</h4><h5>Default Selector</h5><pre class="api-code"><code>new outline();</code></pre><h5>Customize Selector</h5><pre class="api-code"><code>new Outline({
+    article: $('#main')
+});</code></pre></div></div><div class="api-md" id="option-selector"><div class="api-hd"><h3 class="api-title">selector</h3></div><div class="api-bd"><h4>Description</h4><dl class="api-param"><dt class="api-param-key">Type：</dt><dd class="api-param-value">String</dd></dl><dl class="api-param"><dt class="api-param-key">Default：</dt><dd class="api-param-value">'h1,h2,h3,h4,h5,h6'</dd></dl><p>可选，用来指定 <a href="#option-article">article</a> 节点下，要生成导航的标题标签的选择器。</p><h4>Usage</h4><h5>Default selector</h5><pre class="api-code"><code>new Outline();</code></pre><h5>Customize selector</h5><pre class="api-code"><code>new Outline({
+    selector: 'h3'
+});</code></pre></div></div><div class="api-md" id="option-title"><div class="api-hd"><h3 class="api-title">title</h3></div><div class="api-bd"><h4>Description</h4><dl class="api-param"><dt class="api-param-key">Type：</dt><dd class="api-param-value">String</dd></dl><dl class="api-param"><dt class="api-param-key">Default：</dt><dd class="api-param-value">'文章导读'</dd></dl><p>可选，用来指定文章导读导航菜单的标题文字。</p><h4>Usage</h4><h5>Default title</h5><pre class="api-code"><code>new Outline({
+    article: '#article',
+    // 不配置 title 属性，即使用默认标题文字
+});</code></pre><h5>Customize title</h5><pre class="api-code"><code>new Outline({
+    title: 'OutlineJS API'
+});</code></pre></div></div><div class="api-md" id="option-position"><div class="api-hd"><h3 class="api-title">position</h3></div><div class="api-bd"><h4>Description</h4><dl class="api-param"><dt class="api-param-key">Type：</dt><dd class="api-param-value">String</dd></dl><dl class="api-param"><dt class="api-param-key">Default：</dt><dd class="api-param-value">'outside'</dd></dl><p>可选，用来指定文章导读导航菜单的显示位置。</p><h4>Usage</h4><h5>Default position - （'inside'）默认以侧边栏导航的形式显示</h5><pre class="api-code"><code>new Outline();</code></pre><h5>Inside Article - 在文章开始位置插入文章导读导航</h5><pre class="api-code"><code>new Outline({
+    position: 'inside'
+});</code></pre></div></div><div class="api-md" id="option-anchorURL"><div class="api-hd"><h3 class="api-title">anchorURL</h3></div><div class="api-bd"><h4>Description</h4><dl class="api-param"><dt class="api-param-key">Type：</dt><dd class="api-param-value">String</dd></dl><dl class="api-param"><dt class="api-param-key">Default：</dt><dd class="api-param-value">''</dd></dl><p>可选，用来指定文章标题锚点链接图标的链接地址。</p><h4>Usage</h4><h5>Default URL - 默认链接，点击图标，页面会滚动到当前标题位置</h5><pre class="api-code"><code>new Outline();</code></pre><h5>Customize URL - 直接打开链接了</h5><pre class="api-code"><code>new Outline({
+    anchorURL: 'http://www.yaohaixiao.com/'
+});</code></pre></div></div><div class="api-md" id="option-anchorAt"><div class="api-hd"><h3 class="api-title">anchorAt</h3></div><div class="api-bd"><h4>Description</h4><dl class="api-param"><dt class="api-param-key">Type：</dt><dd class="api-param-value">String</dd></dl><dl class="api-param"><dt class="api-param-key">Default：</dt><dd class="api-param-value">'front'</dd></dl><p>可选，用来指定文章标题锚点链接图标的显示位置。</p><h4>Usage</h4><h5>front - 默认锚点图标显示在标题最开始位置</h5><pre class="api-code"><code>new Outline();</code></pre><h5>end - 锚点图标显示在标题最后面</h5><pre class="api-code"><code>new Outline({
+    anchorAt: 'end'
+});</code></pre></div></div><div class="api-md" id="option-isGenerateOutline"><div class="api-hd"><h3 class="api-title">isGenerateOutline</h3></div><div class="api-bd"><h4>Description</h4><dl class="api-param"><dt class="api-param-key">Type：</dt><dd class="api-param-value">Boolean</dd></dl><dl class="api-param"><dt class="api-param-key">Default：</dt><dd class="api-param-value">true</dd></dl><p>可选，用来指定是否文章导读导航菜单。</p></div></div><div class="api-md" id="option-isGenerateOutlineChapterCode"><div class="api-hd"><h3 class="api-title">isGenerateOutlineChapterCode</h3></div><div class="api-bd"><h4>Description</h4><dl class="api-param"><dt class="api-param-key">Type：</dt><dd class="api-param-value">Boolean</dd></dl><dl class="api-param"><dt class="api-param-key">Default：</dt><dd class="api-param-value">true</dd></dl><p>可选，用来指定是否文章导读导航菜单是否显示文章段落层次的索引编号。</p></div></div><div class="api-md" id="option-isGenerateHeadingChapterCode"><div class="api-hd"><h3 class="api-title">isGenerateHeadingChapterCode</h3></div><div class="api-bd"><h4>Description</h4><dl class="api-param"><dt class="api-param-key">Type：</dt><dd class="api-param-value">Boolean</dd></dl><dl class="api-param"><dt class="api-param-key">Default：</dt><dd class="api-param-value">false</dd></dl><p>可选，用来指定是否在文章标题前面显示文章段落层次的索引编号。</p></div></div><div class="api-md" id="option-isGenerateHeadingAnchor"><div class="api-hd"><h3 class="api-title">isGenerateHeadingAnchor</h3></div><div class="api-bd"><h4>Description</h4><dl class="api-param"><dt class="api-param-key">Type：</dt><dd class="api-param-value">Boolean</dd></dl><dl class="api-param"><dt class="api-param-key">Default：</dt><dd class="api-param-value">true</dd></dl><p>可选，用来指定是否在文章标题位置生成锚点链接图标。</p></div></div></div><div class="api-section"><h2 class="api-chanel">Properties</h2><div class="api-md" id="property-defaults"><div class="api-hd"><h3 class="api-title">defaults</h3></div><div class="api-bd"><h4>Description</h4><dl class="api-param"><dt class="api-param-key">Type：</dt><dd class="api-param-value">Object</dd></dl><p>静态属性，存储的是 Outline 对象默认配置选项：</p><dl class="api-param"><dt class="api-param-key">article：</dt><dd class="api-param-value">用来指定页面中显示文章正文的 DOM 节点的 ID 选择器。（默认值：'#article'）</dd></dl><dl class="api-param"><dt class="api-param-key">selector：</dt><dd class="api-param-value">用来指定 article 节点下，要生成导航的标题标签的选择器。（默认值：'h1,h2,h3,h4,h5,h6'）</dd></dl><dl class="api-param"><dt class="api-param-key">title：</dt><dd class="api-param-value">用来指定文章导读导航菜单的标题文字。（默认值：'文章导读'）</dd></dl><dl class="api-param"><dt class="api-param-key">position：</dt><dd class="api-param-value">用来指定文章导读导航菜单的显示位置。（默认值：'outside'）</dd></dl><dl class="api-param"><dt class="api-param-key">anchorURL：</dt><dd class="api-param-value">用来指定文章标题锚点链接图标的链接地址。（默认值：''）</dd></dl><dl class="api-param"><dt class="api-param-key">anchorAt：</dt><dd class="api-param-value">用来指定文章标题锚点链接图标的显示位置。（默认值：'front'）</dd></dl><dl class="api-param"><dt class="api-param-key">isGenerateOutline：</dt><dd class="api-param-value">用来指定是否文章导读导航菜单。（默认值：true）</dd></dl><dl class="api-param"><dt class="api-param-key">isGenerateOutlineChapterCode：</dt><dd class="api-param-value">用来指定是否文章导读导航菜单是否显示文章段落层次的索引编号。（默认值：true）</dd></dl><dl class="api-param"><dt class="api-param-key">isGenerateHeadingChapterCode：</dt><dd class="api-param-value">用来指定是否在文章标题前面显示文章段落层次的索引编号。（默认值：false）</dd></dl><dl class="api-param"><dt class="api-param-key">isGenerateHeadingAnchor：</dt><dd class="api-param-value">用来指定是否在文章标题位置生成锚点链接图标。（默认值：true）</dd></dl></div></div><div class="api-md" id="property-attributes"><div class="api-hd"><h3 class="api-title">attributes</h3></div><div class="api-bd"><h4>Description</h4><dl class="api-param"><dt class="api-param-key">Type：</dt><dd class="api-param-value">Object</dd></dl><p>存储的是 Outline 对象当前使用中的配置选项：</p><p>说明：建议使用 get(prop) 方法来获取属性，避免直接调用属性。</p></div></div><div class="api-md" id="property-elements"><div class="api-hd"><h3 class="api-title">elements</h3></div><div class="api-bd"><h4>Description</h4><dl class="api-param"><dt class="api-param-key">Type：</dt><dd class="api-param-value">Object</dd></dl><p>存储的是 Outline 对象相关的 DOM 元素：</p><p>说明：建议使用 getElements() 方法来获取 elements 属性。</p></div></div><div class="api-md" id="property-data"><div class="api-hd"><h3 class="api-title">data</h3></div><div class="api-bd"><h4>Description</h4><dl class="api-param"><dt class="api-param-key">Type：</dt><dd class="api-param-value">Object</dd></dl><p>存储的是 Outline 根据标题 DOM 元素分析的数据：</p><dl class="api-param"><dt class="api-param-key">chapters：</dt><dd class="api-param-value">标题章节索引数据，单个的 chapter 数据格式如下：</dd></dl><pre class="api-code"><code>{
+   // 段落章节编号
+   code: "1.2.3",
+   // 标题ID
+   id: 0,
+   // 标题在父章节中的索引值
+   index: 1,
+   // 标题的级别
+   level: 1,
+   // 父标题的ID
+   pid: -1,
+   // 标题链接地址
+   rel: "outline-heading-1",
+   // 标题文字
+   text: "Outline.js"
+}</code></pre><dl class="api-param"><dt class="api-param-key">headings：</dt><dd class="api-param-value">各个标题相关的数据：</dd></dl><pre class="api-code"><code>{
+    // 标题节点对应的ID
+    id: "outline-heading-1",
+    // 标题级别
+    level: 1,
+    // 标题节点 DOM 对象
+    node: h1#outline-heading-1.title.outline-heading,
+    // 标题的标签名
+    tagName: "H1"
+}</code></pre><p>说明：建议使用 getData() 方法来获取对应的数据。</p></div></div></div><div class="api-section"><h2 class="api-chanel">Methods</h2><div class="api-md" id="method-get"><div class="api-hd"><h3 class="api-title">get ( prop )</h3></div><div class="api-bd"><h4>Description</h4><p>get ( prop ) 方法返回某个 attributes 属性。</p><h4>Parameters</h4><h5 class="api-param-name">prop</h5><dl class="api-param"><dt class="api-param-key">Type：</dt><dd class="api-param-value">String</dd></dl><p>（必选）想要获取的 attributes 属性名称。</p><h4>Returns</h4><dl class="api-param"><dt class="api-param-key">Type：</dt><dd class="api-param-value">String|Boolean</dd></dl><p>attributes 属性值。</p><h4>Usage</h4><pre class="api-code"><code>var ArticleTOC = new AutocJS({
+     article: '#article',
+     title: 'AutocJS v0.2.0'
+});
+
+ArticleTOC.get('title'); // -> 'AutocJS v0.2.0'</code></pre></div></div><div class="api-md" id="method-set"><div class="api-hd"><h3 class="api-title">set ( options )</h3></div><div class="api-bd"><h4>Description</h4><p>set ( options ) 用来设置 attributes（配置）属性。</p><h4>Parameters</h4><h5 class="api-param-name">options</h5><dl class="api-param"><dt class="api-param-key">Type：</dt><dd class="api-param-value">Object</dd></dl><p>（必选）（可选）初始化的配置参数。</p><h4>Returns</h4><dl class="api-param"><dt class="api-param-key">Type：</dt><dd class="api-param-value">AutocJS</dd></dl><p>AutocJS 对象。</p><h4>Usage</h4><pre class="api-code"><code>new AutocJS().set({
+     article: '#article',
+     title: 'AutocJS v0.2.0'
+}).reload(); // 设置并绘制界面</code></pre></div></div><div class="api-md" id="method-getElements"><div class="api-hd"><h3 class="api-title">getElements()</h3></div><div class="api-bd"><h4>Description</h4><p>getElements() 方法返回 elements 属性，Outline 对象相关的所有 DOM 元素。</p><h4>Returns</h4><dl class="api-param"><dt class="api-param-key">Type：</dt><dd class="api-param-value">Object</dd></dl><p>elements 属性，Outline 对象创建的所有 DOM 元素。</p></div></div><div class="api-md" id="method-getData"><div class="api-hd"><h3 class="api-title">getData ()</h3></div><div class="api-bd"><h4>Description</h4><p>getData () 方法设置或者返回 Outline 对象的 data 属性。</p><h4>Returns</h4><dl class="api-param"><dt class="api-param-key">Type：</dt><dd class="api-param-value">{Outline.data}</dd></dl><p>Outline 对象的 data 属性。</p><h4>Usage</h4><pre class="api-code"><code>var nav = new outline({
+     article: '#article',
+     title: 'Outline v0.2.0'
+});
+
+nav.getData(); // -> 返回　Outline 对象的 data 属性</code></pre></div></div><div class="api-md" id="method-scrollTo"><div class="api-hd"><h3 class="api-title">scrollTo ( top )</h3></div><div class="api-bd"><h4>Description</h4><p>scrollTo ( top ) 方法用于将窗口的滚动条滚动到指定 top 值的位置。</p><h4>Parameters</h4><h5 class="api-param-name">top</h5><dl class="api-param"><dt class="api-param-key">Type：</dt><dd class="api-param-value">Number</dd></dl><p>（必选）页面要滚动的 top 数值。</p><h4>Returns</h4><dl class="api-param"><dt class="api-param-key">Type：</dt><dd class="api-param-value">Outline</dd></dl><p>Outline 对象。</p><h4>Usage</h4><pre class="api-code"><code>var navigation = new Outline({
+     article: '#article',
+     title: 'Outline v0.2.0'
+});
+
+navigation.scrollTo(200); // -> 页面将滚动到距离顶部 200 像素的位置</code></pre></div></div><div class="api-md" id="method-stop"><div class="api-hd"><h3 class="api-title">stop()</h3></div><div class="api-bd"><h4>Description</h4><p>停止页面滚动：</p><ol><li>绘制文章开始出的目录导航；</li><li>绘制标题栏的锚点链接和标题段落索引编码；</li><li>绘制侧边栏的目录导航菜单；</li></ol><h4>Returns</h4><dl class="api-param"><dt class="api-param-key">Type：</dt><dd class="api-param-value">{Outline}</dd></dl><p>Outline 对象。</p><h4>Usage</h4><pre class="api-code"><code>var navigation = new Outline({
+     article: '#article',
+     title: 'Outline v0.2.0'
+});
+
+navigation.scrollTo(200); // -> 页面将滚动到距离顶部 200 像素的位置
+navigation.stop(); // -> 手动停止滚动，点击不同的标题链接时就会先停止滚动，然后再滚动到目标位置</code></pre></div></div><div class="api-md" id="method-show"><div class="api-hd"><h3 class="api-title">show()</h3></div><div class="api-bd"><h4>Description</h4><p>show() 方法用来展开侧边栏菜单。</p><h4>Returns</h4><dl class="api-param"><dt class="api-param-key">Type：</dt><dd class="api-param-value">Outline</dd></dl><p>Outline 对象。</p><h4>Usage</h4><pre class="api-code"><code>var navigation = new Outline({
+     article: '#article',
+     title: 'Outline v0.2.0'
+});
+
+navigation.show(); // -> 导航菜单将展开</code></pre></div></div><div class="api-md" id="method-hide"><div class="api-hd"><h3 class="api-title">hide()</h3></div><div class="api-bd"><h4>Description</h4><p>hide() 方法用来收起侧边栏菜单。</p><h4>Returns</h4><dl class="api-param"><dt class="api-param-key">Type：</dt><dd class="api-param-value">Outline</dd></dl><p>Outline 对象。</p><h4>Usage</h4><pre class="api-code"><code>var navigation = new Outline({
+     article: '#article',
+     title: 'Outline v0.2.0'
+});
+
+navigation.show();
+navigation.hide(); // -> 导航菜单将收起</code></pre></div></div><div class="api-md" id="method-toggle"><div class="api-hd"><h3 class="api-title">toggle()</h3></div><div class="api-bd"><h4>Description</h4><p>toggle() 方法用来展开侧或者收起边栏菜单。</p><h4>Returns</h4><dl class="api-param"><dt class="api-param-key">Type：</dt><dd class="api-param-value">Outline</dd></dl><p>Outline 对象。</p><h4>Usage</h4><pre class="api-code"><code>var navigation = new Outline({
+     article: '#article',
+     title: 'Outline v0.2.0'
+});
+
+navigation.show();
+navigation.toggle(); // -> 导航菜单是展开的，菜单将收起。
+navigation.hide();
+navigation.toggle(); // -> 导航菜单是收起的，菜单将展开。</code></pre></div></div><div class="api-md" id="method-remove"><div class="api-hd"><h3 class="api-title">remove()</h3></div><div class="api-bd"><h4>Description</h4><p>remove() 方法将删除所有 Outline 创建的 DOM 节点，同时取消所有的事件绑定。</p><h4>Returns</h4><dl class="api-param"><dt class="api-param-key">Type：</dt><dd class="api-param-value">Outline</dd></dl><p>Outline 对象。</p><h4>Usage</h4><pre class="api-code"><code>var navigation = new Outline({
+     article: '#article',
+     title: 'Outline v0.2.0'
+});
+
+navigation.remove(); // -> 将删除所有 Outline 创建的 DOM 节点</code></pre></div></div><div class="api-md" id="method-destroy"><div class="api-hd"><h3 class="api-title">destroy()</h3></div><div class="api-bd"><h4>Description</h4><p>destroy() 方法用于移除所有绘制的 DOM 节点，并移除绑定的事件处理器，同时重置所有 attributes 配置信息和 data 信息。</p><h4>Returns</h4><dl class="api-param"><dt class="api-param-key">Type：</dt><dd class="api-param-value">Outline</dd></dl><p>Outline 对象。</p><h4>Usage</h4><pre class="api-code"><code>var navigation = new Outline({
+     article: '#article',
+     title: 'Outline v0.2.0'
+});
+
+navigation.destroy();</code></pre></div></div><div class="api-md" id="method-reload"><div class="api-hd"><h3 class="api-title">reload ( options )</h3></div><div class="api-bd"><h4>Description</h4><p>reload ( options ) 是（根据新的配置信息）重启程序方法：</p><ol><li>先移除所有绘制的 DOM 元素和绑定的事件处理器；</li><li>重新初始化程序；</li></ol><h4>Parameters</h4><h5 class="api-param-name">options</h5><dl class="api-param"><dt class="api-param-key">Type：</dt><dd class="api-param-value">Object</dd></dl><p>（可选）初始化的配置参数。</p><h4>Returns</h4><dl class="api-param"><dt class="api-param-key">Type：</dt><dd class="api-param-value">Outline</dd></dl><p>Outline 对象。</p><h4>Usage</h4><pre class="api-code"><code>var navigation = new Outline({
+    isGenerateHeadingAnchor: true
+});
+
+navigation.reload({
+    isGenerateHeadingAnchor: false
+}); // 鼠标滑过正文中的标题上将不会创建锚点链接图标</code></pre></div></div></div><div class="footer" id="footer"><p>Copyright &copy; 2017 <a href="https://github.com/yaohaixiao">Robert Yao</a>, all right reserved.</p><p>Code licensed under<a href="http://opensource.org/licenses/mit-license.html">MIT License</a> · Documentation licensed under
+<a href="http://creativecommons.org/licenses/by/3.0/">CC BY 3.0</a></p><p><a href="https://github.com/yaohaixiao/outline">View on GitHub</a> ·
+<a href="https://github.com/yaohaixiao/outline/issues">Issues</a></p></div></div></div><script src="js/outline.js"></script><script>let navigation = new Outline({
+    article: '#main'
+})
+navigation.remove()</script></body></html>

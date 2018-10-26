@@ -1,0 +1,23 @@
+div#option-selector.api-md
+    div.api-hd
+        h3.api-title selector
+    div.api-bd
+        h4 Description
+        dl.api-param
+            dt.api-param-key Type：
+            dd.api-param-value String
+        dl.api-param
+            dt.api-param-key Default：
+            dd.api-param-value 'h1,h2,h3,h4,h5,h6'
+        p 可选，用来指定 <a href="#option-article">article</a> 节点下，要生成导航的标题标签的选择器。
+        h4 Usage
+        h5 Default selector
+        pre.api-code
+            code.
+                new Outline();
+        h5 Customize selector
+        pre.api-code
+            code.
+                new Outline({
+                    selector: 'h3'
+                });

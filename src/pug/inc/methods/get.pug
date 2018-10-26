@@ -1,0 +1,26 @@
+div#method-get.api-md
+    div.api-hd
+        h3.api-title get ( prop )
+    div.api-bd
+        h4 Description
+        p get ( prop ) 方法返回某个 attributes 属性。
+        h4 Parameters
+        h5.api-param-name prop
+        dl.api-param
+            dt.api-param-key Type：
+            dd.api-param-value String
+        p （必选）想要获取的 attributes 属性名称。
+        h4 Returns
+        dl.api-param
+            dt.api-param-key Type：
+            dd.api-param-value String|Boolean
+        p attributes 属性值。
+        h4 Usage
+        pre.api-code
+            code.
+                var ArticleTOC = new AutocJS({
+                     article: '#article',
+                     title: 'AutocJS v0.2.0'
+                });
+
+                ArticleTOC.get('title'); // -> 'AutocJS v0.2.0'

@@ -1,0 +1,24 @@
+div#method-set.api-md
+    div.api-hd
+        h3.api-title set ( options )
+    div.api-bd
+        h4 Description
+        p set ( options ) 用来设置 attributes（配置）属性。
+        h4 Parameters
+        h5.api-param-name options
+        dl.api-param
+            dt.api-param-key Type：
+            dd.api-param-value Object
+        p （必选）（可选）初始化的配置参数。
+        h4 Returns
+        dl.api-param
+            dt.api-param-key Type：
+            dd.api-param-value AutocJS
+        p AutocJS 对象。
+        h4 Usage
+        pre.api-code
+            code.
+                new AutocJS().set({
+                     article: '#article',
+                     title: 'AutocJS v0.2.0'
+                }).reload(); // 设置并绘制界面

@@ -266,7 +266,7 @@ var Outline = function () {
                     className: 'icon icon-section outline-heading-icon'
                 });
                 var url = anchorURL ? anchorURL : '#' + heading.id;
-                var anchorStyle = _this.get('anchorAt') === 'front' ? 'outline-heading-anchor-at-front' : 'outline-heading-anchor-at-back';
+                var anchorStyle = _this.get('anchorAt') === 'front' ? 'outline-heading-anchor-at-front' : 'outline-heading-anchor-at-end';
                 var anchor = dom.createElement('a', {
                     'aria-hidden': true,
                     className: 'outline-heading-anchor ' + anchorStyle + ' outline-link outline-hidden',

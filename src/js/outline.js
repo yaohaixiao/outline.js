@@ -240,7 +240,7 @@ class Outline {
                 className: 'icon icon-section outline-heading-icon'
             })
             let url = anchorURL ? anchorURL : '#' + heading.id
-            let anchorStyle = this.get('anchorAt') === 'front' ? 'outline-heading-anchor-at-front' : 'outline-heading-anchor-at-back'
+            let anchorStyle = this.get('anchorAt') === 'front' ? 'outline-heading-anchor-at-front' : 'outline-heading-anchor-at-end'
             let anchor = dom.createElement('a', {
                 'aria-hidden': true,
                 className: 'outline-heading-anchor ' + anchorStyle + ' outline-link outline-hidden',

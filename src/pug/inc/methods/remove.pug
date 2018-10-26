@@ -1,0 +1,20 @@
+div#method-remove.api-md
+    div.api-hd
+        h3.api-title remove()
+    div.api-bd
+        h4 Description
+        p remove() 方法将删除所有 Outline 创建的 DOM 节点，同时取消所有的事件绑定。
+        h4 Returns
+        dl.api-param
+            dt.api-param-key Type：
+            dd.api-param-value Outline
+        p Outline 对象。
+        h4 Usage
+        pre.api-code
+            code.
+                var navigation = new Outline({
+                     article: '#article',
+                     title: 'Outline v0.2.0'
+                });
+
+                navigation.remove(); // -> 将删除所有 Outline 创建的 DOM 节点

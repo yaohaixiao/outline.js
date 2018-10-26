@@ -1,0 +1,25 @@
+div#method-stop.api-md
+  div.api-hd
+    h3.api-title stop()
+  div.api-bd
+    h4 Description
+    p 停止页面滚动：
+    ol
+      li 绘制文章开始出的目录导航；
+      li 绘制标题栏的锚点链接和标题段落索引编码；
+      li 绘制侧边栏的目录导航菜单；
+    h4 Returns
+    dl.api-param
+      dt.api-param-key Type：
+      dd.api-param-value {Outline}
+    p Outline 对象。
+    h4 Usage
+    pre.api-code
+      code.
+        var navigation = new Outline({
+             article: '#article',
+             title: 'Outline v0.2.0'
+        });
+
+        navigation.scrollTo(200); // -> 页面将滚动到距离顶部 200 像素的位置
+        navigation.stop(); // -> 手动停止滚动，点击不同的标题链接时就会先停止滚动，然后再滚动到目标位置

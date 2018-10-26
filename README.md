@@ -78,7 +78,7 @@ navigation.reload({
 
 ### article
 Type: `String`
-Default: `#article`
+Default: `'#article'`
 
 可选，用来指定页面中显示文章正文的 DOM 节点的 ID 选择器。
 
@@ -160,9 +160,7 @@ Type: `Objects`
 
 存储的是 Outline 根据标题 DOM 元素分析的数据。
 
-## Example
-
-演示地址：[https://yaohaixiao.github.io/outline/](https://yaohaixiao.github.io/outline/)
+完整API地址：[https://yaohaixiao.github.io/outline/](https://yaohaixiao.github.io/outline/)
 
 ## License
 

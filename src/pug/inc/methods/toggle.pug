@@ -1,0 +1,23 @@
+div#method-toggle.api-md
+    div.api-hd
+        h3.api-title toggle()
+    div.api-bd
+        h4 Description
+        p toggle() 方法用来展开侧或者收起边栏菜单。
+        h4 Returns
+        dl.api-param
+            dt.api-param-key Type：
+            dd.api-param-value Outline
+        p Outline 对象。
+        h4 Usage
+        pre.api-code
+            code.
+                var navigation = new Outline({
+                     article: '#article',
+                     title: 'Outline v0.2.0'
+                });
+
+                navigation.show();
+                navigation.toggle(); // -> 导航菜单是展开的，菜单将收起。
+                navigation.hide();
+                navigation.toggle(); // -> 导航菜单是收起的，菜单将展开。

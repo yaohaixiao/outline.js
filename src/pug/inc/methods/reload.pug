@@ -1,0 +1,30 @@
+div#method-reload.api-md
+    div.api-hd
+        h3.api-title reload ( options )
+    div.api-bd
+        h4 Description
+        p reload ( options ) 是（根据新的配置信息）重启程序方法：
+        ol
+            li 先移除所有绘制的 DOM 元素和绑定的事件处理器；
+            li 重新初始化程序；
+        h4 Parameters
+        h5.api-param-name options
+        dl.api-param
+            dt.api-param-key Type：
+            dd.api-param-value Object
+        p （可选）初始化的配置参数。
+        h4 Returns
+        dl.api-param
+            dt.api-param-key Type：
+            dd.api-param-value Outline
+        p Outline 对象。
+        h4 Usage
+        pre.api-code
+            code.
+                var navigation = new Outline({
+                    isGenerateHeadingAnchor: true
+                });
+
+                navigation.reload({
+                    isGenerateHeadingAnchor: false
+                }); // 鼠标滑过正文中的标题上将不会创建锚点链接图标
