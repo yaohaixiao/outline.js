@@ -1,6 +1,6 @@
 {
   "name": "articleoutline",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "description": "ArticleOutline - 是一个专门用来生成文章导读（Table of Contents）导航的 JavaScript 工具。",
   "main": "articleoutline.js",
   "scripts": {
