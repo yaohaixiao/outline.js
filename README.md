@@ -1,4 +1,4 @@
-# Outline
+# OutlineJS
 Outline.js 是一个专门用来生成文章导读（Table of Contents）导航的 JavaScript 工具（原 autocjs 的重构版本，不依赖任何JS库）。Outline.js 会查找文章指定区域中的所有 h1~h6 的标签，并自动分析文章段落间的层次结构，生成文章的导读导航。
 
 ## 创作灵感
