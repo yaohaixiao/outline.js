@@ -4,7 +4,7 @@
   } else if (typeof exports === 'object') {
     module.exports = factory();
   } else {
-    root.Outline = factory();
+    root.ArticleOutline = factory();
   }
 }(this, function() {
 'use strict';
@@ -13,9 +13,9 @@ var _createClass = function () { function defineProperties(target, props) { for 
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
-var Outline = function () {
-    function Outline(options) {
-        _classCallCheck(this, Outline);
+var ArticleOutline = function () {
+    function ArticleOutline(options) {
+        _classCallCheck(this, ArticleOutline);
 
         // 所有配置属性
         this.attributes = {};
@@ -49,7 +49,7 @@ var Outline = function () {
         return this;
     }
 
-    _createClass(Outline, [{
+    _createClass(ArticleOutline, [{
         key: 'initialize',
         value: function initialize(options) {
             var elements = this.getElements();
@@ -58,7 +58,7 @@ var Outline = function () {
             var headings = void 0;
 
             // 舒适化配置
-            this.set(Outline.defaults).set(options);
+            this.set(ArticleOutline.defaults).set(options);
 
             article = document.querySelector(this.get('article'));
             headings = this.generateHeadings(article.querySelectorAll(this.get('selector')));
@@ -82,13 +82,13 @@ var Outline = function () {
          * 设置属性
          * @param {String|Object} prop
          * @param {*} [val]
-         * @returns {Outline}
+         * @returns {ArticleOutline}
          */
 
     }, {
         key: 'set',
         value: function set(prop, val) {
-            var utils = Outline.Utils;
+            var utils = ArticleOutline.Utils;
             var attrs = this.attributes;
 
             if (arguments.length === 2) {
@@ -123,7 +123,7 @@ var Outline = function () {
         key: 'generateHeadings',
         value: function generateHeadings(nodes) {
             var headings = [];
-            var utils = Outline.Utils;
+            var utils = ArticleOutline.Utils;
 
             Array.prototype.forEach.call(nodes, function (node) {
                 headings.push({
@@ -139,7 +139,7 @@ var Outline = function () {
     }, {
         key: 'generateChapters',
         value: function generateChapters(headings) {
-            var utils = Outline.Utils;
+            var utils = ArticleOutline.Utils;
             var chapters = [];
             var previous = 1;
             var level = 0;
@@ -194,7 +194,7 @@ var Outline = function () {
                             pid = -1;
                         } else {
                             // 虽然看上去差点，不过能工作啊
-                            pid = Outline._generatePid(chapters, previous - current, i);
+                            pid = ArticleOutline._generatePid(chapters, previous - current, i);
                         }
                     }
 
@@ -216,7 +216,7 @@ var Outline = function () {
     }, {
         key: 'generateChapterCode',
         value: function generateChapterCode(chapters) {
-            var utils = Outline.Utils;
+            var utils = ArticleOutline.Utils;
             var groups = utils.groupBy(chapters, 'pid');
 
             groups.forEach(function (group) {
@@ -253,7 +253,7 @@ var Outline = function () {
         value: function renderAnchors() {
             var _this = this;
 
-            var dom = Outline.Utils.DOM;
+            var dom = ArticleOutline.Utils.DOM;
             var data = this.getData();
             var headings = data.headings;
             var chapters = data.chapters;
@@ -320,7 +320,7 @@ var Outline = function () {
     }, {
         key: 'renderOutsideOutline',
         value: function renderOutsideOutline() {
-            var utils = Outline.Utils;
+            var utils = ArticleOutline.Utils;
             var dom = utils.DOM;
             var elements = this.getElements();
             var title = this.get('title');
@@ -382,7 +382,7 @@ var Outline = function () {
     }, {
         key: 'renderInsideOutline',
         value: function renderInsideOutline() {
-            var utils = Outline.Utils;
+            var utils = ArticleOutline.Utils;
             var dom = utils.DOM;
             var elements = this.getElements();
             var title = this.get('title');
@@ -418,7 +418,7 @@ var Outline = function () {
             var _this2 = this;
 
             var chapters = this.getData().chapters;
-            var dom = Outline.Utils.DOM;
+            var dom = ArticleOutline.Utils.DOM;
             var list = this.getElements().list;
 
             chapters.forEach(function (chapter) {
@@ -479,7 +479,7 @@ var Outline = function () {
         value: function scrollTo(top) {
             var _this3 = this;
 
-            var utils = Outline.Utils;
+            var utils = ArticleOutline.Utils;
             var elements = document.querySelectorAll('html,body');
             var rootElement = elements[0].scrollTop - elements[1].scrollTop >= 0 ? elements[0] : elements[1];
             var scrollTop = rootElement.scrollTop;
@@ -535,7 +535,7 @@ var Outline = function () {
         key: 'show',
         value: function show() {
             var elements = this.getElements();
-            var dom = Outline.Utils.DOM;
+            var dom = ArticleOutline.Utils.DOM;
 
             dom.addClass(elements.modal, 'outline-outside-modal-opened');
             dom.removeClass(elements.overlay, 'outline-hidden');
@@ -546,7 +546,7 @@ var Outline = function () {
         key: 'hide',
         value: function hide() {
             var elements = this.getElements();
-            var dom = Outline.Utils.DOM;
+            var dom = ArticleOutline.Utils.DOM;
 
             dom.removeClass(elements.modal, 'outline-outside-modal-opened');
             dom.addClass(elements.overlay, 'outline-hidden');
@@ -556,7 +556,7 @@ var Outline = function () {
     }, {
         key: 'toggle',
         value: function toggle() {
-            if (Outline.Utils.DOM.hasClass(this.getElements().modal, 'outline-outside-modal-opened')) {
+            if (ArticleOutline.Utils.DOM.hasClass(this.getElements().modal, 'outline-outside-modal-opened')) {
                 this.hide();
             } else {
                 this.show();
@@ -621,7 +621,7 @@ var Outline = function () {
             var elements = this.getElements();
             var article = elements.article;
             var wrap = elements.wrap;
-            var utils = Outline.Utils;
+            var utils = ArticleOutline.Utils;
             var off = utils.Events.off;
             var position = this.get('position').toLowerCase();
 
@@ -648,7 +648,7 @@ var Outline = function () {
             var elements = this.getElements();
             var article = elements.article;
             var wrap = elements.wrap;
-            var utils = Outline.Utils;
+            var utils = ArticleOutline.Utils;
             var events = utils.Events;
             var delegate = events.delegate;
             var position = this.get('position').toLowerCase();
@@ -677,7 +677,7 @@ var Outline = function () {
             var anchor = target.querySelector('.outline-heading-anchor');
 
             if (anchor) {
-                Outline.Utils.DOM.removeClass(anchor, 'outline-hidden');
+                ArticleOutline.Utils.DOM.removeClass(anchor, 'outline-hidden');
             }
 
             return this;
@@ -689,7 +689,7 @@ var Outline = function () {
             var anchor = target.querySelector('.outline-heading-anchor');
 
             if (anchor) {
-                Outline.Utils.DOM.addClass(anchor, 'outline-hidden');
+                ArticleOutline.Utils.DOM.addClass(anchor, 'outline-hidden');
             }
 
             return this;
@@ -700,7 +700,7 @@ var Outline = function () {
             var anchor = evt.delegateTarget;
             var rel = anchor.getAttribute('rel');
             var heading = document.querySelector('#' + rel);
-            var utils = Outline.Utils;
+            var utils = ArticleOutline.Utils;
             var dom = utils.DOM;
             var events = utils.Events;
             var offsetTop = dom.offset(heading).top;
@@ -718,7 +718,7 @@ var Outline = function () {
             var anchor = evt.delegateTarget;
             var rel = anchor.getAttribute('rel');
             var heading = document.querySelector('#' + rel);
-            var utils = Outline.Utils;
+            var utils = ArticleOutline.Utils;
             var dom = utils.DOM;
             var events = utils.Events;
             var offsetTop = dom.offset(heading).top;
@@ -742,7 +742,7 @@ var Outline = function () {
     }, {
         key: '_handleTopClick',
         value: function _handleTopClick(evt) {
-            var utils = Outline.Utils;
+            var utils = ArticleOutline.Utils;
             var events = utils.Events;
 
             this.stop().scrollTo(0);
@@ -760,7 +760,7 @@ var Outline = function () {
         }
     }]);
 
-    return Outline;
+    return ArticleOutline;
 }();
 
 /**
@@ -770,7 +770,7 @@ var Outline = function () {
  */
 
 
-Outline.defaults = {
+ArticleOutline.defaults = {
     // 文章正文 DOM 节点的 ID 选择器
     article: '#article',
     // 要收集的标题选择器
@@ -803,7 +803,7 @@ Outline.defaults = {
      *
      * @type {Object}
      */
-};Outline.Utils = {
+};ArticleOutline.Utils = {
     uuid: 0,
     isObject: function isObject(o) {
         return Object.prototype.toString.apply(o) === '[object Object]' && o !== null;
@@ -822,7 +822,7 @@ Outline.defaults = {
         return typeof str === 'string' && str === '';
     },
     guid: function guid(prefix) {
-        var utils = Outline.Utils;
+        var utils = ArticleOutline.Utils;
 
         utils.uuid += 1;
 
@@ -867,7 +867,7 @@ Outline.defaults = {
      *
      * @type {Object}
      */
-};Outline.Utils.DOM = {
+};ArticleOutline.Utils.DOM = {
     /**
      * 创建 DOM 节点，并添加属性和子节点
      *
@@ -877,7 +877,7 @@ Outline.defaults = {
      * @returns {HTMLElement}
      */
     createElement: function createElement(tagName, attributes, children) {
-        var utils = Outline.Utils;
+        var utils = ArticleOutline.Utils;
         var dom = utils.DOM;
         var element = document.createElement(tagName);
 
@@ -953,7 +953,7 @@ Outline.defaults = {
     addClass: function addClass(el, className) {
         var allClass = el.className;
 
-        if (Outline.Utils.DOM.hasClass(el, className)) {
+        if (ArticleOutline.Utils.DOM.hasClass(el, className)) {
             return false;
         }
 
@@ -970,7 +970,7 @@ Outline.defaults = {
      * @returns {Boolean}
      */
     removeClass: function removeClass(el, className) {
-        var utils = Outline.Utils;
+        var utils = ArticleOutline.Utils;
         var allClass = el.className;
 
         if (!allClass || !utils.DOM.hasClass(el, className)) {
@@ -989,7 +989,7 @@ Outline.defaults = {
      * @returns {{left: Number, top: Number}}
      */
     offset: function offset(el) {
-        var dom = Outline.Utils.DOM;
+        var dom = ArticleOutline.Utils.DOM;
         var left = dom.offsetLeft(el);
         var top = dom.offsetTop(el);
 
@@ -1006,7 +1006,7 @@ Outline.defaults = {
      * @returns {Number}
      */
     offsetTop: function offsetTop(el) {
-        var dom = Outline.Utils.DOM;
+        var dom = ArticleOutline.Utils.DOM;
         var top = el.offsetTop;
 
         if (el.offsetParent !== null) {
@@ -1023,7 +1023,7 @@ Outline.defaults = {
      * @returns {Number}
      */
     offsetLeft: function offsetLeft(el) {
-        var dom = Outline.Utils.DOM;
+        var dom = ArticleOutline.Utils.DOM;
         var left = el.offsetLeft;
 
         if (el.offsetParent !== null) {
@@ -1039,7 +1039,7 @@ Outline.defaults = {
  *
  * @type {Object}
  */
-Outline.Utils.Events = {
+ArticleOutline.Utils.Events = {
     /**
      * 绑定代理事件
      * ========================================================
@@ -1055,7 +1055,7 @@ Outline.Utils.Events = {
      */
     delegate: function delegate(el, selector, type, callback, context, capture) {
         var wrapper = function wrapper(e) {
-            if (e.delegateTarget = Outline.getDelegateTarget(el, e.target, selector)) {
+            if (e.delegateTarget = ArticleOutline.getDelegateTarget(el, e.target, selector)) {
                 callback.call(context || el, e);
             }
         };
@@ -1098,7 +1098,7 @@ Outline.Utils.Events = {
      * @param {Event} evt - 事件对象
      */
     stop: function stop(evt) {
-        var events = Outline.Utils.Events;
+        var events = ArticleOutline.Utils.Events;
 
         events.stopPropagation(evt);
         events.preventDefault(evt);
@@ -1147,9 +1147,9 @@ Outline.Utils.Events = {
  * @param selector - 目标节点的类选择器
  * @returns {HTMLElement|Null}
  */
-Outline.getDelegateTarget = function (el, target, selector) {
+ArticleOutline.getDelegateTarget = function (el, target, selector) {
     while (target && target !== el) {
-        if (Outline.Utils.DOM.hasClass(target, selector.replace('.', ''))) {
+        if (ArticleOutline.Utils.DOM.hasClass(target, selector.replace('.', ''))) {
             return target;
         }
 
@@ -1169,7 +1169,7 @@ Outline.getDelegateTarget = function (el, target, selector) {
  * @param {Number} index
  * @returns {*}
  */
-Outline._generatePid = function (chapters, differ, index) {
+ArticleOutline._generatePid = function (chapters, differ, index) {
     var pid = void 0;
 
     // 最大只有 5 级的差距
@@ -1195,16 +1195,16 @@ Outline._generatePid = function (chapters, differ, index) {
 };
 
 if (window.jQuery) {
-    // 将 outline 扩展为一个 jquery 插件
+    // 将 ArticleOutline 扩展为一个 jquery 插件
     $.extend($.fn, {
-        outline: function outline(options) {
+        articleOutline: function articleOutline(options) {
             var $article = $(this);
 
-            return new Outline($.extend({}, options, {
+            return new ArticleOutline($.extend({}, options, {
                 article: $article
             }));
         }
     });
 }
-return Outline;
+return ArticleOutline;
 }));

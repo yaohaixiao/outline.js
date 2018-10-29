@@ -1,8 +1,8 @@
 {
-  "name": "outline",
+  "name": "articleoutline",
   "version": "0.0.1",
-  "description": "outline.js - 是一个专门用来生成文章导读（Table of Contents）导航的 JavaScript 工具。",
-  "main": "outline.js",
+  "description": "ArticleOutline - 是一个专门用来生成文章导读（Table of Contents）导航的 JavaScript 工具。",
+  "main": "articleoutline.js",
   "scripts": {
     "dev": "gulp dev",
     "start": "gulp start",
@@ -19,12 +19,12 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/yaohaixiao/outline.git"
+    "url": "git+https://github.com/yaohaixiao/articleoutline.git"
   },
   "bugs": {
-    "url": "https://github.com/yaohaixiao/outline/issues"
+    "url": "https://github.com/yaohaixiao/articleoutline/issues"
   },
-  "homepage": "https://github.com/yaohaixiao/outline#readme",
+  "homepage": "https://github.com/yaohaixiao/articleoutline#readme",
   "devDependencies": {
     "babel-cli": "^6.26.0",
     "babel-core": "^6.26.3",

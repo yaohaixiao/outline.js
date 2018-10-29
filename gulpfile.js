@@ -14,9 +14,9 @@ const connect = require('gulp-connect')
 const watch = require('gulp-watch')
 const clean = require('gulp-clean')
 
-const SRC_JS_PATH = 'src/js/outline.js'
-const DIST_JS_PATH = 'dist/outline.js'
-const SRC_CSS_PATH = 'src/css/outline.css'
+const SRC_JS_PATH = 'src/js/articleoutline.js'
+const DIST_JS_PATH = 'dist/articleoutline.js'
+const SRC_CSS_PATH = 'src/css/articleoutline.css'
 
 /* ==================== 清理相关的任务 ==================== */
 // 清空 docs 目录下的所有文件
@@ -163,10 +163,10 @@ gulp.task('transform', (cb) => {
             // gives streaming vinyl file object
             umd({
                 exports: function () {
-                    return 'Outline'
+                    return 'ArticleOutline'
                 },
                 namespace: function () {
-                    return 'Outline'
+                    return 'ArticleOutline'
                 }
             }),
             gulp.dest('dist'),
