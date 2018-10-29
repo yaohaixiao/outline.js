@@ -1,8 +1,8 @@
 # Outline
-Outline.js 是一个专门用来生成文章导读（Table of Contents）导航的 JavaScript 工具（原 autocjs 的重构版本，不依赖任何JS库）。Outline.js 会查找文章指定区域中的所有 h1~h6 的标签，并自动分析文章段落间的层次结构，生成文章的导读导航。
+ArticleOutline 是一个专门用来生成文章导读（Table of Contents）导航的 JavaScript 工具（原 autocjs 的重构版本，不依赖任何JS库）。ArticleOutline 会查找文章指定区域中的所有 h1~h6 的标签，并自动分析文章段落间的层次结构，生成文章的导读导航。
 
 ## 创作灵感
-AnchorJS 是 Outline.js 的创作灵感来源。既然 AnchorJS 可创建标题的链接，为什么不直接给文章生成一个文章导读（Table of Contents）导航呢？ 于是就有了 Outline。
+AnchorJS 是 ArticleOutline 的创作灵感来源。既然 AnchorJS 可创建标题的链接，为什么不直接给文章生成一个文章导读（Table of Contents）导航呢？ 于是就有了 Outline。
 
 ## 特点
 
@@ -14,29 +14,29 @@ AnchorJS 是 Outline.js 的创作灵感来源。既然 AnchorJS 可创建标题�
 - 自动分析标题关系，生成段落层级索引值；
 - 可以作为 jQuery 插件使用；
 - 界面简洁大方；
-- 配置灵活，丰富，让你随心所欲掌控 Outline；
+- 配置灵活，丰富，让你随心所欲掌控 ArticleOutline；
 
 ## 安装说明
 
 ### npm install
 
 ```sh
-$ npm install -S outline
+$ npm install -S articleoutline
 ```
 
 ### 在浏览器中使用 script 标签调用
 
 ```html
-<script src="path/to/outline.js"></script>
+<script src="path/to/articleoutline.js"></script>
 ```
 
 ## 使用说明
 
 ```js
-let Outline = require('outline');
+let ArticleOutline = require('articleoutline');
 
 // 创建 Outline 实例
-let navigation = new Outline({
+let navigation = new ArticleOutline({
     // 文章正文 DOM 节点的 ID 选择器
     article: '#article',
     // 要收集的标题选择器
@@ -143,24 +143,24 @@ Default: `true`
 ### defaults
 Type: `Objects`
 
-静态属性，存储的是 Outline 对象默认配置信息。
+静态属性，存储的是 ArticleOutline 对象默认配置信息。
 
 ### attributes
 Type: `Objects`
 
-存储的是 Outline 对象当前使用中的配置选项。
+存储的是 ArticleOutline 对象当前使用中的配置选项。
 
 ### elements
 Type: `Objects`
 
-存储的是 Outline 对象（创建的）相关的 DOM 元素。
+存储的是 ArticleOutline 对象（创建的）相关的 DOM 元素。
 
 ### data
 Type: `Objects`
 
-存储的是 Outline 根据标题 DOM 元素分析的数据。
+存储的是 ArticleOutline 根据标题 DOM 元素分析的数据。
 
-完整API地址：[https://yaohaixiao.github.io/outline/](https://yaohaixiao.github.io/outline/)
+完整API地址：[https://yaohaixiao.github.io/articleoutline/](https://yaohaixiao.github.io/articleoutline/)
 
 ## License
 
