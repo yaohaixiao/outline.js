@@ -168,7 +168,7 @@ Type: `Objects`
 
 ## Example
 
-演示地址：[https://yaohaixiao.github.io/articleoutline/example.html](https://yaohaixiao.github.io/articleoutline/example.html)
+演示地址：[https://yaohaixiao.github.io/ArticleOutline/example.html](https://yaohaixiao.github.io/ArticleOutline/example.html)
 
 ## License
 
