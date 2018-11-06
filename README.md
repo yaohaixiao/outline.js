@@ -166,7 +166,9 @@ Type: `Objects`
 
 存储的是 ArticleOutline 根据标题 DOM 元素分析的数据。
 
-完整API地址：[https://yaohaixiao.github.io/articleoutline/](https://yaohaixiao.github.io/articleoutline/)
+## Example
+
+演示地址：[https://yaohaixiao.github.io/articleoutline/example.html](https://yaohaixiao.github.io/articleoutline/example.html)
 
 ## License
 
