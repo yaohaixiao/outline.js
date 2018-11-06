@@ -24,7 +24,13 @@ AnchorJS 是 ArticleOutline 的创作灵感来源。既然 AnchorJS 可创建标
 $ npm install -S articleoutline
 ```
 
-### 在浏览器中使用 script 标签调用
+### CDN 调用
+
+```html
+<script src="https://unpkg.com/articleoutline@1.0.0/dist/articleoutline.min.js"></script>
+```
+
+### 调用本地JS文件
 
 ```html
 <script src="path/to/articleoutline.js"></script>
