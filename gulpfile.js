@@ -65,6 +65,11 @@ gulp.task('pug', (cb) => {
             pug({
                 verbose: true
             }),
+            gulp.dest('docs'),
+            gulp.src('src/pug/example.pug'),
+            pug({
+                verbose: true
+            }),
             gulp.dest('docs')
         ],
         cb

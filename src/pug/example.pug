@@ -1,0 +1,139 @@
+doctype html
+html(lang='en')
+  head
+    include inc/meta
+    title Article Outline
+    link(href="css/articleoutline.css" rel="stylesheet")
+    style.
+      .paper{
+        margin:2em;
+        padding:3.5em;
+        background-color:#fff;
+        box-shadow: 0 0 15px #ddd;
+        overflow:hidden;
+      }
+      .header{
+        margin:0 auto;
+        text-align:center;
+        overflow:hidden;
+      }
+      .article{
+        padding:1em;
+        font-size: 16px;
+      }
+      pre{
+        padding:2em;
+        background-color:#f8f8f8;
+        font-family: "Courier New", Arial, sans-serif;
+      }
+      code{
+        font-size: 14px;
+      }
+  body
+    .paper
+      .header
+        h1.title ArticleOutline
+      article#article.article
+        p
+          | ArticleOutline 是一个专门用来生成文章导读（Table of Contents）导航的 JavaScript 工具（原 autocjs 的重构版本，不依赖任何JS库）。ArticleOutline
+          | 会查找文章指定区域中的所有 h1~h6 的标签，并自动分析文章段落间的层次结构，生成文章的导读导航。
+        h2 创作灵感
+        p
+          | AnchorJS 是 ArticleOutline 的创作灵感来源。既然 AnchorJS 可创建标题的链接，为什么不直接给文章生成一个文章导读（Table of Contents）导航呢？ 于是就有了
+          | ArticleOutline。
+        h2 特点
+        ul
+          li 支持 UMD 规范；
+          li 拥有 AnchorJS 基础功能；
+          li 支持中文和英文标题文字生成ID；
+          li 支持生成独立的侧边栏导航菜单；
+          li 支持直接在文章中生成文章导读导航；
+          li 自动分析标题关系，生成段落层级索引值；
+          li 可以作为 jQuery 插件使用；
+          li 界面简洁大方；
+          li 配置灵活，丰富，让你随心所欲掌控 ArticleOutline；
+        h2 安装说明
+        h3 npm install
+        pre.
+        h3 CDN 调用
+        pre.
+        h3 调用本地JS文件
+        pre.
+        h2 使用说明
+        pre.
+        h2 Options
+        h3 article
+        ul
+          li Type: String
+          li Default: '#article'
+        p 可选，用来指定页面中显示文章正文的 DOM 节点的 ID 选择器。
+        h3 selector
+        ul
+          li Type: String
+          li Default: 'h1,h2,h3,h4,h5,h6'
+        p 可选，用来指定 article 节点下，要生成导航的标题标签的选择器。
+        h3 title
+        ul
+          li Type: String
+          li Default: '文章导读'
+        p 可选，用来指定文章导读导航菜单的标题文字。
+        h3 position
+        ul
+          li Type: String
+          li Default: 'outside'
+        p 可选，用来指定文章导读导航菜单的显示位置：outside - 生成侧边栏菜单，inside - 直接在文章正文区域的开始位置生成导航菜单。
+        p 只有设置了 isGenerateOutline 为 true，position 参数才会起效。
+        h3 anchorURL
+        ul
+          li Type: String
+          li Default: ''
+        p 可选，用来指定文章标题锚点链接图标的链接地址：'' - 点击链接页面滚动到标题位置，其它 URL 值 - 就直接跳转到指定页面了
+        h3 anchorAt
+        ul
+          li Type: String
+          li Default: 'front'
+        p 可选，用来指定文章标题锚点链接图标的显示位置：'front' - 现在在文章标题前面，'end' - 显示到标题末尾。
+        h3 isGenerateOutline
+        ul
+          li Type: Boolean
+          li Default: false
+        p 可选，用来指定是否文章导读导航菜单：true - 生成菜单，false - 不生成菜单（这样配置基本和 AnchorJS 功能一样了）。
+        h3 isGenerateOutlineChapterCode
+        ul
+          li Type: Boolean
+          li Default: true
+        p 可选，用来指定是否文章导读导航菜单是否显示文章段落层次的索引编号：true - 显示编号，false - 不显示编号。
+        h3 isGenerateHeadingChapterCode
+        ul
+          li Type: Boolean
+          li Default: false
+        p 可选，用来指定是否在文章标题前面显示文章段落层次的索引编号：true - 显示编号，false - 不显示编号。
+        h3 isGenerateHeadingAnchor
+        ul
+          li Type: Boolean
+          li Default: true
+        p
+          | 可选，用来指定是否在文章标题位置生成锚点链接图标：true - 生成锚点链接图标，并给标题添加 ID 属性，false - 不生成锚点链接图标，仅给标题添加 ID 属性。
+        h2 Properties
+        h3 defaults
+        ul
+          li Type: Objects
+        p 静态属性，存储的是 ArticleOutline 对象默认配置信息。
+        h3 attributes
+        ul
+          li Type: Objects
+        p 存储的是 ArticleOutline 对象当前使用中的配置选项。
+        h3 elements
+        ul
+          li Type: Objects
+        p 存储的是 ArticleOutline 对象（创建的）相关的 DOM 元素。
+        h3 data
+        ul
+          li Type: Objects
+        p 存储的是 ArticleOutline 根据标题 DOM 元素分析的数据。
+        h2 License
+        p JavaScript Code Licensed under MIT License.
+        p API Documentation Licensed under CC BY 3.0
+    script(src="js/articleoutline.js")
+    script.
+      let navigation = new ArticleOutline()
