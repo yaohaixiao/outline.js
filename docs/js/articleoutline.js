@@ -4,7 +4,7 @@
   } else if (typeof exports === 'object') {
     module.exports = factory();
   } else {
-    root.ArticleOutline = factory();
+    root.Autoc = factory();
   }
 }(this, function() {
 'use strict';

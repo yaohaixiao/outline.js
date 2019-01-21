@@ -1,0 +1,246 @@
+/* ==================== Icons ==================== */
+@font-face {
+    font-family: 'icomoon';
+    font-style: normal;
+    font-weight: normal;
+    src: url('fonts/icomoon.eot?y21yht');
+    src: url('fonts/icomoon.eot?y21yht#iefix') format('embedded-opentype'),
+    url('fonts/icomoon.ttf?y21yht') format('truetype'),
+    url('fonts/icomoon.woff?y21yht') format('woff'),
+    url('fonts/icomoon.svg?y21yht#icomoon') format('svg');
+}
+
+[class*=" icon-"],
+[class^="icon-"] {
+    /* Better Font Rendering =========== */
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-font-smoothing: antialiased;
+
+    /* use !important to prevent issues with browser extensions that change fonts */
+    font-family: 'icomoon' !important;
+    font-style: normal;
+    font-variant: normal;
+    font-weight: normal;
+    line-height: 1;
+    speak: none;
+    text-transform: none;
+}
+
+.icon-menu:before {
+    content: "\e9bd";
+}
+
+.icon-arrow-up:before {
+    content: "\ea32";
+}
+
+.icon-section:before {
+    content: "\ea76";
+}
+
+/* ==================== Heading ==================== */
+.outline-heading {
+    overflow: visible;
+    position: relative;
+    z-index: 1;
+}
+
+.outline-heading-anchor {
+    height: 100%;
+    text-align: center;
+    width: 1em;
+}
+
+.outline-heading-anchor-at-front {
+    left: -1em;
+    line-height: 150%;
+    margin: 0;
+    position: absolute;
+    top: 0;
+    z-index: 2;
+}
+
+/* ==================== Inside ==================== */
+.outline-inside {
+    border: 1px solid #e2e3e9;
+    margin: 1.2em auto;
+    overflow: hidden;
+}
+
+.outline-inside-header {
+    background-color: #f8f8f9;
+    border-bottom: 1px solid #e2e3e9;
+    height: 40px;
+    line-height: 40px;
+    margin: 0 auto;
+    overflow: hidden;
+    padding: 0 15px;
+    position: relative;
+    z-index: 1;
+}
+
+.outline-inside-title {
+    font-size: 16px;
+    font-weight: normal;
+    height: 40px;
+    margin: 0 auto;
+    overflow: hidden;
+}
+
+.outline-inside-body {
+    margin: 0 auto;
+    overflow: hidden;
+    padding: 15px;
+}
+
+/* ==================== Outside ==================== */
+.outline-outside-modal {
+    background-color: #fff;
+    border-right: 1px solid #e2e3e9;
+    -webkit-box-shadow: 0 0 15px #ddd;
+    box-shadow: 0 0 15px #ddd;
+    height: 100%;
+    left: -360px;
+    overflow: visible;
+    position: fixed;
+    top: 0;
+    -webkit-transition-duration: 0.5s;
+    transition-duration: 0.5s;
+    width: 360px;
+    z-index: 201;
+}
+
+.outline-outside-modal-opened {
+    left: 0;
+}
+
+.outline-outside-header {
+    height: 40px;
+    left: 0;
+    overflow: hidden;
+    position: absolute;
+    top: 0;
+    width: 100%;
+    z-index: 2;
+}
+
+.outline-outside-title {
+    font-size: 16px;
+    font-weight: normal;
+    height: 40px;
+    line-height: 40px;
+    margin: 0 auto;
+    overflow: hidden;
+    text-align: center;
+}
+
+.outline-outside-body {
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    height: 100%;
+    overflow: hidden;
+    padding: 40px 0 0;
+    position: relative;
+    z-index: 1;
+}
+
+.outline-outside-list {
+    height: 100%;
+    overflow: auto;
+}
+
+.outline-outside-footer {
+    background-color: #fff;
+    border: 1px solid #e2e3e9;
+    border-left: none;
+    height: 81px;
+    margin: -40px 0 0;
+    overflow: hidden;
+    position: absolute;
+    right: -41px;
+    top: 50%;
+    width: 40px;
+    z-index: 2;
+}
+
+.outline-outside-button {
+    cursor: pointer;
+    font-size: 18px;
+    height: 40px;
+    line-height: 40px;
+    margin: 0 auto;
+    overflow: hidden;
+    text-align: center;
+    width: 40px;
+}
+
+.outline-outside-button:hover {
+    background-color: #f1f1f1;
+}
+
+.outline-outside-switcher {
+    border-bottom: 1px solid #e2e3e9;
+}
+
+.outline-outside-top:link,
+.outline-outside-top:visited,
+.outline-outside-top:hover {
+    color: #333;
+    display: block;
+    height: 40px;
+    margin: 0;
+    text-decoration: none;
+    width: 40px;
+}
+
+.outline-outside-overlay {
+    background-color: #fff;
+    height: 100%;
+    left: 0;
+    margin: 0;
+    opacity: 0.25;
+    overflow: hidden;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 200;
+}
+
+.outline-inside-list,
+.outline-outside-list,
+.outline-chapter,
+.outline-subject {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+/* ==================== Chapters ==================== */
+.outline-chapter {
+    font-size: 13px;
+    line-height: 28px;
+    overflow: hidden;
+    padding: 0 15px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.outline-chapter-code {
+    padding-right: 5px;
+}
+
+.outline-link:link,
+.outline-link:visited,
+.outline-link:hover {
+    color: #333;
+    text-decoration: none;
+}
+
+.outline-link:hover {
+    color: #34A6F8;
+}
+
+/* ==================== Global ==================== */
+.outline-hidden {
+    display: none;
+}

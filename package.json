@@ -1,8 +1,8 @@
 {
-  "name": "articleoutline",
-  "version": "1.0.0",
-  "description": "ArticleOutline - 是一个专门用来生成文章导读（Table of Contents）导航的 JavaScript 工具。",
-  "main": "articleoutline.js",
+  "name": "autoc.js",
+  "version": "2.0.0",
+  "description": "Autoc.Js - 是一个专门用来生成文章导读（Table of Contents）导航的 JavaScript 工具。",
+  "main": "autoc.js",
   "scripts": {
     "dev": "gulp dev",
     "start": "gulp start",
@@ -19,12 +19,12 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/yaohaixiao/articleoutline.git"
+    "url": "git+https://github.com/yaohaixiao/autoc.js.git"
   },
   "bugs": {
-    "url": "https://github.com/yaohaixiao/articleoutline/issues"
+    "url": "https://github.com/yaohaixiao/autoc.js/issues"
   },
-  "homepage": "https://github.com/yaohaixiao/articleoutline#readme",
+  "homepage": "https://github.com/yaohaixiao/autoc.js#readme",
   "devDependencies": {
     "babel-cli": "^6.26.0",
     "babel-core": "^6.26.3",

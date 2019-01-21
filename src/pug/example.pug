@@ -2,8 +2,8 @@ doctype html
 html(lang='en')
   head
     include inc/meta
-    title Article Outline
-    link(href="css/articleoutline.css" rel="stylesheet")
+    title Autoc.Js
+    link(href="css/autoc.css" rel="stylesheet")
     style.
       .paper{
         margin:2em;
@@ -32,15 +32,15 @@ html(lang='en')
   body
     .paper
       .header
-        h1.title ArticleOutline
+        h1.title Autoc.Js
       article#article.article
         p
-          | ArticleOutline 是一个专门用来生成文章导读（Table of Contents）导航的 JavaScript 工具（原 autocjs 的重构版本，不依赖任何JS库）。ArticleOutline
+          | Autoc.Js 是一个专门用来生成文章导读（Table of Contents）导航的 JavaScript 工具（原 autocjs 的重构版本，不依赖任何JS库）。Autoc.Js
           | 会查找文章指定区域中的所有 h1~h6 的标签，并自动分析文章段落间的层次结构，生成文章的导读导航。
         h2 创作灵感
         p
-          | AnchorJS 是 ArticleOutline 的创作灵感来源。既然 AnchorJS 可创建标题的链接，为什么不直接给文章生成一个文章导读（Table of Contents）导航呢？ 于是就有了
-          | ArticleOutline。
+          | AnchorJS 是 Autoc.Js 的创作灵感来源。既然 AnchorJS 可创建标题的链接，为什么不直接给文章生成一个文章导读（Table of Contents）导航呢？ 于是就有了
+          | Autoc.Js。
         h2 特点
         ul
           li 支持 UMD 规范；
@@ -51,7 +51,7 @@ html(lang='en')
           li 自动分析标题关系，生成段落层级索引值；
           li 可以作为 jQuery 插件使用；
           li 界面简洁大方；
-          li 配置灵活，丰富，让你随心所欲掌控 ArticleOutline；
+          li 配置灵活，丰富，让你随心所欲掌控 Autoc.Js；
         h2 安装说明
         h3 npm install
         pre.
@@ -118,22 +118,22 @@ html(lang='en')
         h3 defaults
         ul
           li Type: Objects
-        p 静态属性，存储的是 ArticleOutline 对象默认配置信息。
+        p 静态属性，存储的是 Autoc 对象默认配置信息。
         h3 attributes
         ul
           li Type: Objects
-        p 存储的是 ArticleOutline 对象当前使用中的配置选项。
+        p 存储的是 Autoc 对象当前使用中的配置选项。
         h3 elements
         ul
           li Type: Objects
-        p 存储的是 ArticleOutline 对象（创建的）相关的 DOM 元素。
+        p 存储的是 Autoc 对象（创建的）相关的 DOM 元素。
         h3 data
         ul
           li Type: Objects
-        p 存储的是 ArticleOutline 根据标题 DOM 元素分析的数据。
+        p 存储的是 Autoc.Js 根据标题 DOM 元素分析的数据。
         h2 License
         p JavaScript Code Licensed under MIT License.
         p API Documentation Licensed under CC BY 3.0
-    script(src="js/articleoutline.js")
+    script(src="js/autoc.js")
     script.
-      let navigation = new ArticleOutline()
+      let navigation = new AutocJs()

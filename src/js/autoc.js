@@ -1,4 +1,4 @@
-class ArticleOutline {
+class AutocJs {
     constructor (options) {
         // 所有配置属性
         this.attributes = {}
@@ -42,7 +42,7 @@ class ArticleOutline {
         let headings
 
         // 舒适化配置
-        this.set(ArticleOutline.defaults)
+        this.set(AutocJs.defaults)
             .set(options)
 
         article = document.querySelector(this.get('article'))
@@ -66,10 +66,10 @@ class ArticleOutline {
      * 设置属性
      * @param {String|Object} prop
      * @param {*} [val]
-     * @returns {ArticleOutline}
+     * @returns {Autoc}
      */
     set (prop, val) {
-        let utils = ArticleOutline.Utils
+        let utils = AutocJs.Utils
         let attrs = this.attributes
 
         if (arguments.length === 2) {
@@ -98,7 +98,7 @@ class ArticleOutline {
 
     generateHeadings (nodes) {
         let headings = []
-        let utils = ArticleOutline.Utils
+        let utils = AutocJs.Utils
 
         Array.prototype.forEach.call(nodes, (node) => {
             headings.push({
@@ -113,7 +113,7 @@ class ArticleOutline {
     }
 
     generateChapters (headings) {
-        let utils = ArticleOutline.Utils
+        let utils = AutocJs.Utils
         let chapters = []
         let previous = 1
         let level = 0
@@ -173,7 +173,7 @@ class ArticleOutline {
                 }
                 else {
                     // 虽然看上去差点，不过能工作啊
-                    pid = ArticleOutline._generatePid(chapters, previous - current, i)
+                    pid = AutocJs._generatePid(chapters, previous - current, i)
                 }
             }
 
@@ -194,7 +194,7 @@ class ArticleOutline {
     }
 
     generateChapterCode (chapters) {
-        let utils = ArticleOutline.Utils
+        let utils = AutocJs.Utils
         let groups = utils.groupBy(chapters, 'pid')
 
         groups.forEach((group) => {
@@ -227,7 +227,7 @@ class ArticleOutline {
     }
 
     renderAnchors () {
-        let dom = ArticleOutline.Utils.DOM
+        let dom = AutocJs.Utils.DOM
         let data = this.getData()
         let headings = data.headings
         let chapters = data.chapters
@@ -296,7 +296,7 @@ class ArticleOutline {
     }
 
     renderOutsideOutline () {
-        let utils = ArticleOutline.Utils
+        let utils = AutocJs.Utils
         let dom = utils.DOM
         let elements = this.getElements()
         let title = this.get('title')
@@ -379,7 +379,7 @@ class ArticleOutline {
     }
 
     renderInsideOutline () {
-        let utils = ArticleOutline.Utils
+        let utils = AutocJs.Utils
         let dom = utils.DOM
         let elements = this.getElements()
         let title = this.get('title')
@@ -421,7 +421,7 @@ class ArticleOutline {
 
     renderChapters () {
         let chapters = this.getData().chapters
-        let dom = ArticleOutline.Utils.DOM
+        let dom = AutocJs.Utils.DOM
         let list = this.getElements().list
 
         chapters.forEach((chapter) => {
@@ -487,7 +487,7 @@ class ArticleOutline {
     }
 
     scrollTo (top) {
-        let utils = ArticleOutline.Utils
+        let utils = AutocJs.Utils
         let elements = document.querySelectorAll('html,body')
         let rootElement = elements[0].scrollTop - elements[1].scrollTop >= 0 ? elements[0] : elements[1]
         let scrollTop = rootElement.scrollTop
@@ -541,7 +541,7 @@ class ArticleOutline {
 
     show () {
         let elements = this.getElements()
-        let dom = ArticleOutline.Utils.DOM
+        let dom = AutocJs.Utils.DOM
 
         dom.addClass(elements.modal, 'outline-outside-modal-opened')
         dom.removeClass(elements.overlay, 'outline-hidden')
@@ -551,7 +551,7 @@ class ArticleOutline {
 
     hide () {
         let elements = this.getElements()
-        let dom = ArticleOutline.Utils.DOM
+        let dom = AutocJs.Utils.DOM
 
         dom.removeClass(elements.modal, 'outline-outside-modal-opened')
         dom.addClass(elements.overlay, 'outline-hidden')
@@ -560,7 +560,7 @@ class ArticleOutline {
     }
 
     toggle () {
-        if (ArticleOutline.Utils.DOM.hasClass(this.getElements().modal, 'outline-outside-modal-opened')) {
+        if (AutocJs.Utils.DOM.hasClass(this.getElements().modal, 'outline-outside-modal-opened')) {
             this.hide()
         } else {
             this.show()
@@ -623,7 +623,7 @@ class ArticleOutline {
         let elements = this.getElements()
         let article = elements.article
         let wrap = elements.wrap
-        let utils = ArticleOutline.Utils
+        let utils = AutocJs.Utils
         let off = utils.Events.off
         let position = this.get('position').toLowerCase()
 
@@ -649,7 +649,7 @@ class ArticleOutline {
         let elements = this.getElements()
         let article = elements.article
         let wrap = elements.wrap
-        let utils = ArticleOutline.Utils
+        let utils = AutocJs.Utils
         let events = utils.Events
         let delegate = events.delegate
         let position = this.get('position').toLowerCase()
@@ -677,7 +677,7 @@ class ArticleOutline {
         let anchor = target.querySelector('.outline-heading-anchor')
 
         if (anchor) {
-            ArticleOutline.Utils.DOM.removeClass(anchor, 'outline-hidden')
+            AutocJs.Utils.DOM.removeClass(anchor, 'outline-hidden')
         }
 
         return this
@@ -688,7 +688,7 @@ class ArticleOutline {
         let anchor = target.querySelector('.outline-heading-anchor')
 
         if (anchor) {
-            ArticleOutline.Utils.DOM.addClass(anchor, 'outline-hidden')
+            AutocJs.Utils.DOM.addClass(anchor, 'outline-hidden')
         }
 
         return this
@@ -698,7 +698,7 @@ class ArticleOutline {
         let anchor = evt.delegateTarget
         let rel = anchor.getAttribute('rel')
         let heading = document.querySelector('#' + rel)
-        let utils = ArticleOutline.Utils
+        let utils = AutocJs.Utils
         let dom = utils.DOM
         let events = utils.Events
         let offsetTop = dom.offset(heading).top
@@ -715,7 +715,7 @@ class ArticleOutline {
         let anchor = evt.delegateTarget
         let rel = anchor.getAttribute('rel')
         let heading = document.querySelector('#' + rel)
-        let utils = ArticleOutline.Utils
+        let utils = AutocJs.Utils
         let dom = utils.DOM
         let events = utils.Events
         let offsetTop = dom.offset(heading).top
@@ -737,7 +737,7 @@ class ArticleOutline {
     }
 
     _handleTopClick (evt) {
-        let utils = ArticleOutline.Utils
+        let utils = AutocJs.Utils
         let events = utils.Events
 
         this.stop().scrollTo(0)
@@ -759,7 +759,7 @@ class ArticleOutline {
  *
  * @type {Object}
  */
-ArticleOutline.defaults = {
+AutocJs.defaults = {
     // 文章正文 DOM 节点的 ID 选择器
     article: '#article',
     // 要收集的标题选择器
@@ -793,7 +793,7 @@ ArticleOutline.defaults = {
  *
  * @type {Object}
  */
-ArticleOutline.Utils = {
+AutocJs.Utils = {
     uuid: 0,
     isObject: (o) => {
         return Object.prototype.toString.apply(o) === '[object Object]' && o !== null
@@ -812,7 +812,7 @@ ArticleOutline.Utils = {
         return typeof str === 'string' && str === ''
     },
     guid: (prefix) => {
-        let utils = ArticleOutline.Utils
+        let utils = AutocJs.Utils
 
         utils.uuid += 1
 
@@ -858,7 +858,7 @@ ArticleOutline.Utils = {
  *
  * @type {Object}
  */
-ArticleOutline.Utils.DOM = {
+AutocJs.Utils.DOM = {
     /**
      * 创建 DOM 节点，并添加属性和子节点
      *
@@ -868,7 +868,7 @@ ArticleOutline.Utils.DOM = {
      * @returns {HTMLElement}
      */
     createElement: (tagName, attributes, children) => {
-        let utils = ArticleOutline.Utils
+        let utils = AutocJs.Utils
         let dom = utils.DOM
         let element = document.createElement(tagName)
 
@@ -943,7 +943,7 @@ ArticleOutline.Utils.DOM = {
     addClass (el, className) {
         let allClass = el.className
 
-        if (ArticleOutline.Utils.DOM.hasClass(el, className)) {
+        if (AutocJs.Utils.DOM.hasClass(el, className)) {
             return false
         }
 
@@ -959,7 +959,7 @@ ArticleOutline.Utils.DOM = {
      * @returns {Boolean}
      */
     removeClass (el, className) {
-        let utils = ArticleOutline.Utils
+        let utils = AutocJs.Utils
         let allClass = el.className
 
         if (!allClass || !utils.DOM.hasClass(el, className)) {
@@ -977,7 +977,7 @@ ArticleOutline.Utils.DOM = {
      * @returns {{left: Number, top: Number}}
      */
     offset (el) {
-        let dom = ArticleOutline.Utils.DOM
+        let dom = AutocJs.Utils.DOM
         let left = dom.offsetLeft(el)
         let top = dom.offsetTop(el)
 
@@ -993,7 +993,7 @@ ArticleOutline.Utils.DOM = {
      * @returns {Number}
      */
     offsetTop (el) {
-        let dom = ArticleOutline.Utils.DOM
+        let dom = AutocJs.Utils.DOM
         let top = el.offsetTop
 
         if (el.offsetParent !== null) {
@@ -1009,7 +1009,7 @@ ArticleOutline.Utils.DOM = {
      * @returns {Number}
      */
     offsetLeft (el) {
-        let dom = ArticleOutline.Utils.DOM
+        let dom = AutocJs.Utils.DOM
         let left = el.offsetLeft
 
         if (el.offsetParent !== null) {
@@ -1025,7 +1025,7 @@ ArticleOutline.Utils.DOM = {
  *
  * @type {Object}
  */
-ArticleOutline.Utils.Events = {
+AutocJs.Utils.Events = {
     /**
      * 绑定代理事件
      * ========================================================
@@ -1041,7 +1041,7 @@ ArticleOutline.Utils.Events = {
      */
     delegate (el, selector, type, callback, context, capture) {
         const wrapper = function (e) {
-            if (e.delegateTarget = ArticleOutline.getDelegateTarget(el, e.target, selector)) {
+            if (e.delegateTarget = AutocJs.getDelegateTarget(el, e.target, selector)) {
                 callback.call(context || el, e)
             }
         }
@@ -1082,7 +1082,7 @@ ArticleOutline.Utils.Events = {
      * @param {Event} evt - 事件对象
      */
     stop (evt) {
-        let events = ArticleOutline.Utils.Events
+        let events = AutocJs.Utils.Events
 
         events.stopPropagation(evt)
         events.preventDefault(evt)
@@ -1129,9 +1129,9 @@ ArticleOutline.Utils.Events = {
  * @param selector - 目标节点的类选择器
  * @returns {HTMLElement|Null}
  */
-ArticleOutline.getDelegateTarget = (el, target, selector) => {
+AutocJs.getDelegateTarget = (el, target, selector) => {
     while (target && target !== el) {
-        if (ArticleOutline.Utils.DOM.hasClass(target, selector.replace('.', ''))) {
+        if (AutocJs.Utils.DOM.hasClass(target, selector.replace('.', ''))) {
             return target
         }
 
@@ -1151,7 +1151,7 @@ ArticleOutline.getDelegateTarget = (el, target, selector) => {
  * @param {Number} index
  * @returns {*}
  */
-ArticleOutline._generatePid = (chapters, differ, index) => {
+AutocJs._generatePid = (chapters, differ, index) => {
     let pid
 
     // 最大只有 5 级的差距
@@ -1182,7 +1182,7 @@ if(window.jQuery) {
         articleOutline: function (options) {
             let $article = $(this)
 
-            return new ArticleOutline($.extend({}, options, {
+            return new AutocJs($.extend({}, options, {
                 article: $article
             }));
         }
