@@ -1,8 +1,8 @@
 # Autoc.Js
-Autoc.Js 是一个专门用来生成文章导读（Table of Contents）导航的 JavaScript 工具（原 autocjs 的重构版本，不依赖任何JS库）。Autoc.Js 会查找文章指定区域中的所有 h1~h6 的标签，并自动分析文章段落间的层次结构，生成文章的导读导航。
+AutocJs 是一个专门用来生成文章导读（Table of Contents）导航的 JavaScript 工具（原 autocjs 的重构版本，不依赖任何JS库）。AutocJs 会查找文章指定区域中的所有 h1~h6 的标签，并自动分析文章段落间的层次结构，生成文章的导读导航。
 
 ## 创作灵感
-AnchorJS 是 Autoc.Js 的创作灵感来源。既然 AnchorJS 可创建标题的链接，为什么不直接给文章生成一个文章导读（Table of Contents）导航呢？ 于是就有了 Autoc.Js。
+AnchorJS 是 AutocJs 的创作灵感来源。既然 AnchorJS 可创建标题的链接，为什么不直接给文章生成一个文章导读（Table of Contents）导航呢？ 于是就有了 AutocJs。
 
 ## 特点
 
@@ -14,35 +14,35 @@ AnchorJS 是 Autoc.Js 的创作灵感来源。既然 AnchorJS 可创建标题的
 - 自动分析标题关系，生成段落层级索引值；
 - 可以作为 jQuery 插件使用；
 - 界面简洁大方；
-- 配置灵活，丰富，让你随心所欲掌控 Autoc.Js；
+- 配置灵活，丰富，让你随心所欲掌控 AutocJs；
 
 ## 安装说明
 
 ### npm install
 
 ```sh
-$ npm install -S Autoc.Js
+$ npm install -S autoc.js
 ```
 
 ### CDN 调用
 
 ```html
-<script src="https://unpkg.com/Autoc.Js@1.0.0/dist/Autoc.Js.min.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/yaohaixiao/autoc.js/dist/autoc.min.js"></script>
 ```
 
 ### 调用本地JS文件
 
 ```html
-<script src="path/to/Autoc.Js.js"></script>
+<script src="path/to/autoc.js"></script>
 ```
 
 ## 使用说明
 
 ```js
-let Autoc.Js = require('Autoc.Js');
+let AutocJs = require('autoc.js');
 
 // 创建 Outline 实例
-let navigation = new Autoc.Js({
+let navigation = new AutocJs({
     // 文章正文 DOM 节点的 ID 选择器
     article: '#article',
     // 要收集的标题选择器
@@ -149,22 +149,22 @@ Default: `true`
 ### defaults
 Type: `Objects`
 
-静态属性，存储的是 Autoc.Js 对象默认配置信息。
+静态属性，存储的是 AutocJs 对象默认配置信息。
 
 ### attributes
 Type: `Objects`
 
-存储的是 Autoc.Js 对象当前使用中的配置选项。
+存储的是 AutocJs 对象当前使用中的配置选项。
 
 ### elements
 Type: `Objects`
 
-存储的是 Autoc.Js 对象（创建的）相关的 DOM 元素。
+存储的是 AutocJs 对象（创建的）相关的 DOM 元素。
 
 ### data
 Type: `Objects`
 
-存储的是 Autoc.Js 根据标题 DOM 元素分析的数据。
+存储的是 AutocJs 根据标题 DOM 元素分析的数据。
 
 ## Example
 
