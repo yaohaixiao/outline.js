@@ -1,4 +1,4 @@
-# Autoc.Js
+# AutocJs
 AutocJs 是一个专门用来生成文章导读（Table of Contents）导航的 JavaScript 工具（原 autocjs 的重构版本，不依赖任何JS库）。AutocJs 会查找文章指定区域中的所有 h1~h6 的标签，并自动分析文章段落间的层次结构，生成文章的导读导航。
 
 ## 创作灵感
@@ -27,19 +27,19 @@ $ npm install -S autoc.js
 ### CDN 调用
 
 ```html
-<script src="https://cdn.jsdelivr.net/gh/yaohaixiao/autoc.js/dist/autoc.min.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/yaohaixiao/autocjs/dist/autoc.min.js"></script>
 ```
 
 ### 调用本地JS文件
 
 ```html
-<script src="path/to/autoc.js"></script>
+<script src="path/to/autoc.min.js"></script>
 ```
 
 ## 使用说明
 
 ```js
-let AutocJs = require('autoc.js');
+let AutocJs = require('autocjs');
 
 // 创建 Outline 实例
 let navigation = new AutocJs({

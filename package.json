@@ -1,5 +1,5 @@
 {
-  "name": "autoc.js",
+  "name": "autocjs",
   "version": "2.0.1",
   "description": "AutocJs - 是一个专门用来生成文章导读（Table of Contents）导航的 JavaScript 工具。",
   "main": "autoc.js",
@@ -19,12 +19,12 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/yaohaixiao/autoc.js.git"
+    "url": "git+https://github.com/yaohaixiao/autocjs.git"
   },
   "bugs": {
-    "url": "https://github.com/yaohaixiao/autoc.js/issues"
+    "url": "https://github.com/yaohaixiao/autocjs/issues"
   },
-  "homepage": "https://github.com/yaohaixiao/autoc.js#readme",
+  "homepage": "https://github.com/yaohaixiao/autocjs#readme",
   "devDependencies": {
     "babel-cli": "^6.26.0",
     "babel-core": "^6.26.3",
