@@ -168,7 +168,7 @@ Type: `Objects`
 
 ## Example
 
-演示地址：[https://yaohaixiao.github.io/AutocJS/example.html](https://yaohaixiao.github.io/autocjs/example.html)
+演示地址：[https://yaohaixiao.github.io/autocjs/example.html](https://yaohaixiao.github.io/autocjs/example.html)
 
 ## License
 
