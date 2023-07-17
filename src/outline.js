@@ -1,8 +1,8 @@
 import Anchors from './anchors'
 import Chapters from './chapters'
-import Drawer from './drawer'
 import Toolbar from './toolbar'
 
+import subscribe from './utils/observer/on'
 import scrollTo from './utils/dom/scrollTo'
 import _getScrollElement from './utils/dom/_getScrollElement'
 
@@ -15,17 +15,12 @@ const ANCHORS_OPTIONS = {
 }
 const anchors = new Anchors(ANCHORS_OPTIONS)
 
-const drawer = new Drawer({
-  title: 'Outline.js',
-  placement: 'ltr',
-  size: 'tiny'
-})
-
 const CHAPTERS_OPTIONS = {
-  parentElement: drawer.$main,
+  parentElement: '#aside',
+  position: 'fixed',
   chapters: anchors.getChapters()
 }
-new Chapters(CHAPTERS_OPTIONS)
+const chapters = new Chapters(CHAPTERS_OPTIONS)
 
 const TOOLBAR_OPTIONS = {
   buttons: [
@@ -51,7 +46,7 @@ const TOOLBAR_OPTIONS = {
       action: {
         type: 'click',
         handler: function () {
-          drawer.toggle()
+          chapters.toggle()
         }
       }
     },
@@ -76,5 +71,18 @@ const TOOLBAR_OPTIONS = {
   ]
 }
 const toolbar = new Toolbar(TOOLBAR_OPTIONS)
+
+subscribe('update:toolbar', ({ top, min, max }) => {
+  if (top <= min) {
+    toolbar.hide('up')
+    toolbar.show('down')
+  } else if (top >= max) {
+    toolbar.hide('down')
+    toolbar.show('up')
+  } else if (top > min && top < max) {
+    toolbar.show('up')
+    toolbar.show('down')
+  }
+})
 
 export default Toolbar

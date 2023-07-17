@@ -9,7 +9,6 @@ html(lang='en')
       header.header
         h1.title Outline.js
       article#article.article
-        aside#aside.article__aside.hidden
         main#main.article__main
           p
             | outline.js 是一个自动生成文章导读（Table of Contents）导航的 JavaScript 工具（原 autocjs 的重构版本，不依赖任何JS库）。outline.js
@@ -89,6 +88,7 @@ html(lang='en')
           h2 License
           p JavaScript Code Licensed under MIT License.
           p API Documentation Licensed under CC BY 3.0
+        aside#aside.article__aside
       footer.footer
         include ./footer
     script(src="js/outline.min.js")

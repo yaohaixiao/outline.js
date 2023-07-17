@@ -5,11 +5,13 @@ import isObject from './utils/types/isObject'
 import isElement from './utils/types/isElement'
 import extend from './utils/lang/extend'
 import hasOwn from './utils/lang/hasOwn'
+import later from './utils/lang/later'
 import scrollTo from './utils/dom/scrollTo'
 import _getScrollElement from './utils/dom/_getScrollElement'
 import on from './utils/event/on'
 import off from './utils/event/off'
 import stop from './utils/event/stop'
+import publish from './utils/observer/emit'
 import { paintSvgSprites } from './utils/icons'
 
 import _updateHeading from './_updateHeading'
@@ -142,10 +144,15 @@ class Anchors {
     return this
   }
 
-  scrollTo(top, afterScroll) {
-    const $scrollElement = this.$scrollElement
+  scrollTo(top, after) {
+    const el = this.$scrollElement
 
-    scrollTo($scrollElement, top, afterScroll, 100)
+    publish('scroll:to', {
+      el,
+      top,
+      after
+    })
+    scrollTo(el, top, after, 100)
 
     return this
   }
@@ -189,8 +196,24 @@ class Anchors {
     const afterScroll = this.attr('afterScroll')
     const $anchor = evt.delegateTarget
     const $heading = $anchor.parentNode
+    const top = $heading.offsetTop
+    const min = 0
+    const max = this.$scrollElement.scrollHeight
+    const after = () => {
+      if (isFunction(afterScroll)) {
+        afterScroll.call(this)
+      }
 
-    this.scrollTo($heading.offsetTop, afterScroll)
+      later(() => {
+        publish('update:toolbar', {
+          top,
+          min,
+          max
+        })
+      })
+    }
+
+    this.scrollTo(top, after)
 
     if (!anchorURL) {
       stop(evt)

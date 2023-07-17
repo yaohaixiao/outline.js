@@ -15,6 +15,7 @@ import addClass from './utils/dom/addClass'
 import intersection from './utils/dom/intersection'
 import removeClass from './utils/dom/removeClass'
 import offsetTop from './utils/dom/offsetTop'
+import publish from './utils/observer/emit'
 
 import _getScrollElement from './utils/dom/_getScrollElement'
 import _paintChapters from './_paintChapters'
@@ -24,8 +25,8 @@ const DEFAULTS = {
   scrollElement: '',
   active: 0,
   closed: false,
-  showChapterCode: true,
-  isNeedDoLayout: false,
+  showCode: true,
+  position: 'relative',
   chapters: [],
   created: null,
   mounted: null,
@@ -41,6 +42,8 @@ class Chapters {
     this.attrs = DEFAULTS
 
     this.$el = null
+    this.$title = null
+    this.$main = null
     this.$list = null
     this.$placeholder = null
     this.$parentElement = null
@@ -122,16 +125,49 @@ class Chapters {
     return this.closed
   }
 
+  isSticky() {
+    const position = this.attr('position')
+    return position === 'sticky'
+  }
+
+  isFixed() {
+    const position = this.attr('position')
+    return position === 'fixed'
+  }
+
+  isInside() {
+    return this.isFixed() || this.isSticky()
+  }
+
+  isOutside() {
+    return !this.isInside()
+  }
+
   render() {
     const mounted = this.attr('mounted')
-    const showChapterCode = this.attr('showChapterCode')
+    const showCode = this.attr('showCode')
     const $parentElement = this.$parentElement
+    const contents = []
+    let $title = null
     let $el
+    let $main
     let $list
     let $placeholder
 
     if (!$parentElement) {
       return this
+    }
+
+    if (this.isInside()) {
+      $title = createElement(
+        'h2',
+        {
+          className: 'outline-chapters__title'
+        },
+        ['目录']
+      )
+      this.$title = $title
+      contents.push($title)
     }
 
     $list = createElement(
@@ -152,18 +188,32 @@ class Chapters {
     )
     this.$placeholder = $placeholder
 
+    $main = createElement(
+      'div',
+      {
+        className: 'outline-chapters__main'
+      },
+      [$list, $placeholder]
+    )
+    this.$main = $main
+    contents.push($main)
+
     $el = createElement(
       'nav',
       {
         id: 'outline-chapters',
         className: 'outline-chapters'
       },
-      [$list, $placeholder]
+      contents
     )
     this.$el = $el
 
+    if (this.isSticky()) {
+      addClass($el, 'outline-chapters_sticky')
+    }
+
     $parentElement.appendChild($el)
-    _paintChapters($list, this.chapters, showChapterCode)
+    _paintChapters($list, this.chapters, showCode)
 
     this.offsetTop = offsetTop(document.querySelector('#outline-chapters'))
 
@@ -191,12 +241,12 @@ class Chapters {
     addClass(this.$active, HIGHLIGHT)
 
     top = 30 * this.active
-    $placeholder.style.top = `calc(1em + ${top}px)`
+    $placeholder.style.top = `calc(0.5em + ${top}px)`
 
     return this
   }
 
-  doLayout() {
+  sticky() {
     const FIXED = 'outline-chapters_fixed'
     const $el = this.$el
     const top = this.offsetTop
@@ -215,18 +265,27 @@ class Chapters {
     return this
   }
 
-  scrollTo(top, afterScroll) {
-    const $scrollElement = this.$scrollElement
+  scrollTo(top, after) {
+    const el = this.$scrollElement
 
-    scrollTo($scrollElement, top, afterScroll, 100)
+    publish('scroll:to', {
+      el,
+      top,
+      after
+    })
+    scrollTo(el, top, after, 100)
 
     return this
   }
 
   show() {
+    const HIDDEN = 'outline-chapters_hidden'
     const opened = this.attr('afterOpened')
 
-    removeClass(this.$el, 'outline-chapters_hidden')
+    removeClass(this.$el, HIDDEN)
+    if (this.isInside()) {
+      removeClass(this.$parentElement, HIDDEN)
+    }
     this.closed = false
 
     if (isFunction(opened)) {
@@ -237,9 +296,13 @@ class Chapters {
   }
 
   hide() {
+    const HIDDEN = 'outline-chapters_hidden'
     const closed = this.attr('afterClosed')
 
-    addClass(this.$el, 'outline-chapters_hidden')
+    addClass(this.$el, HIDDEN)
+    if (this.isInside()) {
+      addClass(this.$parentElement, HIDDEN)
+    }
     this.closed = true
 
     if (isFunction(closed)) {
@@ -272,6 +335,8 @@ class Chapters {
 
     this.attr(DEFAULTS)
     this.$el = null
+    this.$title = null
+    this.$main = null
     this.$list = null
     this.$placeholder = null
     this.$parentElement = null
@@ -314,7 +379,7 @@ class Chapters {
 
         timer = later(() => {
           this.highlight(id)
-        }, 100)
+        }, 500)
       },
       { context: this }
     )
@@ -323,22 +388,31 @@ class Chapters {
   }
 
   onSelect(evt) {
-    let afterScroll = this.attr('afterScroll')
     const $anchor = evt.delegateTarget
     const id = $anchor.getAttribute('data-id')
     const headingId = $anchor.href.split('#')[1]
     const $heading = document.querySelector(`#${headingId}`)
-
-    if (!isFunction(afterScroll)) {
-      afterScroll = () => {
-        later(() => {
-          this.playing = false
-        })
+    const top = $heading.offsetTop
+    const min = 0
+    const max = this.$scrollElement.scrollHeight
+    const afterScroll = this.attr('afterScroll')
+    const after = () => {
+      if (isFunction(afterScroll)) {
+        afterScroll.call(this)
       }
+
+      later(() => {
+        this.playing = false
+        publish('update:toolbar', {
+          top,
+          min,
+          max
+        })
+      })
     }
 
     this.playing = true
-    this.scrollTo($heading.offsetTop, afterScroll)
+    this.scrollTo(top, after)
     this.highlight(id)
 
     stop(evt)
@@ -347,27 +421,42 @@ class Chapters {
   }
 
   onScroll() {
+    const $scrollElement = this.$scrollElement
+
     if (this.timer) {
       clearTimeout(this.timer)
     }
 
     this.timer = later(() => {
-      this.doLayout()
-    }, 100)
+      const top = $scrollElement.scrollTop
+      const min = 0
+      const max = $scrollElement.scrollHeight
+
+      console.log(top, max, $scrollElement.clientHeight)
+
+      if (this.isFixed()) {
+        this.sticky()
+      }
+
+      publish('update:toolbar', {
+        top,
+        min,
+        max
+      })
+    }, 50)
 
     return this
   }
 
   addListeners() {
     const $el = this.$el
-    const isNeedDoLayout = this.attr('isNeedDoLayout')
     const $scrollElement = this.$scrollElement
     const tagName = $scrollElement.tagName.toLowerCase()
     let $element = $scrollElement
 
     on($el, '.outline-chapters__anchor', 'click', this.onSelect, this, true)
 
-    if (!isNeedDoLayout) {
+    if (!this.isFixed()) {
       return this
     }
 
@@ -382,14 +471,13 @@ class Chapters {
 
   removeListeners() {
     const $el = this.$el
-    const isNeedDoLayout = this.attr('isNeedDoLayout')
     const $scrollElement = this.$scrollElement
     const tagName = $scrollElement.tagName.toLowerCase()
     let $element = $scrollElement
 
     off($el, 'click', this.onSelect)
 
-    if (!isNeedDoLayout) {
+    if (!this.isFixed()) {
       return this
     }
 

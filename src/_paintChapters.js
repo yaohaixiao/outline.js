@@ -1,6 +1,6 @@
 import createElement from './utils/dom/createElement'
 
-const _paintChapters = (list, chapters, showChapterCode = false) => {
+const _paintChapters = (list, chapters, showCode = false) => {
   chapters.forEach((chapter) => {
     const pid = chapter.pid
     const text = createElement(
@@ -27,7 +27,7 @@ const _paintChapters = (list, chapters, showChapterCode = false) => {
     let code
     let children = []
 
-    if (showChapterCode) {
+    if (showCode) {
       code = createElement(
         'span',
         {
