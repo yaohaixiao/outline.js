@@ -1,14 +1,23 @@
 {
-  "name": "autocjs",
-  "version": "2.0.1",
-  "description": "AutocJs - 是一个专门用来生成文章导读（Table of Contents）导航的 JavaScript 工具。",
-  "main": "autoc.js",
+  "name": "@yaohaixiao/outline.js",
+  "version": "2.0.0",
+  "description": "outline.js - 自动生成文章导读（Table of Contents）导航的 JavaScript 工具。",
+  "main": "outline.min.js",
   "scripts": {
-    "dev": "gulp dev",
     "start": "gulp start",
-    "lint": "gulp lint",
-    "build": "gulp build",
-    "default": "gulp default"
+    "build:lib": "rollup -c build/rollup.config.lib.js --bundleConfigAsCjs",
+    "build:api": "rollup -c build/rollup.config.api.js --bundleConfigAsCjs",
+    "build:docs": "gulp build",
+    "build": "npm run build:lib && npm run build:docs",
+    "lint": "eslint",
+    "lint:fix": "npm run lint --cache --fix",
+    "prettier:check": "npx prettier --check \"src/**/*.*\"",
+    "prettier:write": "npx prettier --write \"src/**/*.*\"",
+    "test:unit": "jest --config jest.config.js",
+    "test": "npm run lint:fix && npm run prettier:write && npm run test:unit",
+    "watch": "gulp watch",
+    "changelog": "conventional-changelog -p angular -i CHANGELOG.md -s",
+    "prepare": "husky install"
   },
   "keywords": [
     "JavaScript",
@@ -19,35 +28,62 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/yaohaixiao/autocjs.git"
+    "url": "git+https://github.com/yaohaixiao/outline.js.git"
   },
   "bugs": {
-    "url": "https://github.com/yaohaixiao/autocjs/issues"
+    "url": "https://github.com/yaohaixiao/outline.js/issues"
   },
-  "homepage": "https://github.com/yaohaixiao/autocjs#readme",
+  "homepage": "https://github.com/yaohaixiao/outline.js#readme",
+  "dependencies": {
+    "@yaohaixiao/subscribers.js": "^1.1.0"
+  },
   "devDependencies": {
-    "babel-cli": "^6.26.0",
-    "babel-core": "^6.26.3",
-    "babel-plugin-transform-runtime": "^6.23.0",
-    "babel-preset-env": "^1.7.0",
-    "gulp": "^3.9.1",
-    "gulp-autoprefixer": "^6.0.0",
-    "gulp-babel": "^7.0.1",
+    "@babel/core": "^7.21.0",
+    "@babel/preset-env": "^7.14.8",
+    "@commitlint/cli": "^17.4.4",
+    "@commitlint/config-conventional": "^17.4.4",
+    "@rollup/plugin-commonjs": "^25.0.2",
+    "@rollup/plugin-node-resolve": "^15.1.0",
+    "@rollup/plugin-terser": "^0.4.3",
+    "@yaohaixiao/delegate.js": "^2.0.0",
+    "babel-jest": "^29.5.0",
+    "commitlint": "^17.4.4",
+    "conventional-changelog-cli": "^2.2.2",
+    "eslint": "^8.34.0",
+    "eslint-config-prettier": "^8.6.0",
+    "eslint-import-resolver-jest": "^3.0.2",
+    "eslint-plugin-import": "^2.27.5",
+    "eslint-plugin-prettier": "^4.2.1",
+    "gulp": "^4.0.2",
     "gulp-clean": "^0.4.0",
-    "gulp-cli": "^2.0.1",
-    "gulp-connect": "^5.6.1",
-    "gulp-csslint": "^1.0.1",
+    "gulp-connect": "^5.7.0",
     "gulp-cssmin": "^0.2.0",
-    "gulp-eslint": "^5.0.0",
-    "gulp-pug": "^4.0.1",
-    "gulp-rename": "^1.4.0",
-    "gulp-sourcemaps": "^2.6.4",
-    "gulp-uglify": "^3.0.1",
-    "gulp-umd": "^2.0.0",
+    "gulp-eslint": "^6.0.0",
+    "gulp-less": "^5.0.0",
+    "gulp-livereload": "^4.0.2",
+    "gulp-open": "^3.0.1",
+    "gulp-pug": "^5.0.0",
+    "gulp-rename": "^2.0.0",
+    "gulp-run": "^1.7.1",
+    "gulp-sourcemaps": "^3.0.0",
     "gulp-watch": "^5.0.1",
-    "jquery": "^3.3.1",
-    "normalize.css": "^8.0.0",
-    "pump": "^3.0.0"
+    "husky": "^8.0.3",
+    "jest": "^29.5.0",
+    "jest-html-reporter": "^3.7.0",
+    "less-plugin-autoprefix": "^2.0.0",
+    "lint-staged": "^13.1.2",
+    "os": "^0.1.2",
+    "prettier": "^2.8.4",
+    "rollup": "^3.26.0"
   },
-  "dependencies": {}
+  "gitHooks": {
+    "pre-commit": "lint-staged",
+    "commit-msg": "commitlint"
+  },
+  "lint-staged": {
+    "src/**/*.js": [
+      "npm run lint:fix",
+      "npm run prettier:write"
+    ]
+  }
 }

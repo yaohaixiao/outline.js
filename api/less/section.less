@@ -1,0 +1,82 @@
+@import 'colors';
+
+.section {
+  margin: 1em 0;
+  overflow: hidden;
+
+  &__header,
+  &__content,
+  &__footer {
+    margin: 0 3em;
+    overflow: hidden;
+  }
+
+  &__title {
+    color: @third_text_color;
+  }
+
+  &__h3 {
+    color: @primary_color;
+    font-size: 1.35em;
+  }
+
+  &__h4 {
+    font-size: 1.1em;
+    color: @third_text_color;
+  }
+
+  &__h5 {
+    font-size: 1em;
+    color: @fourth_text_color;
+  }
+
+  &__dl {
+    position: relative;
+    z-index: 1;
+    overflow: hidden;
+  }
+
+  &__dt {
+    position: absolute;
+    z-index: 2;
+    top: 0;
+    left: 0;
+    width: 60px;
+    margin: 0;
+    overflow: hidden;
+  }
+
+  &__dd {
+    position: relative;
+    z-index: 1;
+    margin: 0 0 0 60px;
+    color: @success_color;
+    overflow: hidden;
+  }
+
+  &__pre {
+    margin: 2em 0;
+    padding: 1em;
+    font-size: 14px;
+    line-height: 150%;
+    text-align: left;
+    background-color: @bg_color;
+    border: 1px solid @border_color;
+    border-radius: 4px;
+    color: @third_text_color;
+    overflow: auto;
+  }
+
+  &__code {
+    display: block;
+    margin: 0 auto;
+    overflow: hidden;
+  }
+
+  &__footer {
+    border-top: 1px solid @border_color;
+    margin-top: 3em;
+    background-color: @bg_color;
+    color: @fourth_text_color;
+  }
+}

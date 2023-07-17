@@ -1,0 +1,30 @@
+section.section
+  header.section__header
+    h3#method-reload.section__h3 reload ( options )
+  div.section__content
+    h4.section__h4 Description
+    p reload ( options ) 是（根据新的配置信息）重启程序方法：
+    ol
+      li 先移除所有绘制的 DOM 元素和绑定的事件处理器；
+      li 重新初始化程序；
+    h4.section__h4 Parameters
+    h5.section__h4 options
+    dl.section__dl
+      dt.section__dt Type：
+      dd.section__dd Object
+    p （可选）初始化的配置参数。
+    h4.section__h4 Returns
+    dl.section__dl
+      dt.section__dt Type：
+      dd.section__dd Outline
+    p Outline 对象。
+    pre.section__pre
+      code.section__code.
+        const outline = new Outline({
+            isGenerateHeadingAnchor: true
+        })
+
+        // 鼠标滑过正文中的标题上将不会创建锚点链接图标
+        outline.reload({
+            isGenerateHeadingAnchor: false
+        })

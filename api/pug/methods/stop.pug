@@ -1,0 +1,27 @@
+section.section
+  header.section__header
+    h3#method-stop.section__h3 stop()
+  div.section__content
+    h4.section__h4 Description
+    p 停止页面滚动：
+    ol
+      li 绘制文章开始出的目录导航；
+      li 绘制标题栏的锚点链接和标题段落索引编码；
+      li 绘制侧边栏的目录导航菜单；
+    h4.section__h4 Returns
+    dl.section__dl
+      dt.section__dt Type：
+      dd.section__dd Outline
+    p Outline 对象。
+    pre.section__pre
+      code.section__code.
+        const outline = new Outline({
+           article: '#article',
+           title: 'Outline v2.0.0'
+        })
+
+        // -> 页面将滚动到距离顶部 200 像素的位置
+        outline.scrollTo(200)
+
+        // -> 手动停止滚动，点击不同的标题链接时就会先停止滚动，然后再滚动到目标位置
+        outline.stop()

@@ -1,0 +1,22 @@
+/* ========== icon.theme - svg 图标的样式 ========== */
+.outline-icon {
+  position: relative;
+  z-index: 1;
+  display: inline-block;
+  vertical-align: middle;
+  width: 1em;
+  height: 1em;
+  overflow: hidden;
+
+  &__svg {
+    position: absolute;
+    z-index: 2;
+    top: 50%;
+    left: 50%;
+    width: 1em;
+    height: 1em;
+    fill: currentcolor;
+    transform: translate(-50%, -50%);
+    overflow: hidden;
+  }
+}

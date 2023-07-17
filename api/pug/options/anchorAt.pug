@@ -1,0 +1,21 @@
+section.section
+  header.section__header
+    h3#option-anchorAt.section__h3 anchorAt
+  div.section__content
+    h4.section__h4 Description
+    dl.section__dl
+      dt.section__dt Type：
+      dd.section__dd String
+    dl.section__dl
+      dt.section__dt Default：
+      dd.section__dd 'front'
+    p 可选，用来指定文章标题锚点链接图标的显示位置。
+    pre.section__pre
+      code.section__.
+        // // front - 默认锚点图标显示在标题最开始位置
+        new Outline()
+
+        // end - 锚点图标显示在标题最后面
+        new Outline({
+            anchorAt: 'end'
+        })

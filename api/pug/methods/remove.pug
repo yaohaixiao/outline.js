@@ -1,0 +1,20 @@
+section.section
+  header.section__header
+    h3#method-remove.section__h3 remove()
+  div.section__content
+    h4.section__h4 Description
+    p remove() 方法将删除所有 Outline 创建的 DOM 节点，同时取消所有的事件绑定。
+    h4.section__h4 Returns
+    dl.section__dl
+      dt.section__dt Type：
+      dd.section__dd Outline
+    p Outline 对象。
+    pre.section__pre
+      code.section__code.
+        const outline = new Outline({
+             article: '#article',
+             title: 'Outline v2.0.0'
+        });
+
+        // -> 将删除所有 Outline 创建的 DOM 节点
+        outline.remove();

@@ -1,0 +1,50 @@
+section.section
+  header.section__header
+    h3#property-defaults.section__h3 defaults
+  div.section__content
+    h4.section__h4 Description
+    dl.section__dl
+      dt.section__dt Type：
+      dd.api-param-value Object
+    p 静态属性，存储的是 Outline 对象默认配置选项：
+    ul
+      li
+        dl.section__dl
+          dt.section__dt article：
+          dd.section__dd 用来指定页面中显示文章正文的 DOM 节点的 ID 选择器。（默认值：'#article'）
+      li
+        dl.section__dl
+          dt.section__dt selector：
+          dd.section__dd 用来指定 article 节点下，要生成导航的标题标签的选择器。（默认值：'h1,h2,h3,h4,h5,h6'）
+      li
+        dl.section__dl
+          dt.section__dt title：
+          dd.section__dd 用来指定文章导读导航菜单的标题文字。（默认值：'文章导读'）
+      li
+        dl.section__dl
+          dt.section__dt position：
+          dd.section__dd 用来指定文章导读导航菜单的显示位置。（默认值：'outside'）
+      li
+        dl.section__dl
+          dt.section__dt anchorURL：
+          dd.section__dd 用来指定文章标题锚点链接图标的链接地址。（默认值：''）
+      li
+        dl.section__dl
+          dt.section__dt anchorAt：
+          dd.section__dd 用来指定文章标题锚点链接图标的显示位置。（默认值：'front'）
+      li
+        dl.section__dl
+          dt.section__dt isGenerateOutline：
+          dd.section__dd 用来指定是否文章导读导航菜单。（默认值：true）
+      li
+        dl.section__dl
+          dt.section__dt isGenerateOutlineChapterCode：
+          dd.section__dd 用来指定是否文章导读导航菜单是否显示文章段落层次的索引编号。（默认值：true）
+      li
+        dl.section__dl
+          dt.section__dt isGenerateHeadingChapterCode：
+          dd.section__dd 用来指定是否在文章标题前面显示文章段落层次的索引编号。（默认值：false）
+      li
+        dl.section__dl
+          dt.section__dt isGenerateHeadingAnchor：
+          dd.section__dd 用来指定是否在文章标题位置生成锚点链接图标。（默认值：true）

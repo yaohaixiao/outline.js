@@ -1,0 +1,89 @@
+@import './colors';
+
+.outline-chapters {
+  position: relative;
+  z-index: 1;
+  margin: 0;
+  overflow: auto;
+
+  &__list,
+  &__subject,
+  &__item {
+    position: relative;
+    z-index: 2;
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+    overflow: hidden;
+  }
+
+  &__list {
+    padding: 1em 0;
+  }
+
+  &__subject {
+    padding-left: 1em;
+  }
+
+  &__item {
+    margin: 0;
+    line-height: 30px;
+    font-size: 13px;
+    overflow: hidden;
+  }
+
+  &__placeholder {
+    position: absolute;
+    z-index: 1;
+    top: 1em;
+    left: 0;
+    width: 100%;
+    height: 30px;
+    background-color: @hover_bg_color;
+    border-left: 2px solid @success_color;
+    transition-duration: 0.2s;
+    box-sizing: border-box;
+    overflow: hidden;
+  }
+
+  &__anchor {
+    display: block;
+    padding: 0 1.5em;
+
+    &:link,
+    &:visited,
+    &:hover {
+      text-decoration: none;
+      color: @secondary_text_color;
+    }
+
+    &:hover {
+      color: @success_color;
+    }
+  }
+
+  &__code {
+    padding-right: 0.5em;
+  }
+
+  &_fixed {
+    position: fixed;
+    top: 0;
+    overflow: hidden;
+  }
+
+  &_active {
+    &.outline-chapters__anchor {
+      &:link,
+      &:visited,
+      &:hover {
+        color: @success_color;
+        font-weight: 400;
+      }
+    }
+  }
+
+  &_hidden {
+    display: none;
+  }
+}

@@ -1,0 +1,20 @@
+section.section
+  header.section__header
+    h3#method-show.section__h3 show()
+  div.section__content
+    h4.section__h4 Description
+    p show() 方法用来展开侧边栏菜单。
+    h4.section__h4 Returns
+    dl.section__dl
+      dt.section__dt Type：
+      dd.section__dd Outline
+    p Outline 对象。
+    pre.section__pre
+      code.section__code.
+        const outline = new Outline({
+           article: '#article',
+           title: 'Outline v2.0.0'
+        })
+
+        // -> 导航菜单将展开
+        outline.show()

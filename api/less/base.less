@@ -1,0 +1,30 @@
+@import 'colors';
+
+/* ===== Base ===== */
+html,
+body {
+  height: 100%;
+  background: @bg_color;
+  color: @primary_text_color;
+  font-size: 14px;
+  line-height: 150%;
+  font-family: "Microsoft YaHei UI", Arial, sans-serif;
+  overflow: hidden;
+}
+
+a {
+  &:link,
+  &:visited,
+  &:hover {
+    color: @success_color;
+    text-decoration: none;
+  }
+
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+code {
+  font-family: "Source Code Pro", Consolas, Georgia, Monaco, monospace, Arial, sans-serif;
+}

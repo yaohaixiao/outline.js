@@ -1,0 +1,26 @@
+section.section
+  header.section__header
+    h3#method-scroolTo.section__h3 scrollTo ( top )
+  div.section__content
+    h4.section__h4 Description
+    p scrollTo ( top ) 方法用于将窗口的滚动条滚动到指定 top 值的位置。
+    h4.section__h4 Parameters
+    h5.section__h4 top
+    dl.section__dl
+      dt.section__dt Type：
+      dd.section__dd Number
+    p （必选）页面要滚动的 top 数值。
+    h4.section__h4 Returns
+    dl.section__dl
+      dt.section__dt Type：
+      dd.section__dd Outline
+    p Outline 对象。
+    pre.section__pre
+      code.section__code.
+        const outline = new Outline({
+             article: '#article',
+             title: 'Outline v2.0.0'
+        })
+
+        // -> 页面将滚动到距离顶部 200 像素的位置
+        outline.scrollTo(200)

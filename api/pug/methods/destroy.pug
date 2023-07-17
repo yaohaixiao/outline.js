@@ -1,0 +1,19 @@
+section.section
+  header.section__header
+    h3#method-destroy.section__h3 destroy()
+  div.section__content
+    h4.section__h4 Description
+    p destroy() 方法用于移除所有绘制的 DOM 节点，并移除绑定的事件处理器，同时重置所有 attributes 配置信息和 data 信息。
+    h4.section__h4 Returns
+    dl.section__dl
+      dt.section__dt Type：
+      dd.section__dd Outline
+    p Outline 对象。
+    pre.section__pre
+      code.section__code.
+        const outline = new Outline({
+             article: '#article',
+             title: 'Outline v2.0.0'
+        });
+
+        outline.destroy();

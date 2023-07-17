@@ -1,0 +1,21 @@
+section.section
+    header.section__header
+        h3#option-selector.section__h3 selector
+    div.section__content
+        h4.section__h4 Description
+        dl.section__dl
+            dt.section__dt Type：
+            dd.section__dd String
+        dl.section__dl
+            dt.section__dt Default：
+            dd.section__dd 'h1,h2,h3,h4,h5,h6'
+        p 可选，用来指定 <a href="#option-article">article</a> 节点下，要生成导航的标题标签的选择器。
+        pre.section__pre
+            code.section__code.
+                // Default selector
+                new Outline()
+
+                // Customize selector
+                new Outline({
+                    selector: 'h3'
+                })

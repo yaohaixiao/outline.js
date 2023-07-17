@@ -1,0 +1,23 @@
+section.section
+  header.section__header
+    h3#option-title.section__h3 title
+  div.section__content
+    h4.section__h4 Description
+    dl.section__dl
+      dt.section__dt Type：
+      dd.section__dd String
+    dl.section__dl
+      dt.section__dt Default：
+      dd.section__dl '文章导读'
+    p 可选，用来指定文章导读导航菜单的标题文字。
+    pre.section__pre
+      code.section__code.
+        // 不配置 title 属性，即使用默认标题文字
+        new Outline({
+            article: '#article'
+        })
+
+        // 自定义标题
+        new Outline({
+            title: 'outline.js API'
+        })

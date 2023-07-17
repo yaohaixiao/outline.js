@@ -1,0 +1,26 @@
+section.section
+  header.section__header
+    h3#method-set.section__h3 set ( options )
+  div.section__content
+    h4.section__h4 Description
+    p set ( options ) 用来设置 attributes（配置）属性。
+    h4.section__h4 Parameters
+    h5.section__h4 options
+    dl.section__dl
+      dt.section__dt Type：
+      dd.section__dd Object
+    p （必选）（可选）初始化的配置参数。
+    h4.section__h4 Returns
+    dl.section__dl
+      dt.section__dt Type：
+      dd.section__dd Outline
+    p Outline 对象。
+    pre.section__pre
+      code.section__code.
+        const outline = new Outline()
+
+        // 设置并绘制界面
+        outline.set({
+           article: '#article',
+           title: 'Outline v2.0.0'
+        }).reload()

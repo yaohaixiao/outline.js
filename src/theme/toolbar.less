@@ -1,0 +1,142 @@
+/* ========== buttons.theme - 按钮导航样式 ========== */
+@import './colors';
+
+.outline-toolbar {
+  position: fixed;
+  z-index: 99999;
+  margin: 0;
+  transition-duration: 0.3s;
+  overflow: hidden;
+
+  &__button {
+    position: relative;
+    z-index: 1;
+    margin: 10px;
+    width: 36px;
+    height: 36px;
+    border: 1px solid @primary_border_color;
+    border-radius: 4px;
+    box-shadow: 0 0 6px @secondary_border_color;
+    box-sizing: border-box;
+    background-color: @white;
+    cursor: pointer;
+    text-align: center;
+    color: @secondary_text_color;
+    overflow: hidden;
+
+    &:hover {
+      color: @success_color;
+    }
+
+    &.hide {
+      display: none;
+    }
+  }
+
+  &__anchor {
+    &:link,
+    &:visited,
+    &:hover {
+      color: @fourth_text_color;
+      text-decoration: none;
+    }
+
+    &:hover {
+      color: @success_color;
+    }
+  }
+
+  &__icon {
+    position: absolute;
+    z-index: 2;
+    top: 50%;
+    left: 50%;
+    width: 20px;
+    height: 20px;
+    transform: translate(-50%, -50%);
+    fill: currentcolor;
+    overflow: hidden;
+  }
+
+  &_disabled {
+    &.outline-toolbar,
+    .outline-toolbar {
+      &__anchor:link,
+      &__anchor:visited,
+      &__anchor:hover,
+      &__button {
+        cursor: not-allowed;
+        color: @fourth_text_color;
+
+        &:hover {
+          color: @fourth_text_color;
+        }
+      }
+
+      &__button {
+        background-color: @disabled_bg_color;
+      }
+    }
+  }
+
+  &_top,
+  &_bottom {
+    left: 50%;
+    transform: translateX(-50%);
+
+    .outline-toolbar__button {
+      display: inline-block;
+    }
+  }
+
+  &_top {
+    top: 12px;
+
+    &.outline-toolbar_hidden {
+      top: -56px;
+    }
+  }
+
+  &_bottom {
+    bottom: 12px;
+
+    &.outline-toolbar_hidden {
+      bottom: -56px;
+    }
+  }
+
+  &_right,
+  &_left {
+    transform: translateY(-50%);
+    width: 56px;
+  }
+
+  &_right {
+    top: 50%;
+    right: 12px;
+
+    &.outline-toolbar_hidden {
+      right: -86px;
+    }
+  }
+
+  &_left {
+    top: 50%;
+    left: 12px;
+
+    &.outline-toolbar_hidden {
+      left: -86px;
+    }
+  }
+
+  &_top,
+  &_right,
+  &_bottom,
+  &_left {
+    .outline-toolbar__button {
+      &.outline-toolbar_hidden {
+        display: none;
+      }
+    }
+  }
+}

@@ -1,0 +1,21 @@
+section.section
+  header.section__header
+    h3#option-position.section__h3 position
+  div.section__content
+    h4.section__h4 Description
+    dl.section__dl
+      dt.section__dt Type：
+      dd.section__dd String
+    dl.section__dl
+      dt.section__dt Default：
+      dd.section__dd 'outside'
+    p 可选，用来指定文章导读导航菜单的显示位置。
+    pre.section__pre
+      code.section__code.
+        // Default position - （'inside'）默认以侧边栏导航的形式显示
+        new Outline()
+
+        // Inside Article
+        new Outline({
+            position: 'inside'
+        })

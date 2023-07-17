@@ -1,298 +1,188 @@
+const path = require('path')
 const gulp = require('gulp')
-const pump = require('pump')
-const pug = require('gulp-pug')
-const babel = require('gulp-babel')
-const umd = require('gulp-umd')
+const clean = require('gulp-clean')
+const connect = require('gulp-connect')
 const eslint = require('gulp-eslint')
-const csslint = require('gulp-csslint')
-const uglify = require('gulp-uglify')
+const os = require('os')
+const open = require('gulp-open')
+const pug = require('gulp-pug')
+const less = require('gulp-less')
+const LessAutoPrefix = require('less-plugin-autoprefix')
+const autoprefixer = new LessAutoPrefix({ browsers: ['last 2 versions'] })
 const cssmin = require('gulp-cssmin')
 const rename = require('gulp-rename')
 const sourcemaps = require('gulp-sourcemaps')
-const autoprefixer = require('gulp-autoprefixer')
-const connect = require('gulp-connect')
+const run = require('gulp-run')
 const watch = require('gulp-watch')
-const clean = require('gulp-clean')
 
-const SRC_JS_PATH = 'src/js/autoc.js'
-const SRC_CSS_PATH = 'src/css/autoc.css'
+const SOURCE_PATH = ['./*.js']
 
-/* ==================== 清理相关的任务 ==================== */
-// 清空 docs 目录下的所有文件
-gulp.task('clean:docs', (cb) => {
-    pump(
-        [
-            gulp.src('docs/**/*.*'),
-            clean({force: true})
-        ],
-        cb
+/* ==================== 清理相关 gulp 任务 ==================== */
+const cleanHtml = () => {
+    return gulp
+        .src('./docs/**/*.html', {
+            allowEmpty: true
+        })
+        .pipe(clean())
+}
+
+const cleanStyle = () => {
+    return gulp
+        .src('./docs/css/*.css', {
+            allowEmpty: true
+        })
+        .pipe(clean())
+}
+
+const cleanScript = () => {
+    return gulp
+        .src('./docs/js/docs.*.js', {
+            allowEmpty: true
+        })
+        .pipe(clean())
+}
+
+const cleanDocs = gulp.parallel(cleanHtml, cleanStyle, cleanScript)
+
+/* ==================== 代码规范校验相关的 gulp 任务 ==================== */
+const lint = () => {
+    return gulp
+        .src(SOURCE_PATH)
+        .pipe(eslint())
+        .pipe(eslint.format())
+        .pipe(eslint.failOnError())
+}
+
+const check = () => {
+    return run('npm run prettier:write').exec()
+}
+
+const test = gulp.series(lint, check)
+
+/* ==================== 编译代码的 gulp 任务 ==================== */
+const buildSource = () => {
+    return run('npm run build:lib').exec()
+}
+
+const buildScript = () => {
+    return run('npm run build:api').exec()
+}
+
+const buildApi = () => {
+    return gulp
+        .src('api/pug/index.pug')
+        .pipe(
+            pug({
+                verbose: true
+            })
+        )
+        .pipe(gulp.dest('docs'))
+}
+
+const buildExample = () => {
+    return gulp.src('api/pug/example.pug')
+        .pipe(
+            pug({
+                verbose: true
+            })
+        )
+        .pipe(gulp.dest('docs'))
+}
+
+const buildStyle = () => {
+    return gulp
+        .src([
+          './api/less/docs.less',
+          './api/less/example.less'
+        ])
+        .pipe(sourcemaps.init())
+        .pipe(
+            less({
+                paths: [path.join(__dirname, 'less', 'includes')],
+                plugins: [autoprefixer]
+            })
+        )
+        .pipe(sourcemaps.write())
+        .pipe(gulp.dest('./docs/css'))
+}
+
+const minifyStyle = () => {
+    return gulp
+        .src('./docs/**/*.css')
+        .pipe(sourcemaps.init())
+        .pipe(cssmin())
+        .pipe(rename({ suffix: '.min' }))
+        .pipe(sourcemaps.write())
+        .pipe(gulp.dest('./docs'))
+}
+
+const buildDocs = gulp.series(
+    cleanDocs,
+    buildApi,
+    buildExample,
+    buildStyle,
+    minifyStyle,
+    buildScript
+)
+
+const build = gulp.series(test, cleanDocs, buildDocs)
+
+/* ==================== 文档查看相关的 gulp 任务 ==================== */
+const openDocs = () => {
+    let browser
+    if (os.platform() === 'darwin') {
+        browser = os.platform() === 'linux' ? 'google-chrome' : 'google chrome'
+    } else {
+        if (os.platform() === 'win32') {
+            browser = os.platform() === 'linux' ? 'google-chrome' : 'chrome'
+        } else {
+            browser = os.platform() === 'linux' ? 'google-chrome' : 'firefox'
+        }
+    }
+    return gulp.src('docs/index.html').pipe(
+        open({
+            app: browser,
+            uri: 'http://localhost:8260'
+        })
     )
-})
+}
 
-// 清空 dist 目录下的所有文件
-gulp.task('clean:dist', (cb) => {
-    pump(
-        [
-            gulp.src('dist/**/*.*'),
-            clean({force: true})
-        ],
-        cb
-    )
-})
-
-// 清空任务
-gulp.task('clean', [
-    'clean:docs',
-    'clean:dist'
-])
-
-
-/* ==================== API 文档构建相关的任务 ==================== */
-// 创建 API 文档 HTTP 服务
-gulp.task('connect', () => {
-    connect.server({
+const connectDocs = () => {
+    return connect.server({
         root: 'docs',
+        port: 8260,
         livereload: true
-    });
-})
-
-// 生成 API 文档的 HTML 文件
-gulp.task('pug', (cb) => {
-    pump(
-        [
-            gulp.src('src/pug/index.pug'),
-            pug({
-                verbose: true
-            }),
-            gulp.dest('docs'),
-            gulp.src('src/pug/example.pug'),
-            pug({
-                verbose: true
-            }),
-            gulp.dest('docs')
-        ],
-        cb
-    )
-})
-
-
-/* ==================== 文件复制相关的任务 ==================== */
-// 复制 API 文档字体图标相关的资源
-gulp.task('copy:fonts:dist', (cb) => {
-    pump(
-        [
-            // 拷贝字体文件
-            gulp.src('src/css/fonts/*.*'),
-            gulp.dest('dist/css/fonts')
-        ],
-        cb
-    )
-})
-
-// 复制 API 文档字体图标相关的资源
-gulp.task('copy:fonts:docs', (cb) => {
-    pump(
-        [
-            // 拷贝字体文件
-            gulp.src('src/css/fonts/*.*'),
-            gulp.dest('docs/css/fonts')
-        ],
-        cb
-    )
-})
-
-// 复制 API 文档的 CSS 文件
-gulp.task('copy:css', (cb) => {
-    pump(
-        [
-            gulp.src('src/css/docs.css'),
-            gulp.dest('docs/css')
-        ],
-        cb
-    )
-})
-
-// 复制任务
-gulp.task('copy', [
-    'copy:fonts:dist',
-    'copy:fonts:docs',
-    'copy:css'
-])
-
-
-/* ==================== 源代码编码规范校验相关的任务 ==================== */
-// 使用 ESLint 校验 src/js/outline.js 的编码规范
-gulp.task('lint:js', (cb) => {
-    pump(
-        [
-            gulp.src(SRC_JS_PATH),
-            eslint(),
-            // eslint.format() outputs the lint results to the console.
-            // Alternatively use eslint.formatEach() (see Docs).
-            eslint.format(),
-            // To have the process exit with an error code (1) on
-            // lint error, return the stream and pipe to failAfterError last.
-            eslint.failOnError()
-        ],
-        cb
-    )
-})
-
-// 使用 CSSLint 校验 outline.css 文件的代码规范
-gulp.task('lint:css', (cb) => {
-    pump(
-        [
-            gulp.src(SRC_CSS_PATH),
-            csslint('csslintrc.json'),
-            csslint.formatter()
-        ],
-        cb
-    )
-})
-
-// 校验任务
-gulp.task('lint', [
-    'lint:js',
-    'lint:css'
-])
-
-
-/* ==================== 编译 src/js/outline.js 相关的任务 ==================== */
-// 使用 babel 将源代码 ES6 语法转化成适合浏览器使用的 ES5 语法，并使其符合 UMD 规范
-gulp.task('transform', (cb) => {
-    pump(
-        [
-            gulp.src(SRC_JS_PATH),
-            babel(),
-            // gives streaming vinyl file object
-            umd({
-                exports: function () {
-                    return 'AutocJs'
-                },
-                namespace: function () {
-                    return 'AutocJs'
-                }
-            }),
-            gulp.dest('dist'),
-            gulp.dest('docs/js'),
-            sourcemaps.init({
-                loadMaps: true
-            }),
-            uglify(),
-            rename({suffix: '.min'}),
-            sourcemaps.write('./'),
-            gulp.dest('dist')
-        ],
-        cb
-    )
-})
-
-/* ==================== 编译 src/css/outline.css ==================== */
-// 用 autoperfixer 将部分需要添加前缀的属性，自动生成浏览器兼容的写法
-// 将未压缩的代码复制到 docs/css 目录下，然后压缩 outline.css 源代码，
-// 将压缩后的代码输出到 dist/css 目录翔，并生成 source map 文件
-gulp.task('uglify:css', (cb) => {
-    pump(
-        [
-            gulp.src(SRC_CSS_PATH),
-            sourcemaps.init({
-                loadMaps: true
-            }),
-            autoprefixer({
-                browsers: ['last 2 versions'],
-                cascade: false
-            }),
-            gulp.dest('dist/css'),
-            gulp.dest('docs/css'),
-            cssmin(),
-            rename({suffix: '.min'}),
-            sourcemaps.write('./'),
-            gulp.dest('dist/css')
-        ],
-        cb
-    )
-})
-
-/* ==================== 监听文件变化相关的 ==================== */
-// 监听 outline.js 代码变化
-gulp.task('watch:js', () => {
-    // 监视 src/js/outline.js，编译并压缩源代码
-    gulp.watch(SRC_JS_PATH, [
-        'transform'
-    ])
-})
-
-// 监听 pug 文件变化，生成新的 API 文档 HTML 文件
-gulp.task('watch:pug', () => {
-    gulp.watch('src/pug/**/*.pug', [
-        'pug'
-    ])
-})
-
-// 监听 css 文件变化
-gulp.task('watch:src:css', () => {
-    // 监视 src/css/outline.css 文件变化, 压缩后复制 dist/css 目录下
-    gulp.watch([
-        'src/css/outline.css'
-    ], [
-        'uglify:css'
-    ])
-})
-
-
-gulp.task('watch:docs:css', () => {
-    // 监视 src/css/outline.css 文件变化, 压缩后复制 dist/css 目录下
-    gulp.watch([
-        'src/css/docs.css'
-    ], [
-        'copy:css'
-    ])
-})
-
-gulp.task('watch:docs', () => {
-    // 监视 src/css/docs.css 文件变化，并复制到 docs/css 目录下
-    gulp.watch([
-        'docs/**/*.*'
-    ], () => {
-        connect.reload()
     })
-})
+}
 
-// 监听任务
-gulp.task('watch', [
-    'watch:js',
-    'watch:pug',
-    'watch:src:css',
-    'watch:docs:css',
-    'watch:docs'
-])
+const reload = () => {
+    return connect.reload()
+}
 
+const start = gulp.series(build, connectDocs, openDocs)
 
-/* ==================== 项目的相关主任务 ==================== */
-// 编译压缩代码
-gulp.task('build', [
-    'lint:js',
-    'transform',
-    'uglify:css'
-])
+/* ==================== 检测源代码变更相关的 gulp 任务 ==================== */
+const watchSource = () => {
+    return watch('src/**/*.js', gulp.series(lint, buildSource))
+}
 
-// 启动开发环境
-gulp.task('dev', [
-    'connect',
-    'pug',
-    'copy',
-    'build',
-    'watch'
-])
+const watchApi = () => {
+    return watch(['api/**/*.*'], gulp.series(buildDocs))
+}
 
-// 开发环境任务的别名
-gulp.task('start', [
-    'dev'
-])
+const watchDocs = () => {
+    return watch('docs/**/*.*', {
+        ignoreInitial: false
+    }).pipe(reload())
+}
 
-// 默认任务，针对生产环境，只监听文件变化编译JS源代码
-gulp.task('default', [
-    'build',
-    'watch:js',
-    'watch:src:css'
-])
+const watchAll = gulp.parallel(watchSource, watchApi, watchDocs)
+
+// 导出公共方法
+module.exports.start = start
+module.exports.clean = cleanDocs
+module.exports.build = build
+module.exports.lint = lint
+module.exports.check = check
+module.exports.test = test
+module.exports.watch = watchAll

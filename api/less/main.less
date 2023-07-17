@@ -1,0 +1,77 @@
+@import 'colors';
+
+.main {
+  &__header,
+  &__footer {
+    margin: 0 auto;
+    padding: 1em;
+    text-align: center;
+    overflow: hidden;
+  }
+
+  &__h1 {
+    margin: 0 auto;
+    padding-top: 1em;
+    font-size: 5em;
+    font-weight: normal;
+    line-height: 2.0em;
+    overflow: hidden;
+  }
+
+  &__name {
+    color: @primary_color;
+    font-weight: normal;
+  }
+
+  &__tagline {
+    margin: 1em auto;
+    max-width: 660px;
+    line-height: 1.3em;
+    font-size: 2em;
+    color: @fourth_text_color;
+    font-weight: 100;
+    overflow: hidden;
+  }
+
+  &__cdn {
+    margin: 2em 0;
+    padding: 2em;
+    font-size: 16px;
+    line-height: 150%;
+    text-align: center;
+    background-color: @bg_color;
+    border-top: 1px solid @border_color;
+    border-bottom: 1px solid @border_color;
+    color: @third_text_color;
+    overflow: hidden;
+  }
+
+  &__download{
+    margin: 1em auto;
+    width: 200px;
+    text-align: center;
+    overflow: hidden;
+  }
+
+  &__button {
+    display: inline-block;
+    border-radius: 4px;
+    padding: 14px 29px;
+    font-size: 18px;
+    font-family: "Source Code Pro", Consolas, Georgia, Monaco, monospace, Arial, sans-serif;
+    background-color: @success_color;
+    overflow: hidden;
+
+    &:link,
+    &:visited,
+    &:hover {
+      color: @white;
+      text-decoration: none;
+    }
+  }
+
+  &__footer {
+    margin: 0 3em;
+    border-top: 1px solid @border_color;
+  }
+}
