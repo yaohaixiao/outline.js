@@ -26,6 +26,8 @@
 
     &:hover {
       color: @success_color;
+      border-color: @success_color;
+      background-color: @hover_bg_color;
     }
 
     &.hide {
@@ -56,6 +58,28 @@
     transform: translate(-50%, -50%);
     fill: currentcolor;
     overflow: hidden;
+  }
+
+  &_active {
+    &.outline-toolbar {
+      &__button {
+        color: @success_color;
+        border-color: @success_color;
+        background-color: @hover_bg_color;
+
+        &:hover {
+          color: @success_color;
+        }
+      }
+
+      &__anchor {
+        &:link,
+        &:visited,
+        &:hover {
+          color: @success_color;
+        }
+      }
+    }
   }
 
   &_disabled {

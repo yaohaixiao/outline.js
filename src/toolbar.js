@@ -6,6 +6,7 @@ import later from './utils/lang/later'
 import hasOwn from './utils/lang/hasOwn'
 import createElement from './utils/dom/createElement'
 import addClass from './utils/dom/addClass'
+import hasClass from './utils/dom/hasClass'
 import removeClass from './utils/dom/removeClass'
 import on from './utils/event/on'
 import off from './utils/event/off'
@@ -16,28 +17,13 @@ import _createButton from './_createButton'
 const DISABLED = 'outline-toolbar_disabled'
 const HIDDEN = 'outline-toolbar_hidden'
 
-const DEFAULTS = {
-  placement: 'right',
-  closed: false,
-  disabled: false,
-  buttons: [],
-  created: null,
-  mounted: null,
-  afterClosed: null,
-  afterOpened: null,
-  afterDisabled: null,
-  afterEnabled: null,
-  beforeDestroy: null,
-  afterDestroy: null
-}
 class Toolbar {
   constructor(options) {
-    this.attrs = DEFAULTS
-
+    this.attrs = Toolbar.DEFAULTS
     this.$el = null
-
     this.disabled = false
     this.closed = false
+    this.buttons = []
 
     if (options) {
       this.initialize(options)
@@ -104,6 +90,26 @@ class Toolbar {
     return this.closed
   }
 
+  highlight(name) {
+    const button = this.buttons.find((item) => item.name === name)
+    const ACTIVE = 'outline-toolbar_active'
+    let $button
+
+    if ($button) {
+      return this
+    }
+
+    $button = button.$el
+
+    if (hasClass($button, ACTIVE)) {
+      removeClass($button, ACTIVE)
+    } else {
+      addClass($button, ACTIVE)
+    }
+
+    return this
+  }
+
   render() {
     const mounted = this.attr('mounted')
     const buttons = this.attr('buttons') || []
@@ -113,7 +119,13 @@ class Toolbar {
     paintSvgSprites()
 
     buttons.forEach((button) => {
-      $buttons.push(_createButton(button))
+      const $button = _createButton(button)
+
+      $buttons.push($button)
+      this.buttons.push({
+        name: button.name,
+        $el: $button
+      })
     })
 
     this.$el = createElement(
@@ -341,8 +353,11 @@ class Toolbar {
     this.removeListeners()
     document.body.removeChild($el)
     $el = null
-    this.attr(DEFAULTS)
+
+    this.attr(Toolbar.DEFAULTS)
     this.disabled = false
+    this.closed = false
+    this.buttons = []
 
     if (isFunction(afterDestroy)) {
       afterDestroy.call(this)
@@ -377,19 +392,25 @@ class Toolbar {
     const buttons = this.attr('buttons')
     const $el = this.$el
 
+    if (!buttons || buttons.length < 1) {
+      return this
+    }
+
     buttons.forEach((button) => {
       const action = button.action
       const disabled = this.disabled
       let type
       let listener
+      let context
 
       if (action) {
         listener = action.handler
         type = action.type || 'click'
+        context = action.context
       }
 
       if (isFunction(listener) && !disabled) {
-        on($el, `.${button.name}`, type, listener)
+        on($el, `.${button.name}`, type, listener, context || this, true)
       }
     })
 
@@ -399,6 +420,10 @@ class Toolbar {
   removeListeners() {
     const buttons = this.attr('buttons')
     const $el = this.$el
+
+    if (!buttons || buttons.length < 1) {
+      return this
+    }
 
     buttons.forEach((button) => {
       const action = button.action
@@ -418,6 +443,21 @@ class Toolbar {
 
     return this
   }
+}
+
+Toolbar.DEFAULTS = {
+  placement: 'right',
+  closed: false,
+  disabled: false,
+  buttons: [],
+  created: null,
+  mounted: null,
+  afterClosed: null,
+  afterOpened: null,
+  afterDisabled: null,
+  afterEnabled: null,
+  beforeDestroy: null,
+  afterDestroy: null
 }
 
 export default Toolbar

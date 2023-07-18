@@ -8,7 +8,6 @@ let timer = null
 /**
  * 指定 rootElement DOM 节点滚动到指定 top 位置
  * ========================================================================
- * todo: 1. 点击菜单滚动时，同步定位取消; 2. 了解 sticky 定位
  * @method scrollTo
  * @param {HTMLElement|Object} [scrollElement] - （必须）要滚动的 DOM 节点
  * @param {Number} top - （必须）滚动的 scrollTop 数值
@@ -18,8 +17,8 @@ let timer = null
 const scrollTo = (scrollElement, top, afterStop, speed = 30) => {
   const $scrollElement = _getScrollElement(scrollElement)
   let scrollTop = $scrollElement.scrollTop
-  let count = 0
-  const isScrollUp = top - $scrollElement.scrollTop < 0
+  let step = 0
+  const distance = top - scrollTop
   const MAX_HEIGHT = $scrollElement.scrollHeight
   const MAX_TOP = top - MAX_HEIGHT <= 0 ? top : MAX_HEIGHT
   const stop = () => {
@@ -31,10 +30,12 @@ const scrollTo = (scrollElement, top, afterStop, speed = 30) => {
       stop()
     }
 
-    count += 3
+    step += 3
 
-    if (isScrollUp) {
-      scrollTop -= easeInQuad(count)
+    // 线上滚动
+    if (distance < 0) {
+      console.log('向上')
+      scrollTop -= easeInQuad(step)
       $scrollElement.scrollTop = scrollTop
 
       if (scrollTop <= top) {
@@ -44,12 +45,15 @@ const scrollTo = (scrollElement, top, afterStop, speed = 30) => {
         if (isFunction(afterStop)) {
           afterStop(top)
         }
+        console.log('向上结束')
 
         return false
       }
     } else {
-      scrollTop += easeInQuad(count)
+      scrollTop += easeInQuad(step)
       $scrollElement.scrollTop = scrollTop
+
+      console.log('向下')
 
       if (scrollTop >= MAX_TOP) {
         $scrollElement.scrollTop = MAX_TOP
@@ -58,6 +62,7 @@ const scrollTo = (scrollElement, top, afterStop, speed = 30) => {
         if (isFunction(afterStop)) {
           afterStop(MAX_TOP)
         }
+        console.log('向下结束')
 
         return false
       }

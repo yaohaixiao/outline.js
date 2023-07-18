@@ -2,11 +2,7 @@ import removeClass from './utils/dom/removeClass'
 import isEmpty from './utils/types/isEmpty'
 import trim from './utils/lang/trim'
 
-const _resetHeading = (
-  $heading,
-  hasHeadingAnchor = true,
-  isAnchorAtStart = true
-) => {
+const _resetHeading = ($heading, hasAnchor = true, isAtStart = true) => {
   const CLS_HEADING = 'outline-heading'
   const text = $heading.innerHTML
   let $anchor
@@ -17,13 +13,13 @@ const _resetHeading = (
 
   removeClass($heading, CLS_HEADING)
 
-  if (!hasHeadingAnchor) {
+  if (!hasAnchor) {
     return false
   }
 
   $anchor = $heading.querySelector(`.${CLS_HEADING}__anchor`)
 
-  if (isAnchorAtStart) {
+  if (isAtStart) {
     removeClass($heading, `${CLS_HEADING}_start`)
   }
 

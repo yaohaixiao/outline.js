@@ -18,24 +18,9 @@ import _updateHeading from './_updateHeading'
 import _resetHeading from './_resetHeading'
 import getChapters from './getChapters'
 
-const DEFAULTS = {
-  root: '#article',
-  selector: 'h1,h2,h3,h4,h5,h6',
-  scrollElement: '',
-  anchorURL: '',
-  hasHeadingAnchor: true,
-  isAnchorAtStart: true,
-  showChapterCode: false,
-  created: null,
-  mounted: null,
-  afterScroll: null,
-  beforeDestroy: null,
-  afterDestroy: null
-}
-
 class Anchors {
   constructor(options) {
-    this.attrs = DEFAULTS
+    this.attrs = Anchors.DEFAULTS
 
     this.$root = null
     this.$scrollElement = null
@@ -115,11 +100,15 @@ class Anchors {
     return this.chapters
   }
 
+  count() {
+    return this.chapters.length
+  }
+
   render() {
     const mounted = this.attr('mounted')
-    const hasHeadingAnchor = this.attr('hasHeadingAnchor')
-    const isAnchorAtStart = this.attr('isAnchorAtStart')
-    const showChapterCode = this.attr('showChapterCode')
+    const hasAnchor = this.attr('hasAnchor')
+    const isAtStart = this.attr('isAtStart')
+    const showCode = this.attr('showCode')
     const anchorURL = this.attr('anchorURL')
     const $headings = this.$headings
     const chapters = this.getChapters()
@@ -129,9 +118,9 @@ class Anchors {
     $headings.forEach(($heading, i) => {
       const chapterCode = chapters[i].code
       _updateHeading($heading, i, {
-        hasHeadingAnchor,
-        isAnchorAtStart,
-        showChapterCode,
+        hasAnchor,
+        isAtStart,
+        showCode,
         chapterCode,
         anchorURL
       })
@@ -158,8 +147,8 @@ class Anchors {
   }
 
   destroy() {
-    const hasHeadingAnchor = this.attr('hasHeadingAnchor')
-    const isAnchorAtStart = this.attr('isAnchorAtStart')
+    const hasAnchor = this.attr('hasAnchor')
+    const isAtStart = this.attr('isAtStart')
     const beforeDestroy = this.attr('beforeDestroy')
     const afterDestroy = this.attr('afterDestroy')
     const $headings = this.$headings
@@ -170,10 +159,10 @@ class Anchors {
 
     this.removeListeners()
     $headings.forEach(($heading) => {
-      _resetHeading($heading, hasHeadingAnchor, isAnchorAtStart)
+      _resetHeading($heading, hasAnchor, isAtStart)
     })
 
-    this.attr(DEFAULTS)
+    this.attr(Anchors.DEFAULTS)
     this.$root = null
     this.$scrollElement = null
     this.$headings = []
@@ -197,8 +186,9 @@ class Anchors {
     const $anchor = evt.delegateTarget
     const $heading = $anchor.parentNode
     const top = $heading.offsetTop
+    const $scrollElement = this.$scrollElement
     const min = 0
-    const max = this.$scrollElement.scrollHeight
+    const max = $scrollElement.scrollHeight - $scrollElement.clientHeight
     const after = () => {
       if (isFunction(afterScroll)) {
         afterScroll.call(this)
@@ -244,6 +234,21 @@ class Anchors {
 
     return this
   }
+}
+
+Anchors.DEFAULTS = {
+  root: '#article',
+  selector: 'h1,h2,h3,h4,h5,h6',
+  scrollElement: '',
+  anchorURL: '',
+  hasAnchor: true,
+  isAtStart: true,
+  showCode: false,
+  created: null,
+  mounted: null,
+  afterScroll: null,
+  beforeDestroy: null,
+  afterDestroy: null
 }
 
 export default Anchors

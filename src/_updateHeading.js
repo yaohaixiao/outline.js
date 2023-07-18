@@ -6,17 +6,15 @@ import { createSvgIcon } from './utils/icons'
 
 const _updateHeading = ($heading, i, options) => {
   const CLS_HEADING = 'outline-heading'
-  const hasHeadingAnchor = options.hasHeadingAnchor || true
-  const isAnchorAtStart = options.isAnchorAtStart || true
-  const showChapterCode = options.showChapterCode || false
+  const hasAnchor = options.hasAnchor || true
+  const isAtStart = options.isAtStart || true
+  const showCode = options.showCode || false
   const chapterCode = options.chapterCode || ''
   const anchorURL = options.anchorURL || ''
   const headingId = `heading-${i}`
   const attrs = {
     id: headingId,
-    className: isAnchorAtStart
-      ? `${CLS_HEADING} ${CLS_HEADING}_start`
-      : CLS_HEADING,
+    className: isAtStart ? `${CLS_HEADING} ${CLS_HEADING}_start` : CLS_HEADING,
     'data-id': i
   }
   const keys = Object.keys(attrs)
@@ -27,11 +25,11 @@ const _updateHeading = ($heading, i, options) => {
     setAttribute($heading, prop, attrs[prop])
   })
 
-  if (showChapterCode) {
+  if (showCode) {
     $heading.innerHTML = chapterCode + ' ' + text
   }
 
-  if (!hasHeadingAnchor) {
+  if (!hasAnchor) {
     return false
   }
 

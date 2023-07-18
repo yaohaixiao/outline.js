@@ -20,26 +20,9 @@ import publish from './utils/observer/emit'
 import _getScrollElement from './utils/dom/_getScrollElement'
 import _paintChapters from './_paintChapters'
 
-const DEFAULTS = {
-  parentElement: '',
-  scrollElement: '',
-  active: 0,
-  closed: false,
-  showCode: true,
-  position: 'relative',
-  chapters: [],
-  created: null,
-  mounted: null,
-  afterClosed: null,
-  afterOpened: null,
-  afterScroll: null,
-  beforeDestroy: null,
-  afterDestroy: null
-}
-
 class Chapters {
   constructor(options) {
-    this.attrs = DEFAULTS
+    this.attrs = Chapters.DEFAULTS
 
     this.$el = null
     this.$title = null
@@ -256,7 +239,7 @@ class Chapters {
       return this
     }
 
-    if (scrollTop >= top + 10) {
+    if (scrollTop >= top) {
       addClass($el, FIXED)
     } else {
       removeClass($el, FIXED)
@@ -333,7 +316,7 @@ class Chapters {
     this.removeListeners()
     this.$parentElement.removeChild(this.$el)
 
-    this.attr(DEFAULTS)
+    this.attr(Chapters.DEFAULTS)
     this.$el = null
     this.$title = null
     this.$main = null
@@ -368,7 +351,9 @@ class Chapters {
     let timer = null
 
     intersection(
-      (id) => {
+      ($heading) => {
+        const id = $heading.getAttribute('data-id')
+
         if (this.playing) {
           return false
         }
@@ -412,8 +397,16 @@ class Chapters {
     }
 
     this.playing = true
-    this.scrollTo(top, after)
-    this.highlight(id)
+    if (this.isFixed()) {
+      this.sticky()
+      later(() => {
+        this.scrollTo(top, after)
+        this.highlight(id)
+      }, 10)
+    } else {
+      this.scrollTo(top, after)
+      this.highlight(id)
+    }
 
     stop(evt)
 
@@ -430,9 +423,7 @@ class Chapters {
     this.timer = later(() => {
       const top = $scrollElement.scrollTop
       const min = 0
-      const max = $scrollElement.scrollHeight
-
-      console.log(top, max, $scrollElement.clientHeight)
+      const max = $scrollElement.scrollHeight - $scrollElement.clientHeight
 
       if (this.isFixed()) {
         this.sticky()
@@ -454,16 +445,11 @@ class Chapters {
     const tagName = $scrollElement.tagName.toLowerCase()
     let $element = $scrollElement
 
-    on($el, '.outline-chapters__anchor', 'click', this.onSelect, this, true)
-
-    if (!this.isFixed()) {
-      return this
-    }
-
     if (tagName === 'html' || tagName === 'body') {
       $element = window
     }
 
+    on($el, '.outline-chapters__anchor', 'click', this.onSelect, this, true)
     emit($element, 'scroll', this.onScroll, this, true)
 
     return this
@@ -475,20 +461,33 @@ class Chapters {
     const tagName = $scrollElement.tagName.toLowerCase()
     let $element = $scrollElement
 
-    off($el, 'click', this.onSelect)
-
-    if (!this.isFixed()) {
-      return this
-    }
-
     if (tagName === 'html' || tagName === 'body') {
       $element = window
     }
 
+    off($el, 'click', this.onSelect)
     off($element, 'scroll', this.onScroll)
 
     return this
   }
+}
+
+Chapters.DEFAULTS = {
+  parentElement: '',
+  scrollElement: '',
+  selector: '',
+  active: 0,
+  closed: false,
+  showCode: true,
+  position: 'relative',
+  chapters: [],
+  created: null,
+  mounted: null,
+  afterClosed: null,
+  afterOpened: null,
+  afterScroll: null,
+  beforeDestroy: null,
+  afterDestroy: null
 }
 
 export default Chapters
