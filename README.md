@@ -21,7 +21,7 @@ AnchorJS 是 outline.js 的创作灵感来源。既然 AnchorJS 可创建标题�
 - 原生 JavaScript 编写，无需任何依赖；
 - 支持 UMD 规范；
 - 支持 E6 模块，提供功能独立的 ES6 模块；
-  - Anchors 模块：基础的 AnchorJS 基础功能模块，自动分析段落层级
+  - Anchors 模块：类似 AnchorJS 基础功能模块，自动分析段落层级
   - Drawer 模块：独立的侧滑窗口模块
   - Chapters 模块：独立的导航菜单模块；
   - Toolbar 模块：独立的固定定位的工具栏模块；
@@ -81,37 +81,49 @@ import Outline from '@yaohaixiao/outline.js'
 // 创建 Outline 实例
 // 2.0.0 调整了配置参数，配置更加简单
 const outline = new Outline({
-    // 文章正文 DOM 节点或者选择器字符串
+    // 文章显示区域的 DOM 元素或者选择器字符串
     articleElement: '#article',
     // 要收集的标题选择器
     selector: 'h2,h3,h4,h5,h6',
-    // （包含文章）滚动（点击导航菜单的链接会滚动定位）的 DOM 元素
-    // String 类型 - 选择器字符串
+    // 负责文章区域滚动的元素
+    // String 类型 - 选择器字符串，默认值：html,body（window窗口）
     // HTMLElement 类型 - DOM 元素
     scrollElement: 'html,body',
-    // 导航菜单将要插入的 DOM 元素
-    // String 类型 - 选择器字符串
-    // HTMLElement 类型 - 插入的 DOM 元素
-    // 如果设置 position: relative，则
-    // 会创建一个独立的侧滑菜单
-    parentElement: '#aside',
     // 文章导读菜单的位置
     // relative - （默认值）创建独立的侧滑菜单
-    // sticky - 以侧边栏菜单形式显示（默认值）
-    // fixed - 在文章正文一开始的地方显示
+    // sticky - 导航菜单将以 sticky 模式布局（需要确保菜单插入位置支持 sticky 模式布局）
+    // fixed - 导航菜单将以 fixed 模式布局，会自动监听滚动位置，模拟 sticky 布局
+    // sticky 和 fixed 布局时，需要设置 parentElement
+    // 2.0.0 暂时不支持在文章开始位置插入 chapters 导航菜单
     position: 'sticky',
+    // 设置 position: relative 时，placment 定义侧滑菜单和 toolbar 导航位置：
+    // rtl - 菜单位置在窗口右侧，滑动动画为：right to left
+    // ltr - 菜单位置在窗口左侧，滑动动画为：left to right
+    // ttb - 菜单位置在窗口上方，滑动动画为：top to bottom
+    // btt - 菜单位置在窗口下方，滑动动画为：bottom to top
+    placement: '',
+    // 导航菜单将要插入的位置（DOM 元素）
+    // String 类型 - 选择器字符串
+    // HTMLElement 类型 - 插入的 DOM 元素
+    // 仅在 position 设置为 sticky 和 fixed 布局时有效
+    parentElement: '#aside',
     // 是否显示段落章节编号
     showCode: true,
     // 标题图标链接的 URL 地址
     // （默认）没有设置定制，点击链接页面滚动到标题位置
     // 设置了链接地址，则不会滚动定位
-    anchorURL: ''
+    anchorURL: '',
+    // DIYer的福利
+    // 独立侧滑菜单时，customClass 会追加到 drawer 侧滑窗口组件
+    // 在文章中显示导航菜单时，customClass 会追加到 chapters 导航菜单
+    customClass
 });
 
 // 可以在创建导航后，重置配置信息，重新生成新的导航
 Outline.reload({
-  // 生成独立的侧滑导航菜单
-  position: 'relative'
+  // 调整位直接在文章内生成导航
+  position: 'sticky',
+  articleElement: '#article'
 })
 ```
 

@@ -7,6 +7,7 @@ import isString from './utils/types/isString'
 import isObject from './utils/types/isObject'
 import extend from './utils/lang/extend'
 import hasOwn from './utils/lang/hasOwn'
+import later from './utils/lang/later'
 
 import subscribe from './utils/observer/on'
 import unsubscribe from './utils/observer/off'
@@ -61,6 +62,7 @@ class Outline {
     const selector = this.attr('selector')
     const showCode = this.attr('showCode')
     const position = this.attr('position')
+    const placement = this.attr('placement')
     const anchorURL = this.attr('anchorURL')
     let parentElement = this.attr('parentElement')
 
@@ -73,13 +75,14 @@ class Outline {
     })
     if (position === 'relative') {
       this.drawer = new Drawer({
-        placement: 'ltr',
+        placement,
         title: '目录',
         size: 'tiny',
         hasOffset: true,
         hasPadding: false,
         afterClosed: () => {
-          this.toolbar.highlight('menu')
+          const toolbar = this.toolbar
+          toolbar.toggle()
         }
       })
       parentElement = this.drawer.$main
@@ -92,6 +95,7 @@ class Outline {
       chapters: this.anchors.getChapters()
     })
     this.toolbar = new Toolbar({
+      placement,
       buttons: [
         {
           name: 'up',
@@ -173,13 +177,15 @@ class Outline {
     const drawer = this.drawer
     const chapters = this.chapters
 
-    toolbar.highlight('menu')
+    toolbar.toggle()
 
-    if (chapters.isInside()) {
-      chapters.toggle()
-    } else {
-      drawer.toggle()
-    }
+    later(() => {
+      if (chapters.isInside()) {
+        chapters.toggle()
+      } else {
+        drawer.toggle()
+      }
+    })
 
     return this
   }
@@ -255,8 +261,10 @@ Outline.DEFAULTS = {
   parentElement: '#aside',
   selector: 'h2,h3,h4,h5,h6',
   position: 'relative',
+  placement: 'rtl',
   showCode: true,
-  anchorURL: ''
+  anchorURL: '',
+  customClass: ''
 }
 
 if (window.jQuery) {

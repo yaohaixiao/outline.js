@@ -446,7 +446,7 @@ class Toolbar {
 }
 
 Toolbar.DEFAULTS = {
-  placement: 'right',
+  placement: 'ltr',
   closed: false,
   disabled: false,
   buttons: [],
