@@ -22,7 +22,7 @@ class Anchors {
   constructor(options) {
     this.attrs = Anchors.DEFAULTS
 
-    this.$root = null
+    this.$articleElement = null
     this.$scrollElement = null
     this.$headings = []
 
@@ -37,28 +37,28 @@ class Anchors {
     let created
     let scrollElement
     let selector
-    let $root
-    let root
+    let $articleElement
+    let articleElement
 
     this.attr(options)
-    created = this.attr('created')
+    articleElement = this.attr('articleElement')
     scrollElement = this.attr('scrollElement')
     selector = this.attr('selector')
-    root = this.attr('root')
+    created = this.attr('created')
 
-    if (isString(root)) {
-      $root = document.querySelector(root)
-    } else if (isElement(root)) {
-      $root = root
+    if (isString(articleElement)) {
+      $articleElement = document.querySelector(articleElement)
+    } else if (isElement(articleElement)) {
+      $articleElement = articleElement
     }
 
-    if (!$root) {
+    if (!$articleElement) {
       return this
     }
 
-    this.$root = $root
+    this.$articleElement = $articleElement
     this.$scrollElement = _getScrollElement(scrollElement)
-    this.$headings = [...$root.querySelectorAll(selector)]
+    this.$headings = [...$articleElement.querySelectorAll(selector)]
     this.chapters = getChapters(this.$headings)
 
     if (isFunction(created)) {
@@ -163,7 +163,7 @@ class Anchors {
     })
 
     this.attr(Anchors.DEFAULTS)
-    this.$root = null
+    this.$articleElement = null
     this.$scrollElement = null
     this.$headings = []
     this.chapters = []
@@ -213,10 +213,10 @@ class Anchors {
   }
 
   addListeners() {
-    const $root = this.$root
+    const $articleElement = this.$articleElement
 
     on(
-      $root,
+      $articleElement,
       '.outline-heading__anchor',
       'click',
       this.onAnchorTrigger,
@@ -228,18 +228,18 @@ class Anchors {
   }
 
   removeListeners() {
-    const $root = this.$root
+    const $articleElement = this.$articleElement
 
-    off($root, 'click', this.onAnchorTrigger)
+    off($articleElement, 'click', this.onAnchorTrigger)
 
     return this
   }
 }
 
 Anchors.DEFAULTS = {
-  root: '#article',
+  scrollElement: 'html,body',
+  articleElement: '#article',
   selector: 'h1,h2,h3,h4,h5,h6',
-  scrollElement: '',
   anchorURL: '',
   hasAnchor: true,
   isAtStart: true,

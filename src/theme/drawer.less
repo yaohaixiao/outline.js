@@ -63,7 +63,7 @@
     position: absolute;
     z-index: 2;
     top: 50%;
-    right: 16px;
+    right: 12px;
     width: 20px;
     height: 20px;
     line-height: 20px;
@@ -114,7 +114,7 @@
   &_ltr {
     &.outline-drawer {
       &_tiny {
-        width: 320px;
+        width: 280px;
       }
 
       &_mini {
@@ -145,7 +145,7 @@
     &.outline-drawer {
       &_tiny {
         &.outline-drawer_closed {
-          right: -330px;
+          right: -290px;
         }
       }
 
@@ -187,7 +187,7 @@
     &.outline-drawer {
       &_tiny {
         &.outline-drawer_closed {
-          left: -330px;
+          left: -290px;
         }
       }
 
@@ -363,5 +363,47 @@
         bottom: 0;
       }
     }
+  }
+
+  &_offset {
+    &.outline-drawer {
+      &_rtl,
+      &_ltr {
+        height: calc(100% - 4em);
+        top: 50%;
+        transform: translateY(-50%);
+      }
+
+      &_ttb,
+      &_btt {
+        width: calc(100% - 4em);
+        left: 50%;
+        transform: translateX(-50%);
+      }
+
+      &_opened {
+        &.outline-drawer {
+          &_rtl {
+            right: 2em;
+          }
+
+          &_ltr {
+            left: 2em;
+          }
+
+          &_ttb {
+            top: 2em;
+          }
+
+          &_btt {
+            bottom: 2em;
+          }
+        }
+      }
+    }
+  }
+
+  &_full {
+    padding: 0;
   }
 }

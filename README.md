@@ -18,11 +18,17 @@ AnchorJS 是 outline.js 的创作灵感来源。既然 AnchorJS 可创建标题�
 
 ## 特点
 
+- 原生 JavaScript 编写，无需任何依赖；
 - 支持 UMD 规范；
+- 支持 E6 模块，提供功能独立的 ES6 模块；
+  - Anchors 模块：基础的 AnchorJS 基础功能模块，自动分析段落层级
+  - Drawer 模块：独立的侧滑窗口模块
+  - Chapters 模块：独立的导航菜单模块；
+  - Toolbar 模块：独立的固定定位的工具栏模块；
 - 拥有 AnchorJS 基础功能；
 - 支持中文和英文标题文字生成ID；
 - 支持生成独立的侧边栏导航菜单；
-- 支持直接在文章中生成文章导读导航；
+- 支持直接在文章中生成文章导读导航(fixed 或者 sticky 布局)；
 - 自动分析标题关系，生成段落层级索引值；
 - 可以作为 jQuery 插件使用；
 - 界面简洁大方；
@@ -50,7 +56,7 @@ $ npm install -S @yaohaixiao/outline.js
 ### CDN 调用
 
 ```html
-<script src="https://cdn.jsdelivr.net/gh/yaohaixiao/outline.js/subscribers.min.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/yaohaixiao/outline.js/outline.min.js"></script>
 ```
 
 ### 调用本地JS文件
@@ -73,41 +79,39 @@ const Outline = require('@yaohaixiao/outline.js')
 import Outline from '@yaohaixiao/outline.js'
 
 // 创建 Outline 实例
+// 2.0.0 调整了配置参数，配置更加简单
 const outline = new Outline({
-    // 文章正文 DOM 节点的 ID 选择器
-    article: '#article',
+    // 文章正文 DOM 节点或者选择器字符串
+    articleElement: '#article',
     // 要收集的标题选择器
-    selector: 'h1,h2,h3,h4,h5,h6',
-    // 侧边栏导航的标题
-    title: '文章导读',
-    // 文章导读导航的位置
-    // outside - 以侧边栏菜单形式显示（默认值）
-    // inside - 在文章正文一开始的地方显示
-    position: 'outside',
+    selector: 'h2,h3,h4,h5,h6',
+    // （包含文章）滚动（点击导航菜单的链接会滚动定位）的 DOM 元素
+    // String 类型 - 选择器字符串
+    // HTMLElement 类型 - DOM 元素
+    scrollElement: 'html,body',
+    // 导航菜单将要插入的 DOM 元素
+    // String 类型 - 选择器字符串
+    // HTMLElement 类型 - 插入的 DOM 元素
+    // 如果设置 position: relative，则
+    // 会创建一个独立的侧滑菜单
+    parentElement: '#aside',
+    // 文章导读菜单的位置
+    // relative - （默认值）创建独立的侧滑菜单
+    // sticky - 以侧边栏菜单形式显示（默认值）
+    // fixed - 在文章正文一开始的地方显示
+    position: 'sticky',
+    // 是否显示段落章节编号
+    showCode: true,
     // 标题图标链接的 URL 地址
     // （默认）没有设置定制，点击链接页面滚动到标题位置
     // 设置了链接地址，则不会滚动定位
-    anchorURL: '',
-    // 链接的显示位置
-    // front - 在标题最前面（默认值）
-    // back - 在标题后面
-    anchorAt: 'front',
-    // 是否生成文章导读导航
-    isGenerateOutline: true,
-    // 是否在文章导读导航中显示段落章节编号
-    isGenerateOutlineChapterCode: true,
-    // 是否在正文的文章标题中显示段落章节编号
-    isGenerateHeadingChapterCode: false,
-    // 是否在正文的文章标题中创建锚点
-    isGenerateHeadingAnchor: true
+    anchorURL: ''
 });
 
 // 可以在创建导航后，重置配置信息，重新生成新的导航
 Outline.reload({
-  // 调整位直接在文章内生成导航
-  position: 'outside',
-  // 并且在文章标题前显示段落的章节层次索引值
-  isGenerateHeadingChapterCode: true
+  // 生成独立的侧滑导航菜单
+  position: 'relative'
 })
 ```
 

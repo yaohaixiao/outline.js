@@ -1,5 +1,6 @@
 /* ========== buttons.theme - 按钮导航样式 ========== */
 @import './colors';
+@import './shadow';
 
 .outline-toolbar {
   position: fixed;
@@ -9,14 +10,14 @@
   overflow: hidden;
 
   &__button {
+    .shadow_light_regular();
     position: relative;
     z-index: 1;
     margin: 10px;
     width: 36px;
     height: 36px;
     border: 1px solid @primary_border_color;
-    border-radius: 4px;
-    box-shadow: 0 0 6px @secondary_border_color;
+    border-radius: 3px;
     box-sizing: border-box;
     background-color: @white;
     cursor: pointer;
@@ -27,7 +28,6 @@
     &:hover {
       color: @success_color;
       border-color: @success_color;
-      background-color: @hover_bg_color;
     }
 
     &.hide {
@@ -65,7 +65,6 @@
       &__button {
         color: @success_color;
         border-color: @success_color;
-        background-color: @hover_bg_color;
 
         &:hover {
           color: @success_color;

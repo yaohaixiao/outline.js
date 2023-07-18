@@ -56,27 +56,37 @@ class Outline {
   }
 
   render() {
-    const root = this.attr('root')
+    const articleElement = this.attr('articleElement')
+    const scrollElement = this.attr('scrollElement')
     const selector = this.attr('selector')
     const showCode = this.attr('showCode')
     const position = this.attr('position')
-    let parent = this.attr('parent')
+    const anchorURL = this.attr('anchorURL')
+    let parentElement = this.attr('parentElement')
 
     this.anchors = new Anchors({
-      root,
+      articleElement: articleElement,
+      scrollElement: scrollElement,
       selector,
-      showCode
+      showCode,
+      anchorURL
     })
     if (position === 'relative') {
       this.drawer = new Drawer({
-        placement: 'rtl',
+        placement: 'ltr',
         title: '目录',
-        size: 'tiny'
+        size: 'tiny',
+        hasOffset: true,
+        hasPadding: false,
+        afterClosed: () => {
+          this.toolbar.highlight('menu')
+        }
       })
-      parent = this.drawer.$main
+      parentElement = this.drawer.$main
     }
     this.chapters = new Chapters({
-      parentElement: parent,
+      parentElement: parentElement,
+      scrollElement: scrollElement,
       showCode,
       position,
       chapters: this.anchors.getChapters()
@@ -240,12 +250,31 @@ class Outline {
 }
 
 Outline.DEFAULTS = {
-  root: '#article',
-  parent: '#aside',
+  articleElement: '#article',
+  scrollElement: 'html,body',
+  parentElement: '#aside',
   selector: 'h2,h3,h4,h5,h6',
+  position: 'relative',
   showCode: true,
-  position: 'sticky',
   anchorURL: ''
+}
+
+if (window.jQuery) {
+  // 将 Outline 扩展为一个 jquery 插件
+  // eslint-disable-next-line no-undef
+  jQuery.extend(jQuery.fn, {
+    outline: function (options) {
+      // eslint-disable-next-line no-undef
+      let $article = jQuery(this)
+
+      return new Outline(
+        // eslint-disable-next-line no-undef
+        jQuery.extend({}, options, {
+          articleElement: $article
+        })
+      )
+    }
+  })
 }
 
 export default Outline

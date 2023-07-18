@@ -12,24 +12,9 @@ import off from './utils/event/off'
 
 import { paintSvgSprites, createSvgIcon } from './utils/icons'
 
-const DEFAULTS = {
-  placement: 'rtl',
-  title: '标题',
-  size: 'regular',
-  hasClose: true,
-  hasOverlay: true,
-  created: null,
-  mounted: null,
-  afterClosed: null,
-  afterOpened: null,
-  afterScroll: null,
-  beforeDestroy: null,
-  afterDestroy: null
-}
-
 class Drawer {
   constructor(options) {
-    this.attrs = DEFAULTS
+    this.attrs = Drawer.DEFAULTS
 
     this.title = ''
     this.closed = true
@@ -50,8 +35,6 @@ class Drawer {
 
   initialize(options) {
     let created
-
-    console.log('options', options)
 
     this.attr(options)
 
@@ -110,6 +93,8 @@ class Drawer {
     const placement = this.attr('placement')
     const hasClose = this.attr('hasClose')
     const hasOverlay = this.attr('hasOverlay')
+    const hasOffset = this.attr('hasOffset')
+    const hasPadding = this.attr('hasPadding')
     let $el
     let $modal
     let $header
@@ -160,6 +145,10 @@ class Drawer {
     )
     this.$main = $main
 
+    if (!hasPadding) {
+      addClass($main, ' outline-drawer_full')
+    }
+
     $footer = createElement(
       'footer',
       {
@@ -177,6 +166,10 @@ class Drawer {
       [$header, $main, $footer]
     )
     this.$modal = $modal
+
+    if (hasOffset) {
+      addClass($modal, ' outline-drawer_offset')
+    }
 
     if (hasOverlay) {
       $overlay = createElement(
@@ -264,7 +257,7 @@ class Drawer {
 
     this.removeListeners()
 
-    this.attrs = DEFAULTS
+    this.attrs = Drawer.DEFAULTS
     this.title = ''
     this.closed = false
     this.$el = null
@@ -325,6 +318,23 @@ class Drawer {
     this.close()
     return this
   }
+}
+
+Drawer.DEFAULTS = {
+  placement: 'rtl',
+  title: '标题',
+  size: 'regular',
+  hasClose: true,
+  hasOverlay: true,
+  hasOffset: false,
+  hasPadding: true,
+  created: null,
+  mounted: null,
+  afterClosed: null,
+  afterOpened: null,
+  afterScroll: null,
+  beforeDestroy: null,
+  afterDestroy: null
 }
 
 Drawer.zIndex = 2000

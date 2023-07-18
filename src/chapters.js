@@ -364,7 +364,7 @@ class Chapters {
 
         timer = later(() => {
           this.highlight(id)
-        }, 500)
+        }, 100)
       },
       { context: this }
     )
