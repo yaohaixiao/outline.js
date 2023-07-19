@@ -1,6 +1,7 @@
 import hasOwn from '../lang/hasOwn'
 import isArray from '../types/isArray'
 import isElement from '../types/isElement'
+import isFragment from '../types/isFragment'
 import setAttribute from './setAttribute'
 
 /**
@@ -14,23 +15,36 @@ import setAttribute from './setAttribute'
  */
 const createElement = (tagName, attributes, children) => {
   const keys = Object.keys(attributes)
-  let element = document.createElement(tagName)
+  const $fragment = document.createDocumentFragment()
+  const $el = document.createElement(tagName)
+  const append = (child) => {
+    let $child
+    if (isElement(child) || isFragment(child)) {
+      $child = child
+    } else {
+      $child = document.createTextNode(child)
+    }
+
+    $fragment.appendChild($child)
+  }
 
   keys.forEach((attr) => {
     if (hasOwn(attributes, attr)) {
-      setAttribute(element, attr, attributes[attr])
+      setAttribute($el, attr, attributes[attr])
     }
   })
 
   if (isArray(children)) {
     children.forEach((child) => {
-      let childNode = isElement(child) ? child : document.createTextNode(child)
-
-      element.appendChild(childNode)
+      append(child)
     })
+  } else {
+    append(children)
   }
 
-  return element
+  $el.appendChild($fragment)
+
+  return $el
 }
 
 export default createElement

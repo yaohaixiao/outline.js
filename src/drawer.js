@@ -68,6 +68,7 @@ class Drawer extends Base {
     const hasOffset = this.attr('hasOffset')
     const hasPadding = this.attr('hasPadding')
     const customClass = this.attr('customClass')
+    const $fragment = document.createDocumentFragment()
     let $el
     let $modal
     let $header
@@ -167,7 +168,8 @@ class Drawer extends Base {
       [$modal, $overlay]
     )
     this.$el = $el
-    document.body.appendChild($el)
+    $fragment.appendChild($el)
+    document.body.appendChild($fragment)
 
     if (isFunction(mounted)) {
       mounted.call(this)

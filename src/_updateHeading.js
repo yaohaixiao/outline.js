@@ -19,6 +19,8 @@ const _updateHeading = ($heading, i, options) => {
   }
   const keys = Object.keys(attrs)
   const text = trim($heading.innerHTML)
+  const $fragment = document.createDocumentFragment()
+  let $anchor
   let $icon
 
   keys.forEach((prop) => {
@@ -34,19 +36,19 @@ const _updateHeading = ($heading, i, options) => {
   }
 
   $icon = createSvgIcon('hash')
-  $heading.appendChild(
-    createElement(
-      'a',
-      {
-        id: `anchor-${i}`,
-        className: `${CLS_HEADING}__anchor anchor-${i}`,
-        href: anchorURL ? anchorURL : `#${headingId}`,
-        target: anchorURL ? '_blank' : 'self',
-        'data-id': i
-      },
-      [$icon]
-    )
+  $anchor = createElement(
+    'a',
+    {
+      id: `anchor-${i}`,
+      className: `${CLS_HEADING}__anchor anchor-${i}`,
+      href: anchorURL ? anchorURL : `#${headingId}`,
+      target: anchorURL ? '_blank' : 'self',
+      'data-id': i
+    },
+    [$icon]
   )
+  $fragment.appendChild($anchor)
+  $heading.appendChild($fragment)
 }
 
 export default _updateHeading

@@ -1,6 +1,8 @@
 import Base from './base'
 
 import isFunction from './utils/types/isFunction'
+import isObject from './utils/types/isObject'
+import isArray from './utils/types/isArray'
 import later from './utils/lang/later'
 import createElement from './utils/dom/createElement'
 import addClass from './utils/dom/addClass'
@@ -88,14 +90,15 @@ class Toolbar extends Base {
     const mounted = this.attr('mounted')
     const buttons = this.attr('buttons') || []
     const placement = this.attr('placement')
-    const $buttons = []
+    const $buttons = document.createDocumentFragment()
+    const $fragment = document.createDocumentFragment()
 
     paintSvgSprites()
 
     buttons.forEach((button) => {
       const $button = _createButton(button)
 
-      $buttons.push($button)
+      $buttons.appendChild($button)
       this.buttons.push({
         name: button.name,
         $el: $button
@@ -108,9 +111,10 @@ class Toolbar extends Base {
         id: 'outline-toolbar',
         className: `outline-toolbar outline-toolbar_${placement}`
       },
-      $buttons
+      [$buttons]
     )
-    document.body.appendChild(this.$el)
+    $fragment.appendChild(this.$el)
+    document.body.appendChild($fragment)
 
     if (this.closed) {
       this.hide()
@@ -131,10 +135,18 @@ class Toolbar extends Base {
     const $el = this.$el
     const buttons = this.attr('buttons')
     const action = button.action
+    const $fragment = document.createDocumentFragment()
     let type
 
-    buttons.push(button)
-    $el.appendChild(_createButton(button))
+    if (isObject(button)) {
+      buttons.push(button)
+      $fragment.appendChild(_createButton(button))
+    } else if (isArray(button)) {
+      button.forEach((item) => {
+        $fragment.appendChild(_createButton(item))
+      })
+    }
+    $el.appendChild($fragment)
 
     if (action && isFunction(action.handler)) {
       type = action.type || 'click'
