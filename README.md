@@ -78,9 +78,9 @@ outline.js 既支持在 node.js 环境中以 CommonJS 模块调用，也支持 E
 const Outline = require('@yaohaixiao/outline.js')
 // 调用其他独立模块（如果需要）
 const Anchors = require('@yaohaixiao/outline.js/anchors.min.js')
-const Anchors = require('@yaohaixiao/outline.js/chapters.min.js')
-const Anchors = require('@yaohaixiao/outline.js/drawer.min.js')
-const Anchors = require('@yaohaixiao/outline.js/toolbar.min.js')
+const Chapters = require('@yaohaixiao/outline.js/chapters.min.js')
+const Drawer = require('@yaohaixiao/outline.js/drawer.min.js')
+const Toolbar = require('@yaohaixiao/outline.js/toolbar.min.js')
 
 // 作为 ES6 模块使用
 import Outline from '@yaohaixiao/outline.js/src/outline'
