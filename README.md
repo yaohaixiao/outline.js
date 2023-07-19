@@ -56,12 +56,14 @@ $ npm install -S @yaohaixiao/outline.js
 ### CDN 调用
 
 ```html
+<link href="https://cdn.jsdelivr.net/gh/yaohaixiao/outline.js/outline.min.css" rel="stylesheet" />
 <script src="https://cdn.jsdelivr.net/gh/yaohaixiao/outline.js/outline.min.js"></script>
 ```
 
 ### 调用本地JS文件
 
 ```html
+<link href="path/to/outline.min.css" rel="stylesheet" /></script>
 <script src="path/to/outline.min.js"></script>
 ```
 
@@ -74,9 +76,19 @@ outline.js 既支持在 node.js 环境中以 CommonJS 模块调用，也支持 E
 ```js
 // Node.js 环境中使用
 const Outline = require('@yaohaixiao/outline.js')
+// 调用其他独立模块（如果需要）
+const Anchors = require('@yaohaixiao/outline.js/anchors.min.js')
+const Anchors = require('@yaohaixiao/outline.js/chapters.min.js')
+const Anchors = require('@yaohaixiao/outline.js/drawer.min.js')
+const Anchors = require('@yaohaixiao/outline.js/toolbar.min.js')
 
 // 作为 ES6 模块使用
-import Outline from '@yaohaixiao/outline.js'
+import Outline from '@yaohaixiao/outline.js/src/outline'
+// 调用其他独立模块（如果需要）
+import Anchors from '@yaohaixiao/outline.js/src/anchors'
+import Chapters from '@yaohaixiao/outline.js/src/chapters'
+import Drawer from '@yaohaixiao/outline.js/src/drawer'
+import Toolbar from '@yaohaixiao/outline.js/src/toolbar'
 
 // 创建 Outline 实例
 // 2.0.0 调整了配置参数，配置更加简单
@@ -130,6 +142,12 @@ Outline.reload({
   articleElement: '#article'
 })
 ```
+
+
+
+## Example
+
+Example 地址：[https://yaohaixiao.github.io/outline.js/example.html](https://yaohaixiao.github.io/outline.js/example.html)
 
 
 
@@ -467,11 +485,6 @@ Type: `Object`
 Type: `Outline对象`
 
 Outline 对象，以便实现链式调用。
-
-
-## Example
-
-Example 地址：[https://yaohaixiao.github.io/outline.js/example.html](https://yaohaixiao.github.io/outline.js/example.html)
 
 
 

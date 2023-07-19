@@ -60,9 +60,51 @@ const check = () => {
 const test = gulp.series(lint, check)
 
 /* ==================== 编译代码的 gulp 任务 ==================== */
-const buildSource = () => {
+const buildSourceScript = () => {
     return run('npm run build:lib').exec()
 }
+
+const buildSourceStyles = () => {
+  return gulp
+    .src([
+      './src/theme/anchors.less',
+      './src/theme/chapters.less',
+      './src/theme/drawer.less',
+      './src/theme/toolbar.less',
+      './src/theme/outline.less'
+    ], {
+      allowEmpty: true
+    })
+    .pipe(sourcemaps.init())
+    .pipe(
+      less({
+        paths: [path.join(__dirname, 'less', 'includes')],
+        plugins: [autoprefixer]
+      })
+    )
+    .pipe(sourcemaps.write())
+    .pipe(gulp.dest('./'))
+}
+
+const minifySourcesStyle = () => {
+  return gulp
+    .src([
+      './anchors.css',
+      './chapters.css',
+      './drawer.css',
+      './toolbar.css',
+      './outline.css'
+    ], {
+      allowEmpty: true
+    })
+    .pipe(sourcemaps.init())
+    .pipe(cssmin())
+    .pipe(rename({ suffix: '.min' }))
+    .pipe(sourcemaps.write())
+    .pipe(gulp.dest('./'))
+}
+
+const buildAllSourceStyles = gulp.series(buildSourceStyles, minifySourcesStyle)
 
 const buildScript = () => {
     return run('npm run build:api').exec()
@@ -163,7 +205,7 @@ const start = gulp.series(build, connectDocs, openDocs)
 
 /* ==================== 检测源代码变更相关的 gulp 任务 ==================== */
 const watchSource = () => {
-    return watch('src/**/*.js', gulp.series(lint, buildSource))
+    return watch(['src/**/*.(js|less)'], gulp.series(lint, buildSourceScript, buildAllSourceStyles))
 }
 
 const watchApi = () => {
@@ -182,6 +224,7 @@ const watchAll = gulp.parallel(watchSource, watchApi, watchDocs)
 module.exports.start = start
 module.exports.clean = cleanDocs
 module.exports.build = build
+module.exports.buildAllStyles = buildAllSourceStyles
 module.exports.lint = lint
 module.exports.check = check
 module.exports.test = test

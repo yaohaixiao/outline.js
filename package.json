@@ -5,7 +5,9 @@
   "main": "outline.min.js",
   "scripts": {
     "start": "gulp start",
-    "build:lib": "rollup -c build/rollup.config.lib.js --bundleConfigAsCjs",
+    "build:lib:script": "rollup -c build/rollup.config.lib.js --bundleConfigAsCjs",
+    "build:lib:style": "gulp buildAllStyles",
+    "build:lib": "npm run build:lib:script && npm run build:lib:style",
     "build:api": "rollup -c build/rollup.config.api.js --bundleConfigAsCjs",
     "build:docs": "gulp build",
     "build": "npm run build:lib && npm run build:docs",
