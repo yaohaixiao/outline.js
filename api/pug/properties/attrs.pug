@@ -1,0 +1,18 @@
+section.section
+  header.section__header
+    h3#property-attrs.section__h3 attrs
+  div.section__content
+    h4.section__h4 Description
+    dl.section__dl
+      dt.section__dt Type：
+      dd.section__dd Object
+    p 存储的是 Outline 对象当前使用中的配置选项：
+    p 说明：建议使用 attr(prop) 方法来获取属性，避免直接调用属性。
+    pre.section__pre
+      code.section__code.
+        // 设置默认配置项
+        const outline = new Outline(Outline.DEFAULTS)
+
+        // 查看全部配置信息
+        outline.attrs
+

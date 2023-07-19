@@ -1,0 +1,25 @@
+section.section
+  header.section__header
+    h3#option-customClass.section__h3 customClass
+  div.section__content
+    h4.section__h4 Description
+    dl.section__dl
+      dt.section__dt Type：
+      dd.section__dd String
+    dl.section__dl
+      dt.section__dt Default：
+      dd.section__dd ''
+    p 可选，(DIYer福利)设置自定义样式的 class 名称：
+    ul
+      li '' - 采用默认 outline.js 的 UI 界面（默认值）；
+      li 设置自定义样式 - 自己根据需求设置个性化的 UI 界面；
+    pre.section__pre
+      code.section__code.
+        // Default UI
+        new Outline(Outline.DEFAULTS)
+
+        // Customized
+        new Outline({
+          // 设置深色配置界面
+          customClass: 'theme-dark'
+        })

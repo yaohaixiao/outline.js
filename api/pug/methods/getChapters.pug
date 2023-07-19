@@ -1,0 +1,33 @@
+section.section
+  header.section__header
+    h3#method-getChapters.section__h3 getChapters ()
+  div.section__content
+    h4.section__h4 Description
+    p getChapters() 方法来获取 outline.js 分析的文章段落层次数据。
+    h4.section__h4 Returns
+    dl.section__dl
+      dt.section__dt Type：
+      dd.section__dd Object
+    p outline.js 分析的文章段落层次数据。
+    pre.api-code
+      code.
+          const outline = new Outline({
+             article: '#article',
+             title: 'Outline v2.0.0'
+          })
+
+          outline.getChapters()
+          // -> [{
+            code: "1",
+            id: 0,
+            index: 1,
+            level: 1,
+            pid: -1
+            rel: "heading-0"
+            text: "创作灵感"
+          }]
+
+          outline.destroy()
+          outline.getChapters()
+          // 调用 destroy() 方法后，所有数据都清空了
+          // -> []

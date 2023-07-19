@@ -1,0 +1,28 @@
+section.section
+  header.section__header
+    h3#method-toTop.section__h3 toTop([afterScroll])
+  div.section__content
+    h4.section__h4 Description
+    p toTop() 方法会控制页面（scrollElement）滚动到顶部。
+    h4.section__h4 Parameters
+    h5.section__h4 afterScroll
+    dl.section__dl
+      dt.section__dt Type：
+      dd.section__dd Function
+    p （可选）页面停止滚动后的回调函数。
+    h4.section__h4 Returns
+    dl.section__dl
+      dt.section__dt Type：
+      dd.section__dd Outline
+    p Outline 对象，便于链式方法调用。
+    pre.section__pre
+        code.section__code.
+          const outline = new Outline({
+             article: '#article',
+             title: 'Outline v2.0.0'
+          })
+
+          outline.toTop() // 页面将滚动到顶部，向上滚动按钮消失
+          outline.toTop(() => {
+            console.log('滚动结束‘)
+          })

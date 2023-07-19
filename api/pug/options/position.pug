@@ -8,14 +8,23 @@ section.section
       dd.section__dd String
     dl.section__dl
       dt.section__dt Default：
-      dd.section__dd 'outside'
-    p 可选，用来指定文章导读导航菜单的显示位置。
+      dd.section__dd 'relative'
+    p 可选，用来指定文章导读导航菜单的显示位置：
+    ul
+      li relative: （默认值）创建独立的侧滑菜单；
+      li sticky: 导航菜单将以 sticky 模式布局（需要确保菜单插入位置(DOM 节点)支持 sticky 模式布局）；
+      li fixed: 导航菜单将模拟 sticky 布局，起初是普通定位，会自动监听滚动位置，但滚动到导航菜单顶部时，以 fixed 模式布局，模拟 sticky 布局效果；
+    p 当设置为 sticky 和 fixed 布局时，需要设置 parentElement。
+    p 注意：2.0.0 暂时不支持之前版本那种 inside 模式，不会自动在文章开始位置插入 chapters 导航菜单
     pre.section__pre
       code.section__code.
-        // Default position - （'inside'）默认以侧边栏导航的形式显示
-        new Outline()
+        // 默认生成独立的侧滑弹窗导航菜单
+        new Outline(Outline.DEFAULTS)
 
-        // Inside Article
+        // 在页面内部插入导航菜单
         new Outline({
-            position: 'inside'
+          // 在（文章的）侧边栏显示导航菜单
+          parentElement: '#aside',
+          // 或者 sticky 定位
+          position: 'fixed'
         })

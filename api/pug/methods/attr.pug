@@ -1,0 +1,39 @@
+section.section
+  header.section__header
+    h3#method-attr.section__h3 attr([prop, value])
+  div.section__content
+    h4.section__h4 Description
+    p attr() 方法用来设置或者获取初始化时配置的 attrs 信息的。
+    h4.section__h4 Parameters
+    h5.section__h4 prop
+    dl.section__dl
+      dt.section__dt Type：
+      dd.section__dd String|HTMLElement
+    p （可选）options 中的属性名称或者要配置的 attrs 信息。
+    h5.section__h4 value
+    dl.section__dl
+      dt.section__dt Type：
+      dd.section__dd Any
+    p （可选）要设置的 prop 属性的值
+    ul
+      li 不传递任何参数：返回完整的 attrs 配置信息；
+      li 仅传递 prop：
+      ul
+        li String: 返回 attrs 配型信息中与 prop 对应的值；
+        li Object: 用来设置 attrs 配置信息；
+      li 同时传递 prop 和 value 参数：设置 attrs 配置信息中的某个属性值；
+    h4.section__h4 Returns
+    dl.section__dl
+      dt.section__dt Type：
+      dd.section__dd Any
+    p 配置信息 attrs 的属性值或者 Outline 对象。
+    pre.section__pre
+      code.section__code.
+        const outline = new Outline({
+           article: '#article',
+           title: 'Outline v2.0.0'
+        })
+
+        outline.attr('title') // -> 'Outline v2.0.0'
+        outline.attr('title', '目录') // -> 设置 title 配置信息的值为 '目录'
+        outline.attr() // -> 返回完整配置参数 attrs 信息

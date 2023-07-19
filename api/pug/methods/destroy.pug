@@ -3,17 +3,31 @@ section.section
     h3#method-destroy.section__h3 destroy()
   div.section__content
     h4.section__h4 Description
-    p destroy() 方法用于移除所有绘制的 DOM 节点，并移除绑定的事件处理器，同时重置所有 attributes 配置信息和 data 信息。
+    p destroy() 方法用于移除所有绘制的 DOM 节点，并移除绑定的事件处理器，同时重置所有 attrs 配置信息和 data 信息。
     h4.section__h4 Returns
     dl.section__dl
       dt.section__dt Type：
       dd.section__dd Outline
-    p Outline 对象。
+    p Outline 对象，便于链式方法调用。
     pre.section__pre
       code.section__code.
         const outline = new Outline({
-             article: '#article',
-             title: 'Outline v2.0.0'
-        });
+           article: '#article',
+           title: 'Outline v2.0.0'
+        })
 
-        outline.destroy();
+        outline.getChapters()
+        // -> [{
+          code: "1",
+          id: 0,
+          index: 1,
+          level: 1,
+          pid: -1
+          rel: "heading-0"
+          text: "创作灵感"
+        }]
+
+        outline.destroy()
+        outline.getChapters()
+        // 调用 destroy() 方法后，所有数据都清空了
+        // -> []

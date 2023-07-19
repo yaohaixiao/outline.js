@@ -1,15 +1,10 @@
 section.section
   header.section__header
-    h3#method-scroolTo.section__h3 scrollTo (top[，afterScroll])
+    h3#method-toBottom.section__h3 toBottom([afterScroll])
   div.section__content
     h4.section__h4 Description
-    p scrollTo() 方法用于将窗口的滚动条滚动到指定 top 值的位置。
+    p toBottom() 方法会控制页面（scrollElement）滚动到顶部。
     h4.section__h4 Parameters
-    h5.section__h4 top
-    dl.section__dl
-      dt.section__dt Type：
-      dd.section__dd Number
-    p （必选）页面要滚动的 top 数值。
     h5.section__h4 afterScroll
     dl.section__dl
       dt.section__dt Type：
@@ -23,12 +18,11 @@ section.section
     pre.section__pre
       code.section__code.
         const outline = new Outline({
-             article: '#article',
-             title: 'Outline v2.0.0'
+           article: '#article',
+           title: 'Outline v2.0.0'
         })
 
-        // -> 页面将滚动到距离顶部 200 像素的位置
-        outline.scrollTo(200)
-        outline.scrollTo(200, () => {
+        outline.toBottom() // 页面将滚动到底部，向下滚动按钮消失
+        outline.toBottom(() => {
           console.log('滚动结束‘)
         })

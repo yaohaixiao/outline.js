@@ -1,0 +1,26 @@
+section.section
+  header.section__header
+    h3#option-placement.section__h3 placement
+  div.section__content
+    h4.section__h4 Description
+    dl.section__dl
+      dt.section__dt Type：
+      dd.section__dd String
+    dl.section__dl
+      dt.section__dt Default：
+      dd.section__dd 'rtl'
+    p 可选，设置 position: relative 时，placement 定义侧滑菜单和 toolbar 导航位置：
+    ul
+      li rtl - 菜单位置在窗口右侧，滑动动画为：right to left（默认值）；
+      li ltr - 菜单位置在窗口左侧，滑动动画为：left to right；
+      li ttb - 菜单位置在窗口上方，滑动动画为：top to bottom；
+      li btt - 菜单位置在窗口下方，滑动动画为：bottom to top；
+    pre.section__pre
+      code.section__.
+        // 默认是在窗口右侧显示侧滑导航菜单
+        new Outline(Outline.DEFAULTS)
+
+        // 调整为在窗口右侧显示侧滑导航菜单
+        new Outline({
+          placement: 'ltr'
+        })

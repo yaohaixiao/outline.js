@@ -1,10 +1,9 @@
+import Base from './base'
+
 // 在文章的标题生成 anchor 链接
 import isString from './utils/types/isString'
 import isFunction from './utils/types/isFunction'
-import isObject from './utils/types/isObject'
 import isElement from './utils/types/isElement'
-import extend from './utils/lang/extend'
-import hasOwn from './utils/lang/hasOwn'
 import later from './utils/lang/later'
 import scrollTo from './utils/dom/scrollTo'
 import _getScrollElement from './utils/dom/_getScrollElement'
@@ -18,10 +17,11 @@ import _updateHeading from './_updateHeading'
 import _resetHeading from './_resetHeading'
 import getChapters from './getChapters'
 
-class Anchors {
+class Anchors extends Base {
   constructor(options) {
-    this.attrs = Anchors.DEFAULTS
+    super()
 
+    this.attrs = Anchors.DEFAULTS
     this.$articleElement = null
     this.$scrollElement = null
     this.$headings = []
@@ -70,32 +70,6 @@ class Anchors {
     return this
   }
 
-  attr(prop, value) {
-    const attrs = this.attrs
-
-    if (isString(prop)) {
-      // 只能扩展 attrs 中已有的属性
-      if (value && hasOwn(attrs, prop)) {
-        // 更新单个配置信息
-        attrs[prop] = value
-        return this
-      }
-
-      // 只传递 prop 参数，则返回对应的属性值
-      return attrs[prop]
-    } else if (isObject(prop)) {
-      // 批量更新配置信息
-      extend(attrs, prop)
-
-      return this
-    } else if (arguments.length === 0) {
-      // 不传递参数，直接返回整个
-      return this.attrs
-    }
-
-    return this
-  }
-
   getChapters() {
     return this.chapters
   }
@@ -136,11 +110,6 @@ class Anchors {
   scrollTo(top, after) {
     const el = this.$scrollElement
 
-    publish('scroll:to', {
-      el,
-      top,
-      after
-    })
     scrollTo(el, top, after, 100)
 
     return this
@@ -172,11 +141,6 @@ class Anchors {
       afterDestroy.call(this)
     }
 
-    return this
-  }
-
-  reload(options) {
-    this.destroy().initialize(this.attr(options))
     return this
   }
 

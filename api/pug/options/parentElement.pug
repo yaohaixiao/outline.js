@@ -1,0 +1,24 @@
+section.section
+  header.section__header
+    h3#option-parentElement.section__h3 parentElement
+  div.section__content
+    h4.section__h4 Description
+    dl.section__dl
+      dt.section__dt Type：
+      dd.section__dd String
+    dl.section__dl
+      dt.section__dt Default：
+      dd.section__dd '#aside'
+    ul
+      li String： 选择器字符串，默认值：html,body（即 window 窗口）;
+      li HTMLElement： DOM 元素;
+    p 可选，导航菜单将要插入的位置（DOM 元素）。仅在 position 设置为 sticky 和 fixed 布局时有效。
+    pre.section__pre
+      code.section__code.
+        // 在页面内部插入导航菜单
+        new Outline({
+          // 在（文章的）侧边栏显示导航菜单
+          parentElement: '#aside',
+          // 或者 sticky 定位
+          position: 'fixed'
+        })

@@ -1,9 +1,9 @@
 section.section
   header.section__header
-    h3#method-reload.section__h3 reload ( options )
+    h3#method-reload.section__h3 reload(options)
   div.section__content
     h4.section__h4 Description
-    p reload ( options ) 是（根据新的配置信息）重启程序方法：
+    p reload (options) 方法是（根据新的配置信息）重启程序方法：
     ol
       li 先移除所有绘制的 DOM 元素和绑定的事件处理器；
       li 重新初始化程序；
@@ -17,14 +17,14 @@ section.section
     dl.section__dl
       dt.section__dt Type：
       dd.section__dd Outline
-    p Outline 对象。
+    p Outline 对象，便于链式方法调用。
     pre.section__pre
       code.section__code.
         const outline = new Outline({
-            isGenerateHeadingAnchor: true
+          showCode: true
         })
 
-        // 鼠标滑过正文中的标题上将不会创建锚点链接图标
+        // 重启后，将不再显示段落层次编号
         outline.reload({
-            isGenerateHeadingAnchor: false
+          showCode: false
         })

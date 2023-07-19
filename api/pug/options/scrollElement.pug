@@ -1,0 +1,24 @@
+section.section
+  header.section__header
+    h3#option-scrollElement.section__h3 scrollElement
+  div.section__content
+    h4.section__h4 Description
+    dl.section__dl
+      dt.section__dt Type：
+      dd.section__dd String|HTMLElement
+    dl.section__dl
+      dt.section__dt Default：
+      dd.section__dd 'html,body'
+    ul
+      li String： 选择器字符串，默认值：html,body（即 window 窗口）;
+      li HTMLElement： DOM 元素;
+    p 可选，负责文章区域滚动的元素：
+    pre.section__pre
+      code.section__.
+        // 默认是当前窗口滚动
+        new Outline(Outline.DEFAULTS)
+
+        // 指定滚动区域是 #main 元素
+        new Outline({
+          scrollElement: '#main'
+        })

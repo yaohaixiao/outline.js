@@ -3,23 +3,18 @@ section.section
     h3#method-toggle.section__h3 toggle()
   div.section__content
     h4.section__h4 Description
-    p toggle() 方法用来展开侧或者收起边栏菜单。
+    p toggle() 方法用来隐藏或显示侧边栏菜单。
     h4.section__h4 Returns
     dl.section__dl
       dt.section__dt Type：
       dd.section__dd Outline
-    p Outline 对象。
+    p Outline 对象，便于链式方法调用。
     pre.section__pre
-      code.code.
+      code.section__code.
         const outline = new Outline({
-           article: '#article',
-           title: 'Outline v2.0.0'
+          article: '#article',
+          title: 'Outline v2.0.0'
         })
 
-        navigation.show()
-        // -> 导航菜单是展开的，菜单将收起。
-        navigation.toggle()
-
-        // -> 导航菜单是收起的，菜单将展开。
-        navigation.hide()
-        navigation.toggle()
+        outline.toggle() // 如果已经隐藏，则显示
+        outline.toggle() // 如果已显示，则隐藏

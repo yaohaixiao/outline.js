@@ -1,0 +1,133 @@
+section.section
+  header.section__header
+    h3#property-toolbar.section__h3 toolbar
+  div.section__content
+    h4.section__h4 Description
+    dl.section__dl
+      dt.section__dt Type：
+      dd.section__dd Object
+    p Toolbar 模块：独立的固定定位的工具栏模块；
+    pre.section__pre
+      code.section__code.
+        // 仅展示 API 中对外公开的方法和属性
+        class Toolbar extends Base {
+          constructor(options) {
+            super()
+
+            this.attrs = Drawer.DEFAULTS
+            this.title = ''
+            this.closed = true
+            this.$el = null
+            this.$modal = null
+            this.$header = null
+            this.$title = null
+            this.$close = null
+            this.$main = null
+            this.$footer = null
+            this.$overlay = null
+
+            // 省略其它逻辑...
+          }
+
+          isDisabled(name) {
+            const buttons = this.attr('buttons')
+            let button
+
+            if (name) {
+              button = buttons.find((option) => option.name === name)
+
+              return !!(button && button.disabled)
+            }
+
+            return this.disabled
+          }
+
+          isClosed() {
+            return this.closed
+          }
+
+          highlight() {
+            // 省略其它逻辑...
+            return this
+          }
+
+          attr(prop, value) {
+            // 省略其它逻辑...
+            return this
+          }
+
+          render() {
+            // 省略其它逻辑...
+            return this
+          }
+
+          add(button) {
+            // 省略其它逻辑...
+            return this
+          }
+
+          remove(name) {
+            // 省略其它逻辑...
+            return this
+          }
+
+          switch(name, enabled) {
+            // 省略其它逻辑...
+            return this
+          }
+
+          enable(name) {
+            // 省略其它逻辑...
+            return this
+          }
+
+          disable(name) {
+            // 省略其它逻辑...
+            return this
+          }
+
+          show() {
+            // 省略其它逻辑...
+            return this
+          }
+
+          hide() {
+            // 省略其它逻辑...
+            return this
+          }
+
+          toggle() {
+            // 省略其它逻辑...
+            return this
+          }
+
+          destroy() {
+            this.removeListeners()
+            // 省略其它逻辑...
+            return this
+          }
+
+          reload(options) {
+            this.destroy().initialize(this.attr(options))
+            return this
+          }
+        }
+
+        Toolbar.DEFAULTS = {
+           placement: 'ltr',
+           closed: false,
+           disabled: false,
+           buttons: [],
+           created: null,
+           mounted: null,
+           afterClosed: null,
+           afterOpened: null,
+           afterDisabled: null,
+           afterEnabled: null,
+           beforeDestroy: null,
+           afterDestroy: null
+        }
+
+        Drawer.zIndex = 2000
+
+        export default Toolbar

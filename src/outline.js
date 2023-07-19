@@ -1,19 +1,18 @@
+import Base from './base'
 import Anchors from './anchors'
 import Drawer from './drawer'
 import Chapters from './chapters'
 import Toolbar from './toolbar'
 
-import isString from './utils/types/isString'
-import isObject from './utils/types/isObject'
-import extend from './utils/lang/extend'
-import hasOwn from './utils/lang/hasOwn'
+import isFunction from './utils/types/isFunction'
 import later from './utils/lang/later'
-
 import subscribe from './utils/observer/on'
 import unsubscribe from './utils/observer/off'
 
-class Outline {
+class Outline extends Base {
   constructor(options) {
+    super()
+
     this.attrs = Outline.DEFAULTS
     this.anchors = null
     this.drawer = null
@@ -30,36 +29,11 @@ class Outline {
     return this
   }
 
-  attr(prop, value) {
-    const attrs = this.attrs
-
-    if (isString(prop)) {
-      // 只能扩展 attrs 中已有的属性
-      if (value && hasOwn(attrs, prop)) {
-        // 更新单个配置信息
-        attrs[prop] = value
-        return this
-      }
-
-      // 只传递 prop 参数，则返回对应的属性值
-      return attrs[prop]
-    } else if (isObject(prop)) {
-      // 批量更新配置信息
-      extend(attrs, prop)
-
-      return this
-    } else if (arguments.length === 0) {
-      // 不传递参数，直接返回整个
-      return this.attrs
-    }
-
-    return this
-  }
-
   render() {
     const articleElement = this.attr('articleElement')
-    const scrollElement = this.attr('scrollElement')
     const selector = this.attr('selector')
+    const title = this.attr('title')
+    const scrollElement = this.attr('scrollElement')
     const showCode = this.attr('showCode')
     const position = this.attr('position')
     const placement = this.attr('placement')
@@ -76,7 +50,7 @@ class Outline {
     if (position === 'relative') {
       this.drawer = new Drawer({
         placement,
-        title: '目录',
+        title,
         size: 'tiny',
         hasOffset: true,
         hasPadding: false,
@@ -92,6 +66,7 @@ class Outline {
       scrollElement: scrollElement,
       showCode,
       position,
+      title,
       chapters: this.anchors.getChapters()
     })
     this.toolbar = new Toolbar({
@@ -133,36 +108,48 @@ class Outline {
     return this
   }
 
-  toTop() {
+  getChapters() {
+    return this.anchors.getChapters()
+  }
+
+  toTop(afterScroll) {
     const toolbar = this.toolbar
     const chapters = this.chapters
-    const hideUp = () => {
+    const afterTop = () => {
       toolbar.hide('up')
       toolbar.show('down')
       chapters.highlight(0)
       chapters.playing = false
+
+      if (isFunction(afterScroll)) {
+        afterScroll.call(this)
+      }
     }
 
     chapters.playing = true
-    this.scrollTo(0, hideUp)
+    this.scrollTo(0, afterTop)
 
     return this
   }
 
-  toBottom() {
+  toBottom(afterScroll) {
     const toolbar = this.toolbar
     const chapters = this.chapters
     const anchors = this.anchors
     const top = chapters.$scrollElement.scrollHeight
-    const hideDown = () => {
+    const afterDown = () => {
       toolbar.hide('down')
       toolbar.show('up')
       chapters.playing = false
+
+      if (isFunction(afterScroll)) {
+        afterScroll.call(this)
+      }
     }
 
     chapters.playing = true
     chapters.highlight(anchors.count() - 1)
-    this.scrollTo(top, hideDown)
+    this.scrollTo(top, afterDown)
 
     return this
   }
@@ -203,11 +190,6 @@ class Outline {
     }
     this.toolbar.destroy()
 
-    return this
-  }
-
-  reload(options) {
-    this.destroy().initialize(this.attr(options))
     return this
   }
 
@@ -257,10 +239,11 @@ class Outline {
 
 Outline.DEFAULTS = {
   articleElement: '#article',
-  scrollElement: 'html,body',
-  parentElement: '#aside',
   selector: 'h2,h3,h4,h5,h6',
+  title: '目录',
+  scrollElement: 'html,body',
   position: 'relative',
+  parentElement: '#aside',
   placement: 'rtl',
   showCode: true,
   anchorURL: '',

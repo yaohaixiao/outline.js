@@ -1,0 +1,98 @@
+section.section
+  header.section__header
+    h3#property-anchors.section__h3 anchors
+  div.section__content
+    h4.section__h4 Description
+    dl.section__dl
+      dt.section__dt Type：
+      dd.section__dd Object
+    p Anchors 模块：类似 AnchorJS 基础功能模块，自动分析段落层级。
+    pre.section__pre
+      code.section__code.
+        // 仅展示 API 中对外公开的方法和属性
+        class Anchors extends Base {
+          constructor(options) {
+            super()
+
+            this.attrs = Anchors.DEFAULTS
+            this.$articleElement = null
+            this.$scrollElement = null
+            this.$headings = []
+            this.chapters = []
+
+            // 省略其它逻辑...
+          }
+
+          getChapters() {
+            return this.chapters
+          }
+
+          count() {
+            return this.chapters.length
+          }
+
+          attr(prop, value) {
+            const attrs = this.attrs
+
+            if (isString(prop)) {
+              // 只能扩展 attrs 中已有的属性
+              if (value && hasOwn(attrs, prop)) {
+                // 更新单个配置信息
+                attrs[prop] = value
+                return this
+              }
+
+              // 只传递 prop 参数，则返回对应的属性值
+              return attrs[prop]
+            } else if (isObject(prop)) {
+              // 批量更新配置信息
+              extend(attrs, prop)
+
+              return this
+            } else if (arguments.length === 0) {
+              // 不传递参数，直接返回整个
+              return attrs
+            }
+
+            return this
+          }
+
+          render() {
+            // 省略其它逻辑...
+            return this
+          }
+
+          scrollTo(top, after) {
+            // 省略其它逻辑...
+            return this
+          }
+
+          destroy() {
+            this.removeListeners()
+            // 省略其它逻辑...
+            return this
+          }
+
+          reload(options) {
+            this.destroy().initialize(this.attr(options))
+            return this
+          }
+        }
+
+        Anchors.DEFAULTS = {
+          scrollElement: 'html,body',
+          articleElement: '#article',
+          selector: 'h1,h2,h3,h4,h5,h6',
+          anchorURL: '',
+          hasAnchor: true,
+          isAtStart: true,
+          showCode: false,
+          created: null,
+          mounted: null,
+          afterScroll: null,
+          beforeDestroy: null,
+          afterDestroy: null
+        }
+
+        export default Anchors
+

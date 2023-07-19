@@ -1,9 +1,7 @@
-import isString from './utils/types/isString'
-import isObject from './utils/types/isObject'
+import Base from './base'
+
 import isFunction from './utils/types/isFunction'
-import extend from './utils/lang/extend'
 import later from './utils/lang/later'
-import hasOwn from './utils/lang/hasOwn'
 import createElement from './utils/dom/createElement'
 import addClass from './utils/dom/addClass'
 import hasClass from './utils/dom/hasClass'
@@ -17,8 +15,10 @@ import _createButton from './_createButton'
 const DISABLED = 'outline-toolbar_disabled'
 const HIDDEN = 'outline-toolbar_hidden'
 
-class Toolbar {
+class Toolbar extends Base {
   constructor(options) {
+    super()
+
     this.attrs = Toolbar.DEFAULTS
     this.$el = null
     this.disabled = false
@@ -43,32 +43,6 @@ class Toolbar {
     }
 
     this.render().addListeners()
-
-    return this
-  }
-
-  attr(prop, value) {
-    const attrs = this.attrs
-
-    if (isString(prop)) {
-      // 只能扩展 attrs 中已有的属性
-      if (value && hasOwn(attrs, prop)) {
-        // 更新单个配置信息
-        attrs[prop] = value
-        return this
-      }
-
-      // 只传递 prop 参数，则返回对应的属性值
-      return attrs[prop]
-    } else if (isObject(prop)) {
-      // 批量更新配置信息
-      extend(attrs, prop)
-
-      return this
-    } else if (arguments.length === 0) {
-      // 不传递参数，直接返回整个
-      return this.attrs
-    }
 
     return this
   }
@@ -378,12 +352,6 @@ class Toolbar {
     })
 
     this.addListeners()
-
-    return this
-  }
-
-  reload(options) {
-    this.destroy().initialize(this.attr(options))
 
     return this
   }

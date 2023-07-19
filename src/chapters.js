@@ -1,10 +1,9 @@
+import Base from './base'
+
 import isString from './utils/types/isString'
-import isObject from './utils/types/isObject'
 import isFunction from './utils/types/isFunction'
 import isElement from './utils/types/isElement'
-import extend from './utils/lang/extend'
 import later from './utils/lang/later'
-import hasOwn from './utils/lang/hasOwn'
 import emit from './utils/event/emit'
 import on from './utils/event/on'
 import off from './utils/event/off'
@@ -20,10 +19,11 @@ import publish from './utils/observer/emit'
 import _getScrollElement from './utils/dom/_getScrollElement'
 import _paintChapters from './_paintChapters'
 
-class Chapters {
+class Chapters extends Base {
   constructor(options) {
-    this.attrs = Chapters.DEFAULTS
+    super()
 
+    this.attrs = Chapters.DEFAULTS
     this.$el = null
     this.$title = null
     this.$main = null
@@ -78,32 +78,6 @@ class Chapters {
     return this
   }
 
-  attr(prop, value) {
-    const attrs = this.attrs
-
-    if (isString(prop)) {
-      // 只能扩展 attrs 中已有的属性
-      if (value && hasOwn(attrs, prop)) {
-        // 更新单个配置信息
-        attrs[prop] = value
-        return this
-      }
-
-      // 只传递 prop 参数，则返回对应的属性值
-      return attrs[prop]
-    } else if (isObject(prop)) {
-      // 批量更新配置信息
-      extend(attrs, prop)
-
-      return this
-    } else if (arguments.length === 0) {
-      // 不传递参数，直接返回整个
-      return this.attrs
-    }
-
-    return this
-  }
-
   isClosed() {
     return this.closed
   }
@@ -128,6 +102,7 @@ class Chapters {
 
   render() {
     const mounted = this.attr('mounted')
+    const title = this.attr('title')
     const showCode = this.attr('showCode')
     const $parentElement = this.$parentElement
     const contents = []
@@ -147,7 +122,7 @@ class Chapters {
         {
           className: 'outline-chapters__title'
         },
-        ['目录']
+        [title]
       )
       this.$title = $title
       contents.push($title)
@@ -251,11 +226,6 @@ class Chapters {
   scrollTo(top, after) {
     const el = this.$scrollElement
 
-    publish('scroll:to', {
-      el,
-      top,
-      after
-    })
     scrollTo(el, top, after, 100)
 
     return this
@@ -339,11 +309,6 @@ class Chapters {
       afterDestroy.call(this)
     }
 
-    return this
-  }
-
-  reload(options) {
-    this.destroy().initialize(this.attr(options))
     return this
   }
 

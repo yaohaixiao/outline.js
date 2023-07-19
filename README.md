@@ -80,11 +80,15 @@ import Outline from '@yaohaixiao/outline.js'
 
 // 创建 Outline 实例
 // 2.0.0 调整了配置参数，配置更加简单
+// 当然，可以直接使用 DEFAULTS 静态属性，
+// Outline.DEFAULTS 就是一下的默认配置
 const outline = new Outline({
     // 文章显示区域的 DOM 元素或者选择器字符串
     articleElement: '#article',
     // 要收集的标题选择器
     selector: 'h2,h3,h4,h5,h6',
+    // 指定文章导读导航菜单的标题文字。
+    title: '目录',
     // 负责文章区域滚动的元素
     // String 类型 - 选择器字符串，默认值：html,body（window窗口）
     // HTMLElement 类型 - DOM 元素
@@ -94,19 +98,19 @@ const outline = new Outline({
     // sticky - 导航菜单将以 sticky 模式布局（需要确保菜单插入位置支持 sticky 模式布局）
     // fixed - 导航菜单将以 fixed 模式布局，会自动监听滚动位置，模拟 sticky 布局
     // sticky 和 fixed 布局时，需要设置 parentElement
-    // 2.0.0 暂时不支持在文章开始位置插入 chapters 导航菜单
+    // 2.0.0 暂时不支持之前版本那种 inside 模式，不会自动在文章开始位置插入 chapters 导航菜单
     position: 'sticky',
+    // 导航菜单将要插入的位置（DOM 元素）
+    // String 类型 - 选择器字符串
+    // HTMLElement 类型 - 插入的 DOM 元素
+    // 仅在 position 设置为 sticky 和 fixed 布局时有效
+    parentElement: '#aside',
     // 设置 position: relative 时，placment 定义侧滑菜单和 toolbar 导航位置：
     // rtl - 菜单位置在窗口右侧，滑动动画为：right to left
     // ltr - 菜单位置在窗口左侧，滑动动画为：left to right
     // ttb - 菜单位置在窗口上方，滑动动画为：top to bottom
     // btt - 菜单位置在窗口下方，滑动动画为：bottom to top
     placement: '',
-    // 导航菜单将要插入的位置（DOM 元素）
-    // String 类型 - 选择器字符串
-    // HTMLElement 类型 - 插入的 DOM 元素
-    // 仅在 position 设置为 sticky 和 fixed 布局时有效
-    parentElement: '#aside',
     // 是否显示段落章节编号
     showCode: true,
     // 标题图标链接的 URL 地址
@@ -136,13 +140,20 @@ Outline.reload({
 
 ## Options
 
-### article
+outline.js 提供了较为丰富的配置项，以便适应不同的展示方式。
 
-Type: `String`
+
+### articleElement
+
+Type: `String|Element`
 
 Default: `'#article'`
 
-可选，用来指定页面中显示文章正文的 DOM 节点的 ID 选择器。
+* String： 选择器字符串，默认值：html,body（即 window 窗口）;
+* HTMLElement： DOM 元素;
+
+可选，用来指定页面中显示文章正文的 DOM 节点或者选择器字符串。
+
 
 ### selector
 
@@ -152,23 +163,82 @@ Default: `'h1,h2,h3,h4,h5,h6'`
 
 可选，用来指定 article 节点下，要生成导航的标题标签的选择器。
 
+
 ### title
 
 Type: `String`
 
-Default: `'文章导读'`
+Default: `'目录'`
 
 可选，用来指定文章导读导航菜单的标题文字。
+
+
+### scrollElement
+
+Type: `String|HTMLElement`
+
+Default: `html,body`
+
+* String： 选择器字符串，默认值：html,body（即 window 窗口）;
+* HTMLElement： DOM 元素;
+
+可选，负责文章区域滚动的元素：
+
 
 ### position
 
 Type: `String`
 
-Default: `'outside'`
+Default: `'relative'`
 
-可选，用来指定文章导读导航菜单的显示位置：outside - 生成侧边栏菜单，inside - 直接在文章正文区域的开始位置生成导航菜单。
+可选，用来指定文章导读导航菜单的显示位置：
 
-只有设置了 isGenerateOutline 为 true，position 参数才会起效。
+* relative: （默认值）创建独立的侧滑菜单；
+* sticky: 导航菜单将以 sticky 模式布局（需要确保菜单插入位置(DOM 节点)支持 sticky 模式布局）；
+* fixed: 导航菜单将模拟 sticky 布局，起初是普通定位，会自动监听滚动位置，但滚动到导航菜单顶部时，以 fixed 模式布局，模拟 sticky 布局效果；
+
+当设置为 sticky 和 fixed 布局时，需要设置 parentElement。
+
+注意：2.0.0 暂时不支持之前版本那种 inside 模式，不会自动在文章开始位置插入 chapters 导航菜单
+
+
+### parentElement
+
+Type: `String|HTMLElement`
+
+Default: `#aside`
+
+* String： 选择器字符串，默认值：html,body（即 window 窗口）;
+* HTMLElement： DOM 元素;
+
+可选，导航菜单将要插入的位置（DOM 元素）。仅在 position 设置为 sticky 和 fixed 布局时有效。
+
+
+### placement
+
+Type: `String`
+
+Default: `rtl`
+
+可选，设置 position: relative 时，placement 定义侧滑菜单和 toolbar 导航位置：
+
+* rtl - 菜单位置在窗口右侧，滑动动画为：right to left（默认值）；
+* ltr - 菜单位置在窗口左侧，滑动动画为：left to right；
+* ttb - 菜单位置在窗口上方，滑动动画为：top to bottom；
+* btt - 菜单位置在窗口下方，滑动动画为：bottom to top；
+
+
+### showCode
+
+Type: `Boolean`
+
+Default: `true`
+
+可选，是否显示段落章节编号：
+
+* true - 显示编号（默认值）；
+* false - 不显示编号；
+
 
 ### anchorURL
 
@@ -176,75 +246,227 @@ Type: `String`
 
 Default: `''`
 
-可选，用来指定文章标题锚点链接图标的链接地址：'' - 点击链接页面滚动到标题位置，其它 URL 值 - 就直接跳转到指定页面了
+可选，用来指定文章标题锚点链接图标的链接地址：
 
-### anchorAt
+* '' - 点击链接页面滚动到标题位置（默认值）；
+* 其它 URL 值 - 就直接跳转到指定页面了；
+
+
+### customClass
 
 Type: `String`
 
-Default: `'front'`
+Default: `''`
 
-可选，用来指定文章标题锚点链接图标的显示位置：'front' - 现在在文章标题前面，'end' - 显示到标题末尾。
+可选，(DIYer福利)设置自定义样式的 class 名称：
 
-### isGenerateOutline
+* '' - 采用默认 outline.js 的 UI 界面（默认值）；
+* 设置自定义样式 - 自己根据需求设置个性化的 UI 界面；
 
-Type: `Boolean`
-
-Default: `false`
-
-可选，用来指定是否文章导读导航菜单：true - 生成菜单，false - 不生成菜单（这样配置基本和 AnchorJS 功能一样了）。
-
-### isGenerateOutlineChapterCode
-
-Type: `Boolean`
-
-Default: `true`
-
-可选，用来指定是否文章导读导航菜单是否显示文章段落层次的索引编号：true - 显示编号，false - 不显示编号。
-
-### isGenerateHeadingChapterCode
-
-Type: `Boolean`
-
-Default: `false`
-
-可选，用来指定是否在文章标题前面显示文章段落层次的索引编号：true - 显示编号，false - 不显示编号。
-
-### isGenerateHeadingAnchor
-
-Type: `Boolean`
-
-Default: `true`
-
-可选，用来指定是否在文章标题位置生成锚点链接图标：true - 生成锚点链接图标，并给标题添加 ID 属性，false - 不生成锚点链接图标，仅给标题添加 ID 属性。
 
 
 ## Properties
 
-### defaults
+outline.js 重构后，对外放 4 个重要的属性：anchors、drawer、chapters 和 toolbar。它们都是独立的对象实例，提供了 outline.js 所有的属性和方法。
+
+
+### DEFAULTS
 
 Type: `Objects`
 
 静态属性，存储的是 Outline 对象默认配置信息。
 
-### attributes
+```js
+Outline.DEFAULTS = {
+  articleElement: '#article',
+  selector: 'h2,h3,h4,h5,h6',
+  title: '目录',
+  scrollElement: 'html,body',
+  position: 'relative',
+  parentElement: '#aside',
+  placement: 'rtl',
+  showCode: true,
+  anchorURL: '',
+  customClass: ''
+}
+```
+
+
+### attrs
 
 Type: `Objects`
 
 存储的是 Outline 对象当前使用中的配置选项。
 
-### elements
+
+### anchors
 
 Type: `Objects`
 
-存储的是 Outline 对象（创建的）相关的 DOM 元素。
+Anchors 模块：类似 AnchorJS 基础功能模块，自动分析段落层级。
 
-### data
+
+### chapters
 
 Type: `Objects`
 
-存储的是 Outline 根据标题 DOM 元素分析的数据。
+Chapters 模块：独立的导航菜单模块。
 
+
+### drawer
+
+Type: `Objects`
+
+Drawer 模块：独立的侧滑窗口模块。
+
+
+### toolbar
+
+Type: `Objects`
+
+Toolbar 模块：独立的固定定位的工具栏模块；
+
+
+
+## Methods
+
+outline.js 的提供的方法如下：
+
+### attr([prop, value])
+
+设置或者获取初始化时配置的 attrs 信息的。
+
+#### Parameters
+
+##### prop
+
+Type: `String|Object`
+
+（可选）attrs 中的属性名称或者要配置的 attrs 信息。
+
+##### value
+
+Type: `Any`
+
+（可选）要设置的 prop 属性的值。
+
+* 不传递任何参数：返回完整的 attrs 配置信息；
+* 仅传递 prop：
+  * String: 返回 attrs 配型信息中与 prop 对应的值；
+  * Object: 用来设置 attrs 配置信息；
+* 同时传递 prop 和 value 参数：设置 attrs 配置信息中的某个属性值；
+
+#### Returns
+
+Type: `Any`
+
+Outline 对象，以便实现链式调用。
+
+
+### getChapters()
+
+返回 outline.js 分析后的文章段落信息数据。
+
+#### Returns
+
+Type: `Outline对象`
+
+Outline 对象，以便实现链式调用。
+
+
+### toTop()
+
+页面（scrollElement）滚动到顶部。
+
+#### Returns
+
+Type: `Outline对象`
+
+Outline 对象，以便实现链式调用。
+
+
+### toBottom()
+
+页面（scrollElement）滚动到底部。
+
+#### Returns
+
+Type: `Outline对象`
+
+Outline 对象，以便实现链式调用。
+
+
+### scrollTo(top[, afterScroll])
+
+页面滚动到指定 top 位置。
+
+#### Returns
+
+Type: `Outline对象`
+
+Outline 对象，以便实现链式调用。
+
+
+#### Parameters
+
+##### top
+
+Type: `Number`
+
+（必须）指定滚动位置的 top 数值。
+
+##### afterScroll
+
+Type: `Function`
+
+（可选）滚动结束后的回调行数。
+
+#### Returns
+
+Type: `Outline对象`
+
+Outline 对象，以便实现链式调用。
+
+
+### toggle()
+
+隐藏或者显示导航菜单。
+
+#### Returns
+
+Type: `Outline对象`
+
+Outline 对象，以便实现链式调用。
+
+
+### destroy()
+
+销毁 outline.js 创建的所有 anchors 链接和导航菜单，已经对应的事件绑定。
+
+#### Returns
+
+Type: `Outline对象`
+
+Outline 对象，以便实现链式调用。
+
+
+### reload(options)
+
+程序重启，先执行 destroy() 方法执行程序销毁逻辑，然后重新初始化并重新绘制界面。
+
+#### Parameters
+
+##### options
+
+Type: `Object`
+
+（必须）指定重启程序的新的配置信息（参考 DEFAULT 属性）。
+
+#### Returns
+
+Type: `Outline对象`
+
+Outline 对象，以便实现链式调用。
 
 
 ## Example

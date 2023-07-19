@@ -1,8 +1,6 @@
-import isString from './utils/types/isString'
-import isObject from './utils/types/isObject'
-import extend from './utils/lang/extend'
+import Base from './base'
+
 import later from './utils/lang/later'
-import hasOwn from './utils/lang/hasOwn'
 import isFunction from './utils/types/isFunction'
 import addClass from './utils/dom/addClass'
 import removeClass from './utils/dom/removeClass'
@@ -12,13 +10,13 @@ import off from './utils/event/off'
 
 import { paintSvgSprites, createSvgIcon } from './utils/icons'
 
-class Drawer {
+class Drawer extends Base {
   constructor(options) {
-    this.attrs = Drawer.DEFAULTS
+    super()
 
+    this.attrs = Drawer.DEFAULTS
     this.title = ''
     this.closed = true
-
     this.$el = null
     this.$modal = null
     this.$header = null
@@ -46,32 +44,6 @@ class Drawer {
     }
 
     this.render().addListeners()
-    return this
-  }
-
-  attr(prop, value) {
-    const attrs = this.attrs
-
-    if (isString(prop)) {
-      // 只能扩展 attrs 中已有的属性
-      if (value && hasOwn(attrs, prop)) {
-        // 更新单个配置信息
-        attrs[prop] = value
-        return this
-      }
-
-      // 只传递 prop 参数，则返回对应的属性值
-      return attrs[prop]
-    } else if (isObject(prop)) {
-      // 批量更新配置信息
-      extend(attrs, prop)
-
-      return this
-    } else if (arguments.length === 0) {
-      // 不传递参数，直接返回整个
-      return this.attrs
-    }
-
     return this
   }
 
@@ -274,12 +246,6 @@ class Drawer {
     if (isFunction(afterDestroy)) {
       afterDestroy.call(this)
     }
-
-    return this
-  }
-
-  reload(options) {
-    this.destroy().initialize(this.attr(options))
 
     return this
   }
