@@ -71,6 +71,10 @@ class Chapters extends Base {
       created.call(this)
     }
 
+    if (this.chapters.length < 1) {
+      return this
+    }
+
     this.render().addListeners()
 
     this.$active = document.querySelector(`#chapter-${this.active}`)
@@ -104,6 +108,7 @@ class Chapters extends Base {
     const mounted = this.attr('mounted')
     const title = this.attr('title')
     const showCode = this.attr('showCode')
+    const customClass = this.attr('customClass')
     const $parentElement = this.$parentElement
     const contents = []
     let $title = null
@@ -168,6 +173,10 @@ class Chapters extends Base {
 
     if (this.isSticky()) {
       addClass($el, 'outline-chapters_sticky')
+    }
+
+    if (customClass) {
+      addClass($el, customClass)
     }
 
     $parentElement.appendChild($el)

@@ -67,6 +67,7 @@ class Drawer extends Base {
     const hasOverlay = this.attr('hasOverlay')
     const hasOffset = this.attr('hasOffset')
     const hasPadding = this.attr('hasPadding')
+    const customClass = this.attr('customClass')
     let $el
     let $modal
     let $header
@@ -140,7 +141,11 @@ class Drawer extends Base {
     this.$modal = $modal
 
     if (hasOffset) {
-      addClass($modal, ' outline-drawer_offset')
+      addClass($modal, 'outline-drawer_offset')
+    }
+
+    if (customClass) {
+      addClass($modal, customClass)
     }
 
     if (hasOverlay) {

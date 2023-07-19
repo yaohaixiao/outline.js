@@ -29,16 +29,22 @@ class Outline extends Base {
     return this
   }
 
+  getChapters() {
+    return this.anchors.getChapters()
+  }
+
   render() {
+    this._renderAnchors()._renderChapters()._renderToolbar()
+
+    return this
+  }
+
+  _renderAnchors() {
     const articleElement = this.attr('articleElement')
     const selector = this.attr('selector')
-    const title = this.attr('title')
     const scrollElement = this.attr('scrollElement')
     const showCode = this.attr('showCode')
-    const position = this.attr('position')
-    const placement = this.attr('placement')
     const anchorURL = this.attr('anchorURL')
-    let parentElement = this.attr('parentElement')
 
     this.anchors = new Anchors({
       articleElement: articleElement,
@@ -47,6 +53,31 @@ class Outline extends Base {
       showCode,
       anchorURL
     })
+
+    return this
+  }
+
+  _renderChapters() {
+    const title = this.attr('title')
+    const scrollElement = this.attr('scrollElement')
+    const customClass = this.attr('customClass')
+    const showCode = this.attr('showCode')
+    const position = this.attr('position')
+    const placement = this.attr('placement')
+    const count = this.anchors.count()
+    let parentElement = this.attr('parentElement')
+    let CHAPTERS_OPTIONS = {
+      scrollElement: scrollElement,
+      showCode,
+      position,
+      title,
+      chapters: this.anchors.getChapters()
+    }
+
+    if (count < 1) {
+      return this
+    }
+
     if (position === 'relative') {
       this.drawer = new Drawer({
         placement,
@@ -54,71 +85,83 @@ class Outline extends Base {
         size: 'tiny',
         hasOffset: true,
         hasPadding: false,
+        customClass,
         afterClosed: () => {
           const toolbar = this.toolbar
           toolbar.toggle()
         }
       })
       parentElement = this.drawer.$main
+    } else {
+      CHAPTERS_OPTIONS.customClass = customClass
     }
-    this.chapters = new Chapters({
-      parentElement: parentElement,
-      scrollElement: scrollElement,
-      showCode,
-      position,
-      title,
-      chapters: this.anchors.getChapters()
-    })
+
+    CHAPTERS_OPTIONS.parentElement = parentElement
+    this.chapters = new Chapters(CHAPTERS_OPTIONS)
+
+    return this
+  }
+
+  _renderToolbar() {
+    const placement = this.attr('placement')
+    const count = this.anchors.count()
+    const UP = {
+      name: 'up',
+      icon: 'up',
+      size: 20,
+      action: {
+        type: 'click',
+        handler: this.onScrollTop,
+        context: this
+      }
+    }
+    const MENU = {
+      name: 'menu',
+      icon: 'menu',
+      size: 20,
+      action: {
+        type: 'click',
+        handler: this.onToggle,
+        context: this
+      }
+    }
+    const DOWN = {
+      name: 'down',
+      icon: 'down',
+      size: 20,
+      action: {
+        type: 'click',
+        handler: this.onScrollBottom,
+        context: this
+      }
+    }
+    const buttons = []
+
+    buttons.push(UP)
+    if (count > 0) {
+      buttons.push(MENU)
+    }
+    buttons.push(DOWN)
+
     this.toolbar = new Toolbar({
       placement,
-      buttons: [
-        {
-          name: 'up',
-          icon: 'up',
-          size: 20,
-          action: {
-            type: 'click',
-            handler: this.onScrollTop,
-            context: this
-          }
-        },
-        {
-          name: 'menu',
-          icon: 'menu',
-          size: 20,
-          action: {
-            type: 'click',
-            handler: this.onToggle,
-            context: this
-          }
-        },
-        {
-          name: 'down',
-          icon: 'down',
-          size: 20,
-          action: {
-            type: 'click',
-            handler: this.onScrollBottom,
-            context: this
-          }
-        }
-      ]
+      buttons: buttons
     })
 
     return this
   }
 
-  getChapters() {
-    return this.anchors.getChapters()
-  }
-
   toTop(afterScroll) {
     const toolbar = this.toolbar
     const chapters = this.chapters
+    const count = this.anchors.count()
     const afterTop = () => {
       toolbar.hide('up')
       toolbar.show('down')
-      chapters.highlight(0)
+
+      if (count > 1) {
+        chapters.highlight(0)
+      }
       chapters.playing = false
 
       if (isFunction(afterScroll)) {
@@ -133,13 +176,15 @@ class Outline extends Base {
   }
 
   toBottom(afterScroll) {
+    const anchors = this.anchors
     const toolbar = this.toolbar
     const chapters = this.chapters
-    const anchors = this.anchors
-    const top = chapters.$scrollElement.scrollHeight
+    const count = anchors.count()
+    const top = anchors.$scrollElement.scrollHeight
     const afterDown = () => {
       toolbar.hide('down')
       toolbar.show('up')
+
       chapters.playing = false
 
       if (isFunction(afterScroll)) {
@@ -148,14 +193,16 @@ class Outline extends Base {
     }
 
     chapters.playing = true
-    chapters.highlight(anchors.count() - 1)
+    if (count > 0) {
+      chapters.highlight(anchors.count() - 1)
+    }
     this.scrollTo(top, afterDown)
 
     return this
   }
 
   scrollTo(top, afterScroll) {
-    this.chapters.scrollTo(top, afterScroll)
+    this.anchors.scrollTo(top, afterScroll)
     return this
   }
 
@@ -163,8 +210,13 @@ class Outline extends Base {
     const toolbar = this.toolbar
     const drawer = this.drawer
     const chapters = this.chapters
+    const count = this.anchors.count()
 
     toolbar.toggle()
+
+    if (count < 1) {
+      return this
+    }
 
     later(() => {
       if (chapters.isInside()) {
@@ -178,15 +230,19 @@ class Outline extends Base {
   }
 
   destroy() {
+    const anchors = this.anchors
     const chapters = this.chapters
+    const count = anchors.count()
 
     this.removeListeners()
 
     this.attr(Outline.DEFAULTS)
     this.anchors.destroy()
-    chapters.destroy()
-    if (chapters.isOutside()) {
-      this.drawer.destroy()
+    if (count < 1) {
+      chapters.destroy()
+      if (chapters.isOutside()) {
+        this.drawer.destroy()
+      }
     }
     this.toolbar.destroy()
 
@@ -195,30 +251,30 @@ class Outline extends Base {
 
   onToggle() {
     this.toggle()
+    return this
   }
 
   onScrollTop() {
     this.toTop()
-
     return this
   }
 
   onScrollBottom() {
     this.toBottom()
-
     return this
   }
 
   onUpdateToolbar({ top, min, max }) {
     const toolbar = this.toolbar
+    const current = Math.ceil(top)
 
-    if (top <= min) {
+    if (current <= min) {
       toolbar.hide('up')
       toolbar.show('down')
-    } else if (top >= max) {
+    } else if (current >= max) {
       toolbar.hide('down')
       toolbar.show('up')
-    } else if (top > min && top < max) {
+    } else if (current > min && current < max) {
       toolbar.show('up')
       toolbar.show('down')
     }

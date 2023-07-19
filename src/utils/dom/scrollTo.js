@@ -34,7 +34,6 @@ const scrollTo = (scrollElement, top, afterStop, speed = 30) => {
 
     // 线上滚动
     if (distance < 0) {
-      console.log('向上')
       scrollTop -= easeInQuad(step)
       $scrollElement.scrollTop = scrollTop
 
@@ -45,15 +44,12 @@ const scrollTo = (scrollElement, top, afterStop, speed = 30) => {
         if (isFunction(afterStop)) {
           afterStop(top)
         }
-        console.log('向上结束')
 
         return false
       }
     } else {
       scrollTop += easeInQuad(step)
       $scrollElement.scrollTop = scrollTop
-
-      console.log('向下')
 
       if (scrollTop >= MAX_TOP) {
         $scrollElement.scrollTop = MAX_TOP
@@ -62,7 +58,6 @@ const scrollTo = (scrollElement, top, afterStop, speed = 30) => {
         if (isFunction(afterStop)) {
           afterStop(MAX_TOP)
         }
-        console.log('向下结束')
 
         return false
       }

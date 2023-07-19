@@ -59,6 +59,11 @@ class Anchors extends Base {
     this.$articleElement = $articleElement
     this.$scrollElement = _getScrollElement(scrollElement)
     this.$headings = [...$articleElement.querySelectorAll(selector)]
+
+    if (this.$headings.length < 1) {
+      return this
+    }
+
     this.chapters = getChapters(this.$headings)
 
     if (isFunction(created)) {
