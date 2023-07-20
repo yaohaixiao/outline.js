@@ -7,12 +7,13 @@
  * @return {Array}
  */
 const groupBy = (list, prop) => {
+  const clone = [...list]
   const groups = {}
   const cb = (o) => {
     return [o[prop]]
   }
 
-  list.forEach((o) => {
+  clone.forEach((o) => {
     const group = JSON.stringify(cb(o))
 
     groups[group] = groups[group] || []

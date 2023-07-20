@@ -25,7 +25,7 @@ module.exports = {
   // JavaScript 语言选项
   parserOptions: {
     // ECMAScript 版本
-    ecmaVersion: 6,
+    ecmaVersion: 2020,
     // 设置为 "script" (默认) 或 "module"（如果你的代码是 ECMAScript 模块)。
     sourceType: 'module',
     // 想使用的额外的语言特性:
