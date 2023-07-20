@@ -105,11 +105,14 @@ class Chapters extends Base {
   }
 
   render() {
+    const FIXED = 'outline-chapters_fixed'
+    const HIDDEN = 'outline-chapters_hidden'
     const mounted = this.attr('mounted')
     const title = this.attr('title')
     const showCode = this.attr('showCode')
     const customClass = this.attr('customClass')
     const $parentElement = this.$parentElement
+    const $fragment = document.createDocumentFragment()
     const contents = []
     let $title = null
     let $el
@@ -136,7 +139,7 @@ class Chapters extends Base {
     $list = createElement(
       'ul',
       {
-        className: 'outline-chapters__list'
+        className: `outline-chapters__list ${FIXED} ${HIDDEN}`
       },
       ['']
     )
@@ -179,8 +182,11 @@ class Chapters extends Base {
       addClass($el, customClass)
     }
 
-    $parentElement.appendChild($el)
+    $fragment.appendChild($el)
+    $parentElement.appendChild($fragment)
     _paintChapters($list, this.chapters, showCode)
+    removeClass($list, FIXED)
+    removeClass($list, HIDDEN)
 
     this.offsetTop = offsetTop(document.querySelector('#outline-chapters'))
 

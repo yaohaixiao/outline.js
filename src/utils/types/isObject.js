@@ -1,4 +1,5 @@
 import toString from '../lang/toString'
+import isFunction from '../types/isFunction'
 
 /**
  * 检测数据是否为 Object 类型
@@ -8,7 +9,12 @@ import toString from '../lang/toString'
  * @returns {boolean}
  */
 const isObject = (o) => {
-  return toString.apply(o) === '[object Object]' && o !== null
+  return (
+    (toString.apply(o) === '[object Object]' ||
+      typeof o === 'object' ||
+      isFunction(o)) &&
+    o !== null
+  )
 }
 
 export default isObject

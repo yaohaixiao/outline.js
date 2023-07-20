@@ -14,7 +14,7 @@ let timer = null
  * @param {Function|Number} [afterStop] - （可选）滚动完成的回调函数或者滚动的速率值
  * @param {Number} [speed] - 可选）滚动的速率值
  */
-const scrollTo = (scrollElement, top, afterStop, speed = 30) => {
+const scrollTo = (scrollElement, top, afterStop, speed = 50) => {
   const $scrollElement = _getScrollElement(scrollElement)
   let scrollTop = $scrollElement.scrollTop
   let step = 0

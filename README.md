@@ -387,9 +387,20 @@ Outline 对象，以便实现链式调用。
 
 #### Returns
 
-Type: `Outline对象`
+Type: `Outline`
 
 Outline 对象，以便实现链式调用。
+
+
+### count()
+
+返回 outline.js 分析后的 chapters 数据数量。
+
+#### Returns
+
+Type: `Number`
+
+chapters 数据数量。
 
 
 ### toTop()
@@ -398,7 +409,7 @@ Outline 对象，以便实现链式调用。
 
 #### Returns
 
-Type: `Outline对象`
+Type: `Outline`
 
 Outline 对象，以便实现链式调用。
 
@@ -409,7 +420,7 @@ Outline 对象，以便实现链式调用。
 
 #### Returns
 
-Type: `Outline对象`
+Type: `Outline`
 
 Outline 对象，以便实现链式调用。
 
@@ -420,7 +431,7 @@ Outline 对象，以便实现链式调用。
 
 #### Returns
 
-Type: `Outline对象`
+Type: `Outline`
 
 Outline 对象，以便实现链式调用。
 
@@ -441,7 +452,7 @@ Type: `Function`
 
 #### Returns
 
-Type: `Outline对象`
+Type: `Outline`
 
 Outline 对象，以便实现链式调用。
 
@@ -452,7 +463,7 @@ Outline 对象，以便实现链式调用。
 
 #### Returns
 
-Type: `Outline对象`
+Type: `Outline`
 
 Outline 对象，以便实现链式调用。
 
@@ -463,7 +474,7 @@ Outline 对象，以便实现链式调用。
 
 #### Returns
 
-Type: `Outline对象`
+Type: `Outline`
 
 Outline 对象，以便实现链式调用。
 
@@ -482,7 +493,7 @@ Type: `Object`
 
 #### Returns
 
-Type: `Outline对象`
+Type: `Outline`
 
 Outline 对象，以便实现链式调用。
 

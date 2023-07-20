@@ -1,7 +1,8 @@
 import hasOwn from '../lang/hasOwn'
+import isObject from '../types/isObject'
+import isString from '../types/isString'
 import isArray from '../types/isArray'
-import isElement from '../types/isElement'
-import isFragment from '../types/isFragment'
+import isDOM from '../types/isDOM'
 import setAttribute from './setAttribute'
 
 /**
@@ -9,30 +10,43 @@ import setAttribute from './setAttribute'
  * ========================================================================
  * @method createElement
  * @param {String} tagName - 标签名称
- * @param {Object} attributes - 属性对象
- * @param {Array} children - 子节点数组
+ * @param {Object|Array} attrs - 属性对象或者子节点
+ * @param {Array} [children] - 子节点数组
  * @returns {HTMLElement}
  */
-const createElement = (tagName, attributes, children) => {
-  const keys = Object.keys(attributes)
+const createElement = (tagName, attrs, children) => {
   const $fragment = document.createDocumentFragment()
   const $el = document.createElement(tagName)
+  const isValidChild = (child) => {
+    return isDOM(child) || isString(child)
+  }
   const append = (child) => {
     let $child
-    if (isElement(child) || isFragment(child)) {
+
+    if (!isValidChild(child)) {
+      return false
+    }
+
+    if (isDOM(child)) {
       $child = child
-    } else {
+    } else if (isString(child)) {
       $child = document.createTextNode(child)
     }
 
     $fragment.appendChild($child)
   }
 
-  keys.forEach((attr) => {
-    if (hasOwn(attributes, attr)) {
-      setAttribute($el, attr, attributes[attr])
-    }
-  })
+  if (isObject(attrs)) {
+    Object.keys(attrs).forEach((attr) => {
+      if (hasOwn(attrs, attr)) {
+        setAttribute($el, attr, attrs[attr])
+      }
+    })
+  } else if (isArray(attrs) && attrs.every((attr) => isValidChild(attr))) {
+    attrs.forEach((child) => {
+      append(child)
+    })
+  }
 
   if (isArray(children)) {
     children.forEach((child) => {

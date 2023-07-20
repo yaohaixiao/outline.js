@@ -1,0 +1,32 @@
+section.section
+  header.section__header
+    h3#method-count.section__h3 count ()
+  div.section__content
+    h4.section__h4 Description
+    p count() 方法来获取 outline.js 分析的文章段落层次数据的数量。
+    h4.section__h4 Returns
+    dl.section__dl
+      dt.section__dt Type：
+      dd.section__dd Number
+    p outline.js 分析的 chapters 数据数量。
+    pre.api-code
+      code.
+          const outline = new Outline({
+             article: '#article',
+             title: 'Outline v2.0.0'
+          })
+
+          outline.getChapters()
+          // -> [{
+            code: "1",
+            id: 0,
+            index: 1,
+            level: 1,
+            pid: -1
+            rel: "heading-0"
+            text: "创作灵感"
+          }]
+
+          outline.count()
+          // -> 1 就是 getChapters() 返回数据的数量
+

@@ -6,6 +6,8 @@ import Toolbar from './toolbar'
 
 import isFunction from './utils/types/isFunction'
 import later from './utils/lang/later'
+import scrollTo from './utils/dom/scrollTo'
+import _getScrollElement from './utils/dom/_getScrollElement'
 import subscribe from './utils/observer/on'
 import unsubscribe from './utils/observer/off'
 
@@ -31,6 +33,10 @@ class Outline extends Base {
 
   getChapters() {
     return this.anchors.getChapters()
+  }
+
+  count() {
+    return this.anchors.count()
   }
 
   render() {
@@ -64,18 +70,20 @@ class Outline extends Base {
     const showCode = this.attr('showCode')
     const position = this.attr('position')
     const placement = this.attr('placement')
-    const count = this.anchors.count()
+    const count = this.count()
     let parentElement = this.attr('parentElement')
-    let CHAPTERS_OPTIONS = {
+    let CHAPTERS_OPTIONS
+
+    if (count < 1) {
+      return this
+    }
+
+    CHAPTERS_OPTIONS = {
       scrollElement: scrollElement,
       showCode,
       position,
       title,
       chapters: this.anchors.getChapters()
-    }
-
-    if (count < 1) {
-      return this
     }
 
     if (position === 'relative') {
@@ -104,7 +112,7 @@ class Outline extends Base {
 
   _renderToolbar() {
     const placement = this.attr('placement')
-    const count = this.anchors.count()
+    const count = this.count()
     const UP = {
       name: 'up',
       icon: 'up',
@@ -154,7 +162,7 @@ class Outline extends Base {
   toTop(afterScroll) {
     const toolbar = this.toolbar
     const chapters = this.chapters
-    const count = this.anchors.count()
+    const count = this.count()
     const afterTop = () => {
       toolbar.hide('up')
       toolbar.show('down')
@@ -176,11 +184,13 @@ class Outline extends Base {
   }
 
   toBottom(afterScroll) {
-    const anchors = this.anchors
+    const $scrollElement = _getScrollElement(this.attr('scrollElement'))
     const toolbar = this.toolbar
     const chapters = this.chapters
-    const count = anchors.count()
-    const top = anchors.$scrollElement.scrollHeight
+    const count = this.count()
+    const top = Math.floor(
+      $scrollElement.scrollHeight - $scrollElement.clientHeight
+    )
     const afterDown = () => {
       toolbar.hide('down')
       toolbar.show('up')
@@ -194,7 +204,7 @@ class Outline extends Base {
 
     chapters.playing = true
     if (count > 0) {
-      chapters.highlight(anchors.count() - 1)
+      chapters.highlight(count - 1)
     }
     this.scrollTo(top, afterDown)
 
@@ -202,7 +212,8 @@ class Outline extends Base {
   }
 
   scrollTo(top, afterScroll) {
-    this.anchors.scrollTo(top, afterScroll)
+    const scrollElement = this.attr('scrollElement')
+    scrollTo(scrollElement, top, afterScroll, 100)
     return this
   }
 
@@ -210,7 +221,7 @@ class Outline extends Base {
     const toolbar = this.toolbar
     const drawer = this.drawer
     const chapters = this.chapters
-    const count = this.anchors.count()
+    const count = this.count()
 
     toolbar.toggle()
 
@@ -230,9 +241,8 @@ class Outline extends Base {
   }
 
   destroy() {
-    const anchors = this.anchors
     const chapters = this.chapters
-    const count = anchors.count()
+    const count = this.count()
 
     this.removeListeners()
 

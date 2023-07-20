@@ -1,6 +1,8 @@
 @import './colors';
 @import '../../src/theme/shadow';
 @import './scrollbar';
+@import './section';
+@import './case';
 @import '../../src/theme/icons';
 @import '../../src/theme/drawer';
 @import '../../src/theme/anchors';
@@ -35,6 +37,11 @@
     flex: 1;
     padding: 0 2em;
     overflow: hidden;
+
+    .section__header,
+    .section__content {
+      margin: 0;
+    }
   }
 
   &__aside {
