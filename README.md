@@ -35,6 +35,12 @@ AnchorJS 是 outline.js 的创作灵感来源。既然 AnchorJS 可创建标题�
 - 界面简洁大方；
 - 配置灵活，丰富，让你随心所欲掌控 outline.js；
 
+## Examples
+
+* 独立侧滑菜单：[https://yaohaixiao.github.io/outline.js/relative.html](https://yaohaixiao.github.io/outline.js/relative.html)
+* sticky 定位：[https://yaohaixiao.github.io/outline.js/sticky.html](https://yaohaixiao.github.io/outline.js/sticky.html)
+* fixed 定位：[https://yaohaixiao.github.io/outline.js/fixed.html](https://yaohaixiao.github.io/outline.js/fixed.html)
+
 
 ## 浏览器支持
 
@@ -145,15 +151,6 @@ Outline.reload({
   articleElement: '#article'
 })
 ```
-
-
-
-## Example
-
-* 独立侧滑菜单：[https://yaohaixiao.github.io/outline.js/relative.html](https://yaohaixiao.github.io/outline.js/relative.html)
-* sticky 定位：[https://yaohaixiao.github.io/outline.js/sticky.html](https://yaohaixiao.github.io/outline.js/sticky.html)
-* fixed 定位：[https://yaohaixiao.github.io/outline.js/fixed.html](https://yaohaixiao.github.io/outline.js/fixed.html)
-
 
 
 ## API Documentation

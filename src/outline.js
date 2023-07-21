@@ -225,24 +225,30 @@ class Outline extends Base {
   }
 
   toggle() {
+    const position = this.attr('position')
     const toolbar = this.toolbar
     const drawer = this.drawer
     const chapters = this.chapters
     const count = this.count()
 
-    toolbar.toggle()
+    if (position !== 'relative') {
+      chapters.toggle()
+      toolbar.highlight('menu')
+    } else {
+      toolbar.toggle()
 
-    if (count < 1) {
-      return this
-    }
-
-    later(() => {
-      if (chapters.isInside()) {
-        chapters.toggle()
-      } else {
-        drawer.toggle()
+      if (count < 1) {
+        return this
       }
-    })
+
+      later(() => {
+        if (chapters.isInside()) {
+          chapters.toggle()
+        } else {
+          drawer.toggle()
+        }
+      })
+    }
 
     return this
   }

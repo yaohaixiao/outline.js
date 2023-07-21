@@ -117,7 +117,7 @@ html(lang='en')
           h2 License
           p JavaScript Code Licensed under MIT License.
           p API Documentation Licensed under CC BY 3.0
-        aside#aside.article_aside
+        aside#aside.article__aside
       footer.footer
         include ./footer
     script(src="js/outline.min.js")
@@ -125,6 +125,7 @@ html(lang='en')
         const defaults = Outline.DEFAULTS
         let outline
 
+        defaults.selector = 'h2'
         defaults.position = 'sticky'
         defaults.parentElement = '#aside'
         defaults.homepage = './index.html'

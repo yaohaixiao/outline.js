@@ -12,7 +12,7 @@
 .paper {
   .shadow_light_regular();
   margin: 2em auto;
-  width: 1000px;
+  width: 1200px;
   padding: 2em;
   background-color: @white;
   box-sizing: border-box;
@@ -58,6 +58,11 @@
     flex-shrink: 0;
     width: 240px;
     border-left: 1px solid @border_color;
+
+    &.ltr {
+      border-right: 1px solid @border_color;
+      border-left: none;
+    }
 
     .outline-chapters {
       width: 240px;
