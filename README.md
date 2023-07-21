@@ -43,6 +43,10 @@ AnchorJS 是 outline.js 的创作灵感来源。既然 AnchorJS 可创建标题�
 | IE11, Edge                                                                                                                                                                                               | last 10 versions                                                                                                                                                                                           | last 10 versions                                                                                                                                                                                       | last 10 versions                                                                                                                                                                                       | last 10 versions                                                                                                                                                                                   |
 
 
+## Example
+
+Example 地址：[https://yaohaixiao.github.io/outline.js/example.html](https://yaohaixiao.github.io/outline.js/example.html)
+
 
 ## 安装说明
 
@@ -145,13 +149,6 @@ Outline.reload({
   articleElement: '#article'
 })
 ```
-
-
-
-## Example
-
-Example 地址：[https://yaohaixiao.github.io/outline.js/example.html](https://yaohaixiao.github.io/outline.js/example.html)
-
 
 
 ## API Documentation
