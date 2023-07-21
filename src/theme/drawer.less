@@ -2,7 +2,7 @@
 @import './shadow';
 
 .outline-drawer {
-  position: fixed;
+  position: relative;
   z-index: -1;
   top: 0;
   left: 0;
@@ -344,7 +344,9 @@
     visibility: visible;
     z-index: 4;
 
-    .outline-drawer {
+    &.outline-drawer {
+      position: fixed;
+
       &_rtl {
         right: 0;
       }

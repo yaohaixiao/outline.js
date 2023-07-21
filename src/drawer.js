@@ -120,7 +120,7 @@ class Drawer extends Base {
     this.$main = $main
 
     if (!hasPadding) {
-      addClass($main, ' outline-drawer_full')
+      addClass($main, 'outline-drawer_full')
     }
 
     $footer = createElement(

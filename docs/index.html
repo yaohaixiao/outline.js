@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="keywords" content="outline.js,JavaScript,Automatic Create,Article,Outline"><meta name="description" content="outline.js - 自动生成文章导读（Table of Contents）导航的 JavaScript 工具。"><link rel="shortcut icon" href="./favicon.ico"><title>outline.js | 自动生成文章导读（Table of Contents）导航的 JavaScript 工具。</title><link rel="preload" href="css/docs.min.css" as="style"><link rel="preload" href="js/docs.min.js" as="script"><link href="css/docs.min.css" rel="stylesheet" type="text/css"></head><body><div class="docs" id="docs"><aside class="aside" id="aside"><header class="aside__header"><h2 class="aside__h2">API Documentation</h2></header><nav class="aside__nav"><h3 class="aside__h3">Options</h3><ul class="aside__list"><li class="aside__item"><a class="aside__anchor" href="#option-articleElement">articleElement</a></li><li class="aside__item"><a class="aside__anchor" href="#option-selector">selector</a></li><li class="aside__item"><a class="aside__anchor" href="#option-title">title</a></li><li class="aside__item"><a class="aside__anchor" href="#option-scrollElement">scrollElement</a></li><li class="aside__item"><a class="aside__anchor" href="#option-position">position</a></li><li class="aside__item"><a class="aside__anchor" href="#option-parentElement">parentElement</a></li><li class="aside__item"><a class="aside__anchor" href="#option-placement">placement</a></li><li class="aside__item"><a class="aside__anchor" href="#option-showCode">showCode</a></li><li class="aside__item"><a class="aside__anchor" href="#option-anchorURL">anchorURL</a></li><li class="aside__item"><a class="aside__anchor" href="#option-customClass">customClass</a></li></ul><h3 class="aside__h3">Properties</h3><ul class="aside__list"><li class="aside__item"><a class="aside__anchor" href="#property-DEFAULTS">DEFAULTS</a></li><li class="aside__item"><a class="aside__anchor" href="#property-attrs">attrs</a></li><li class="aside__item"><a class="aside__anchor" href="#property-anchors">anchors</a></li><li class="aside__item"><a class="aside__anchor" href="#property-chapters">chapters</a></li><li class="aside__item"><a class="aside__anchor" href="#property-drawer">drawer</a></li><li class="aside__item"><a class="aside__anchor" href="#property-toolbar">toolbar</a></li></ul><h3 class="aside__h3">Methods</h3><ul class="aside__list"><li class="aside__item"><a class="aside__anchor" href="#method-attr">attr()</a></li><li class="aside__item"><a class="aside__anchor" href="#method-getChapters">getChapters()</a></li><li class="aside__item"><a class="aside__anchor" href="#method-count">count()</a></li><li class="aside__item"><a class="aside__anchor" href="#method-toTop">toTop()</a></li><li class="aside__item"><a class="aside__anchor" href="#method-toBottom">toBottom()</a></li><li class="aside__item"><a class="aside__anchor" href="#method-scrollTo">scrollTo()</a></li><li class="aside__item"><a class="aside__anchor" href="#method-toggle">toggle()</a></li><li class="aside__item"><a class="aside__anchor" href="#method-destroy">destroy()</a></li><li class="aside__item"><a class="aside__anchor" href="#method-reload">reload()</a></li></ul></nav></aside><main class="main" id="main"><header class="main__header" id="header"><h1 class="main__h1"><strong class="main__name">outline.</strong>js</h1><p class="main__tagline">outline.js - 自动生成文章导读（Table of Contents）导航的 JavaScript 工具。</p></header><div class="main__cdn" id="cdn"><pre class="main__pre"><code>&lt;script src="https://cdn.jsdelivr.net/gh/yaohaixiao/outline.js/outline.min.js"&gt;&lt;/script&gt;</code></pre></div><div class="main__download" id="download"><a class="main__button" href="https://github.com/yaohaixiao/outline.js/archive/refs/heads/main.zip" target="_blank">Download Zip</a></div><section class="section"><header class="section__header"><h2 class="section__title">Options</h2></header><section class="section"><header class="section__header"><h3 class="section__h3" id="option-articleElement">articleElement</h3></header><div class="section__content"><h4 class="section__h4">Description</h4><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">String|HTMLElement</dd></dl><dl class="section__dl"><dt class="section__dt">Default：</dt><dd class="section__dd">'#article'</dd></dl><dl class="section__dl"><dt class="section__dt">String：</dt><dd class="section__dd">选择器字符串，默认值：html,body（即 window 窗口）;</dd></dl><dl class="section__dl"><dt class="section__dt">HTMLElement：</dt><dd class="section__dd">'DOM 元素;</dd></dl><p>可选，用来指定页面中显示文章正文的 DOM 节点或者选择器字符串。</p><pre class="section__pre"><code class="section__code">// Default Selector
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="keywords" content="outline.js,JavaScript,Automatic Create,Article,Outline"><meta name="description" content="outline.js - 自动生成文章导读（Table of Contents）导航的 JavaScript 工具。"><link rel="shortcut icon" href="./favicon.ico"><title>outline.js | 自动生成文章导读（Table of Contents）导航的 JavaScript 工具。</title><link rel="preload" href="css/docs.min.css" as="style"><link rel="preload" href="js/docs.min.js" as="script"><link href="css/docs.min.css" rel="stylesheet" type="text/css"></head><body><div class="docs" id="docs"><aside class="aside" id="aside"><header class="aside__header"><h2 class="aside__h2">API Documentation</h2></header><nav class="aside__nav"><h3 class="aside__h3">Options</h3><ul class="aside__list"><li class="aside__item"><a class="aside__anchor" href="#option-articleElement">articleElement</a></li><li class="aside__item"><a class="aside__anchor" href="#option-selector">selector</a></li><li class="aside__item"><a class="aside__anchor" href="#option-title">title</a></li><li class="aside__item"><a class="aside__anchor" href="#option-scrollElement">scrollElement</a></li><li class="aside__item"><a class="aside__anchor" href="#option-position">position</a></li><li class="aside__item"><a class="aside__anchor" href="#option-parentElement">parentElement</a></li><li class="aside__item"><a class="aside__anchor" href="#option-placement">placement</a></li><li class="aside__item"><a class="aside__anchor" href="#option-showCode">showCode</a></li><li class="aside__item"><a class="aside__anchor" href="#option-anchorURL">anchorURL</a></li><li class="aside__item"><a class="aside__anchor" href="#option-homepage">homepage</a></li><li class="aside__item"><a class="aside__anchor" href="#option-customClass">customClass</a></li></ul><h3 class="aside__h3">Properties</h3><ul class="aside__list"><li class="aside__item"><a class="aside__anchor" href="#property-DEFAULTS">DEFAULTS</a></li><li class="aside__item"><a class="aside__anchor" href="#property-attrs">attrs</a></li><li class="aside__item"><a class="aside__anchor" href="#property-anchors">anchors</a></li><li class="aside__item"><a class="aside__anchor" href="#property-chapters">chapters</a></li><li class="aside__item"><a class="aside__anchor" href="#property-drawer">drawer</a></li><li class="aside__item"><a class="aside__anchor" href="#property-toolbar">toolbar</a></li></ul><h3 class="aside__h3">Methods</h3><ul class="aside__list"><li class="aside__item"><a class="aside__anchor" href="#method-attr">attr()</a></li><li class="aside__item"><a class="aside__anchor" href="#method-getChapters">getChapters()</a></li><li class="aside__item"><a class="aside__anchor" href="#method-count">count()</a></li><li class="aside__item"><a class="aside__anchor" href="#method-toTop">toTop()</a></li><li class="aside__item"><a class="aside__anchor" href="#method-toBottom">toBottom()</a></li><li class="aside__item"><a class="aside__anchor" href="#method-scrollTo">scrollTo()</a></li><li class="aside__item"><a class="aside__anchor" href="#method-toggle">toggle()</a></li><li class="aside__item"><a class="aside__anchor" href="#method-destroy">destroy()</a></li><li class="aside__item"><a class="aside__anchor" href="#method-reload">reload()</a></li></ul></nav></aside><main class="main" id="main"><header class="main__header" id="header"><h1 class="main__h1"><strong class="main__name">outline.</strong>js</h1><p class="main__tagline">outline.js - 自动生成文章导读（Table of Contents）导航的 JavaScript 工具。</p></header><div class="main__cdn" id="cdn"><pre class="main__pre"><code>&lt;script src="https://cdn.jsdelivr.net/gh/yaohaixiao/outline.js/outline.min.js"&gt;&lt;/script&gt;</code></pre></div><div class="main__download" id="download"><a class="main__button" href="https://github.com/yaohaixiao/outline.js/archive/refs/heads/main.zip" target="_blank">Download Zip</a></div><section class="section"><header class="section__header"><h2 class="section__title">Options</h2></header><section class="section"><header class="section__header"><h3 class="section__h3" id="option-articleElement">articleElement</h3></header><div class="section__content"><h4 class="section__h4">Description</h4><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">String|HTMLElement</dd></dl><dl class="section__dl"><dt class="section__dt">Default：</dt><dd class="section__dd">'#article'</dd></dl><dl class="section__dl"><dt class="section__dt">String：</dt><dd class="section__dd">选择器字符串，默认值：html,body（即 window 窗口）;</dd></dl><dl class="section__dl"><dt class="section__dt">HTMLElement：</dt><dd class="section__dd">'DOM 元素;</dd></dl><p>可选，用来指定页面中显示文章正文的 DOM 节点或者选择器字符串。</p><pre class="section__pre"><code class="section__code">// Default Selector
 const outline = new Outline(Outline.DEFAULTS)
 
 // Customize Selector
@@ -37,6 +37,11 @@ new Outline()
 // Customize URL - 直接打开链接了
 new Outline({
   anchorURL: 'http://www.yaohaixiao.com/'
+})</code></pre></div></section><section class="section"><header class="section__header"><h3 class="section__h3" id="option-homepage">homepage</h3></header><div class="section__content"><h4 class="section__h4">Description</h4><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">String</dd></dl><dl class="section__dl"><dt class="section__dt">Default：</dt><dd class="section__dd">''</dd></dl><p>可选，用来指定文章标题锚点链接图标的链接地址：</p><pre class="section__pre"><code class="section__code">const outline = new Outline(Outline.DEFAULTS)
+
+// 侧边栏的 Toolbar 会多出一个 Homepage 图标的按钮
+outline.reload({
+  homepage: 'http://www.yaohaixiao.com/'
 })</code></pre></div></section><section class="section"><header class="section__header"><h3 class="section__h3" id="option-customClass">customClass</h3></header><div class="section__content"><h4 class="section__h4">Description</h4><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">String</dd></dl><dl class="section__dl"><dt class="section__dt">Default：</dt><dd class="section__dd">''</dd></dl><p>可选，(DIYer福利)设置自定义样式的 class 名称：</p><ul><li>'' - 采用默认 outline.js 的 UI 界面（默认值）；</li><li>设置自定义样式 - 自己根据需求设置个性化的 UI 界面；</li></ul><pre class="section__pre"><code class="section__code">// Default UI
 new Outline(Outline.DEFAULTS)
 
@@ -73,8 +78,9 @@ class Anchors extends Base {
     // 省略其它逻辑...
   }
 
-  getChapters() {
-    return this.chapters
+  getChapters(isTreeStructured = false) {
+    const chapters = this.chapters
+    return isTreeStructured ? toTree(chapters, 'id', 'pid') : chapters
   }
 
   count() {
@@ -476,26 +482,104 @@ export default Toolbar</code></pre></div></section></section><section class="sec
 
 outline.attr('title') // -> 'Outline v2.0.0'
 outline.attr('title', '目录') // -> 设置 title 配置信息的值为 '目录'
-outline.attr() // -> 返回完整配置参数 attrs 信息</code></pre></div></section><section class="section"><header class="section__header"><h3 class="section__h3" id="method-getChapters">getChapters ()</h3></header><div class="section__content"><h4 class="section__h4">Description</h4><p>getChapters() 方法来获取 outline.js 分析的文章段落层次数据。</p><h4 class="section__h4">Returns</h4><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">Object</dd></dl><p>outline.js 分析的文章段落层次数据。</p><pre class="api-code"><code>const outline = new Outline({
+outline.attr() // -> 返回完整配置参数 attrs 信息</code></pre></div></section><section class="section"><header class="section__header"><h3 class="section__h3" id="method-getChapters">getChapters ([isTreeStructured])</h3></header><div class="section__content"><h4 class="section__h4">Description</h4><p>getChapters() 方法来获取 outline.js 分析的文章段落层次数据。</p><h4 class="section__h4">Parameters</h4><h5 class="section__h4">isTreeStructured</h5><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">Boolean</dd></dl><dl class="section__dl"><dt class="section__dt">Default：</dt><dd class="section__dd">false</dd></dl><p>（可选）是否为树结构的数据。</p><ul><li>false: (默认值）输出打平的一维数组格式数据；</li><li>true: 输出树结构格式的数据；</li></ul><h4 class="section__h4">Returns</h4><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">Object</dd></dl><p>outline.js 分析的文章段落层次数据。</p><pre class="section__pre"><code class="section__code">const outline = new Outline({
    article: '#article',
    title: 'Outline v2.0.0'
 })
 
 outline.getChapters()
+// 一维数组格式数据
 // -> [{
-  code: "1",
-  id: 0,
-  index: 1,
-  level: 1,
-  pid: -1
-  rel: "heading-0"
-  text: "创作灵感"
+  {
+    id: 2,
+    pid: -1,
+    level: 1,
+    rel: "heading-2",
+    text: "安装说明",
+    index: 3,
+    code: "3",
+  },
+  {
+    id: 3,
+    pid: 2,
+    level: 2,
+    rel: "heading-3",
+    text: "npm install",
+    index: 1,
+    code: "3.1",
+    children: []
+  },
+  {
+    id: 4,
+    pid: 2,
+    level: 2,
+    rel: "heading-4",
+    text: "CDN 调用",
+    index: 2,
+    code: "3.2",
+    children: []
+  },
+  {
+    id: 5,
+    pid: 2,
+    level: 2,
+    rel: "heading-5",
+    text: "调用本地JS文件",
+    index: 3,
+    code: "3.3",
+    children: []
+  }
 }]
+
+outline.getChapters(true)
+// 有 children 属性的树结构对象数组
+// -> [{
+  code: "3",
+  id: 2,
+  index:3,
+  level:1,
+  pid:-1,
+  rel: "heading-2"
+  text:"安装说明",
+  children: [
+    {
+      id: 3,
+      pid: 2,
+      level: 2,
+      rel: "heading-3",
+      text: "npm install",
+      index: 1,
+      code: "3.1",
+      children: []
+    },
+    {
+      id: 4,
+      pid: 2,
+      level: 2,
+      rel: "heading-4",
+      text: "CDN 调用",
+      index: 2,
+      code: "3.2",
+      children: []
+    },
+    {
+      id: 5,
+      pid: 2,
+      level: 2,
+      rel: "heading-5",
+      text: "调用本地JS文件",
+      index: 3,
+      code: "3.3",
+      children: []
+    }
+  ]
+}]
+
 
 outline.destroy()
 outline.getChapters()
 // 调用 destroy() 方法后，所有数据都清空了
-// -> []</code></pre></div></section><section class="section"><header class="section__header"><h3 class="section__h3" id="method-count">count ()</h3></header><div class="section__content"><h4 class="section__h4">Description</h4><p>count() 方法来获取 outline.js 分析的文章段落层次数据的数量。</p><h4 class="section__h4">Returns</h4><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">Number</dd></dl><p>outline.js 分析的 chapters 数据数量。</p><pre class="api-code"><code>const outline = new Outline({
+// -> []</code></pre></div></section><section class="section"><header class="section__header"><h3 class="section__h3" id="method-count">count ()</h3></header><div class="section__content"><h4 class="section__h4">Description</h4><p>count() 方法来获取 outline.js 分析的文章段落层次数据的数量。</p><h4 class="section__h4">Returns</h4><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">Number</dd></dl><p>outline.js 分析的 chapters 数据数量。</p><pre class="section__pre"><code class="section__code">const outline = new Outline({
    article: '#article',
    title: 'Outline v2.0.0'
 })

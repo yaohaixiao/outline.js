@@ -1,7 +1,8 @@
 /**
  * @jest-environment jsdom
  */
-import hasClass from '../src/utils/dom/hasClass'
+import addClass from '@/utils/dom/addClass'
+import hasClass from '@/utils/dom/hasClass'
 
 describe('closest() 方法', () => {
   // Set up our document body
@@ -21,23 +22,13 @@ describe('closest() 方法', () => {
     '  </li>\n' +
     '</ul>'
 
-  it(`hasClass($list, 'item')，返回： false`, () => {
+  it(`addClass($list, 'nav')，返回： false`, () => {
     const $list = document.querySelector('#list')
-    const $text = document.createTextNode('text')
     expect(hasClass($list, 'item')).toEqual(false)
-    expect(hasClass($text)).toEqual(false)
-  })
-
-  it(`hasClass($list, 'list')，返回： true`, () => {
-    const $list = document.querySelector('#list')
-    expect(hasClass($list, 'list')).toEqual(true)
-  })
-
-  it(`hasClass($support, 'item-support')，返回： true`, () => {
-    const $support = document.querySelector('#item-support')
-    $support.classList.contains = null
-    expect(hasClass($support, 'item')).toEqual(true)
-    expect(hasClass($support, 'item-support')).toEqual(true)
-    expect(hasClass($support, 'item-ok')).toEqual(true)
+    addClass($list, 'nav')
+    expect(hasClass($list, 'nav')).toBe(true)
+    $list.classList.add = null
+    addClass($list, 'menu')
+    expect(hasClass($list, 'menu')).toBe(true)
   })
 })

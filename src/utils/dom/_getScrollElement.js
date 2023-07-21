@@ -1,6 +1,14 @@
 import isString from '../types/isString'
 import isElement from '../types/isElement'
 
+/**
+ * 通过给的 scrollElement 参数，获取滚动 DOM 元素
+ * ========================================================================
+ * @method _getScrollElement
+ * @param {String|HTMLElement} scrollElement
+ * @returns {Element}
+ * @private
+ */
 const _getScrollElement = (scrollElement = null) => {
   let $rootElements
   let $scrollElement

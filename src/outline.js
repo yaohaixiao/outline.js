@@ -31,8 +31,8 @@ class Outline extends Base {
     return this
   }
 
-  getChapters() {
-    return this.anchors.getChapters()
+  getChapters(isTreeStructured = false) {
+    return this.anchors.getChapters(isTreeStructured)
   }
 
   count() {
@@ -112,6 +112,7 @@ class Outline extends Base {
 
   _renderToolbar() {
     const placement = this.attr('placement')
+    const homepage = this.attr('homepage')
     const count = this.count()
     const UP = {
       name: 'up',
@@ -119,18 +120,22 @@ class Outline extends Base {
       size: 20,
       action: {
         type: 'click',
-        handler: this.onScrollTop,
-        context: this
+        handler: 'toolbar:action:up'
       }
+    }
+    const HOME = {
+      name: 'homepage',
+      icon: 'homepage',
+      size: 20,
+      link: homepage
     }
     const MENU = {
       name: 'menu',
       icon: 'menu',
-      size: 20,
+      size: 18,
       action: {
         type: 'click',
-        handler: this.onToggle,
-        context: this
+        handler: 'toolbar:action:toggle'
       }
     }
     const DOWN = {
@@ -139,13 +144,15 @@ class Outline extends Base {
       size: 20,
       action: {
         type: 'click',
-        handler: this.onScrollBottom,
-        context: this
+        handler: 'toolbar:action:down'
       }
     }
     const buttons = []
 
     buttons.push(UP)
+    if (homepage) {
+      buttons.push(HOME)
+    }
     if (count > 0) {
       buttons.push(MENU)
     }
@@ -274,7 +281,7 @@ class Outline extends Base {
     return this
   }
 
-  onUpdateToolbar({ top, min, max }) {
+  onToolbarUpdate({ top, min, max }) {
     const toolbar = this.toolbar
     const current = Math.ceil(top)
 
@@ -293,12 +300,18 @@ class Outline extends Base {
   }
 
   addListeners() {
-    subscribe('update:toolbar', this.onUpdateToolbar, this)
+    subscribe('toolbar:update', this.onToolbarUpdate, this)
+    subscribe('toolbar:action:up', this.onScrollTop, this)
+    subscribe('toolbar:action:toggle', this.onToggle, this)
+    subscribe('toolbar:action:down', this.onScrollBottom, this)
     return this
   }
 
   removeListeners() {
-    unsubscribe('update:toolbar')
+    unsubscribe('toolbar:update')
+    unsubscribe('toolbar:action:up')
+    unsubscribe('toolbar:action:toggle')
+    unsubscribe('toolbar:action:down')
     return this
   }
 }

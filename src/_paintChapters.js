@@ -1,76 +1,77 @@
 import createElement from './utils/dom/createElement'
 
-const _paintChapters = (list, chapters, showCode = false) => {
+const _paintChapters = ($list, chapters, showCode = false) => {
+  const byId = (id) => document.getElementById(id)
+
   chapters.forEach((chapter) => {
     const pid = chapter.pid
-    const text = createElement(
+    const id = chapter.id
+    const rel = chapter.rel
+    const $text = createElement(
       'span',
       {
         className: 'outline-chapters__text'
       },
       [chapter.text]
     )
-    const link = createElement(
+    const $link = createElement(
       'a',
       {
-        id: `outline-anchor-${chapter.id}`,
+        id: `chapter__anchor-${id}`,
         className: 'outline-chapters__anchor',
-        href: '#' + chapter.rel,
-        rel: chapter.rel,
-        'data-id': chapter.id
+        href: '#' + rel,
+        rel: rel,
+        'data-id': id
       },
-      [text]
+      [$text]
     )
-    let parent
-    let ul
-    let li
-    let code
-    let children = []
+    let $code
+    let $li
+    let $ul
+    let $parent
 
     if (showCode) {
-      code = createElement(
+      $code = createElement(
         'span',
         {
           className: 'outline-chapters__code',
-          'data-id': chapter.id
+          'data-id': id
         },
         [chapter.code]
       )
 
-      link.insertBefore(code, link.firstChild)
+      $link.insertBefore($code, $link.firstChild)
     }
 
-    children.push(link)
-
-    li = createElement(
+    $li = createElement(
       'li',
       {
-        id: `outline-chapter-${chapter.id}`,
+        id: `chapter-${id}`,
         className: 'outline-chapters__item',
-        'data-id': chapter.id
+        'data-id': id
       },
-      children
+      [$link]
     )
 
     if (pid === -1) {
-      list.appendChild(li)
+      $list.appendChild($li)
     } else {
-      parent = document.getElementById('outline-chapter-' + pid)
-      ul = document.getElementById('outline-subject-' + pid)
+      $parent = byId(`chapter-${pid}`)
+      $ul = byId(`subject-${pid}`)
 
-      if (!ul) {
-        ul = createElement(
+      if (!$ul) {
+        $ul = createElement(
           'ul',
           {
-            id: 'outline-subject-' + pid,
+            id: 'subject-' + pid,
             className: 'outline-chapters__subject'
           },
-          [li]
+          [$li]
         )
 
-        parent.appendChild(ul)
+        $parent.appendChild($ul)
       } else {
-        ul.appendChild(li)
+        $ul.appendChild($li)
       }
     }
   })

@@ -1,5 +1,6 @@
 import Base from './base'
 
+import isString from './utils/types/isString'
 import isFunction from './utils/types/isFunction'
 import isObject from './utils/types/isObject'
 import isArray from './utils/types/isArray'
@@ -10,6 +11,7 @@ import hasClass from './utils/dom/hasClass'
 import removeClass from './utils/dom/removeClass'
 import on from './utils/event/on'
 import off from './utils/event/off'
+import publish from './utils/observer/emit'
 import { paintSvgSprites } from './utils/icons'
 
 import _createButton from './_createButton'
@@ -89,6 +91,7 @@ class Toolbar extends Base {
   render() {
     const mounted = this.attr('mounted')
     const buttons = this.attr('buttons') || []
+    const rounded = this.attr('rounded')
     const placement = this.attr('placement')
     const $buttons = document.createDocumentFragment()
     const $fragment = document.createDocumentFragment()
@@ -96,7 +99,7 @@ class Toolbar extends Base {
     paintSvgSprites()
 
     buttons.forEach((button) => {
-      const $button = _createButton(button)
+      const $button = _createButton(button, rounded)
 
       $buttons.appendChild($button)
       this.buttons.push({
@@ -382,14 +385,27 @@ class Toolbar extends Base {
       let type
       let listener
       let context
+      let command
+
+      if (disabled) {
+        return false
+      }
 
       if (action) {
         listener = action.handler
+        if (isString(listener)) {
+          command = listener
+          action.handler = function () {
+            publish(command, button.name)
+          }
+          listener = action.handler
+        }
+
         type = action.type || 'click'
         context = action.context
       }
 
-      if (isFunction(listener) && !disabled) {
+      if (isFunction(listener)) {
         on($el, `.${button.name}`, type, listener, context || this, true)
       }
     })
@@ -411,12 +427,16 @@ class Toolbar extends Base {
       let type
       let listener
 
+      if (disabled) {
+        return false
+      }
+
       if (action) {
         listener = action.handler
         type = action.type || 'click'
       }
 
-      if (isFunction(listener) && !disabled) {
+      if (isFunction(listener)) {
         off($el, type, listener)
       }
     })
@@ -429,6 +449,7 @@ Toolbar.DEFAULTS = {
   placement: 'ltr',
   closed: false,
   disabled: false,
+  rounded: true,
   buttons: [],
   created: null,
   mounted: null,

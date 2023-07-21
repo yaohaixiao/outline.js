@@ -1,31 +1,121 @@
 section.section
   header.section__header
-    h3#method-getChapters.section__h3 getChapters ()
+    h3#method-getChapters.section__h3 getChapters ([isTreeStructured])
   div.section__content
     h4.section__h4 Description
     p getChapters() 方法来获取 outline.js 分析的文章段落层次数据。
+    h4.section__h4 Parameters
+    h5.section__h4 isTreeStructured
+    dl.section__dl
+      dt.section__dt Type：
+      dd.section__dd Boolean
+    dl.section__dl
+      dt.section__dt Default：
+      dd.section__dd false
+    p （可选）是否为树结构的数据。
+    ul
+      li false: (默认值）输出打平的一维数组格式数据；
+      li true: 输出树结构格式的数据；
     h4.section__h4 Returns
     dl.section__dl
       dt.section__dt Type：
       dd.section__dd Object
     p outline.js 分析的文章段落层次数据。
-    pre.api-code
-      code.
+    pre.section__pre
+      code.section__code.
           const outline = new Outline({
              article: '#article',
              title: 'Outline v2.0.0'
           })
 
           outline.getChapters()
+          // 一维数组格式数据
           // -> [{
-            code: "1",
-            id: 0,
-            index: 1,
-            level: 1,
-            pid: -1
-            rel: "heading-0"
-            text: "创作灵感"
+            {
+              id: 2,
+              pid: -1,
+              level: 1,
+              rel: "heading-2",
+              text: "安装说明",
+              index: 3,
+              code: "3",
+            },
+            {
+              id: 3,
+              pid: 2,
+              level: 2,
+              rel: "heading-3",
+              text: "npm install",
+              index: 1,
+              code: "3.1",
+              children: []
+            },
+            {
+              id: 4,
+              pid: 2,
+              level: 2,
+              rel: "heading-4",
+              text: "CDN 调用",
+              index: 2,
+              code: "3.2",
+              children: []
+            },
+            {
+              id: 5,
+              pid: 2,
+              level: 2,
+              rel: "heading-5",
+              text: "调用本地JS文件",
+              index: 3,
+              code: "3.3",
+              children: []
+            }
           }]
+
+          outline.getChapters(true)
+          // 有 children 属性的树结构对象数组
+          // -> [{
+            code: "3",
+            id: 2,
+            index:3,
+            level:1,
+            pid:-1,
+            rel: "heading-2"
+            text:"安装说明",
+            children: [
+              {
+                id: 3,
+                pid: 2,
+                level: 2,
+                rel: "heading-3",
+                text: "npm install",
+                index: 1,
+                code: "3.1",
+                children: []
+              },
+              {
+                id: 4,
+                pid: 2,
+                level: 2,
+                rel: "heading-4",
+                text: "CDN 调用",
+                index: 2,
+                code: "3.2",
+                children: []
+              },
+              {
+                id: 5,
+                pid: 2,
+                level: 2,
+                rel: "heading-5",
+                text: "调用本地JS文件",
+                index: 3,
+                code: "3.3",
+                children: []
+              }
+            ]
+          }]
+
 
           outline.destroy()
           outline.getChapters()

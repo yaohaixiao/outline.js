@@ -63,21 +63,28 @@
   &_active {
     &.outline-toolbar {
       &__button {
-        color: @success_color;
+        color: @white;
+        background-color: @success_color;
         border-color: @success_color;
 
         &:hover {
-          color: @success_color;
+          color: @white;
         }
       }
+    }
 
-      &__anchor {
-        &:link,
-        &:visited,
-        &:hover {
-          color: @success_color;
-        }
+    .outline-toolbar__anchor {
+      &:link,
+      &:visited,
+      &:hover {
+        color: @white;
       }
+    }
+  }
+
+  &_rounded {
+    &.outline-toolbar__button {
+      border-radius: 18px;
     }
   }
 

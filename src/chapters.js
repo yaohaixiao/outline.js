@@ -4,7 +4,7 @@ import isString from './utils/types/isString'
 import isFunction from './utils/types/isFunction'
 import isElement from './utils/types/isElement'
 import later from './utils/lang/later'
-import emit from './utils/event/emit'
+import at from './utils/event/at'
 import on from './utils/event/on'
 import off from './utils/event/off'
 import stop from './utils/event/stop'
@@ -112,7 +112,6 @@ class Chapters extends Base {
     const showCode = this.attr('showCode')
     const customClass = this.attr('customClass')
     const $parentElement = this.$parentElement
-    const $fragment = document.createDocumentFragment()
     const contents = []
     let $title = null
     let $el
@@ -139,6 +138,9 @@ class Chapters extends Base {
     $list = createElement(
       'ul',
       {
+        // 为优化性能，添加了 _fixed 和 _hidden
+        // fixed 为了让 $list 脱离流布局
+        // hidden 让 $list 不可见
         className: `outline-chapters__list ${FIXED} ${HIDDEN}`
       },
       ['']
@@ -182,8 +184,7 @@ class Chapters extends Base {
       addClass($el, customClass)
     }
 
-    $fragment.appendChild($el)
-    $parentElement.appendChild($fragment)
+    $parentElement.appendChild($el)
     _paintChapters($list, this.chapters, showCode)
     removeClass($list, FIXED)
     removeClass($list, HIDDEN)
@@ -200,7 +201,7 @@ class Chapters extends Base {
   }
 
   highlight(id) {
-    const $anchor = this.$el.querySelector(`#outline-anchor-${id}`)
+    const $anchor = this.$el.querySelector(`#chapter__anchor-${id}`)
     const HIGHLIGHT = 'outline-chapters_active'
     const $placeholder = this.$placeholder
     let top
@@ -368,7 +369,7 @@ class Chapters extends Base {
 
       later(() => {
         this.playing = false
-        publish('update:toolbar', {
+        publish('toolbar:update', {
           top,
           min,
           max
@@ -409,7 +410,7 @@ class Chapters extends Base {
         this.sticky()
       }
 
-      publish('update:toolbar', {
+      publish('toolbar:update', {
         top,
         min,
         max
@@ -430,7 +431,7 @@ class Chapters extends Base {
     }
 
     on($el, '.outline-chapters__anchor', 'click', this.onSelect, this, true)
-    emit($element, 'scroll', this.onScroll, this, true)
+    at($element, 'scroll', this.onScroll, this, true)
 
     return this
   }

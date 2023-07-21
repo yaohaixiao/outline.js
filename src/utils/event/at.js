@@ -4,9 +4,9 @@ import off from './off'
 import { CAPTURE_EVENTS } from './enum'
 
 /**
- * 绑定代理事件
+ * 绑定事件
  * ========================================================================
- * @method emit
+ * @method at
  * @param {HTMLElement|String|Object} el - （必须）绑定代理事件的 DOM 节点
  * @param {String|Function} type - （必须）事件类型或者事件处理器回调函数
  * @param {Function|Object} fn - （必须） 事件处理器回调函数或者传递给事件处理器回调函数的数据对象
@@ -15,7 +15,7 @@ import { CAPTURE_EVENTS } from './enum'
  * 当设置为 true 时，则事件处理器回调函数的 this 上下文指向为 data 对象
  * @param {Boolean} once - （可选）是否仅触发一次
  */
-const emit = (el, type, fn, data, context, once = false) => {
+const at = (el, type, fn, data, context, once = false) => {
   // CAPTURE_EVENTS 中的特殊事件，采用事件捕获模型
   const capture = CAPTURE_EVENTS.indexOf(type) > -1
   const listener = function (evt) {
@@ -60,4 +60,4 @@ const emit = (el, type, fn, data, context, once = false) => {
   el.addEventListener(type, listener, capture)
 }
 
-export default emit
+export default at

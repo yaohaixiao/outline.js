@@ -2,7 +2,7 @@ import { createSvgIcon } from './utils/icons'
 import createElement from './utils/dom/createElement'
 import addClass from './utils/dom/addClass'
 
-const _createButton = (button) => {
+const _createButton = (button, rounded = true) => {
   const $icon = createSvgIcon(button.icon, button.size)
   const $anchor = createElement(
     'a',
@@ -21,6 +21,10 @@ const _createButton = (button) => {
   )
 
   addClass($icon, 'outline-toolbar__icon')
+
+  if (rounded) {
+    addClass($button, 'outline-toolbar_rounded')
+  }
 
   if (button.disabled) {
     addClass($button, 'outline-toolbar_disabled')

@@ -19,7 +19,6 @@ const _updateHeading = ($heading, i, options) => {
   }
   const keys = Object.keys(attrs)
   const text = trim($heading.innerHTML)
-  const $fragment = document.createDocumentFragment()
   let $anchor
   let $icon
 
@@ -47,8 +46,7 @@ const _updateHeading = ($heading, i, options) => {
     },
     [$icon]
   )
-  $fragment.appendChild($anchor)
-  $heading.appendChild($fragment)
+  $heading.appendChild($anchor)
 }
 
 export default _updateHeading

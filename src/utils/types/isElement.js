@@ -8,7 +8,7 @@ import isObject from './isObject'
  * @returns {boolean}
  */
 const isElement = (o) => {
-  return isObject(o) && o.nodeName && o.tagName && o.nodeType === 1
+  return !!(isObject(o) && o.nodeName && o.tagName && o.nodeType === 1)
 }
 
 export default isElement

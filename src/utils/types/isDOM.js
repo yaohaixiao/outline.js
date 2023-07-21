@@ -5,7 +5,7 @@ import isFragment from './isFragment'
 import isTextNode from './isTextNode'
 
 const isDOM = (el) => {
-  return (
+  return !!(
     isObject(el) &&
     (isElement(el) || isHTMLCollection(el) || isFragment(el) || isTextNode(el))
   )

@@ -38,75 +38,79 @@ html(lang='en')
           h2 安装说明
           p outline.js 提供多种安装方式的支持： npm 安装、加载 CDN 资源、以及本地资源调用。
           h3 npm install
-          pre.
-            $ npm install -S @yaohaixiao/outline.js
+          pre
+            code.
+              $ npm install -S @yaohaixiao/outline.js
           h3 CDN 调用
-          pre.
-            &lt;script&nbsp;src=&quot;https://cdn.jsdelivr.net/gh/yaohaixiao/outline.js/subscribers.min.js&quot;&gt;&lt;/script&gt;
+          pre
+            code.
+              &lt;script&nbsp;src=&quot;https://cdn.jsdelivr.net/gh/yaohaixiao/outline.js/subscribers.min.js&quot;&gt;&lt;/script&gt;
           h3 调用本地JS文件
-          pre.
-            &lt;script&nbsp;src=&quot;path/to/outline.min.js&quot;&gt;&lt;/script&gt;
+          pre
+            code.
+              &lt;script&nbsp;src=&quot;path/to/outline.min.js&quot;&gt;&lt;/script&gt;
           h2 使用说明
           p outline.js 既支持在 node.js 环境中以 CommonJS 模块调用，也支持 ES6 模块方式加载。
-          pre.
-            // Node.js 环境中使用
-            const Outline = require('@yaohaixiao/outline.js')
+          pre
+            code.
+              // Node.js 环境中使用
+              const Outline = require('@yaohaixiao/outline.js')
 
-            // 作为 ES6 模块使用
-            import Outline from '@yaohaixiao/outline.js/src/outline'
-            // 调用其他独立模块
-            import Anchors from '@yaohaixiao/outline.js/src/anchors'
-            import Chapters from '@yaohaixiao/outline.js/src/chapters'
-            import Drawer from '@yaohaixiao/outline.js/src/drawer'
-            import Toolbar from '@yaohaixiao/outline.js/src/toolbar'
+              // 作为 ES6 模块使用
+              import Outline from '@yaohaixiao/outline.js/src/outline'
+              // 调用其他独立模块
+              import Anchors from '@yaohaixiao/outline.js/src/anchors'
+              import Chapters from '@yaohaixiao/outline.js/src/chapters'
+              import Drawer from '@yaohaixiao/outline.js/src/drawer'
+              import Toolbar from '@yaohaixiao/outline.js/src/toolbar'
 
-            // 创建 Outline 实例
-            // 2.0.0 调整了配置参数，配置更加简单
-            const outline = new Outline({
-              // 文章显示区域的 DOM 元素或者选择器字符串
-              articleElement: '#article',
-              // 要收集的标题选择器
-              selector: 'h2,h3,h4,h5,h6',
-              // 负责文章区域滚动的元素
-              // String 类型 - 选择器字符串，默认值：html,body（window窗口）
-              // HTMLElement 类型 - DOM 元素
-              scrollElement: 'html,body',
-              // 文章导读菜单的位置
-              // relative - （默认值）创建独立的侧滑菜单
-              // sticky - 导航菜单将以 sticky 模式布局（需要确保菜单插入位置支持 sticky 模式布局）
-              // fixed - 导航菜单将以 fixed 模式布局，会自动监听滚动位置，模拟 sticky 布局
-              // sticky 和 fixed 布局时，需要设置 parentElement
-              // 2.0.0 暂时不支持在文章开始位置插入 chapters 导航菜单
-              position: 'sticky',
-              // 设置 position: relative 时，placment 定义侧滑菜单和 toolbar 导航位置：
-              // rtl - 菜单位置在窗口右侧，滑动动画为：right to left
-              // ltr - 菜单位置在窗口左侧，滑动动画为：left to right
-              // ttb - 菜单位置在窗口上方，滑动动画为：top to bottom
-              // btt - 菜单位置在窗口下方，滑动动画为：bottom to top
-              placement: '',
-              // 导航菜单将要插入的位置（DOM 元素）
-              // String 类型 - 选择器字符串
-              // HTMLElement 类型 - 插入的 DOM 元素
-              // 仅在 position 设置为 sticky 和 fixed 布局时有效
-              parentElement: '#aside',
-              // 是否显示段落章节编号
-              showCode: true,
-              // 标题图标链接的 URL 地址
-              // （默认）没有设置定制，点击链接页面滚动到标题位置
-              // 设置了链接地址，则不会滚动定位
-              anchorURL: '',
-              // DIYer的福利
-              // 独立侧滑菜单时，customClass 会追加到 drawer 侧滑窗口组件
-              // 在文章中显示导航菜单时，customClass 会追加到 chapters 导航菜单
-              customClass
-            });
+              // 创建 Outline 实例
+              // 2.0.0 调整了配置参数，配置更加简单
+              const outline = new Outline({
+                // 文章显示区域的 DOM 元素或者选择器字符串
+                articleElement: '#article',
+                // 要收集的标题选择器
+                selector: 'h2,h3,h4,h5,h6',
+                // 负责文章区域滚动的元素
+                // String 类型 - 选择器字符串，默认值：html,body（window窗口）
+                // HTMLElement 类型 - DOM 元素
+                scrollElement: 'html,body',
+                // 文章导读菜单的位置
+                // relative - （默认值）创建独立的侧滑菜单
+                // sticky - 导航菜单将以 sticky 模式布局（需要确保菜单插入位置支持 sticky 模式布局）
+                // fixed - 导航菜单将以 fixed 模式布局，会自动监听滚动位置，模拟 sticky 布局
+                // sticky 和 fixed 布局时，需要设置 parentElement
+                // 2.0.0 暂时不支持在文章开始位置插入 chapters 导航菜单
+                position: 'sticky',
+                // 设置 position: relative 时，placment 定义侧滑菜单和 toolbar 导航位置：
+                // rtl - 菜单位置在窗口右侧，滑动动画为：right to left
+                // ltr - 菜单位置在窗口左侧，滑动动画为：left to right
+                // ttb - 菜单位置在窗口上方，滑动动画为：top to bottom
+                // btt - 菜单位置在窗口下方，滑动动画为：bottom to top
+                placement: '',
+                // 导航菜单将要插入的位置（DOM 元素）
+                // String 类型 - 选择器字符串
+                // HTMLElement 类型 - 插入的 DOM 元素
+                // 仅在 position 设置为 sticky 和 fixed 布局时有效
+                parentElement: '#aside',
+                // 是否显示段落章节编号
+                showCode: true,
+                // 标题图标链接的 URL 地址
+                // （默认）没有设置定制，点击链接页面滚动到标题位置
+                // 设置了链接地址，则不会滚动定位
+                anchorURL: '',
+                // DIYer的福利
+                // 独立侧滑菜单时，customClass 会追加到 drawer 侧滑窗口组件
+                // 在文章中显示导航菜单时，customClass 会追加到 chapters 导航菜单
+                customClass
+              });
 
-            // 可以在创建导航后，重置配置信息，重新生成新的导航
-            Outline.reload({
-              // 调整位直接在文章内生成导航
-              position: 'sticky',
-              articleElement: '#article'
-            })
+              // 可以在创建导航后，重置配置信息，重新生成新的导航
+              Outline.reload({
+                // 调整位直接在文章内生成导航
+                position: 'sticky',
+                articleElement: '#article'
+              })
           include ./options/section
           include ./properties/section
           include ./methods/section
@@ -117,4 +121,8 @@ html(lang='en')
         include ./footer
     script(src="js/outline.min.js")
     script.
-        const outline = new Outline(Outline.DEFAULTS)
+        const defaults = Outline.DEFAULTS
+        let outline
+
+        defaults.homepage = './index.html'
+        outline = new Outline(Outline.DEFAULTS)

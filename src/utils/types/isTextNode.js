@@ -2,7 +2,7 @@ import toString from '../lang/toString'
 import isObject from './isObject'
 
 const isTextNode = (el) => {
-  return (
+  return !!(
     isObject(el) &&
     (toString.apply(el) === '[object Text]' ||
       (el.tagName && el.nodeType === 3))

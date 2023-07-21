@@ -9,12 +9,12 @@ import offsetTop from './offsetTop'
  * @returns {{left: Number, top: Number}}
  */
 const offset = (el) => {
-  let left = offsetLeft(el)
-  let top = offsetTop(el)
+  const left = offsetLeft(el)
+  const top = offsetTop(el)
 
   return {
-    left: left,
-    top: top
+    left,
+    top
   }
 }
 

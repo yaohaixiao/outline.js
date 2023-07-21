@@ -38,9 +38,19 @@
     padding: 0 2em;
     overflow: hidden;
 
-    .section__header,
-    .section__content {
-      margin: 0;
+    .section {
+      overflow: visible;
+
+      &__content,
+      &__footer,
+      &__header {
+        overflow: visible;
+      }
+
+      &__header,
+      &__content {
+        margin: 0;
+      }
     }
   }
 
@@ -55,15 +65,18 @@
   }
 }
 
-pre {
+pre,
+.section__pre {
   padding: 2em;
-  background-color: @bg_color;
   font-family: "Courier New", Arial, sans-serif;
+  background-color: @bg_color;
   overflow: auto;
 }
 
-code {
-  font-size: 14px;
+code,
+.section__code {
+  font-family: "Courier New", Arial, sans-serif;
+  font-size: 16px;
 }
 
 .footer {

@@ -3,7 +3,7 @@
 [![npm version](https://img.shields.io/npm/v/@yaohaixiao/outline.js)](https://www.npmjs.com/package/@yaohaixiao/outline.js)
 [![Github file size](https://img.shields.io/github/size/yaohaixiao/outline.js/outline.min.js.svg)](https://github.com/yaohaixiao/outline.js/blob/master/outline.min.js)
 [![prettier code style](https://img.shields.io/badge/code_style-prettier-07b759.svg)](https://prettier.io)
-[![Coverage](https://codecov.io/gh/yaohaixiao/outline.js/branch/main/graph/badge.svg)](https://codecov.io/gh/yaohaixiao/outline.js)
+[![Coverage](https://codecov.io/gh/yaohaixiao/outline.js/branch/master/graph/badge.svg)](https://codecov.io/gh/yaohaixiao/outline.js)
 [![npm downloads](https://img.shields.io/npm/dm/@yaohaixiao/outline.js)](https://npmcharts.com/compare/@yaohaixiao/outline.js?minimal=true)
 [![MIT License](https://img.shields.io/github/license/yaohaixiao/outline.js.svg)](https://github.com/yaohaixiao/outline.js/blob/master/LICENSE)
 
@@ -130,6 +130,8 @@ const outline = new Outline({
     // （默认）没有设置定制，点击链接页面滚动到标题位置
     // 设置了链接地址，则不会滚动定位
     anchorURL: '',
+    // 指定当前站点主页地址
+    homepage: '',
     // DIYer的福利
     // 独立侧滑菜单时，customClass 会追加到 drawer 侧滑窗口组件
     // 在文章中显示导航菜单时，customClass 会追加到 chapters 导航菜单
@@ -270,6 +272,17 @@ Default: `''`
 * '' - 点击链接页面滚动到标题位置（默认值）；
 * 其它 URL 值 - 就直接跳转到指定页面了；
 
+### homepage
+
+Type: `String`
+
+Default: `''`
+
+可选，用来指定当前站点的主页链接地址：
+
+* '' - 不会创建 Homepage 按钮（默认值）；
+* 其它 URL 值 - 不会创建 Homepage 按钮，点按钮就直接跳转到指定页面了；
+
 
 ### customClass
 
@@ -306,6 +319,7 @@ Outline.DEFAULTS = {
   placement: 'rtl',
   showCode: true,
   anchorURL: '',
+  homepage: '',
   customClass: ''
 }
 ```
@@ -382,9 +396,21 @@ Type: `Any`
 Outline 对象，以便实现链式调用。
 
 
-### getChapters()
+### getChapters([isTreeStructured])
 
 返回 outline.js 分析后的文章段落信息数据。
+
+#### Parameters
+
+##### isTreeStructured
+
+Type: `Boolean`
+Default: `false`
+
+（可选）是否为树结构的数据。
+
+* false: (默认值）输出打平的一维数组格式数据；
+* true: 输出树结构格式的数据；
 
 #### Returns
 

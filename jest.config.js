@@ -11,8 +11,7 @@ module.exports = {
     '^.+\\.js$': '<rootDir>/node_modules/babel-jest'
   },
   moduleNameMapper: {
-    '^@/(.*)$': '<rootDir>/src/$1',
-    '^esm/(.*)$': '<rootDir>/esm/$1'
+    '^@/(.*)$': '<rootDir>/src/$1'
   },
   collectCoverage: true,
   coverageDirectory: 'report/coverage',

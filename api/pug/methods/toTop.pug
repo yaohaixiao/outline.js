@@ -16,13 +16,13 @@ section.section
       dd.section__dd Outline
     p Outline 对象，便于链式方法调用。
     pre.section__pre
-        code.section__code.
-          const outline = new Outline({
-             article: '#article',
-             title: 'Outline v2.0.0'
-          })
+      code.section__code.
+        const outline = new Outline({
+           article: '#article',
+           title: 'Outline v2.0.0'
+        })
 
-          outline.toTop() // 页面将滚动到顶部，向上滚动按钮消失
-          outline.toTop(() => {
-            console.log('滚动结束‘)
-          })
+        outline.toTop() // 页面将滚动到顶部，向上滚动按钮消失
+        outline.toTop(() => {
+          console.log('滚动结束‘)
+        })

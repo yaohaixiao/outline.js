@@ -4,6 +4,7 @@ import Base from './base'
 import isString from './utils/types/isString'
 import isFunction from './utils/types/isFunction'
 import isElement from './utils/types/isElement'
+import toTree from './utils/lang/toTree'
 import later from './utils/lang/later'
 import scrollTo from './utils/dom/scrollTo'
 import _getScrollElement from './utils/dom/_getScrollElement'
@@ -75,8 +76,9 @@ class Anchors extends Base {
     return this
   }
 
-  getChapters() {
-    return this.chapters
+  getChapters(isTreeStructured = false) {
+    const chapters = this.chapters
+    return isTreeStructured ? toTree(chapters, 'id', 'pid') : chapters
   }
 
   count() {
@@ -164,7 +166,7 @@ class Anchors extends Base {
       }
 
       later(() => {
-        publish('update:toolbar', {
+        publish('toolbar:update', {
           top,
           min,
           max

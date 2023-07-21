@@ -23,8 +23,9 @@ section.section
             // 省略其它逻辑...
           }
 
-          getChapters() {
-            return this.chapters
+          getChapters(isTreeStructured = false) {
+            const chapters = this.chapters
+            return isTreeStructured ? toTree(chapters, 'id', 'pid') : chapters
           }
 
           count() {
