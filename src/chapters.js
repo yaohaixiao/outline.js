@@ -358,7 +358,7 @@ class Chapters extends Base {
     const id = $anchor.getAttribute('data-id')
     const headingId = $anchor.href.split('#')[1]
     const $heading = document.querySelector(`#${headingId}`)
-    const top = $heading.offsetTop
+    const top = offsetTop($heading)
     const min = 0
     const max = this.$scrollElement.scrollHeight
     const afterScroll = this.attr('afterScroll')

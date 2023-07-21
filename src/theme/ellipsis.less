@@ -1,0 +1,21 @@
+/**
+ * ellipsis.less - 文本省略 mixinx 函数
+ * =============================================================
+ * Created By: Yaohaixiao
+ * Update: 2022.3.11
+ */
+
+/* ====== 文本省略函数 ====== */
+.ellipsis (@lines) when (@lines=1) {
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+
+.ellipsis (@lines) when (@lines>=2) {
+  -webkit-line-clamp: @lines;
+  display: box;
+  -webkit-box-orient: vertical;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}

@@ -8,6 +8,7 @@ import toTree from './utils/lang/toTree'
 import later from './utils/lang/later'
 import scrollTo from './utils/dom/scrollTo'
 import _getScrollElement from './utils/dom/_getScrollElement'
+import offsetTop from './utils/dom/offsetTop'
 import on from './utils/event/on'
 import off from './utils/event/off'
 import stop from './utils/event/stop'
@@ -156,7 +157,7 @@ class Anchors extends Base {
     const afterScroll = this.attr('afterScroll')
     const $anchor = evt.delegateTarget
     const $heading = $anchor.parentNode
-    const top = $heading.offsetTop
+    const top = offsetTop($heading)
     const $scrollElement = this.$scrollElement
     const min = 0
     const max = $scrollElement.scrollHeight - $scrollElement.clientHeight

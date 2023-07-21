@@ -7,18 +7,18 @@ const _getChaptersWithCode = (chapters) => {
   groups.forEach((group) => {
     group.forEach((chapter, i) => {
       chapter.index = i + 1
+
+      if (chapter.pid === -1) {
+        chapter.code = String(chapter.index)
+      }
     })
   })
 
   groups.forEach((group) => {
     group.forEach((paragraph) => {
       clone.forEach((chapter) => {
-        if (chapter.pid === -1) {
-          chapter.code = String(chapter.index)
-        } else {
-          if (chapter.pid === paragraph.id) {
-            chapter.code = paragraph.code + '.' + chapter.index
-          }
+        if (chapter.pid === paragraph.id) {
+          chapter.code = paragraph.code + '.' + chapter.index
         }
       })
     })
