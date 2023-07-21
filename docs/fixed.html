@@ -1,0 +1,722 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="keywords" content="outline.js,JavaScript,Automatic Create,Article,Outline"><meta name="description" content="outline.js - 自动生成文章导读（Table of Contents）导航的 JavaScript 工具。"><link rel="shortcut icon" href="./favicon.ico"><title>outline.js - 自动生成文章导读（Table of Contents）导航的 JavaScript 工具</title><link href="css/example.min.css" rel="stylesheet"></head><body><div class="paper"><header class="header"><h1 class="title">Outline.js</h1></header><article class="article" id="article"><aside class="article__aside" id="aside"></aside><main class="article__main" id="main"><p>outline.js 是一个自动生成文章导读（Table of Contents）导航的 JavaScript 工具（原 autocjs 的重构版本，不依赖任何JS库）。outline.js
+会查找文章指定区域中的所有 h1~h6 的标签，并自动分析文章段落间的层次结构，生成文章的导读导航。</p><h2>创作灵感</h2><p>AnchorJS 是 outline.js 的创作灵感来源。既然 AnchorJS 可创建标题的链接，为什么不直接给文章生成一个文章导读（Table of Contents）导航呢？ 于是就有了
+outline.js。</p><h2>特点</h2><ul><li>原生 JavaScript 编写，无需任何依赖；</li><li>支持 UMD 规范；</li><li>支持 E6 模块，提供功能独立的 ES6 模块；</li><ul><li>Anchors 模块：类似 AnchorJS 基础功能模块，自动分析段落层级</li><li>Drawer 模块：独立的侧滑窗口模块</li><li>Chapters 模块：独立的导航菜单模块；</li><li>Toolbar 模块：独立的固定定位的工具栏模块；</li></ul><li>拥有 AnchorJS 基础功能；</li><li>支持中文和英文标题文字生成ID；</li><li>支持生成独立的侧边栏导航菜单；</li><li>支持直接在文章中生成文章导读导航；</li><li>自动分析标题关系，生成段落层级索引值；</li><li>可以作为 jQuery 插件使用；</li><li>界面简洁大方；</li><li>配置灵活，丰富，让你随心所欲掌控 outline.js；</li></ul><h2>安装说明</h2><p>outline.js 提供多种安装方式的支持： npm 安装、加载 CDN 资源、以及本地资源调用。</p><h3>npm install</h3><pre><code>$ npm install -S @yaohaixiao/outline.js</code></pre><h3>CDN 调用</h3><pre><code>&lt;script&nbsp;src=&quot;https://cdn.jsdelivr.net/gh/yaohaixiao/outline.js/subscribers.min.js&quot;&gt;&lt;/script&gt;</code></pre><h3>调用本地JS文件</h3><pre><code>&lt;script&nbsp;src=&quot;path/to/outline.min.js&quot;&gt;&lt;/script&gt;</code></pre><h2>使用说明</h2><p>outline.js 既支持在 node.js 环境中以 CommonJS 模块调用，也支持 ES6 模块方式加载。</p><pre><code>// Node.js 环境中使用
+const Outline = require('@yaohaixiao/outline.js')
+
+// 作为 ES6 模块使用
+import Outline from '@yaohaixiao/outline.js/src/outline'
+// 调用其他独立模块
+import Anchors from '@yaohaixiao/outline.js/src/anchors'
+import Chapters from '@yaohaixiao/outline.js/src/chapters'
+import Drawer from '@yaohaixiao/outline.js/src/drawer'
+import Toolbar from '@yaohaixiao/outline.js/src/toolbar'
+
+// 创建 Outline 实例
+// 2.0.0 调整了配置参数，配置更加简单
+const outline = new Outline({
+  // 文章显示区域的 DOM 元素或者选择器字符串
+  articleElement: '#article',
+  // 要收集的标题选择器
+  selector: 'h2,h3,h4,h5,h6',
+  // 负责文章区域滚动的元素
+  // String 类型 - 选择器字符串，默认值：html,body（window窗口）
+  // HTMLElement 类型 - DOM 元素
+  scrollElement: 'html,body',
+  // 文章导读菜单的位置
+  // relative - （默认值）创建独立的侧滑菜单
+  // sticky - 导航菜单将以 sticky 模式布局（需要确保菜单插入位置支持 sticky 模式布局）
+  // fixed - 导航菜单将以 fixed 模式布局，会自动监听滚动位置，模拟 sticky 布局
+  // sticky 和 fixed 布局时，需要设置 parentElement
+  // 2.0.0 暂时不支持在文章开始位置插入 chapters 导航菜单
+  position: 'sticky',
+  // 设置 position: relative 时，placment 定义侧滑菜单和 toolbar 导航位置：
+  // rtl - 菜单位置在窗口右侧，滑动动画为：right to left
+  // ltr - 菜单位置在窗口左侧，滑动动画为：left to right
+  // ttb - 菜单位置在窗口上方，滑动动画为：top to bottom
+  // btt - 菜单位置在窗口下方，滑动动画为：bottom to top
+  placement: '',
+  // 导航菜单将要插入的位置（DOM 元素）
+  // String 类型 - 选择器字符串
+  // HTMLElement 类型 - 插入的 DOM 元素
+  // 仅在 position 设置为 sticky 和 fixed 布局时有效
+  parentElement: '#aside',
+  // 是否显示段落章节编号
+  showCode: true,
+  // 标题图标链接的 URL 地址
+  // （默认）没有设置定制，点击链接页面滚动到标题位置
+  // 设置了链接地址，则不会滚动定位
+  anchorURL: '',
+  // DIYer的福利
+  // 独立侧滑菜单时，customClass 会追加到 drawer 侧滑窗口组件
+  // 在文章中显示导航菜单时，customClass 会追加到 chapters 导航菜单
+  customClass
+});
+
+// 可以在创建导航后，重置配置信息，重新生成新的导航
+Outline.reload({
+  // 调整位直接在文章内生成导航
+  position: 'sticky',
+  articleElement: '#article'
+})</code></pre><section class="section"><header class="section__header"><h2 class="section__title">Options</h2></header><section class="section"><header class="section__header"><h3 class="section__h3" id="option-articleElement">articleElement</h3></header><div class="section__content"><h4 class="section__h4">Description</h4><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">String|HTMLElement</dd></dl><dl class="section__dl"><dt class="section__dt">Default：</dt><dd class="section__dd">'#article'</dd></dl><dl class="section__dl"><dt class="section__dt">String：</dt><dd class="section__dd">选择器字符串，默认值：html,body（即 window 窗口）;</dd></dl><dl class="section__dl"><dt class="section__dt">HTMLElement：</dt><dd class="section__dd">'DOM 元素;</dd></dl><p>可选，用来指定页面中显示文章正文的 DOM 节点或者选择器字符串。</p><pre class="section__pre"><code class="section__code">// Default Selector
+const outline = new Outline(Outline.DEFAULTS)
+
+// Customize Selector
+const outline = new Outline({
+  articleElement: $('#main')
+})</code></pre></div></section><section class="section"><header class="section__header"><h3 class="section__h3" id="option-title">title</h3></header><div class="section__content"><h4 class="section__h4">Description</h4><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">String</dd></dl><dl class="section__dl"><dt class="section__dt">Default：</dt><dd class="section__dd">'目录'</dd></dl><p>可选，用来指定文章导读导航菜单的标题文字。</p></div></section><section class="section"><header class="section__header"><h3 class="section__h3" id="option-scrollElement">scrollElement</h3></header><div class="section__content"><h4 class="section__h4">Description</h4><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">String|HTMLElement</dd></dl><dl class="section__dl"><dt class="section__dt">Default：</dt><dd class="section__dd">'html,body'</dd></dl><ul><li>String： 选择器字符串，默认值：html,body（即 window 窗口）;</li><li>HTMLElement： DOM 元素;</li></ul><p>可选，负责文章区域滚动的元素：</p><pre class="section__pre"><code class="section__">// 默认是当前窗口滚动
+new Outline(Outline.DEFAULTS)
+
+// 指定滚动区域是 #main 元素
+new Outline({
+  scrollElement: '#main'
+})</code></pre></div></section><section class="section"><header class="section__header"><h3 class="section__h3" id="option-position">position</h3></header><div class="section__content"><h4 class="section__h4">Description</h4><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">String</dd></dl><dl class="section__dl"><dt class="section__dt">Default：</dt><dd class="section__dd">'relative'</dd></dl><p>可选，用来指定文章导读导航菜单的显示位置：</p><ul><li>relative: （默认值）创建独立的侧滑菜单；</li><li>sticky: 导航菜单将以 sticky 模式布局（需要确保菜单插入位置(DOM 节点)支持 sticky 模式布局）；</li><li>fixed: 导航菜单将模拟 sticky 布局，起初是普通定位，会自动监听滚动位置，但滚动到导航菜单顶部时，以 fixed 模式布局，模拟 sticky 布局效果；</li></ul><p>当设置为 sticky 和 fixed 布局时，需要设置 parentElement。</p><p>注意：2.0.0 暂时不支持之前版本那种 inside 模式，不会自动在文章开始位置插入 chapters 导航菜单</p><pre class="section__pre"><code class="section__code">// 默认生成独立的侧滑弹窗导航菜单
+new Outline(Outline.DEFAULTS)
+
+// 在页面内部插入导航菜单
+new Outline({
+  // 在（文章的）侧边栏显示导航菜单
+  parentElement: '#aside',
+  // 或者 sticky 定位
+  position: 'fixed'
+})</code></pre></div></section><section class="section"><header class="section__header"><h3 class="section__h3" id="option-parentElement">parentElement</h3></header><div class="section__content"><h4 class="section__h4">Description</h4><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">String</dd></dl><dl class="section__dl"><dt class="section__dt">Default：</dt><dd class="section__dd">'#aside'</dd></dl><ul><li>String： 选择器字符串，默认值：html,body（即 window 窗口）;</li><li>HTMLElement： DOM 元素;</li></ul><p>可选，导航菜单将要插入的位置（DOM 元素）。仅在 position 设置为 sticky 和 fixed 布局时有效。</p><pre class="section__pre"><code class="section__code">// 在页面内部插入导航菜单
+new Outline({
+  // 在（文章的）侧边栏显示导航菜单
+  parentElement: '#aside',
+  // 或者 sticky 定位
+  position: 'fixed'
+})</code></pre></div></section><section class="section"><header class="section__header"><h3 class="section__h3" id="option-placement">placement</h3></header><div class="section__content"><h4 class="section__h4">Description</h4><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">String</dd></dl><dl class="section__dl"><dt class="section__dt">Default：</dt><dd class="section__dd">'rtl'</dd></dl><p>可选，设置 position: relative 时，placement 定义侧滑菜单和 toolbar 导航位置：</p><ul><li>rtl - 菜单位置在窗口右侧，滑动动画为：right to left（默认值）；</li><li>ltr - 菜单位置在窗口左侧，滑动动画为：left to right；</li><li>ttb - 菜单位置在窗口上方，滑动动画为：top to bottom；</li><li>btt - 菜单位置在窗口下方，滑动动画为：bottom to top；</li></ul><pre class="section__pre"><code class="section__">// 默认是在窗口右侧显示侧滑导航菜单
+new Outline(Outline.DEFAULTS)
+
+// 调整为在窗口右侧显示侧滑导航菜单
+new Outline({
+  placement: 'ltr'
+})</code></pre></div></section><section class="section"><header class="section__header"><h3 class="section__h3" id="option-showCode">showCode</h3></header><div class="section__content"><h4 class="section__h4">Description</h4><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">Boolean</dd></dl><dl class="section__dl"><dt class="section__dt">Default：</dt><dd class="section__dd">true</dd></dl><p>可选，是否显示段落章节编号：</p><ul><li>true - 显示编号（默认值）；</li><li>false - 不显示编号；</li></ul></div></section><section class="section"><header class="section__header"><h3 class="section__h3" id="option-anchorURL">anchorURL</h3></header><div class="section__content"><h4 class="section__h4">Description</h4><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">String</dd></dl><dl class="section__dl"><dt class="section__dt">Default：</dt><dd class="section__dd">''</dd></dl><p>可选，用来指定文章标题锚点链接图标的链接地址：</p><pre class="section__pre"><code class="section__code">// Default URL - 默认链接，点击图标，页面会滚动到当前标题位置
+new Outline()
+
+// Customize URL - 直接打开链接了
+new Outline({
+  anchorURL: 'http://www.yaohaixiao.com/'
+})</code></pre></div></section><section class="section"><header class="section__header"><h3 class="section__h3" id="option-homepage">homepage</h3></header><div class="section__content"><h4 class="section__h4">Description</h4><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">String</dd></dl><dl class="section__dl"><dt class="section__dt">Default：</dt><dd class="section__dd">''</dd></dl><p>可选，用来指定文章标题锚点链接图标的链接地址：</p><pre class="section__pre"><code class="section__code">const outline = new Outline(Outline.DEFAULTS)
+
+// 侧边栏的 Toolbar 会多出一个 Homepage 图标的按钮
+outline.reload({
+  homepage: 'http://www.yaohaixiao.com/'
+})</code></pre></div></section><section class="section"><header class="section__header"><h3 class="section__h3" id="option-customClass">customClass</h3></header><div class="section__content"><h4 class="section__h4">Description</h4><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">String</dd></dl><dl class="section__dl"><dt class="section__dt">Default：</dt><dd class="section__dd">''</dd></dl><p>可选，(DIYer福利)设置自定义样式的 class 名称：</p><ul><li>'' - 采用默认 outline.js 的 UI 界面（默认值）；</li><li>设置自定义样式 - 自己根据需求设置个性化的 UI 界面；</li></ul><pre class="section__pre"><code class="section__code">// Default UI
+new Outline(Outline.DEFAULTS)
+
+// Customized
+new Outline({
+  // 设置深色配置界面
+  customClass: 'theme-dark'
+})</code></pre></div></section></section><section class="section"><header class="section__header"><h2 class="section__title">Properties</h2></header><section class="section"><header class="section__header"><h3 class="section__h3" id="property-defaults">DEFAULTS</h3></header><div class="section__content"><h4 class="section__h4">Description</h4><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="api-param-value">Object</dd></dl><p>静态属性，存储的是 Outline 对象默认配置选项：</p><pre class="section__pre"><code class="section__code">Outline.DEFAULTS = {
+  articleElement: '#article',
+  selector: 'h2,h3,h4,h5,h6',
+  title: '目录',
+  scrollElement: 'html,body',
+  position: 'relative',
+  parentElement: '#aside',
+  placement: 'rtl',
+  showCode: true,
+  anchorURL: '',
+  customClass: ''
+}</code></pre></div></section><section class="section"><header class="section__header"><h3 class="section__h3" id="property-attrs">attrs</h3></header><div class="section__content"><h4 class="section__h4">Description</h4><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">Object</dd></dl><p>存储的是 Outline 对象当前使用中的配置选项：</p><p>说明：建议使用 attr(prop) 方法来获取属性，避免直接调用属性。</p><pre class="section__pre"><code class="section__code">// 设置默认配置项
+const outline = new Outline(Outline.DEFAULTS)
+
+// 查看全部配置信息
+outline.attrs</code></pre></div></section><section class="section"><header class="section__header"><h3 class="section__h3" id="property-anchors">anchors</h3></header><div class="section__content"><h4 class="section__h4">Description</h4><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">Object</dd></dl><p>Anchors 模块：类似 AnchorJS 基础功能模块，自动分析段落层级。</p><pre class="section__pre"><code class="section__code">// 仅展示 API 中对外公开的方法和属性
+class Anchors extends Base {
+  constructor(options) {
+    super()
+
+    this.attrs = Anchors.DEFAULTS
+    this.$articleElement = null
+    this.$scrollElement = null
+    this.$headings = []
+    this.chapters = []
+
+    // 省略其它逻辑...
+  }
+
+  getChapters(isTreeStructured = false) {
+    const chapters = this.chapters
+    return isTreeStructured ? toTree(chapters, 'id', 'pid') : chapters
+  }
+
+  count() {
+    return this.chapters.length
+  }
+
+  attr(prop, value) {
+    const attrs = this.attrs
+
+    if (isString(prop)) {
+      // 只能扩展 attrs 中已有的属性
+      if (value && hasOwn(attrs, prop)) {
+        // 更新单个配置信息
+        attrs[prop] = value
+        return this
+      }
+
+      // 只传递 prop 参数，则返回对应的属性值
+      return attrs[prop]
+    } else if (isObject(prop)) {
+      // 批量更新配置信息
+      extend(attrs, prop)
+
+      return this
+    } else if (arguments.length === 0) {
+      // 不传递参数，直接返回整个
+      return attrs
+    }
+
+    return this
+  }
+
+  render() {
+    // 省略其它逻辑...
+    return this
+  }
+
+  scrollTo(top, after) {
+    // 省略其它逻辑...
+    return this
+  }
+
+  destroy() {
+    this.removeListeners()
+    // 省略其它逻辑...
+    return this
+  }
+
+  reload(options) {
+    this.destroy().initialize(this.attr(options))
+    return this
+  }
+}
+
+Anchors.DEFAULTS = {
+  scrollElement: 'html,body',
+  articleElement: '#article',
+  selector: 'h1,h2,h3,h4,h5,h6',
+  anchorURL: '',
+  hasAnchor: true,
+  isAtStart: true,
+  showCode: false,
+  created: null,
+  mounted: null,
+  afterScroll: null,
+  beforeDestroy: null,
+  afterDestroy: null
+}
+
+export default Anchors</code></pre></div></section><section class="section"><header class="section__header"><h3 class="section__h3" id="property-chapters">chapters</h3></header><div class="section__content"><h4 class="section__h4">Description</h4><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">Object</dd></dl><p>Chapters 模块：独立的导航菜单模块；</p><pre class="section__pre"><code class="section__code">// 仅展示 API 中对外公开的方法和属性
+class Chapters extends Base {
+  constructor(options) {
+    super()
+
+    this.attrs = Chapters.DEFAULTS
+    this.$el = null
+    this.$title = null
+    this.$main = null
+    this.$list = null
+    this.$placeholder = null
+    this.$parentElement = null
+    this.$scrollElement = null
+    this.chapters = []
+    this.closed = false
+    this.active = 0
+    this.offsetTop = 0
+    this.$active = null
+    this.timer = null
+    this.playing = false
+
+    // 省略其它逻辑...
+  }
+
+  isClosed() {
+      return this.closed
+  }
+
+  isSticky() {
+    const position = this.attr('position')
+    return position === 'sticky'
+  }
+
+  isFixed() {
+    const position = this.attr('position')
+    return position === 'fixed'
+  }
+
+  isInside() {
+    return this.isFixed() || this.isSticky()
+  }
+
+  isOutside() {
+    return !this.isInside()
+  }
+
+  attr(prop, value) {
+    // 省略其它逻辑...
+    return this
+  }
+
+  render() {
+    // 省略其它逻辑...
+    return this
+  }
+
+  highlight(id) {
+    // 省略其它逻辑...
+    return this
+  }
+
+  sticky() {
+    // 省略其它逻辑...
+    return this
+  }
+
+  scrollTo(top, after) {
+    // 省略其它逻辑...
+    return this
+  }
+
+  show() {
+    // 省略其它逻辑...
+    return this
+  }
+
+  hide() {
+    // 省略其它逻辑...
+    return this
+  }
+
+  toggle() {
+    // 省略其它逻辑...
+    return this
+  }
+
+  destroy() {
+    this.removeListeners()
+    // 省略其它逻辑...
+    return this
+  }
+
+  reload(options) {
+    this.destroy().initialize(this.attr(options))
+    return this
+  }
+}
+
+Chapters.DEFAULTS = {
+  parentElement: '',
+  scrollElement: '',
+  selector: '',
+  active: 0,
+  closed: false,
+  showCode: true,
+  position: 'relative',
+  chapters: [],
+  created: null,
+  mounted: null,
+  afterClosed: null,
+  afterOpened: null,
+  afterScroll: null,
+  beforeDestroy: null,
+  afterDestroy: null
+}
+
+export default Chapters</code></pre></div></section><section class="section"><header class="section__header"><h3 class="section__h3" id="property-drawer">drawer</h3></header><div class="section__content"><h4 class="section__h4">Description</h4><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">Object</dd></dl><p>Drawer 模块：独立的侧滑窗口模块。</p><pre class="section__pre"><code class="section__code">// 仅展示 API 中对外公开的方法和属性
+class Drawer extends Base {
+  constructor(options) {
+    super()
+
+    this.attrs = Drawer.DEFAULTS
+    this.title = ''
+    this.closed = true
+    this.$el = null
+    this.$modal = null
+    this.$header = null
+    this.$title = null
+    this.$close = null
+    this.$main = null
+    this.$footer = null
+    this.$overlay = null
+
+    // 省略其它逻辑...
+  }
+
+  isClosed() {
+      return this.closed
+  }
+
+  setTitle() {
+    this.attr('title', title)
+    this.title = title
+    this.$title.innerHTML = title
+
+    return this
+  }
+
+  attr(prop, value) {
+    // 省略其它逻辑...
+    return this
+  }
+
+  render() {
+    // 省略其它逻辑...
+    return this
+  }
+
+  open() {
+    // 省略其它逻辑...
+    return this
+  }
+
+  close() {
+    // 省略其它逻辑...
+    return this
+  }
+
+  toggle() {
+    // 省略其它逻辑...
+    return this
+  }
+
+  destroy() {
+    this.removeListeners()
+    // 省略其它逻辑...
+    return this
+  }
+
+  reload(options) {
+    this.destroy().initialize(this.attr(options))
+    return this
+  }
+}
+
+Drawer.DEFAULTS = {
+   placement: 'rtl',
+   title: '标题',
+   size: 'regular',
+   hasClose: true,
+   hasOverlay: true,
+   hasOffset: false,
+   hasPadding: true,
+   created: null,
+   mounted: null,
+   afterClosed: null,
+   afterOpened: null,
+   afterScroll: null,
+   beforeDestroy: null,
+   afterDestroy: null
+}
+
+Drawer.zIndex = 2000
+
+export default Drawer</code></pre></div></section><section class="section"><header class="section__header"><h3 class="section__h3" id="property-toolbar">toolbar</h3></header><div class="section__content"><h4 class="section__h4">Description</h4><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">Object</dd></dl><p>Toolbar 模块：独立的固定定位的工具栏模块；</p><pre class="section__pre"><code class="section__code">// 仅展示 API 中对外公开的方法和属性
+class Toolbar extends Base {
+  constructor(options) {
+    super()
+
+    this.attrs = Drawer.DEFAULTS
+    this.title = ''
+    this.closed = true
+    this.$el = null
+    this.$modal = null
+    this.$header = null
+    this.$title = null
+    this.$close = null
+    this.$main = null
+    this.$footer = null
+    this.$overlay = null
+
+    // 省略其它逻辑...
+  }
+
+  isDisabled(name) {
+    const buttons = this.attr('buttons')
+    let button
+
+    if (name) {
+      button = buttons.find((option) => option.name === name)
+
+      return !!(button && button.disabled)
+    }
+
+    return this.disabled
+  }
+
+  isClosed() {
+    return this.closed
+  }
+
+  highlight() {
+    // 省略其它逻辑...
+    return this
+  }
+
+  attr(prop, value) {
+    // 省略其它逻辑...
+    return this
+  }
+
+  render() {
+    // 省略其它逻辑...
+    return this
+  }
+
+  add(button) {
+    // 省略其它逻辑...
+    return this
+  }
+
+  remove(name) {
+    // 省略其它逻辑...
+    return this
+  }
+
+  switch(name, enabled) {
+    // 省略其它逻辑...
+    return this
+  }
+
+  enable(name) {
+    // 省略其它逻辑...
+    return this
+  }
+
+  disable(name) {
+    // 省略其它逻辑...
+    return this
+  }
+
+  show() {
+    // 省略其它逻辑...
+    return this
+  }
+
+  hide() {
+    // 省略其它逻辑...
+    return this
+  }
+
+  toggle() {
+    // 省略其它逻辑...
+    return this
+  }
+
+  destroy() {
+    this.removeListeners()
+    // 省略其它逻辑...
+    return this
+  }
+
+  reload(options) {
+    this.destroy().initialize(this.attr(options))
+    return this
+  }
+}
+
+Toolbar.DEFAULTS = {
+   placement: 'ltr',
+   closed: false,
+   disabled: false,
+   buttons: [],
+   created: null,
+   mounted: null,
+   afterClosed: null,
+   afterOpened: null,
+   afterDisabled: null,
+   afterEnabled: null,
+   beforeDestroy: null,
+   afterDestroy: null
+}
+
+Drawer.zIndex = 2000
+
+export default Toolbar</code></pre></div></section></section><section class="section"><header class="section__header"><h2 class="section__title">Methods</h2></header><section class="section"><header class="section__header"><h3 class="section__h3" id="method-attr">attr([prop, value])</h3></header><div class="section__content"><h4 class="section__h4">Description</h4><p>attr() 方法用来设置或者获取初始化时配置的 attrs 信息的。</p><h4 class="section__h4">Parameters</h4><h5 class="section__h4">prop</h5><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">String|HTMLElement</dd></dl><p>（可选）options 中的属性名称或者要配置的 attrs 信息。</p><h5 class="section__h4">value</h5><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">Any</dd></dl><p>（可选）要设置的 prop 属性的值</p><ul><li>不传递任何参数：返回完整的 attrs 配置信息；</li><li>仅传递 prop：</li><ul><li>String: 返回 attrs 配型信息中与 prop 对应的值；</li><li>Object: 用来设置 attrs 配置信息；</li></ul><li>同时传递 prop 和 value 参数：设置 attrs 配置信息中的某个属性值；</li></ul><h4 class="section__h4">Returns</h4><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">Any</dd></dl><p>配置信息 attrs 的属性值或者 Outline 对象。</p><pre class="section__pre"><code class="section__code">const outline = new Outline({
+   article: '#article',
+   title: 'Outline v2.0.0'
+})
+
+outline.attr('title') // -> 'Outline v2.0.0'
+outline.attr('title', '目录') // -> 设置 title 配置信息的值为 '目录'
+outline.attr() // -> 返回完整配置参数 attrs 信息</code></pre></div></section><section class="section"><header class="section__header"><h3 class="section__h3" id="method-getChapters">getChapters ([isTreeStructured])</h3></header><div class="section__content"><h4 class="section__h4">Description</h4><p>getChapters() 方法来获取 outline.js 分析的文章段落层次数据。</p><h4 class="section__h4">Parameters</h4><h5 class="section__h4">isTreeStructured</h5><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">Boolean</dd></dl><dl class="section__dl"><dt class="section__dt">Default：</dt><dd class="section__dd">false</dd></dl><p>（可选）是否为树结构的数据。</p><ul><li>false: (默认值）输出打平的一维数组格式数据；</li><li>true: 输出树结构格式的数据；</li></ul><h4 class="section__h4">Returns</h4><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">Object</dd></dl><p>outline.js 分析的文章段落层次数据。</p><pre class="section__pre"><code class="section__code">const outline = new Outline({
+   article: '#article',
+   title: 'Outline v2.0.0'
+})
+
+outline.getChapters()
+// 一维数组格式数据
+// -> [{
+  {
+    id: 2,
+    pid: -1,
+    level: 1,
+    rel: "heading-2",
+    text: "安装说明",
+    index: 3,
+    code: "3",
+  },
+  {
+    id: 3,
+    pid: 2,
+    level: 2,
+    rel: "heading-3",
+    text: "npm install",
+    index: 1,
+    code: "3.1",
+    children: []
+  },
+  {
+    id: 4,
+    pid: 2,
+    level: 2,
+    rel: "heading-4",
+    text: "CDN 调用",
+    index: 2,
+    code: "3.2",
+    children: []
+  },
+  {
+    id: 5,
+    pid: 2,
+    level: 2,
+    rel: "heading-5",
+    text: "调用本地JS文件",
+    index: 3,
+    code: "3.3",
+    children: []
+  }
+}]
+
+outline.getChapters(true)
+// 有 children 属性的树结构对象数组
+// -> [{
+  code: "3",
+  id: 2,
+  index:3,
+  level:1,
+  pid:-1,
+  rel: "heading-2"
+  text:"安装说明",
+  children: [
+    {
+      id: 3,
+      pid: 2,
+      level: 2,
+      rel: "heading-3",
+      text: "npm install",
+      index: 1,
+      code: "3.1",
+      children: []
+    },
+    {
+      id: 4,
+      pid: 2,
+      level: 2,
+      rel: "heading-4",
+      text: "CDN 调用",
+      index: 2,
+      code: "3.2",
+      children: []
+    },
+    {
+      id: 5,
+      pid: 2,
+      level: 2,
+      rel: "heading-5",
+      text: "调用本地JS文件",
+      index: 3,
+      code: "3.3",
+      children: []
+    }
+  ]
+}]
+
+
+outline.destroy()
+outline.getChapters()
+// 调用 destroy() 方法后，所有数据都清空了
+// -> []</code></pre></div></section><section class="section"><header class="section__header"><h3 class="section__h3" id="method-count">count ()</h3></header><div class="section__content"><h4 class="section__h4">Description</h4><p>count() 方法来获取 outline.js 分析的文章段落层次数据的数量。</p><h4 class="section__h4">Returns</h4><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">Number</dd></dl><p>outline.js 分析的 chapters 数据数量。</p><pre class="section__pre"><code class="section__code">const outline = new Outline({
+   article: '#article',
+   title: 'Outline v2.0.0'
+})
+
+outline.getChapters()
+// -> [{
+  code: "1",
+  id: 0,
+  index: 1,
+  level: 1,
+  pid: -1
+  rel: "heading-0"
+  text: "创作灵感"
+}]
+
+outline.count()
+// -> 1 就是 getChapters() 返回数据的数量</code></pre></div></section><section class="section"><header class="section__header"><h3 class="section__h3" id="method-toTop">toTop([afterScroll])</h3></header><div class="section__content"><h4 class="section__h4">Description</h4><p>toTop() 方法会控制页面（scrollElement）滚动到顶部。</p><h4 class="section__h4">Parameters</h4><h5 class="section__h4">afterScroll</h5><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">Function</dd></dl><p>（可选）页面停止滚动后的回调函数。</p><h4 class="section__h4">Returns</h4><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">Outline</dd></dl><p>Outline 对象，便于链式方法调用。</p><pre class="section__pre"><code class="section__code">const outline = new Outline({
+   article: '#article',
+   title: 'Outline v2.0.0'
+})
+
+outline.toTop() // 页面将滚动到顶部，向上滚动按钮消失
+outline.toTop(() => {
+  console.log('滚动结束‘)
+})</code></pre></div></section><section class="section"><header class="section__header"><h3 class="section__h3" id="method-toBottom">toBottom([afterScroll])</h3></header><div class="section__content"><h4 class="section__h4">Description</h4><p>toBottom() 方法会控制页面（scrollElement）滚动到顶部。</p><h4 class="section__h4">Parameters</h4><h5 class="section__h4">afterScroll</h5><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">Function</dd></dl><p>（可选）页面停止滚动后的回调函数。</p><h4 class="section__h4">Returns</h4><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">Outline</dd></dl><p>Outline 对象，便于链式方法调用。</p><pre class="section__pre"><code class="section__code">const outline = new Outline({
+   article: '#article',
+   title: 'Outline v2.0.0'
+})
+
+outline.toBottom() // 页面将滚动到底部，向下滚动按钮消失
+outline.toBottom(() => {
+  console.log('滚动结束‘)
+})</code></pre></div></section><section class="section"><header class="section__header"><h3 class="section__h3" id="method-scroolTo">scrollTo (top[，afterScroll])</h3></header><div class="section__content"><h4 class="section__h4">Description</h4><p>scrollTo() 方法用于将窗口的滚动条滚动到指定 top 值的位置。</p><h4 class="section__h4">Parameters</h4><h5 class="section__h4">top</h5><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">Number</dd></dl><p>（必选）页面要滚动的 top 数值。</p><h5 class="section__h4">afterScroll</h5><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">Function</dd></dl><p>（可选）页面停止滚动后的回调函数。</p><h4 class="section__h4">Returns</h4><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">Outline</dd></dl><p>Outline 对象，便于链式方法调用。</p><pre class="section__pre"><code class="section__code">const outline = new Outline({
+     article: '#article',
+     title: 'Outline v2.0.0'
+})
+
+// -> 页面将滚动到距离顶部 200 像素的位置
+outline.scrollTo(200)
+outline.scrollTo(200, () => {
+  console.log('滚动结束‘)
+})</code></pre></div></section><section class="section"><header class="section__header"><h3 class="section__h3" id="method-toggle">toggle()</h3></header><div class="section__content"><h4 class="section__h4">Description</h4><p>toggle() 方法用来隐藏或显示侧边栏菜单。</p><h4 class="section__h4">Returns</h4><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">Outline</dd></dl><p>Outline 对象，便于链式方法调用。</p><pre class="section__pre"><code class="section__code">const outline = new Outline({
+  article: '#article',
+  title: 'Outline v2.0.0'
+})
+
+outline.toggle() // 如果已经隐藏，则显示
+outline.toggle() // 如果已显示，则隐藏</code></pre></div></section><section class="section"><header class="section__header"><h3 class="section__h3" id="method-destroy">destroy()</h3></header><div class="section__content"><h4 class="section__h4">Description</h4><p>destroy() 方法用于移除所有绘制的 DOM 节点，并移除绑定的事件处理器，同时重置所有 attrs 配置信息和 data 信息。</p><h4 class="section__h4">Returns</h4><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">Outline</dd></dl><p>Outline 对象，便于链式方法调用。</p><pre class="section__pre"><code class="section__code">const outline = new Outline({
+   article: '#article',
+   title: 'Outline v2.0.0'
+})
+
+outline.getChapters()
+// -> [{
+  code: "1",
+  id: 0,
+  index: 1,
+  level: 1,
+  pid: -1
+  rel: "heading-0"
+  text: "创作灵感"
+}]
+
+outline.destroy()
+outline.getChapters()
+// 调用 destroy() 方法后，所有数据都清空了
+// -> []</code></pre></div></section><section class="section"><header class="section__header"><h3 class="section__h3" id="method-reload">reload(options)</h3></header><div class="section__content"><h4 class="section__h4">Description</h4><p>reload (options) 方法是（根据新的配置信息）重启程序方法：</p><ol><li>先移除所有绘制的 DOM 元素和绑定的事件处理器；</li><li>重新初始化程序；</li></ol><h4 class="section__h4">Parameters</h4><h5 class="section__h4">options</h5><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">Object</dd></dl><p>（可选）初始化的配置参数。</p><h4 class="section__h4">Returns</h4><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">Outline</dd></dl><p>Outline 对象，便于链式方法调用。</p><pre class="section__pre"><code class="section__code">const outline = new Outline({
+  showCode: true
+})
+
+// 重启后，将不再显示段落层次编号
+outline.reload({
+  showCode: false
+})</code></pre></div></section></section><h2>License</h2><p>JavaScript Code Licensed under MIT License.</p><p>API Documentation Licensed under CC BY 3.0</p></main></article><footer class="footer"><footer class="main__footer" id="footer"><p>Copyright &copy; 2023 <a href="https://github.com/yaohaixiao">Robert Yao</a>, all right reserved.</p><p>Code licensed under&nbsp;<a href="http://opensource.org/licenses/mit-license.html">MIT License</a></p><p>Documentation licensed under<a href="http://creativecommons.org/licenses/by/3.0/">CC BY 3.0</a></p><p><a href="https://github.com/yaohaixiao/outline.js">View on GitHub</a> ·
+<a href="https://github.com/yaohaixiao/outline.js/issues">Issues</a></p></footer></footer></div><script src="js/outline.min.js"></script><script>const defaults = Outline.DEFAULTS
+let outline
+
+defaults.position = 'fixed'
+defaults.parentElement = '#aside'
+defaults.homepage = './index.html'
+outline = new Outline(Outline.DEFAULTS)</script></body></html>

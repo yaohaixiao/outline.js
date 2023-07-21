@@ -112,17 +112,12 @@ const buildScript = () => {
 
 const buildApi = () => {
     return gulp
-        .src('api/pug/index.pug')
-        .pipe(
-            pug({
-                verbose: true
-            })
-        )
-        .pipe(gulp.dest('docs'))
-}
-
-const buildExample = () => {
-    return gulp.src('api/pug/example.pug')
+        .src([
+          'api/pug/index.pug',
+          'api/pug/relative.pug',
+          'api/pug/sticky.pug',
+          'api/pug/fixed.pug'
+        ])
         .pipe(
             pug({
                 verbose: true
@@ -161,7 +156,6 @@ const minifyStyle = () => {
 const buildDocs = gulp.series(
     cleanDocs,
     buildApi,
-    buildExample,
     buildStyle,
     minifyStyle,
     buildScript

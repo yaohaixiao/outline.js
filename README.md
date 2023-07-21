@@ -150,7 +150,9 @@ Outline.reload({
 
 ## Example
 
-Example 地址：[https://yaohaixiao.github.io/outline.js/example.html](https://yaohaixiao.github.io/outline.js/example.html)
+* 独立侧滑菜单：[https://yaohaixiao.github.io/outline.js/relative.html](https://yaohaixiao.github.io/outline.js/relative.html)
+* sticky 定位：[https://yaohaixiao.github.io/outline.js/sticky.html](https://yaohaixiao.github.io/outline.js/sticky.html)
+* fixed 定位：[https://yaohaixiao.github.io/outline.js/fixed.html](https://yaohaixiao.github.io/outline.js/fixed.html)
 
 
 
