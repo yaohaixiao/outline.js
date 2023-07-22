@@ -1,6 +1,10 @@
 @import './colors';
 @import './ellipsis';
 
+:root {
+  --outline-sticky-height: 100%;
+}
+
 .outline-chapters {
   position: relative;
   z-index: 1;
@@ -97,16 +101,40 @@
     }
   }
 
+  &_sticky,
+  &_fixed {
+    display: flex;
+    flex-wrap: nowrap;
+    flex-direction: column;
+    overflow: hidden;
+
+    .outline-chapters {
+      &__title,
+      &__main {
+        box-sizing: border-box;
+      }
+
+      &__title {
+        flex-shrink: 0;
+      }
+
+      &__main {
+        flex: 0;
+        overflow: auto;
+      }
+    }
+  }
+
   &_sticky {
     position: sticky;
     top: 0;
+    max-height: var(--outline-sticky-height);
   }
 
   &_fixed {
     position: fixed;
     top: 0;
     max-height: 100%;
-    overflow: auto;
   }
 
   &_hidden {

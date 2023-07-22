@@ -36,7 +36,8 @@ class Chapters extends Base {
     this.active = 0
     this.offsetTop = 0
     this.$active = null
-    this.timer = null
+    this.scrollTimer = null
+    this.resizeTimer = null
     this.playing = false
 
     if (options) {
@@ -177,6 +178,7 @@ class Chapters extends Base {
     this.$el = $el
 
     if (this.isSticky()) {
+      this.calculateStickyHeight()
       addClass($el, 'outline-chapters_sticky')
     }
 
@@ -236,6 +238,16 @@ class Chapters extends Base {
       removeClass($el, FIXED)
     }
 
+    return this
+  }
+
+  calculateStickyHeight() {
+    const documentElement = document.documentElement
+    const height = Math.max(
+      documentElement.clientHeight || 0,
+      window.innerHeight || 0
+    )
+    documentElement.style.setProperty('--outline-sticky-height', `${height}px`)
     return this
   }
 
@@ -316,9 +328,14 @@ class Chapters extends Base {
     this.$active = null
     this.closed = false
 
-    if (this.timer) {
-      clearTimeout(this.timer)
-      this.timer = null
+    if (this.scrollTimer) {
+      clearTimeout(this.scrollTimer)
+      this.scrollTimer = null
+    }
+
+    if (this.resizeTimer) {
+      clearTimeout(this.resizeTimer)
+      this.resizeTimer = null
     }
 
     if (isFunction(afterDestroy)) {
@@ -397,11 +414,11 @@ class Chapters extends Base {
   onScroll() {
     const $scrollElement = this.$scrollElement
 
-    if (this.timer) {
-      clearTimeout(this.timer)
+    if (this.scrollTimer) {
+      clearTimeout(this.scrollTimer)
     }
 
-    this.timer = later(() => {
+    this.scrollTimer = later(() => {
       const top = $scrollElement.scrollTop
       const min = 0
       const max = $scrollElement.scrollHeight - $scrollElement.clientHeight
@@ -420,6 +437,18 @@ class Chapters extends Base {
     return this
   }
 
+  onResize() {
+    if (this.resizeTimer) {
+      clearTimeout(this.resizeTimer)
+    }
+
+    this.resizeTimer = later(() => {
+      this.calculateStickyHeight()
+    })
+
+    return this
+  }
+
   addListeners() {
     const $el = this.$el
     const $scrollElement = this.$scrollElement
@@ -432,6 +461,9 @@ class Chapters extends Base {
 
     on($el, '.outline-chapters__anchor', 'click', this.onSelect, this, true)
     at($element, 'scroll', this.onScroll, this, true)
+    if (this.isSticky()) {
+      at($element, 'resize', this.onResize, this, true)
+    }
 
     return this
   }
@@ -448,6 +480,9 @@ class Chapters extends Base {
 
     off($el, 'click', this.onSelect)
     off($element, 'scroll', this.onScroll)
+    if (this.isSticky()) {
+      at($element, 'resize', this.onResize)
+    }
 
     return this
   }
