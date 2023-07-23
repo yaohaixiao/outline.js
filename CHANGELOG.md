@@ -1,3 +1,12 @@
+## [3.3.5](https://github.com/yaohaixiao/outline.js/compare/3.3.4...3.3.5) (2023-07-23)
+
+
+### Bug Fixes
+
+* 添加 zIndex() 方法，处理目录菜单被页面其他 fixed 或者 sticky 定位的 DOM 元素覆盖 ([27ca25a](https://github.com/yaohaixiao/outline.js/commit/27ca25ab21be390dea0a1eb2a614abe0e6ac7301))
+
+
+
 ## [3.3.4](https://github.com/yaohaixiao/outline.js/compare/3.3.3...3.3.4) (2023-07-22)
 
 
