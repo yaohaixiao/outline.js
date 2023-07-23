@@ -1,3 +1,4 @@
+@import './variables';
 @import './colors';
 @import './shadow';
 
@@ -345,7 +346,7 @@
 
   &_opened {
     visibility: visible;
-    z-index: 4;
+    z-index: var(--outline-zIndex);
 
     &.outline-drawer {
       position: fixed;

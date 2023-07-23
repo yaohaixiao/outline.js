@@ -9,6 +9,7 @@ import on from './utils/event/on'
 import off from './utils/event/off'
 
 import { paintSvgSprites, createSvgIcon } from './utils/icons'
+import zIndex from './zIndex'
 
 class Drawer extends Base {
   constructor(options) {
@@ -25,6 +26,7 @@ class Drawer extends Base {
     this.$main = null
     this.$footer = null
     this.$overlay = null
+    this.zIndex = 0
 
     if (options) {
       this.initialize(options)
@@ -79,7 +81,7 @@ class Drawer extends Base {
     let $overlay
 
     paintSvgSprites()
-    Drawer.zIndex += 1
+    this.zIndex = zIndex()
 
     $title = createElement(
       'h2',
@@ -229,6 +231,7 @@ class Drawer extends Base {
   destroy() {
     const afterDestroy = this.attr('afterDestroy')
     const beforeDestroy = this.attr('beforeDestroy')
+    let index = this.zIndex
 
     if (isFunction(beforeDestroy)) {
       beforeDestroy.call(this)
@@ -248,7 +251,9 @@ class Drawer extends Base {
     this.$footer = null
     this.$overlay = null
 
-    Drawer.zIndex -= 1
+    index -= 1
+    zIndex(index)
+    this.zIndex = 0
 
     if (isFunction(afterDestroy)) {
       afterDestroy.call(this)
@@ -309,7 +314,5 @@ Drawer.DEFAULTS = {
   beforeDestroy: null,
   afterDestroy: null
 }
-
-Drawer.zIndex = 2000
 
 export default Drawer

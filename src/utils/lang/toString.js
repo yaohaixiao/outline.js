@@ -1,5 +1,3 @@
-const toString = Object.prototype.toString
-
 /**
  * Object 对象原型上的 toString 方法
  * ========================================================================
@@ -7,4 +5,8 @@ const toString = Object.prototype.toString
  * @param {*} val
  * @returns {string}
  */
+const toString = (val) => {
+  return Object.prototype.toString.apply(val)
+}
+
 export default toString

@@ -11,7 +11,7 @@ const isArray = (o) => {
   if (Array.isArray) {
     return Array.isArray(o)
   } else {
-    return toString.apply(o) === '[object Array]'
+    return toString(o) === '[object Array]'
   }
 }
 

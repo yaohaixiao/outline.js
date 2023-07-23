@@ -25,6 +25,7 @@ section.section
             this.$main = null
             this.$footer = null
             this.$overlay = null
+            this.zIndex = 0
 
             // 省略其它逻辑...
           }
@@ -94,7 +95,5 @@ section.section
            beforeDestroy: null,
            afterDestroy: null
         }
-
-        Drawer.zIndex = 2000
 
         export default Drawer

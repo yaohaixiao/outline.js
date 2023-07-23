@@ -8,9 +8,7 @@ import toString from '../lang/toString'
  * @returns {boolean} 'val' 是 Function 类型返回 true，否则返回 false
  */
 const isFunction = (val) => {
-  return (
-    typeof val === 'function' || toString.apply(val) === '[object Function]'
-  )
+  return typeof val === 'function' || toString(val) === '[object Function]'
 }
 
 export default isFunction

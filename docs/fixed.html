@@ -340,6 +340,7 @@ class Drawer extends Base {
     this.$main = null
     this.$footer = null
     this.$overlay = null
+    this.zIndex = 0
 
     // 省略其它逻辑...
   }
@@ -409,8 +410,6 @@ Drawer.DEFAULTS = {
    beforeDestroy: null,
    afterDestroy: null
 }
-
-Drawer.zIndex = 2000
 
 export default Drawer</code></pre></div></section><section class="section"><header class="section__header"><h3 class="section__h3" id="property-toolbar">toolbar</h3></header><div class="section__content"><h4 class="section__h4">Description</h4><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">Object</dd></dl><p>Toolbar 模块：独立的固定定位的工具栏模块；</p><pre class="section__pre"><code class="section__code">// 仅展示 API 中对外公开的方法和属性
 class Toolbar extends Base {

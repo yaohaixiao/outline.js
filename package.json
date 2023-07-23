@@ -1,6 +1,6 @@
 {
   "name": "@yaohaixiao/outline.js",
-  "version": "3.3.4",
+  "version": "3.3.5",
   "description": "outline.js - 自动生成文章导读（Table of Contents）导航的 JavaScript 工具。",
   "main": "outline.min.js",
   "scripts": {
@@ -36,9 +36,6 @@
     "url": "https://github.com/yaohaixiao/outline.js/issues"
   },
   "homepage": "https://github.com/yaohaixiao/outline.js#readme",
-  "dependencies": {
-    "@yaohaixiao/subscribers.js": "^1.1.0"
-  },
   "devDependencies": {
     "@babel/core": "^7.21.0",
     "@babel/preset-env": "^7.14.8",
@@ -48,6 +45,7 @@
     "@rollup/plugin-node-resolve": "^15.1.0",
     "@rollup/plugin-terser": "^0.4.3",
     "@yaohaixiao/delegate.js": "^2.0.0",
+    "@yaohaixiao/subscribers.js": "^1.1.0",
     "babel-jest": "^29.5.0",
     "commitlint": "^17.4.4",
     "conventional-changelog-cli": "^2.2.2",

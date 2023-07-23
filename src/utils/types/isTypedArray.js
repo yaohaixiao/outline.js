@@ -20,7 +20,7 @@ const isTypedArray = (val) => {
     '[object BigUint64Array]'
   ]
 
-  return TYPES.indexOf(toString.call(val)) > -1
+  return TYPES.indexOf(toString(val)) > -1
 }
 
 export default isTypedArray

@@ -1,9 +1,6 @@
+@import './variables';
 @import './colors';
 @import './ellipsis';
-
-:root {
-  --outline-sticky-height: 100%;
-}
 
 .outline-chapters {
   position: relative;
@@ -106,6 +103,9 @@
     display: flex;
     flex-wrap: nowrap;
     flex-direction: column;
+    position: sticky;
+    z-index: var(--outline-zIndex);
+    top: 0;
     overflow: hidden;
 
     .outline-chapters {
@@ -126,14 +126,10 @@
   }
 
   &_sticky {
-    position: sticky;
-    top: 0;
     max-height: var(--outline-sticky-height);
   }
 
   &_fixed {
-    position: fixed;
-    top: 0;
     max-height: 100%;
   }
 

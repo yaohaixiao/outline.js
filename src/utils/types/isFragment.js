@@ -3,8 +3,7 @@ import isObject from './isObject'
 
 const isFragment = (fragment) => {
   return !!(
-    isObject(fragment) &&
-    toString.call(fragment) === '[object DocumentFragment]'
+    isObject(fragment) && toString(fragment) === '[object DocumentFragment]'
   )
 }
 

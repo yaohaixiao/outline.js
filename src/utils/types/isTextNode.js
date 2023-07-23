@@ -4,8 +4,7 @@ import isObject from './isObject'
 const isTextNode = (el) => {
   return !!(
     isObject(el) &&
-    (toString.apply(el) === '[object Text]' ||
-      (el.tagName && el.nodeType === 3))
+    (toString(el) === '[object Text]' || (el.tagName && el.nodeType === 3))
   )
 }
 

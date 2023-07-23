@@ -10,7 +10,7 @@ import isFunction from '../types/isFunction'
  */
 const isObject = (o) => {
   return (
-    (toString.apply(o) === '[object Object]' ||
+    (toString(o) === '[object Object]' ||
       typeof o === 'object' ||
       isFunction(o)) &&
     o !== null
