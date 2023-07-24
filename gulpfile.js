@@ -60,7 +60,7 @@ const check = () => {
 const test = gulp.series(lint, check)
 
 /* ==================== 编译代码的 gulp 任务 ==================== */
-const buildSourceScript = () => {
+const buildLibScript = () => {
     return run('npm run build:lib').exec()
 }
 
@@ -104,7 +104,7 @@ const minifySourcesStyle = () => {
     .pipe(gulp.dest('./'))
 }
 
-const buildAllSourceStyles = gulp.series(buildSourceStyles, minifySourcesStyle)
+const buildLibStyles = gulp.series(buildSourceStyles, minifySourcesStyle)
 
 const buildScript = () => {
     return run('npm run build:api').exec()
@@ -199,7 +199,7 @@ const start = gulp.series(build, connectDocs, openDocs)
 
 /* ==================== 检测源代码变更相关的 gulp 任务 ==================== */
 const watchSource = () => {
-    return watch(['src/**/*.(js|less)'], gulp.series(lint, buildSourceScript, buildAllSourceStyles))
+    return watch(['src/**/*.(js|less)'], gulp.series(lint, buildLibScript, buildLibStyles))
 }
 
 const watchApi = () => {
@@ -217,8 +217,8 @@ const watchAll = gulp.parallel(watchSource, watchApi, watchDocs)
 // 导出公共方法
 module.exports.start = start
 module.exports.clean = cleanDocs
+module.exports.buildLibStyles = buildLibStyles
 module.exports.build = build
-module.exports.buildAllStyles = buildAllSourceStyles
 module.exports.lint = lint
 module.exports.check = check
 module.exports.test = test
