@@ -105,12 +105,11 @@ class Chapters extends Base {
     return !this.isInside()
   }
 
-  render() {
+  _paintEdge() {
+    const STICKY = 'outline-chapters_sticky'
     const FIXED = 'outline-chapters_fixed'
     const HIDDEN = 'outline-chapters_hidden'
-    const mounted = this.attr('mounted')
     const title = this.attr('title')
-    const showCode = this.attr('showCode')
     const customClass = this.attr('customClass')
     const $parentElement = this.$parentElement
     const contents = []
@@ -179,7 +178,7 @@ class Chapters extends Base {
 
     if (this.isSticky()) {
       this.calculateStickyHeight()
-      addClass($el, 'outline-chapters_sticky')
+      addClass($el, STICKY)
     }
 
     if (customClass) {
@@ -187,6 +186,25 @@ class Chapters extends Base {
     }
 
     $parentElement.appendChild($el)
+
+    return this
+  }
+
+  render() {
+    const FIXED = 'outline-chapters_fixed'
+    const HIDDEN = 'outline-chapters_hidden'
+    const showCode = this.attr('showCode')
+    const mounted = this.attr('mounted')
+    const $parentElement = this.$parentElement
+    let $list
+
+    if (!$parentElement) {
+      return this
+    }
+
+    this._paintEdge()
+    $list = this.$list
+
     _paintChapters($list, this.chapters, showCode)
     removeClass($list, FIXED)
     removeClass($list, HIDDEN)
@@ -264,12 +282,20 @@ class Chapters extends Base {
   }
 
   show() {
+    const FOLDED = 'outline-chapters_folded'
     const HIDDEN = 'outline-chapters_hidden'
     const opened = this.attr('afterOpened')
+    const $el = this.$el
+    const $parent = this.$parentElement
 
-    removeClass(this.$el, HIDDEN)
     if (this.isInside()) {
-      removeClass(this.$parentElement, HIDDEN)
+      removeClass($parent, HIDDEN)
+      later(() => {
+        removeClass($parent, FOLDED)
+        removeClass($el, HIDDEN)
+      }, 30)
+    } else {
+      removeClass($el, HIDDEN)
     }
     this.closed = false
 
@@ -281,12 +307,20 @@ class Chapters extends Base {
   }
 
   hide() {
+    const FOLDED = 'outline-chapters_folded'
     const HIDDEN = 'outline-chapters_hidden'
     const closed = this.attr('afterClosed')
+    const $el = this.$el
+    const $parent = this.$parentElement
 
-    addClass(this.$el, HIDDEN)
     if (this.isInside()) {
-      addClass(this.$parentElement, HIDDEN)
+      addClass($parent, FOLDED)
+      later(() => {
+        addClass($parent, HIDDEN)
+        addClass($el, HIDDEN)
+      })
+    } else {
+      addClass($el, HIDDEN)
     }
     this.closed = true
 
