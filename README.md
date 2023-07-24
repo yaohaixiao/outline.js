@@ -37,7 +37,7 @@ AnchorJS 是 outline.js 的创作灵感来源。既然 AnchorJS 可创建标题�
 
 ## Examples
 
-![screen shot]([https://yaohaixiao.github.io/outline.js/img/screen-shot.png)
+![screen shot](https://yaohaixiao.github.io/outline.js/img/screen-shot.png)
 
 * 独立侧滑菜单：[https://yaohaixiao.github.io/outline.js/relative.html](https://yaohaixiao.github.io/outline.js/relative.html)
 * sticky 定位：[https://yaohaixiao.github.io/outline.js/sticky.html](https://yaohaixiao.github.io/outline.js/sticky.html)
