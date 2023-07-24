@@ -134,6 +134,7 @@ const outline = new Outline({
     // 这些 sticky 元素脱离了正常的流布局后，原来 h1~h6 标题标签的 offsetTop 计算会出现偏差。sticky 元素会遮挡标题，因此针对页面中有其它
     // sticky 元素会遮挡标题，因此针对 sticky 布局时，需要设置 stickyHeight 高度。outline.js 会根据 stickyHeight 和计算出的标题的
     // offsetTop 值重新计算滚动定位；
+    // 说明：outline.js 主要用于文章详情页面，stickyHeight 仅针对 top: 0，且 sticky 定位元素在文章内容区域上方的位置；
     stickyHeight: 0,
     // 是否显示标题编号
     showCode: true,
