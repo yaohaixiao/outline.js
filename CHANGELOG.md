@@ -1,3 +1,12 @@
+# [3.4.0](https://github.com/yaohaixiao/outline.js/compare/3.3.6...3.4.0) (2023-07-24)
+
+
+### Features
+
+* 添加 stickyHeight 配置参数，用以优化页面有其它（模拟） sticky 定位的 DOM 元素的滚动定位计算 ([9af8044](https://github.com/yaohaixiao/outline.js/commit/9af8044a3149c03dc716ca8daa290d4d4a7d8598))
+
+
+
 ## [3.3.6](https://github.com/yaohaixiao/outline.js/compare/3.3.5...3.3.6) (2023-07-24)
 
 
