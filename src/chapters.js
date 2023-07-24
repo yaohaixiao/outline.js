@@ -193,6 +193,10 @@ class Chapters extends Base {
 
     this.offsetTop = offsetTop(document.querySelector('#outline-chapters'))
 
+    if (this.isFixed()) {
+      this.sticky()
+    }
+
     if (isFunction(mounted)) {
       mounted.call(this)
     }

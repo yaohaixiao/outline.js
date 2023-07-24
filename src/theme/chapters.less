@@ -103,7 +103,6 @@
     display: flex;
     flex-wrap: nowrap;
     flex-direction: column;
-    position: sticky;
     z-index: var(--outline-zIndex);
     top: 0;
     overflow: hidden;
@@ -119,17 +118,19 @@
       }
 
       &__main {
-        flex: 0;
+        flex: 1;
         overflow: auto;
       }
     }
   }
 
   &_sticky {
+    position: sticky;
     max-height: var(--outline-sticky-height);
   }
 
   &_fixed {
+    position: fixed;
     max-height: 100%;
   }
 

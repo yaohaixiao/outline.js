@@ -2,7 +2,6 @@ import groupBy from './utils/lang/groupBy'
 
 const _getChaptersWithCode = (chapters) => {
   const groups = groupBy(chapters, 'pid')
-  const clone = [...chapters]
 
   groups.forEach((group) => {
     group.forEach((chapter, i) => {
@@ -15,7 +14,7 @@ const _getChaptersWithCode = (chapters) => {
 
   groups.forEach((group) => {
     group.forEach((paragraph) => {
-      clone.forEach((chapter) => {
+      chapters.forEach((chapter) => {
         if (chapter.pid === paragraph.id) {
           chapter.code = paragraph.code + '.' + chapter.index
         }
@@ -23,7 +22,7 @@ const _getChaptersWithCode = (chapters) => {
     })
   })
 
-  return clone
+  return chapters
 }
 
 export default _getChaptersWithCode
