@@ -1,0 +1,22 @@
+section.section
+  header.section__header
+    h3#option-stickyHeight.section__h3 stickyHeight
+  div.section__content
+    h4.section__h4 Description
+    dl.section__dl
+      dt.section__dt Type：
+      dd.section__dd Number
+    dl.section__dl
+      dt.section__dt Default：
+      dd.section__dd 0
+    p 可选，用来指定页面中其它 sticky 或者模拟 skicky 的 fiexed 定位的 DOM 元素的高度。
+    p 这些 sticky 元素脱离了正常的流布局后，原来 h1~h6 标题标签的 offsetTop 计算会出现偏差。sticky 元素会遮挡标题，因此针对页面中有其它
+      | sticky 节点时，需要设置 stickyHeight 高度。以便 outline.js 根据 stickyHeight 和计算出的标题的 offsetTop 值重新计算滚动定位。
+    pre.section__pre
+      code.section__code.
+        const defaults = Outline.DEFAULTS
+
+        // 设置 stickyHeight（outline.js 的示例页面的主标题元素的高度）
+        defaults.stickyHeight = 86
+        // 默认生成独立的侧滑弹窗导航菜单
+        new Outline(defaults)

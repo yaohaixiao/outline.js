@@ -88,7 +88,12 @@ new Outline(Outline.DEFAULTS)
 // 调整为在窗口右侧显示侧滑导航菜单
 new Outline({
   placement: 'ltr'
-})</code></pre></div></section><section class="section"><header class="section__header"><h3 class="section__h3" id="option-showCode">showCode</h3></header><div class="section__content"><h4 class="section__h4">Description</h4><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">Boolean</dd></dl><dl class="section__dl"><dt class="section__dt">Default：</dt><dd class="section__dd">true</dd></dl><p>可选，是否显示段落章节编号：</p><ul><li>true - 显示编号（默认值）；</li><li>false - 不显示编号；</li></ul></div></section><section class="section"><header class="section__header"><h3 class="section__h3" id="option-anchorURL">anchorURL</h3></header><div class="section__content"><h4 class="section__h4">Description</h4><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">String</dd></dl><dl class="section__dl"><dt class="section__dt">Default：</dt><dd class="section__dd">''</dd></dl><p>可选，用来指定文章标题锚点链接图标的链接地址：</p><pre class="section__pre"><code class="section__code">// Default URL - 默认链接，点击图标，页面会滚动到当前标题位置
+})</code></pre></div></section><section class="section"><header class="section__header"><h3 class="section__h3" id="option-stickyHeight">stickyHeight</h3></header><div class="section__content"><h4 class="section__h4">Description</h4><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">Number</dd></dl><dl class="section__dl"><dt class="section__dt">Default：</dt><dd class="section__dd">0</dd></dl><p>可选，用来指定页面中其它 sticky 或者模拟 skicky 的 fiexed 定位的 DOM 元素的高度。</p><p>这些 sticky 元素脱离了正常的流布局后，原来 h1~h6 标题标签的 offsetTop 计算会出现偏差。sticky 元素会遮挡标题，因此针对页面中有其它sticky 节点时，需要设置 stickyHeight 高度。以便 outline.js 根据 stickyHeight 和计算出的标题的 offsetTop 值重新计算滚动定位。</p><pre class="section__pre"><code class="section__code">const defaults = Outline.DEFAULTS
+
+// 设置 stickyHeight（outline.js 的示例页面的主标题元素的高度）
+defaults.stickyHeight = 86
+// 默认生成独立的侧滑弹窗导航菜单
+new Outline(defaults)</code></pre></div></section><section class="section"><header class="section__header"><h3 class="section__h3" id="option-showCode">showCode</h3></header><div class="section__content"><h4 class="section__h4">Description</h4><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">Boolean</dd></dl><dl class="section__dl"><dt class="section__dt">Default：</dt><dd class="section__dd">true</dd></dl><p>可选，是否显示段落章节编号：</p><ul><li>true - 显示编号（默认值）；</li><li>false - 不显示编号；</li></ul></div></section><section class="section"><header class="section__header"><h3 class="section__h3" id="option-anchorURL">anchorURL</h3></header><div class="section__content"><h4 class="section__h4">Description</h4><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">String</dd></dl><dl class="section__dl"><dt class="section__dt">Default：</dt><dd class="section__dd">''</dd></dl><p>可选，用来指定文章标题锚点链接图标的链接地址：</p><pre class="section__pre"><code class="section__code">// Default URL - 默认链接，点击图标，页面会滚动到当前标题位置
 new Outline()
 
 // Customize URL - 直接打开链接了
@@ -114,6 +119,7 @@ new Outline({
   position: 'relative',
   parentElement: '#aside',
   placement: 'rtl',
+  stickyHeight: 0,
   showCode: true,
   anchorURL: '',
   homepage: '',
@@ -715,6 +721,7 @@ outline.reload({
 let outline
 
 defaults.position = 'sticky'
+defaults.stickyHeight = 86
 defaults.parentElement = '#aside'
 defaults.homepage = './index.html'
 outline = new Outline(Outline.DEFAULTS)</script></body></html>

@@ -375,11 +375,12 @@ class Chapters extends Base {
   }
 
   onSelect(evt) {
+    const stickyHeight = this.attr('stickyHeight')
     const $anchor = evt.delegateTarget
     const id = $anchor.getAttribute('data-id')
     const headingId = $anchor.href.split('#')[1]
     const $heading = document.querySelector(`#${headingId}`)
-    const top = offsetTop($heading)
+    const top = offsetTop($heading) - (stickyHeight + 10)
     const min = 0
     const max = this.$scrollElement.scrollHeight
     const afterScroll = this.attr('afterScroll')
@@ -500,6 +501,7 @@ Chapters.DEFAULTS = {
   closed: false,
   showCode: true,
   position: 'relative',
+  stickyHeight: 0,
   chapters: [],
   created: null,
   mounted: null,

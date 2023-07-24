@@ -65,6 +65,7 @@ class Outline extends Base {
 
   _renderChapters() {
     const title = this.attr('title')
+    const stickyHeight = this.attr('stickyHeight')
     const scrollElement = this.attr('scrollElement')
     const customClass = this.attr('customClass')
     const showCode = this.attr('showCode')
@@ -83,6 +84,7 @@ class Outline extends Base {
       showCode,
       position,
       title,
+      stickyHeight: stickyHeight,
       chapters: this.anchors.getChapters()
     }
 
@@ -332,6 +334,7 @@ Outline.DEFAULTS = {
   placement: 'rtl',
   showCode: true,
   anchorURL: '',
+  stickyHeight: 0,
   customClass: ''
 }
 
