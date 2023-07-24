@@ -132,11 +132,13 @@ const outline = new Outline({
     // ttb - 菜单位置在窗口上方，滑动动画为：top to bottom
     // btt - 菜单位置在窗口下方，滑动动画为：bottom to top
     placement: '',
-    // 页面中其它 sticky 或者模拟 skicky 的 fiexed 定位的 DOM 元素的高度。例如 wordpress 系统中，有就会有 sticky 定位的导航菜单。
-    // 这些 sticky 元素脱离了正常的流布局后，原来 h1~h6 标题标签的 offsetTop 计算会出现偏差。sticky 元素会遮挡标题，因此针对页面中有其它
-    // sticky 元素会遮挡标题，因此针对 sticky 布局时，需要设置 stickyHeight 高度。outline.js 会根据 stickyHeight 和计算出的标题的
-    // offsetTop 值重新计算滚动定位；
-    // 说明：outline.js 主要用于文章详情页面，stickyHeight 仅针对 top: 0，且 sticky 定位元素在文章内容区域上方的位置；
+    // 页面中其它 sticky 或者模拟 skicky 的 fiexed 定位的 DOM 元素的高度。例如 wordpress 系统中，
+    // 就会有 sticky 定位的导航菜单。这些 sticky 元素脱离了正常的流布局后，原来 h1~h6 标题标签的 
+    // offsetTop 计算会出现偏差。sticky 元素会遮挡标题，因此针对页面中有其它 sticky 元素会遮挡标题，
+    // 因此针对 sticky 布局时，需要设置 stickyHeight 高度。outline.js 会根据 stickyHeight 和计
+    // 算出的标题的 offsetTop 值重新计算滚动定位；
+    // 说明：outline.js 主要用于文章详情页面，
+    // 因此 stickyHeight 仅针对 top: 0，且 sticky 定位元素在文章内容区域上方的位置；
     stickyHeight: 0,
     // 是否显示标题编号
     showCode: true,
