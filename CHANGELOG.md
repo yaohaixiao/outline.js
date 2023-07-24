@@ -1,3 +1,12 @@
+# [3.5.0](https://github.com/yaohaixiao/outline.js/compare/3.4.0...3.5.0) (2023-07-24)
+
+
+### Features
+
+* UI 细节优化，针对 parentElement 在 CSS 中设置了具体 width 值，outline.toggle() 添加动画过度；并更新 examples 相关页面 ([04079bb](https://github.com/yaohaixiao/outline.js/commit/04079bba7db1b71ff8eb5698f6ce7c139969b9b9))
+
+
+
 # [3.4.0](https://github.com/yaohaixiao/outline.js/compare/3.3.6...3.4.0) (2023-07-24)
 
 
