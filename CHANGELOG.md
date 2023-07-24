@@ -1,3 +1,12 @@
+## [3.3.6](https://github.com/yaohaixiao/outline.js/compare/3.3.5...3.3.6) (2023-07-24)
+
+
+### Bug Fixes
+
+* 修复 fixed 定位，初始化界面就有滚动时的定位问题 ([19c5b8b](https://github.com/yaohaixiao/outline.js/commit/19c5b8b8b217566e74f52a4784f160e10c8ab81c))
+
+
+
 ## [3.3.5](https://github.com/yaohaixiao/outline.js/compare/3.3.4...3.3.5) (2023-07-23)
 
 
