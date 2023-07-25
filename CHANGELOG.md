@@ -1,3 +1,12 @@
+## [3.5.2](https://github.com/yaohaixiao/outline.js/compare/3.5.1...3.5.2) (2023-07-25)
+
+
+### Bug Fixes
+
+* 修复侧边栏 toggle() 动画过度被 fixed 或者 sticky 定位的导航菜单遮挡的问题；添加新的示例页面； ([d995130](https://github.com/yaohaixiao/outline.js/commit/d995130a9cae97531aa9bc09b6516c1d421afa08))
+
+
+
 ## [3.5.1](https://github.com/yaohaixiao/outline.js/compare/3.5.0...3.5.1) (2023-07-25)
 
 
