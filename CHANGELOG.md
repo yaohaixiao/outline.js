@@ -1,3 +1,12 @@
+## [3.5.1](https://github.com/yaohaixiao/outline.js/compare/3.5.0...3.5.1) (2023-07-25)
+
+
+### Bug Fixes
+
+* 修复动态生成 anchor 图标链接点击滚动定位，对于页面有 sticky 定位元素，定位不准的问题，给 chapters 模块也添加 stickyHeight 参数；修复对于 fixed 定位，导航菜单模拟 sticky 定位后，导航菜单宽度变化挡住文章内容的问题； ([094f45d](https://github.com/yaohaixiao/outline.js/commit/094f45d00804a8cd965c02b0dadb7cde0bbe9360))
+
+
+
 # [3.5.0](https://github.com/yaohaixiao/outline.js/compare/3.4.0...3.5.0) (2023-07-24)
 
 
