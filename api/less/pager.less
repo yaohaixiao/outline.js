@@ -5,6 +5,34 @@
   padding: 2em;
   background-color: @white;
   box-sizing: border-box;
+
+  &.flex {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    margin: 0;
+    width: 100%;
+    max-width: 100%;
+    height: 100%;
+    padding: 0;
+    overflow: hidden;
+
+    .article {
+      flex-direction: column;
+      width: 100%;
+      box-sizing: border-box;
+
+      &__main {
+        height: 100%;
+        box-sizing: border-box;
+        overflow: auto;
+      }
+
+      &__aside {
+        border-right: 1px solid @primary_border_color;
+      }
+    }
+  }
 }
 
 .header {

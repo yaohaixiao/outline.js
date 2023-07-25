@@ -35,18 +35,30 @@ AnchorJS 是 outline.js 的创作灵感来源。既然 AnchorJS 可创建标题�
 - 界面简洁大方；
 - 配置灵活，丰富，让你随心所欲掌控 outline.js；
 
+
+
 ## Examples
 
-![screen shot](https://yaohaixiao.github.io/outline.js/img/screen-shot.png)
+outline.js 的滚动元素可以是 Window 窗口，也可以是某个 DOM 元素。
+
+### 窗口滚动
+
+![独立侧滑菜单](https://yaohaixiao.github.io/outline.js/img/screen-shot.png)
 
 * 独立侧滑菜单：[https://yaohaixiao.github.io/outline.js/relative.html](https://yaohaixiao.github.io/outline.js/relative.html)
 * WordPress：[http://www.yaohaixiao.com/blog/publish-subscribe-pattern-in-javascript/](http://www.yaohaixiao.com/blog/publish-subscribe-pattern-in-javascript/)
 
-![img.png](https://yaohaixiao.github.io/outline.js/img/sticky.png)
+![sticky 定位](https://yaohaixiao.github.io/outline.js/img/sticky.png)
 * sticky 定位：[https://yaohaixiao.github.io/outline.js/sticky.html](https://yaohaixiao.github.io/outline.js/sticky.html)
 
-![img.png](https://yaohaixiao.github.io/outline.js/img/fixed.png)
+![fixed 定位](https://yaohaixiao.github.io/outline.js/img/fixed.png)
 * fixed 定位：[https://yaohaixiao.github.io/outline.js/fixed.html](https://yaohaixiao.github.io/outline.js/fixed.html)
+
+### DOM 元素滚动
+
+![flex 布局](https://yaohaixiao.github.io/outline.js/img/flex.png)
+* flex 布局：[https://yaohaixiao.github.io/outline.js/flex.html](https://yaohaixiao.github.io/outline.js/flex.html)
+
 
 
 ## 浏览器支持

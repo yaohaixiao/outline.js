@@ -1,0 +1,41 @@
+doctype html
+html(lang='en')
+  head
+    include ./meta
+    title outline.js - 自动生成文章导读（Table of Contents）导航的 JavaScript 工具
+    link(href="css/example.min.css" rel="stylesheet")
+    style.
+      html,
+      body {
+          margin: 0;
+          padding: 0;
+          height: 100%;
+          overflow: hidden;
+      }
+  body
+    div.paper.flex
+      aside#aside.article__aside
+      main#main.article__main
+        header.header
+          h1.title Outline.js
+        article#article.article
+            include ./example
+            include ./options/section
+            include ./properties/section
+            include ./methods/section
+            h2 License
+            p JavaScript Code Licensed under MIT License.
+            p API Documentation Licensed under CC BY 3.0
+        footer.footer
+          include ./footer
+    script(src="js/outline.min.js")
+    script.
+        const defaults = Outline.DEFAULTS
+        let outline
+
+        defaults.position = 'sticky'
+        defaults.stickyHeight = 86
+        defaults.parentElement = '#aside'
+        defaults.scrollElement = '#main'
+        defaults.homepage = './index.html'
+        outline = new Outline(Outline.DEFAULTS)

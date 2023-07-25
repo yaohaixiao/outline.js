@@ -296,9 +296,10 @@ class Chapters extends Base {
 
     if (this.isInside()) {
       removeClass($parent, HIDDEN)
+      removeClass($el, HIDDEN)
       later(() => {
         removeClass($parent, FOLDED)
-        removeClass($el, HIDDEN)
+        removeClass($el, FOLDED)
       }, 30)
     } else {
       removeClass($el, HIDDEN)
@@ -321,6 +322,7 @@ class Chapters extends Base {
 
     if (this.isInside()) {
       addClass($parent, FOLDED)
+      addClass($el, FOLDED)
       later(() => {
         addClass($parent, HIDDEN)
         addClass($el, HIDDEN)

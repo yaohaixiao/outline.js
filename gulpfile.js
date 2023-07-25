@@ -116,7 +116,8 @@ const buildApi = () => {
           'api/pug/index.pug',
           'api/pug/relative.pug',
           'api/pug/sticky.pug',
-          'api/pug/fixed.pug'
+          'api/pug/fixed.pug',
+          'api/pug/flex.pug'
         ])
         .pipe(
             pug({
