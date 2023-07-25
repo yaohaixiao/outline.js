@@ -4,7 +4,6 @@ import Drawer from './drawer'
 import Chapters from './chapters'
 import Toolbar from './toolbar'
 
-import isFunction from './utils/types/isFunction'
 import later from './utils/lang/later'
 import scrollTo from './utils/dom/scrollTo'
 import _getScrollElement from './utils/dom/_getScrollElement'
@@ -170,7 +169,7 @@ class Outline extends Base {
     return this
   }
 
-  toTop(afterScroll) {
+  toTop() {
     const toolbar = this.toolbar
     const chapters = this.chapters
     const count = this.count()
@@ -178,14 +177,10 @@ class Outline extends Base {
       toolbar.hide('up')
       toolbar.show('down')
 
-      if (count > 1) {
+      if (count > 0) {
         chapters.highlight(0)
       }
       chapters.playing = false
-
-      if (isFunction(afterScroll)) {
-        afterScroll.call(this)
-      }
     }
 
     chapters.playing = true
@@ -194,7 +189,7 @@ class Outline extends Base {
     return this
   }
 
-  toBottom(afterScroll) {
+  toBottom() {
     const $scrollElement = _getScrollElement(this.attr('scrollElement'))
     const toolbar = this.toolbar
     const chapters = this.chapters
@@ -206,17 +201,13 @@ class Outline extends Base {
       toolbar.hide('down')
       toolbar.show('up')
 
-      chapters.playing = false
-
-      if (isFunction(afterScroll)) {
-        afterScroll.call(this)
+      if (count > 1) {
+        chapters.highlight(count - 1)
       }
+      chapters.playing = false
     }
 
     chapters.playing = true
-    if (count > 0) {
-      chapters.highlight(count - 1)
-    }
     this.scrollTo(top, afterDown)
 
     return this
