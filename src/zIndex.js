@@ -1,3 +1,5 @@
+import setProperty from './utils/dom/setProperty'
+
 let index = 2000
 
 const zIndex = (idx) => {
@@ -7,7 +9,7 @@ const zIndex = (idx) => {
     index += 1
   }
 
-  document.documentElement.style.setProperty('--outline-zIndex', `${index}`)
+  setProperty('--outline-zIndex', `${index}`)
 
   return index
 }

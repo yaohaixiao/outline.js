@@ -155,9 +155,10 @@ class Anchors extends Base {
   onAnchorTrigger(evt) {
     const anchorURL = this.attr('anchorURL')
     const afterScroll = this.attr('afterScroll')
+    const stickyHeight = this.attr('stickyHeight')
     const $anchor = evt.delegateTarget
     const $heading = $anchor.parentNode
-    const top = offsetTop($heading)
+    const top = offsetTop($heading) - (stickyHeight + 10)
     const $scrollElement = this.$scrollElement
     const min = 0
     const max = $scrollElement.scrollHeight - $scrollElement.clientHeight
@@ -212,6 +213,7 @@ Anchors.DEFAULTS = {
   scrollElement: 'html,body',
   articleElement: '#article',
   selector: 'h1,h2,h3,h4,h5,h6',
+  stickyHeight: 0,
   anchorURL: '',
   hasAnchor: true,
   isAtStart: true,

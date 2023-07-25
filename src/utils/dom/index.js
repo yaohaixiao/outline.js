@@ -11,6 +11,7 @@ import offsetLeft from './offsetLeft'
 import removeClass from './removeClass'
 import resolveTextNode from './resolveTextNode'
 import setAttribute from './setAttribute'
+import setProperty from './setProperty'
 
 export default {
   addClass,
@@ -25,5 +26,6 @@ export default {
   offsetLeft,
   removeClass,
   resolveTextNode,
-  setAttribute
+  setAttribute,
+  setProperty
 }

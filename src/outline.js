@@ -48,13 +48,15 @@ class Outline extends Base {
   _renderAnchors() {
     const articleElement = this.attr('articleElement')
     const selector = this.attr('selector')
+    const stickyHeight = this.attr('stickyHeight')
     const scrollElement = this.attr('scrollElement')
     const showCode = this.attr('showCode')
     const anchorURL = this.attr('anchorURL')
 
     this.anchors = new Anchors({
-      articleElement: articleElement,
-      scrollElement: scrollElement,
+      articleElement,
+      stickyHeight,
+      scrollElement,
       selector,
       showCode,
       anchorURL
@@ -80,11 +82,11 @@ class Outline extends Base {
     }
 
     CHAPTERS_OPTIONS = {
-      scrollElement: scrollElement,
+      scrollElement,
       showCode,
       position,
       title,
-      stickyHeight: stickyHeight,
+      stickyHeight,
       chapters: this.anchors.getChapters()
     }
 

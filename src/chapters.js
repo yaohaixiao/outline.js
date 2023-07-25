@@ -14,6 +14,7 @@ import addClass from './utils/dom/addClass'
 import intersection from './utils/dom/intersection'
 import removeClass from './utils/dom/removeClass'
 import offsetTop from './utils/dom/offsetTop'
+import setProperty from './utils/dom/setProperty'
 import publish from './utils/observer/emit'
 
 import _getScrollElement from './utils/dom/_getScrollElement'
@@ -35,6 +36,7 @@ class Chapters extends Base {
     this.closed = false
     this.active = 0
     this.offsetTop = 0
+    this.offsetWidth = 0
     this.$active = null
     this.scrollTimer = null
     this.resizeTimer = null
@@ -196,6 +198,7 @@ class Chapters extends Base {
     const showCode = this.attr('showCode')
     const mounted = this.attr('mounted')
     const $parentElement = this.$parentElement
+    let $el
     let $list
 
     if (!$parentElement) {
@@ -203,16 +206,19 @@ class Chapters extends Base {
     }
 
     this._paintEdge()
-    $list = this.$list
 
+    $list = this.$list
     _paintChapters($list, this.chapters, showCode)
     removeClass($list, FIXED)
     removeClass($list, HIDDEN)
 
-    this.offsetTop = offsetTop(document.querySelector('#outline-chapters'))
+    $el = this.$el
+    this.offsetTop = offsetTop($el)
+    this.offsetWidth = $el.offsetWidth
 
     if (this.isFixed()) {
       this.sticky()
+      setProperty('--outline-chapters-width', `${this.offsetWidth}px`)
     }
 
     if (isFunction(mounted)) {
@@ -269,7 +275,7 @@ class Chapters extends Base {
       documentElement.clientHeight || 0,
       window.innerHeight || 0
     )
-    documentElement.style.setProperty('--outline-sticky-height', `${height}px`)
+    setProperty('--outline-sticky-height', `${height}px`)
     return this
   }
 
