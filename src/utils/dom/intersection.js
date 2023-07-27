@@ -1,4 +1,5 @@
 import isFunction from '../types/isFunction'
+import isElement from '../types/isElement'
 
 /**
  * 通用的 IntersectionObserver 观察者处理器
@@ -12,7 +13,7 @@ import isFunction from '../types/isFunction'
  * @param {String} [props.attr]
  * @param {String} [props.rootMargin]
  */
-const intersection = (fn, props) => {
+const intersection = (fn, props = {}) => {
   const root = props.root || null
   const selector = props.selector || '.outline-heading'
   const context = props.context || null
@@ -29,12 +30,13 @@ const intersection = (fn, props) => {
       }
     })
   }, options)
+  const $root = isElement(root) ? root : document
 
   if (root) {
     options.root = root
   }
 
-  document.querySelectorAll(selector).forEach((section) => {
+  $root.querySelectorAll(selector).forEach((section) => {
     Observer.observe(section)
   })
 }

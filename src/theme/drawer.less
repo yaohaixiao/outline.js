@@ -407,6 +407,16 @@
     }
   }
 
+  &_auto {
+    &.outline-drawer {
+      &_rtl,
+      &_ltr {
+        height: auto;
+        max-height: calc(100% - 4em);
+      }
+    }
+  }
+
   &_full {
     padding: 0;
   }

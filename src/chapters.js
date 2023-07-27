@@ -216,6 +216,8 @@ class Chapters extends Base {
     this.offsetTop = offsetTop($el)
     this.offsetWidth = $el.offsetWidth
 
+    console.log('width', this.offsetWidth)
+
     if (this.isFixed()) {
       this.sticky()
       setProperty('--outline-chapters-width', `${this.offsetWidth}px`)

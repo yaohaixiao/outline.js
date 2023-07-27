@@ -8,12 +8,13 @@
 [![MIT License](https://img.shields.io/github/license/yaohaixiao/outline.js.svg)](https://github.com/yaohaixiao/outline.js/blob/master/LICENSE)
 
 
-outline.js - 自动生成文章导读（Table of Contents）导航的 JavaScript 工具。
+outline.js - 自动生成文章导读（Table of Contents）导航的 JavaScript 工具。会自动分析文章中的标题（ h1~h6 ）标签，并生成文章段落层次结构的导读导航菜单。
 
 
 
 ## 创作灵感
-AnchorJS 是 outline.js 的创作灵感来源。既然 AnchorJS 可创建标题的链接，为什么不直接给文章生成一个文章导读（Table of Contents）导航呢？ 于是就有了 outline.js。
+
+AnchorJS 是 outline.js 的创作灵感来源。既然 AnchorJS 可创建标题的链接，为什么不直接给文章生成一个文章导读（Table of Contents）导航呢？ 于是便有了 outline.js。
 
 
 
@@ -22,14 +23,14 @@ AnchorJS 是 outline.js 的创作灵感来源。既然 AnchorJS 可创建标题�
 - 原生 JavaScript 编写，无需任何依赖；
 - 支持 UMD 规范；
 - 支持 E6 模块，提供功能独立的 ES6 模块；
-  - Anchors 模块：类似 AnchorJS 基础功能模块，自动分析段落层级
-  - Drawer 模块：独立的侧滑窗口模块
-  - Chapters 模块：独立的导航菜单模块；
-  - Toolbar 模块：独立的固定定位的工具栏模块；
+  * **Anchors 模块：**类似 AnchorJS 基础功能模块，自动分析段落层级
+  * **Drawer 模块：**独立的侧滑窗口模块
+  * **Chapters 模块：**独立的导航菜单模块；
+  * **Toolbar 模块：**独立的固定定位的工具栏模块；
 - 拥有 AnchorJS 基础功能；
 - 支持中文和英文标题文字生成ID；
 - 支持生成独立的侧边栏导航菜单；
-- 支持直接在文章中生成文章导读导航(fixed 或者 sticky 布局)；
+- 支持直接在文章中指定的 DOM 元素内生成文章导读导航(fixed 或者 sticky 布局)；
 - 自动分析标题关系，生成段落层级索引值；
 - 可以作为 jQuery 插件使用；
 - 界面简洁大方；
@@ -39,7 +40,7 @@ AnchorJS 是 outline.js 的创作灵感来源。既然 AnchorJS 可创建标题�
 
 ## Examples
 
-outline.js 的滚动元素可以是 Window 窗口，也可以是某个 DOM 元素。
+outline.js 的支持的滚动元素可以是 Window 窗口，也可以是某个 DOM 元素。
 
 ### 窗口滚动
 

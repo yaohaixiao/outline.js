@@ -69,6 +69,7 @@ class Drawer extends Base {
     const hasOverlay = this.attr('hasOverlay')
     const hasOffset = this.attr('hasOffset')
     const hasPadding = this.attr('hasPadding')
+    const autoHeight = this.attr('autoHeight')
     const customClass = this.attr('customClass')
     const $fragment = document.createDocumentFragment()
     let $el
@@ -145,6 +146,10 @@ class Drawer extends Base {
 
     if (hasOffset) {
       addClass($modal, 'outline-drawer_offset')
+    }
+
+    if (autoHeight) {
+      addClass($modal, 'outline-drawer_auto')
     }
 
     if (customClass) {
@@ -306,6 +311,7 @@ Drawer.DEFAULTS = {
   hasOverlay: true,
   hasOffset: false,
   hasPadding: true,
+  autoHeight: true,
   created: null,
   mounted: null,
   afterClosed: null,
