@@ -1,3 +1,12 @@
+## [3.5.4](https://github.com/yaohaixiao/outline.js/compare/3.5.3...3.5.4) (2023-07-27)
+
+
+### Bug Fixes
+
+* 修复独立侧滑菜单选中状态样式问题，不是 100% 菜单宽度；调整独立侧滑菜单默认高度，调整为height: auto; 最大高度：calc(100% - 4em) ([25dc187](https://github.com/yaohaixiao/outline.js/commit/25dc1874e462f268ed4c80b93a58d299d24c15ff))
+
+
+
 ## [3.5.3](https://github.com/yaohaixiao/outline.js/compare/3.5.2...3.5.3) (2023-07-25)
 
 
