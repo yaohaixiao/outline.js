@@ -79,19 +79,25 @@ outline.js 提供多种安装方式的支持： npm 安装、加载 CDN 资源�
 $ npm install -S @yaohaixiao/outline.js
 ```
 
-### CDN 调用
+### script 
+
+可以根据项目的实际情况，选择调用 CDN 文件或者本地文件。
+
+#### CDN
 
 ```html
 <link href="https://cdn.jsdelivr.net/gh/yaohaixiao/outline.js/outline.min.css" rel="stylesheet" />
 <script src="https://cdn.jsdelivr.net/gh/yaohaixiao/outline.js/outline.min.js"></script>
 ```
 
-### 调用本地JS文件
+#### 调用本地JS文件
 
 ```html
 <link href="path/to/outline.min.css" rel="stylesheet" /></script>
 <script src="path/to/outline.min.js"></script>
 ```
+
+
 
 
 
