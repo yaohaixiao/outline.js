@@ -46,6 +46,6 @@ jobs:
         run: echo @yaohaixiao:registry=https://npm.pkg.github.com >> .npmrc
 
       - name: Publish Package
-        run: npm emit
+        run: npm publish
         env:
           NODE_AUTH_TOKEN: ${{secrets.PUBLISH_TOKEN}}
