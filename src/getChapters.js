@@ -4,7 +4,7 @@ import stripTags from './utils/lang/stripTags'
 import _getChaptersWithCode from './_getChaptersWithCode'
 import _getChapterParentIdByDiffer from './_getChapterParentIdByDiffer'
 
-const getChapters = (headings) => {
+const getChapters = (headings, showCode = true) => {
   const chapters = []
   let previous = 1
   let level = 0
@@ -75,7 +75,7 @@ const getChapters = (headings) => {
     })
   })
 
-  return _getChaptersWithCode(chapters)
+  return showCode ? _getChaptersWithCode(chapters) : chapters
 }
 
 export default getChapters
