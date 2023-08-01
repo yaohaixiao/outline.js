@@ -1,3 +1,12 @@
+# [3.7.0](https://github.com/yaohaixiao/outline.js/compare/3.6.0...3.7.0) (2023-08-01)
+
+
+### Features
+
+* 重构了 _getChapterParentIdByDiffer() 方法，采用更加简洁的编码方式；添加了 afeterSticky 和 afterToggle 两个新的配置参数，并更新的 API 文档；在 fixed.html 示例中展示了新添加的参数的样式用例 ([0d6598f](https://github.com/yaohaixiao/outline.js/commit/0d6598fa6117101b9578b67ef50c362ae35b525a))
+
+
+
 # [3.6.0](https://github.com/yaohaixiao/outline.js/compare/3.5.4...3.6.0) (2023-07-31)
 
 
