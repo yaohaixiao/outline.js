@@ -1,32 +1,14 @@
 const _getChapterParentIdByDiffer = (chapters, differ, index) => {
+  let parent = chapters[index - 1]
   let pid
+  let i
 
-  // 最大只有 5 级的差距
-  switch (differ) {
-    case 2:
-      pid = chapters[chapters[chapters[index - 1].pid].pid].pid
-      break
-    case 3:
-      pid = chapters[chapters[chapters[chapters[index - 1].pid].pid].pid].pid
-      break
-    case 4:
-      pid =
-        chapters[
-          chapters[chapters[chapters[chapters[index - 1].pid].pid].pid].pid
-        ].pid
-      break
-    case 5:
-      pid =
-        chapters[
-          chapters[
-            chapters[chapters[chapters[chapters[index - 1].pid].pid].pid].pid
-          ].pid
-        ].pid
-      break
-    default:
-      pid = chapters[chapters[index - 1].pid].pid
-      break
+  for (i = 0; i < differ; i += 1) {
+    pid = parent.pid
+    parent = chapters[pid]
   }
+
+  pid = parent.pid
 
   return pid
 }
