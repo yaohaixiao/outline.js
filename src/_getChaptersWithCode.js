@@ -6,6 +6,7 @@ const _getChaptersWithCode = (chapters) => {
   groups.forEach((group) => {
     group.forEach((chapter, i) => {
       chapter.index = i + 1
+
       if (chapter.pid === -1) {
         chapter.code = String(chapter.index)
       }

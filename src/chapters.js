@@ -251,19 +251,27 @@ class Chapters extends Base {
   }
 
   sticky() {
+    const afterSticky = this.attr('afterSticky')
     const FIXED = 'outline-chapters_fixed'
     const $el = this.$el
     const top = this.offsetTop
     const scrollTop = this.$scrollElement.scrollTop
+    let isStickying
 
-    if (this.isClosed()) {
+    if (!this.isFixed()) {
       return this
     }
 
-    if (scrollTop >= top) {
+    isStickying = !!(scrollTop >= top)
+
+    if (isStickying) {
       addClass($el, FIXED)
     } else {
       removeClass($el, FIXED)
+    }
+
+    if (isFunction(afterSticky)) {
+      afterSticky.call(this, this.isClosed(), isStickying)
     }
 
     return this
@@ -340,10 +348,22 @@ class Chapters extends Base {
   }
 
   toggle() {
-    if (this.closed) {
+    const afterToggle = this.attr('afterToggle')
+    const top = this.offsetTop
+    const scrollTop = this.$scrollElement.scrollTop
+    let isStickying
+
+    if (this.isClosed()) {
       this.show()
     } else {
       this.hide()
+    }
+
+    if (isFunction(afterToggle)) {
+      later(() => {
+        isStickying = !!(scrollTop >= top)
+        afterToggle.call(this, this.isClosed(), isStickying)
+      })
     }
 
     return this
@@ -551,7 +571,8 @@ Chapters.DEFAULTS = {
   afterOpened: null,
   afterScroll: null,
   beforeDestroy: null,
-  afterDestroy: null
+  afterDestroy: null,
+  afterSticky: null
 }
 
 export default Chapters

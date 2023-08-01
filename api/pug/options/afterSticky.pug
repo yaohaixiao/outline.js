@@ -1,27 +1,29 @@
-doctype html
-html(lang='en')
-  head
-    include ./meta
-    title outline.js - 自动生成文章导读（Table of Contents）导航的 JavaScript 工具
-    link(href="css/example.min.css" rel="stylesheet")
-  body
-    .paper
-      header#header.header
-        h1.title Outline.js
-      article#article.article
-        aside#aside.article__aside.ltr
-        main#main.article__main
-          include ./example
-          include ./options/section
-          include ./properties/section
-          include ./methods/section
-          h2 License
-          p JavaScript Code Licensed under MIT License.
-          p API Documentation Licensed under CC BY 3.0
-      footer.footer
-        include ./footer
-    script(src="js/outline.min.js")
-    script.
+section.section
+  header.section__header
+    h3#option-afterSticky.section__h3 afterSticky
+  div.section__content
+    h4.section__h4 Description
+    dl.section__dl
+      dt.section__dt Type：
+      dd.section__dd Function
+    dl.section__dl
+      dt.section__dt Default：
+      dd.section__dd null
+    p 可选，在设置 position: fixed 时，当导航菜单样式为 fixed 获取恢复为普通定位的时候，会触发执行 afterSticky 回调函数。
+    p 说明：afterSticky() 回调函数的 this 上下文执行 outline.chapters 对象。
+    h4.section__h4 Parameters
+    h5.section__h4 closed
+    dl.section__dl
+      dt.section__dt Type：
+      dd.section__dd Boolean
+    p closed 参数值为 true 表示菜单处于隐藏状态，否则表示菜单处于显示状态
+    h5.section__h4 isSticky
+      dl.section__dl
+        dt.section__dt Type：
+        dd.section__dd Boolean
+    p isSticky 参数值为 true 表示（position:fixed）菜单处于模拟 sticky 定位（position:fixed）状态，否则表示菜单处于普通状态。
+    pre.section__pre
+      code.section__code.
         const $header = document.querySelector('#header')
         const HEADER_STICKY = 'header_sticky'
         const defaults = Outline.DEFAULTS

@@ -72,6 +72,8 @@ class Outline extends Base {
     const showCode = this.attr('showCode')
     const position = this.attr('position')
     const placement = this.attr('placement')
+    const afterSticky = this.attr('afterSticky')
+    const afterToggle = this.attr('afterToggle')
     const count = this.count()
     let parentElement = this.attr('parentElement')
     let CHAPTERS_OPTIONS
@@ -86,7 +88,9 @@ class Outline extends Base {
       position,
       title,
       stickyHeight,
-      chapters: this.anchors.getChapters()
+      chapters: this.anchors.getChapters(),
+      afterSticky,
+      afterToggle
     }
 
     if (position === 'relative') {
@@ -97,9 +101,11 @@ class Outline extends Base {
         hasOffset: true,
         hasPadding: false,
         customClass,
-        afterClosed: () => {
+        afterToggle: (closed) => {
           const toolbar = this.toolbar
-          toolbar.toggle()
+          if (closed) {
+            toolbar.toggle()
+          }
         }
       })
       parentElement = this.drawer.$main
@@ -328,7 +334,9 @@ Outline.DEFAULTS = {
   showCode: true,
   anchorURL: '',
   stickyHeight: 0,
-  customClass: ''
+  customClass: '',
+  afterSticky: null,
+  afterToggle: null
 }
 
 if (window.jQuery) {

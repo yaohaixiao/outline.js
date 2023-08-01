@@ -224,10 +224,19 @@ class Drawer extends Base {
   }
 
   toggle() {
-    if (this.isClosed()) {
+    const afterToggle = this.attr('afterToggle')
+    const closed = this.isClosed()
+
+    if (closed) {
       this.open()
     } else {
       this.close()
+    }
+
+    if (isFunction(afterToggle)) {
+      later(() => {
+        afterToggle.call(this, closed)
+      })
     }
 
     return this
@@ -318,7 +327,8 @@ Drawer.DEFAULTS = {
   afterOpened: null,
   afterScroll: null,
   beforeDestroy: null,
-  afterDestroy: null
+  afterDestroy: null,
+  afterToggle: null
 }
 
 export default Drawer
