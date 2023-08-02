@@ -1,3 +1,12 @@
+# [3.8.0](https://github.com/yaohaixiao/outline.js/compare/3.7.0...3.8.0) (2023-08-02)
+
+
+### Features
+
+* 优化_getChaptersWithCode() 方法中生成文章章节 code 的算法，调整 groupBy() 方法，直接生成章节 code，移除 _getChaptersWithCode() 中多余的逻辑。理论上性能提升1倍 ([91fbdff](https://github.com/yaohaixiao/outline.js/commit/91fbdfff5df1ae00280b3081b650e5e3b76fe605))
+
+
+
 # [3.7.0](https://github.com/yaohaixiao/outline.js/compare/3.6.0...3.7.0) (2023-08-01)
 
 
