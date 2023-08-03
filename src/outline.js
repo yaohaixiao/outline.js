@@ -101,11 +101,9 @@ class Outline extends Base {
         hasOffset: true,
         hasPadding: false,
         customClass,
-        afterToggle: (closed) => {
+        afterClosed: () => {
           const toolbar = this.toolbar
-          if (closed) {
-            toolbar.toggle()
-          }
+          toolbar.toggle()
         }
       })
       parentElement = this.drawer.$main
