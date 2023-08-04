@@ -36,7 +36,7 @@ AnchorJS 是 outline.js 的创作灵感来源。既然 AnchorJS 可创建标题�
 - 界面简洁大方；
 - 配置灵活，丰富，让你随心所欲掌控 outline.js；
 
-
+**说明：**outline.js 的 Wiki 中介绍了实现自动计算段落层次的算法
 
 ## Examples
 
