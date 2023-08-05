@@ -118,7 +118,7 @@ class Anchors extends Base {
   scrollTo(top, after) {
     const el = this.$scrollElement
 
-    scrollTo(el, top, after, 100)
+    scrollTo(el, top, after)
 
     return this
   }

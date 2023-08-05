@@ -221,7 +221,7 @@ class Outline extends Base {
 
   scrollTo(top, afterScroll) {
     const scrollElement = this.attr('scrollElement')
-    scrollTo(scrollElement, top, afterScroll, 100)
+    scrollTo(scrollElement, top, afterScroll)
     return this
   }
 
