@@ -94,7 +94,53 @@ $ npm install -S @yaohaixiao/outline.js
 <script src="path/to/outline.min.js"></script>
 ```
 
+```html
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+  <meta charset="UTF-8">
+  <title>Outline.js</title>
+  <link href="https://cdn.jsdelivr.net/gh/yaohaixiao/outline.js/outline.min.css" rel="stylesheet" />
+</head>
+<body>
+<main>
+  <!--这里 outline.js 会生成导航菜单-->
+  <aside id="aside">
+    
+  </aside>
+  <article id="article">
+    <h1>Outline.js</h1>
+    <p>xxx</p>
+    <h2>Features</h2>
+    <p>xxx</p>
+    <h2>Usage</h2>
+    <p>xxx</p>
+    <h2>Examples</h2>
+    <p>xxx</p>
+  </article>
+</main>
+<script src="https://cdn.jsdelivr.net/gh/yaohaixiao/outline.js/outline.min.js"></script>
+<script>
+  (function(){
+    const defaults = Outline.DEFAULTS
+    let outline
 
+    defaults.position = 'sticky'
+    defaults.stickyHeight = 86
+    // position 的值为 sticky 或者 fixed 时需要指定
+    // parentElement 参数，即文章导航菜单插入的 DOM 位置
+    // 可以时 dom 元素，也可以是 DOM 元素的选择器字符串
+    defaults.parentElement = '#aside'
+    defaults.articleElement = '#article'
+    defaults.homepage = './index.html'
+    // Outline.DEFAULTS 是对象，应用类型的
+    // defaults 的属性操作，就是在修改 Outline.DEFAULTS
+    outline = new Outline(Outline.DEFAULTS)
+  })()
+</script>
+</body>
+</html>
+```
 
 ## 使用说明
 
