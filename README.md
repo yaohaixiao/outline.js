@@ -321,6 +321,15 @@ Default: `rtl`
 * ttb - 菜单位置在窗口上方，滑动动画为：top to bottom；
 * btt - 菜单位置在窗口下方，滑动动画为：bottom to top；
 
+![ltr](https://yaohaixiao.github.io/outline.js/img/ltr.png)
+
+ltr，工具栏的位置在左边，点击菜单按钮，菜单按钮从左侧划出；
+
+![rtl](https://yaohaixiao.github.io/outline.js/img/rtl.png)
+
+rtl，工具栏的位置在右边，点击菜单按钮，菜单按钮从右侧划出；
+
+
 
 ### showCode
 
