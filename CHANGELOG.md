@@ -1,3 +1,12 @@
+# [3.10.0](https://github.com/yaohaixiao/outline.js/compare/3.9.0...3.10.0) (2023-08-05)
+
+
+### Features
+
+* 添加 afterScroll 配置参数，在滚动结束后触发的回调函数 ([db5a2d9](https://github.com/yaohaixiao/outline.js/commit/db5a2d9be8e9e13652de2b175c5a26d4aa2a47b6))
+
+
+
 # [3.9.0](https://github.com/yaohaixiao/outline.js/compare/3.8.0...3.9.0) (2023-08-05)
 
 
