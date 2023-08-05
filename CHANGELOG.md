@@ -7,6 +7,17 @@
 
 
 
+
+## [3.8.1](https://github.com/yaohaixiao/outline.js/compare/3.8.0...3.8.1) (2023-08-03)
+
+
+### Bug Fixes
+
+* 修复添加 afterToggle 配置后，调整组件初始化变更导致的 posiiton: relative 菜单显示逻辑错误问题 ([5f8483b](https://github.com/yaohaixiao/outline.js/commit/5f8483b6c5b5363424497b6190591869087dcfb7))
+
+
+
+
 # [3.8.0](https://github.com/yaohaixiao/outline.js/compare/3.7.0...3.8.0) (2023-08-02)
 
 

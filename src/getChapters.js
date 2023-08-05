@@ -38,7 +38,6 @@ const getChapters = (headings, showCode = true) => {
       // H1 的层级肯定是 1
       if (current === 1) {
         level = 1
-
         pid = -1
       } else {
         pid = chapters[i - 1].pid
@@ -59,7 +58,7 @@ const getChapters = (headings, showCode = true) => {
       if (level === 1) {
         pid = -1
       } else {
-        // 虽然看上去差点，不过能工作啊
+        // 通过当前标题和前一个标题之间的等级差，获得当前标题的父标题ID
         pid = _getChapterParentIdByDiffer(chapters, previous - current, i)
       }
     }
