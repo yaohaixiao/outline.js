@@ -1,3 +1,12 @@
+# [3.9.0](https://github.com/yaohaixiao/outline.js/compare/3.8.0...3.9.0) (2023-08-05)
+
+
+### Features
+
+* 调整 scrollTo() 方法的滚动动画处理方式，用 requestAnimationFrame() 替换原本的 setTimeout() ([a235c3b](https://github.com/yaohaixiao/outline.js/commit/a235c3bcffdc1bb5e993a4948857ba8ec986dd0c))
+
+
+
 # [3.8.0](https://github.com/yaohaixiao/outline.js/compare/3.7.0...3.8.0) (2023-08-02)
 
 
