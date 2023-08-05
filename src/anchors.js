@@ -164,7 +164,7 @@ class Anchors extends Base {
     const max = $scrollElement.scrollHeight - $scrollElement.clientHeight
     const after = () => {
       if (isFunction(afterScroll)) {
-        afterScroll.call(this)
+        afterScroll.call(this, 'anchor')
       }
 
       later(() => {

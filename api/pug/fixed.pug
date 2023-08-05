@@ -58,4 +58,7 @@ html(lang='en')
             $header.classList.add(HEADER_STICKY)
           }
         }
+        defaults.afterScroll = function(top) {
+          console.log('top', top)
+        }
         outline = new Outline(Outline.DEFAULTS)

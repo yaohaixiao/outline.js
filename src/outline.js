@@ -5,6 +5,7 @@ import Chapters from './chapters'
 import Toolbar from './toolbar'
 
 import later from './utils/lang/later'
+import isFunction from './utils/types/isFunction'
 import scrollTo from './utils/dom/scrollTo'
 import _getScrollElement from './utils/dom/_getScrollElement'
 import subscribe from './utils/observer/on'
@@ -51,6 +52,7 @@ class Outline extends Base {
     const scrollElement = this.attr('scrollElement')
     const showCode = this.attr('showCode')
     const anchorURL = this.attr('anchorURL')
+    const afterScroll = this.attr('afterScroll')
 
     this.anchors = new Anchors({
       articleElement,
@@ -58,7 +60,8 @@ class Outline extends Base {
       scrollElement,
       selector,
       showCode,
-      anchorURL
+      anchorURL,
+      afterScroll
     })
 
     return this
@@ -74,6 +77,7 @@ class Outline extends Base {
     const placement = this.attr('placement')
     const afterSticky = this.attr('afterSticky')
     const afterToggle = this.attr('afterToggle')
+    const afterScroll = this.attr('afterScroll')
     const count = this.count()
     let parentElement = this.attr('parentElement')
     let CHAPTERS_OPTIONS
@@ -90,7 +94,8 @@ class Outline extends Base {
       stickyHeight,
       chapters: this.anchors.getChapters(),
       afterSticky,
-      afterToggle
+      afterToggle,
+      afterScroll
     }
 
     if (position === 'relative') {
@@ -174,6 +179,7 @@ class Outline extends Base {
   }
 
   toTop() {
+    const afterScroll = this.attr('afterScroll')
     const toolbar = this.toolbar
     const chapters = this.chapters
     const count = this.count()
@@ -185,6 +191,10 @@ class Outline extends Base {
         chapters.highlight(0)
       }
       chapters.playing = false
+
+      if (isFunction(afterScroll)) {
+        afterScroll.call(toolbar, 'up')
+      }
     }
 
     chapters.playing = true
@@ -194,6 +204,7 @@ class Outline extends Base {
   }
 
   toBottom() {
+    const afterScroll = this.attr('afterScroll')
     const $scrollElement = _getScrollElement(this.attr('scrollElement'))
     const toolbar = this.toolbar
     const chapters = this.chapters
@@ -209,6 +220,10 @@ class Outline extends Base {
         chapters.highlight(count - 1)
       }
       chapters.playing = false
+
+      if (isFunction(afterScroll)) {
+        afterScroll.call(toolbar, 'bottom')
+      }
     }
 
     chapters.playing = true
@@ -334,7 +349,8 @@ Outline.DEFAULTS = {
   stickyHeight: 0,
   customClass: '',
   afterSticky: null,
-  afterToggle: null
+  afterToggle: null,
+  afterScroll: null
 }
 
 if (window.jQuery) {

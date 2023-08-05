@@ -1,0 +1,52 @@
+section.section
+  header.section__header
+    h3#option-afterScroll.section__h3 afterScroll
+  div.section__content
+    h4.section__h4 Description
+    dl.section__dl
+      dt.section__dt Type：
+      dd.section__dd Function
+    dl.section__dl
+      dt.section__dt Default：
+      dd.section__dd null
+    p 可选，当点击导航菜单、文章中的 anchor 图标（#）或者上下滚动按钮会触发滚动，afterScroll() 回调函数会在滚动结束后触发执行。
+    h4.section__h4 Parameters
+    h5.section__h4 target
+    dl.section__dl
+      dt.section__dt Type：
+      dd.section__dd String
+    p afterScroll() 回调函数有一个参数 target，返回的是当前点击的 DOM 元素的名称：
+    ul
+      li 'anchor'：表示点击的是 anchor 图标，即文章中标题前的 “#” 图标，此时的 this 上下文指向 outline.anchors；
+      li 'chapter'：表示点击的是导航菜单的链接，此时的 this 上下文指向 outline.chapters；
+      li 'up'：表示点击的是工具栏的向上按钮，此时的 this 上下文指向 outline.toolbar；
+      li 'down'：表示点击的是工具栏的向下按钮，此时的 this 上下文指向 outline.toolbar；
+    p 注意：因为配置 afterScroll 回调函数会因为 4 个不同的 DOM 触发，所以需要根据 target 返回的值和此时的 this 指向判断处理。
+    pre.section__pre
+      code.section__code.
+        const defaults = Outline.DEFAULTS
+        let outline
+
+        defaults.position = 'fixed'
+        defaults.parentElement = '#aside'
+        defaults.stickyHeight = 86
+        defaults.homepage = './index.html'
+        defaults.afterScroll = function(target) {
+          // 当然，如果你希望无论是点击什么都执行，就不需要判断了
+          // 直接些通用的滚动结束的逻辑即可
+          switch(target){
+            case 'anchor':
+              // 针对点击 # 的处理逻辑
+              break
+            case 'chapter':
+              // 针对点击导航菜单的处理逻辑
+              break
+            case 'up':
+              // 针对点击向上滚动按钮的处理逻辑
+              break
+            case 'down':
+              // 针对点击向下滚动按钮的处理逻辑
+              break
+          }
+        }
+        outline = new Outline(Outline.DEFAULTS)

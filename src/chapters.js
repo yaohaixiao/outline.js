@@ -448,7 +448,7 @@ class Chapters extends Base {
     const afterScroll = this.attr('afterScroll')
     const after = () => {
       if (isFunction(afterScroll)) {
-        afterScroll.call(this)
+        afterScroll.call(this, 'chapter')
       }
 
       later(() => {
