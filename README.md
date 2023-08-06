@@ -4,7 +4,7 @@
 ![Gzip size](http://img.badgesize.io/https://cdn.jsdelivr.net/gh/yaohaixiao/outline.js/outline.min.js?compression=gzip&label=gzip%20size)
 [![prettier code style](https://img.shields.io/badge/code_style-prettier-07b759.svg)](https://prettier.io)
 [![Coverage](https://codecov.io/gh/yaohaixiao/outline.js/branch/master/graph/badge.svg)](https://codecov.io/gh/yaohaixiao/outline.js)
-[![npm downloads](https://img.shields.io/npm/dt/@yaohaixiao/outline.js)](https://npmcharts.com/compare/@yaohaixiao/outline.js?minimal=true)
+[![npm downloads](https://img.shields.io/npm/dm/@yaohaixiao/outline.js)](https://npmcharts.com/compare/@yaohaixiao/outline.js?minimal=true)
 [![MIT License](https://img.shields.io/github/license/yaohaixiao/outline.js.svg)](https://github.com/yaohaixiao/outline.js/blob/master/LICENSE)
 
 
