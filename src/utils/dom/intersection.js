@@ -39,6 +39,8 @@ const intersection = (fn, props = {}) => {
   $root.querySelectorAll(selector).forEach((section) => {
     Observer.observe(section)
   })
+
+  return Observer
 }
 
 export default intersection

@@ -11,6 +11,9 @@ html(lang='en')
       article#article.article
         main#main.article__main
           include ./example
+          include ./options/section
+          include ./properties/section
+          include ./methods/section
           h2 License
           p JavaScript Code Licensed under MIT License.
           p API Documentation Licensed under CC BY 3.0
@@ -23,6 +26,5 @@ html(lang='en')
 
         defaults.homepage = './index.html'
         defaults.stickyHeight = 86
-        defaults.showCode = false
         defaults.placement = 'rtl'
         outline = new Outline(Outline.DEFAULTS)

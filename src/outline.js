@@ -268,20 +268,32 @@ class Outline extends Base {
   }
 
   destroy() {
-    const chapters = this.chapters
+    let anchors = this.anchors
+    let chapters = this.chapters
+    let drawer = this.drawer
+    let toolbar = this.toolbar
+    const isOutside = chapters.isOutside()
     const count = this.count()
 
     this.removeListeners()
 
-    this.attr(Outline.DEFAULTS)
-    this.anchors.destroy()
-    if (count < 1) {
+    if (count > 0) {
       chapters.destroy()
-      if (chapters.isOutside()) {
-        this.drawer.destroy()
+      chapters = null
+
+      if (isOutside) {
+        drawer.destroy()
+        drawer = null
       }
     }
-    this.toolbar.destroy()
+
+    toolbar.destroy()
+    toolbar = null
+
+    anchors.destroy()
+    anchors = null
+
+    this.attr(Outline.DEFAULTS)
 
     return this
   }

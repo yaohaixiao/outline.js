@@ -41,6 +41,7 @@ class Chapters extends Base {
     this.scrollTimer = null
     this.resizeTimer = null
     this.playing = false
+    this.Observer = null
 
     if (options) {
       this.initialize(options)
@@ -236,6 +237,10 @@ class Chapters extends Base {
     const $placeholder = this.$placeholder
     let top
 
+    if (!$anchor) {
+      return this
+    }
+
     if (this.$active) {
       removeClass(this.$active, HIGHLIGHT)
     }
@@ -408,13 +413,18 @@ class Chapters extends Base {
       afterDestroy.call(this)
     }
 
+    if (this.Observer) {
+      this.Observer = null
+    }
+
     return this
   }
 
   onObserver() {
+    const selector = this.attr('selector')
     let timer = null
 
-    intersection(
+    this.Observer = intersection(
       ($heading) => {
         const id = $heading.getAttribute('data-id')
 
@@ -430,7 +440,10 @@ class Chapters extends Base {
           this.highlight(id)
         }, 100)
       },
-      { context: this }
+      {
+        selector,
+        context: this
+      }
     )
 
     return this
@@ -499,7 +512,7 @@ class Chapters extends Base {
         min,
         max
       })
-    }, 50)
+    }, 100)
 
     return this
   }
@@ -536,6 +549,7 @@ class Chapters extends Base {
   }
 
   removeListeners() {
+    const selector = this.attr('selector')
     const $el = this.$el
     const $scrollElement = this.$scrollElement
     const tagName = $scrollElement.tagName.toLowerCase()
@@ -547,8 +561,15 @@ class Chapters extends Base {
 
     off($el, 'click', this.onSelect)
     off($element, 'scroll', this.onScroll)
+
     if (this.isSticky()) {
       at($element, 'resize', this.onResize)
+    }
+
+    if (this.Observer) {
+      document.querySelectorAll(selector).forEach((section) => {
+        this.Observer.unobserve(section)
+      })
     }
 
     return this
@@ -558,7 +579,7 @@ class Chapters extends Base {
 Chapters.DEFAULTS = {
   parentElement: '',
   scrollElement: '',
-  selector: '',
+  selector: '.outline-heading',
   active: 0,
   closed: false,
   showCode: true,
