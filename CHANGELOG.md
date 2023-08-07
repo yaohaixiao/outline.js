@@ -1,3 +1,12 @@
+## [3.10.1](https://github.com/yaohaixiao/outline.js/compare/3.10.0...3.10.1) (2023-08-07)
+
+
+### Bug Fixes
+
+* 修复 Outline 模块，reload()后导航菜单不显示子菜单和点击菜单会报错的问题 ([21c8ed3](https://github.com/yaohaixiao/outline.js/commit/21c8ed38ef469f89a7fab6d6bbe38465cfa32837))
+
+
+
 # [3.10.0](https://github.com/yaohaixiao/outline.js/compare/3.9.0...3.10.0) (2023-08-05)
 
 
