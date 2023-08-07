@@ -17,8 +17,7 @@ const _getChaptersWithCode = (chapters) => {
   })
 
   Object.keys(groups).forEach((group) => {
-    groups[group].forEach((c, i) => {
-      c.index = i + 1
+    groups[group].forEach((c) => {
       chapters.forEach((o) => {
         if (o.pid === c.id) {
           o.code = c.code + '.' + o.index

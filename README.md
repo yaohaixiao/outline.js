@@ -226,6 +226,35 @@ Outline.reload({
 })
 ```
 
+### VUE 中使用说明
+
+如果您尝试在 VUE 项目中使用 outline.js，以下为推荐的使用方法：
+
+```js
+import Outline from '@yaohaixiao/outline.js/outline'
+
+export default {
+  // 省略其它逻辑...
+  data() {
+    return {
+      outline: null
+    }
+  },
+  mounted() {
+    this.$nextTick(() => {
+      // 在（文章）详情页初始化 outline
+      // 并且确定页面的文章内容绘制完成，否则无法获取到 hx 标签
+      this.outline = new Outline(Outline.DEFAULTS)
+    })
+  },
+  beforeDestroy() {
+    // 如果希望在非文章页面不显示工具栏，可以调用 destroy() 方法
+    // 销毁所有 outline.js 创建的 DOM 节点，包括工具栏和导航菜单
+    this.outline.destroy()
+  }
+}
+```
+
 
 ## API Documentation
 
