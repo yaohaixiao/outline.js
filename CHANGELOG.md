@@ -1,3 +1,12 @@
+## [3.10.2](https://github.com/yaohaixiao/outline.js/compare/3.10.1...3.10.2) (2023-08-07)
+
+
+### Bug Fixes
+
+* 调整 _getChaptersWithCode() 方法，移除多余的 index 计算逻辑；添加 VUE 使用 outline.js 的示例； ([6f88985](https://github.com/yaohaixiao/outline.js/commit/6f88985bb95231a1bd976d33b7fc5f32d6b3c24a))
+
+
+
 ## [3.10.1](https://github.com/yaohaixiao/outline.js/compare/3.10.0...3.10.1) (2023-08-07)
 
 
