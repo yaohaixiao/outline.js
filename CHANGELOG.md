@@ -1,3 +1,11 @@
+## [3.10.3](https://github.com/yaohaixiao/outline.js/compare/3.10.2...3.10.3) (2023-08-08)
+
+### Bug Fixes
+
+chore: 调整 chapters 组件的高亮选中项 placeholder 定位逻辑，采用 transform 替换 top: calc() 模式定位，修复 customeClass 调整样式可能带来的定位不准问题
+
+
+
 ## [3.10.2](https://github.com/yaohaixiao/outline.js/compare/3.10.1...3.10.2) (2023-08-07)
 
 
