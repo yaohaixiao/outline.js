@@ -14,6 +14,7 @@ import addClass from './utils/dom/addClass'
 import intersection from './utils/dom/intersection'
 import removeClass from './utils/dom/removeClass'
 import offsetTop from './utils/dom/offsetTop'
+import getStyle from './utils/dom/getStyle'
 import setProperty from './utils/dom/setProperty'
 import publish from './utils/observer/emit'
 
@@ -212,6 +213,7 @@ class Chapters extends Base {
     _paintChapters($list, this.chapters, showCode)
     removeClass($list, FIXED)
     removeClass($list, HIDDEN)
+    this.positionPlaceholder()
 
     $el = this.$el
     this.offsetTop = offsetTop($el)
@@ -231,11 +233,54 @@ class Chapters extends Base {
     return this
   }
 
+  positionPlaceholder() {
+    const $main = this.$main
+    const $list = this.$list
+    const $placeholder = this.$placeholder
+    const mainPaddingTop = parseInt(getStyle($main, 'padding-top'), 10)
+    const mainBorderTop = parseInt(getStyle($main, 'border-top-width'), 10)
+    const placeholderPaddingTop = parseInt(getStyle($list, 'padding-top'), 10)
+    const placeholderMarginTop = parseInt(getStyle($list, 'margin-top'), 10)
+    const placeholderBorderTop = parseInt(
+      getStyle($list, 'border-top-width'),
+      10
+    )
+    const height = $list.querySelector('.outline-chapters__anchor').offsetHeight
+    let top
+    let offsetTop = 0
+
+    if (mainPaddingTop) {
+      offsetTop += mainPaddingTop
+    }
+
+    if (placeholderPaddingTop) {
+      offsetTop += placeholderPaddingTop
+    }
+
+    if (placeholderMarginTop) {
+      offsetTop += placeholderMarginTop
+    }
+
+    if (mainBorderTop) {
+      offsetTop += mainBorderTop
+    }
+
+    if (placeholderBorderTop) {
+      offsetTop += placeholderBorderTop
+    }
+
+    top = height * this.active
+    // top:calc(${offsetTop}px + ${top}px);
+    $placeholder.style.cssText = `transform: translateY(${
+      offsetTop + top
+    }px);height:${height}px;`
+
+    return this
+  }
+
   highlight(id) {
     const $anchor = this.$el.querySelector(`#chapter__anchor-${id}`)
     const HIGHLIGHT = 'outline-chapters_active'
-    const $placeholder = this.$placeholder
-    let top
 
     if (!$anchor) {
       return this
@@ -249,8 +294,7 @@ class Chapters extends Base {
     this.$active = $anchor
     addClass(this.$active, HIGHLIGHT)
 
-    top = 30 * this.active
-    $placeholder.style.top = `calc(0.5em + ${top}px)`
+    this.positionPlaceholder()
 
     return this
   }
