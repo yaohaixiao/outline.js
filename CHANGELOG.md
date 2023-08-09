@@ -1,3 +1,12 @@
+# [3.11.0](https://github.com/yaohaixiao/outline.js/compare/3.10.3...3.11.0) (2023-08-09)
+
+
+### Features
+
+* 添加 git, tags 和 issues 配置参数 ([ed3ddf5](https://github.com/yaohaixiao/outline.js/commit/ed3ddf5296c60164c5c95c3b57ac6876513fa1f7))
+
+
+
 ## [3.10.3](https://github.com/yaohaixiao/outline.js/compare/3.10.2...3.10.3) (2023-08-08)
 
 
