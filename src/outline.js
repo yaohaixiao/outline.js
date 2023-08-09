@@ -125,6 +125,9 @@ class Outline extends Base {
   _renderToolbar() {
     const placement = this.attr('placement')
     const homepage = this.attr('homepage')
+    const git = this.attr('git')
+    const tags = this.attr('tags')
+    const issues = this.attr('issues')
     const count = this.count()
     const UP = {
       name: 'up',
@@ -140,6 +143,24 @@ class Outline extends Base {
       icon: 'homepage',
       size: 20,
       link: homepage
+    }
+    const GIT = {
+      name: 'github',
+      icon: 'github',
+      size: 20,
+      link: git
+    }
+    const TAGS = {
+      name: 'tags',
+      icon: 'tags',
+      size: 20,
+      link: tags
+    }
+    const ISSUES = {
+      name: 'issues',
+      icon: 'issues',
+      size: 20,
+      link: issues
     }
     const MENU = {
       name: 'menu',
@@ -164,6 +185,15 @@ class Outline extends Base {
     buttons.push(UP)
     if (homepage) {
       buttons.push(HOME)
+    }
+    if (git) {
+      buttons.push(GIT)
+    }
+    if (tags) {
+      buttons.push(TAGS)
+    }
+    if (issues) {
+      buttons.push(ISSUES)
     }
     if (count > 0) {
       buttons.push(MENU)
@@ -359,6 +389,10 @@ Outline.DEFAULTS = {
   showCode: true,
   anchorURL: '',
   stickyHeight: 0,
+  homepage: '',
+  git: '',
+  tags: '',
+  issues: '',
   customClass: '',
   afterSticky: null,
   afterToggle: null,

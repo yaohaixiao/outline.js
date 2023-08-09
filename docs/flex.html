@@ -110,6 +110,21 @@ new Outline({
 // 侧边栏的 Toolbar 会多出一个 Homepage 图标的按钮
 outline.reload({
   homepage: 'http://www.yaohaixiao.com/'
+})</code></pre></div></section><section class="section"><header class="section__header"><h3 class="section__h3" id="option-git">git</h3></header><div class="section__content"><h4 class="section__h4">Description</h4><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">String</dd></dl><dl class="section__dl"><dt class="section__dt">Default：</dt><dd class="section__dd">''</dd></dl><p>可选，针对 API 文档类的文章页面，指定项目 git 仓库地址：</p><pre class="section__pre"><code class="section__code">const outline = new Outline(Outline.DEFAULTS)
+
+// 侧边栏的 Toolbar 会多出一个 git 图标的按钮
+outline.reload({
+  git: 'https://github.com/yaohaixiao/outline.js'
+})</code></pre></div></section><section class="section"><header class="section__header"><h3 class="section__h3" id="option-tags">tags</h3></header><div class="section__content"><h4 class="section__h4">Description</h4><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">String</dd></dl><dl class="section__dl"><dt class="section__dt">Default：</dt><dd class="section__dd">''</dd></dl><p>可选，针对 API 文档类的文章页面，指定项目 git 仓库 tags 页面地址：</p><pre class="section__pre"><code class="section__code">const outline = new Outline(Outline.DEFAULTS)
+
+// 侧边栏的 Toolbar 会多出一个 tags 图标的按钮
+outline.reload({
+  tags: 'https://github.com/yaohaixiao/outline.js/tags'
+})</code></pre></div></section><section class="section"><header class="section__header"><h3 class="section__h3" id="option-issues">issues</h3></header><div class="section__content"><h4 class="section__h4">Description</h4><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">String</dd></dl><dl class="section__dl"><dt class="section__dt">Default：</dt><dd class="section__dd">''</dd></dl><p>可选，针对 API 文档类的文章页面，指定项目 git 仓库 issues 页面地址：</p><pre class="section__pre"><code class="section__code">const outline = new Outline(Outline.DEFAULTS)
+
+// 侧边栏的 Toolbar 会多出一个 issues 图标的按钮
+outline.reload({
+  issues: 'https://github.com/yaohaixiao/outline.js/issues'
 })</code></pre></div></section><section class="section"><header class="section__header"><h3 class="section__h3" id="option-customClass">customClass</h3></header><div class="section__content"><h4 class="section__h4">Description</h4><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">String</dd></dl><dl class="section__dl"><dt class="section__dt">Default：</dt><dd class="section__dd">''</dd></dl><p>可选，(DIYer福利)设置自定义样式的 class 名称：</p><ul><li>'' - 采用默认 outline.js 的 UI 界面（默认值）；</li><li>设置自定义样式 - 自己根据需求设置个性化的 UI 界面；</li></ul><pre class="section__pre"><code class="section__code">// Default UI
 new Outline(Outline.DEFAULTS)
 
@@ -226,6 +241,9 @@ outline = new Outline(Outline.DEFAULTS)</code></pre></div></section></section><s
   showCode: true,
   anchorURL: '',
   homepage: '',
+  git: '',
+  tags: '',
+  issues: '',
   customClass: ''
 }</code></pre></div></section><section class="section"><header class="section__header"><h3 class="section__h3" id="property-attrs">attrs</h3></header><div class="section__content"><h4 class="section__h4">Description</h4><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">Object</dd></dl><p>存储的是 Outline 对象当前使用中的配置选项：</p><p>说明：建议使用 attr(prop) 方法来获取属性，避免直接调用属性。</p><pre class="section__pre"><code class="section__code">// 设置默认配置项
 const outline = new Outline(Outline.DEFAULTS)
@@ -828,4 +846,7 @@ defaults.stickyHeight = 86
 defaults.parentElement = '#aside'
 defaults.scrollElement = '#main'
 defaults.homepage = './index.html'
+defaults.git = 'https://github.com/yaohaixiao/outline.js'
+defaults.tags = 'https://github.com/yaohaixiao/outline.js/tags'
+defaults.issues = 'https://github.com/yaohaixiao/outline.js/issues'
 outline = new Outline(Outline.DEFAULTS)</script></body></html>

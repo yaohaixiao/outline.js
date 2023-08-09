@@ -212,6 +212,12 @@ const outline = new Outline({
     anchorURL: '',
     // 指定当前站点主页地址
     homepage: '',
+    // 指定git仓库地址
+    git: '',
+    // 指定git仓库中的 tags 地址
+    tags: '',
+    // 指定git仓库中的 issues 地址
+    issues: '',
     // DIYer的福利
     // 独立侧滑菜单时，customClass 会追加到 drawer 侧滑窗口组件
     // 在文章中显示导航菜单时，customClass 会追加到 chapters 导航菜单
@@ -431,6 +437,9 @@ Outline.DEFAULTS = {
   showCode: true,
   anchorURL: '',
   homepage: '',
+  git: '',
+  tags: '',
+  issues: '',
   customClass: ''
 }
 ```
