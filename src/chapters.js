@@ -213,7 +213,7 @@ class Chapters extends Base {
     _paintChapters($list, this.chapters, showCode)
     removeClass($list, FIXED)
     removeClass($list, HIDDEN)
-    this.positionPlaceholder()
+    this.positionPlaceholder(this.active)
 
     $el = this.$el
     this.offsetTop = offsetTop($el)
@@ -233,10 +233,11 @@ class Chapters extends Base {
     return this
   }
 
-  positionPlaceholder() {
+  positionPlaceholder(index) {
     const $main = this.$main
     const $list = this.$list
     const $placeholder = this.$placeholder
+    const $anchor = $list.querySelector('.outline-chapters__anchor')
     const mainPaddingTop = parseInt(getStyle($main, 'padding-top'), 10)
     const mainBorderTop = parseInt(getStyle($main, 'border-top-width'), 10)
     const placeholderPaddingTop = parseInt(getStyle($list, 'padding-top'), 10)
@@ -245,9 +246,9 @@ class Chapters extends Base {
       getStyle($list, 'border-top-width'),
       10
     )
-    const height = $list.querySelector('.outline-chapters__anchor').offsetHeight
-    let top
+    let height = $anchor.offsetHeight
     let offsetTop = 0
+    let top
 
     if (mainPaddingTop) {
       offsetTop += mainPaddingTop
@@ -269,7 +270,7 @@ class Chapters extends Base {
       offsetTop += placeholderBorderTop
     }
 
-    top = height * this.active
+    top = height * index
     // top:calc(${offsetTop}px + ${top}px);
     $placeholder.style.cssText = `transform: translateY(${
       offsetTop + top
@@ -294,7 +295,7 @@ class Chapters extends Base {
     this.$active = $anchor
     addClass(this.$active, HIGHLIGHT)
 
-    this.positionPlaceholder()
+    this.positionPlaceholder(this.active)
 
     return this
   }
@@ -311,7 +312,7 @@ class Chapters extends Base {
       return this
     }
 
-    isStickying = !!(scrollTop >= top)
+    isStickying = scrollTop >= top
 
     if (isStickying) {
       addClass($el, FIXED)
@@ -410,7 +411,7 @@ class Chapters extends Base {
 
     if (isFunction(afterToggle)) {
       later(() => {
-        isStickying = !!(scrollTop >= top)
+        isStickying = scrollTop >= top
         afterToggle.call(this, this.isClosed(), isStickying)
       })
     }

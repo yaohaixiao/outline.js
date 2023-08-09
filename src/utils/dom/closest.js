@@ -22,7 +22,7 @@ const closest = (el, selector, ctx, includeCTX) => {
     /* istanbul ignore else */
     if (
       (selector != null &&
-        (selector[0] === '>'
+        (selector.startsWith('>')
           ? el.parentNode === context && matches(el, selector)
           : matches(el, selector))) ||
       (includeCTX && el === context)

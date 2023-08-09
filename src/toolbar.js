@@ -58,7 +58,7 @@ class Toolbar extends Base {
     if (name) {
       button = buttons.find((option) => option.name === name)
 
-      return !!(button && button.disabled)
+      return button?.disabled
     }
 
     return this.disabled

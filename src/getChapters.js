@@ -1,19 +1,20 @@
 import trim from './utils/lang/trim'
 import stripTags from './utils/lang/stripTags'
 
-import _getChaptersWithCode from './_getChaptersWithCode'
 import _getChapterParentIdByDiffer from './_getChapterParentIdByDiffer'
+import _getChaptersWithCode from './_getChaptersWithCode'
 
 const getChapters = (headings, showCode = true) => {
-  const chapters = []
   let previous = 1
   let level = 0
+  const chapters = []
 
   headings.forEach((heading, i) => {
     const headingLevel = heading.tagName.replace(/h/i, '')
     let current = parseInt(headingLevel, 10)
     let pid = -1
 
+    // 场景1：当前标题是前一个标题的子标题
     // 当前标题的（标题标签）序号 > 前一个标题的序号：两个相连的标题是父标题 -> 子标题关系；
     // h2 （前一个标题）
     // h3 （当前标题）
@@ -27,6 +28,7 @@ const getChapters = (headings, showCode = true) => {
         pid = i - 1
       }
     }
+    // 场景2：当前标题和前一个标题层级相同
     // 当前标题的（标题标签）序号 = 前一个标题的序号
     // h2 （前一个标题）
     // h2 （当前标题）
@@ -42,7 +44,9 @@ const getChapters = (headings, showCode = true) => {
       } else {
         pid = chapters[i - 1].pid
       }
-    } else if (current <= level) {
+    }
+    // 场景3：当前标题比前一个标题层级高
+    else if (current <= level) {
       // H1 的层级肯定是 1
       if (current === 1) {
         level = 1

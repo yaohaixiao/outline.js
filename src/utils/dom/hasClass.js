@@ -28,7 +28,7 @@ const hasClass = (el, className) => {
     return el.classList.contains(className)
   }
 
-  return !!allClass.match(pattern)
+  return !!pattern.exec(allClass)
 }
 
 export default hasClass

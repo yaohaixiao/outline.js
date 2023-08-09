@@ -11,7 +11,7 @@ const trim = (str) => {
   if (!isString(str)) {
     return false
   }
-  return str.replace(/^\s+|\s+$/g, '')
+  return str.replace(/(^\s+)|(\s+$)/g, '')
 }
 
 export default trim
