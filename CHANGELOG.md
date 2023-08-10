@@ -1,3 +1,12 @@
+## [3.12.2](https://github.com/yaohaixiao/outline.js/compare/3.12.1...3.12.2) (2023-08-10)
+
+
+### Bug Fixes
+
+* 不准备支持 typescript 了 ([85d6333](https://github.com/yaohaixiao/outline.js/commit/85d63334e9cdefe061156a102e959d39d58c3ecf))
+
+
+
 # [3.12.0](https://github.com/yaohaixiao/outline.js/compare/3.11.0...3.12.0) (2023-08-10)
 
 
