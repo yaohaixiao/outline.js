@@ -1,3 +1,12 @@
+# [3.12.0](https://github.com/yaohaixiao/outline.js/compare/3.11.0...3.12.0) (2023-08-10)
+
+
+### Features
+
+* 调整 _getChaptersWithCode() 方法，优化算法 ([7c3fbd1](https://github.com/yaohaixiao/outline.js/commit/7c3fbd1ef2d4dcc6188d22a9a23330a0510e8c2b))
+
+
+
 # [3.11.0](https://github.com/yaohaixiao/outline.js/compare/3.10.3...3.11.0) (2023-08-09)
 
 
