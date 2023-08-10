@@ -18,10 +18,9 @@ const _getChaptersWithCode = (chapters) => {
 
   Object.keys(groups).forEach((group) => {
     groups[group].forEach((c) => {
-      chapters.forEach((o) => {
-        if (o.pid === c.id) {
-          o.code = c.code + '.' + o.index
-        }
+      const subjects = chapters.filter((b) => b.pid === c.id)
+      subjects.forEach((o) => {
+        o.code = c.code + '.' + o.index
       })
     })
   })
