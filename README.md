@@ -23,10 +23,10 @@ AnchorJS 是 outline.js 的创作灵感来源。既然 AnchorJS 可创建标题�
 - 原生 JavaScript 编写，无需任何依赖；
 - 支持 UMD 规范；
 - 支持 E6 模块，提供功能独立的 ES6 模块；
-  * **Anchors 模块：**类似 AnchorJS 基础功能模块，自动分析段落层级
-  * **Drawer 模块：**独立的侧滑窗口模块
-  * **Chapters 模块：**独立的导航菜单模块；
-  * **Toolbar 模块：**独立的固定定位的工具栏模块；
+  * Anchors 模块：类似 AnchorJS 基础功能模块，自动分析段落层级
+  * Drawer 模块：独立的侧滑窗口模块
+  * Chapters 模块：独立的导航菜单模块；
+  * Toolbar 模块：独立的固定定位的工具栏模块；
 - 拥有 AnchorJS 基础功能；
 - 支持中文和英文标题文字生成ID；
 - 支持生成独立的侧边栏导航菜单；

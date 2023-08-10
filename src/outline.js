@@ -92,7 +92,7 @@ class Outline extends Base {
       position,
       title,
       stickyHeight,
-      chapters: this.anchors.getChapters(),
+      chapters: this.getChapters(),
       afterSticky,
       afterToggle,
       afterScroll
@@ -219,15 +219,17 @@ class Outline extends Base {
 
       if (count > 0) {
         chapters.highlight(0)
+        chapters.playing = false
       }
-      chapters.playing = false
 
       if (isFunction(afterScroll)) {
         afterScroll.call(toolbar, 'up')
       }
     }
 
-    chapters.playing = true
+    if (count > 0) {
+      chapters.playing = true
+    }
     this.scrollTo(0, afterTop)
 
     return this
@@ -246,17 +248,19 @@ class Outline extends Base {
       toolbar.hide('down')
       toolbar.show('up')
 
-      if (count > 1) {
+      if (count > 0) {
         chapters.highlight(count - 1)
+        chapters.playing = false
       }
-      chapters.playing = false
 
       if (isFunction(afterScroll)) {
         afterScroll.call(toolbar, 'bottom')
       }
     }
 
-    chapters.playing = true
+    if (count > 0) {
+      chapters.playing = true
+    }
     this.scrollTo(top, afterDown)
 
     return this
@@ -275,15 +279,15 @@ class Outline extends Base {
     const chapters = this.chapters
     const count = this.count()
 
+    if (count < 1) {
+      return this
+    }
+
     if (position !== 'relative') {
       chapters.toggle()
       toolbar.highlight('menu')
     } else {
       toolbar.toggle()
-
-      if (count < 1) {
-        return this
-      }
 
       later(() => {
         if (chapters.isInside()) {
@@ -302,12 +306,14 @@ class Outline extends Base {
     let chapters = this.chapters
     let drawer = this.drawer
     let toolbar = this.toolbar
-    const isOutside = chapters.isOutside()
+    let isOutside = false
     const count = this.count()
 
     this.removeListeners()
 
     if (count > 0) {
+      isOutside = chapters.isOutside()
+
       chapters.destroy()
       chapters = null
 

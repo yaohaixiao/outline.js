@@ -197,13 +197,14 @@ class Chapters extends Base {
   render() {
     const FIXED = 'outline-chapters_fixed'
     const HIDDEN = 'outline-chapters_hidden'
+    const chapters = this.attr('chapters')
     const showCode = this.attr('showCode')
     const mounted = this.attr('mounted')
     const $parentElement = this.$parentElement
     let $el
     let $list
 
-    if (!$parentElement) {
+    if (!$parentElement || chapters.length < 1) {
       return this
     }
 
