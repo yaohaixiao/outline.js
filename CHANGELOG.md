@@ -1,3 +1,12 @@
+## [3.12.1](https://github.com/yaohaixiao/outline.js/compare/3.12.0...3.12.1) (2023-08-10)
+
+
+### Features
+
+* 添加针对 TypeScript 环境引用的 declare 文件 ([6b3f05e](https://github.com/yaohaixiao/outline.js/commit/6b3f05e5e595a22f43c5fe3efee3a343dd1a8da6))
+
+
+
 # [3.12.0](https://github.com/yaohaixiao/outline.js/compare/3.11.0...3.12.0) (2023-08-10)
 
 
