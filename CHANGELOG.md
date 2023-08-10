@@ -1,3 +1,12 @@
+## [3.12.3](https://github.com/yaohaixiao/outline.js/compare/3.12.2...3.12.3) (2023-08-10)
+
+
+### Bug Fixes
+
+* 修复页面没有 h1~h6 标签，上下滚动按钮点击报错的问题； ([e9c78d6](https://github.com/yaohaixiao/outline.js/commit/e9c78d6ca883a0f069d951f74433e779813187d7))
+
+
+
 ## [3.12.2](https://github.com/yaohaixiao/outline.js/compare/3.12.1...3.12.2) (2023-08-10)
 
 
