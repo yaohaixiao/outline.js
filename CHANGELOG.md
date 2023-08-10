@@ -1,12 +1,3 @@
-## [3.12.1](https://github.com/yaohaixiao/outline.js/compare/3.12.0...3.12.1) (2023-08-10)
-
-
-### Features
-
-* 添加针对 TypeScript 环境引用的 declare 文件 ([6b3f05e](https://github.com/yaohaixiao/outline.js/commit/6b3f05e5e595a22f43c5fe3efee3a343dd1a8da6))
-
-
-
 # [3.12.0](https://github.com/yaohaixiao/outline.js/compare/3.11.0...3.12.0) (2023-08-10)
 
 
@@ -30,7 +21,7 @@
 
 ### Bug Fixes
 
-* chore: 调整 chapters 组件的高亮选中项 placeholder 定位逻辑，采用 transform 替换 top: calc() 模式定位，修复 customeClass 调整样式可能带来的定位不准问题
+* chore: 调整 chapters 组件的高亮选中项 placeholder 定位逻辑，采用 transform 替换 top: calc() 模式定位，修复 customClass 调整样式可能带来的定位不准问题
 
 
 

@@ -1,13 +1,19 @@
 {
   "name": "@yaohaixiao/outline.js",
-  "version": "3.12.1",
+  "version": "3.12.2",
   "description": "outline.js - 自动生成文章导读（Table of Contents）导航的 JavaScript 工具。",
   "main": "outline.min.js",
   "files": [
     "src",
-    "types"
+    "anchors.min.css",
+    "anchors.min.js",
+    "chapters.min.css",
+    "chapters.min.js",
+    "drawer.min.css",
+    "drawer.min.js",
+    "toolbar.min.css",
+    "toolbar.min.js"
   ],
-  "typings": "types/outline.d.ts",
   "scripts": {
     "start": "gulp start",
     "build:lib:script": "rollup -c build/rollup.config.lib.js --bundleConfigAsCjs",
