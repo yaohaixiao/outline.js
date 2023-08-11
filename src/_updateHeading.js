@@ -5,6 +5,7 @@ import setAttribute from './utils/dom/setAttribute'
 import icon from './utils/icons/icon'
 
 const _updateHeading = ($heading, i, options) => {
+  const $fragment = document.createDocumentFragment()
   const CLS_HEADING = 'outline-heading'
   const hasAnchor = options.hasAnchor || true
   const isAtStart = options.isAtStart || true
@@ -34,19 +35,20 @@ const _updateHeading = ($heading, i, options) => {
     return false
   }
 
-  $icon = icon('hash')
+  $icon = icon('hash', { iconSet: 'outline' })
   $anchor = createElement(
     'a',
     {
       id: `anchor-${i}`,
       className: `${CLS_HEADING}__anchor anchor-${i}`,
-      href: anchorURL ? anchorURL : `#${headingId}`,
+      href: anchorURL || `#${headingId}`,
       target: anchorURL ? '_blank' : 'self',
       'data-id': i
     },
     [$icon]
   )
-  $heading.appendChild($anchor)
+  $fragment.appendChild($anchor)
+  $heading.appendChild($fragment)
 }
 
 export default _updateHeading

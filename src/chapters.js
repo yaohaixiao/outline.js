@@ -110,8 +110,8 @@ class Chapters extends Base {
   }
 
   _paintEdge() {
+    const $fragment = document.createDocumentFragment()
     const STICKY = 'outline-chapters_sticky'
-    const FIXED = 'outline-chapters_fixed'
     const HIDDEN = 'outline-chapters_hidden'
     const title = this.attr('title')
     const customClass = this.attr('customClass')
@@ -145,7 +145,7 @@ class Chapters extends Base {
         // 为优化性能，添加了 _fixed 和 _hidden
         // fixed 为了让 $list 脱离流布局
         // hidden 让 $list 不可见
-        className: `outline-chapters__list ${FIXED} ${HIDDEN}`
+        className: `outline-chapters__list`
       },
       ['']
     )
@@ -174,7 +174,7 @@ class Chapters extends Base {
       'nav',
       {
         id: 'outline-chapters',
-        className: 'outline-chapters'
+        className: `outline-chapters ${HIDDEN}`
       },
       contents
     )
@@ -188,19 +188,18 @@ class Chapters extends Base {
     if (customClass) {
       addClass($el, customClass)
     }
-
-    $parentElement.appendChild($el)
+    $fragment.appendChild($el)
+    $parentElement.appendChild($fragment)
 
     return this
   }
 
   render() {
-    const FIXED = 'outline-chapters_fixed'
     const HIDDEN = 'outline-chapters_hidden'
-    const chapters = this.attr('chapters')
     const showCode = this.attr('showCode')
     const mounted = this.attr('mounted')
     const $parentElement = this.$parentElement
+    const chapters = this.chapters
     let $el
     let $list
 
@@ -210,13 +209,12 @@ class Chapters extends Base {
 
     this._paintEdge()
 
+    $el = this.$el
     $list = this.$list
-    _paintChapters($list, this.chapters, showCode)
-    removeClass($list, FIXED)
-    removeClass($list, HIDDEN)
+    _paintChapters($list, chapters, showCode)
+    removeClass($el, HIDDEN)
     this.positionPlaceholder(this.active)
 
-    $el = this.$el
     this.offsetTop = offsetTop($el)
     this.offsetWidth = $el.offsetWidth
 
