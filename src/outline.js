@@ -20,6 +20,7 @@ class Outline extends Base {
     this.drawer = null
     this.chapters = null
     this.toolbar = null
+    this.buttons = []
 
     if (options) {
       this.initialize(options)
@@ -128,6 +129,7 @@ class Outline extends Base {
     const git = this.attr('git')
     const tags = this.attr('tags')
     const issues = this.attr('issues')
+    const tools = this.attr('tools')
     const count = this.count()
     const UP = {
       name: 'up',
@@ -183,6 +185,9 @@ class Outline extends Base {
     const buttons = []
 
     buttons.push(UP)
+    if (count > 0) {
+      buttons.push(MENU)
+    }
     if (homepage) {
       buttons.push(HOME)
     }
@@ -195,16 +200,33 @@ class Outline extends Base {
     if (issues) {
       buttons.push(ISSUES)
     }
-    if (count > 0) {
-      buttons.push(MENU)
+    if (tools?.length > 0) {
+      buttons.push(...tools)
     }
     buttons.push(DOWN)
+    this.buttons = [...buttons]
 
     this.toolbar = new Toolbar({
       placement,
       buttons: buttons
     })
 
+    return this
+  }
+
+  addButton(button) {
+    const toolbar = this.toolbar
+    const buttons = this.buttons
+    buttons.splice(-1, 0, button)
+    toolbar.attr({
+      buttons
+    })
+    toolbar.refresh()
+    return this
+  }
+
+  removeButton(name) {
+    this.toolbar.remove(name)
     return this
   }
 
@@ -399,6 +421,7 @@ Outline.DEFAULTS = {
   git: '',
   tags: '',
   issues: '',
+  tools: [],
   customClass: '',
   afterSticky: null,
   afterToggle: null,

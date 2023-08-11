@@ -1,0 +1,17 @@
+section.section
+  header.section__header
+    h3#property-buttons.section__h3 buttons
+  div.section__content
+    h4.section__h4 Description
+    dl.section__dl
+      dt.section__dt Type：
+      dd.section__dd Array
+    p 存储的是 Outline 对象当前工具栏的完整的按钮配置信息：
+    pre.section__pre
+      code.section__code.
+        // 设置默认配置项
+        const outline = new Outline(Outline.DEFAULTS)
+
+        // 查看全部按钮配置信息
+        outline.buttons
+

@@ -8,7 +8,8 @@ import createElement from './utils/dom/createElement'
 import on from './utils/event/on'
 import off from './utils/event/off'
 
-import { paintSvgSprites, createSvgIcon } from './utils/icons'
+import paint from './utils/icons/paint'
+import icon from './utils/icons/icon'
 import zIndex from './zIndex'
 
 class Drawer extends Base {
@@ -81,7 +82,7 @@ class Drawer extends Base {
     let $footer
     let $overlay
 
-    paintSvgSprites()
+    paint()
     this.zIndex = zIndex()
 
     $title = createElement(
@@ -99,7 +100,7 @@ class Drawer extends Base {
         {
           className: 'outline-drawer__close'
         },
-        [createSvgIcon('close', 20)]
+        [icon('close', { size: 20 })]
       )
       this.$close = $close
     }

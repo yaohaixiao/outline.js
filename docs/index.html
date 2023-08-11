@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="keywords" content="outline.js,Automatic Create,Article,Outline,JavaScript,Toolkit"><meta name="description" content="outline.js - 自动生成文章导读（Table of Contents）导航的 JavaScript 工具。会自动分析文章中的标题（ h1~h6 ）标签，并生成文章段落层次结构的导读导航菜单。"><link rel="shortcut icon" href="./favicon.ico"><title>outline.js | 自动生成文章导读（Table of Contents）导航的 JavaScript 工具。</title><link rel="preload" href="css/docs.min.css" as="style"><link rel="preload" href="js/docs.min.js" as="script"><link href="css/docs.min.css" rel="stylesheet" type="text/css"></head><body><div class="docs" id="docs"><aside class="aside" id="aside"><header class="aside__header"><h2 class="aside__h2">API Documentation</h2></header><nav class="aside__nav"><h3 class="aside__h3">Options</h3><ul class="aside__list"><li class="aside__item"><a class="aside__anchor" href="#option-articleElement">articleElement</a></li><li class="aside__item"><a class="aside__anchor" href="#option-selector">selector</a></li><li class="aside__item"><a class="aside__anchor" href="#option-title">title</a></li><li class="aside__item"><a class="aside__anchor" href="#option-scrollElement">scrollElement</a></li><li class="aside__item"><a class="aside__anchor" href="#option-position">position</a></li><li class="aside__item"><a class="aside__anchor" href="#option-parentElement">parentElement</a></li><li class="aside__item"><a class="aside__anchor" href="#option-placement">placement</a></li><li class="aside__item"><a class="aside__anchor" href="#option-stickyHeight">stickyHeight</a></li><li class="aside__item"><a class="aside__anchor" href="#option-showCode">showCode</a></li><li class="aside__item"><a class="aside__anchor" href="#option-anchorURL">anchorURL</a></li><li class="aside__item"><a class="aside__anchor" href="#option-homepage">homepage</a></li><li class="aside__item"><a class="aside__anchor" href="#option-git">git</a></li><li class="aside__item"><a class="aside__anchor" href="#option-tags">tags</a></li><li class="aside__item"><a class="aside__anchor" href="#option-issues">issues</a></li><li class="aside__item"><a class="aside__anchor" href="#option-customClass">customClass</a></li><li class="aside__item"><a class="aside__anchor" href="#option-afterScroll">afterScroll</a></li><li class="aside__item"><a class="aside__anchor" href="#option-afterSticky">afterSticky</a></li><li class="aside__item"><a class="aside__anchor" href="#option-afterToggle">afterToggle</a></li></ul><h3 class="aside__h3">Properties</h3><ul class="aside__list"><li class="aside__item"><a class="aside__anchor" href="#property-defaults">DEFAULTS</a></li><li class="aside__item"><a class="aside__anchor" href="#property-attrs">attrs</a></li><li class="aside__item"><a class="aside__anchor" href="#property-anchors">anchors</a></li><li class="aside__item"><a class="aside__anchor" href="#property-chapters">chapters</a></li><li class="aside__item"><a class="aside__anchor" href="#property-drawer">drawer</a></li><li class="aside__item"><a class="aside__anchor" href="#property-toolbar">toolbar</a></li></ul><h3 class="aside__h3">Methods</h3><ul class="aside__list"><li class="aside__item"><a class="aside__anchor" href="#method-attr">attr()</a></li><li class="aside__item"><a class="aside__anchor" href="#method-getChapters">getChapters()</a></li><li class="aside__item"><a class="aside__anchor" href="#method-count">count()</a></li><li class="aside__item"><a class="aside__anchor" href="#method-toTop">toTop()</a></li><li class="aside__item"><a class="aside__anchor" href="#method-toBottom">toBottom()</a></li><li class="aside__item"><a class="aside__anchor" href="#method-scrollTo">scrollTo()</a></li><li class="aside__item"><a class="aside__anchor" href="#method-toggle">toggle()</a></li><li class="aside__item"><a class="aside__anchor" href="#method-destroy">destroy()</a></li><li class="aside__item"><a class="aside__anchor" href="#method-reload">reload()</a></li></ul></nav></aside><main class="main" id="main"><header class="main__header" id="header"><h1 class="main__h1"><strong class="main__name">outline.</strong>js</h1><p class="main__tagline">outline.js - 自动生成文章导读（Table of Contents）导航的 JavaScript 工具。</p></header><div class="main__cdn" id="cdn"><pre class="main__pre"><code>&lt;script src="https://cdn.jsdelivr.net/gh/yaohaixiao/outline.js/outline.min.js"&gt;&lt;/script&gt;</code></pre></div><div class="main__download" id="download"><a class="main__button" href="https://github.com/yaohaixiao/outline.js/archive/refs/heads/main.zip" target="_blank">Download Zip</a></div><section class="section"><header class="section__header"><h2 class="section__title">Options</h2></header><div class="section__content"><p>outline.js 有者丰富的配置选项，以便适应不同的展示方式。</p></div><section class="section"><header class="section__header"><h3 class="section__h3" id="option-articleElement">articleElement</h3></header><div class="section__content"><h4 class="section__h4">Description</h4><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">String|HTMLElement</dd></dl><dl class="section__dl"><dt class="section__dt">Default：</dt><dd class="section__dd">'#article'</dd></dl><dl class="section__dl"><dt class="section__dt">String：</dt><dd class="section__dd">选择器字符串，默认值：html,body（即 window 窗口）;</dd></dl><dl class="section__dl"><dt class="section__dt">HTMLElement：</dt><dd class="section__dd">'DOM 元素;</dd></dl><p>可选，用来指定页面中显示文章正文的 DOM 节点或者选择器字符串。</p><pre class="section__pre"><code class="section__code">// Default Selector
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="keywords" content="outline.js,Automatic Create,Article,Outline,JavaScript,Toolkit"><meta name="description" content="outline.js - 自动生成文章导读（Table of Contents）导航的 JavaScript 工具。会自动分析文章中的标题（ h1~h6 ）标签，并生成文章段落层次结构的导读导航菜单。"><link rel="shortcut icon" href="./favicon.ico"><title>outline.js | 自动生成文章导读（Table of Contents）导航的 JavaScript 工具。</title><link rel="preload" href="css/docs.min.css" as="style"><link rel="preload" href="js/docs.min.js" as="script"><link href="css/docs.min.css" rel="stylesheet" type="text/css"></head><body><div class="docs" id="docs"><aside class="aside" id="aside"><header class="aside__header"><h2 class="aside__h2">API Documentation</h2></header><nav class="aside__nav"><h3 class="aside__h3">Options</h3><ul class="aside__list"><li class="aside__item"><a class="aside__anchor" href="#option-articleElement">articleElement</a></li><li class="aside__item"><a class="aside__anchor" href="#option-selector">selector</a></li><li class="aside__item"><a class="aside__anchor" href="#option-title">title</a></li><li class="aside__item"><a class="aside__anchor" href="#option-scrollElement">scrollElement</a></li><li class="aside__item"><a class="aside__anchor" href="#option-position">position</a></li><li class="aside__item"><a class="aside__anchor" href="#option-parentElement">parentElement</a></li><li class="aside__item"><a class="aside__anchor" href="#option-placement">placement</a></li><li class="aside__item"><a class="aside__anchor" href="#option-stickyHeight">stickyHeight</a></li><li class="aside__item"><a class="aside__anchor" href="#option-showCode">showCode</a></li><li class="aside__item"><a class="aside__anchor" href="#option-anchorURL">anchorURL</a></li><li class="aside__item"><a class="aside__anchor" href="#option-homepage">homepage</a></li><li class="aside__item"><a class="aside__anchor" href="#option-git">git</a></li><li class="aside__item"><a class="aside__anchor" href="#option-tags">tags</a></li><li class="aside__item"><a class="aside__anchor" href="#option-issues">issues</a></li><li class="aside__item"><a class="aside__anchor" href="#option-tools">tools</a></li><li class="aside__item"><a class="aside__anchor" href="#option-customClass">customClass</a></li><li class="aside__item"><a class="aside__anchor" href="#option-afterScroll">afterScroll</a></li><li class="aside__item"><a class="aside__anchor" href="#option-afterSticky">afterSticky</a></li><li class="aside__item"><a class="aside__anchor" href="#option-afterToggle">afterToggle</a></li></ul><h3 class="aside__h3">Properties</h3><ul class="aside__list"><li class="aside__item"><a class="aside__anchor" href="#property-defaults">DEFAULTS</a></li><li class="aside__item"><a class="aside__anchor" href="#property-attrs">attrs</a></li><li class="aside__item"><a class="aside__anchor" href="#property-buttons">buttons</a></li><li class="aside__item"><a class="aside__anchor" href="#property-anchors">anchors</a></li><li class="aside__item"><a class="aside__anchor" href="#property-chapters">chapters</a></li><li class="aside__item"><a class="aside__anchor" href="#property-drawer">drawer</a></li><li class="aside__item"><a class="aside__anchor" href="#property-toolbar">toolbar</a></li></ul><h3 class="aside__h3">Methods</h3><ul class="aside__list"><li class="aside__item"><a class="aside__anchor" href="#method-attr">attr()</a></li><li class="aside__item"><a class="aside__anchor" href="#method-getChapters">getChapters()</a></li><li class="aside__item"><a class="aside__anchor" href="#method-count">count()</a></li><li class="aside__item"><a class="aside__anchor" href="#method-addButton">addButton()</a></li><li class="aside__item"><a class="aside__anchor" href="#method-removeButton">removeButton()</a></li><li class="aside__item"><a class="aside__anchor" href="#method-toTop">toTop()</a></li><li class="aside__item"><a class="aside__anchor" href="#method-toBottom">toBottom()</a></li><li class="aside__item"><a class="aside__anchor" href="#method-scrollTo">scrollTo()</a></li><li class="aside__item"><a class="aside__anchor" href="#method-toggle">toggle()</a></li><li class="aside__item"><a class="aside__anchor" href="#method-destroy">destroy()</a></li><li class="aside__item"><a class="aside__anchor" href="#method-reload">reload()</a></li></ul></nav></aside><main class="main" id="main"><header class="main__header" id="header"><h1 class="main__h1"><strong class="main__name">outline.</strong>js</h1><p class="main__tagline">outline.js - 自动生成文章导读（Table of Contents）导航的 JavaScript 工具。</p></header><div class="main__cdn" id="cdn"><pre class="main__pre"><code>&lt;script src="https://cdn.jsdelivr.net/gh/yaohaixiao/outline.js/outline.min.js"&gt;&lt;/script&gt;</code></pre></div><div class="main__download" id="download"><a class="main__button" href="https://github.com/yaohaixiao/outline.js/archive/refs/heads/main.zip" target="_blank">Download Zip</a></div><section class="section"><header class="section__header"><h2 class="section__title">Options</h2></header><div class="section__content"><p>outline.js 有者丰富的配置选项，以便适应不同的展示方式。</p></div><section class="section"><header class="section__header"><h3 class="section__h3" id="option-articleElement">articleElement</h3></header><div class="section__content"><h4 class="section__h4">Description</h4><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">String|HTMLElement</dd></dl><dl class="section__dl"><dt class="section__dt">Default：</dt><dd class="section__dd">'#article'</dd></dl><dl class="section__dl"><dt class="section__dt">String：</dt><dd class="section__dd">选择器字符串，默认值：html,body（即 window 窗口）;</dd></dl><dl class="section__dl"><dt class="section__dt">HTMLElement：</dt><dd class="section__dd">'DOM 元素;</dd></dl><p>可选，用来指定页面中显示文章正文的 DOM 节点或者选择器字符串。</p><pre class="section__pre"><code class="section__code">// Default Selector
 const outline = new Outline(Outline.DEFAULTS)
 
 // Customize Selector
@@ -62,6 +62,37 @@ outline.reload({
 // 侧边栏的 Toolbar 会多出一个 issues 图标的按钮
 outline.reload({
   issues: 'https://github.com/yaohaixiao/outline.js/issues'
+})</code></pre></div></section><section class="section"><header class="section__header"><h3 class="section__h3" id="option-tools">tools</h3></header><div class="section__content"><h4 class="section__h4">Description</h4><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">Array</dd></dl><dl class="section__dl"><dt class="section__dt">Default：</dt><dd class="section__dd">[]</dd></dl><p>可选，自定义的按钮配置项。tools 中的按钮会排列显示在 homepage, git, tags, issues 等按钮之后。</p><pre class="section__pre"><code class="section__code">const outline = new Outline(Outline.DEFAULTS)
+// 如果需要其它图标，可以到 https://github.com/yaohaixiao/icons.toolkit.vue 项目中选择需要的图标资源
+const clean = '&lt;svg xmlns="http://www.w3.org/2000/svg" width="200" height="200" viewBox="0 0 1024 1024"&gt;' +
+  '&lt;path d="M704 32V320h288a32 32 0 0 1 32 32v320a32 32 0 0 1-32 32H32a32 32 0 0 1-32-32v-320A32 32 0 0 1 32 320H320V32a32 32 0 0 1 32-32h320a32 32 0 0 1 32 32zM576 128H448v320H128v128h768V448H576V128z"&gt;&lt;/path&gt;' +
+  '&lt;path d="M896 576v416a32 32 0 0 1-32 32h-704a32 32 0 0 1-32-32V576h768z m-128 128H256v192h512v-192z"&gt;&lt;/path&gt;' +
+  '&lt;/svg&gt;'
+
+// 侧边栏的 Toolbar 会多出一个 git 图标的按钮
+outline.reload({
+  git: 'https://github.com/yaohaixiao/outline.js',
+  tools: [
+    {
+      name: 'clean',
+      // 图标
+      icon: clean,
+      size: 20,
+      color: '#f00'
+      // link 指定按钮点击后页面的跳转地址
+      link: 'https://github.com/yaohaixiao',
+      // link 和 action 只能二选一
+      // action 指定按钮的处理方式
+      action: {
+        type: 'click',
+        // 指定回调函数的 this 上下文，不设置 this 指向 toolbar 组件
+        context: outline,
+        handler: function() {
+          // 回调函数的处理逻辑
+        }
+      }
+    }
+  ]
 })</code></pre></div></section><section class="section"><header class="section__header"><h3 class="section__h3" id="option-customClass">customClass</h3></header><div class="section__content"><h4 class="section__h4">Description</h4><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">String</dd></dl><dl class="section__dl"><dt class="section__dt">Default：</dt><dd class="section__dd">''</dd></dl><p>可选，(DIYer福利)设置自定义样式的 class 名称：</p><ul><li>'' - 采用默认 outline.js 的 UI 界面（默认值）；</li><li>设置自定义样式 - 自己根据需求设置个性化的 UI 界面；</li></ul><pre class="section__pre"><code class="section__code">// Default UI
 new Outline(Outline.DEFAULTS)
 
@@ -186,7 +217,11 @@ outline = new Outline(Outline.DEFAULTS)</code></pre></div></section></section><s
 const outline = new Outline(Outline.DEFAULTS)
 
 // 查看全部配置信息
-outline.attrs</code></pre></div></section><section class="section"><header class="section__header"><h3 class="section__h3" id="property-anchors">anchors</h3></header><div class="section__content"><h4 class="section__h4">Description</h4><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">Object</dd></dl><p>Anchors 模块：类似 AnchorJS 基础功能模块，自动分析段落层级。</p><pre class="section__pre"><code class="section__code">// 仅展示 API 中对外公开的方法和属性
+outline.attrs</code></pre></div></section><section class="section"><header class="section__header"><h3 class="section__h3" id="property-buttons">buttons</h3></header><div class="section__content"><h4 class="section__h4">Description</h4><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">Array</dd></dl><p>存储的是 Outline 对象当前工具栏的完整的按钮配置信息：</p><pre class="section__pre"><code class="section__code">// 设置默认配置项
+const outline = new Outline(Outline.DEFAULTS)
+
+// 查看全部按钮配置信息
+outline.buttons</code></pre></div></section><section class="section"><header class="section__header"><h3 class="section__h3" id="property-anchors">anchors</h3></header><div class="section__content"><h4 class="section__h4">Description</h4><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">Object</dd></dl><p>Anchors 模块：类似 AnchorJS 基础功能模块，自动分析段落层级。</p><pre class="section__pre"><code class="section__code">// 仅展示 API 中对外公开的方法和属性
 class Anchors extends Base {
   constructor(options) {
     super()
@@ -717,7 +752,61 @@ outline.getChapters()
 }]
 
 outline.count()
-// -> 1 就是 getChapters() 返回数据的数量</code></pre></div></section><section class="section"><header class="section__header"><h3 class="section__h3" id="method-toTop">toTop([afterScroll])</h3></header><div class="section__content"><h4 class="section__h4">Description</h4><p>toTop() 方法会控制页面（scrollElement）滚动到顶部。</p><h4 class="section__h4">Parameters</h4><h5 class="section__h4">afterScroll</h5><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">Function</dd></dl><p>（可选）页面停止滚动后的回调函数。</p><h4 class="section__h4">Returns</h4><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">Outline</dd></dl><p>Outline 对象，便于链式方法调用。</p><pre class="section__pre"><code class="section__code">const outline = new Outline({
+// -> 1 就是 getChapters() 返回数据的数量</code></pre></div></section><section class="section"><header class="section__header"><h3 class="section__h3" id="method-addButton">addButton(button)</h3></header><div class="section__content"><h4 class="section__h4">Description</h4><p>addButton() 方法添加自定义的工具栏按钮。</p><h4 class="section__h4">Parameters</h4><h5 class="section__h4">button</h5><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">Object|Array</dd></dl><p>（必须）单个按钮的配置信息或者多个按钮的配置信息。</p><h4 class="section__h4">Returns</h4><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">Outline</dd></dl><p>Outline 对象，便于链式方法调用。</p><pre class="section__pre"><code class="section__code">const outline = new Outline(Outline.DEFAULTS)
+// 如果需要其它图标，可以到 https://github.com/yaohaixiao/icons.toolkit.vue 项目中选择需要的图标资源
+const clean = '&lt;svg xmlns="http://www.w3.org/2000/svg" width="200" height="200" viewBox="0 0 1024 1024"&gt;' +
+  '&lt;path d="M704 32V320h288a32 32 0 0 1 32 32v320a32 32 0 0 1-32 32H32a32 32 0 0 1-32-32v-320A32 32 0 0 1 32 320H320V32a32 32 0 0 1 32-32h320a32 32 0 0 1 32 32zM576 128H448v320H128v128h768V448H576V128z"&gt;&lt;/path&gt;' +
+  '&lt;path d="M896 576v416a32 32 0 0 1-32 32h-704a32 32 0 0 1-32-32V576h768z m-128 128H256v192h512v-192z"&gt;&lt;/path&gt;' +
+  '&lt;/svg&gt;'
+
+outline.addButton({
+  name: 'clean',
+  // 图标
+  icon: clean,
+  size: 20,
+  color: '#f00'
+  // link 指定按钮点击后页面的跳转地址
+  link: 'https://github.com/yaohaixiao',
+  // link 和 action 只能二选一
+  // action 指定按钮的处理方式
+  action: {
+    type: 'click',
+    // 指定回调函数的 this 上下文，不设置 this 指向 toolbar 组件
+    context: outline,
+    handler: function() {
+      // 回调函数的处理逻辑
+    }
+  }
+})</code></pre></div></section><section class="section"><header class="section__header"><h3 class="section__h3" id="method-removeButton">removeButton(name)</h3></header><div class="section__content"><h4 class="section__h4">Description</h4><p>removeButton() 方法移除工具栏按钮。</p><h4 class="section__h4">Parameters</h4><h5 class="section__h4">name</h5><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">String</dd></dl><p>（必须）按钮名称。</p><h4 class="section__h4">Returns</h4><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">Outline</dd></dl><p>Outline 对象，便于链式方法调用。</p><pre class="section__pre"><code class="section__code">const outline = new Outline(Outline.DEFAULTS)
+// 如果需要其它图标，可以到 https://github.com/yaohaixiao/icons.toolkit.vue 项目中选择需要的图标资源
+const clean = '&lt;svg xmlns="http://www.w3.org/2000/svg" width="200" height="200" viewBox="0 0 1024 1024"&gt;' +
+  '&lt;path d="M704 32V320h288a32 32 0 0 1 32 32v320a32 32 0 0 1-32 32H32a32 32 0 0 1-32-32v-320A32 32 0 0 1 32 320H320V32a32 32 0 0 1 32-32h320a32 32 0 0 1 32 32zM576 128H448v320H128v128h768V448H576V128z"&gt;&lt;/path&gt;' +
+  '&lt;path d="M896 576v416a32 32 0 0 1-32 32h-704a32 32 0 0 1-32-32V576h768z m-128 128H256v192h512v-192z"&gt;&lt;/path&gt;' +
+  '&lt;/svg&gt;'
+
+outline.addButton({
+  name: 'clean',
+  // 图标
+  icon: clean,
+  size: 20,
+  color: '#f00'
+  // link 指定按钮点击后页面的跳转地址
+  link: 'https://github.com/yaohaixiao',
+  // link 和 action 只能二选一
+  // action 指定按钮的处理方式
+  action: {
+    type: 'click',
+    // 指定回调函数的 this 上下文，不设置 this 指向 toolbar 组件
+    context: outline,
+    handler: function() {
+      // 回调函数的处理逻辑
+    }
+  }
+})
+
+setTimeout(() => {
+  outline.addButton('clean')
+}, 5000)</code></pre></div></section><section class="section"><header class="section__header"><h3 class="section__h3" id="method-toTop">toTop([afterScroll])</h3></header><div class="section__content"><h4 class="section__h4">Description</h4><p>toTop() 方法会控制页面（scrollElement）滚动到顶部。</p><h4 class="section__h4">Parameters</h4><h5 class="section__h4">afterScroll</h5><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">Function</dd></dl><p>（可选）页面停止滚动后的回调函数。</p><h4 class="section__h4">Returns</h4><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">Outline</dd></dl><p>Outline 对象，便于链式方法调用。</p><pre class="section__pre"><code class="section__code">const outline = new Outline({
    article: '#article',
    title: 'Outline v2.0.0'
 })

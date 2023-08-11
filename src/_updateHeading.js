@@ -2,7 +2,7 @@ import trim from './utils/lang/trim'
 import createElement from './utils/dom/createElement'
 import setAttribute from './utils/dom/setAttribute'
 
-import { createSvgIcon } from './utils/icons'
+import icon from './utils/icons/icon'
 
 const _updateHeading = ($heading, i, options) => {
   const CLS_HEADING = 'outline-heading'
@@ -34,7 +34,7 @@ const _updateHeading = ($heading, i, options) => {
     return false
   }
 
-  $icon = createSvgIcon('hash')
+  $icon = icon('hash')
   $anchor = createElement(
     'a',
     {

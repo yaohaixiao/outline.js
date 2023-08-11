@@ -12,7 +12,7 @@ import removeClass from './utils/dom/removeClass'
 import on from './utils/event/on'
 import off from './utils/event/off'
 import publish from './utils/observer/emit'
-import { paintSvgSprites } from './utils/icons'
+import paint from './utils/icons/paint'
 
 import _createButton from './_createButton'
 
@@ -96,7 +96,7 @@ class Toolbar extends Base {
     const $buttons = document.createDocumentFragment()
     const $fragment = document.createDocumentFragment()
 
-    paintSvgSprites()
+    paint()
 
     buttons.forEach((button) => {
       const $button = _createButton(button, rounded)
