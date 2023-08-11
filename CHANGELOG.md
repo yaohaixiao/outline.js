@@ -1,3 +1,12 @@
+## [3.13.1](https://github.com/yaohaixiao/outline.js/compare/3.13.0...3.13.1) (2023-08-11)
+
+
+### Bug Fixes
+
+* 修复 # 图标没有显示的问题；调整了 chapters 绘制的 DOM 的逻辑； ([bfe92ca](https://github.com/yaohaixiao/outline.js/commit/bfe92ca81b36ac0097aa27c0b9238215870cc793))
+
+
+
 # [3.13.0](https://github.com/yaohaixiao/outline.js/compare/3.12.3...3.13.0) (2023-08-11)
 
 
