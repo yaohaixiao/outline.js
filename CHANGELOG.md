@@ -1,3 +1,12 @@
+# [3.13.0](https://github.com/yaohaixiao/outline.js/compare/3.12.3...3.13.0) (2023-08-11)
+
+
+### Features
+
+* 添加 tools 配置添加自定义按钮配置；添加 addButton() 和 removeButton() 两个方法，用来在工具栏添加按钮或者移除工具栏按钮 ([d63fd62](https://github.com/yaohaixiao/outline.js/commit/d63fd6289f89d8227cd8eb63036cebd65aa8171c))
+
+
+
 ## [3.12.3](https://github.com/yaohaixiao/outline.js/compare/3.12.2...3.12.3) (2023-08-10)
 
 
