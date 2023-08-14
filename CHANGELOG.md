@@ -1,3 +1,12 @@
+## [3.13.2](https://github.com/yaohaixiao/outline.js/compare/3.13.1...3.13.2) (2023-08-14)
+
+
+### Bug Fixes
+
+* 修复初始化 scrollElement.scrollTop = 0 时，向上按钮未隐藏的问题 ([f36fcb1](https://github.com/yaohaixiao/outline.js/commit/f36fcb1f61e575d8d887b1b534949d51d0c00b89))
+
+
+
 ## [3.13.1](https://github.com/yaohaixiao/outline.js/compare/3.13.0...3.13.1) (2023-08-11)
 
 
