@@ -1,3 +1,12 @@
+# [3.14.0](https://github.com/yaohaixiao/outline.js/compare/3.13.2...3.14.0) (2023-08-14)
+
+
+### Features
+
+* 添加 print 配置，支持 print 基础打印样式 ([2e43a50](https://github.com/yaohaixiao/outline.js/commit/2e43a50107156009861fc383bac6f065e69b8914))
+
+
+
 ## [3.13.2](https://github.com/yaohaixiao/outline.js/compare/3.13.1...3.13.2) (2023-08-14)
 
 
