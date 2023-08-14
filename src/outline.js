@@ -41,7 +41,20 @@ class Outline extends Base {
   }
 
   render() {
+    const scrollElement = this.attr('scrollElement')
+    const $scrollElement =
+      document.querySelector(scrollElement) ||
+      document.getElementById(scrollElement)
+
     this._renderAnchors()._renderChapters()._renderToolbar()
+
+    if ($scrollElement) {
+      this.onToolbarUpdate({
+        top: $scrollElement.scrollTop,
+        min: 0,
+        max: $scrollElement.scrollHeight
+      })
+    }
 
     return this
   }
@@ -185,11 +198,11 @@ class Outline extends Base {
     const buttons = []
 
     buttons.push(UP)
-    if (count > 0) {
-      buttons.push(MENU)
-    }
     if (homepage) {
       buttons.push(HOME)
+    }
+    if (count > 0) {
+      buttons.push(MENU)
     }
     if (git) {
       buttons.push(GIT)
