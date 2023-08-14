@@ -201,7 +201,7 @@ const outline = new Outline({
     // ltr - 菜单位置在窗口左侧，滑动动画为：left to right
     // ttb - 菜单位置在窗口上方，滑动动画为：top to bottom
     // btt - 菜单位置在窗口下方，滑动动画为：bottom to top
-    placement: '',
+    placement: 'rtl',
     // 页面中其它 sticky 或者模拟 skicky 的 fiexed 定位的 DOM 元素的高度。例如 wordpress 系统中，
     // 就会有 sticky 定位的导航菜单。这些 sticky 元素脱离了正常的流布局后，原来 h1~h6 标题标签的 
     // offsetTop 计算会出现偏差。sticky 元素会遮挡标题，因此针对页面中有其它 sticky 元素会遮挡标题，
@@ -224,10 +224,24 @@ const outline = new Outline({
     tags: '',
     // 指定git仓库中的 issues 地址
     issues: '',
+    // 自定义按钮配置
+    tools: [],
+    // 为文章页添加基础的打印样式
+    // 如果您的页面已经有打印样式，就无需设置了
+    print: {
+      element: '',
+      title: ''
+    },
     // DIYer的福利
     // 独立侧滑菜单时，customClass 会追加到 drawer 侧滑窗口组件
     // 在文章中显示导航菜单时，customClass 会追加到 chapters 导航菜单
-    customClass
+    customClass,
+    // position: fixed，当导航菜单样式进入 fixed 定位后，触发的回调函数
+    afterSticky: null,
+    // 当导航菜单隐藏或者显示后，触发的回调函数
+    afterToggle: null,
+    // 当点击上下滚动按钮，导航菜单或者文章中的 # 图标，滚动结束后触发的回调函数
+    afterScroll: null
 });
 
 // 可以在创建导航后，重置配置信息，重新生成新的导航
@@ -442,11 +456,20 @@ Outline.DEFAULTS = {
   placement: 'rtl',
   showCode: true,
   anchorURL: '',
+  stickyHeight: 0,
   homepage: '',
   git: '',
   tags: '',
   issues: '',
-  customClass: ''
+  tools: [],
+  print: {
+    element: '',
+    title: ''
+  },
+  customClass: '',
+  afterSticky: null,
+  afterToggle: null,
+  afterScroll: null
 }
 ```
 

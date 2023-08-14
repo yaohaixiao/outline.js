@@ -93,7 +93,7 @@ const minifySourcesStyle = () => {
       './chapters.css',
       './drawer.css',
       './toolbar.css',
-      './outline.css'
+      './outline.css',
     ], {
       allowEmpty: true
     })

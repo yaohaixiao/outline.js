@@ -11,18 +11,26 @@ section.section
       code.section__code.
         Outline.DEFAULTS = {
           articleElement: '#article',
-          selector: 'h2,h3,h4,h5,h6',
-          title: '目录',
-          scrollElement: 'html,body',
-          position: 'relative',
-          parentElement: '#aside',
-          placement: 'rtl',
-          stickyHeight: 0,
-          showCode: true,
-          anchorURL: '',
-          homepage: '',
-          git: '',
-          tags: '',
-          issues: '',
-          customClass: ''
+            selector: 'h2,h3,h4,h5,h6',
+            title: '目录',
+            scrollElement: 'html,body',
+            position: 'relative',
+            parentElement: '#aside',
+            placement: 'rtl',
+            showCode: true,
+            anchorURL: '',
+            stickyHeight: 0,
+            homepage: '',
+            git: '',
+            tags: '',
+            issues: '',
+            tools: [],
+            print: {
+              element: '',
+              title: ''
+            },
+            customClass: '',
+            afterSticky: null,
+            afterToggle: null,
+            afterScroll: null
         }

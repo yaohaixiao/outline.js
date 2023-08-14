@@ -1,0 +1,38 @@
+section.section
+  header.section__header
+    h3#option-print.section__h3 print
+  div.section__content
+    h4.section__h4 Description
+    dl.section__dl
+      dt.section__dt Type：
+      dd.section__dd Object
+    dl.section__dl
+      dt.section__dt Default：
+      dd.section__dd {element: '', title: ''}
+    p 可选，自定义的是否自动为文章页面创建打印样式。
+    dl.section__dl
+      dt.section__dt element：
+      dd.section__dd （必须）要打印的文章区域，DOM 元素或者选择器字符串。
+    dl.section__dl
+      dt.section__dt title：
+      dd.section__dd （可选）要打印的文章标题。如果 element 区域有 h1 标签则无需设置。
+    pre.section__pre
+      code.section__code.
+        const defaults = Outline.DEFAULTS
+        let outline
+
+        defaults.position = 'sticky'
+        defaults.stickyHeight = 86
+        defaults.parentElement = '#aside'
+        defaults.scrollElement = '#main'
+        defaults.homepage = './index.html'
+        defaults.git = 'https://github.com/yaohaixiao/outline.js'
+        defaults.tags = 'https://github.com/yaohaixiao/outline.js/tags'
+        defaults.issues = 'https://github.com/yaohaixiao/outline.js/issues'
+        defaults.print = {
+          element: '#article',
+          title: 'Outline.js 自动生成文章导读（Table of Contents）导航的 JavaScript 工具'
+        }
+        outline = new Outline(Outline.DEFAULTS)
+    p 演示地址：
+      a(target="_blank" href="https://yaohaixiao.github.io/outline.js/flex.html") https://yaohaixiao.github.io/outline.js/flex.html

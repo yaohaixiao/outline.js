@@ -6,10 +6,15 @@ import Toolbar from './toolbar'
 
 import later from './utils/lang/later'
 import isFunction from './utils/types/isFunction'
+import isString from './utils/types/isString'
+import isElement from './utils/types/isElement'
+import addClass from './utils/dom/addClass'
 import scrollTo from './utils/dom/scrollTo'
 import _getScrollElement from './utils/dom/_getScrollElement'
 import subscribe from './utils/observer/on'
 import unsubscribe from './utils/observer/off'
+
+import print from './print'
 
 class Outline extends Base {
   constructor(options) {
@@ -46,7 +51,7 @@ class Outline extends Base {
       document.querySelector(scrollElement) ||
       document.getElementById(scrollElement)
 
-    this._renderAnchors()._renderChapters()._renderToolbar()
+    this._renderPrint()._renderAnchors()._renderChapters()._renderToolbar()
 
     if ($scrollElement) {
       this.onToolbarUpdate({
@@ -55,6 +60,27 @@ class Outline extends Base {
         max: $scrollElement.scrollHeight
       })
     }
+
+    return this
+  }
+
+  _renderPrint() {
+    const option = this.attr('print')
+    const articleElement = this.attr('articleElement')
+    let $articleElement
+
+    if (!option.element) {
+      return this
+    }
+
+    if (isString(articleElement)) {
+      $articleElement = document.querySelector(articleElement)
+    } else if (isElement(articleElement)) {
+      $articleElement = articleElement
+    }
+
+    addClass($articleElement, 'outline-article')
+    print(option.element, option.title)
 
     return this
   }
@@ -435,6 +461,10 @@ Outline.DEFAULTS = {
   tags: '',
   issues: '',
   tools: [],
+  print: {
+    element: '',
+    title: ''
+  },
   customClass: '',
   afterSticky: null,
   afterToggle: null,

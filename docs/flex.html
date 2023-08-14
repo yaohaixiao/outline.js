@@ -156,7 +156,22 @@ outline.reload({
       }
     }
   ]
-})</code></pre></div></section><section class="section"><header class="section__header"><h3 class="section__h3" id="option-customClass">customClass</h3></header><div class="section__content"><h4 class="section__h4">Description</h4><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">String</dd></dl><dl class="section__dl"><dt class="section__dt">Default：</dt><dd class="section__dd">''</dd></dl><p>可选，(DIYer福利)设置自定义样式的 class 名称：</p><ul><li>'' - 采用默认 outline.js 的 UI 界面（默认值）；</li><li>设置自定义样式 - 自己根据需求设置个性化的 UI 界面；</li></ul><pre class="section__pre"><code class="section__code">// Default UI
+})</code></pre></div></section><section class="section"><header class="section__header"><h3 class="section__h3" id="option-print">print</h3></header><div class="section__content"><h4 class="section__h4">Description</h4><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">Object</dd></dl><dl class="section__dl"><dt class="section__dt">Default：</dt><dd class="section__dd">{element: '', title: ''}</dd></dl><p>可选，自定义的是否自动为文章页面创建打印样式。</p><dl class="section__dl"><dt class="section__dt">element：</dt><dd class="section__dd">（必须）要打印的文章区域，DOM 元素或者选择器字符串。</dd></dl><dl class="section__dl"><dt class="section__dt">title：</dt><dd class="section__dd">（可选）要打印的文章标题。如果 element 区域有 h1 标签则无需设置。</dd></dl><pre class="section__pre"><code class="section__code">const defaults = Outline.DEFAULTS
+let outline
+
+defaults.position = 'sticky'
+defaults.stickyHeight = 86
+defaults.parentElement = '#aside'
+defaults.scrollElement = '#main'
+defaults.homepage = './index.html'
+defaults.git = 'https://github.com/yaohaixiao/outline.js'
+defaults.tags = 'https://github.com/yaohaixiao/outline.js/tags'
+defaults.issues = 'https://github.com/yaohaixiao/outline.js/issues'
+defaults.print = {
+  element: '#article',
+  title: 'Outline.js 自动生成文章导读（Table of Contents）导航的 JavaScript 工具'
+}
+outline = new Outline(Outline.DEFAULTS)</code></pre><p>演示地址：<a target="_blank" href="https://yaohaixiao.github.io/outline.js/flex.html">https://yaohaixiao.github.io/outline.js/flex.html</a></p></div></section><section class="section"><header class="section__header"><h3 class="section__h3" id="option-customClass">customClass</h3></header><div class="section__content"><h4 class="section__h4">Description</h4><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">String</dd></dl><dl class="section__dl"><dt class="section__dt">Default：</dt><dd class="section__dd">''</dd></dl><p>可选，(DIYer福利)设置自定义样式的 class 名称：</p><ul><li>'' - 采用默认 outline.js 的 UI 界面（默认值）；</li><li>设置自定义样式 - 自己根据需求设置个性化的 UI 界面；</li></ul><pre class="section__pre"><code class="section__code">// Default UI
 new Outline(Outline.DEFAULTS)
 
 // Customized
@@ -262,20 +277,28 @@ defaults.afterToggle = function(closed, isStickying) {
 }
 outline = new Outline(Outline.DEFAULTS)</code></pre></div></section></section><section class="section"><header class="section__header"><h2 class="section__title">Properties</h2></header><div class="section__content"><p>outline.js 重构后，对外放 4 个重要的属性：anchors、drawer、chapters 和 toolbar。它们都是独立的对象实例，提供了 outline.js 所有的能力（属性和方法）。</p></div><section class="section"><header class="section__header"><h3 class="section__h3" id="property-defaults">DEFAULTS</h3></header><div class="section__content"><h4 class="section__h4">Description</h4><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="api-param-value">Object</dd></dl><p>静态属性，存储的是 Outline 对象默认配置选项：</p><pre class="section__pre"><code class="section__code">Outline.DEFAULTS = {
   articleElement: '#article',
-  selector: 'h2,h3,h4,h5,h6',
-  title: '目录',
-  scrollElement: 'html,body',
-  position: 'relative',
-  parentElement: '#aside',
-  placement: 'rtl',
-  stickyHeight: 0,
-  showCode: true,
-  anchorURL: '',
-  homepage: '',
-  git: '',
-  tags: '',
-  issues: '',
-  customClass: ''
+    selector: 'h2,h3,h4,h5,h6',
+    title: '目录',
+    scrollElement: 'html,body',
+    position: 'relative',
+    parentElement: '#aside',
+    placement: 'rtl',
+    showCode: true,
+    anchorURL: '',
+    stickyHeight: 0,
+    homepage: '',
+    git: '',
+    tags: '',
+    issues: '',
+    tools: [],
+    print: {
+      element: '',
+      title: ''
+    },
+    customClass: '',
+    afterSticky: null,
+    afterToggle: null,
+    afterScroll: null
 }</code></pre></div></section><section class="section"><header class="section__header"><h3 class="section__h3" id="property-attrs">attrs</h3></header><div class="section__content"><h4 class="section__h4">Description</h4><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">Object</dd></dl><p>存储的是 Outline 对象当前使用中的配置选项：</p><p>说明：建议使用 attr(prop) 方法来获取属性，避免直接调用属性。</p><pre class="section__pre"><code class="section__code">// 设置默认配置项
 const outline = new Outline(Outline.DEFAULTS)
 
@@ -938,4 +961,8 @@ defaults.homepage = './index.html'
 defaults.git = 'https://github.com/yaohaixiao/outline.js'
 defaults.tags = 'https://github.com/yaohaixiao/outline.js/tags'
 defaults.issues = 'https://github.com/yaohaixiao/outline.js/issues'
+defaults.print = {
+  element: '#article',
+  title: 'Outline.js 自动生成文章导读（Table of Contents）导航的 JavaScript 工具'
+}
 outline = new Outline(Outline.DEFAULTS)</script></body></html>
