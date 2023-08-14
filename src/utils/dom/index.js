@@ -2,6 +2,7 @@ import addClass from './addClass'
 import closest from './closest'
 import createElement from './createElement'
 import getParentOrHost from './getParentOrHost'
+import getStyle from './getStyle'
 import matches from './matches'
 import hasClass from './hasClass'
 import intersection from './intersection'
@@ -18,6 +19,7 @@ export default {
   closest,
   createElement,
   getParentOrHost,
+  getStyle,
   matches,
   hasClass,
   intersection,

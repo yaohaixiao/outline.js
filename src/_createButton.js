@@ -1,9 +1,13 @@
-import { createSvgIcon } from './utils/icons'
+import icon from './utils/icons/icon'
 import createElement from './utils/dom/createElement'
 import addClass from './utils/dom/addClass'
 
 const _createButton = (button, rounded = true) => {
-  const $icon = createSvgIcon(button.icon, button.size)
+  const $icon = icon(button.icon, {
+    iconSet: button.iconSet || 'outline',
+    color: button.color || '',
+    size: button.size
+  })
   const $anchor = createElement(
     'a',
     {

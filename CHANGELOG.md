@@ -1,3 +1,158 @@
+## [3.13.1](https://github.com/yaohaixiao/outline.js/compare/3.13.0...3.13.1) (2023-08-11)
+
+
+### Bug Fixes
+
+* 修复 # 图标没有显示的问题；调整了 chapters 绘制的 DOM 的逻辑； ([bfe92ca](https://github.com/yaohaixiao/outline.js/commit/bfe92ca81b36ac0097aa27c0b9238215870cc793))
+
+
+
+# [3.13.0](https://github.com/yaohaixiao/outline.js/compare/3.12.3...3.13.0) (2023-08-11)
+
+
+### Features
+
+* 添加 tools 配置添加自定义按钮配置；添加 addButton() 和 removeButton() 两个方法，用来在工具栏添加按钮或者移除工具栏按钮 ([d63fd62](https://github.com/yaohaixiao/outline.js/commit/d63fd6289f89d8227cd8eb63036cebd65aa8171c))
+
+
+
+## [3.12.3](https://github.com/yaohaixiao/outline.js/compare/3.12.2...3.12.3) (2023-08-10)
+
+
+### Bug Fixes
+
+* 修复页面没有 h1~h6 标签，上下滚动按钮点击报错的问题； ([e9c78d6](https://github.com/yaohaixiao/outline.js/commit/e9c78d6ca883a0f069d951f74433e779813187d7))
+
+
+
+## [3.12.2](https://github.com/yaohaixiao/outline.js/compare/3.12.1...3.12.2) (2023-08-10)
+
+
+### Bug Fixes
+
+* 不准备支持 typescript 了 ([85d6333](https://github.com/yaohaixiao/outline.js/commit/85d63334e9cdefe061156a102e959d39d58c3ecf))
+
+
+
+# [3.12.0](https://github.com/yaohaixiao/outline.js/compare/3.11.0...3.12.0) (2023-08-10)
+
+
+### Features
+
+* 调整 _getChaptersWithCode() 方法，优化算法 ([7c3fbd1](https://github.com/yaohaixiao/outline.js/commit/7c3fbd1ef2d4dcc6188d22a9a23330a0510e8c2b))
+
+
+
+# [3.11.0](https://github.com/yaohaixiao/outline.js/compare/3.10.3...3.11.0) (2023-08-09)
+
+
+### Features
+
+* 添加 git, tags 和 issues 配置参数 ([ed3ddf5](https://github.com/yaohaixiao/outline.js/commit/ed3ddf5296c60164c5c95c3b57ac6876513fa1f7))
+
+
+
+## [3.10.3](https://github.com/yaohaixiao/outline.js/compare/3.10.2...3.10.3) (2023-08-08)
+
+
+### Bug Fixes
+
+* chore: 调整 chapters 组件的高亮选中项 placeholder 定位逻辑，采用 transform 替换 top: calc() 模式定位，修复 customClass 调整样式可能带来的定位不准问题
+
+
+
+## [3.10.2](https://github.com/yaohaixiao/outline.js/compare/3.10.1...3.10.2) (2023-08-07)
+
+
+### Bug Fixes
+
+* 调整 _getChaptersWithCode() 方法，移除多余的 index 计算逻辑；添加 VUE 使用 outline.js 的示例； ([6f88985](https://github.com/yaohaixiao/outline.js/commit/6f88985bb95231a1bd976d33b7fc5f32d6b3c24a))
+
+
+
+## [3.10.1](https://github.com/yaohaixiao/outline.js/compare/3.10.0...3.10.1) (2023-08-07)
+
+
+### Bug Fixes
+
+* 修复 Outline 模块，reload()后导航菜单不显示子菜单和点击菜单会报错的问题 ([21c8ed3](https://github.com/yaohaixiao/outline.js/commit/21c8ed38ef469f89a7fab6d6bbe38465cfa32837))
+
+
+
+# [3.10.0](https://github.com/yaohaixiao/outline.js/compare/3.9.0...3.10.0) (2023-08-05)
+
+
+### Features
+
+* 添加 afterScroll 配置参数，在滚动结束后触发的回调函数 ([db5a2d9](https://github.com/yaohaixiao/outline.js/commit/db5a2d9be8e9e13652de2b175c5a26d4aa2a47b6))
+
+
+
+# [3.9.0](https://github.com/yaohaixiao/outline.js/compare/3.8.0...3.9.0) (2023-08-05)
+
+
+### Features
+
+* 调整 scrollTo() 方法的滚动动画处理方式，用 requestAnimationFrame() 替换原本的 setTimeout() ([a235c3b](https://github.com/yaohaixiao/outline.js/commit/a235c3bcffdc1bb5e993a4948857ba8ec986dd0c))
+
+
+
+
+## [3.8.1](https://github.com/yaohaixiao/outline.js/compare/3.8.0...3.8.1) (2023-08-03)
+
+
+### Bug Fixes
+
+* 修复添加 afterToggle 配置后，调整组件初始化变更导致的 posiiton: relative 菜单显示逻辑错误问题 ([5f8483b](https://github.com/yaohaixiao/outline.js/commit/5f8483b6c5b5363424497b6190591869087dcfb7))
+
+
+
+
+# [3.8.0](https://github.com/yaohaixiao/outline.js/compare/3.7.0...3.8.0) (2023-08-02)
+
+
+### Features
+
+* 优化_getChaptersWithCode() 方法中生成文章章节 code 的算法，调整 groupBy() 方法，直接生成章节 code，移除 _getChaptersWithCode() 中多余的逻辑。理论上性能提升1倍 ([91fbdff](https://github.com/yaohaixiao/outline.js/commit/91fbdfff5df1ae00280b3081b650e5e3b76fe605))
+
+
+
+# [3.7.0](https://github.com/yaohaixiao/outline.js/compare/3.6.0...3.7.0) (2023-08-01)
+
+
+### Features
+
+* 重构了 _getChapterParentIdByDiffer() 方法，采用更加简洁的编码方式；添加了 afeterSticky 和 afterToggle 两个新的配置参数，并更新的 API 文档；在 fixed.html 示例中展示了新添加的参数的样式用例 ([0d6598f](https://github.com/yaohaixiao/outline.js/commit/0d6598fa6117101b9578b67ef50c362ae35b525a))
+
+
+
+# [3.6.0](https://github.com/yaohaixiao/outline.js/compare/3.5.4...3.6.0) (2023-07-31)
+
+
+### Features
+
+* 优化 showCode = false 时的生成 chapters 数据的信息逻辑 ([26dd10d](https://github.com/yaohaixiao/outline.js/commit/26dd10dd11f3a1bf4da2aeeb224f2251e01fcdee))
+
+
+
+## [3.5.4](https://github.com/yaohaixiao/outline.js/compare/3.5.3...3.5.4) (2023-07-27)
+
+
+### Bug Fixes
+
+* 修复独立侧滑菜单选中状态样式问题，不是 100% 菜单宽度；调整独立侧滑菜单默认高度，调整为height: auto; 最大高度：calc(100% - 4em) ([25dc187](https://github.com/yaohaixiao/outline.js/commit/25dc1874e462f268ed4c80b93a58d299d24c15ff))
+
+
+
+## [3.5.3](https://github.com/yaohaixiao/outline.js/compare/3.5.2...3.5.3) (2023-07-25)
+
+
+### Bug Fixes
+
+* 修复 Outline 模块中， toTop() 方法高亮第一个导航标题的 count() 判断错误，并移除 toTop() 和 toBottom() 方法中多余的 afterScroll 执行逻辑； ([6e34d3a](https://github.com/yaohaixiao/outline.js/commit/6e34d3a1d5a20302fee9f1fca842fb206e0de154))
+
+
+
 ## [3.5.2](https://github.com/yaohaixiao/outline.js/compare/3.5.1...3.5.2) (2023-07-25)
 
 

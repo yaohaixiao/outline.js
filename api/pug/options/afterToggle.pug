@@ -1,0 +1,63 @@
+section.section
+  header.section__header
+    h3#option-afterToggle.section__h3 afterToggle
+  div.section__content
+    h4.section__h4 Description
+    dl.section__dl
+      dt.section__dt Type：
+      dd.section__dd Function
+    dl.section__dl
+      dt.section__dt Default：
+      dd.section__dd null
+    p 可选，当导航菜单隐藏或者显示的时候，会触发执行 afterToggle 回调函数。
+    p 说明：afterSticky() 回调函数的 this 上下文执行 outline.chapters 对象。
+    h4.section__h4 Parameters
+    h5.section__h4 closed
+    dl.section__dl
+      dt.section__dt Type：
+      dd.section__dd Boolean
+    p closed 参数值为 true 表示菜单处于隐藏状态，否则表示菜单处于显示状态
+    h5.section__h4 isSticky
+    dl.section__dl
+      dt.section__dt Type：
+      dd.section__dd Boolean
+    p isSticky 参数值为 true 表示（position:fixed）菜单处于模拟 sticky 定位（position:fixed）状态，否则表示菜单处于普通状态。
+    pre.section__pre
+      code.section__code.
+        const $header = document.querySelector('#header')
+        const HEADER_STICKY = 'header_sticky'
+        const defaults = Outline.DEFAULTS
+        let outline
+
+        defaults.position = 'fixed'
+        defaults.parentElement = '#aside'
+        defaults.stickyHeight = 86
+        defaults.homepage = './index.html'
+        defaults.afterSticky = function(closed, isStickying) {
+          const $nav = this.$el
+          const BORDER_RIGHT = 'utils-border-right'
+
+          if (closed) {
+            return false
+          }
+
+          if (isStickying) {
+            $nav.classList.add(BORDER_RIGHT)
+            $header.classList.add(HEADER_STICKY)
+          } else {
+            $nav.classList.remove(BORDER_RIGHT)
+            $header.classList.remove(HEADER_STICKY)
+          }
+        }
+        defaults.afterToggle = function(closed, isStickying) {
+          if (!isStickying) {
+            return false
+          }
+
+          if (closed) {
+            $header.classList.remove(HEADER_STICKY)
+          } else {
+            $header.classList.add(HEADER_STICKY)
+          }
+        }
+        outline = new Outline(Outline.DEFAULTS)

@@ -8,6 +8,7 @@ import isHTMLCollection from './isHTMLCollection'
 import isNumber from './isNumber'
 import isObject from './isObject'
 import isString from './isString'
+import isSVG from './isSVG'
 import isTextNode from './isTextNode'
 import isTypedArray from './isTypedArray'
 
@@ -22,6 +23,7 @@ export default {
   isNumber,
   isObject,
   isString,
+  isSVG,
   isTextNode,
   isTypedArray
 }

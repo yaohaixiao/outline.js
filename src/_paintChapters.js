@@ -1,7 +1,7 @@
 import createElement from './utils/dom/createElement'
 
 const _paintChapters = ($list, chapters, showCode = false) => {
-  const byId = (id) => document.getElementById(id)
+  const byId = (id) => document.querySelector(`#${id}`)
 
   chapters.forEach((chapter) => {
     const pid = chapter.pid

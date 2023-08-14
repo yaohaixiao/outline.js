@@ -1,23 +1,26 @@
-import groupBy from './utils/lang/groupBy'
-
 const _getChaptersWithCode = (chapters) => {
-  const groups = groupBy(chapters, 'pid')
+  const groups = {}
+  const cb = (o) => {
+    return [o.pid]
+  }
 
-  groups.forEach((group) => {
-    group.forEach((chapter, i) => {
-      chapter.index = i + 1
-      if (chapter.pid === -1) {
-        chapter.code = String(chapter.index)
-      }
-    })
+  chapters.forEach((o) => {
+    const group = JSON.stringify(cb(o))
+
+    groups[group] = groups[group] || []
+    groups[group].push(o)
+
+    o.index = groups[group].length
+    if (o.pid === -1) {
+      o.code = String(o.index)
+    }
   })
 
-  groups.forEach((group) => {
-    group.forEach((paragraph) => {
-      chapters.forEach((chapter) => {
-        if (chapter.pid === paragraph.id) {
-          chapter.code = paragraph.code + '.' + chapter.index
-        }
+  Object.keys(groups).forEach((group) => {
+    groups[group].forEach((c) => {
+      const subjects = chapters.filter((b) => b.pid === c.id)
+      subjects.forEach((o) => {
+        o.code = c.code + '.' + o.index
       })
     })
   })

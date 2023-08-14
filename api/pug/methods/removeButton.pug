@@ -1,0 +1,49 @@
+section.section
+  header.section__header
+    h3#method-removeButton.section__h3 removeButton(name)
+  div.section__content
+    h4.section__h4 Description
+    p removeButton() 方法移除工具栏按钮。
+    h4.section__h4 Parameters
+    h5.section__h4 name
+    dl.section__dl
+      dt.section__dt Type：
+      dd.section__dd String
+    p （必须）按钮名称。
+    h4.section__h4 Returns
+    dl.section__dl
+      dt.section__dt Type：
+      dd.section__dd Outline
+    p Outline 对象，便于链式方法调用。
+    pre.section__pre
+      code.section__code.
+        const outline = new Outline(Outline.DEFAULTS)
+        // 如果需要其它图标，可以到 https://github.com/yaohaixiao/icons.toolkit.vue 项目中选择需要的图标资源
+        const clean = '&lt;svg xmlns="http://www.w3.org/2000/svg" width="200" height="200" viewBox="0 0 1024 1024"&gt;' +
+          '&lt;path d="M704 32V320h288a32 32 0 0 1 32 32v320a32 32 0 0 1-32 32H32a32 32 0 0 1-32-32v-320A32 32 0 0 1 32 320H320V32a32 32 0 0 1 32-32h320a32 32 0 0 1 32 32zM576 128H448v320H128v128h768V448H576V128z"&gt;&lt;/path&gt;' +
+          '&lt;path d="M896 576v416a32 32 0 0 1-32 32h-704a32 32 0 0 1-32-32V576h768z m-128 128H256v192h512v-192z"&gt;&lt;/path&gt;' +
+          '&lt;/svg&gt;'
+
+        outline.addButton({
+          name: 'clean',
+          // 图标
+          icon: clean,
+          size: 20,
+          color: '#f00'
+          // link 指定按钮点击后页面的跳转地址
+          link: 'https://github.com/yaohaixiao',
+          // link 和 action 只能二选一
+          // action 指定按钮的处理方式
+          action: {
+            type: 'click',
+            // 指定回调函数的 this 上下文，不设置 this 指向 toolbar 组件
+            context: outline,
+            handler: function() {
+              // 回调函数的处理逻辑
+            }
+          }
+        })
+
+        setTimeout(() => {
+          outline.removeButton('clean')
+        }, 5000)

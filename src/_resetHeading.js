@@ -5,9 +5,10 @@ import trim from './utils/lang/trim'
 const _resetHeading = ($heading, hasAnchor = true, isAtStart = true) => {
   const CLS_HEADING = 'outline-heading'
   const text = $heading.innerHTML
+  const pattern = /^\d+(\.?\d+)*\s?/gi
   let $anchor
 
-  $heading.innerHTML = text.replace(/^\d+(?:(\.?\d*)*\s?)?/gi, '')
+  $heading.innerHTML = text.replace(pattern, '')
   $heading.removeAttribute('id')
   $heading.removeAttribute('data-id')
 

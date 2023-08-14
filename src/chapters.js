@@ -14,6 +14,7 @@ import addClass from './utils/dom/addClass'
 import intersection from './utils/dom/intersection'
 import removeClass from './utils/dom/removeClass'
 import offsetTop from './utils/dom/offsetTop'
+import getStyle from './utils/dom/getStyle'
 import setProperty from './utils/dom/setProperty'
 import publish from './utils/observer/emit'
 
@@ -41,6 +42,7 @@ class Chapters extends Base {
     this.scrollTimer = null
     this.resizeTimer = null
     this.playing = false
+    this.Observer = null
 
     if (options) {
       this.initialize(options)
@@ -108,8 +110,8 @@ class Chapters extends Base {
   }
 
   _paintEdge() {
+    const $fragment = document.createDocumentFragment()
     const STICKY = 'outline-chapters_sticky'
-    const FIXED = 'outline-chapters_fixed'
     const HIDDEN = 'outline-chapters_hidden'
     const title = this.attr('title')
     const customClass = this.attr('customClass')
@@ -143,7 +145,7 @@ class Chapters extends Base {
         // 为优化性能，添加了 _fixed 和 _hidden
         // fixed 为了让 $list 脱离流布局
         // hidden 让 $list 不可见
-        className: `outline-chapters__list ${FIXED} ${HIDDEN}`
+        className: `outline-chapters__list`
       },
       ['']
     )
@@ -172,7 +174,7 @@ class Chapters extends Base {
       'nav',
       {
         id: 'outline-chapters',
-        className: 'outline-chapters'
+        className: `outline-chapters ${HIDDEN}`
       },
       contents
     )
@@ -186,33 +188,33 @@ class Chapters extends Base {
     if (customClass) {
       addClass($el, customClass)
     }
-
-    $parentElement.appendChild($el)
+    $fragment.appendChild($el)
+    $parentElement.appendChild($fragment)
 
     return this
   }
 
   render() {
-    const FIXED = 'outline-chapters_fixed'
     const HIDDEN = 'outline-chapters_hidden'
     const showCode = this.attr('showCode')
     const mounted = this.attr('mounted')
     const $parentElement = this.$parentElement
+    const chapters = this.chapters
     let $el
     let $list
 
-    if (!$parentElement) {
+    if (!$parentElement || chapters.length < 1) {
       return this
     }
 
     this._paintEdge()
 
-    $list = this.$list
-    _paintChapters($list, this.chapters, showCode)
-    removeClass($list, FIXED)
-    removeClass($list, HIDDEN)
-
     $el = this.$el
+    $list = this.$list
+    _paintChapters($list, chapters, showCode)
+    removeClass($el, HIDDEN)
+    this.positionPlaceholder(this.active)
+
     this.offsetTop = offsetTop($el)
     this.offsetWidth = $el.offsetWidth
 
@@ -230,11 +232,59 @@ class Chapters extends Base {
     return this
   }
 
+  positionPlaceholder(index) {
+    const $main = this.$main
+    const $list = this.$list
+    const $placeholder = this.$placeholder
+    const $anchor = $list.querySelector('.outline-chapters__anchor')
+    const mainPaddingTop = parseInt(getStyle($main, 'padding-top'), 10)
+    const mainBorderTop = parseInt(getStyle($main, 'border-top-width'), 10)
+    const placeholderPaddingTop = parseInt(getStyle($list, 'padding-top'), 10)
+    const placeholderMarginTop = parseInt(getStyle($list, 'margin-top'), 10)
+    const placeholderBorderTop = parseInt(
+      getStyle($list, 'border-top-width'),
+      10
+    )
+    let height = $anchor.offsetHeight
+    let offsetTop = 0
+    let top
+
+    if (mainPaddingTop) {
+      offsetTop += mainPaddingTop
+    }
+
+    if (placeholderPaddingTop) {
+      offsetTop += placeholderPaddingTop
+    }
+
+    if (placeholderMarginTop) {
+      offsetTop += placeholderMarginTop
+    }
+
+    if (mainBorderTop) {
+      offsetTop += mainBorderTop
+    }
+
+    if (placeholderBorderTop) {
+      offsetTop += placeholderBorderTop
+    }
+
+    top = height * index
+    // top:calc(${offsetTop}px + ${top}px);
+    $placeholder.style.cssText = `transform: translateY(${
+      offsetTop + top
+    }px);height:${height}px;`
+
+    return this
+  }
+
   highlight(id) {
     const $anchor = this.$el.querySelector(`#chapter__anchor-${id}`)
     const HIGHLIGHT = 'outline-chapters_active'
-    const $placeholder = this.$placeholder
-    let top
+
+    if (!$anchor) {
+      return this
+    }
 
     if (this.$active) {
       removeClass(this.$active, HIGHLIGHT)
@@ -244,26 +294,33 @@ class Chapters extends Base {
     this.$active = $anchor
     addClass(this.$active, HIGHLIGHT)
 
-    top = 30 * this.active
-    $placeholder.style.top = `calc(0.5em + ${top}px)`
+    this.positionPlaceholder(this.active)
 
     return this
   }
 
   sticky() {
+    const afterSticky = this.attr('afterSticky')
     const FIXED = 'outline-chapters_fixed'
     const $el = this.$el
     const top = this.offsetTop
     const scrollTop = this.$scrollElement.scrollTop
+    let isStickying
 
-    if (this.isClosed()) {
+    if (!this.isFixed()) {
       return this
     }
 
-    if (scrollTop >= top) {
+    isStickying = scrollTop >= top
+
+    if (isStickying) {
       addClass($el, FIXED)
     } else {
       removeClass($el, FIXED)
+    }
+
+    if (isFunction(afterSticky)) {
+      afterSticky.call(this, this.isClosed(), isStickying)
     }
 
     return this
@@ -282,7 +339,7 @@ class Chapters extends Base {
   scrollTo(top, after) {
     const el = this.$scrollElement
 
-    scrollTo(el, top, after, 100)
+    scrollTo(el, top, after)
 
     return this
   }
@@ -340,10 +397,22 @@ class Chapters extends Base {
   }
 
   toggle() {
-    if (this.closed) {
+    const afterToggle = this.attr('afterToggle')
+    const top = this.offsetTop
+    const scrollTop = this.$scrollElement.scrollTop
+    let isStickying
+
+    if (this.isClosed()) {
       this.show()
     } else {
       this.hide()
+    }
+
+    if (isFunction(afterToggle)) {
+      later(() => {
+        isStickying = scrollTop >= top
+        afterToggle.call(this, this.isClosed(), isStickying)
+      })
     }
 
     return this
@@ -388,13 +457,18 @@ class Chapters extends Base {
       afterDestroy.call(this)
     }
 
+    if (this.Observer) {
+      this.Observer = null
+    }
+
     return this
   }
 
   onObserver() {
+    const selector = this.attr('selector')
     let timer = null
 
-    intersection(
+    this.Observer = intersection(
       ($heading) => {
         const id = $heading.getAttribute('data-id')
 
@@ -410,7 +484,10 @@ class Chapters extends Base {
           this.highlight(id)
         }, 100)
       },
-      { context: this }
+      {
+        selector,
+        context: this
+      }
     )
 
     return this
@@ -428,7 +505,7 @@ class Chapters extends Base {
     const afterScroll = this.attr('afterScroll')
     const after = () => {
       if (isFunction(afterScroll)) {
-        afterScroll.call(this)
+        afterScroll.call(this, 'chapter')
       }
 
       later(() => {
@@ -479,7 +556,7 @@ class Chapters extends Base {
         min,
         max
       })
-    }, 50)
+    }, 100)
 
     return this
   }
@@ -516,6 +593,7 @@ class Chapters extends Base {
   }
 
   removeListeners() {
+    const selector = this.attr('selector')
     const $el = this.$el
     const $scrollElement = this.$scrollElement
     const tagName = $scrollElement.tagName.toLowerCase()
@@ -527,8 +605,15 @@ class Chapters extends Base {
 
     off($el, 'click', this.onSelect)
     off($element, 'scroll', this.onScroll)
+
     if (this.isSticky()) {
       at($element, 'resize', this.onResize)
+    }
+
+    if (this.Observer) {
+      document.querySelectorAll(selector).forEach((section) => {
+        this.Observer.unobserve(section)
+      })
     }
 
     return this
@@ -538,7 +623,7 @@ class Chapters extends Base {
 Chapters.DEFAULTS = {
   parentElement: '',
   scrollElement: '',
-  selector: '',
+  selector: '.outline-heading',
   active: 0,
   closed: false,
   showCode: true,
@@ -551,7 +636,8 @@ Chapters.DEFAULTS = {
   afterOpened: null,
   afterScroll: null,
   beforeDestroy: null,
-  afterDestroy: null
+  afterDestroy: null,
+  afterSticky: null
 }
 
 export default Chapters

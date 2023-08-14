@@ -30,28 +30,26 @@
     color: @fourth_text_color;
   }
 
+  &__dl,
+  &__dt,
+  &__dd {
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+  }
+
   &__dl {
     position: relative;
     z-index: 1;
-    overflow: hidden;
   }
 
   &__dt {
-    position: absolute;
-    z-index: 2;
-    top: 0;
-    left: 0;
-    width: 60px;
-    margin: 0;
-    overflow: hidden;
+    display:inline-block;
   }
 
   &__dd {
-    position: relative;
-    z-index: 1;
-    margin: 0 0 0 60px;
+    display:inline-block;
     color: @success_color;
-    overflow: hidden;
   }
 
   &__pre {

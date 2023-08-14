@@ -8,7 +8,8 @@ import createElement from './utils/dom/createElement'
 import on from './utils/event/on'
 import off from './utils/event/off'
 
-import { paintSvgSprites, createSvgIcon } from './utils/icons'
+import paint from './utils/icons/paint'
+import icon from './utils/icons/icon'
 import zIndex from './zIndex'
 
 class Drawer extends Base {
@@ -69,8 +70,8 @@ class Drawer extends Base {
     const hasOverlay = this.attr('hasOverlay')
     const hasOffset = this.attr('hasOffset')
     const hasPadding = this.attr('hasPadding')
+    const autoHeight = this.attr('autoHeight')
     const customClass = this.attr('customClass')
-    const $fragment = document.createDocumentFragment()
     let $el
     let $modal
     let $header
@@ -80,7 +81,7 @@ class Drawer extends Base {
     let $footer
     let $overlay
 
-    paintSvgSprites()
+    paint()
     this.zIndex = zIndex()
 
     $title = createElement(
@@ -98,7 +99,7 @@ class Drawer extends Base {
         {
           className: 'outline-drawer__close'
         },
-        [createSvgIcon('close', 20)]
+        [icon('close', { size: 20 })]
       )
       this.$close = $close
     }
@@ -147,6 +148,10 @@ class Drawer extends Base {
       addClass($modal, 'outline-drawer_offset')
     }
 
+    if (autoHeight) {
+      addClass($modal, 'outline-drawer_auto')
+    }
+
     if (customClass) {
       addClass($modal, customClass)
     }
@@ -170,8 +175,7 @@ class Drawer extends Base {
       [$modal, $overlay]
     )
     this.$el = $el
-    $fragment.appendChild($el)
-    document.body.appendChild($fragment)
+    document.body.appendChild($el)
 
     if (isFunction(mounted)) {
       mounted.call(this)
@@ -219,10 +223,19 @@ class Drawer extends Base {
   }
 
   toggle() {
-    if (this.isClosed()) {
+    const afterToggle = this.attr('afterToggle')
+    const closed = this.isClosed()
+
+    if (closed) {
       this.open()
     } else {
       this.close()
+    }
+
+    if (isFunction(afterToggle)) {
+      later(() => {
+        afterToggle.call(this, closed)
+      })
     }
 
     return this
@@ -306,13 +319,15 @@ Drawer.DEFAULTS = {
   hasOverlay: true,
   hasOffset: false,
   hasPadding: true,
+  autoHeight: true,
   created: null,
   mounted: null,
   afterClosed: null,
   afterOpened: null,
   afterScroll: null,
   beforeDestroy: null,
-  afterDestroy: null
+  afterDestroy: null,
+  afterToggle: null
 }
 
 export default Drawer

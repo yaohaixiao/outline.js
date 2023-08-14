@@ -43,7 +43,12 @@
   border-bottom: 1px solid @border_color;
   background-color: @white;
   text-align: center;
+  transition-duration: 0.3s;
   overflow: hidden;
+
+  &_sticky {
+    padding-left: 260px;
+  }
 }
 
 .article {
@@ -123,6 +128,10 @@ code,
       text-decoration: underline;
     }
   }
+}
+
+.utils-border-right {
+  border-right: 1px solid @primary_border_color;
 }
 
 .hidden {

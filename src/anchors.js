@@ -13,7 +13,7 @@ import on from './utils/event/on'
 import off from './utils/event/off'
 import stop from './utils/event/stop'
 import publish from './utils/observer/emit'
-import { paintSvgSprites } from './utils/icons'
+import paint from './utils/icons/paint'
 
 import _updateHeading from './_updateHeading'
 import _resetHeading from './_resetHeading'
@@ -95,7 +95,7 @@ class Anchors extends Base {
     const $headings = this.$headings
     const chapters = this.getChapters()
 
-    paintSvgSprites()
+    paint()
 
     $headings.forEach(($heading, i) => {
       const chapterCode = chapters[i].code
@@ -118,7 +118,7 @@ class Anchors extends Base {
   scrollTo(top, after) {
     const el = this.$scrollElement
 
-    scrollTo(el, top, after, 100)
+    scrollTo(el, top, after)
 
     return this
   }
@@ -164,7 +164,7 @@ class Anchors extends Base {
     const max = $scrollElement.scrollHeight - $scrollElement.clientHeight
     const after = () => {
       if (isFunction(afterScroll)) {
-        afterScroll.call(this)
+        afterScroll.call(this, 'anchor')
       }
 
       later(() => {

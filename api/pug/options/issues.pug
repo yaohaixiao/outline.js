@@ -1,0 +1,20 @@
+section.section
+  header.section__header
+    h3#option-issues.section__h3 issues
+  div.section__content
+    h4.section__h4 Description
+    dl.section__dl
+      dt.section__dt Type：
+      dd.section__dd String
+    dl.section__dl
+      dt.section__dt Default：
+      dd.section__dd ''
+    p 可选，针对 API 文档类的文章页面，指定项目 git 仓库 issues 页面地址：
+    pre.section__pre
+      code.section__code.
+        const outline = new Outline(Outline.DEFAULTS)
+
+        // 侧边栏的 Toolbar 会多出一个 issues 图标的按钮
+        outline.reload({
+          issues: 'https://github.com/yaohaixiao/outline.js/issues'
+        })

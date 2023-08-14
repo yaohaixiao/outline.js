@@ -4,8 +4,8 @@ import Drawer from './drawer'
 import Chapters from './chapters'
 import Toolbar from './toolbar'
 
-import isFunction from './utils/types/isFunction'
 import later from './utils/lang/later'
+import isFunction from './utils/types/isFunction'
 import scrollTo from './utils/dom/scrollTo'
 import _getScrollElement from './utils/dom/_getScrollElement'
 import subscribe from './utils/observer/on'
@@ -20,6 +20,7 @@ class Outline extends Base {
     this.drawer = null
     this.chapters = null
     this.toolbar = null
+    this.buttons = []
 
     if (options) {
       this.initialize(options)
@@ -52,6 +53,7 @@ class Outline extends Base {
     const scrollElement = this.attr('scrollElement')
     const showCode = this.attr('showCode')
     const anchorURL = this.attr('anchorURL')
+    const afterScroll = this.attr('afterScroll')
 
     this.anchors = new Anchors({
       articleElement,
@@ -59,7 +61,8 @@ class Outline extends Base {
       scrollElement,
       selector,
       showCode,
-      anchorURL
+      anchorURL,
+      afterScroll
     })
 
     return this
@@ -73,6 +76,9 @@ class Outline extends Base {
     const showCode = this.attr('showCode')
     const position = this.attr('position')
     const placement = this.attr('placement')
+    const afterSticky = this.attr('afterSticky')
+    const afterToggle = this.attr('afterToggle')
+    const afterScroll = this.attr('afterScroll')
     const count = this.count()
     let parentElement = this.attr('parentElement')
     let CHAPTERS_OPTIONS
@@ -87,7 +93,10 @@ class Outline extends Base {
       position,
       title,
       stickyHeight,
-      chapters: this.anchors.getChapters()
+      chapters: this.getChapters(),
+      afterSticky,
+      afterToggle,
+      afterScroll
     }
 
     if (position === 'relative') {
@@ -117,6 +126,10 @@ class Outline extends Base {
   _renderToolbar() {
     const placement = this.attr('placement')
     const homepage = this.attr('homepage')
+    const git = this.attr('git')
+    const tags = this.attr('tags')
+    const issues = this.attr('issues')
+    const tools = this.attr('tools')
     const count = this.count()
     const UP = {
       name: 'up',
@@ -132,6 +145,24 @@ class Outline extends Base {
       icon: 'homepage',
       size: 20,
       link: homepage
+    }
+    const GIT = {
+      name: 'github',
+      icon: 'github',
+      size: 20,
+      link: git
+    }
+    const TAGS = {
+      name: 'tags',
+      icon: 'tags',
+      size: 20,
+      link: tags
+    }
+    const ISSUES = {
+      name: 'issues',
+      icon: 'issues',
+      size: 20,
+      link: issues
     }
     const MENU = {
       name: 'menu',
@@ -154,13 +185,26 @@ class Outline extends Base {
     const buttons = []
 
     buttons.push(UP)
-    if (homepage) {
-      buttons.push(HOME)
-    }
     if (count > 0) {
       buttons.push(MENU)
     }
+    if (homepage) {
+      buttons.push(HOME)
+    }
+    if (git) {
+      buttons.push(GIT)
+    }
+    if (tags) {
+      buttons.push(TAGS)
+    }
+    if (issues) {
+      buttons.push(ISSUES)
+    }
+    if (tools?.length > 0) {
+      buttons.push(...tools)
+    }
     buttons.push(DOWN)
+    this.buttons = [...buttons]
 
     this.toolbar = new Toolbar({
       placement,
@@ -170,7 +214,24 @@ class Outline extends Base {
     return this
   }
 
-  toTop(afterScroll) {
+  addButton(button) {
+    const toolbar = this.toolbar
+    const buttons = this.buttons
+    buttons.splice(-1, 0, button)
+    toolbar.attr({
+      buttons
+    })
+    toolbar.refresh()
+    return this
+  }
+
+  removeButton(name) {
+    this.toolbar.remove(name)
+    return this
+  }
+
+  toTop() {
+    const afterScroll = this.attr('afterScroll')
     const toolbar = this.toolbar
     const chapters = this.chapters
     const count = this.count()
@@ -178,23 +239,26 @@ class Outline extends Base {
       toolbar.hide('up')
       toolbar.show('down')
 
-      if (count > 1) {
+      if (count > 0) {
         chapters.highlight(0)
+        chapters.playing = false
       }
-      chapters.playing = false
 
       if (isFunction(afterScroll)) {
-        afterScroll.call(this)
+        afterScroll.call(toolbar, 'up')
       }
     }
 
-    chapters.playing = true
+    if (count > 0) {
+      chapters.playing = true
+    }
     this.scrollTo(0, afterTop)
 
     return this
   }
 
-  toBottom(afterScroll) {
+  toBottom() {
+    const afterScroll = this.attr('afterScroll')
     const $scrollElement = _getScrollElement(this.attr('scrollElement'))
     const toolbar = this.toolbar
     const chapters = this.chapters
@@ -206,16 +270,18 @@ class Outline extends Base {
       toolbar.hide('down')
       toolbar.show('up')
 
-      chapters.playing = false
+      if (count > 0) {
+        chapters.highlight(count - 1)
+        chapters.playing = false
+      }
 
       if (isFunction(afterScroll)) {
-        afterScroll.call(this)
+        afterScroll.call(toolbar, 'bottom')
       }
     }
 
-    chapters.playing = true
     if (count > 0) {
-      chapters.highlight(count - 1)
+      chapters.playing = true
     }
     this.scrollTo(top, afterDown)
 
@@ -224,7 +290,7 @@ class Outline extends Base {
 
   scrollTo(top, afterScroll) {
     const scrollElement = this.attr('scrollElement')
-    scrollTo(scrollElement, top, afterScroll, 100)
+    scrollTo(scrollElement, top, afterScroll)
     return this
   }
 
@@ -235,15 +301,15 @@ class Outline extends Base {
     const chapters = this.chapters
     const count = this.count()
 
+    if (count < 1) {
+      return this
+    }
+
     if (position !== 'relative') {
       chapters.toggle()
       toolbar.highlight('menu')
     } else {
       toolbar.toggle()
-
-      if (count < 1) {
-        return this
-      }
 
       later(() => {
         if (chapters.isInside()) {
@@ -258,20 +324,34 @@ class Outline extends Base {
   }
 
   destroy() {
-    const chapters = this.chapters
+    let anchors = this.anchors
+    let chapters = this.chapters
+    let drawer = this.drawer
+    let toolbar = this.toolbar
+    let isOutside = false
     const count = this.count()
 
     this.removeListeners()
 
-    this.attr(Outline.DEFAULTS)
-    this.anchors.destroy()
-    if (count < 1) {
+    if (count > 0) {
+      isOutside = chapters.isOutside()
+
       chapters.destroy()
-      if (chapters.isOutside()) {
-        this.drawer.destroy()
+      chapters = null
+
+      if (isOutside) {
+        drawer.destroy()
+        drawer = null
       }
     }
-    this.toolbar.destroy()
+
+    toolbar.destroy()
+    toolbar = null
+
+    anchors.destroy()
+    anchors = null
+
+    this.attr(Outline.DEFAULTS)
 
     return this
   }
@@ -337,7 +417,15 @@ Outline.DEFAULTS = {
   showCode: true,
   anchorURL: '',
   stickyHeight: 0,
-  customClass: ''
+  homepage: '',
+  git: '',
+  tags: '',
+  issues: '',
+  tools: [],
+  customClass: '',
+  afterSticky: null,
+  afterToggle: null,
+  afterScroll: null
 }
 
 if (window.jQuery) {

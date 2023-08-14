@@ -8,12 +8,13 @@
 [![MIT License](https://img.shields.io/github/license/yaohaixiao/outline.js.svg)](https://github.com/yaohaixiao/outline.js/blob/master/LICENSE)
 
 
-outline.js - 自动生成文章导读（Table of Contents）导航的 JavaScript 工具。
+outline.js - 自动生成文章导读（Table of Contents）导航的 JavaScript 工具。会自动分析文章中的标题（ h1~h6 ）标签，并生成文章段落层次结构的导读导航菜单。
 
 
 
 ## 创作灵感
-AnchorJS 是 outline.js 的创作灵感来源。既然 AnchorJS 可创建标题的链接，为什么不直接给文章生成一个文章导读（Table of Contents）导航呢？ 于是就有了 outline.js。
+
+AnchorJS 是 outline.js 的创作灵感来源。既然 AnchorJS 可创建标题的链接，为什么不直接给文章生成一个文章导读（Table of Contents）导航呢？ 于是便有了 outline.js。
 
 
 
@@ -22,24 +23,24 @@ AnchorJS 是 outline.js 的创作灵感来源。既然 AnchorJS 可创建标题�
 - 原生 JavaScript 编写，无需任何依赖；
 - 支持 UMD 规范；
 - 支持 E6 模块，提供功能独立的 ES6 模块；
-  - Anchors 模块：类似 AnchorJS 基础功能模块，自动分析段落层级
-  - Drawer 模块：独立的侧滑窗口模块
-  - Chapters 模块：独立的导航菜单模块；
-  - Toolbar 模块：独立的固定定位的工具栏模块；
+  * Anchors 模块：类似 AnchorJS 基础功能模块，自动分析段落层级
+  * Drawer 模块：独立的侧滑窗口模块
+  * Chapters 模块：独立的导航菜单模块；
+  * Toolbar 模块：独立的固定定位的工具栏模块；
 - 拥有 AnchorJS 基础功能；
 - 支持中文和英文标题文字生成ID；
 - 支持生成独立的侧边栏导航菜单；
-- 支持直接在文章中生成文章导读导航(fixed 或者 sticky 布局)；
+- 支持直接在文章中指定的 DOM 元素内生成文章导读导航(fixed 或者 sticky 布局)；
 - 自动分析标题关系，生成段落层级索引值；
 - 可以作为 jQuery 插件使用；
 - 界面简洁大方；
 - 配置灵活，丰富，让你随心所欲掌控 outline.js；
 
-
+**说明：**outline.js 的 Wiki 中介绍了实现自动计算段落层次的算法
 
 ## Examples
 
-outline.js 的滚动元素可以是 Window 窗口，也可以是某个 DOM 元素。
+outline.js 的支持的滚动元素可以是 Window 窗口，也可以是某个 DOM 元素。
 
 ### 窗口滚动
 
@@ -97,7 +98,53 @@ $ npm install -S @yaohaixiao/outline.js
 <script src="path/to/outline.min.js"></script>
 ```
 
+```html
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+  <meta charset="UTF-8">
+  <title>Outline.js</title>
+  <link href="https://cdn.jsdelivr.net/gh/yaohaixiao/outline.js/outline.min.css" rel="stylesheet" />
+</head>
+<body>
+<main>
+  <!--这里 outline.js 会生成导航菜单-->
+  <aside id="aside">
+    
+  </aside>
+  <article id="article">
+    <h1>Outline.js</h1>
+    <p>xxx</p>
+    <h2>Features</h2>
+    <p>xxx</p>
+    <h2>Usage</h2>
+    <p>xxx</p>
+    <h2>Examples</h2>
+    <p>xxx</p>
+  </article>
+</main>
+<script src="https://cdn.jsdelivr.net/gh/yaohaixiao/outline.js/outline.min.js"></script>
+<script>
+  (function(){
+    const defaults = Outline.DEFAULTS
+    let outline
 
+    defaults.position = 'sticky'
+    defaults.stickyHeight = 86
+    // position 的值为 sticky 或者 fixed 时需要指定
+    // parentElement 参数，即文章导航菜单插入的 DOM 位置
+    // 可以时 dom 元素，也可以是 DOM 元素的选择器字符串
+    defaults.parentElement = '#aside'
+    defaults.articleElement = '#article'
+    defaults.homepage = './index.html'
+    // Outline.DEFAULTS 是对象，应用类型的
+    // defaults 的属性操作，就是在修改 Outline.DEFAULTS
+    outline = new Outline(Outline.DEFAULTS)
+  })()
+</script>
+</body>
+</html>
+```
 
 
 
@@ -171,6 +218,12 @@ const outline = new Outline({
     anchorURL: '',
     // 指定当前站点主页地址
     homepage: '',
+    // 指定git仓库地址
+    git: '',
+    // 指定git仓库中的 tags 地址
+    tags: '',
+    // 指定git仓库中的 issues 地址
+    issues: '',
     // DIYer的福利
     // 独立侧滑菜单时，customClass 会追加到 drawer 侧滑窗口组件
     // 在文章中显示导航菜单时，customClass 会追加到 chapters 导航菜单
@@ -183,6 +236,35 @@ Outline.reload({
   position: 'sticky',
   articleElement: '#article'
 })
+```
+
+### VUE 中使用说明
+
+如果您尝试在 VUE 项目中使用 outline.js，以下为推荐的使用方法：
+
+```js
+import Outline from '@yaohaixiao/outline.js/outline'
+
+export default {
+  // 省略其它逻辑...
+  data() {
+    return {
+      outline: null
+    }
+  },
+  mounted() {
+    this.$nextTick(() => {
+      // 在（文章）详情页初始化 outline
+      // 并且确定页面的文章内容绘制完成，否则无法获取到 hx 标签
+      this.outline = new Outline(Outline.DEFAULTS)
+    })
+  },
+  beforeDestroy() {
+    // 如果希望在非文章页面不显示工具栏，可以调用 destroy() 方法
+    // 销毁所有 outline.js 创建的 DOM 节点，包括工具栏和导航菜单
+    this.outline.destroy()
+  }
+}
 ```
 
 
@@ -280,6 +362,15 @@ Default: `rtl`
 * ttb - 菜单位置在窗口上方，滑动动画为：top to bottom；
 * btt - 菜单位置在窗口下方，滑动动画为：bottom to top；
 
+![ltr](https://yaohaixiao.github.io/outline.js/img/ltr.png)
+
+ltr，工具栏的位置在左边，点击菜单按钮，菜单按钮从左侧划出；
+
+![rtl](https://yaohaixiao.github.io/outline.js/img/rtl.png)
+
+rtl，工具栏的位置在右边，点击菜单按钮，菜单按钮从右侧划出；
+
+
 
 ### showCode
 
@@ -331,7 +422,7 @@ Default: `''`
 
 ## Properties
 
-outline.js 重构后，对外放 4 个重要的属性：anchors、drawer、chapters 和 toolbar。它们都是独立的对象实例，提供了 outline.js 所有的属性和方法。
+outline.js 重构后，对外放 4 个重要的属性：anchors、drawer、chapters 和 toolbar。它们都是独立的对象实例，提供了 outline.js 所有的能力（属性和方法）。
 
 
 ### DEFAULTS
@@ -352,6 +443,9 @@ Outline.DEFAULTS = {
   showCode: true,
   anchorURL: '',
   homepage: '',
+  git: '',
+  tags: '',
+  issues: '',
   customClass: ''
 }
 ```
