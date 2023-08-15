@@ -1,3 +1,12 @@
+# [3.15.0](https://github.com/yaohaixiao/outline.js/compare/3.14.0...3.15.0) (2023-08-15)
+
+
+### Features
+
+* 优化 print 配置细节，title 可以是 DOM 元素，使标题可以自动变化，更加灵活； ([0798bfc](https://github.com/yaohaixiao/outline.js/commit/0798bfc82d927e767366996c6904016723cf1d38))
+
+
+
 # [3.14.0](https://github.com/yaohaixiao/outline.js/compare/3.13.2...3.14.0) (2023-08-14)
 
 
