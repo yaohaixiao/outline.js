@@ -1,3 +1,12 @@
+# [3.17.0](https://github.com/yaohaixiao/outline.js/compare/3.16.0...3.17.0) (2023-08-15)
+
+
+### Features
+
+* 添加 chapterTextFilter 参数，用于处理 chapters 菜单中显示的文本； ([7d57fb1](https://github.com/yaohaixiao/outline.js/commit/7d57fb1e2277ce35a5125b4d903eea49d6188d57))
+
+
+
 # [3.16.0](https://github.com/yaohaixiao/outline.js/compare/3.15.0...3.16.0) (2023-08-15)
 
 
