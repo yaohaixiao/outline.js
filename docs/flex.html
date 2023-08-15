@@ -4,7 +4,7 @@ body {
     padding: 0;
     height: 100%;
     overflow: hidden;
-}</style></head><body><div class="paper flex"><aside class="article__aside" id="aside"></aside><main class="article__main" id="main"><header class="header"><h1 class="title">Outline.js</h1></header><article class="article" id="article"><p>outline.js - 自动生成文章导读（Table of Contents）导航的 JavaScript 工具。会自动分析文章中的标题（ h1~h6 ）标签，并生成文章段落层次结构的导读导航菜单。</p><h2>创作灵感</h2><p>AnchorJS 是 outline.js 的创作灵感来源。既然 AnchorJS 可创建标题的链接，为什么不直接给文章生成一个文章导读（Table of Contents）导航呢？ 于是就有了outline.js。</p><h2>特点</h2><ul><li>原生 JavaScript 编写，无需任何依赖；</li><li>支持 UMD 规范；</li><li>支持 E6 模块，提供功能独立的 ES6 模块；<ul><li>Anchors 模块：类似 AnchorJS 基础功能模块，自动分析段落层级;</li><li>Drawer 模块：独立的侧滑窗口模块;</li><li>Chapters 模块：独立的导航菜单模块；</li><li>Toolbar 模块：独立的固定定位的工具栏模块；</li></ul></li><li>拥有 AnchorJS 基础功能；</li><li>支持中文和英文标题文字生成ID；</li><li>支持生成独立的侧边栏导航菜单；</li><li>支持直接在文章中生成文章导读导航；</li><li>自动分析标题关系，生成段落层级索引值；</li><li>可以作为 jQuery 插件使用；</li><li>界面简洁大方；</li><li>配置灵活，丰富，让你随心所欲掌控 outline.js；</li></ul><h2>安装说明</h2><p>outline.js 提供多种安装方式的支持： npm 安装、加载 CDN 资源、以及本地资源调用。</p><h4>npm install</h4><pre><code>$ npm install -S @yaohaixiao/outline.js</code></pre><h3>CDN 调用</h3><pre><code>&lt;script&nbsp;src=&quot;https://cdn.jsdelivr.net/gh/yaohaixiao/outline.js/outline.min.js&quot;&gt;&lt;/script&gt;</code></pre><h3>调用本地JS文件</h3><pre><code>&lt;script&nbsp;src=&quot;path/to/outline.min.js&quot;&gt;&lt;/script&gt;</code></pre><h2>使用说明</h2><p>outline.js 既支持在 node.js 环境中以 CommonJS 模块调用，也支持 ES6 模块方式加载。</p><pre><code>// Node.js 环境中使用
+}</style></head><body><div class="paper flex"><aside class="article__aside" id="aside"></aside><main class="article__main" id="main"><header class="header"><h1 class="title" id="title">Outline.js</h1></header><article class="article" id="article"><p>outline.js - 自动生成文章导读（Table of Contents）导航的 JavaScript 工具。会自动分析文章中的标题（ h1~h6 ）标签，并生成文章段落层次结构的导读导航菜单。</p><h2>创作灵感</h2><p>AnchorJS 是 outline.js 的创作灵感来源。既然 AnchorJS 可创建标题的链接，为什么不直接给文章生成一个文章导读（Table of Contents）导航呢？ 于是就有了outline.js。</p><h2>特点</h2><ul><li>原生 JavaScript 编写，无需任何依赖；</li><li>支持 UMD 规范；</li><li>支持 E6 模块，提供功能独立的 ES6 模块；<ul><li>Anchors 模块：类似 AnchorJS 基础功能模块，自动分析段落层级;</li><li>Drawer 模块：独立的侧滑窗口模块;</li><li>Chapters 模块：独立的导航菜单模块；</li><li>Toolbar 模块：独立的固定定位的工具栏模块；</li></ul></li><li>拥有 AnchorJS 基础功能；</li><li>支持中文和英文标题文字生成ID；</li><li>支持生成独立的侧边栏导航菜单；</li><li>支持直接在文章中生成文章导读导航；</li><li>自动分析标题关系，生成段落层级索引值；</li><li>可以作为 jQuery 插件使用；</li><li>界面简洁大方；</li><li>配置灵活，丰富，让你随心所欲掌控 outline.js；</li></ul><h2>安装说明</h2><p>outline.js 提供多种安装方式的支持： npm 安装、加载 CDN 资源、以及本地资源调用。</p><h4>npm install</h4><pre><code>$ npm install -S @yaohaixiao/outline.js</code></pre><h3>CDN 调用</h3><pre><code>&lt;script&nbsp;src=&quot;https://cdn.jsdelivr.net/gh/yaohaixiao/outline.js/outline.min.js&quot;&gt;&lt;/script&gt;</code></pre><h3>调用本地JS文件</h3><pre><code>&lt;script&nbsp;src=&quot;path/to/outline.min.js&quot;&gt;&lt;/script&gt;</code></pre><h2>使用说明</h2><p>outline.js 既支持在 node.js 环境中以 CommonJS 模块调用，也支持 ES6 模块方式加载。</p><pre><code>// Node.js 环境中使用
 const Outline = require('@yaohaixiao/outline.js')
 
 // 作为 ES6 模块使用
@@ -156,7 +156,7 @@ outline.reload({
       }
     }
   ]
-})</code></pre></div></section><section class="section"><header class="section__header"><h3 class="section__h3" id="option-print">print</h3></header><div class="section__content"><h4 class="section__h4">Description</h4><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">Object</dd></dl><dl class="section__dl"><dt class="section__dt">Default：</dt><dd class="section__dd">{element: '', title: ''}</dd></dl><p>可选，自定义的是否自动为文章页面创建打印样式。</p><dl class="section__dl"><dt class="section__dt">element：</dt><dd class="section__dd">（必须）要打印的文章区域，DOM 元素或者选择器字符串。</dd></dl><dl class="section__dl"><dt class="section__dt">title：</dt><dd class="section__dd">（可选）要打印的文章标题。如果 element 区域有 h1 标签则无需设置。</dd></dl><pre class="section__pre"><code class="section__code">const defaults = Outline.DEFAULTS
+})</code></pre></div></section><section class="section"><header class="section__header"><h3 class="section__h3" id="option-print">print</h3></header><div class="section__content"><h4 class="section__h4">Description</h4><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">Object</dd></dl><dl class="section__dl"><dt class="section__dt">Default：</dt><dd class="section__dd">{element: '', title: ''}</dd></dl><p>可选，自定义的是否自动为文章页面创建打印样式。</p><dl class="section__dl"><dt class="section__dt">element：</dt><dd class="section__dd">（必须）要打印的文章区域，DOM 元素或者选择器字符串。</dd></dl><dl class="section__dl"><dt class="section__dt">title：</dt><dd class="section__dd">（可选）要打印的文章标题。如果 element 区域有 h1 标签则无需设置。可以直接设置标题文本，也可以是文章页的主标题 DOM 元素。</dd></dl><pre class="section__pre"><code class="section__code">const defaults = Outline.DEFAULTS
 let outline
 
 defaults.position = 'sticky'
@@ -169,7 +169,10 @@ defaults.tags = 'https://github.com/yaohaixiao/outline.js/tags'
 defaults.issues = 'https://github.com/yaohaixiao/outline.js/issues'
 defaults.print = {
   element: '#article',
-  title: 'Outline.js 自动生成文章导读（Table of Contents）导航的 JavaScript 工具'
+  // 可以直接设置标题文本，也可以是文章页的主标题 DOM 元素。
+  // 纯静态的页面，设置 DOM 元素，可能更好，确保每个页面的主标题 DOM 元素的选择器不变
+  // 则 title 会是一个可变的值，这样比直接设置标题文本更加灵活；
+  title: document.querySelector('.title')
 }
 outline = new Outline(Outline.DEFAULTS)</code></pre><p>演示地址：<a target="_blank" href="https://yaohaixiao.github.io/outline.js/flex.html">https://yaohaixiao.github.io/outline.js/flex.html</a></p></div></section><section class="section"><header class="section__header"><h3 class="section__h3" id="option-customClass">customClass</h3></header><div class="section__content"><h4 class="section__h4">Description</h4><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">String</dd></dl><dl class="section__dl"><dt class="section__dt">Default：</dt><dd class="section__dd">''</dd></dl><p>可选，(DIYer福利)设置自定义样式的 class 名称：</p><ul><li>'' - 采用默认 outline.js 的 UI 界面（默认值）；</li><li>设置自定义样式 - 自己根据需求设置个性化的 UI 界面；</li></ul><pre class="section__pre"><code class="section__code">// Default UI
 new Outline(Outline.DEFAULTS)
@@ -963,6 +966,6 @@ defaults.tags = 'https://github.com/yaohaixiao/outline.js/tags'
 defaults.issues = 'https://github.com/yaohaixiao/outline.js/issues'
 defaults.print = {
   element: '#article',
-  title: 'Outline.js 自动生成文章导读（Table of Contents）导航的 JavaScript 工具'
+  title: document.querySelector('.title')
 }
 outline = new Outline(Outline.DEFAULTS)</script></body></html>

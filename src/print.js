@@ -20,7 +20,11 @@ const print = (origins, title) => {
     }
   }
 
-  $title = $origins.querySelector('h1')
+  if (isElement(title)) {
+    $title = title
+  } else {
+    $title = $origins.querySelector('h1')
+  }
 
   $article = createElement(
     'article',
@@ -41,6 +45,10 @@ const print = (origins, title) => {
     )
 
     $article.insertBefore($title, $article.firstChild)
+  } else {
+    if (isElement(title)) {
+      $article.insertBefore($title, $article.firstChild)
+    }
   }
 
   document.body.appendChild($article)
@@ -65,7 +73,7 @@ const print = (origins, title) => {
       }
       $sibling = $sibling.nextElementSibling
     }
-  }, 500)
+  }, 350)
 }
 
 export default print

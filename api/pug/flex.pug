@@ -17,7 +17,7 @@ html(lang='en')
       aside#aside.article__aside
       main#main.article__main
         header.header
-          h1.title Outline.js
+          h1#title.title Outline.js
         article#article.article
             include ./example
             include ./options/section
@@ -43,6 +43,6 @@ html(lang='en')
         defaults.issues = 'https://github.com/yaohaixiao/outline.js/issues'
         defaults.print = {
           element: '#article',
-          title: 'Outline.js 自动生成文章导读（Table of Contents）导航的 JavaScript 工具'
+          title: document.querySelector('.title')
         }
         outline = new Outline(Outline.DEFAULTS)
