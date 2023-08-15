@@ -1,0 +1,42 @@
+section.section
+  header.section__header
+    h3#option-chapterTextFilter.section__h3 chapterTextFilter
+  div.section__content
+    h4.section__h4 Description
+    dl.section__dl
+      dt.section__dt Type：
+      dd.section__dd Function
+    dl.section__dl
+      dt.section__dt Default：
+      dd.section__dd null
+    p 可选，API 文档中，正文的方法会添加参数等信息，例如：getChapters(headings, showCode, chapterTextFilter)。而在 chapters 导航菜单，我希望显示为 getChapters()，这时我们就可以借助 chapterTextFilter 回调函数。对原始的文本进行过滤，返回我们期望的 getChapters() 文本。
+    h4.section__h4 Parameters
+    h5.section__h4 text
+    dl.section__dl
+      dt.section__dt Type：
+      dd.section__dd String
+    p chapterTextFilter() 回调函数有一个参数 text，返回的是当前 hx 标题中的文本。
+    pre.section__pre
+      code.section__code.
+        const defaults = Outline.DEFAULTS
+        let outline
+
+        defaults.selector = 'h2,h3'
+        defaults.title = false
+        defaults.showCode = false
+        defaults.position = 'sticky'
+        defaults.parentElement = '#aside'
+        defaults.scrollElement = '#main'
+        defaults.articleElement = '#article'
+        defaults.homepage = './index.html'
+        defaults.git = 'https://github.com/yaohaixiao/outline.js'
+        defaults.tags = 'https://github.com/yaohaixiao/outline.js/tags'
+        defaults.issues = 'https://github.com/yaohaixiao/outline.js/issues'
+        defaults.print = {
+          element: '#article',
+          title: 'Outline.js'
+        }
+        defaults.chapterTextFilter = (text) => {
+          return text.replace(/\(.*?\)/, '()')
+        }
+        outline = new Outline(Outline.DEFAULTS)

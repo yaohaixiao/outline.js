@@ -246,7 +246,12 @@ const outline = new Outline({
     // 当导航菜单隐藏或者显示后，触发的回调函数
     afterToggle: null,
     // 当点击上下滚动按钮，导航菜单或者文章中的 # 图标，滚动结束后触发的回调函数
-    afterScroll: null
+    afterScroll: null,
+    // 文档的标题文本过滤回调函数
+    // API 文档中，正文的方法会添加参数等信息，例如：getChapters(headings, showCode, chapterTextFilter)
+    // 而在 chapters 导航菜单，我希望显示为 getChapters()，这时我们就可以借助 chapterTextFilter 回调函数
+    // 对原始的文本进行过滤，返回我们期望的 getChapters() 文本
+    chapterTextFilter: null
 });
 
 // 可以在创建导航后，重置配置信息，重新生成新的导航

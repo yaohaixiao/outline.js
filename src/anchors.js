@@ -36,6 +36,7 @@ class Anchors extends Base {
   }
 
   initialize(options) {
+    const showCode = this.attr('showCode') || true
     let created
     let scrollElement
     let selector
@@ -66,7 +67,11 @@ class Anchors extends Base {
       return this
     }
 
-    this.chapters = getChapters(this.$headings)
+    this.chapters = getChapters(
+      this.$headings,
+      showCode,
+      this.attr('chapterTextFilter')
+    )
 
     if (isFunction(created)) {
       created.call(this)
@@ -222,7 +227,8 @@ Anchors.DEFAULTS = {
   mounted: null,
   afterScroll: null,
   beforeDestroy: null,
-  afterDestroy: null
+  afterDestroy: null,
+  chapterTextFilter: null
 }
 
 export default Anchors

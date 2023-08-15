@@ -19,5 +19,8 @@ script.
       element: '#article',
       title: 'Outline.js'
     }
+    defaults.chapterTextFilter = (text) => {
+      return text.replace(/\(.*?\)/, '()')
+    }
     outline = new Outline(Outline.DEFAULTS)
   })()
