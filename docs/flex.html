@@ -67,7 +67,27 @@ const outline = new Outline(Outline.DEFAULTS)
 // Customize Selector
 const outline = new Outline({
   articleElement: $('#main')
-})</code></pre></div></section><section class="section"><header class="section__header"><h3 class="section__h3" id="option-title">title</h3></header><div class="section__content"><h4 class="section__h4">Description</h4><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">String</dd></dl><dl class="section__dl"><dt class="section__dt">Default：</dt><dd class="section__dd">'目录'</dd></dl><p>可选，用来指定文章导读导航菜单的标题文字。</p></div></section><section class="section"><header class="section__header"><h3 class="section__h3" id="option-scrollElement">scrollElement</h3></header><div class="section__content"><h4 class="section__h4">Description</h4><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">String|HTMLElement</dd></dl><dl class="section__dl"><dt class="section__dt">Default：</dt><dd class="section__dd">'html,body'</dd></dl><ul><li>String： 选择器字符串，默认值：html,body（即 window 窗口）;</li><li>HTMLElement： DOM 元素;</li></ul><p>可选，负责文章区域滚动的元素：</p><pre class="section__pre"><code class="section__">// 默认是当前窗口滚动
+})</code></pre></div></section><section class="section"><header class="section__header"><h3 class="section__h3" id="option-title">title</h3></header><div class="section__content"><h4 class="section__h4">Description</h4><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">String|Boolean</dd></dl><dl class="section__dl"><dt class="section__dt">Default：</dt><dd class="section__dd">'目录'</dd></dl><p>可选，用来指定文章导读导航菜单的标题文字。设置空字符串或者 false，则不显示标题。在插入导航菜单的 DOM 元素已有标题时，可以设置 title: '' 或者 false。</p><p>说明：本 API 文档的导航菜单便是使用 outline.js 生成，并且没有设置 title。</p><pre class="section__pre"><code class="section__code">(function(){
+  const defaults = Outline.DEFAULTS
+  let outline
+
+  defaults.selector = 'h2,h3'
+  defaults.title = ''
+  defaults.showCode = false
+  defaults.position = 'sticky'
+  defaults.parentElement = '#aside'
+  defaults.scrollElement = '#main'
+  defaults.articleElement = '#article'
+  defaults.homepage = './index.html'
+  defaults.git = 'https://github.com/yaohaixiao/outline.js'
+  defaults.tags = 'https://github.com/yaohaixiao/outline.js/tags'
+  defaults.issues = 'https://github.com/yaohaixiao/outline.js/issues'
+  defaults.print = {
+    element: '#article',
+    title: 'Outline.js'
+  }
+  outline = new Outline(Outline.DEFAULTS)
+})()</code></pre></div></section><section class="section"><header class="section__header"><h3 class="section__h3" id="option-scrollElement">scrollElement</h3></header><div class="section__content"><h4 class="section__h4">Description</h4><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">String|HTMLElement</dd></dl><dl class="section__dl"><dt class="section__dt">Default：</dt><dd class="section__dd">'html,body'</dd></dl><ul><li>String： 选择器字符串，默认值：html,body（即 window 窗口）;</li><li>HTMLElement： DOM 元素;</li></ul><p>可选，负责文章区域滚动的元素：</p><pre class="section__pre"><code class="section__">// 默认是当前窗口滚动
 new Outline(Outline.DEFAULTS)
 
 // 指定滚动区域是 #main 元素

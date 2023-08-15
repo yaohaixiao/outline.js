@@ -179,6 +179,8 @@ const outline = new Outline({
     // 要收集的标题选择器
     selector: 'h2,h3,h4,h5,h6',
     // 指定文章导读导航菜单的标题文字。
+    // 设置空字符串或者 false，则不显示标题
+    // 在插入导航菜单的 DOM 元素已有标题时，可以设置 title: '' 或者 false
     title: '目录',
     // 负责文章区域滚动的元素
     // String 类型 - 选择器字符串，默认值：html,body（window窗口）

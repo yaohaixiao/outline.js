@@ -107,7 +107,7 @@ const minifySourcesStyle = () => {
 const buildLibStyles = gulp.series(buildSourceStyles, minifySourcesStyle)
 
 const buildScript = () => {
-    return run('npm run build:api').exec()
+    return run('npm run build:lib').exec()
 }
 
 const buildApi = () => {

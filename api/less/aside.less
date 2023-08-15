@@ -45,29 +45,41 @@
     cursor: pointer;
     font-size: 13px;
     overflow: hidden;
+  }
 
-    &.active,
-    &:hover {
+  .outline-chapters {
+    flex: 1;
+
+    &__placeholder {
       background-color: @secondary_text_color;
-    }
-
-    &.active {
       border-left: 3px solid @white;
     }
-  }
 
-  &__anchor:link {
-    color: @border_color;
-    text-decoration: none;
-  }
+    &__anchor {
+      &:link {
+        color: @border_color;
+        text-decoration: none;
+      }
 
-  &__anchor:visited {
-    color: @border_color;
-    text-decoration: none;
-  }
+      &:visited {
+        color: @border_color;
+        text-decoration: none;
+      }
 
-  &__anchor:hover {
-    color: @border_color;
-    text-decoration: underline;
+      &:hover {
+        color: @border_color;
+        text-decoration: underline;
+      }
+    }
+
+    &_active {
+      &.outline-chapters__anchor {
+        &:link,
+        &:visited,
+        &:hover {
+          color: @white;
+        }
+      }
+    }
   }
 }

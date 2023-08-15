@@ -224,11 +224,11 @@ class Outline extends Base {
     const buttons = []
 
     buttons.push(UP)
-    if (homepage) {
-      buttons.push(HOME)
-    }
     if (count > 0) {
       buttons.push(MENU)
+    }
+    if (homepage) {
+      buttons.push(HOME)
     }
     if (git) {
       buttons.push(GIT)

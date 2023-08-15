@@ -127,7 +127,7 @@ class Chapters extends Base {
       return this
     }
 
-    if (this.isInside()) {
+    if (this.isInside() && title) {
       $title = createElement(
         'h2',
         {

@@ -5,8 +5,32 @@ section.section
     h4.section__h4 Description
     dl.section__dl
       dt.section__dt Type：
-      dd.section__dd String
+      dd.section__dd String|Boolean
     dl.section__dl
       dt.section__dt Default：
       dd.section__dd '目录'
-    p 可选，用来指定文章导读导航菜单的标题文字。
+    p 可选，用来指定文章导读导航菜单的标题文字。设置空字符串或者 false，则不显示标题。在插入导航菜单的 DOM 元素已有标题时，可以设置 title: '' 或者 false。
+    p 说明：本 API 文档的导航菜单便是使用 outline.js 生成，并且没有设置 title。
+    pre.section__pre
+      code.section__code.
+        (function(){
+          const defaults = Outline.DEFAULTS
+          let outline
+
+          defaults.selector = 'h2,h3'
+          defaults.title = ''
+          defaults.showCode = false
+          defaults.position = 'sticky'
+          defaults.parentElement = '#aside'
+          defaults.scrollElement = '#main'
+          defaults.articleElement = '#article'
+          defaults.homepage = './index.html'
+          defaults.git = 'https://github.com/yaohaixiao/outline.js'
+          defaults.tags = 'https://github.com/yaohaixiao/outline.js/tags'
+          defaults.issues = 'https://github.com/yaohaixiao/outline.js/issues'
+          defaults.print = {
+            element: '#article',
+            title: 'Outline.js'
+          }
+          outline = new Outline(Outline.DEFAULTS)
+        })()
