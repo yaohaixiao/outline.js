@@ -1,3 +1,12 @@
+# [3.16.0](https://github.com/yaohaixiao/outline.js/compare/3.15.0...3.16.0) (2023-08-15)
+
+
+### Features
+
+* 调整 title 配置参数的可选值，增加设置“”或者false，不显示导航菜单的标题栏；调整 toolbar 工具栏内置按钮的显示顺序； ([a143ed9](https://github.com/yaohaixiao/outline.js/commit/a143ed93f0ea6c35f1c4fca4771e8b5582594f31))
+
+
+
 # [3.15.0](https://github.com/yaohaixiao/outline.js/compare/3.14.0...3.15.0) (2023-08-15)
 
 
