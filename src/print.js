@@ -6,10 +6,11 @@ import later from './utils/lang/later'
 
 const print = (origins, title) => {
   let $origins
-  let $title
   let $article
+  let $title
   let $sibling
   let tagName
+  let text = title
 
   if (isString(origins)) {
     $origins =
@@ -20,10 +21,14 @@ const print = (origins, title) => {
     }
   }
 
+  $title = $origins.querySelector('h1')
+
   if (isElement(title)) {
     $title = title
-  } else {
-    $title = $origins.querySelector('h1')
+  }
+
+  if (isElement($title)) {
+    text = $title.innerText
   }
 
   $article = createElement(
@@ -35,21 +40,15 @@ const print = (origins, title) => {
   )
   $article.innerHTML = $origins.innerHTML
 
-  if (isString(title) && !$title) {
-    $title = createElement(
-      'h1',
-      {
-        className: 'outline-print__title'
-      },
-      [title]
-    )
+  $title = createElement(
+    'h1',
+    {
+      className: 'outline-print__title'
+    },
+    [text]
+  )
 
-    $article.insertBefore($title, $article.firstChild)
-  } else {
-    if (isElement(title)) {
-      $article.insertBefore($title, $article.firstChild)
-    }
-  }
+  $article.insertBefore($title, $article.firstChild)
 
   document.body.appendChild($article)
 
