@@ -1,3 +1,12 @@
+## [3.17.1](https://github.com/yaohaixiao/outline.js/compare/3.17.0...3.17.1) (2023-08-16)
+
+
+### Bug Fixes
+
+* 修复配置参数 print.title 为文章标题 DOM 元素，会将正文的标题移动到打印克隆 DOM 元素中的问题 ([a70c1c3](https://github.com/yaohaixiao/outline.js/commit/a70c1c3093e7d24b1e609b832fff05254d3fdff8))
+
+
+
 # [3.17.0](https://github.com/yaohaixiao/outline.js/compare/3.16.0...3.17.0) (2023-08-15)
 
 
