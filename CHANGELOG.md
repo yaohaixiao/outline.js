@@ -3,7 +3,7 @@
 
 ### Features
 
-* 优化 _getChaptersWithCode() 方法中的生成章节索引 code 的算法，性能提升 5 倍以上； ([22f151f](https://github.com/yaohaixiao/outline.js/commit/22f151f5a4338df5caeb7f292c9152b75565b312))
+* 优化 _getChaptersWithCode() 方法中的生成章节索引 code 的算法，性能大幅提升； ([22f151f](https://github.com/yaohaixiao/outline.js/commit/22f151f5a4338df5caeb7f292c9152b75565b312))
 
 
 
