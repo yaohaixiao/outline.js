@@ -1,16 +1,28 @@
 import trim from './utils/lang/trim'
 import stripTags from './utils/lang/stripTags'
+import isFunction from './utils/types/isFunction'
 
 import _getChapterParentIdByDiffer from './_getChapterParentIdByDiffer'
 import _getChaptersWithCode from './_getChaptersWithCode'
 
-const getChapters = (headings, showCode = true) => {
+/**
+ * 根据文章中的 h1~h6 标签，自动分析返回文章章节数据
+ * ========================================================================
+ * @method getChapters
+ * @param {Array} headings
+ * @param {Boolean} [showCode]
+ * @param {Function} [chapterTextFilter]
+ * @return {*|*[]}
+ */
+const getChapters = (headings, showCode = true, chapterTextFilter = null) => {
   let previous = 1
   let level = 0
+  let text = ''
   const chapters = []
 
   headings.forEach((heading, i) => {
-    const headingLevel = heading.tagName.replace(/h/i, '')
+    const tagName = heading.tagName
+    const headingLevel = tagName.replace(/h/i, '')
     let current = parseInt(headingLevel, 10)
     let pid = -1
 
@@ -69,12 +81,19 @@ const getChapters = (headings, showCode = true) => {
 
     previous = current
 
+    text = stripTags(trim(heading.innerHTML))
+
+    if (isFunction(chapterTextFilter)) {
+      text = chapterTextFilter(text)
+    }
+
     chapters.push({
       id: i,
       pid: pid,
       level: level,
       rel: `heading-${i}`,
-      text: stripTags(trim(heading.innerHTML))
+      text,
+      tagName
     })
   })
 

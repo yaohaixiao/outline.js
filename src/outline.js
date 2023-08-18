@@ -93,6 +93,7 @@ class Outline extends Base {
     const showCode = this.attr('showCode')
     const anchorURL = this.attr('anchorURL')
     const afterScroll = this.attr('afterScroll')
+    const chapterTextFilter = this.attr('chapterTextFilter')
 
     this.anchors = new Anchors({
       articleElement,
@@ -101,7 +102,8 @@ class Outline extends Base {
       selector,
       showCode,
       anchorURL,
-      afterScroll
+      afterScroll,
+      chapterTextFilter
     })
 
     return this
@@ -468,7 +470,8 @@ Outline.DEFAULTS = {
   customClass: '',
   afterSticky: null,
   afterToggle: null,
-  afterScroll: null
+  afterScroll: null,
+  chapterTextFilter: null
 }
 
 if (window.jQuery) {

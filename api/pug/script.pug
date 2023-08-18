@@ -17,7 +17,10 @@ script.
     defaults.issues = 'https://github.com/yaohaixiao/outline.js/issues'
     defaults.print = {
       element: '#article',
-      title: 'Outline.js'
+      title: document.querySelector('.main__h1')
+    }
+    defaults.chapterTextFilter = (text) => {
+      return text.replace(/\(.*?\)/, '()')
     }
     outline = new Outline(Outline.DEFAULTS)
   })()

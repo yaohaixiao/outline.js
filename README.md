@@ -32,6 +32,10 @@ AnchorJS 是 outline.js 的创作灵感来源。既然 AnchorJS 可创建标题�
 - 支持生成独立的侧边栏导航菜单；
 - 支持直接在文章中指定的 DOM 元素内生成文章导读导航(fixed 或者 sticky 布局)；
 - 自动分析标题关系，生成段落层级索引值；
+- 支持配置自定义工具栏按钮和按钮的回调函数；
+  * 支持针对（github 项目的）API 文档的 tags 和 issues 等按钮的跳转；
+  * 支持自定义图标的自定义按钮，并且支持配置自定义按钮的触发事件和事件处理器；
+- 自动为文章页面添加通用的打印样式；
 - 可以作为 jQuery 插件使用；
 - 界面简洁大方；
 - 配置灵活，丰富，让你随心所欲掌控 outline.js；
@@ -246,7 +250,12 @@ const outline = new Outline({
     // 当导航菜单隐藏或者显示后，触发的回调函数
     afterToggle: null,
     // 当点击上下滚动按钮，导航菜单或者文章中的 # 图标，滚动结束后触发的回调函数
-    afterScroll: null
+    afterScroll: null,
+    // 文档的标题文本过滤回调函数
+    // API 文档中，正文的方法会添加参数等信息，例如：getChapters(headings, showCode, chapterTextFilter)
+    // 而在 chapters 导航菜单，我希望显示为 getChapters()，这时我们就可以借助 chapterTextFilter 回调函数
+    // 对原始的文本进行过滤，返回我们期望的 getChapters() 文本
+    chapterTextFilter: null
 });
 
 // 可以在创建导航后，重置配置信息，重新生成新的导航

@@ -1,3 +1,39 @@
+# [3.18.0](https://github.com/yaohaixiao/outline.js/compare/3.17.1...3.18.0) (2023-08-18)
+
+
+### Features
+
+* 优化 _getChaptersWithCode() 方法中的生成章节索引 code 的算法，性能大幅提升； ([22f151f](https://github.com/yaohaixiao/outline.js/commit/22f151f5a4338df5caeb7f292c9152b75565b312))
+
+
+
+## [3.17.1](https://github.com/yaohaixiao/outline.js/compare/3.17.0...3.17.1) (2023-08-16)
+
+
+### Bug Fixes
+
+* 修复配置参数 print.title 为文章标题 DOM 元素，会将正文的标题移动到打印克隆 DOM 元素中的问题 ([a70c1c3](https://github.com/yaohaixiao/outline.js/commit/a70c1c3093e7d24b1e609b832fff05254d3fdff8))
+
+
+
+# [3.17.0](https://github.com/yaohaixiao/outline.js/compare/3.16.0...3.17.0) (2023-08-15)
+
+
+### Features
+
+* 添加 chapterTextFilter 参数，用于处理 chapters 菜单中显示的文本； ([7d57fb1](https://github.com/yaohaixiao/outline.js/commit/7d57fb1e2277ce35a5125b4d903eea49d6188d57))
+
+
+
+# [3.16.0](https://github.com/yaohaixiao/outline.js/compare/3.15.0...3.16.0) (2023-08-15)
+
+
+### Features
+
+* 调整 title 配置参数的可选值，增加设置“”或者false，不显示导航菜单的标题栏；调整 toolbar 工具栏内置按钮的显示顺序； ([a143ed9](https://github.com/yaohaixiao/outline.js/commit/a143ed93f0ea6c35f1c4fca4771e8b5582594f31))
+
+
+
 # [3.15.0](https://github.com/yaohaixiao/outline.js/compare/3.14.0...3.15.0) (2023-08-15)
 
 
