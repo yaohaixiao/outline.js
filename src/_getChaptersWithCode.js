@@ -1,3 +1,5 @@
+import isArray from './utils/types/isArray'
+
 const _getChaptersWithCode = (chapters) => {
   const groups = {}
   const cb = (o) => {
@@ -18,7 +20,11 @@ const _getChaptersWithCode = (chapters) => {
 
   Object.keys(groups).forEach((group) => {
     groups[group].forEach((c) => {
-      const subjects = chapters.filter((b) => b.pid === c.id)
+      const subStage = `[${c.id}]`
+      const subjects = groups[subStage]
+      if (!subjects || !isArray(subjects)) {
+        return false
+      }
       subjects.forEach((o) => {
         o.code = c.code + '.' + o.index
       })
