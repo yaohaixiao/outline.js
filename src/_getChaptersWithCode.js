@@ -20,8 +20,7 @@ const _getChaptersWithCode = (chapters) => {
 
   Object.keys(groups).forEach((group) => {
     groups[group].forEach((c) => {
-      const subStage = `[${c.id}]`
-      const subjects = groups[subStage]
+      const subjects = groups[`[${c.id}]`]
       if (!subjects || !isArray(subjects)) {
         return false
       }

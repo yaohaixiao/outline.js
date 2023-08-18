@@ -1,3 +1,12 @@
+# [3.18.0](https://github.com/yaohaixiao/outline.js/compare/3.17.1...3.18.0) (2023-08-18)
+
+
+### Features
+
+* 优化 _getChaptersWithCode() 方法中的生成章节索引 code 的算法，性能提升 5 倍以上； ([22f151f](https://github.com/yaohaixiao/outline.js/commit/22f151f5a4338df5caeb7f292c9152b75565b312))
+
+
+
 ## [3.17.1](https://github.com/yaohaixiao/outline.js/compare/3.17.0...3.17.1) (2023-08-16)
 
 
