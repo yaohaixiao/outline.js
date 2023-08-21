@@ -20,7 +20,7 @@ script.
       title: document.querySelector('.main__h1')
     }
     defaults.chapterTextFilter = (text) => {
-      return text.replace(/\(.*?\)/, '()')
+      return text.replace(/\s*\(.*?\)/, '()')
     }
     outline = new Outline(Outline.DEFAULTS)
   })()
