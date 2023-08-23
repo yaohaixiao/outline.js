@@ -53,7 +53,7 @@ const createElement = (name, options = {}) => {
     $svg.setAttribute('class', 'outline-icon__svg')
     $svg.setAttribute('width', '200')
     $svg.setAttribute('height', '200')
-    $svg.style = cssRules
+    $svg.style.cssText = cssRules
   }
 
   return $icon
