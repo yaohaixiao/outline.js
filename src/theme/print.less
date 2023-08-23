@@ -2,6 +2,13 @@
 
 .outline-print {
   display: none;
+
+  &__title {
+    text-align: center;
+    font-size: 20pt;
+    font-family: 'Microsoft YaHei UI', Arial, sans-serif;
+    font-weight: normal;
+  }
 }
 
 @media print {
@@ -14,11 +21,15 @@
     display: block !important;
     overflow: hidden;
 
-    h1 {
-      text-align: center;
-      font-size: 20pt;
-      font-family: 'Microsoft YaHei UI', Arial, sans-serif;
-      font-weight: normal;
+    &.outline-reading {
+      position: relative !important;
+      height: auto !important;
+      padding: 0 !important;
+      overflow: hidden !important;
+
+      &__title {
+        font-size: 20pt !important;
+      }
     }
 
     pre {

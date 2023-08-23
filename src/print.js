@@ -34,6 +34,7 @@ const print = (origins, title) => {
   $article = createElement(
     'article',
     {
+      id: 'outline-print',
       className: 'outline-print'
     },
     ['']

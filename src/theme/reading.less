@@ -1,0 +1,34 @@
+@import './colors';
+
+.outline-reading {
+  display: block;
+  position: fixed;
+  z-index: 2;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  box-sizing: border-box;
+  padding: 3em;
+  background-color: @white;
+  overflow: auto;
+
+  .outline-print__title {
+    font-size: 3.5em;
+  }
+
+  &_hidden {
+    display: none;
+  }
+}
+
+@media (max-width: 720px) {
+  .outline-reading {
+    padding: 0;
+
+    .outline-print__title {
+      font-size: 2.5em;
+    }
+  }
+}

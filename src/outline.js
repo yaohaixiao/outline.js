@@ -9,6 +9,7 @@ import isFunction from './utils/types/isFunction'
 import isString from './utils/types/isString'
 import isElement from './utils/types/isElement'
 import addClass from './utils/dom/addClass'
+import removeClass from './utils/dom/removeClass'
 import scrollTo from './utils/dom/scrollTo'
 import _getScrollElement from './utils/dom/_getScrollElement'
 import subscribe from './utils/observer/on'
@@ -26,6 +27,7 @@ class Outline extends Base {
     this.chapters = null
     this.toolbar = null
     this.buttons = []
+    this.reading = false
 
     if (options) {
       this.initialize(options)
@@ -171,6 +173,7 @@ class Outline extends Base {
     const tags = this.attr('tags')
     const issues = this.attr('issues')
     const tools = this.attr('tools')
+    const option = this.attr('print')
     const count = this.count()
     const UP = {
       name: 'up',
@@ -214,6 +217,15 @@ class Outline extends Base {
         handler: 'toolbar:action:toggle'
       }
     }
+    const READING = {
+      name: 'reading',
+      icon: 'file',
+      size: 18,
+      action: {
+        type: 'click',
+        handler: 'toolbar:action:reading'
+      }
+    }
     const DOWN = {
       name: 'down',
       icon: 'down',
@@ -228,6 +240,9 @@ class Outline extends Base {
     buttons.push(UP)
     if (count > 0) {
       buttons.push(MENU)
+    }
+    if (option.element) {
+      buttons.push(READING)
     }
     if (homepage) {
       buttons.push(HOME)
@@ -335,6 +350,31 @@ class Outline extends Base {
     return this
   }
 
+  doReading() {
+    const READING = 'outline-reading'
+    const HIDDEN = `${READING}_hidden`
+    const $reading = document.querySelector('#outline-print')
+    const $siblings = document.querySelectorAll('.outline-print_sibling')
+
+    if (!this.reading) {
+      $siblings.forEach(($sibling) => {
+        addClass($sibling, HIDDEN)
+      })
+      addClass($reading, READING)
+      this.reading = true
+    } else {
+      removeClass($reading, READING)
+      $siblings.forEach(($sibling) => {
+        removeClass($sibling, HIDDEN)
+      })
+      this.reading = false
+    }
+
+    this.toolbar.toggle()
+
+    return this
+  }
+
   toggle() {
     const position = this.attr('position')
     const toolbar = this.toolbar
@@ -402,6 +442,11 @@ class Outline extends Base {
     return this
   }
 
+  onReading() {
+    this.doReading()
+    return this
+  }
+
   onScrollTop() {
     this.toTop()
     return this
@@ -434,6 +479,7 @@ class Outline extends Base {
     subscribe('toolbar:update', this.onToolbarUpdate, this)
     subscribe('toolbar:action:up', this.onScrollTop, this)
     subscribe('toolbar:action:toggle', this.onToggle, this)
+    subscribe('toolbar:action:reading', this.onReading, this)
     subscribe('toolbar:action:down', this.onScrollBottom, this)
     return this
   }
