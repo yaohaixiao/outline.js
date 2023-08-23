@@ -1,3 +1,12 @@
+## [3.18.1](https://github.com/yaohaixiao/outline.js/compare/3.18.0...3.18.1) (2023-08-23)
+
+
+### Bug Fixes
+
+* 修复 icons 工具方法集中的 createElement() 方法中的一次设置多个样式的问题； ([182329d](https://github.com/yaohaixiao/outline.js/commit/182329db3afcae91a391d4fe893c96c7868287e9))
+
+
+
 # [3.18.0](https://github.com/yaohaixiao/outline.js/compare/3.17.1...3.18.0) (2023-08-18)
 
 
