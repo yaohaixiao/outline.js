@@ -15,11 +15,16 @@
   overflow: auto;
 
   .outline-print__title {
+    line-height: 1.3em;
     font-size: 3.5em;
   }
 
   &_hidden {
     display: none;
+
+    &.outline-print_sibling {
+      display: none;
+    }
   }
 }
 

@@ -6,6 +6,7 @@ import later from './utils/lang/later'
 
 const print = (origins, title) => {
   let $origins
+  let $warpper
   let $article
   let $title
   let $sibling
@@ -34,8 +35,8 @@ const print = (origins, title) => {
   $article = createElement(
     'article',
     {
-      id: 'outline-print',
-      className: 'outline-print'
+      id: 'outline-print__article',
+      className: 'outline-print__article'
     },
     ['']
   )
@@ -49,12 +50,18 @@ const print = (origins, title) => {
     [text]
   )
 
-  $article.insertBefore($title, $article.firstChild)
-
-  document.body.appendChild($article)
+  $warpper = createElement(
+    'section',
+    {
+      id: 'outline-print',
+      className: 'outline-print'
+    },
+    [$title, $article]
+  )
+  document.body.appendChild($warpper)
 
   later(() => {
-    $sibling = $article.previousElementSibling
+    $sibling = $warpper.previousElementSibling
 
     while ($sibling) {
       tagName = $sibling.tagName.toLowerCase()
@@ -64,7 +71,7 @@ const print = (origins, title) => {
       $sibling = $sibling.previousElementSibling
     }
 
-    $sibling = $article.nextElementSibling
+    $sibling = $warpper.nextElementSibling
 
     while ($sibling) {
       tagName = $sibling.tagName.toLowerCase()

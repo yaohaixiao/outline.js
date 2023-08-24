@@ -14,6 +14,9 @@ import scrollTo from './utils/dom/scrollTo'
 import _getScrollElement from './utils/dom/_getScrollElement'
 import subscribe from './utils/observer/on'
 import unsubscribe from './utils/observer/off'
+import at from './utils/event/at'
+import off from './utils/event/off'
+import stop from './utils/event/stop'
 
 import print from './print'
 
@@ -350,27 +353,60 @@ class Outline extends Base {
     return this
   }
 
-  doReading() {
+  enterReading() {
     const READING = 'outline-reading'
     const HIDDEN = `${READING}_hidden`
     const $reading = document.querySelector('#outline-print')
     const $siblings = document.querySelectorAll('.outline-print_sibling')
 
-    if (!this.reading) {
-      $siblings.forEach(($sibling) => {
-        addClass($sibling, HIDDEN)
-      })
-      addClass($reading, READING)
-      this.reading = true
-    } else {
-      removeClass($reading, READING)
-      $siblings.forEach(($sibling) => {
-        removeClass($sibling, HIDDEN)
-      })
-      this.reading = false
+    if (this.reading || !$reading) {
+      return this
     }
 
+    $siblings.forEach(($sibling) => {
+      addClass($sibling, HIDDEN)
+    })
+    addClass($reading, READING)
+    this.reading = true
+
     this.toolbar.toggle()
+
+    return this
+  }
+
+  exitReading() {
+    const READING = 'outline-reading'
+    const HIDDEN = `${READING}_hidden`
+    const $reading = document.querySelector('#outline-print')
+    const $siblings = document.querySelectorAll('.outline-print_sibling')
+
+    if (!this.reading || !$reading) {
+      return this
+    }
+
+    removeClass($reading, READING)
+    $siblings.forEach(($sibling) => {
+      removeClass($sibling, HIDDEN)
+    })
+    this.reading = false
+
+    this.toolbar.toggle()
+
+    return this
+  }
+
+  switchReading() {
+    const $print = document.querySelector('#outline-print')
+
+    if (!$print) {
+      return this
+    }
+
+    if (!this.reading) {
+      this.enterReading()
+    } else {
+      this.exitReading()
+    }
 
     return this
   }
@@ -411,8 +447,13 @@ class Outline extends Base {
     let toolbar = this.toolbar
     let isOutside = false
     const count = this.count()
+    const $print = document.querySelector('#outline-print')
 
     this.removeListeners()
+
+    if ($print) {
+      document.body.removeChild($print)
+    }
 
     if (count > 0) {
       isOutside = chapters.isOutside()
@@ -442,11 +483,6 @@ class Outline extends Base {
     return this
   }
 
-  onReading() {
-    this.doReading()
-    return this
-  }
-
   onScrollTop() {
     this.toTop()
     return this
@@ -454,6 +490,22 @@ class Outline extends Base {
 
   onScrollBottom() {
     this.toBottom()
+    return this
+  }
+
+  onEnterReading() {
+    this.switchReading()
+    return this
+  }
+
+  onExitReading(evt) {
+    const keyCode = evt.keyCode
+
+    if (keyCode === 27 && this.reading) {
+      this.switchReading()
+      stop(evt)
+    }
+
     return this
   }
 
@@ -476,19 +528,33 @@ class Outline extends Base {
   }
 
   addListeners() {
+    const $print = document.querySelector('#outline-print')
+
     subscribe('toolbar:update', this.onToolbarUpdate, this)
     subscribe('toolbar:action:up', this.onScrollTop, this)
     subscribe('toolbar:action:toggle', this.onToggle, this)
-    subscribe('toolbar:action:reading', this.onReading, this)
+    subscribe('toolbar:action:reading', this.onEnterReading, this)
     subscribe('toolbar:action:down', this.onScrollBottom, this)
+
+    if ($print) {
+      at(document, 'keyup', this.onExitReading, this, true)
+    }
+
     return this
   }
 
   removeListeners() {
+    const $print = document.querySelector('#outline-print')
+
     unsubscribe('toolbar:update')
     unsubscribe('toolbar:action:up')
     unsubscribe('toolbar:action:toggle')
     unsubscribe('toolbar:action:down')
+
+    if ($print) {
+      off(document, 'keyup', this.onExitReading)
+    }
+
     return this
   }
 }
