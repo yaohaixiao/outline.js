@@ -3,7 +3,7 @@
 
 ### Bug Fixes
 
-* 修复同业个页面多次实例化 Outline 对象可能出现的属性配置不正确问题； ([582a66f](https://github.com/yaohaixiao/outline.js/commit/582a66fa1f46460a5febc093b574604d0526ea25))
+* 修复同一个页面多次实例化 Outline 对象可能出现的属性配置不正确问题； ([582a66f](https://github.com/yaohaixiao/outline.js/commit/582a66fa1f46460a5febc093b574604d0526ea25))
 
 
 
