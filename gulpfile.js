@@ -170,16 +170,12 @@ const openDocs = () => {
     if (os.platform() === 'darwin') {
         browser = os.platform() === 'linux' ? 'google-chrome' : 'google chrome'
     } else {
-        if (os.platform() === 'win32') {
-            browser = os.platform() === 'linux' ? 'google-chrome' : 'chrome'
-        } else {
-            browser = os.platform() === 'linux' ? 'google-chrome' : 'firefox'
-        }
+      browser = os.platform() === 'linux' ? 'google-chrome' : 'chrome'
     }
     return gulp.src('docs/index.html').pipe(
         open({
             app: browser,
-            uri: 'http://localhost:8260'
+            uri: 'http://localhost:8481'
         })
     )
 }
@@ -187,7 +183,7 @@ const openDocs = () => {
 const connectDocs = () => {
     return connect.server({
         root: 'docs',
-        port: 8260,
+        port: 8481,
         livereload: true
     })
 }
