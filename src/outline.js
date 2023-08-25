@@ -5,6 +5,7 @@ import Chapters from './chapters'
 import Toolbar from './toolbar'
 
 import later from './utils/lang/later'
+import cloneDeep from './utils/lang/cloneDeep'
 import isFunction from './utils/types/isFunction'
 import isString from './utils/types/isString'
 import isElement from './utils/types/isElement'
@@ -24,7 +25,7 @@ class Outline extends Base {
   constructor(options) {
     super()
 
-    this.attrs = Outline.DEFAULTS
+    this.attrs = cloneDeep(Outline.DEFAULTS)
     this.anchors = null
     this.drawer = null
     this.chapters = null

@@ -5,6 +5,7 @@ import isFunction from './utils/types/isFunction'
 import isObject from './utils/types/isObject'
 import isArray from './utils/types/isArray'
 import later from './utils/lang/later'
+import cloneDeep from './utils/lang/cloneDeep'
 import createElement from './utils/dom/createElement'
 import addClass from './utils/dom/addClass'
 import hasClass from './utils/dom/hasClass'
@@ -23,7 +24,7 @@ class Toolbar extends Base {
   constructor(options) {
     super()
 
-    this.attrs = Toolbar.DEFAULTS
+    this.attrs = cloneDeep(Toolbar.DEFAULTS)
     this.$el = null
     this.disabled = false
     this.closed = false
