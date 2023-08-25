@@ -1,3 +1,12 @@
+## [3.19.1](https://github.com/yaohaixiao/outline.js/compare/3.19.0...3.19.1) (2023-08-25)
+
+
+### Bug Fixes
+
+* 修复同业个页面多次实例化 Outline 对象可能出现的属性配置不正确问题； ([582a66f](https://github.com/yaohaixiao/outline.js/commit/582a66fa1f46460a5febc093b574604d0526ea25))
+
+
+
 # [3.19.0](https://github.com/yaohaixiao/outline.js/compare/3.18.1...3.19.0) (2023-08-24)
 
 
