@@ -1,3 +1,21 @@
+## [3.19.1](https://github.com/yaohaixiao/outline.js/compare/3.19.0...3.19.1) (2023-08-25)
+
+
+### Bug Fixes
+
+* 修复同一个页面多次实例化 Outline 对象可能出现的属性配置不正确问题； ([582a66f](https://github.com/yaohaixiao/outline.js/commit/582a66fa1f46460a5febc093b574604d0526ea25))
+
+
+
+# [3.19.0](https://github.com/yaohaixiao/outline.js/compare/3.18.1...3.19.0) (2023-08-24)
+
+
+### Features
+
+* 功能扩展，（在配置打印样式后）有纯净的阅读视图（按ESC键可退出）； ([966c113](https://github.com/yaohaixiao/outline.js/commit/966c1135a40d06053c3d34096eadcf29ece3dc96))
+
+
+
 ## [3.18.1](https://github.com/yaohaixiao/outline.js/compare/3.18.0...3.18.1) (2023-08-23)
 
 

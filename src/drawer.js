@@ -1,6 +1,7 @@
 import Base from './base'
 
 import later from './utils/lang/later'
+import cloneDeep from './utils/lang/cloneDeep'
 import isFunction from './utils/types/isFunction'
 import addClass from './utils/dom/addClass'
 import removeClass from './utils/dom/removeClass'
@@ -16,7 +17,7 @@ class Drawer extends Base {
   constructor(options) {
     super()
 
-    this.attrs = Drawer.DEFAULTS
+    this.attrs = cloneDeep(Drawer.DEFAULTS)
     this.title = ''
     this.closed = true
     this.$el = null

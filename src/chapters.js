@@ -17,6 +17,7 @@ import offsetTop from './utils/dom/offsetTop'
 import getStyle from './utils/dom/getStyle'
 import setProperty from './utils/dom/setProperty'
 import publish from './utils/observer/emit'
+import cloneDeep from './utils/lang/cloneDeep'
 
 import _getScrollElement from './utils/dom/_getScrollElement'
 import _paintChapters from './_paintChapters'
@@ -25,7 +26,7 @@ class Chapters extends Base {
   constructor(options) {
     super()
 
-    this.attrs = Chapters.DEFAULTS
+    this.attrs = cloneDeep(Chapters.DEFAULTS)
     this.$el = null
     this.$title = null
     this.$main = null
