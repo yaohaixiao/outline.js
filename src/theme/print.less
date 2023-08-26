@@ -3,6 +3,10 @@
 .outline-print {
   display: none;
 
+  &__close {
+    display: none;
+  }
+
   &__title {
     text-align: center;
     font-family: 'Microsoft YaHei UI', Arial, sans-serif;
@@ -27,8 +31,14 @@
       padding: 0 !important;
       overflow: hidden !important;
 
-      .outline-print__title {
-        font-size: 20pt !important;
+      .outline-print {
+        &__title {
+          font-size: 20pt !important;
+        }
+
+        &__close {
+          display: none !important;
+        }
       }
     }
 

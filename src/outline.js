@@ -15,6 +15,7 @@ import _getScrollElement from './utils/dom/_getScrollElement'
 import subscribe from './utils/observer/on'
 import unsubscribe from './utils/observer/off'
 import at from './utils/event/at'
+import on from './utils/event/on'
 import off from './utils/event/off'
 import stop from './utils/event/stop'
 
@@ -538,6 +539,7 @@ class Outline extends Base {
 
     if ($print) {
       at(document, 'keyup', this.onExitReading, this, true)
+      on($print, '.outline-print__close', 'click', this.exitReading, this, true)
     }
 
     return this
@@ -553,6 +555,7 @@ class Outline extends Base {
 
     if ($print) {
       off(document, 'keyup', this.onExitReading)
+      off($print, 'click', this.exitReading)
     }
 
     return this

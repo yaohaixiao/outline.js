@@ -1,4 +1,5 @@
 @import './colors';
+@import './shadow';
 
 .outline-reading {
   display: block;
@@ -10,13 +11,42 @@
   height: 100%;
   margin: 0;
   box-sizing: border-box;
-  padding: 3em;
+  padding: 3em 4em;
   background-color: @white;
   overflow: auto;
 
-  .outline-print__title {
-    line-height: 1.3em;
-    font-size: 3.5em;
+  .outline-print {
+    &__close {
+      .shadow_light_regular();
+      display: block;
+      position: fixed;
+      z-index: 3;
+      top: 50%;
+      right: 12px;
+      margin: 0;
+      width: 36px;
+      height: 36px;
+      border-radius: 18px;
+      border: 1px solid @primary_border_color;
+      line-height: 30px;
+      text-align: center;
+      transform: translateY(-50%);
+      cursor: pointer;
+      box-shadow: 0 0 8px @secondary_border_color;
+      color: @fourth_text_color;
+      background-color: @white;
+      overflow: hidden;
+
+      &:hover {
+        background-color: @success_color;
+        color: @white;
+      }
+    }
+
+    &__title {
+      line-height: 1.3em;
+      font-size: 3.5em;
+    }
   }
 
   &_hidden {
