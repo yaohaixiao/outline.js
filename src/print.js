@@ -3,15 +3,17 @@ import isElement from './utils/types/isElement'
 import createElement from './utils/dom/createElement'
 import addClass from './utils/dom/addClass'
 import later from './utils/lang/later'
+import icon from './utils/icons/icon'
 
 const print = (origins, title) => {
+  let text = title
   let $origins
-  let $warpper
+  let $wrapper
   let $article
   let $title
   let $sibling
+  let $icon
   let tagName
-  let text = title
 
   if (isString(origins)) {
     $origins =
@@ -21,6 +23,12 @@ const print = (origins, title) => {
       $origins = origins
     }
   }
+
+  $icon = icon('close', {
+    iconSet: 'outline',
+    size: 20
+  })
+  addClass($icon, 'outline-print__close')
 
   $title = $origins.querySelector('h1')
 
@@ -50,18 +58,18 @@ const print = (origins, title) => {
     [text]
   )
 
-  $warpper = createElement(
+  $wrapper = createElement(
     'section',
     {
       id: 'outline-print',
       className: 'outline-print'
     },
-    [$title, $article]
+    [$icon, $title, $article]
   )
-  document.body.appendChild($warpper)
+  document.body.appendChild($wrapper)
 
   later(() => {
-    $sibling = $warpper.previousElementSibling
+    $sibling = $wrapper.previousElementSibling
 
     while ($sibling) {
       tagName = $sibling.tagName.toLowerCase()
@@ -71,7 +79,7 @@ const print = (origins, title) => {
       $sibling = $sibling.previousElementSibling
     }
 
-    $sibling = $warpper.nextElementSibling
+    $sibling = $wrapper.nextElementSibling
 
     while ($sibling) {
       tagName = $sibling.tagName.toLowerCase()

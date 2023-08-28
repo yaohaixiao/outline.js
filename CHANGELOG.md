@@ -1,3 +1,12 @@
+# [3.20.0](https://github.com/yaohaixiao/outline.js/compare/3.19.1...3.20.0) (2023-08-26)
+
+
+### Features
+
+* 针对移动设备在阅读模式添加推出阅读模式按钮 ([60d3b02](https://github.com/yaohaixiao/outline.js/commit/60d3b02e0544b4d3c9aca9cfef24b09c01ac573b))
+
+
+
 ## [3.19.1](https://github.com/yaohaixiao/outline.js/compare/3.19.0...3.19.1) (2023-08-25)
 
 
