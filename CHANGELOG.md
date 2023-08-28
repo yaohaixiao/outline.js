@@ -1,3 +1,12 @@
+## [3.20.1](https://github.com/yaohaixiao/outline.js/compare/3.20.0...3.20.1) (2023-08-28)
+
+
+### Bug Fixes
+
+* 修复针对 Wordpress 文章页进入阅读模式时，顶部导航栏仍然显示的问题； ([11f310b](https://github.com/yaohaixiao/outline.js/commit/11f310bc691ddc8f22239663ee71f845cd6912bc))
+
+
+
 # [3.20.0](https://github.com/yaohaixiao/outline.js/compare/3.19.1...3.20.0) (2023-08-26)
 
 
