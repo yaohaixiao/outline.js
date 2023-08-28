@@ -20,10 +20,16 @@
   }
 
   &_hidden {
-    display: none;
+    display: none !important;
 
     &.outline-print_sibling {
-      display: none;
+      display: none !important;
+
+      &.wrapper {
+        &.post {
+          display: none;
+        }
+      }
     }
   }
 }
