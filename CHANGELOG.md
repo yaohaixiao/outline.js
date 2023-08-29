@@ -1,3 +1,13 @@
+# [3.22.0](https://github.com/yaohaixiao/outline.js/compare/3.21.0...3.22.0) (2023-08-29)
+
+
+### Features
+
+* 调整打印样式中文章标题的下边距；
+* 调整代码结构，重新打包文件 ([556e186](https://github.com/yaohaixiao/outline.js/commit/556e1869a4c73762589a2756287d90efaca2b47a))
+
+
+
 # [3.21.0](https://github.com/yaohaixiao/outline.js/compare/3.20.1...3.21.0) (2023-08-29)
 
 
