@@ -1,3 +1,12 @@
+## [3.22.1](https://github.com/yaohaixiao/outline.js/compare/3.22.0...3.22.1) (2023-08-29)
+
+
+### Bug Fixes
+
+* 修复 sticky 定位，窗口调整大小，chapters 导航栏高度没有自适应窗口大小变化的问题 ([4694b3c](https://github.com/yaohaixiao/outline.js/commit/4694b3cdb8ab131862f15da760b7222d9562f104))
+
+
+
 # [3.22.0](https://github.com/yaohaixiao/outline.js/compare/3.21.0...3.22.0) (2023-08-29)
 
 
