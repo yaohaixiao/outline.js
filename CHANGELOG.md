@@ -1,3 +1,13 @@
+# [3.21.0](https://github.com/yaohaixiao/outline.js/compare/3.20.1...3.21.0) (2023-08-29)
+
+
+### Features
+
+* 添加 $emit()、$on()、$off() 方法；
+* 添加 created、mounted、enterReading、exitReading、beforeDestroy 和 destroyed 事件； ([88b087d](https://github.com/yaohaixiao/outline.js/commit/88b087d4fbf44bc6dd95cd96462e8c666b3eaeb3))
+
+
+
 ## [3.20.1](https://github.com/yaohaixiao/outline.js/compare/3.20.0...3.20.1) (2023-08-28)
 
 
