@@ -1,5 +1,5 @@
 import toString from '../lang/toString'
-import isFunction from '../types/isFunction'
+import isFunction from './isFunction'
 
 /**
  * 检测数据是否为 Object 类型

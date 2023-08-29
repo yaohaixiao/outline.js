@@ -39,7 +39,7 @@ describe('isArray() 方法：', () => {
   })
 
   it(`isArray({ '0':1, '1':2, length: 2 }), 返回：false`, () => {
-    const o = { '0':1, '1':2, length: 2 }
+    const o = { 0: 1, 1: 2, length: 2 }
     expect(isArray(o)).toBe(false)
   })
 

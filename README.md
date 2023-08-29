@@ -167,12 +167,12 @@ const Drawer = require('@yaohaixiao/outline.js/drawer.min.js')
 const Toolbar = require('@yaohaixiao/outline.js/toolbar.min.js')
 
 // 作为 ES6 模块使用
-import Outline from '@yaohaixiao/outline.js/src/outline'
+import Outline from '@yaohaixiao/outline.js/outline'
 // 调用其他独立模块（如果需要）
-import Anchors from '@yaohaixiao/outline.js/src/anchors'
-import Chapters from '@yaohaixiao/outline.js/src/chapters'
-import Drawer from '@yaohaixiao/outline.js/src/drawer'
-import Toolbar from '@yaohaixiao/outline.js/src/toolbar'
+import Anchors from '@yaohaixiao/outline.js/anchors'
+import Chapters from '@yaohaixiao/outline.js/chapters'
+import Drawer from '@yaohaixiao/outline.js/drawer'
+import Toolbar from '@yaohaixiao/outline.js/toolbar'
 
 // 创建 Outline 实例
 // 2.0.0 调整了配置参数，配置更加简单

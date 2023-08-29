@@ -1,6 +1,6 @@
 {
   "name": "@yaohaixiao/outline.js",
-  "version": "3.21.0",
+  "version": "3.22.0",
   "description": "outline.js - 自动生成文章导读（Table of Contents）导航的 JavaScript 工具。",
   "main": "outline.min.js",
   "files": [
@@ -25,8 +25,8 @@
     "build": "npm run build:lib && npm run build:docs",
     "lint": "eslint",
     "lint:fix": "npm run lint --cache --fix",
-    "prettier:check": "npx prettier --check \"src/**/*.*\"",
-    "prettier:write": "npx prettier --write \"src/**/*.*\"",
+    "prettier:check": "npx prettier --check \"**/*.(js|less)\"",
+    "prettier:write": "npx prettier --write \"**/*.(js|less)\"",
     "test:unit": "jest --config jest.config.js",
     "test": "npm run lint:fix && npm run prettier:write && npm run test:unit",
     "watch": "gulp watch",
@@ -93,7 +93,7 @@
     "commit-msg": "commitlint"
   },
   "lint-staged": {
-    "src/**/*.js": [
+    "**/*.js": [
       "npm run lint:fix",
       "npm run prettier:write"
     ]

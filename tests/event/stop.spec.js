@@ -1,7 +1,7 @@
 /**
  * @jest-environment jsdom
  */
-import stop from '@/utils/event/stop'
+import stop from '../../utils/event/stop'
 
 describe('stopEvent() 方法', () => {
   Object.defineProperty(window, 'location', {

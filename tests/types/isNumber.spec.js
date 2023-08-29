@@ -6,11 +6,11 @@ describe('isNumber() 方法：', () => {
   })
 
   it(`isNumber(.1), 返回：true`, () => {
-    expect(isNumber(.1)).toBe(true)
+    expect(isNumber(0.1)).toBe(true)
   })
 
   it(`isNumber(2.3E2), 返回：true`, () => {
-    expect(isNumber(2.3E2)).toBe(true)
+    expect(isNumber(2.3e2)).toBe(true)
   })
 
   it(`isNumber(0xffffff), 返回：true`, () => {
