@@ -7,9 +7,6 @@ import addClass from './utils/dom/addClass'
 import removeClass from './utils/dom/removeClass'
 import scrollTo from './utils/dom/scrollTo'
 import _getScrollElement from './utils/dom/_getScrollElement'
-import publish from './utils/observer/emit'
-import subscribe from './utils/observer/on'
-import unsubscribe from './utils/observer/off'
 import at from './utils/event/at'
 import on from './utils/event/on'
 import off from './utils/event/off'
@@ -41,7 +38,7 @@ class Outline extends Base {
 
   initialize(options) {
     this.attr(options)
-    publish('created', { ...this.attr() })
+    this.$emit('created', { ...this.attr() })
     this.render().addListeners()
     return this
   }
@@ -70,7 +67,7 @@ class Outline extends Base {
       })
     }
 
-    publish('mounted')
+    this.$emit('mounted')
 
     return this
   }
@@ -377,7 +374,7 @@ class Outline extends Base {
 
     this.toolbar.toggle()
 
-    publish('enterReading')
+    this.$emit('enterReading')
 
     return this
   }
@@ -400,7 +397,7 @@ class Outline extends Base {
 
     this.toolbar.toggle()
 
-    publish('exitReading')
+    this.$emit('exitReading')
 
     return this
   }
@@ -455,7 +452,7 @@ class Outline extends Base {
     const count = this.count()
     const $print = document.querySelector('#outline-print')
 
-    publish('beforeDestroy')
+    this.$emit('beforeDestroy')
 
     this.removeListeners()
 
@@ -483,7 +480,7 @@ class Outline extends Base {
 
     this.attr(Outline.DEFAULTS)
 
-    publish('destroyed')
+    this.$emit('destroyed')
 
     return this
   }
@@ -540,11 +537,11 @@ class Outline extends Base {
   addListeners() {
     const $print = document.querySelector('#outline-print')
 
-    subscribe('toolbar:update', this.onToolbarUpdate, this)
-    subscribe('toolbar:action:up', this.onScrollTop, this)
-    subscribe('toolbar:action:toggle', this.onToggle, this)
-    subscribe('toolbar:action:reading', this.onEnterReading, this)
-    subscribe('toolbar:action:down', this.onScrollBottom, this)
+    this.$on('toolbar:update', this.onToolbarUpdate)
+    this.$on('toolbar:action:up', this.onScrollTop)
+    this.$on('toolbar:action:toggle', this.onToggle)
+    this.$on('toolbar:action:reading', this.onEnterReading)
+    this.$on('toolbar:action:down', this.onScrollBottom)
 
     if ($print) {
       at(document, 'keyup', this.onExitReading, this, true)
@@ -557,10 +554,10 @@ class Outline extends Base {
   removeListeners() {
     const $print = document.querySelector('#outline-print')
 
-    unsubscribe('toolbar:update')
-    unsubscribe('toolbar:action:up')
-    unsubscribe('toolbar:action:toggle')
-    unsubscribe('toolbar:action:down')
+    this.$off('toolbar:update')
+    this.$off('toolbar:action:up')
+    this.$off('toolbar:action:toggle')
+    this.$off('toolbar:action:down')
 
     if ($print) {
       off(document, 'keyup', this.onExitReading)

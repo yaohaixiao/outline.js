@@ -34,10 +34,10 @@ section.section
           console.log('handler:', msg)
         }
 
-        outline.$on('created', handler)
+        outline.$on('created')
 
         // 取消订阅 author 主题
-        outline.$off('created', handler)
+        outline.$off('created')
 
         // 不会有任何反应，因为已经取消订阅了
         outline.$emit('created')

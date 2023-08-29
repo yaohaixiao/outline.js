@@ -16,7 +16,6 @@ import removeClass from './utils/dom/removeClass'
 import offsetTop from './utils/dom/offsetTop'
 import getStyle from './utils/dom/getStyle'
 import setProperty from './utils/dom/setProperty'
-import publish from './utils/observer/emit'
 import cloneDeep from './utils/lang/cloneDeep'
 
 import _getScrollElement from './utils/dom/_getScrollElement'
@@ -511,7 +510,7 @@ class Chapters extends Base {
 
       later(() => {
         this.playing = false
-        publish('toolbar:update', {
+        this.$emit('toolbar:update', {
           top,
           min,
           max
@@ -552,7 +551,7 @@ class Chapters extends Base {
         this.sticky()
       }
 
-      publish('toolbar:update', {
+      this.$emit('toolbar:update', {
         top,
         min,
         max
@@ -587,7 +586,7 @@ class Chapters extends Base {
     on($el, '.outline-chapters__anchor', 'click', this.onSelect, this, true)
     at($element, 'scroll', this.onScroll, this, true)
     if (this.isSticky()) {
-      at($element, 'resize', this.onResize, this, true)
+      at(window, 'resize', this.onResize, this, true)
     }
 
     return this
@@ -608,7 +607,7 @@ class Chapters extends Base {
     off($element, 'scroll', this.onScroll)
 
     if (this.isSticky()) {
-      at($element, 'resize', this.onResize)
+      at(window, 'resize', this.onResize)
     }
 
     if (this.Observer) {

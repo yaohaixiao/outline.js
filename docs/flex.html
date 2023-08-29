@@ -319,32 +319,7 @@ defaults.print = {
 defaults.chapterTextFilter = (text) => {
   return text.replace(/\(.*?\)/, '()')
 }
-outline = new Outline(Outline.DEFAULTS)</code></pre></div></section></section><section class="section"><header class="section__header"><h2 class="section__title">Properties</h2></header><div class="section__content"><p>outline.js 重构后，对外放 4 个重要的属性：anchors、drawer、chapters 和 toolbar。它们都是独立的对象实例，提供了 outline.js 所有的能力（属性和方法）。</p></div><section class="section"><header class="section__header"><h3 class="section__h3">Outline.DEFAULTS</h3></header><div class="section__content"><h4 class="section__h4">Description</h4><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="api-param-value">Object</dd></dl><p>静态属性，存储的是 Outline 对象默认配置选项：</p><pre class="section__pre"><code class="section__code">Outline.DEFAULTS = {
-  articleElement: '#article',
-  selector: 'h2,h3,h4,h5,h6',
-  title: '目录',
-  scrollElement: 'html,body',
-  position: 'relative',
-  parentElement: '#aside',
-  placement: 'rtl',
-  showCode: true,
-  anchorURL: '',
-  stickyHeight: 0,
-  homepage: '',
-  git: '',
-  tags: '',
-  issues: '',
-  tools: [],
-  print: {
-    element: '',
-    title: ''
-  },
-  customClass: '',
-  afterSticky: null,
-  afterToggle: null,
-  afterScroll: null,
-  chapterTextFilter: null
-}</code></pre></div></section><section class="section"><header class="section__header"><h3 class="section__h3">attrs</h3></header><div class="section__content"><h4 class="section__h4">Description</h4><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">Object</dd></dl><p>存储的是 Outline 对象当前使用中的配置选项：</p><p>说明：建议使用 attr(prop) 方法来获取属性，避免直接调用属性。</p><pre class="section__pre"><code class="section__code">// 设置默认配置项
+outline = new Outline(Outline.DEFAULTS)</code></pre></div></section></section><section class="section"><header class="section__header"><h2 class="section__title">Properties</h2></header><div class="section__content"><p>outline.js 重构后，对外放 4 个重要的属性：anchors、drawer、chapters 和 toolbar。它们都是独立的对象实例，提供了 outline.js 所有的能力（属性和方法）。</p></div><section class="section"><header class="section__header"><h3 class="section__h3">attrs</h3></header><div class="section__content"><h4 class="section__h4">Description</h4><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">Object</dd></dl><p>存储的是 Outline 对象当前使用中的配置选项：</p><p>说明：建议使用 attr(prop) 方法来获取属性，避免直接调用属性。</p><pre class="section__pre"><code class="section__code">// 设置默认配置项
 const outline = new Outline(Outline.DEFAULTS)
 
 // 查看全部配置信息
@@ -762,7 +737,32 @@ Toolbar.DEFAULTS = {
 
 Drawer.zIndex = 2000
 
-export default Toolbar</code></pre></div></section></section><section class="section"><header class="section__header"><h2 class="section__title">Methods</h2></header><div class="section__content"><p>outline.js 的提供的方法如下：</p></div><section class="section"><header class="section__header"><h3 class="section__h3">attr([prop, value])</h3></header><div class="section__content"><h4 class="section__h4">Description</h4><p>attr() 方法用来设置或者获取初始化时配置的 attrs 信息的。</p><h4 class="section__h4">Parameters</h4><h5 class="section__h4">prop</h5><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">String|HTMLElement</dd></dl><p>（可选）options 中的属性名称或者要配置的 attrs 信息。</p><h5 class="section__h4">value</h5><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">Any</dd></dl><p>（可选）要设置的 prop 属性的值</p><ul><li>不传递任何参数：返回完整的 attrs 配置信息；</li><li>仅传递 prop：</li><ul><li>String: 返回 attrs 配型信息中与 prop 对应的值；</li><li>Object: 用来设置 attrs 配置信息；</li></ul><li>同时传递 prop 和 value 参数：设置 attrs 配置信息中的某个属性值；</li></ul><h4 class="section__h4">Returns</h4><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">Any</dd></dl><p>配置信息 attrs 的属性值或者 Outline 对象。</p><pre class="section__pre"><code class="section__code">const outline = new Outline({
+export default Toolbar</code></pre></div></section><section class="section"><header class="section__header"><h3 class="section__h3">Outline.DEFAULTS</h3></header><div class="section__content"><h4 class="section__h4">Description</h4><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="api-param-value">Object</dd></dl><p>静态属性，存储的是 Outline 对象默认配置选项：</p><pre class="section__pre"><code class="section__code">Outline.DEFAULTS = {
+  articleElement: '#article',
+  selector: 'h2,h3,h4,h5,h6',
+  title: '目录',
+  scrollElement: 'html,body',
+  position: 'relative',
+  parentElement: '#aside',
+  placement: 'rtl',
+  showCode: true,
+  anchorURL: '',
+  stickyHeight: 0,
+  homepage: '',
+  git: '',
+  tags: '',
+  issues: '',
+  tools: [],
+  print: {
+    element: '',
+    title: ''
+  },
+  customClass: '',
+  afterSticky: null,
+  afterToggle: null,
+  afterScroll: null,
+  chapterTextFilter: null
+}</code></pre></div></section></section><section class="section"><header class="section__header"><h2 class="section__title">Methods</h2></header><div class="section__content"><p>outline.js 的提供的方法如下：</p></div><section class="section"><header class="section__header"><h3 class="section__h3">attr([prop, value])</h3></header><div class="section__content"><h4 class="section__h4">Description</h4><p>attr() 方法用来设置或者获取初始化时配置的 attrs 信息的。</p><h4 class="section__h4">Parameters</h4><h5 class="section__h4">prop</h5><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">String|HTMLElement</dd></dl><p>（可选）options 中的属性名称或者要配置的 attrs 信息。</p><h5 class="section__h4">value</h5><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">Any</dd></dl><p>（可选）要设置的 prop 属性的值</p><ul><li>不传递任何参数：返回完整的 attrs 配置信息；</li><li>仅传递 prop：</li><ul><li>String: 返回 attrs 配型信息中与 prop 对应的值；</li><li>Object: 用来设置 attrs 配置信息；</li></ul><li>同时传递 prop 和 value 参数：设置 attrs 配置信息中的某个属性值；</li></ul><h4 class="section__h4">Returns</h4><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">Any</dd></dl><p>配置信息 attrs 的属性值或者 Outline 对象。</p><pre class="section__pre"><code class="section__code">const outline = new Outline({
    article: '#article',
    title: 'Outline v2.0.0'
 })
@@ -1025,10 +1025,10 @@ const handler = (msg) => {
   console.log('handler:', msg)
 }
 
-outline.$on('created', handler)
+outline.$on('created')
 
 // 取消订阅 author 主题
-outline.$off('created', handler)
+outline.$off('created')
 
 // 不会有任何反应，因为已经取消订阅了
 outline.$emit('created')</code></pre></div></section></section><h2>License</h2><p>JavaScript Code Licensed under MIT License.</p><p>API Documentation Licensed under CC BY 3.0</p></article><footer class="footer"><footer class="main__footer" id="footer"><p>Copyright &copy; 2023 <a href="https://github.com/yaohaixiao">Robert Yao</a>, all right reserved.</p><p>Code licensed under&nbsp;<a href="http://opensource.org/licenses/mit-license.html">MIT License</a></p><p>Documentation licensed under<a href="http://creativecommons.org/licenses/by/3.0/">CC BY 3.0</a></p><p><a href="https://github.com/yaohaixiao/outline.js">View on GitHub</a> ·

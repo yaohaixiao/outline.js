@@ -12,7 +12,6 @@ import offsetTop from './utils/dom/offsetTop'
 import on from './utils/event/on'
 import off from './utils/event/off'
 import stop from './utils/event/stop'
-import publish from './utils/observer/emit'
 import paint from './utils/icons/paint'
 
 import _updateHeading from './_updateHeading'
@@ -173,7 +172,7 @@ class Anchors extends Base {
       }
 
       later(() => {
-        publish('toolbar:update', {
+        this.$emit('toolbar:update', {
           top,
           min,
           max
