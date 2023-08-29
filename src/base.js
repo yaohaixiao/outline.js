@@ -2,6 +2,9 @@ import isString from './utils/types/isString'
 import hasOwn from './utils/lang/hasOwn'
 import isObject from './utils/types/isObject'
 import extend from './utils/lang/extend'
+import publish from './utils/observer/emit'
+import subscribe from './utils/observer/on'
+import unsubscribe from './utils/observer/off'
 
 class Base {
   constructor(options) {
@@ -54,6 +57,21 @@ class Base {
 
   reload(options) {
     this.destroy().initialize(this.attr(options))
+    return this
+  }
+
+  $emit(event, data) {
+    publish(event, data)
+    return this
+  }
+
+  $on(event, callback) {
+    subscribe(event, callback, this)
+    return this
+  }
+
+  $off(event, callback) {
+    unsubscribe(event, callback)
     return this
   }
 

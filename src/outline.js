@@ -1,9 +1,3 @@
-import Base from './base'
-import Anchors from './anchors'
-import Drawer from './drawer'
-import Chapters from './chapters'
-import Toolbar from './toolbar'
-
 import later from './utils/lang/later'
 import cloneDeep from './utils/lang/cloneDeep'
 import isFunction from './utils/types/isFunction'
@@ -13,6 +7,7 @@ import addClass from './utils/dom/addClass'
 import removeClass from './utils/dom/removeClass'
 import scrollTo from './utils/dom/scrollTo'
 import _getScrollElement from './utils/dom/_getScrollElement'
+import publish from './utils/observer/emit'
 import subscribe from './utils/observer/on'
 import unsubscribe from './utils/observer/off'
 import at from './utils/event/at'
@@ -20,6 +15,11 @@ import on from './utils/event/on'
 import off from './utils/event/off'
 import stop from './utils/event/stop'
 
+import Base from './base'
+import Anchors from './anchors'
+import Drawer from './drawer'
+import Chapters from './chapters'
+import Toolbar from './toolbar'
 import print from './print'
 
 class Outline extends Base {
@@ -40,7 +40,9 @@ class Outline extends Base {
   }
 
   initialize(options) {
-    this.attr(options).render().addListeners()
+    this.attr(options)
+    publish('created', { ...this.attr() })
+    this.render().addListeners()
     return this
   }
 
@@ -67,6 +69,8 @@ class Outline extends Base {
         max: $scrollElement.scrollHeight
       })
     }
+
+    publish('mounted')
 
     return this
   }
@@ -373,6 +377,8 @@ class Outline extends Base {
 
     this.toolbar.toggle()
 
+    publish('enterReading')
+
     return this
   }
 
@@ -393,6 +399,8 @@ class Outline extends Base {
     this.reading = false
 
     this.toolbar.toggle()
+
+    publish('exitReading')
 
     return this
   }
@@ -431,11 +439,7 @@ class Outline extends Base {
       toolbar.toggle()
 
       later(() => {
-        if (chapters.isInside()) {
-          chapters.toggle()
-        } else {
-          drawer.toggle()
-        }
+        drawer.toggle()
       })
     }
 
@@ -450,6 +454,8 @@ class Outline extends Base {
     let isOutside = false
     const count = this.count()
     const $print = document.querySelector('#outline-print')
+
+    publish('beforeDestroy')
 
     this.removeListeners()
 
@@ -476,6 +482,8 @@ class Outline extends Base {
     anchors = null
 
     this.attr(Outline.DEFAULTS)
+
+    publish('destroyed')
 
     return this
   }

@@ -1,0 +1,26 @@
+section.section
+  header.section__header
+    h3.section__h3 beforeDestroy
+  div.section__content
+    table.section__table
+      thead.section__thead
+        tr.section__tr
+          th.section__th 事件名称
+          th.section__th 说明
+          th.section__th 回调参数
+      tbody.section__tbody
+        tr.section__tr
+          td.section__td beforeDestroy
+          td.section__td Outline 实例销毁前事件，在调用 Outline 对象的实例 destroy() 方法后会触发。
+          td.section__td --
+    h4.section__h4 Usage
+    pre.section__pre
+      code.section__code.
+        const outline = new Outline(Outline.DEFAULTS)
+
+        outline.$on('beforeDestroy', function() {
+          // this 上下文就是 outline 实例
+          console.log('this', this)
+        })
+
+        outline.destroy()

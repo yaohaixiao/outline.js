@@ -45,11 +45,11 @@
   }
 
   &__dt {
-    display:inline-block;
+    display: inline-block;
   }
 
   &__dd {
-    display:inline-block;
+    display: inline-block;
     color: @success_color;
   }
 
@@ -77,5 +77,23 @@
     margin-top: 3em;
     background-color: @bg_color;
     color: @fourth_text_color;
+  }
+
+  &__table {
+    margin: 1em auto;
+    width: 100%;
+    border-top: 1px solid @border_color;
+  }
+
+  &__th,
+  &__td {
+    padding: 5px 16px;
+    line-height: 26px;
+    border-bottom: 1px solid @border_color
+  }
+
+  &__th {
+    text-align: center;
+    background-color: @bg_color;
   }
 }

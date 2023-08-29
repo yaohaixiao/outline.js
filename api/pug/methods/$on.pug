@@ -1,0 +1,39 @@
+section.section
+  header.section__header
+    h3.section__h3 $on(topic, handler)
+  div.section__content
+    h4.section__h4 Description
+    p $on() 方法用来订阅主题，并给出处理器函数。
+    dl.section__dl
+      dt.section__dt Category：
+      dd.section__dd Core
+    h4.section__h4 Parameters
+    h5.section__h4 topic
+    dl.section__dl
+      dt.section__dt Type：
+      dd.section__dd String
+    p （必须）主题名称。
+    h5.section__h4 handler
+    dl.section__dl
+      dt.section__dt Type：
+      dd.section__dd Function
+    p （（必须）主题的处理器函数。
+    h4.section__h4 Returns
+    dl.section__dl
+      dt.section__dt Type：
+      dd.section__dd String。
+    p 唯一的 token 字符串，例如：'guid-1'。
+    pre.section__pre
+      code.section__code.
+        const outline = new Outline(Outline.DEFAULTS)
+
+        const handler = function(attrs) {
+          // this 上下文指向 outline 实例
+          this.attr()
+          console.log('attrs: ', attrs)
+        }
+
+        outline.$on('created', handler)
+
+        // 手动触发 created 事件
+        outline.$emit('created')

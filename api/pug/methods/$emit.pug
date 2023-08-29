@@ -1,0 +1,54 @@
+section.section
+  header.section__header
+    h3.section__h3 $emit(topic[, data, async = true])
+  div.section__content
+    h4.section__h4 Description
+    p $emit()方法用来发布订阅主题信息。
+    p outline.js 默认是采用异步方式发布的。以确保在消费者处理主题时，主题的发起者不会被阻止。 当然 $emit() 方法也支持同步主题发布。
+    dl.section__dl
+      dt.section__dt Category：
+      dd.section__dd Core
+    h4.section__h4 Parameters
+    h5.section__h4 topic
+    dl.section__dl
+      dt.section__dt Type：
+      dd.section__dd String
+    p （必须）主题名称。
+    h5.section__h4 data
+    dl.section__dl
+      dt.section__dt Type：
+      dd.section__dd Object
+    p （可选）消息传递的数据对象。
+    h5.section__h4 async
+    dl.section__dl
+      dt.section__dt Type：
+      dd.section__dd Boolean
+    dl.section__dl
+      dt.section__dt Default：
+      dd.section__dd true
+    p (可选) 是否异步发布。默认值：true。
+    ul
+      li 当 async 设置为 true（默认） 时，异步发布；
+      li 当 async 设置为 false 时，同步发布；
+    h4.section__h4 Returns
+    dl.section__dl
+      dt.section__dt Type：
+      dd.section__dd Outline
+    p Outline 对象，以便实现链式调用。
+    pre.section__pre
+      code.section__code.
+        const outline = new Outline(Outline.DEFAULTS)
+
+        const handler = (msg) => {
+          console.log(msg)
+        }
+
+        outline.$on('created', handler)
+        outline.$on('mounted', handler)
+
+        // 异步发布
+        outline.$emit('mounted') // -> 'ok'
+
+        // 同步发布
+        // 延迟10毫秒：应该看输出 ok 后输出
+        outline.$emit('created')

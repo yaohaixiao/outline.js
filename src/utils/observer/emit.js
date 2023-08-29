@@ -10,8 +10,8 @@ import _hasDirectSubscribersFor from './_hasDirectSubscribersFor'
  * ========================================================================
  * @method emit
  * @param {String} topic - （必须）主题名称
- * @param {Object} data - （必须）数据对象
- * @param {Boolean} async - (可选) 是否异步发布
+ * @param {Object} [data] - （可选）数据对象
+ * @param {Boolean} [async] - (可选) 是否异步发布
  */
 const emit = (topic, data, async = true) => {
   const execute = (topic) => {
