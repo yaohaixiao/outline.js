@@ -3,7 +3,9 @@
 
 ### Features
 
-* 调整所有 DOM 元素的绘制逻辑，调用 createElement() 方法中的插入单个子元素，直接用 DOM 元素，较少数组循环的多余调用成本；调整 print() 方法，将更新邻居节点逻辑提取为独立的私有方法； ([4a96ecf](https://github.com/yaohaixiao/outline.js/commit/4a96ecfd5f460a39875754a3cc59104f1628d36d))
+* 调整打印样式中文章标题的下边距 ([6691f8d](https://github.com/yaohaixiao/outline.js/commit/6691f8d48002210b9373ed773d1bc231acb7f972))
+* 调整所有 DOM 元素的绘制逻辑，调用 createElement() 方法中的插入单个子元素，直接用 DOM 元素，较少数组循环的多余调用成本；
+* 调整 print() 方法，将更新邻居节点逻辑提取为独立的私有方法； ([4a96ecf](https://github.com/yaohaixiao/outline.js/commit/4a96ecfd5f460a39875754a3cc59104f1628d36d))
 
 
 
