@@ -16,7 +16,7 @@
     "print.min.css"
   ],
   "scripts": {
-    "start": "gulp start",
+    "start": "gulp start && gulp watch",
     "changelog": "conventional-changelog -p angular -i CHANGELOG.md -s",
     "build:lib:script": "rollup -c build/rollup.config.lib.js --bundleConfigAsCjs",
     "build:lib:style": "gulp buildLibStyles",

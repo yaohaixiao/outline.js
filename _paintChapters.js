@@ -1,12 +1,13 @@
 import createElement from './utils/dom/createElement'
 
 const _paintChapters = ($list, chapters, showCode = false) => {
-  const byId = (id) => document.querySelector(`#${id}`)
+  const byId = (id) => $list.querySelector(`#${id}`)
 
   chapters.forEach((chapter) => {
     const pid = chapter.pid
     const id = chapter.id
     const rel = chapter.rel
+    const children = []
     const $text = createElement(
       'span',
       {
@@ -14,21 +15,11 @@ const _paintChapters = ($list, chapters, showCode = false) => {
       },
       [chapter.text]
     )
-    const $link = createElement(
-      'a',
-      {
-        id: `chapter__anchor-${id}`,
-        className: 'outline-chapters__anchor',
-        href: '#' + rel,
-        rel: rel,
-        'data-id': id
-      },
-      [$text]
-    )
+    let $link
     let $code
     let $li
-    let $ul
-    let $parent
+    let $subject
+    let $chapter
 
     if (showCode) {
       $code = createElement(
@@ -40,8 +31,23 @@ const _paintChapters = ($list, chapters, showCode = false) => {
         [chapter.code]
       )
 
-      $link.insertBefore($code, $link.firstChild)
+      children.push($code)
+      children.push($text)
+    } else {
+      children.push($text)
     }
+
+    $link = createElement(
+      'a',
+      {
+        id: `chapter__anchor-${id}`,
+        className: 'outline-chapters__anchor',
+        href: '#' + rel,
+        rel: rel,
+        'data-id': id
+      },
+      children
+    )
 
     $li = createElement(
       'li',
@@ -56,11 +62,11 @@ const _paintChapters = ($list, chapters, showCode = false) => {
     if (pid === -1) {
       $list.appendChild($li)
     } else {
-      $parent = byId(`chapter-${pid}`)
-      $ul = byId(`subject-${pid}`)
+      $chapter = byId(`chapter-${pid}`)
+      $subject = byId(`subject-${pid}`)
 
-      if (!$ul) {
-        $ul = createElement(
+      if (!$subject) {
+        $subject = createElement(
           'ul',
           {
             id: 'subject-' + pid,
@@ -69,9 +75,9 @@ const _paintChapters = ($list, chapters, showCode = false) => {
           [$li]
         )
 
-        $parent.appendChild($ul)
+        $chapter.appendChild($subject)
       } else {
-        $ul.appendChild($li)
+        $subject.appendChild($li)
       }
     }
   })

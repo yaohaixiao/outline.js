@@ -16,9 +16,9 @@ import removeClass from './utils/dom/removeClass'
 import offsetTop from './utils/dom/offsetTop'
 import getStyle from './utils/dom/getStyle'
 import setProperty from './utils/dom/setProperty'
+import _getScrollElement from './utils/dom/_getScrollElement'
 import cloneDeep from './utils/lang/cloneDeep'
 
-import _getScrollElement from './utils/dom/_getScrollElement'
 import _paintChapters from './_paintChapters'
 
 class Chapters extends Base {
@@ -26,6 +26,21 @@ class Chapters extends Base {
     super()
 
     this.attrs = cloneDeep(Chapters.DEFAULTS)
+
+    this._reset()
+
+    this.offsetWidth = 0
+    this.playing = false
+    this.scrollTimer = null
+    this.resizeTimer = null
+    this.Observer = null
+
+    if (options) {
+      this.initialize(options)
+    }
+  }
+
+  _reset() {
     this.$el = null
     this.$title = null
     this.$main = null
@@ -33,20 +48,14 @@ class Chapters extends Base {
     this.$placeholder = null
     this.$parentElement = null
     this.$scrollElement = null
+    this.$active = null
+
     this.chapters = []
-    this.closed = false
     this.active = 0
     this.offsetTop = 0
-    this.offsetWidth = 0
-    this.$active = null
-    this.scrollTimer = null
-    this.resizeTimer = null
-    this.playing = false
-    this.Observer = null
+    this.closed = false
 
-    if (options) {
-      this.initialize(options)
-    }
+    return this
   }
 
   initialize(options) {
@@ -429,19 +438,7 @@ class Chapters extends Base {
     this.removeListeners()
     this.$parentElement.removeChild(this.$el)
 
-    this.attr(Chapters.DEFAULTS)
-    this.$el = null
-    this.$title = null
-    this.$main = null
-    this.$list = null
-    this.$placeholder = null
-    this.$parentElement = null
-    this.$scrollElement = null
-    this.chapters = []
-    this.active = 0
-    this.offsetTop = 0
-    this.$active = null
-    this.closed = false
+    this.attr(Chapters.DEFAULTS)._reset()
 
     if (this.scrollTimer) {
       clearTimeout(this.scrollTimer)

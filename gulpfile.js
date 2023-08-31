@@ -15,7 +15,7 @@ const sourcemaps = require('gulp-sourcemaps')
 const run = require('gulp-run')
 const watch = require('gulp-watch')
 
-const SOURCE_PATH = ['./*.js']
+const SOURCE_PATH = ['./utils/**/*.js', './*.js']
 
 /* ==================== 清理相关 gulp 任务 ==================== */
 const cleanHtml = () => {
@@ -200,7 +200,7 @@ const start = gulp.series(build, connectDocs, openDocs)
 /* ==================== 检测源代码变更相关的 gulp 任务 ==================== */
 const watchSource = () => {
   return watch(
-    ['src/**/*.(js|less)'],
+    ['**/*.(js|less)'],
     gulp.series(lint, buildLibScript, buildLibStyles)
   )
 }
