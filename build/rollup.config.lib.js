@@ -13,7 +13,7 @@ const PLUGIN_CONFIG = [
 export default [
   // For full functions module
   {
-    input: 'src/outline.js',
+    input: './outline.js',
     output: {
       name: 'Outline',
       file: './outline.min.js',
@@ -23,7 +23,7 @@ export default [
     plugins: PLUGIN_CONFIG
   },
   {
-    input: 'src/anchors.js',
+    input: './anchors.js',
     output: {
       name: 'Anchors',
       file: './anchors.min.js',
@@ -33,7 +33,7 @@ export default [
     plugins: PLUGIN_CONFIG
   },
   {
-    input: 'src/chapters.js',
+    input: './chapters.js',
     output: {
       name: 'Chapters',
       file: './chapters.min.js',
@@ -43,7 +43,7 @@ export default [
     plugins: PLUGIN_CONFIG
   },
   {
-    input: 'src/drawer.js',
+    input: './drawer.js',
     output: {
       name: 'Drawer',
       file: './drawer.min.js',
@@ -53,7 +53,7 @@ export default [
     plugins: PLUGIN_CONFIG
   },
   {
-    input: 'src/toolbar.js',
+    input: './toolbar.js',
     output: {
       name: 'Toolbar',
       file: './toolbar.min.js',
@@ -64,7 +64,7 @@ export default [
   },
   // build for documentation
   {
-    input: 'src/outline.js',
+    input: './outline.js',
     output: {
       name: 'Outline',
       file: './docs/js/outline.min.js',

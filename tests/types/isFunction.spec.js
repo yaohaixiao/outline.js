@@ -1,7 +1,8 @@
 import isFunction from '@/utils/types/isFunction'
+
 describe('isFunction() 方法：', () => {
   it('isFunction(function empty(){})，返回：true', () => {
-    function empty(){}
+    function empty() {}
 
     expect(isFunction(empty)).toBe(true)
   })

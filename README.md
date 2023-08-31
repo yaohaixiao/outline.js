@@ -167,12 +167,12 @@ const Drawer = require('@yaohaixiao/outline.js/drawer.min.js')
 const Toolbar = require('@yaohaixiao/outline.js/toolbar.min.js')
 
 // 作为 ES6 模块使用
-import Outline from '@yaohaixiao/outline.js/src/outline'
+import Outline from '@yaohaixiao/outline.js/outline'
 // 调用其他独立模块（如果需要）
-import Anchors from '@yaohaixiao/outline.js/src/anchors'
-import Chapters from '@yaohaixiao/outline.js/src/chapters'
-import Drawer from '@yaohaixiao/outline.js/src/drawer'
-import Toolbar from '@yaohaixiao/outline.js/src/toolbar'
+import Anchors from '@yaohaixiao/outline.js/anchors'
+import Chapters from '@yaohaixiao/outline.js/chapters'
+import Drawer from '@yaohaixiao/outline.js/drawer'
+import Toolbar from '@yaohaixiao/outline.js/toolbar'
 
 // 创建 Outline 实例
 // 2.0.0 调整了配置参数，配置更加简单
@@ -524,7 +524,6 @@ Type: `Objects`
 Toolbar 模块：独立的固定定位的工具栏模块；
 
 
-
 ## Methods
 
 outline.js 的提供的方法如下：
@@ -687,6 +686,23 @@ Type: `Object`
 Type: `Outline`
 
 Outline 对象，以便实现链式调用。
+
+
+
+## Events
+
+outline.js 从 3.21.0 开始提供了 6 事件。通过 outline.js 在 3.21.0 新添加的 $on() 方法监听。
+
+| 事件名称          | 说明                                                              | 回调参数                                 |
+|---------------|-----------------------------------------------------------------|--------------------------------------|
+| created       | Outline 实例配置信息初始化完成后触发，此时 DOM 元素还没有绘制。返回实例最终的 attrs 配置属性的（对象）值。 | attrs：Outline 实例最终的 attrs 配置属性的（对象）值 |
+| mounted       | Outline 实例的所有 DOM 元素绘制完毕后触发。                                    | --                                   |
+| enterReading  | 配置了 print 参数，在进入阅读模式后会触发。                                       | --                                   |
+| exitReading   | 配置了 print 参数，在离开阅读模式后会触发。                                       | --                                   |
+| beforeDestroy | Outline 实例销毁前事件，在调用 destroy() 方法后会触发。                           | --                                   |
+| destroyed     | Outline 实例销毁后事件，在调用 destroy() 方法后会触发。                           | --                                   |
+
+具体使用方法参阅 API 文档的 [Events](https://yaohaixiao.github.io/outline.js/#heading-44) 相关说明。
 
 
 

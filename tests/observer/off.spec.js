@@ -1,6 +1,6 @@
-import off from '@/utils/observer/off'
-import emit from '@/utils/observer/emit'
-import on from '@/utils/observer/on'
+import off from '../../utils/observer/off'
+import emit from '../../utils/observer/emit'
+import on from '../../utils/observer/on'
 
 describe('off() 方法', () => {
   let author = ''
@@ -29,7 +29,7 @@ describe('off() 方法', () => {
 
   describe('传递 topic 和 token 两个参数:', () => {
     it(`off('author', handlerAuthor)：author 和 handlerAuthor（token 为 Function 类型）都有效`, () => {
-     off('author', handlerAuthor)
+      off('author', handlerAuthor)
 
       let result = emit('javascript', PAYLOAD, false)
 

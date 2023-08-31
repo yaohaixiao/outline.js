@@ -1,0 +1,69 @@
+@import 'colors';
+
+.outline-print {
+  display: none;
+
+  &__close {
+    display: none;
+  }
+
+  &__title {
+    margin: 0.67em 0 !important;
+    text-align: center !important;
+    font-family: 'Microsoft YaHei UI', Arial, sans-serif;
+    font-weight: normal;
+    overflow: hidden;
+  }
+}
+
+@media print {
+  html,
+  body {
+    height: initial !important;
+  }
+
+  .outline-print {
+    display: block !important;
+    overflow: hidden;
+
+    &.outline-reading {
+      position: relative !important;
+      height: auto !important;
+      padding: 0 !important;
+      overflow: hidden !important;
+
+      .outline-print {
+        &__title {
+          margin: 13.4pt 0 !important;
+          text-align: center !important;
+          font-size: 20pt !important;
+        }
+
+        &__close {
+          display: none !important;
+        }
+      }
+    }
+
+    pre {
+      padding: 1em !important;
+      border: 1px solid @border_color !important;
+      border-radius: 4px !important;
+    }
+
+    pre,
+    code {
+      background-color: @white !important;
+    }
+
+    table,
+    img,
+    svg {
+      break-inside: avoid;
+    }
+
+    &_sibling {
+      display: none !important;
+    }
+  }
+}

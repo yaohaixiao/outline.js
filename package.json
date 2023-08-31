@@ -1,6 +1,6 @@
 {
   "name": "@yaohaixiao/outline.js",
-  "version": "3.19.0",
+  "version": "3.22.1",
   "description": "outline.js - 自动生成文章导读（Table of Contents）导航的 JavaScript 工具。",
   "main": "outline.min.js",
   "files": [
@@ -16,7 +16,8 @@
     "print.min.css"
   ],
   "scripts": {
-    "start": "gulp start",
+    "start": "gulp start && gulp watch",
+    "changelog": "conventional-changelog -p angular -i CHANGELOG.md -s",
     "build:lib:script": "rollup -c build/rollup.config.lib.js --bundleConfigAsCjs",
     "build:lib:style": "gulp buildLibStyles",
     "build:lib": "npm run build:lib:script && npm run build:lib:style",
@@ -24,12 +25,11 @@
     "build": "npm run build:lib && npm run build:docs",
     "lint": "eslint",
     "lint:fix": "npm run lint --cache --fix",
-    "prettier:check": "npx prettier --check \"src/**/*.*\"",
-    "prettier:write": "npx prettier --write \"src/**/*.*\"",
+    "prettier:check": "npx prettier --check \"**/*.(js|less)\"",
+    "prettier:write": "npx prettier --write \"**/*.(js|less)\"",
     "test:unit": "jest --config jest.config.js",
     "test": "npm run lint:fix && npm run prettier:write && npm run test:unit",
     "watch": "gulp watch",
-    "changelog": "conventional-changelog -p angular -i CHANGELOG.md -s",
     "prepare": "husky install"
   },
   "keywords": [
@@ -93,7 +93,7 @@
     "commit-msg": "commitlint"
   },
   "lint-staged": {
-    "src/**/*.js": [
+    "**/*.js": [
       "npm run lint:fix",
       "npm run prettier:write"
     ]

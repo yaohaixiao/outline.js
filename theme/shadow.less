@@ -1,0 +1,36 @@
+/**
+ * shadow.less - 阴影样式设置 mixinx 函数
+ * =============================================================
+ * Created By: Yaohaixiao
+ * Update: 2022.3.20
+ */
+@import 'colors';
+
+/* ====== 阴影样式设置函数 ====== */
+.shadow(@offset: 0 0 6px 1px, @color: @primary_border_color) {
+  box-shadow: @offset @color;
+}
+
+.shadow_regular(@color: @primary_border_color) {
+  .shadow(0 0 6px 1px, @color);
+}
+
+.shadow_large(@color: @primary_border_color) {
+  .shadow(0 0 12px 1px, @color);
+}
+
+.shadow_light_regular() {
+  .shadow_regular();
+}
+
+.shadow_light_large() {
+  .shadow_large();
+}
+
+.shadow_dark_regular() {
+  .shadow_regular(@secondary_border_color);
+}
+
+.shadow_dark_large() {
+  .shadow_large(@secondary_border_color);
+}

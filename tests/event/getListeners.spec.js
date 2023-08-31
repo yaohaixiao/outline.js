@@ -22,14 +22,12 @@ describe('getListeners() 方法', () => {
     '  </li>\n' +
     '</ul>'
 
-  let id = ''
   const $list = document.querySelector('#list')
   const removeItem = function (evt) {
     const $remove = evt.delegateTarget
     const data = $remove.getAttribute('data-id')
     const $item = document.querySelector(`#item-${data}`)
 
-    id = data
     $list.removeChild($item)
   }
 

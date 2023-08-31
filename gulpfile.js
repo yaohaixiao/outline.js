@@ -15,66 +15,69 @@ const sourcemaps = require('gulp-sourcemaps')
 const run = require('gulp-run')
 const watch = require('gulp-watch')
 
-const SOURCE_PATH = ['./*.js']
+const SOURCE_PATH = ['./utils/**/*.js', './*.js']
 
 /* ==================== 清理相关 gulp 任务 ==================== */
 const cleanHtml = () => {
-    return gulp
-        .src('./docs/**/*.html', {
-            allowEmpty: true
-        })
-        .pipe(clean())
+  return gulp
+    .src('./docs/**/*.html', {
+      allowEmpty: true
+    })
+    .pipe(clean())
 }
 
 const cleanStyle = () => {
-    return gulp
-        .src('./docs/css/*.css', {
-            allowEmpty: true
-        })
-        .pipe(clean())
+  return gulp
+    .src('./docs/css/*.css', {
+      allowEmpty: true
+    })
+    .pipe(clean())
 }
 
 const cleanScript = () => {
-    return gulp
-        .src('./docs/js/docs.*.js', {
-            allowEmpty: true
-        })
-        .pipe(clean())
+  return gulp
+    .src('./docs/js/docs.*.js', {
+      allowEmpty: true
+    })
+    .pipe(clean())
 }
 
 const cleanDocs = gulp.parallel(cleanHtml, cleanStyle, cleanScript)
 
 /* ==================== 代码规范校验相关的 gulp 任务 ==================== */
 const lint = () => {
-    return gulp
-        .src(SOURCE_PATH)
-        .pipe(eslint())
-        .pipe(eslint.format())
-        .pipe(eslint.failOnError())
+  return gulp
+    .src(SOURCE_PATH)
+    .pipe(eslint())
+    .pipe(eslint.format())
+    .pipe(eslint.failOnError())
 }
 
 const check = () => {
-    return run('npm run prettier:write').exec()
+  return run('npm run prettier:write').exec()
 }
 
 const test = gulp.series(lint, check)
 
 /* ==================== 编译代码的 gulp 任务 ==================== */
 const buildLibScript = () => {
-    return run('npm run build:lib').exec()
+  return run('npm run build:lib').exec()
 }
 
 const buildSourceStyles = () => {
   return gulp
-    .src([
-      './src/theme/anchors.less',
-      './src/theme/chapters.less',
-      './src/theme/drawer.less',
-      './src/theme/toolbar.less',
-      './src/theme/outline.less'
-    ], {
-      allowEmpty: true
-    })
+    .src(
+      [
+        './src/theme/anchors.less',
+        './src/theme/chapters.less',
+        './src/theme/drawer.less',
+        './src/theme/toolbar.less',
+        './src/theme/outline.less'
+      ],
+      {
+        allowEmpty: true
+      }
+    )
     .pipe(sourcemaps.init())
     .pipe(
       less({
@@ -88,15 +91,18 @@ const buildSourceStyles = () => {
 
 const minifySourcesStyle = () => {
   return gulp
-    .src([
-      './anchors.css',
-      './chapters.css',
-      './drawer.css',
-      './toolbar.css',
-      './outline.css',
-    ], {
-      allowEmpty: true
-    })
+    .src(
+      [
+        './anchors.css',
+        './chapters.css',
+        './drawer.css',
+        './toolbar.css',
+        './outline.css'
+      ],
+      {
+        allowEmpty: true
+      }
+    )
     .pipe(sourcemaps.init())
     .pipe(cssmin())
     .pipe(rename({ suffix: '.min' }))
@@ -107,110 +113,106 @@ const minifySourcesStyle = () => {
 const buildLibStyles = gulp.series(buildSourceStyles, minifySourcesStyle)
 
 const buildScript = () => {
-    return run('npm run build:lib').exec()
+  return run('npm run build:lib').exec()
 }
 
 const buildApi = () => {
-    return gulp
-        .src([
-          'api/pug/index.pug',
-          'api/pug/relative.pug',
-          'api/pug/sticky.pug',
-          'api/pug/fixed.pug',
-          'api/pug/flex.pug'
-        ])
-        .pipe(
-            pug({
-                verbose: true
-            })
-        )
-        .pipe(gulp.dest('docs'))
+  return gulp
+    .src([
+      'api/pug/index.pug',
+      'api/pug/relative.pug',
+      'api/pug/sticky.pug',
+      'api/pug/fixed.pug',
+      'api/pug/flex.pug'
+    ])
+    .pipe(
+      pug({
+        verbose: true
+      })
+    )
+    .pipe(gulp.dest('docs'))
 }
 
 const buildStyle = () => {
-    return gulp
-        .src([
-          './api/less/docs.less',
-          './api/less/example.less'
-        ])
-        .pipe(sourcemaps.init())
-        .pipe(
-            less({
-                paths: [path.join(__dirname, 'less', 'includes')],
-                plugins: [autoprefixer]
-            })
-        )
-        .pipe(sourcemaps.write())
-        .pipe(gulp.dest('./docs/css'))
+  return gulp
+    .src(['./api/less/docs.less', './api/less/example.less'])
+    .pipe(sourcemaps.init())
+    .pipe(
+      less({
+        paths: [path.join(__dirname, 'less', 'includes')],
+        plugins: [autoprefixer]
+      })
+    )
+    .pipe(sourcemaps.write())
+    .pipe(gulp.dest('./docs/css'))
 }
 
 const minifyStyle = () => {
-    return gulp
-        .src('./docs/**/*.css')
-        .pipe(sourcemaps.init())
-        .pipe(cssmin())
-        .pipe(rename({ suffix: '.min' }))
-        .pipe(sourcemaps.write())
-        .pipe(gulp.dest('./docs'))
+  return gulp
+    .src('./docs/**/*.css')
+    .pipe(sourcemaps.init())
+    .pipe(cssmin())
+    .pipe(rename({ suffix: '.min' }))
+    .pipe(sourcemaps.write())
+    .pipe(gulp.dest('./docs'))
 }
 
 const buildDocs = gulp.series(
-    cleanDocs,
-    buildApi,
-    buildStyle,
-    minifyStyle,
-    buildScript
+  cleanDocs,
+  buildApi,
+  buildStyle,
+  minifyStyle,
+  buildScript
 )
 
 const build = gulp.series(test, cleanDocs, buildDocs)
 
 /* ==================== 文档查看相关的 gulp 任务 ==================== */
 const openDocs = () => {
-    let browser
-    if (os.platform() === 'darwin') {
-        browser = os.platform() === 'linux' ? 'google-chrome' : 'google chrome'
-    } else {
-        if (os.platform() === 'win32') {
-            browser = os.platform() === 'linux' ? 'google-chrome' : 'chrome'
-        } else {
-            browser = os.platform() === 'linux' ? 'google-chrome' : 'firefox'
-        }
-    }
-    return gulp.src('docs/index.html').pipe(
-        open({
-            app: browser,
-            uri: 'http://localhost:8260'
-        })
-    )
+  let browser
+  if (os.platform() === 'darwin') {
+    browser = os.platform() === 'linux' ? 'google-chrome' : 'google chrome'
+  } else {
+    browser = os.platform() === 'linux' ? 'google-chrome' : 'chrome'
+  }
+  return gulp.src('docs/index.html').pipe(
+    open({
+      app: browser,
+      uri: 'http://localhost:8481'
+    })
+  )
 }
 
 const connectDocs = () => {
-    return connect.server({
-        root: 'docs',
-        port: 8260,
-        livereload: true
-    })
+  return connect.server({
+    root: 'docs',
+    port: 8481,
+    livereload: true
+  })
 }
 
 const reload = () => {
-    return connect.reload()
+  return connect.reload()
 }
 
 const start = gulp.series(build, connectDocs, openDocs)
 
 /* ==================== 检测源代码变更相关的 gulp 任务 ==================== */
 const watchSource = () => {
-    return watch(['src/**/*.(js|less)'], gulp.series(lint, buildLibScript, buildLibStyles))
+  return watch(
+    ['**/*.(js|less)'],
+    gulp.series(lint, buildLibScript, buildLibStyles)
+  )
 }
 
 const watchApi = () => {
-    return watch(['api/**/*.*'], gulp.series(buildDocs))
+  return watch(['api/**/*.*'], gulp.series(buildDocs))
 }
 
 const watchDocs = () => {
-    return watch('docs/**/*.*', {
-        ignoreInitial: false
-    }).pipe(reload())
+  return watch('docs/**/*.*', {
+    ignoreInitial: false
+  }).pipe(reload())
 }
 
 const watchAll = gulp.parallel(watchSource, watchApi, watchDocs)

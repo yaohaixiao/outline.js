@@ -1,0 +1,43 @@
+section.section
+  header.section__header
+    h3.section__h3 $off(topic[, token])
+  div.section__content
+    h4.section__h4 Description
+    p $off() 用来取消订阅主题。
+    dl.section__dl
+      dt.section__dt Category：
+      dd.section__dd Core
+    h4.section__h4 Parameters
+    h5.section__h4 topic
+    dl.section__dl
+      dt.section__dt Type：
+      dd.section__dd String
+    p （必须）主题名称。
+    h5.section__h4 token
+    dl.section__dl
+      dt.section__dt Type：
+      dd.section__dd Function | String
+    p （可选）订阅主题的处理器函数或者唯一 Id 值。
+    ul
+      li 为传递 token 参数：取消指定 topic 的订阅；
+      li 传递 token 参数：仅删除 topic 订阅信息中与 token 对应的事件处理器
+    h4.section__h4 Returns
+    dl.section__dl
+      dt.section__dt Type：
+      dd.section__dd Outline
+    p Outline 对象，以便实现链式调用。
+    pre.section__pre
+      code.section__code.
+        const outline = new Outline(Outline.DEFAULTS)
+
+        const handler = (msg) => {
+          console.log('handler:', msg)
+        }
+
+        outline.$on('created')
+
+        // 取消订阅 author 主题
+        outline.$off('created')
+
+        // 不会有任何反应，因为已经取消订阅了
+        outline.$emit('created')

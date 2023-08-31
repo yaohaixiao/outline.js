@@ -1,0 +1,42 @@
+@import 'colors';
+
+.outline-heading {
+  position: relative;
+  z-index: 1;
+  overflow: hidden;
+
+  &__anchor {
+    display: none;
+
+    &:link,
+    &:visited,
+    &:hover {
+      color: @fourth_text_color;
+      text-decoration: none;
+    }
+
+    &:hover {
+      color: @primary_color;
+    }
+  }
+
+  &:hover {
+    .outline-heading__anchor {
+      display: inline-block;
+    }
+  }
+
+  &_start {
+    &:hover {
+      overflow: visible;
+    }
+
+    .outline-heading__anchor {
+      position: absolute;
+      z-index: 2;
+      top: 50%;
+      transform: translateY(-50%);
+      left: -1em;
+    }
+  }
+}

@@ -1,3 +1,68 @@
+## [3.22.1](https://github.com/yaohaixiao/outline.js/compare/3.22.0...3.22.1) (2023-08-29)
+
+
+### Bug Fixes
+
+* 修复 sticky 定位，窗口调整大小，chapters 导航栏高度没有自适应窗口大小变化的问题 ([4694b3c](https://github.com/yaohaixiao/outline.js/commit/4694b3cdb8ab131862f15da760b7222d9562f104))
+
+
+
+# [3.22.0](https://github.com/yaohaixiao/outline.js/compare/3.21.0...3.22.0) (2023-08-29)
+
+
+### Features
+
+* 调整打印样式中文章标题的下边距；
+* 调整代码结构，重新打包文件 ([556e186](https://github.com/yaohaixiao/outline.js/commit/556e1869a4c73762589a2756287d90efaca2b47a))
+
+
+
+# [3.21.0](https://github.com/yaohaixiao/outline.js/compare/3.20.1...3.21.0) (2023-08-29)
+
+
+### Features
+
+* 添加 $emit()、$on()、$off() 方法；
+* 添加 created、mounted、enterReading、exitReading、beforeDestroy 和 destroyed 事件； ([88b087d](https://github.com/yaohaixiao/outline.js/commit/88b087d4fbf44bc6dd95cd96462e8c666b3eaeb3))
+
+
+
+## [3.20.1](https://github.com/yaohaixiao/outline.js/compare/3.20.0...3.20.1) (2023-08-28)
+
+
+### Bug Fixes
+
+* 修复针对 Wordpress 文章页进入阅读模式时，顶部导航栏仍然显示的问题； ([11f310b](https://github.com/yaohaixiao/outline.js/commit/11f310bc691ddc8f22239663ee71f845cd6912bc))
+
+
+
+# [3.20.0](https://github.com/yaohaixiao/outline.js/compare/3.19.1...3.20.0) (2023-08-26)
+
+
+### Features
+
+* 针对移动设备在阅读模式添加推出阅读模式按钮 ([60d3b02](https://github.com/yaohaixiao/outline.js/commit/60d3b02e0544b4d3c9aca9cfef24b09c01ac573b))
+
+
+
+## [3.19.1](https://github.com/yaohaixiao/outline.js/compare/3.19.0...3.19.1) (2023-08-25)
+
+
+### Bug Fixes
+
+* 修复同一个页面多次实例化 Outline 对象可能出现的属性配置不正确问题； ([582a66f](https://github.com/yaohaixiao/outline.js/commit/582a66fa1f46460a5febc093b574604d0526ea25))
+
+
+
+# [3.19.0](https://github.com/yaohaixiao/outline.js/compare/3.18.1...3.19.0) (2023-08-24)
+
+
+### Features
+
+* 功能扩展，（在配置打印样式后）有纯净的阅读视图（按ESC键可退出）； ([966c113](https://github.com/yaohaixiao/outline.js/commit/966c1135a40d06053c3d34096eadcf29ece3dc96))
+
+
+
 ## [3.18.1](https://github.com/yaohaixiao/outline.js/compare/3.18.0...3.18.1) (2023-08-23)
 
 
