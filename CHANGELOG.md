@@ -1,3 +1,12 @@
+# [3.23.0](https://github.com/yaohaixiao/outline.js/compare/3.22.1...3.23.0) (2023-08-31)
+
+
+### Features
+
+* 调整所有 DOM 元素的绘制逻辑，调用 createElement() 方法中的插入单个子元素，直接用 DOM 元素，较少数组循环的多余调用成本；调整 print() 方法，将更新邻居节点逻辑提取为独立的私有方法； ([4a96ecf](https://github.com/yaohaixiao/outline.js/commit/4a96ecfd5f460a39875754a3cc59104f1628d36d))
+
+
+
 ## [3.22.1](https://github.com/yaohaixiao/outline.js/compare/3.22.0...3.22.1) (2023-08-29)
 
 
