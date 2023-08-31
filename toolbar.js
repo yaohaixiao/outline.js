@@ -93,15 +93,14 @@ class Toolbar extends Base {
     const buttons = this.attr('buttons') || []
     const rounded = this.attr('rounded')
     const placement = this.attr('placement')
-    const $buttons = document.createDocumentFragment()
-    const $fragment = document.createDocumentFragment()
+    const $buttons = []
 
     paint()
 
     buttons.forEach((button) => {
       const $button = _createButton(button, rounded)
 
-      $buttons.appendChild($button)
+      $buttons.push($button)
       this.buttons.push({
         name: button.name,
         $el: $button
@@ -114,10 +113,9 @@ class Toolbar extends Base {
         id: 'outline-toolbar',
         className: `outline-toolbar outline-toolbar_${placement}`
       },
-      [$buttons]
+      $buttons
     )
-    $fragment.appendChild(this.$el)
-    document.body.appendChild($fragment)
+    document.body.appendChild(this.$el)
 
     if (this.closed) {
       this.hide()

@@ -5,6 +5,25 @@ import addClass from './utils/dom/addClass'
 import later from './utils/lang/later'
 import icon from './utils/icons/icon'
 
+const _updateSiblingElements = (siblingElement, isPrev) => {
+  let tagName
+  let $sibling = siblingElement
+
+  while ($sibling) {
+    tagName = $sibling.tagName.toLowerCase()
+
+    if (tagName !== 'script' && tagName !== 'style') {
+      addClass($sibling, 'outline-print_sibling')
+    }
+
+    if (isPrev) {
+      $sibling = $sibling.previousElementSibling
+    } else {
+      $sibling = $sibling.nextElementSibling
+    }
+  }
+}
+
 const print = (origins, title) => {
   let text = title
   let $origins
@@ -13,7 +32,6 @@ const print = (origins, title) => {
   let $title
   let $sibling
   let $icon
-  let tagName
 
   if (isString(origins)) {
     $origins =
@@ -40,14 +58,10 @@ const print = (origins, title) => {
     text = $title.innerText
   }
 
-  $article = createElement(
-    'article',
-    {
-      id: 'outline-print__article',
-      className: 'outline-print__article'
-    },
-    ['']
-  )
+  $article = createElement('article', {
+    id: 'outline-print__article',
+    className: 'outline-print__article'
+  })
   $article.innerHTML = $origins.innerHTML
 
   $title = createElement(
@@ -55,7 +69,7 @@ const print = (origins, title) => {
     {
       className: 'outline-print__title'
     },
-    [text]
+    text
   )
 
   $wrapper = createElement(
@@ -71,23 +85,11 @@ const print = (origins, title) => {
   later(() => {
     $sibling = $wrapper.previousElementSibling
 
-    while ($sibling) {
-      tagName = $sibling.tagName.toLowerCase()
-      if (tagName !== 'script' && tagName !== 'style') {
-        addClass($sibling, 'outline-print_sibling')
-      }
-      $sibling = $sibling.previousElementSibling
-    }
+    _updateSiblingElements($sibling, true)
 
     $sibling = $wrapper.nextElementSibling
 
-    while ($sibling) {
-      tagName = $sibling.tagName.toLowerCase()
-      if (tagName !== 'script' && tagName !== 'style') {
-        addClass($sibling, 'outline-print_sibling')
-      }
-      $sibling = $sibling.nextElementSibling
-    }
+    _updateSiblingElements($sibling)
   }, 350)
 }
 

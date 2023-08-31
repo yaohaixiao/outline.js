@@ -26,7 +26,6 @@ class Anchors extends Base {
     this.$articleElement = null
     this.$scrollElement = null
     this.$headings = []
-
     this.chapters = []
 
     if (options) {

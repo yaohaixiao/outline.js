@@ -14,7 +14,7 @@ const _createButton = (button, rounded = true) => {
       className: `outline-toolbar__anchor`,
       href: button.link
     },
-    [$icon]
+    $icon
   )
   const $button = createElement(
     'div',

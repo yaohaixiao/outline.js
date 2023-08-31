@@ -11,7 +11,7 @@ import setAttribute from './setAttribute'
  * @method createElement
  * @param {String} tagName - 标签名称
  * @param {Object|Array} attrs - 属性对象或者子节点
- * @param {Array} [children] - 子节点数组
+ * @param {Array|HTMLElement|DocumentFragment|String} [children] - 子节点数组
  * @returns {HTMLElement}
  */
 const createElement = (tagName, attrs, children) => {

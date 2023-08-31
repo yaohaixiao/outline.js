@@ -5,7 +5,6 @@ import setAttribute from './utils/dom/setAttribute'
 import icon from './utils/icons/icon'
 
 const _updateHeading = ($heading, i, options) => {
-  const $fragment = document.createDocumentFragment()
   const CLS_HEADING = 'outline-heading'
   const hasAnchor = options.hasAnchor || true
   const isAtStart = options.isAtStart || true
@@ -45,10 +44,9 @@ const _updateHeading = ($heading, i, options) => {
       target: anchorURL ? '_blank' : 'self',
       'data-id': i
     },
-    [$icon]
+    $icon
   )
-  $fragment.appendChild($anchor)
-  $heading.appendChild($fragment)
+  $heading.appendChild($anchor)
 }
 
 export default _updateHeading

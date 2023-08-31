@@ -90,7 +90,7 @@ class Drawer extends Base {
       {
         className: 'outline-drawer__title'
       },
-      [this.title]
+      this.title
     )
     this.$title = $title
 
@@ -100,7 +100,7 @@ class Drawer extends Base {
         {
           className: 'outline-drawer__close'
         },
-        [icon('close', { size: 20 })]
+        icon('close', { size: 20 })
       )
       this.$close = $close
     }
@@ -114,26 +114,18 @@ class Drawer extends Base {
     )
     this.$header = $header
 
-    $main = createElement(
-      'div',
-      {
-        className: 'outline-drawer__main'
-      },
-      ['']
-    )
+    $main = createElement('div', {
+      className: 'outline-drawer__main'
+    })
     this.$main = $main
 
     if (!hasPadding) {
       addClass($main, 'outline-drawer_full')
     }
 
-    $footer = createElement(
-      'footer',
-      {
-        className: 'outline-drawer__footer'
-      },
-      ['']
-    )
+    $footer = createElement('footer', {
+      className: 'outline-drawer__footer'
+    })
     this.$footer = $footer
 
     $modal = createElement(
@@ -158,13 +150,9 @@ class Drawer extends Base {
     }
 
     if (hasOverlay) {
-      $overlay = createElement(
-        'div',
-        {
-          className: 'outline-drawer__overlay'
-        },
-        ['']
-      )
+      $overlay = createElement('div', {
+        className: 'outline-drawer__overlay'
+      })
       this.$overlay = $overlay
     }
 

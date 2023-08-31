@@ -13,7 +13,7 @@ const _paintChapters = ($list, chapters, showCode = false) => {
       {
         className: 'outline-chapters__text'
       },
-      [chapter.text]
+      chapter.text
     )
     let $link
     let $code
@@ -28,14 +28,13 @@ const _paintChapters = ($list, chapters, showCode = false) => {
           className: 'outline-chapters__code',
           'data-id': id
         },
-        [chapter.code]
+        chapter.code
       )
 
       children.push($code)
-      children.push($text)
-    } else {
-      children.push($text)
     }
+
+    children.push($text)
 
     $link = createElement(
       'a',
@@ -56,7 +55,7 @@ const _paintChapters = ($list, chapters, showCode = false) => {
         className: 'outline-chapters__item',
         'data-id': id
       },
-      [$link]
+      $link
     )
 
     if (pid === -1) {
@@ -72,7 +71,7 @@ const _paintChapters = ($list, chapters, showCode = false) => {
             id: 'subject-' + pid,
             className: 'outline-chapters__subject'
           },
-          [$li]
+          $li
         )
 
         $chapter.appendChild($subject)

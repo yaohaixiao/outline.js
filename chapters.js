@@ -142,31 +142,23 @@ class Chapters extends Base {
         {
           className: 'outline-chapters__title'
         },
-        [title]
+        title
       )
       this.$title = $title
       contents.push($title)
     }
 
-    $list = createElement(
-      'ul',
-      {
-        // 为优化性能，添加了 _fixed 和 _hidden
-        // fixed 为了让 $list 脱离流布局
-        // hidden 让 $list 不可见
-        className: `outline-chapters__list`
-      },
-      ['']
-    )
+    $list = createElement('ul', {
+      // 为优化性能，添加了 _fixed 和 _hidden
+      // fixed 为了让 $list 脱离流布局
+      // hidden 让 $list 不可见
+      className: `outline-chapters__list`
+    })
     this.$list = $list
 
-    $placeholder = createElement(
-      'div',
-      {
-        className: 'outline-chapters__placeholder'
-      },
-      ['']
-    )
+    $placeholder = createElement('div', {
+      className: 'outline-chapters__placeholder'
+    })
     this.$placeholder = $placeholder
 
     $main = createElement(
