@@ -3,6 +3,9 @@ import createElement from './utils/dom/createElement'
 const _paintChapters = ($list, chapters, showCode = false) => {
   const byId = (id) => $list.querySelector(`#${id}`)
 
+  console.log('count', chapters.length)
+
+  console.time('chapters')
   chapters.forEach((chapter) => {
     const pid = chapter.pid
     const id = chapter.id
@@ -80,6 +83,7 @@ const _paintChapters = ($list, chapters, showCode = false) => {
       }
     }
   })
+  console.timeEnd('chapters')
 }
 
 export default _paintChapters

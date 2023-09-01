@@ -59,17 +59,21 @@ class Anchors extends Base {
 
     this.$articleElement = $articleElement
     this.$scrollElement = _getScrollElement(scrollElement)
+    console.time('query headings')
     this.$headings = [...$articleElement.querySelectorAll(selector)]
+    console.timeEnd('query headings')
 
     if (this.$headings.length < 1) {
       return this
     }
 
+    console.time('getChapters')
     this.chapters = getChapters(
       this.$headings,
       showCode,
       this.attr('chapterTextFilter')
     )
+    console.timeEnd('getChapters')
 
     if (isFunction(created)) {
       created.call(this)
@@ -100,6 +104,7 @@ class Anchors extends Base {
 
     paint()
 
+    console.time('anchors')
     $headings.forEach(($heading, i) => {
       const chapterCode = chapters[i].code
       _updateHeading($heading, i, {
@@ -110,6 +115,7 @@ class Anchors extends Base {
         anchorURL
       })
     })
+    console.timeEnd('anchors')
 
     if (isFunction(mounted)) {
       mounted.call(this)

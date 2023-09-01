@@ -57,7 +57,9 @@ class Outline extends Base {
       document.querySelector(scrollElement) ||
       document.getElementById(scrollElement)
 
+    console.time('paint')
     this._renderPrint()._renderAnchors()._renderChapters()._renderToolbar()
+    console.timeEnd('paint')
 
     if ($scrollElement) {
       this.onToolbarUpdate({
@@ -88,7 +90,9 @@ class Outline extends Base {
     }
 
     addClass($articleElement, 'outline-article')
+    console.time('print')
     print(option.element, option.title)
+    console.timeEnd('print')
 
     return this
   }
@@ -243,6 +247,7 @@ class Outline extends Base {
     }
     const buttons = []
 
+    console.time('toolbar')
     buttons.push(UP)
     if (count > 0) {
       buttons.push(MENU)
@@ -272,6 +277,7 @@ class Outline extends Base {
       placement,
       buttons: buttons
     })
+    console.timeEnd('toolbar')
 
     return this
   }
