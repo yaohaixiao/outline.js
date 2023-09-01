@@ -100,7 +100,7 @@ class Drawer extends Base {
         {
           className: 'outline-drawer__close'
         },
-        icon('close', { size: 20 })
+        icon('close', { iconSet: 'outline', size: 20 })
       )
       this.$close = $close
     }
