@@ -3,7 +3,6 @@
 
 ### Bug Fixes
 
-* 去掉 files 配置 ([45626e3](https://github.com/yaohaixiao/outline.js/commit/45626e3bf28680fe3545c179f4feb40918fc083e))
 * 去掉 package.json 中的 files 配置 ([826c70e](https://github.com/yaohaixiao/outline.js/commit/826c70e129edede1503ce9e5e71b8c173733c702))
 
 
