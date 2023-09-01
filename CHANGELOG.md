@@ -1,9 +1,10 @@
-## [3.23.2](https://github.com/yaohaixiao/outline.js/compare/3.23.1...3.23.2) (2023-09-01)
+## [3.23.3](https://github.com/yaohaixiao/outline.js/compare/3.23.2...3.23.3) (2023-09-01)
 
 
 ### Bug Fixes
 
-* 调整 package.json 中配置，files 中加入所有应该对外提供的资源文件； ([76159a9](https://github.com/yaohaixiao/outline.js/commit/76159a92f9c4be393e9f224fdfddea80d8f09379))
+* 去掉 files 配置 ([45626e3](https://github.com/yaohaixiao/outline.js/commit/45626e3bf28680fe3545c179f4feb40918fc083e))
+* 去掉 package.json 中的 files 配置 ([826c70e](https://github.com/yaohaixiao/outline.js/commit/826c70e129edede1503ce9e5e71b8c173733c702))
 
 
 
