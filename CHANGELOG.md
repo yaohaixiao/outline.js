@@ -1,3 +1,12 @@
+## [3.23.4](https://github.com/yaohaixiao/outline.js/compare/3.23.3...3.23.4) (2023-09-01)
+
+
+### Bug Fixes
+
+* 修复 relative 定位时，独立导航菜单关闭窗口图标未显示的问题； ([9f874b3](https://github.com/yaohaixiao/outline.js/commit/9f874b3a0fe3c9f9582d69046b16c3821b2908e7))
+
+
+
 ## [3.23.3](https://github.com/yaohaixiao/outline.js/compare/3.23.2...3.23.3) (2023-09-01)
 
 
