@@ -23,6 +23,12 @@ const setAttribute = (el, attr, value) => {
     case 'className':
       el.className = value
       break
+    case 'innerHTML':
+      el.innerHTML = value
+      break
+    case 'innerText':
+      el.innerText = value
+      break
     default:
       el.setAttribute(attr, value)
       break

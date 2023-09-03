@@ -90,9 +90,9 @@ class Outline extends Base {
     }
 
     addClass($articleElement, 'outline-article')
-    console.time('print')
+    console.time('_renderPrint')
     print(option.element, option.title)
-    console.timeEnd('print')
+    console.timeEnd('_renderPrint')
 
     return this
   }
@@ -107,6 +107,7 @@ class Outline extends Base {
     const afterScroll = this.attr('afterScroll')
     const chapterTextFilter = this.attr('chapterTextFilter')
 
+    console.time('_renderAnchors')
     this.anchors = new Anchors({
       articleElement,
       stickyHeight,
@@ -117,6 +118,7 @@ class Outline extends Base {
       afterScroll,
       chapterTextFilter
     })
+    console.timeEnd('_renderAnchors')
 
     return this
   }
@@ -140,6 +142,7 @@ class Outline extends Base {
       return this
     }
 
+    console.time('_renderChapters')
     CHAPTERS_OPTIONS = {
       scrollElement,
       showCode,
@@ -172,6 +175,7 @@ class Outline extends Base {
 
     CHAPTERS_OPTIONS.parentElement = parentElement
     this.chapters = new Chapters(CHAPTERS_OPTIONS)
+    console.timeEnd('_renderChapters')
 
     return this
   }
@@ -247,7 +251,7 @@ class Outline extends Base {
     }
     const buttons = []
 
-    console.time('toolbar')
+    console.time('_renderToolbar')
     buttons.push(UP)
     if (count > 0) {
       buttons.push(MENU)
@@ -277,7 +281,7 @@ class Outline extends Base {
       placement,
       buttons: buttons
     })
-    console.timeEnd('toolbar')
+    console.timeEnd('_renderToolbar')
 
     return this
   }

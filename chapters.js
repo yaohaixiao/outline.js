@@ -118,6 +118,10 @@ class Chapters extends Base {
     return !this.isInside()
   }
 
+  count() {
+    return this.chapters.length
+  }
+
   _paintEdge() {
     const $fragment = document.createDocumentFragment()
     const STICKY = 'outline-chapters_sticky'
@@ -214,7 +218,6 @@ class Chapters extends Base {
     $list = this.$list
     _paintChapters($list, chapters, showCode)
     removeClass($el, HIDDEN)
-    this.positionPlaceholder(this.active)
 
     this.offsetTop = offsetTop($el)
     this.offsetWidth = $el.offsetWidth
@@ -223,6 +226,10 @@ class Chapters extends Base {
       this.sticky()
       setProperty('--outline-chapters-width', `${this.offsetWidth}px`)
     }
+
+    later(() => {
+      this.positionPlaceholder(this.active)
+    })
 
     if (isFunction(mounted)) {
       mounted.call(this)

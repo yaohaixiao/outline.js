@@ -34,19 +34,22 @@ const print = (origins, title) => {
   let $icon
 
   if (isString(origins)) {
-    $origins =
-      document.querySelector(origins) || document.getElementById(origins)
-  } else {
-    if (isElement(origins)) {
-      $origins = origins
-    }
+    $origins = document.querySelector(origins)
+  } else if (isElement(origins)) {
+    $origins = origins
+  }
+
+  if (!$origins) {
+    return false
   }
 
   $icon = icon('close', {
     iconSet: 'outline',
-    size: 20
+    size: 20,
+    attrs: {
+      className: 'outline-print__close'
+    }
   })
-  addClass($icon, 'outline-print__close')
 
   $title = $origins.querySelector('h1')
 
@@ -60,9 +63,9 @@ const print = (origins, title) => {
 
   $article = createElement('article', {
     id: 'outline-print__article',
-    className: 'outline-print__article'
+    className: 'outline-print__article',
+    innerHTML: $origins.innerHTML
   })
-  $article.innerHTML = $origins.innerHTML
 
   $title = createElement(
     'h1',

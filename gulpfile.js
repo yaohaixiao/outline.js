@@ -60,10 +60,6 @@ const check = () => {
 const test = gulp.series(lint, check)
 
 /* ==================== 编译代码的 gulp 任务 ==================== */
-const buildLibScript = () => {
-  return run('npm run build:lib').exec()
-}
-
 const buildSourceStyles = () => {
   return gulp
     .src(
@@ -157,12 +153,17 @@ const minifyStyle = () => {
     .pipe(gulp.dest('./docs'))
 }
 
+const buildApiStyle = gulp.series(buildStyle, minifyStyle)
+
+const buildApiScript = () => {
+  return run('npm run build:api:script').exec()
+}
+
 const buildDocs = gulp.series(
   cleanDocs,
   buildApi,
-  buildStyle,
-  minifyStyle,
-  buildScript
+  buildApiStyle,
+  buildApiScript
 )
 
 const build = gulp.series(test, cleanDocs, buildDocs)
@@ -201,7 +202,7 @@ const start = gulp.series(build, connectDocs, openDocs)
 const watchSource = () => {
   return watch(
     ['**/*.(js|less)'],
-    gulp.series(lint, buildLibScript, buildLibStyles)
+    gulp.series(lint, buildScript, buildLibStyles)
   )
 }
 
@@ -221,6 +222,8 @@ const watchAll = gulp.parallel(watchSource, watchApi, watchDocs)
 module.exports.start = start
 module.exports.clean = cleanDocs
 module.exports.buildLibStyles = buildLibStyles
+module.exports.buildApi = buildApi
+module.exports.buildApiStyle = buildApiStyle
 module.exports.build = build
 module.exports.lint = lint
 module.exports.check = check

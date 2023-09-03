@@ -1,9 +1,7 @@
-import Base from './base'
-
-// 在文章的标题生成 anchor 链接
 import isString from './utils/types/isString'
 import isFunction from './utils/types/isFunction'
 import isElement from './utils/types/isElement'
+import timeSlice from './utils/lang/timeSlice'
 import toTree from './utils/lang/toTree'
 import later from './utils/lang/later'
 import scrollTo from './utils/dom/scrollTo'
@@ -17,6 +15,8 @@ import paint from './utils/icons/paint'
 import _updateHeading from './_updateHeading'
 import _resetHeading from './_resetHeading'
 import getChapters from './getChapters'
+
+import Base from './base'
 
 class Anchors extends Base {
   constructor(options) {
@@ -99,23 +99,43 @@ class Anchors extends Base {
     const isAtStart = this.attr('isAtStart')
     const showCode = this.attr('showCode')
     const anchorURL = this.attr('anchorURL')
-    const $headings = this.$headings
+    const count = this.count()
+    const $headings = [...this.$headings]
     const chapters = this.getChapters()
-
-    paint()
-
-    console.time('anchors')
-    $headings.forEach(($heading, i) => {
-      const chapterCode = chapters[i].code
-      _updateHeading($heading, i, {
-        hasAnchor,
-        isAtStart,
-        showCode,
-        chapterCode,
-        anchorURL
+    const update = (headings) => {
+      console.time('update anchors once')
+      headings.forEach(($heading, i) => {
+        const chapterCode = chapters[i].code
+        _updateHeading($heading, i, {
+          hasAnchor,
+          isAtStart,
+          showCode,
+          chapterCode,
+          anchorURL
+        })
       })
-    })
-    console.timeEnd('anchors')
+      console.timeEnd('update anchors once')
+    }
+
+    console.time('paint svg')
+    paint()
+    console.timeEnd('paint svg')
+
+    console.time('update anchors')
+    console.log('count', count)
+    if (count > 400) {
+      console.log('timeSlice')
+      while ($headings.length > 0) {
+        const $once = $headings.splice(0, 400)
+        timeSlice(() => {
+          update($once)
+        })
+      }
+    } else {
+      console.log('one time')
+      update($headings)
+    }
+    console.timeEnd('update anchors')
 
     if (isFunction(mounted)) {
       mounted.call(this)
