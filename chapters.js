@@ -219,6 +219,10 @@ class Chapters extends Base {
     _paintChapters($list, chapters, showCode)
     removeClass($el, HIDDEN)
 
+    later(() => {
+      this.positionPlaceholder(this.active)
+    }, 60)
+
     this.offsetTop = offsetTop($el)
     this.offsetWidth = $el.offsetWidth
 
@@ -226,10 +230,6 @@ class Chapters extends Base {
       this.sticky()
       setProperty('--outline-chapters-width', `${this.offsetWidth}px`)
     }
-
-    later(() => {
-      this.positionPlaceholder(this.active)
-    })
 
     if (isFunction(mounted)) {
       mounted.call(this)
@@ -361,10 +361,8 @@ class Chapters extends Base {
 
     if (this.isInside()) {
       removeClass($parent, HIDDEN)
-      removeClass($el, HIDDEN)
       later(() => {
         removeClass($parent, FOLDED)
-        removeClass($el, FOLDED)
       }, 30)
     } else {
       removeClass($el, HIDDEN)
@@ -387,11 +385,9 @@ class Chapters extends Base {
 
     if (this.isInside()) {
       addClass($parent, FOLDED)
-      addClass($el, FOLDED)
       later(() => {
         addClass($parent, HIDDEN)
-        addClass($el, HIDDEN)
-      })
+      }, 30)
     } else {
       addClass($el, HIDDEN)
     }

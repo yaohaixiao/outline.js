@@ -53,13 +53,9 @@ class Outline extends Base {
 
   render() {
     const scrollElement = this.attr('scrollElement')
-    const $scrollElement =
-      document.querySelector(scrollElement) ||
-      document.getElementById(scrollElement)
+    const $scrollElement = document.querySelector(scrollElement)
 
-    console.time('paint')
     this._renderPrint()._renderAnchors()._renderChapters()._renderToolbar()
-    console.timeEnd('paint')
 
     if ($scrollElement) {
       this.onToolbarUpdate({
@@ -90,9 +86,7 @@ class Outline extends Base {
     }
 
     addClass($articleElement, 'outline-article')
-    console.time('_renderPrint')
     print(option.element, option.title)
-    console.timeEnd('_renderPrint')
 
     return this
   }
@@ -107,7 +101,6 @@ class Outline extends Base {
     const afterScroll = this.attr('afterScroll')
     const chapterTextFilter = this.attr('chapterTextFilter')
 
-    console.time('_renderAnchors')
     this.anchors = new Anchors({
       articleElement,
       stickyHeight,
@@ -118,7 +111,6 @@ class Outline extends Base {
       afterScroll,
       chapterTextFilter
     })
-    console.timeEnd('_renderAnchors')
 
     return this
   }
@@ -142,7 +134,6 @@ class Outline extends Base {
       return this
     }
 
-    console.time('_renderChapters')
     CHAPTERS_OPTIONS = {
       scrollElement,
       showCode,
@@ -175,7 +166,6 @@ class Outline extends Base {
 
     CHAPTERS_OPTIONS.parentElement = parentElement
     this.chapters = new Chapters(CHAPTERS_OPTIONS)
-    console.timeEnd('_renderChapters')
 
     return this
   }
@@ -251,7 +241,6 @@ class Outline extends Base {
     }
     const buttons = []
 
-    console.time('_renderToolbar')
     buttons.push(UP)
     if (count > 0) {
       buttons.push(MENU)
@@ -279,9 +268,8 @@ class Outline extends Base {
 
     this.toolbar = new Toolbar({
       placement,
-      buttons: buttons
+      buttons
     })
-    console.timeEnd('_renderToolbar')
 
     return this
   }

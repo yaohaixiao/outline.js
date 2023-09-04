@@ -59,21 +59,17 @@ class Anchors extends Base {
 
     this.$articleElement = $articleElement
     this.$scrollElement = _getScrollElement(scrollElement)
-    console.time('query headings')
     this.$headings = [...$articleElement.querySelectorAll(selector)]
-    console.timeEnd('query headings')
 
     if (this.$headings.length < 1) {
       return this
     }
 
-    console.time('getChapters')
     this.chapters = getChapters(
       this.$headings,
       showCode,
       this.attr('chapterTextFilter')
     )
-    console.timeEnd('getChapters')
 
     if (isFunction(created)) {
       created.call(this)
@@ -94,6 +90,7 @@ class Anchors extends Base {
   }
 
   render() {
+    const LIMIT = 400
     const mounted = this.attr('mounted')
     const hasAnchor = this.attr('hasAnchor')
     const isAtStart = this.attr('isAtStart')
@@ -102,11 +99,11 @@ class Anchors extends Base {
     const count = this.count()
     const $headings = [...this.$headings]
     const chapters = this.getChapters()
-    const update = (headings) => {
-      console.time('update anchors once')
+    const update = (headings, group) => {
       headings.forEach(($heading, i) => {
-        const chapterCode = chapters[i].code
-        _updateHeading($heading, i, {
+        const id = i + group * LIMIT
+        const chapterCode = chapters[id].code
+        _updateHeading($heading, id, {
           hasAnchor,
           isAtStart,
           showCode,
@@ -114,28 +111,26 @@ class Anchors extends Base {
           anchorURL
         })
       })
-      console.timeEnd('update anchors once')
     }
+    let groupIndex = -1
 
-    console.time('paint svg')
     paint()
-    console.timeEnd('paint svg')
 
-    console.time('update anchors')
-    console.log('count', count)
-    if (count > 400) {
-      console.log('timeSlice')
+    // 针对超长的文章，进行 timeSlice 处理
+    if (count > LIMIT) {
+      groupIndex += 1
+      // 同步绘制 Limit 以内的标题链接（可以确保 50ms 完成绘制）
+      update($headings.splice(0, LIMIT), 0)
+      // 采用 timeSlice 处理机制绘制剩余的标题
       while ($headings.length > 0) {
-        const $once = $headings.splice(0, 400)
+        const once = $headings.splice(0, LIMIT)
         timeSlice(() => {
-          update($once)
+          update(once, (groupIndex += 1))
         })
       }
     } else {
-      console.log('one time')
-      update($headings)
+      update($headings, 0)
     }
-    console.timeEnd('update anchors')
 
     if (isFunction(mounted)) {
       mounted.call(this)

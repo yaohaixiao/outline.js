@@ -6,7 +6,6 @@ const _getChaptersWithCode = (chapters) => {
     return [o.pid]
   }
 
-  console.time('code')
   chapters.forEach((o) => {
     const group = JSON.stringify(cb(o))
 
@@ -30,7 +29,6 @@ const _getChaptersWithCode = (chapters) => {
       })
     })
   })
-  console.timeEnd('code')
 
   return chapters
 }

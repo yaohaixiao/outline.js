@@ -2,12 +2,12 @@ import createElement from './utils/dom/createElement'
 import timeSlice from './utils/lang/timeSlice'
 
 const _paintChapters = ($list, chapters, showCode = false) => {
+  const LIMIT = 600
   const count = chapters.length
   const clones = [...chapters]
   const paint = (parts) => {
     const byId = (id) => $list.querySelector(`#${id}`)
 
-    console.time('paint chapters once')
     parts.forEach((chapter) => {
       const pid = chapter.pid
       const id = chapter.id
@@ -85,23 +85,21 @@ const _paintChapters = ($list, chapters, showCode = false) => {
         }
       }
     })
-    console.timeEnd('paint chapters once')
   }
 
-  console.time('chapters')
-  if (count > 400) {
-    console.log('timeSlice')
+  if (count > LIMIT) {
+    // 同步绘制
+    paint(clones.splice(0, LIMIT))
+    // 剩余的采用 timeSlice 机制绘制
     while (clones.length > 0) {
-      const $once = clones.splice(0, 400)
+      const once = clones.splice(0, LIMIT)
       timeSlice(() => {
-        paint($once)
+        paint(once)
       })
     }
   } else {
-    console.log('one time')
     paint(clones)
   }
-  console.timeEnd('chapters')
 }
 
 export default _paintChapters

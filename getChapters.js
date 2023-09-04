@@ -20,7 +20,6 @@ const getChapters = (headings, showCode = true, chapterTextFilter = null) => {
   let text = ''
   const chapters = []
 
-  console.time('pid')
   headings.forEach((heading, i) => {
     const tagName = heading.tagName
     const headingLevel = tagName.replace(/h/i, '')
@@ -97,7 +96,6 @@ const getChapters = (headings, showCode = true, chapterTextFilter = null) => {
       tagName
     })
   })
-  console.timeEnd('pid')
 
   return showCode ? _getChaptersWithCode(chapters) : chapters
 }

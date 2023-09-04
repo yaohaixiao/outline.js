@@ -47,7 +47,7 @@
     "build:api:script": "rollup -c build/rollup.config.api.js --bundleConfigAsCjs",
     "build:api:style": "gulp buildApiStyle",
     "build:api": "gulp build",
-    "build": "npm run build:lib && npm run build:docs",
+    "build": "npm run build:lib && npm run build:api",
     "lint": "eslint",
     "lint:fix": "npm run lint --cache --fix",
     "prettier:check": "npx prettier --check \"**/*.(js|less)\"",
