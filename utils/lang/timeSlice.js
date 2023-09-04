@@ -2,12 +2,32 @@
  * timeSlice.js 时间切片功能函数
  * ====================================================
  * Created By: Yaohaixiao
- * Update: 2022.11.27
+ * Update: 2023.09.04
  */
 import isFunction from '../types/isFunction'
+import later from './later'
 
 const queen = []
 let isHandling
+
+// Shim from https://developers.google.com/web/updates/2015/08/using-requestidlecallback
+if (typeof window.requestIdleCallback === 'undefined') {
+  window.requestIdleCallback = function (cb) {
+    const start = Date.now()
+    return later(function () {
+      cb({
+        didTimeout: false,
+        timeRemaining: function () {
+          return Math.max(0, 50 - (Date.now() - start))
+        }
+      })
+    }, 10)
+  }
+
+  window.cancelIdleCallback = function (id) {
+    clearTimeout(id)
+  }
+}
 
 function runIdle(idleDeadline) {
   while (idleDeadline.timeRemaining() > 0 && queen.length) {
