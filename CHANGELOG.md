@@ -1,3 +1,13 @@
+# [3.24.0](https://github.com/yaohaixiao/outline.js/compare/3.23.4...3.24.0) (2023-09-04)
+
+
+### Features
+
+* 优化 anchors.js 中创建图标链接的性能； ([b23312c](https://github.com/yaohaixiao/outline.js/commit/b23312c2c6b88362ac4fbe1a4b582d81d944b722))
+* 针对超长文章，采用 timeSlice 机制优化性能； ([19d5ee8](https://github.com/yaohaixiao/outline.js/commit/19d5ee86c414fb5fc08cf15a5f35890c9a11bf43))
+
+
+
 ## [3.23.4](https://github.com/yaohaixiao/outline.js/compare/3.23.3...3.23.4) (2023-09-01)
 
 
