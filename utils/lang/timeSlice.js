@@ -7,8 +7,9 @@
 import isFunction from '../types/isFunction'
 import later from './later'
 
-const queen = []
+const queue = []
 let isHandling
+let done
 
 // Shim from https://developers.google.com/web/updates/2015/08/using-requestidlecallback
 if (typeof window.requestIdleCallback === 'undefined') {
@@ -30,8 +31,8 @@ if (typeof window.requestIdleCallback === 'undefined') {
 }
 
 function runIdle(idleDeadline) {
-  while (idleDeadline.timeRemaining() > 0 && queen.length) {
-    const fn = queen.shift()
+  while (idleDeadline.timeRemaining() > 0 && queue.length) {
+    const fn = queue.shift()
 
     if (!isFunction(fn)) {
       return false
@@ -40,10 +41,15 @@ function runIdle(idleDeadline) {
     fn()
   }
 
-  if (queen.length) {
+  if (queue.length) {
     isHandling = requestIdleCallback(runIdle)
   } else {
     isHandling = 0
+
+    if (isFunction(done)) {
+      done()
+      done = null
+    }
   }
 }
 
@@ -52,10 +58,15 @@ function runIdle(idleDeadline) {
  * 多个短时间任务
  * ====================================================
  * @param {Function} fn - 需要在空闲时执行的回调函数
+ * @param {Function} afterComplete - queen 的
  * @return {(function(): (boolean|undefined))|*|boolean}
  */
-const timeSlice = (fn) => {
-  queen.push(fn)
+const timeSlice = (fn, afterComplete = null) => {
+  queue.push(fn)
+
+  if (isFunction(afterComplete)) {
+    done = afterComplete
+  }
 
   if (!isHandling) {
     requestIdleCallback(runIdle)

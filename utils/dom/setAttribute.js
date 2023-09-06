@@ -20,6 +20,9 @@ const setAttribute = (el, attr, value) => {
         el.setAttribute(attr, value)
       }
       break
+    case 'htmlFor':
+      el.setAttribute('for', value)
+      break
     case 'className':
       el.className = value
       break

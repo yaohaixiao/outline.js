@@ -205,6 +205,7 @@ class Chapters extends Base {
     const mounted = this.attr('mounted')
     const $parentElement = this.$parentElement
     const chapters = this.chapters
+    const count = this.count()
     let $el
     let $list
 
@@ -235,7 +236,9 @@ class Chapters extends Base {
       mounted.call(this)
     }
 
-    this.onObserver()
+    if (count < 400) {
+      this.onObserver()
+    }
 
     return this
   }
@@ -580,6 +583,7 @@ class Chapters extends Base {
     if (this.isSticky()) {
       at(window, 'resize', this.onResize, this, true)
     }
+    this.$on('anchors:all:paint', this.onObserver, this)
 
     return this
   }
@@ -601,6 +605,8 @@ class Chapters extends Base {
     if (this.isSticky()) {
       at(window, 'resize', this.onResize)
     }
+
+    this.$off('anchors:all:paint')
 
     if (this.Observer) {
       document.querySelectorAll(selector).forEach((section) => {

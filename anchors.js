@@ -124,9 +124,14 @@ class Anchors extends Base {
       // 采用 timeSlice 处理机制绘制剩余的标题
       while ($headings.length > 0) {
         const once = $headings.splice(0, LIMIT)
-        timeSlice(() => {
-          update(once, (groupIndex += 1))
-        })
+        timeSlice(
+          () => {
+            update(once, (groupIndex += 1))
+          },
+          () => {
+            this.$emit('anchors:all:paint')
+          }
+        )
       }
     } else {
       update($headings, 0)
