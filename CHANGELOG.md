@@ -1,3 +1,12 @@
+## [3.24.2](https://github.com/yaohaixiao/outline.js/compare/3.24.1...3.24.2) (2023-09-06)
+
+
+### Bug Fixes
+
+* 修复 utils 中 cloneDeep() 方法复制数据的逻辑错误 ([33ac030](https://github.com/yaohaixiao/outline.js/commit/33ac03040782df8d1ca7a26df27ecc996340e624))
+
+
+
 ## [3.24.1](https://github.com/yaohaixiao/outline.js/compare/3.24.0...3.24.1) (2023-09-06)
 
 
