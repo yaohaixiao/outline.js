@@ -1,3 +1,12 @@
+## [3.24.1](https://github.com/yaohaixiao/outline.js/compare/3.24.0...3.24.1) (2023-09-06)
+
+
+### Bug Fixes
+
+* 修复针对超长文章实用 timeSlice 机制异步绘制 anchors 链接后，针对标题的和导航菜单的 IntersectionObserver 同步高亮当前（异步绘制的）标题无效的问题； ([e3a468f](https://github.com/yaohaixiao/outline.js/commit/e3a468fd48f883a0dbf14fd98c6ed35f79b9afe8))
+
+
+
 # [3.24.0](https://github.com/yaohaixiao/outline.js/compare/3.23.4...3.24.0) (2023-09-04)
 
 
