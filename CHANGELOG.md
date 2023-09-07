@@ -1,3 +1,12 @@
+# [3.25.0](https://github.com/yaohaixiao/outline.js/compare/3.24.2...3.25.0) (2023-09-07)
+
+
+### Features
+
+* 优化体验，进入阅读模式添加提示信息 ([bb421c0](https://github.com/yaohaixiao/outline.js/commit/bb421c09162502f87f72a47fb535203a38c171d3))
+
+
+
 ## [3.24.2](https://github.com/yaohaixiao/outline.js/compare/3.24.1...3.24.2) (2023-09-06)
 
 
