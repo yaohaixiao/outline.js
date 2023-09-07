@@ -17,6 +17,7 @@ import Anchors from './anchors'
 import Drawer from './drawer'
 import Chapters from './chapters'
 import Toolbar from './toolbar'
+import Message from './message'
 import print from './print'
 
 class Outline extends Base {
@@ -371,6 +372,11 @@ class Outline extends Base {
     this.reading = true
 
     this.toolbar.toggle()
+
+    Message.info({
+      round: true,
+      message: '进入阅读模式，按 ESC 键可退出阅读模式'
+    })
 
     this.$emit('enterReading')
 

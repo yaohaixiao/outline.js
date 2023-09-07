@@ -62,6 +62,16 @@ export default [
     },
     plugins: PLUGIN_CONFIG
   },
+  {
+    input: './message.js',
+    output: {
+      name: 'Message',
+      file: './message.min.js',
+      format: 'umd',
+      sourcemap: true
+    },
+    plugins: PLUGIN_CONFIG
+  },
   // build for documentation
   {
     input: './outline.js',

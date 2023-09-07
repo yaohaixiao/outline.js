@@ -64,11 +64,12 @@ const buildSourceStyles = () => {
   return gulp
     .src(
       [
-        './src/theme/anchors.less',
-        './src/theme/chapters.less',
-        './src/theme/drawer.less',
-        './src/theme/toolbar.less',
-        './src/theme/outline.less'
+        './theme/anchors.less',
+        './theme/chapters.less',
+        './theme/drawer.less',
+        './theme/toolbar.less',
+        './theme/message.less',
+        './theme/outline.less'
       ],
       {
         allowEmpty: true
@@ -93,6 +94,7 @@ const minifySourcesStyle = () => {
         './chapters.css',
         './drawer.css',
         './toolbar.css',
+        './message.css',
         './outline.css'
       ],
       {
