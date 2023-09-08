@@ -1,6 +1,6 @@
 {
   "name": "@yaohaixiao/outline.js",
-  "version": "3.25.0",
+  "version": "3.25.1",
   "description": "outline.js - 自动生成文章导读（Table of Contents）导航的 JavaScript 工具。",
   "main": "outline.min.js",
   "files": [
@@ -26,6 +26,10 @@
     "drawer.js",
     "drawer.min.js",
     "getChapters.js",
+    "message.css",
+    "message.min.css",
+    "message.js",
+    "message.min.js",
     "outline.css",
     "outline.min.css",
     "outline.js",
