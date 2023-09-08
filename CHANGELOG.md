@@ -1,3 +1,12 @@
+# [3.27.0](https://github.com/yaohaixiao/outline.js/compare/3.26.0...3.27.0) (2023-09-08)
+
+
+### Features
+
+* 配置 print 参数后，针对支持 print() 方法的浏览器，工具栏新增打印按钮，支持直接打印文章 ([d36c7e6](https://github.com/yaohaixiao/outline.js/commit/d36c7e68368b4f96a06a3b59966d1525fbe8b955))
+
+
+
 # [3.26.0](https://github.com/yaohaixiao/outline.js/compare/3.25.1...3.26.0) (2023-09-08)
 
 
