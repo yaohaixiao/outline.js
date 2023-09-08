@@ -24,7 +24,7 @@ const _updateSiblingElements = (siblingElement, isPrev) => {
   }
 }
 
-const print = (origins, title) => {
+const paintPrint = (origins, title) => {
   let text = title
   let $origins
   let $wrapper
@@ -43,6 +43,7 @@ const print = (origins, title) => {
     return false
   }
 
+  // console.time('paintPrint')
   $icon = icon('close', {
     iconSet: 'outline',
     size: 20,
@@ -84,6 +85,7 @@ const print = (origins, title) => {
     [$icon, $title, $article]
   )
   document.body.appendChild($wrapper)
+  // console.timeEnd('paintPrint')
 
   later(() => {
     $sibling = $wrapper.previousElementSibling
@@ -96,4 +98,4 @@ const print = (origins, title) => {
   }, 350)
 }
 
-export default print
+export default paintPrint
