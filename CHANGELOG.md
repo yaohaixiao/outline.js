@@ -1,3 +1,12 @@
+# [3.26.0](https://github.com/yaohaixiao/outline.js/compare/3.25.1...3.26.0) (2023-09-08)
+
+
+### Features
+
+* 调整 print 参数，添加 enterReadingTip 参数，用于设置进入阅读模式的提示文本（暂时还没有精力直接判断浏览器语言，翻译提示信息） ([87a96ba](https://github.com/yaohaixiao/outline.js/commit/87a96ba600fdb1de3002b4f4cfe6b07ee17b2572))
+
+
+
 ## [3.25.1](https://github.com/yaohaixiao/outline.js/compare/3.25.0...3.25.1) (2023-09-08)
 
 
