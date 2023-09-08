@@ -20,6 +20,8 @@ import Toolbar from './toolbar'
 import Message from './message'
 import print from './print'
 
+const ENTER_READING_TIP = '进入阅读模式，按 ESC 键可退出阅读模式'
+
 class Outline extends Base {
   constructor(options) {
     super()
@@ -360,6 +362,8 @@ class Outline extends Base {
     const HIDDEN = `${READING}_hidden`
     const $reading = document.querySelector('#outline-print')
     const $siblings = document.querySelectorAll('.outline-print_sibling')
+    const options = this.attr('print')
+    const enterReadingTip = options.enterReadingTip || ENTER_READING_TIP
 
     if (this.reading || !$reading) {
       return this
@@ -375,7 +379,7 @@ class Outline extends Base {
 
     Message.info({
       round: true,
-      message: '进入阅读模式，按 ESC 键可退出阅读模式'
+      message: enterReadingTip
     })
 
     this.$emit('enterReading')
@@ -590,7 +594,8 @@ Outline.DEFAULTS = {
   tools: [],
   print: {
     element: '',
-    title: ''
+    title: '',
+    enterReadingTip: ENTER_READING_TIP
   },
   customClass: '',
   afterSticky: null,

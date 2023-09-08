@@ -34,7 +34,9 @@ section.section
           // 可以直接设置标题文本，也可以是文章页的主标题 DOM 元素。
           // 纯静态的页面，设置 DOM 元素，可能更好，确保每个页面的主标题 DOM 元素的选择器不变
           // 则 title 会是一个可变的值，这样比直接设置标题文本更加灵活；
-          title: document.querySelector('.title')
+          title: document.querySelector('.title'),
+          // 进入阅读模式的提示消息文本
+          enterReadingTip: '进入阅读模式，按 ESC 键可退出阅读模式'
         }
         outline = new Outline(Outline.DEFAULTS)
     p 演示地址：

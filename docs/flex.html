@@ -192,7 +192,9 @@ defaults.print = {
   // 可以直接设置标题文本，也可以是文章页的主标题 DOM 元素。
   // 纯静态的页面，设置 DOM 元素，可能更好，确保每个页面的主标题 DOM 元素的选择器不变
   // 则 title 会是一个可变的值，这样比直接设置标题文本更加灵活；
-  title: document.querySelector('.title')
+  title: document.querySelector('.title'),
+  // 进入阅读模式的提示消息文本
+  enterReadingTip: '进入阅读模式，按 ESC 键可退出阅读模式'
 }
 outline = new Outline(Outline.DEFAULTS)</code></pre><p>演示地址：<a target="_blank" href="https://yaohaixiao.github.io/outline.js/flex.html">https://yaohaixiao.github.io/outline.js/flex.html</a></p></div></section><section class="section"><header class="section__header"><h3 class="section__h3">customClass</h3></header><div class="section__content"><h4 class="section__h4">Description</h4><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">String</dd></dl><dl class="section__dl"><dt class="section__dt">Default：</dt><dd class="section__dd">''</dd></dl><p>可选，(DIYer福利)设置自定义样式的 class 名称：</p><ul><li>'' - 采用默认 outline.js 的 UI 界面（默认值）；</li><li>设置自定义样式 - 自己根据需求设置个性化的 UI 界面；</li></ul><pre class="section__pre"><code class="section__code">// Default UI
 new Outline(Outline.DEFAULTS)
@@ -755,7 +757,8 @@ export default Toolbar</code></pre></div></section><section class="section"><hea
   tools: [],
   print: {
     element: '',
-    title: ''
+    title: '',
+    enterReadingTip: '进入阅读模式，按 ESC 键可退出阅读模式'
   },
   customClass: '',
   afterSticky: null,
@@ -1223,7 +1226,9 @@ defaults.print = {
   // 可以直接设置标题文本，也可以是文章页的主标题 DOM 元素。
   // 纯静态的页面，设置 DOM 元素，可能更好，确保每个页面的主标题 DOM 元素的选择器不变
   // 则 title 会是一个可变的值，这样比直接设置标题文本更加灵活；
-  title: document.querySelector('.title')
+  title: document.querySelector('.title'),
+  // 进入阅读模式的提示消息文本
+  enterReadingTip: '进入阅读模式，按 ESC 键可退出阅读模式'
 }
 outline = new Outline(Outline.DEFAULTS)</code></pre><p>演示地址：<a target="_blank" href="https://yaohaixiao.github.io/outline.js/flex.html">https://yaohaixiao.github.io/outline.js/flex.html</a></p></div></section><section class="section"><header class="section__header"><h3 class="section__h3">customClass</h3></header><div class="section__content"><h4 class="section__h4">Description</h4><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">String</dd></dl><dl class="section__dl"><dt class="section__dt">Default：</dt><dd class="section__dd">''</dd></dl><p>可选，(DIYer福利)设置自定义样式的 class 名称：</p><ul><li>'' - 采用默认 outline.js 的 UI 界面（默认值）；</li><li>设置自定义样式 - 自己根据需求设置个性化的 UI 界面；</li></ul><pre class="section__pre"><code class="section__code">// Default UI
 new Outline(Outline.DEFAULTS)
@@ -1786,7 +1791,8 @@ export default Toolbar</code></pre></div></section><section class="section"><hea
   tools: [],
   print: {
     element: '',
-    title: ''
+    title: '',
+    enterReadingTip: '进入阅读模式，按 ESC 键可退出阅读模式'
   },
   customClass: '',
   afterSticky: null,
@@ -2254,7 +2260,9 @@ defaults.print = {
   // 可以直接设置标题文本，也可以是文章页的主标题 DOM 元素。
   // 纯静态的页面，设置 DOM 元素，可能更好，确保每个页面的主标题 DOM 元素的选择器不变
   // 则 title 会是一个可变的值，这样比直接设置标题文本更加灵活；
-  title: document.querySelector('.title')
+  title: document.querySelector('.title'),
+  // 进入阅读模式的提示消息文本
+  enterReadingTip: '进入阅读模式，按 ESC 键可退出阅读模式'
 }
 outline = new Outline(Outline.DEFAULTS)</code></pre><p>演示地址：<a target="_blank" href="https://yaohaixiao.github.io/outline.js/flex.html">https://yaohaixiao.github.io/outline.js/flex.html</a></p></div></section><section class="section"><header class="section__header"><h3 class="section__h3">customClass</h3></header><div class="section__content"><h4 class="section__h4">Description</h4><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">String</dd></dl><dl class="section__dl"><dt class="section__dt">Default：</dt><dd class="section__dd">''</dd></dl><p>可选，(DIYer福利)设置自定义样式的 class 名称：</p><ul><li>'' - 采用默认 outline.js 的 UI 界面（默认值）；</li><li>设置自定义样式 - 自己根据需求设置个性化的 UI 界面；</li></ul><pre class="section__pre"><code class="section__code">// Default UI
 new Outline(Outline.DEFAULTS)
@@ -2817,7 +2825,8 @@ export default Toolbar</code></pre></div></section><section class="section"><hea
   tools: [],
   print: {
     element: '',
-    title: ''
+    title: '',
+    enterReadingTip: '进入阅读模式，按 ESC 键可退出阅读模式'
   },
   customClass: '',
   afterSticky: null,
@@ -3285,7 +3294,9 @@ defaults.print = {
   // 可以直接设置标题文本，也可以是文章页的主标题 DOM 元素。
   // 纯静态的页面，设置 DOM 元素，可能更好，确保每个页面的主标题 DOM 元素的选择器不变
   // 则 title 会是一个可变的值，这样比直接设置标题文本更加灵活；
-  title: document.querySelector('.title')
+  title: document.querySelector('.title'),
+  // 进入阅读模式的提示消息文本
+  enterReadingTip: '进入阅读模式，按 ESC 键可退出阅读模式'
 }
 outline = new Outline(Outline.DEFAULTS)</code></pre><p>演示地址：<a target="_blank" href="https://yaohaixiao.github.io/outline.js/flex.html">https://yaohaixiao.github.io/outline.js/flex.html</a></p></div></section><section class="section"><header class="section__header"><h3 class="section__h3">customClass</h3></header><div class="section__content"><h4 class="section__h4">Description</h4><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">String</dd></dl><dl class="section__dl"><dt class="section__dt">Default：</dt><dd class="section__dd">''</dd></dl><p>可选，(DIYer福利)设置自定义样式的 class 名称：</p><ul><li>'' - 采用默认 outline.js 的 UI 界面（默认值）；</li><li>设置自定义样式 - 自己根据需求设置个性化的 UI 界面；</li></ul><pre class="section__pre"><code class="section__code">// Default UI
 new Outline(Outline.DEFAULTS)
@@ -3848,7 +3859,8 @@ export default Toolbar</code></pre></div></section><section class="section"><hea
   tools: [],
   print: {
     element: '',
-    title: ''
+    title: '',
+    enterReadingTip: '进入阅读模式，按 ESC 键可退出阅读模式'
   },
   customClass: '',
   afterSticky: null,
@@ -4316,7 +4328,9 @@ defaults.print = {
   // 可以直接设置标题文本，也可以是文章页的主标题 DOM 元素。
   // 纯静态的页面，设置 DOM 元素，可能更好，确保每个页面的主标题 DOM 元素的选择器不变
   // 则 title 会是一个可变的值，这样比直接设置标题文本更加灵活；
-  title: document.querySelector('.title')
+  title: document.querySelector('.title'),
+  // 进入阅读模式的提示消息文本
+  enterReadingTip: '进入阅读模式，按 ESC 键可退出阅读模式'
 }
 outline = new Outline(Outline.DEFAULTS)</code></pre><p>演示地址：<a target="_blank" href="https://yaohaixiao.github.io/outline.js/flex.html">https://yaohaixiao.github.io/outline.js/flex.html</a></p></div></section><section class="section"><header class="section__header"><h3 class="section__h3">customClass</h3></header><div class="section__content"><h4 class="section__h4">Description</h4><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">String</dd></dl><dl class="section__dl"><dt class="section__dt">Default：</dt><dd class="section__dd">''</dd></dl><p>可选，(DIYer福利)设置自定义样式的 class 名称：</p><ul><li>'' - 采用默认 outline.js 的 UI 界面（默认值）；</li><li>设置自定义样式 - 自己根据需求设置个性化的 UI 界面；</li></ul><pre class="section__pre"><code class="section__code">// Default UI
 new Outline(Outline.DEFAULTS)
@@ -4879,7 +4893,8 @@ export default Toolbar</code></pre></div></section><section class="section"><hea
   tools: [],
   print: {
     element: '',
-    title: ''
+    title: '',
+    enterReadingTip: '进入阅读模式，按 ESC 键可退出阅读模式'
   },
   customClass: '',
   afterSticky: null,
@@ -5347,7 +5362,9 @@ defaults.print = {
   // 可以直接设置标题文本，也可以是文章页的主标题 DOM 元素。
   // 纯静态的页面，设置 DOM 元素，可能更好，确保每个页面的主标题 DOM 元素的选择器不变
   // 则 title 会是一个可变的值，这样比直接设置标题文本更加灵活；
-  title: document.querySelector('.title')
+  title: document.querySelector('.title'),
+  // 进入阅读模式的提示消息文本
+  enterReadingTip: '进入阅读模式，按 ESC 键可退出阅读模式'
 }
 outline = new Outline(Outline.DEFAULTS)</code></pre><p>演示地址：<a target="_blank" href="https://yaohaixiao.github.io/outline.js/flex.html">https://yaohaixiao.github.io/outline.js/flex.html</a></p></div></section><section class="section"><header class="section__header"><h3 class="section__h3">customClass</h3></header><div class="section__content"><h4 class="section__h4">Description</h4><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">String</dd></dl><dl class="section__dl"><dt class="section__dt">Default：</dt><dd class="section__dd">''</dd></dl><p>可选，(DIYer福利)设置自定义样式的 class 名称：</p><ul><li>'' - 采用默认 outline.js 的 UI 界面（默认值）；</li><li>设置自定义样式 - 自己根据需求设置个性化的 UI 界面；</li></ul><pre class="section__pre"><code class="section__code">// Default UI
 new Outline(Outline.DEFAULTS)
@@ -5910,7 +5927,8 @@ export default Toolbar</code></pre></div></section><section class="section"><hea
   tools: [],
   print: {
     element: '',
-    title: ''
+    title: '',
+    enterReadingTip: '进入阅读模式，按 ESC 键可退出阅读模式'
   },
   customClass: '',
   afterSticky: null,
@@ -6378,7 +6396,9 @@ defaults.print = {
   // 可以直接设置标题文本，也可以是文章页的主标题 DOM 元素。
   // 纯静态的页面，设置 DOM 元素，可能更好，确保每个页面的主标题 DOM 元素的选择器不变
   // 则 title 会是一个可变的值，这样比直接设置标题文本更加灵活；
-  title: document.querySelector('.title')
+  title: document.querySelector('.title'),
+  // 进入阅读模式的提示消息文本
+  enterReadingTip: '进入阅读模式，按 ESC 键可退出阅读模式'
 }
 outline = new Outline(Outline.DEFAULTS)</code></pre><p>演示地址：<a target="_blank" href="https://yaohaixiao.github.io/outline.js/flex.html">https://yaohaixiao.github.io/outline.js/flex.html</a></p></div></section><section class="section"><header class="section__header"><h3 class="section__h3">customClass</h3></header><div class="section__content"><h4 class="section__h4">Description</h4><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">String</dd></dl><dl class="section__dl"><dt class="section__dt">Default：</dt><dd class="section__dd">''</dd></dl><p>可选，(DIYer福利)设置自定义样式的 class 名称：</p><ul><li>'' - 采用默认 outline.js 的 UI 界面（默认值）；</li><li>设置自定义样式 - 自己根据需求设置个性化的 UI 界面；</li></ul><pre class="section__pre"><code class="section__code">// Default UI
 new Outline(Outline.DEFAULTS)
@@ -6941,7 +6961,8 @@ export default Toolbar</code></pre></div></section><section class="section"><hea
   tools: [],
   print: {
     element: '',
-    title: ''
+    title: '',
+    enterReadingTip: '进入阅读模式，按 ESC 键可退出阅读模式'
   },
   customClass: '',
   afterSticky: null,
@@ -7409,7 +7430,9 @@ defaults.print = {
   // 可以直接设置标题文本，也可以是文章页的主标题 DOM 元素。
   // 纯静态的页面，设置 DOM 元素，可能更好，确保每个页面的主标题 DOM 元素的选择器不变
   // 则 title 会是一个可变的值，这样比直接设置标题文本更加灵活；
-  title: document.querySelector('.title')
+  title: document.querySelector('.title'),
+  // 进入阅读模式的提示消息文本
+  enterReadingTip: '进入阅读模式，按 ESC 键可退出阅读模式'
 }
 outline = new Outline(Outline.DEFAULTS)</code></pre><p>演示地址：<a target="_blank" href="https://yaohaixiao.github.io/outline.js/flex.html">https://yaohaixiao.github.io/outline.js/flex.html</a></p></div></section><section class="section"><header class="section__header"><h3 class="section__h3">customClass</h3></header><div class="section__content"><h4 class="section__h4">Description</h4><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">String</dd></dl><dl class="section__dl"><dt class="section__dt">Default：</dt><dd class="section__dd">''</dd></dl><p>可选，(DIYer福利)设置自定义样式的 class 名称：</p><ul><li>'' - 采用默认 outline.js 的 UI 界面（默认值）；</li><li>设置自定义样式 - 自己根据需求设置个性化的 UI 界面；</li></ul><pre class="section__pre"><code class="section__code">// Default UI
 new Outline(Outline.DEFAULTS)
@@ -7972,7 +7995,8 @@ export default Toolbar</code></pre></div></section><section class="section"><hea
   tools: [],
   print: {
     element: '',
-    title: ''
+    title: '',
+    enterReadingTip: '进入阅读模式，按 ESC 键可退出阅读模式'
   },
   customClass: '',
   afterSticky: null,
@@ -8440,7 +8464,9 @@ defaults.print = {
   // 可以直接设置标题文本，也可以是文章页的主标题 DOM 元素。
   // 纯静态的页面，设置 DOM 元素，可能更好，确保每个页面的主标题 DOM 元素的选择器不变
   // 则 title 会是一个可变的值，这样比直接设置标题文本更加灵活；
-  title: document.querySelector('.title')
+  title: document.querySelector('.title'),
+  // 进入阅读模式的提示消息文本
+  enterReadingTip: '进入阅读模式，按 ESC 键可退出阅读模式'
 }
 outline = new Outline(Outline.DEFAULTS)</code></pre><p>演示地址：<a target="_blank" href="https://yaohaixiao.github.io/outline.js/flex.html">https://yaohaixiao.github.io/outline.js/flex.html</a></p></div></section><section class="section"><header class="section__header"><h3 class="section__h3">customClass</h3></header><div class="section__content"><h4 class="section__h4">Description</h4><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">String</dd></dl><dl class="section__dl"><dt class="section__dt">Default：</dt><dd class="section__dd">''</dd></dl><p>可选，(DIYer福利)设置自定义样式的 class 名称：</p><ul><li>'' - 采用默认 outline.js 的 UI 界面（默认值）；</li><li>设置自定义样式 - 自己根据需求设置个性化的 UI 界面；</li></ul><pre class="section__pre"><code class="section__code">// Default UI
 new Outline(Outline.DEFAULTS)
@@ -9003,7 +9029,8 @@ export default Toolbar</code></pre></div></section><section class="section"><hea
   tools: [],
   print: {
     element: '',
-    title: ''
+    title: '',
+    enterReadingTip: '进入阅读模式，按 ESC 键可退出阅读模式'
   },
   customClass: '',
   afterSticky: null,
@@ -9471,7 +9498,9 @@ defaults.print = {
   // 可以直接设置标题文本，也可以是文章页的主标题 DOM 元素。
   // 纯静态的页面，设置 DOM 元素，可能更好，确保每个页面的主标题 DOM 元素的选择器不变
   // 则 title 会是一个可变的值，这样比直接设置标题文本更加灵活；
-  title: document.querySelector('.title')
+  title: document.querySelector('.title'),
+  // 进入阅读模式的提示消息文本
+  enterReadingTip: '进入阅读模式，按 ESC 键可退出阅读模式'
 }
 outline = new Outline(Outline.DEFAULTS)</code></pre><p>演示地址：<a target="_blank" href="https://yaohaixiao.github.io/outline.js/flex.html">https://yaohaixiao.github.io/outline.js/flex.html</a></p></div></section><section class="section"><header class="section__header"><h3 class="section__h3">customClass</h3></header><div class="section__content"><h4 class="section__h4">Description</h4><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">String</dd></dl><dl class="section__dl"><dt class="section__dt">Default：</dt><dd class="section__dd">''</dd></dl><p>可选，(DIYer福利)设置自定义样式的 class 名称：</p><ul><li>'' - 采用默认 outline.js 的 UI 界面（默认值）；</li><li>设置自定义样式 - 自己根据需求设置个性化的 UI 界面；</li></ul><pre class="section__pre"><code class="section__code">// Default UI
 new Outline(Outline.DEFAULTS)
@@ -10034,7 +10063,8 @@ export default Toolbar</code></pre></div></section><section class="section"><hea
   tools: [],
   print: {
     element: '',
-    title: ''
+    title: '',
+    enterReadingTip: '进入阅读模式，按 ESC 键可退出阅读模式'
   },
   customClass: '',
   afterSticky: null,
@@ -10502,7 +10532,9 @@ defaults.print = {
   // 可以直接设置标题文本，也可以是文章页的主标题 DOM 元素。
   // 纯静态的页面，设置 DOM 元素，可能更好，确保每个页面的主标题 DOM 元素的选择器不变
   // 则 title 会是一个可变的值，这样比直接设置标题文本更加灵活；
-  title: document.querySelector('.title')
+  title: document.querySelector('.title'),
+  // 进入阅读模式的提示消息文本
+  enterReadingTip: '进入阅读模式，按 ESC 键可退出阅读模式'
 }
 outline = new Outline(Outline.DEFAULTS)</code></pre><p>演示地址：<a target="_blank" href="https://yaohaixiao.github.io/outline.js/flex.html">https://yaohaixiao.github.io/outline.js/flex.html</a></p></div></section><section class="section"><header class="section__header"><h3 class="section__h3">customClass</h3></header><div class="section__content"><h4 class="section__h4">Description</h4><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">String</dd></dl><dl class="section__dl"><dt class="section__dt">Default：</dt><dd class="section__dd">''</dd></dl><p>可选，(DIYer福利)设置自定义样式的 class 名称：</p><ul><li>'' - 采用默认 outline.js 的 UI 界面（默认值）；</li><li>设置自定义样式 - 自己根据需求设置个性化的 UI 界面；</li></ul><pre class="section__pre"><code class="section__code">// Default UI
 new Outline(Outline.DEFAULTS)
@@ -11065,7 +11097,8 @@ export default Toolbar</code></pre></div></section><section class="section"><hea
   tools: [],
   print: {
     element: '',
-    title: ''
+    title: '',
+    enterReadingTip: '进入阅读模式，按 ESC 键可退出阅读模式'
   },
   customClass: '',
   afterSticky: null,
@@ -11533,7 +11566,9 @@ defaults.print = {
   // 可以直接设置标题文本，也可以是文章页的主标题 DOM 元素。
   // 纯静态的页面，设置 DOM 元素，可能更好，确保每个页面的主标题 DOM 元素的选择器不变
   // 则 title 会是一个可变的值，这样比直接设置标题文本更加灵活；
-  title: document.querySelector('.title')
+  title: document.querySelector('.title'),
+  // 进入阅读模式的提示消息文本
+  enterReadingTip: '进入阅读模式，按 ESC 键可退出阅读模式'
 }
 outline = new Outline(Outline.DEFAULTS)</code></pre><p>演示地址：<a target="_blank" href="https://yaohaixiao.github.io/outline.js/flex.html">https://yaohaixiao.github.io/outline.js/flex.html</a></p></div></section><section class="section"><header class="section__header"><h3 class="section__h3">customClass</h3></header><div class="section__content"><h4 class="section__h4">Description</h4><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">String</dd></dl><dl class="section__dl"><dt class="section__dt">Default：</dt><dd class="section__dd">''</dd></dl><p>可选，(DIYer福利)设置自定义样式的 class 名称：</p><ul><li>'' - 采用默认 outline.js 的 UI 界面（默认值）；</li><li>设置自定义样式 - 自己根据需求设置个性化的 UI 界面；</li></ul><pre class="section__pre"><code class="section__code">// Default UI
 new Outline(Outline.DEFAULTS)
@@ -12096,7 +12131,8 @@ export default Toolbar</code></pre></div></section><section class="section"><hea
   tools: [],
   print: {
     element: '',
-    title: ''
+    title: '',
+    enterReadingTip: '进入阅读模式，按 ESC 键可退出阅读模式'
   },
   customClass: '',
   afterSticky: null,
@@ -12564,7 +12600,9 @@ defaults.print = {
   // 可以直接设置标题文本，也可以是文章页的主标题 DOM 元素。
   // 纯静态的页面，设置 DOM 元素，可能更好，确保每个页面的主标题 DOM 元素的选择器不变
   // 则 title 会是一个可变的值，这样比直接设置标题文本更加灵活；
-  title: document.querySelector('.title')
+  title: document.querySelector('.title'),
+  // 进入阅读模式的提示消息文本
+  enterReadingTip: '进入阅读模式，按 ESC 键可退出阅读模式'
 }
 outline = new Outline(Outline.DEFAULTS)</code></pre><p>演示地址：<a target="_blank" href="https://yaohaixiao.github.io/outline.js/flex.html">https://yaohaixiao.github.io/outline.js/flex.html</a></p></div></section><section class="section"><header class="section__header"><h3 class="section__h3">customClass</h3></header><div class="section__content"><h4 class="section__h4">Description</h4><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">String</dd></dl><dl class="section__dl"><dt class="section__dt">Default：</dt><dd class="section__dd">''</dd></dl><p>可选，(DIYer福利)设置自定义样式的 class 名称：</p><ul><li>'' - 采用默认 outline.js 的 UI 界面（默认值）；</li><li>设置自定义样式 - 自己根据需求设置个性化的 UI 界面；</li></ul><pre class="section__pre"><code class="section__code">// Default UI
 new Outline(Outline.DEFAULTS)
@@ -13127,7 +13165,8 @@ export default Toolbar</code></pre></div></section><section class="section"><hea
   tools: [],
   print: {
     element: '',
-    title: ''
+    title: '',
+    enterReadingTip: '进入阅读模式，按 ESC 键可退出阅读模式'
   },
   customClass: '',
   afterSticky: null,
@@ -13595,7 +13634,9 @@ defaults.print = {
   // 可以直接设置标题文本，也可以是文章页的主标题 DOM 元素。
   // 纯静态的页面，设置 DOM 元素，可能更好，确保每个页面的主标题 DOM 元素的选择器不变
   // 则 title 会是一个可变的值，这样比直接设置标题文本更加灵活；
-  title: document.querySelector('.title')
+  title: document.querySelector('.title'),
+  // 进入阅读模式的提示消息文本
+  enterReadingTip: '进入阅读模式，按 ESC 键可退出阅读模式'
 }
 outline = new Outline(Outline.DEFAULTS)</code></pre><p>演示地址：<a target="_blank" href="https://yaohaixiao.github.io/outline.js/flex.html">https://yaohaixiao.github.io/outline.js/flex.html</a></p></div></section><section class="section"><header class="section__header"><h3 class="section__h3">customClass</h3></header><div class="section__content"><h4 class="section__h4">Description</h4><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">String</dd></dl><dl class="section__dl"><dt class="section__dt">Default：</dt><dd class="section__dd">''</dd></dl><p>可选，(DIYer福利)设置自定义样式的 class 名称：</p><ul><li>'' - 采用默认 outline.js 的 UI 界面（默认值）；</li><li>设置自定义样式 - 自己根据需求设置个性化的 UI 界面；</li></ul><pre class="section__pre"><code class="section__code">// Default UI
 new Outline(Outline.DEFAULTS)
@@ -14158,7 +14199,8 @@ export default Toolbar</code></pre></div></section><section class="section"><hea
   tools: [],
   print: {
     element: '',
-    title: ''
+    title: '',
+    enterReadingTip: '进入阅读模式，按 ESC 键可退出阅读模式'
   },
   customClass: '',
   afterSticky: null,
@@ -14626,7 +14668,9 @@ defaults.print = {
   // 可以直接设置标题文本，也可以是文章页的主标题 DOM 元素。
   // 纯静态的页面，设置 DOM 元素，可能更好，确保每个页面的主标题 DOM 元素的选择器不变
   // 则 title 会是一个可变的值，这样比直接设置标题文本更加灵活；
-  title: document.querySelector('.title')
+  title: document.querySelector('.title'),
+  // 进入阅读模式的提示消息文本
+  enterReadingTip: '进入阅读模式，按 ESC 键可退出阅读模式'
 }
 outline = new Outline(Outline.DEFAULTS)</code></pre><p>演示地址：<a target="_blank" href="https://yaohaixiao.github.io/outline.js/flex.html">https://yaohaixiao.github.io/outline.js/flex.html</a></p></div></section><section class="section"><header class="section__header"><h3 class="section__h3">customClass</h3></header><div class="section__content"><h4 class="section__h4">Description</h4><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">String</dd></dl><dl class="section__dl"><dt class="section__dt">Default：</dt><dd class="section__dd">''</dd></dl><p>可选，(DIYer福利)设置自定义样式的 class 名称：</p><ul><li>'' - 采用默认 outline.js 的 UI 界面（默认值）；</li><li>设置自定义样式 - 自己根据需求设置个性化的 UI 界面；</li></ul><pre class="section__pre"><code class="section__code">// Default UI
 new Outline(Outline.DEFAULTS)
@@ -15189,7 +15233,8 @@ export default Toolbar</code></pre></div></section><section class="section"><hea
   tools: [],
   print: {
     element: '',
-    title: ''
+    title: '',
+    enterReadingTip: '进入阅读模式，按 ESC 键可退出阅读模式'
   },
   customClass: '',
   afterSticky: null,
@@ -15657,7 +15702,9 @@ defaults.print = {
   // 可以直接设置标题文本，也可以是文章页的主标题 DOM 元素。
   // 纯静态的页面，设置 DOM 元素，可能更好，确保每个页面的主标题 DOM 元素的选择器不变
   // 则 title 会是一个可变的值，这样比直接设置标题文本更加灵活；
-  title: document.querySelector('.title')
+  title: document.querySelector('.title'),
+  // 进入阅读模式的提示消息文本
+  enterReadingTip: '进入阅读模式，按 ESC 键可退出阅读模式'
 }
 outline = new Outline(Outline.DEFAULTS)</code></pre><p>演示地址：<a target="_blank" href="https://yaohaixiao.github.io/outline.js/flex.html">https://yaohaixiao.github.io/outline.js/flex.html</a></p></div></section><section class="section"><header class="section__header"><h3 class="section__h3">customClass</h3></header><div class="section__content"><h4 class="section__h4">Description</h4><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">String</dd></dl><dl class="section__dl"><dt class="section__dt">Default：</dt><dd class="section__dd">''</dd></dl><p>可选，(DIYer福利)设置自定义样式的 class 名称：</p><ul><li>'' - 采用默认 outline.js 的 UI 界面（默认值）；</li><li>设置自定义样式 - 自己根据需求设置个性化的 UI 界面；</li></ul><pre class="section__pre"><code class="section__code">// Default UI
 new Outline(Outline.DEFAULTS)
@@ -16220,7 +16267,8 @@ export default Toolbar</code></pre></div></section><section class="section"><hea
   tools: [],
   print: {
     element: '',
-    title: ''
+    title: '',
+    enterReadingTip: '进入阅读模式，按 ESC 键可退出阅读模式'
   },
   customClass: '',
   afterSticky: null,
@@ -16688,7 +16736,9 @@ defaults.print = {
   // 可以直接设置标题文本，也可以是文章页的主标题 DOM 元素。
   // 纯静态的页面，设置 DOM 元素，可能更好，确保每个页面的主标题 DOM 元素的选择器不变
   // 则 title 会是一个可变的值，这样比直接设置标题文本更加灵活；
-  title: document.querySelector('.title')
+  title: document.querySelector('.title'),
+  // 进入阅读模式的提示消息文本
+  enterReadingTip: '进入阅读模式，按 ESC 键可退出阅读模式'
 }
 outline = new Outline(Outline.DEFAULTS)</code></pre><p>演示地址：<a target="_blank" href="https://yaohaixiao.github.io/outline.js/flex.html">https://yaohaixiao.github.io/outline.js/flex.html</a></p></div></section><section class="section"><header class="section__header"><h3 class="section__h3">customClass</h3></header><div class="section__content"><h4 class="section__h4">Description</h4><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">String</dd></dl><dl class="section__dl"><dt class="section__dt">Default：</dt><dd class="section__dd">''</dd></dl><p>可选，(DIYer福利)设置自定义样式的 class 名称：</p><ul><li>'' - 采用默认 outline.js 的 UI 界面（默认值）；</li><li>设置自定义样式 - 自己根据需求设置个性化的 UI 界面；</li></ul><pre class="section__pre"><code class="section__code">// Default UI
 new Outline(Outline.DEFAULTS)
@@ -17251,7 +17301,8 @@ export default Toolbar</code></pre></div></section><section class="section"><hea
   tools: [],
   print: {
     element: '',
-    title: ''
+    title: '',
+    enterReadingTip: '进入阅读模式，按 ESC 键可退出阅读模式'
   },
   customClass: '',
   afterSticky: null,
@@ -17719,7 +17770,9 @@ defaults.print = {
   // 可以直接设置标题文本，也可以是文章页的主标题 DOM 元素。
   // 纯静态的页面，设置 DOM 元素，可能更好，确保每个页面的主标题 DOM 元素的选择器不变
   // 则 title 会是一个可变的值，这样比直接设置标题文本更加灵活；
-  title: document.querySelector('.title')
+  title: document.querySelector('.title'),
+  // 进入阅读模式的提示消息文本
+  enterReadingTip: '进入阅读模式，按 ESC 键可退出阅读模式'
 }
 outline = new Outline(Outline.DEFAULTS)</code></pre><p>演示地址：<a target="_blank" href="https://yaohaixiao.github.io/outline.js/flex.html">https://yaohaixiao.github.io/outline.js/flex.html</a></p></div></section><section class="section"><header class="section__header"><h3 class="section__h3">customClass</h3></header><div class="section__content"><h4 class="section__h4">Description</h4><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">String</dd></dl><dl class="section__dl"><dt class="section__dt">Default：</dt><dd class="section__dd">''</dd></dl><p>可选，(DIYer福利)设置自定义样式的 class 名称：</p><ul><li>'' - 采用默认 outline.js 的 UI 界面（默认值）；</li><li>设置自定义样式 - 自己根据需求设置个性化的 UI 界面；</li></ul><pre class="section__pre"><code class="section__code">// Default UI
 new Outline(Outline.DEFAULTS)
@@ -18282,7 +18335,8 @@ export default Toolbar</code></pre></div></section><section class="section"><hea
   tools: [],
   print: {
     element: '',
-    title: ''
+    title: '',
+    enterReadingTip: '进入阅读模式，按 ESC 键可退出阅读模式'
   },
   customClass: '',
   afterSticky: null,
@@ -18750,7 +18804,9 @@ defaults.print = {
   // 可以直接设置标题文本，也可以是文章页的主标题 DOM 元素。
   // 纯静态的页面，设置 DOM 元素，可能更好，确保每个页面的主标题 DOM 元素的选择器不变
   // 则 title 会是一个可变的值，这样比直接设置标题文本更加灵活；
-  title: document.querySelector('.title')
+  title: document.querySelector('.title'),
+  // 进入阅读模式的提示消息文本
+  enterReadingTip: '进入阅读模式，按 ESC 键可退出阅读模式'
 }
 outline = new Outline(Outline.DEFAULTS)</code></pre><p>演示地址：<a target="_blank" href="https://yaohaixiao.github.io/outline.js/flex.html">https://yaohaixiao.github.io/outline.js/flex.html</a></p></div></section><section class="section"><header class="section__header"><h3 class="section__h3">customClass</h3></header><div class="section__content"><h4 class="section__h4">Description</h4><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">String</dd></dl><dl class="section__dl"><dt class="section__dt">Default：</dt><dd class="section__dd">''</dd></dl><p>可选，(DIYer福利)设置自定义样式的 class 名称：</p><ul><li>'' - 采用默认 outline.js 的 UI 界面（默认值）；</li><li>设置自定义样式 - 自己根据需求设置个性化的 UI 界面；</li></ul><pre class="section__pre"><code class="section__code">// Default UI
 new Outline(Outline.DEFAULTS)
@@ -19313,7 +19369,8 @@ export default Toolbar</code></pre></div></section><section class="section"><hea
   tools: [],
   print: {
     element: '',
-    title: ''
+    title: '',
+    enterReadingTip: '进入阅读模式，按 ESC 键可退出阅读模式'
   },
   customClass: '',
   afterSticky: null,
@@ -19781,7 +19838,9 @@ defaults.print = {
   // 可以直接设置标题文本，也可以是文章页的主标题 DOM 元素。
   // 纯静态的页面，设置 DOM 元素，可能更好，确保每个页面的主标题 DOM 元素的选择器不变
   // 则 title 会是一个可变的值，这样比直接设置标题文本更加灵活；
-  title: document.querySelector('.title')
+  title: document.querySelector('.title'),
+  // 进入阅读模式的提示消息文本
+  enterReadingTip: '进入阅读模式，按 ESC 键可退出阅读模式'
 }
 outline = new Outline(Outline.DEFAULTS)</code></pre><p>演示地址：<a target="_blank" href="https://yaohaixiao.github.io/outline.js/flex.html">https://yaohaixiao.github.io/outline.js/flex.html</a></p></div></section><section class="section"><header class="section__header"><h3 class="section__h3">customClass</h3></header><div class="section__content"><h4 class="section__h4">Description</h4><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">String</dd></dl><dl class="section__dl"><dt class="section__dt">Default：</dt><dd class="section__dd">''</dd></dl><p>可选，(DIYer福利)设置自定义样式的 class 名称：</p><ul><li>'' - 采用默认 outline.js 的 UI 界面（默认值）；</li><li>设置自定义样式 - 自己根据需求设置个性化的 UI 界面；</li></ul><pre class="section__pre"><code class="section__code">// Default UI
 new Outline(Outline.DEFAULTS)
@@ -20344,7 +20403,8 @@ export default Toolbar</code></pre></div></section><section class="section"><hea
   tools: [],
   print: {
     element: '',
-    title: ''
+    title: '',
+    enterReadingTip: '进入阅读模式，按 ESC 键可退出阅读模式'
   },
   customClass: '',
   afterSticky: null,
@@ -20812,7 +20872,9 @@ defaults.print = {
   // 可以直接设置标题文本，也可以是文章页的主标题 DOM 元素。
   // 纯静态的页面，设置 DOM 元素，可能更好，确保每个页面的主标题 DOM 元素的选择器不变
   // 则 title 会是一个可变的值，这样比直接设置标题文本更加灵活；
-  title: document.querySelector('.title')
+  title: document.querySelector('.title'),
+  // 进入阅读模式的提示消息文本
+  enterReadingTip: '进入阅读模式，按 ESC 键可退出阅读模式'
 }
 outline = new Outline(Outline.DEFAULTS)</code></pre><p>演示地址：<a target="_blank" href="https://yaohaixiao.github.io/outline.js/flex.html">https://yaohaixiao.github.io/outline.js/flex.html</a></p></div></section><section class="section"><header class="section__header"><h3 class="section__h3">customClass</h3></header><div class="section__content"><h4 class="section__h4">Description</h4><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">String</dd></dl><dl class="section__dl"><dt class="section__dt">Default：</dt><dd class="section__dd">''</dd></dl><p>可选，(DIYer福利)设置自定义样式的 class 名称：</p><ul><li>'' - 采用默认 outline.js 的 UI 界面（默认值）；</li><li>设置自定义样式 - 自己根据需求设置个性化的 UI 界面；</li></ul><pre class="section__pre"><code class="section__code">// Default UI
 new Outline(Outline.DEFAULTS)
@@ -21375,7 +21437,8 @@ export default Toolbar</code></pre></div></section><section class="section"><hea
   tools: [],
   print: {
     element: '',
-    title: ''
+    title: '',
+    enterReadingTip: '进入阅读模式，按 ESC 键可退出阅读模式'
   },
   customClass: '',
   afterSticky: null,
@@ -21843,7 +21906,9 @@ defaults.print = {
   // 可以直接设置标题文本，也可以是文章页的主标题 DOM 元素。
   // 纯静态的页面，设置 DOM 元素，可能更好，确保每个页面的主标题 DOM 元素的选择器不变
   // 则 title 会是一个可变的值，这样比直接设置标题文本更加灵活；
-  title: document.querySelector('.title')
+  title: document.querySelector('.title'),
+  // 进入阅读模式的提示消息文本
+  enterReadingTip: '进入阅读模式，按 ESC 键可退出阅读模式'
 }
 outline = new Outline(Outline.DEFAULTS)</code></pre><p>演示地址：<a target="_blank" href="https://yaohaixiao.github.io/outline.js/flex.html">https://yaohaixiao.github.io/outline.js/flex.html</a></p></div></section><section class="section"><header class="section__header"><h3 class="section__h3">customClass</h3></header><div class="section__content"><h4 class="section__h4">Description</h4><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">String</dd></dl><dl class="section__dl"><dt class="section__dt">Default：</dt><dd class="section__dd">''</dd></dl><p>可选，(DIYer福利)设置自定义样式的 class 名称：</p><ul><li>'' - 采用默认 outline.js 的 UI 界面（默认值）；</li><li>设置自定义样式 - 自己根据需求设置个性化的 UI 界面；</li></ul><pre class="section__pre"><code class="section__code">// Default UI
 new Outline(Outline.DEFAULTS)
@@ -22406,7 +22471,8 @@ export default Toolbar</code></pre></div></section><section class="section"><hea
   tools: [],
   print: {
     element: '',
-    title: ''
+    title: '',
+    enterReadingTip: '进入阅读模式，按 ESC 键可退出阅读模式'
   },
   customClass: '',
   afterSticky: null,
@@ -22874,7 +22940,9 @@ defaults.print = {
   // 可以直接设置标题文本，也可以是文章页的主标题 DOM 元素。
   // 纯静态的页面，设置 DOM 元素，可能更好，确保每个页面的主标题 DOM 元素的选择器不变
   // 则 title 会是一个可变的值，这样比直接设置标题文本更加灵活；
-  title: document.querySelector('.title')
+  title: document.querySelector('.title'),
+  // 进入阅读模式的提示消息文本
+  enterReadingTip: '进入阅读模式，按 ESC 键可退出阅读模式'
 }
 outline = new Outline(Outline.DEFAULTS)</code></pre><p>演示地址：<a target="_blank" href="https://yaohaixiao.github.io/outline.js/flex.html">https://yaohaixiao.github.io/outline.js/flex.html</a></p></div></section><section class="section"><header class="section__header"><h3 class="section__h3">customClass</h3></header><div class="section__content"><h4 class="section__h4">Description</h4><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">String</dd></dl><dl class="section__dl"><dt class="section__dt">Default：</dt><dd class="section__dd">''</dd></dl><p>可选，(DIYer福利)设置自定义样式的 class 名称：</p><ul><li>'' - 采用默认 outline.js 的 UI 界面（默认值）；</li><li>设置自定义样式 - 自己根据需求设置个性化的 UI 界面；</li></ul><pre class="section__pre"><code class="section__code">// Default UI
 new Outline(Outline.DEFAULTS)
@@ -23437,7 +23505,8 @@ export default Toolbar</code></pre></div></section><section class="section"><hea
   tools: [],
   print: {
     element: '',
-    title: ''
+    title: '',
+    enterReadingTip: '进入阅读模式，按 ESC 键可退出阅读模式'
   },
   customClass: '',
   afterSticky: null,
@@ -23905,7 +23974,9 @@ defaults.print = {
   // 可以直接设置标题文本，也可以是文章页的主标题 DOM 元素。
   // 纯静态的页面，设置 DOM 元素，可能更好，确保每个页面的主标题 DOM 元素的选择器不变
   // 则 title 会是一个可变的值，这样比直接设置标题文本更加灵活；
-  title: document.querySelector('.title')
+  title: document.querySelector('.title'),
+  // 进入阅读模式的提示消息文本
+  enterReadingTip: '进入阅读模式，按 ESC 键可退出阅读模式'
 }
 outline = new Outline(Outline.DEFAULTS)</code></pre><p>演示地址：<a target="_blank" href="https://yaohaixiao.github.io/outline.js/flex.html">https://yaohaixiao.github.io/outline.js/flex.html</a></p></div></section><section class="section"><header class="section__header"><h3 class="section__h3">customClass</h3></header><div class="section__content"><h4 class="section__h4">Description</h4><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">String</dd></dl><dl class="section__dl"><dt class="section__dt">Default：</dt><dd class="section__dd">''</dd></dl><p>可选，(DIYer福利)设置自定义样式的 class 名称：</p><ul><li>'' - 采用默认 outline.js 的 UI 界面（默认值）；</li><li>设置自定义样式 - 自己根据需求设置个性化的 UI 界面；</li></ul><pre class="section__pre"><code class="section__code">// Default UI
 new Outline(Outline.DEFAULTS)
@@ -24468,7 +24539,8 @@ export default Toolbar</code></pre></div></section><section class="section"><hea
   tools: [],
   print: {
     element: '',
-    title: ''
+    title: '',
+    enterReadingTip: '进入阅读模式，按 ESC 键可退出阅读模式'
   },
   customClass: '',
   afterSticky: null,
@@ -24936,7 +25008,9 @@ defaults.print = {
   // 可以直接设置标题文本，也可以是文章页的主标题 DOM 元素。
   // 纯静态的页面，设置 DOM 元素，可能更好，确保每个页面的主标题 DOM 元素的选择器不变
   // 则 title 会是一个可变的值，这样比直接设置标题文本更加灵活；
-  title: document.querySelector('.title')
+  title: document.querySelector('.title'),
+  // 进入阅读模式的提示消息文本
+  enterReadingTip: '进入阅读模式，按 ESC 键可退出阅读模式'
 }
 outline = new Outline(Outline.DEFAULTS)</code></pre><p>演示地址：<a target="_blank" href="https://yaohaixiao.github.io/outline.js/flex.html">https://yaohaixiao.github.io/outline.js/flex.html</a></p></div></section><section class="section"><header class="section__header"><h3 class="section__h3">customClass</h3></header><div class="section__content"><h4 class="section__h4">Description</h4><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">String</dd></dl><dl class="section__dl"><dt class="section__dt">Default：</dt><dd class="section__dd">''</dd></dl><p>可选，(DIYer福利)设置自定义样式的 class 名称：</p><ul><li>'' - 采用默认 outline.js 的 UI 界面（默认值）；</li><li>设置自定义样式 - 自己根据需求设置个性化的 UI 界面；</li></ul><pre class="section__pre"><code class="section__code">// Default UI
 new Outline(Outline.DEFAULTS)
@@ -25499,7 +25573,8 @@ export default Toolbar</code></pre></div></section><section class="section"><hea
   tools: [],
   print: {
     element: '',
-    title: ''
+    title: '',
+    enterReadingTip: '进入阅读模式，按 ESC 键可退出阅读模式'
   },
   customClass: '',
   afterSticky: null,
@@ -25967,7 +26042,9 @@ defaults.print = {
   // 可以直接设置标题文本，也可以是文章页的主标题 DOM 元素。
   // 纯静态的页面，设置 DOM 元素，可能更好，确保每个页面的主标题 DOM 元素的选择器不变
   // 则 title 会是一个可变的值，这样比直接设置标题文本更加灵活；
-  title: document.querySelector('.title')
+  title: document.querySelector('.title'),
+  // 进入阅读模式的提示消息文本
+  enterReadingTip: '进入阅读模式，按 ESC 键可退出阅读模式'
 }
 outline = new Outline(Outline.DEFAULTS)</code></pre><p>演示地址：<a target="_blank" href="https://yaohaixiao.github.io/outline.js/flex.html">https://yaohaixiao.github.io/outline.js/flex.html</a></p></div></section><section class="section"><header class="section__header"><h3 class="section__h3">customClass</h3></header><div class="section__content"><h4 class="section__h4">Description</h4><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">String</dd></dl><dl class="section__dl"><dt class="section__dt">Default：</dt><dd class="section__dd">''</dd></dl><p>可选，(DIYer福利)设置自定义样式的 class 名称：</p><ul><li>'' - 采用默认 outline.js 的 UI 界面（默认值）；</li><li>设置自定义样式 - 自己根据需求设置个性化的 UI 界面；</li></ul><pre class="section__pre"><code class="section__code">// Default UI
 new Outline(Outline.DEFAULTS)
@@ -26530,7 +26607,8 @@ export default Toolbar</code></pre></div></section><section class="section"><hea
   tools: [],
   print: {
     element: '',
-    title: ''
+    title: '',
+    enterReadingTip: '进入阅读模式，按 ESC 键可退出阅读模式'
   },
   customClass: '',
   afterSticky: null,

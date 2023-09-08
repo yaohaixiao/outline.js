@@ -241,7 +241,9 @@ const outline = new Outline({
       element: '',
       // （可选）要打印的文章标题。如果 element 区域有 h1 标签则无需设置。
       // 可以直接设置标题文本，也可以是文章页的主标题 DOM 元素
-      title: ''
+      title: '',
+      // 进入阅读模式的提示消息文本
+      enterReadingTip: '进入阅读模式，按 ESC 键可退出阅读模式'
     },
     // DIYer的福利
     // 独立侧滑菜单时，customClass 会追加到 drawer 侧滑窗口组件
@@ -480,7 +482,8 @@ Outline.DEFAULTS = {
   tools: [],
   print: {
     element: '',
-    title: ''
+    title: '',
+    enterReadingTip: '进入阅读模式，按 ESC 键可退出阅读模式'
   },
   customClass: '',
   afterSticky: null,
