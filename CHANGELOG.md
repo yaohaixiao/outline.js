@@ -1,3 +1,12 @@
+## [3.25.1](https://github.com/yaohaixiao/outline.js/compare/3.25.0...3.25.1) (2023-09-08)
+
+
+### Bug Fixes
+
+* 修复 package.json 中 files 配置缺少 message.css 和 message.js 导致引入 outline.js 模块的编译错误 ([93630b5](https://github.com/yaohaixiao/outline.js/commit/93630b5d0f8c2f03e4e77cd2d9740a31980d0628))
+
+
+
 # [3.25.0](https://github.com/yaohaixiao/outline.js/compare/3.24.2...3.25.0) (2023-09-07)
 
 
