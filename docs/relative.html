@@ -186,7 +186,9 @@ defaults.print = {
   // 可以直接设置标题文本，也可以是文章页的主标题 DOM 元素。
   // 纯静态的页面，设置 DOM 元素，可能更好，确保每个页面的主标题 DOM 元素的选择器不变
   // 则 title 会是一个可变的值，这样比直接设置标题文本更加灵活；
-  title: document.querySelector('.title')
+  title: document.querySelector('.title'),
+  // 进入阅读模式的提示消息文本
+  enterReadingTip: '进入阅读模式，按 ESC 键可退出阅读模式'
 }
 outline = new Outline(Outline.DEFAULTS)</code></pre><p>演示地址：<a target="_blank" href="https://yaohaixiao.github.io/outline.js/flex.html">https://yaohaixiao.github.io/outline.js/flex.html</a></p></div></section><section class="section"><header class="section__header"><h3 class="section__h3">customClass</h3></header><div class="section__content"><h4 class="section__h4">Description</h4><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">String</dd></dl><dl class="section__dl"><dt class="section__dt">Default：</dt><dd class="section__dd">''</dd></dl><p>可选，(DIYer福利)设置自定义样式的 class 名称：</p><ul><li>'' - 采用默认 outline.js 的 UI 界面（默认值）；</li><li>设置自定义样式 - 自己根据需求设置个性化的 UI 界面；</li></ul><pre class="section__pre"><code class="section__code">// Default UI
 new Outline(Outline.DEFAULTS)
@@ -749,7 +751,8 @@ export default Toolbar</code></pre></div></section><section class="section"><hea
   tools: [],
   print: {
     element: '',
-    title: ''
+    title: '',
+    enterReadingTip: '进入阅读模式，按 ESC 键可退出阅读模式'
   },
   customClass: '',
   afterSticky: null,
@@ -1025,7 +1028,69 @@ outline.$on('created')
 outline.$off('created')
 
 // 不会有任何反应，因为已经取消订阅了
-outline.$emit('created')</code></pre></div></section></section><h2>License</h2><p>JavaScript Code Licensed under MIT License.</p><p>API Documentation Licensed under CC BY 3.0</p></main></article><footer class="footer"><footer class="main__footer" id="footer"><p>Copyright &copy; 2023 <a href="https://github.com/yaohaixiao">Robert Yao</a>, all right reserved.</p><p>Code licensed under&nbsp;<a href="http://opensource.org/licenses/mit-license.html">MIT License</a></p><p>Documentation licensed under<a href="http://creativecommons.org/licenses/by/3.0/">CC BY 3.0</a></p><p><a href="https://github.com/yaohaixiao/outline.js">View on GitHub</a> ·
+outline.$emit('created')</code></pre></div></section></section><section class="section"><header class="section__header"><h2 class="section__title">Events</h2></header><div class="section__content"><p>outline.js 从 3.21.0 开始提供了 6 事件。通过 outline.js 在 3.21.0 新添加的 $on() 方法监听。</p></div><section class="section"><header class="section__header"><h3 class="section__h3">created</h3></header><div class="section__content"><table class="section__table"><thead class="section__thead"><tr class="section__tr"><th class="section__th">事件名称</th><th class="section__th">说明</th><th class="section__th">回调参数</th></tr></thead><tbody class="section__tbody"><tr class="section__tr"><td class="section__td">created</td><td class="section__td">Outline 实例配置信息初始化完成后触发，此时 DOM 元素还没有绘制。</td><td class="section__td">返回实例最终的 attrs 配置属性的（对象）值。</td></tr></tbody></table><h4 class="section__h4">Usage</h4><pre class="section__pre"><code class="section__code">const outline = new Outline()
+
+outline.$on('created', function(attrs) {
+  // this 上下文就是 outline 实例
+  // attrs === outline.attr()
+})
+
+// 当 outline 实例的配置信息初始化完毕，就会触发 created 事件
+outline.initialize(Outline.DEFAULTS)</code></pre></div></section><section class="section"><header class="section__header"><h3 class="section__h3">mounted</h3></header><div class="section__content"><table class="section__table"><thead class="section__thead"><tr class="section__tr"><th class="section__th">事件名称</th><th class="section__th">说明</th><th class="section__th">回调参数</th></tr></thead><tbody class="section__tbody"><tr class="section__tr"><td class="section__td">mounted</td><td class="section__td">Outline 实例的所有 DOM 元素绘制完毕后触发。</td><td class="section__td">--</td></tr></tbody></table><h4 class="section__h4">Usage</h4><pre class="section__pre"><code class="section__code">const outline = new Outline()
+
+outline.$on('mounted', function() {
+  // do something
+})
+
+// 当 outline 实例的所有 DOM 绘制完毕，就会触发 mounted 事件
+outline.initialize(Outline.DEFAULTS)</code></pre></div></section><section class="section"><header class="section__header"><h3 class="section__h3">enterReading</h3></header><div class="section__content"><table class="section__table"><thead class="section__thead"><tr class="section__tr"><th class="section__th">事件名称</th><th class="section__th">说明</th><th class="section__th">回调参数</th></tr></thead><tbody class="section__tbody"><tr class="section__tr"><td class="section__td">enterReading</td><td class="section__td">配置了 print 参数，在进入阅读模式后会触发。</td><td class="section__td">--</td></tr></tbody></table><h4 class="section__h4">Usage</h4><pre class="section__pre"><code class="section__code">const defaults = Outline.DEFAULTS
+
+// 需要配置 print 参数
+defaults.print = {
+  element: '#article',
+  title: document.querySelector('.title')
+}
+
+const outline = new Outline(Outline.DEFAULTS)
+
+outline.$on('enterReading', function() {
+  // this 上下文就是 outline 实例
+  console.log('this', this)
+})
+
+// 手动触发 enterReading 事件
+outline.$emit('enterReading')</code></pre></div></section><section class="section"><header class="section__header"><h3 class="section__h3">exitReading</h3></header><div class="section__content"><table class="section__table"><thead class="section__thead"><tr class="section__tr"><th class="section__th">事件名称</th><th class="section__th">说明</th><th class="section__th">回调参数</th></tr></thead><tbody class="section__tbody"><tr class="section__tr"><td class="section__td">exitReading<td class="section__td">配置了 print 参数，在离开阅读模式后会触发。</td><td class="section__td">--</td></td></tr></tbody></table><h4 class="section__h4">Usage</h4><pre class="section__pre"><code class="section__code">const defaults = Outline.DEFAULTS
+
+// 需要配置 print 参数
+defaults.print = {
+  element: '#article',
+  title: document.querySelector('.title')
+}
+
+const outline = new Outline(Outline.DEFAULTS)
+
+outline.$on('exitReading', function() {
+  // this 上下文就是 outline 实例
+  console.log('this', this)
+})
+
+// 手动触发 exitReading 事件
+outline.$emit('exitReading')</code></pre></div></section><section class="section"><header class="section__header"><h3 class="section__h3">beforeDestroy</h3></header><div class="section__content"><table class="section__table"><thead class="section__thead"><tr class="section__tr"><th class="section__th">事件名称</th><th class="section__th">说明</th><th class="section__th">回调参数</th></tr></thead><tbody class="section__tbody"><tr class="section__tr"><td class="section__td">beforeDestroy</td><td class="section__td">Outline 实例销毁前事件，在调用 Outline 对象的实例 destroy() 方法后会触发。</td><td class="section__td">--</td></tr></tbody></table><h4 class="section__h4">Usage</h4><pre class="section__pre"><code class="section__code">const outline = new Outline(Outline.DEFAULTS)
+
+outline.$on('beforeDestroy', function() {
+  // this 上下文就是 outline 实例
+  console.log('this', this)
+})
+
+outline.destroy()</code></pre></div></section><section class="section"><header class="section__header"><h3 class="section__h3">destroyed</h3></header><div class="section__content"><table class="section__table"><thead class="section__thead"><tr class="section__tr"><th class="section__th">事件名称</th><th class="section__th">说明</th><th class="section__th">回调参数</th></tr></thead><tbody class="section__tbody"><tr class="section__tr"><td class="section__td">destroyed</td><td class="section__td">Outline 实例销毁后事件，在调用 Outline 对象的实例 destroy() 方法后会触发。</td><td class="section__td">--</td></tr></tbody></table><h4 class="section__h4">Usage</h4><pre class="section__pre"><code class="section__code">const outline = new Outline(Outline.DEFAULTS)
+
+outline.$on('beforeDestroy', function() {
+  // this 上下文就是 outline 实例
+  console.log('this', this)
+})
+
+outline.destroy()</code></pre></div></section></section><h2>License</h2><p>JavaScript Code Licensed under MIT License.</p><p>API Documentation Licensed under CC BY 3.0</p></main></article><footer class="footer"><footer class="main__footer" id="footer"><p>Copyright &copy; 2023 <a href="https://github.com/yaohaixiao">Robert Yao</a>, all right reserved.</p><p>Code licensed under&nbsp;<a href="http://opensource.org/licenses/mit-license.html">MIT License</a></p><p>Documentation licensed under&nbsp;
+<a href="http://creativecommons.org/licenses/by/3.0/">CC BY 3.0</a></p><p><a href="https://github.com/yaohaixiao/outline.js">View on GitHub</a> ·
 <a href="https://github.com/yaohaixiao/outline.js/issues">Issues</a></p></footer></footer></div><script src="js/outline.min.js"></script><script>const defaults = Outline.DEFAULTS
 let outline
 

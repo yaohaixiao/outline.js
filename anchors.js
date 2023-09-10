@@ -1,9 +1,7 @@
-import Base from './base'
-
-// 在文章的标题生成 anchor 链接
 import isString from './utils/types/isString'
 import isFunction from './utils/types/isFunction'
 import isElement from './utils/types/isElement'
+import timeSlice from './utils/lang/timeSlice'
 import toTree from './utils/lang/toTree'
 import later from './utils/lang/later'
 import scrollTo from './utils/dom/scrollTo'
@@ -17,6 +15,8 @@ import paint from './utils/icons/paint'
 import _updateHeading from './_updateHeading'
 import _resetHeading from './_resetHeading'
 import getChapters from './getChapters'
+
+import Base from './base'
 
 class Anchors extends Base {
   constructor(options) {
@@ -90,26 +90,52 @@ class Anchors extends Base {
   }
 
   render() {
+    const LIMIT = 400
     const mounted = this.attr('mounted')
     const hasAnchor = this.attr('hasAnchor')
     const isAtStart = this.attr('isAtStart')
     const showCode = this.attr('showCode')
     const anchorURL = this.attr('anchorURL')
-    const $headings = this.$headings
+    const count = this.count()
+    const $headings = [...this.$headings]
     const chapters = this.getChapters()
+    const update = (headings, group) => {
+      headings.forEach(($heading, i) => {
+        const id = i + group * LIMIT
+        const chapterCode = chapters[id].code
+        _updateHeading($heading, id, {
+          hasAnchor,
+          isAtStart,
+          showCode,
+          chapterCode,
+          anchorURL
+        })
+      })
+    }
+    let groupIndex = -1
 
     paint()
 
-    $headings.forEach(($heading, i) => {
-      const chapterCode = chapters[i].code
-      _updateHeading($heading, i, {
-        hasAnchor,
-        isAtStart,
-        showCode,
-        chapterCode,
-        anchorURL
-      })
-    })
+    // 针对超长的文章，进行 timeSlice 处理
+    if (count > LIMIT) {
+      groupIndex += 1
+      // 同步绘制 Limit 以内的标题链接（可以确保 50ms 完成绘制）
+      update($headings.splice(0, LIMIT), 0)
+      // 采用 timeSlice 处理机制绘制剩余的标题
+      while ($headings.length > 0) {
+        const once = $headings.splice(0, LIMIT)
+        timeSlice(
+          () => {
+            update(once, (groupIndex += 1))
+          },
+          () => {
+            this.$emit('anchors:all:paint')
+          }
+        )
+      }
+    } else {
+      update($headings, 0)
+    }
 
     if (isFunction(mounted)) {
       mounted.call(this)

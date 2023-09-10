@@ -1,6 +1,6 @@
 import trim from './utils/lang/trim'
 import createElement from './utils/dom/createElement'
-import setAttribute from './utils/dom/setAttribute'
+import setAttributes from './utils/dom/setAttributes'
 
 import icon from './utils/icons/icon'
 
@@ -17,18 +17,14 @@ const _updateHeading = ($heading, i, options) => {
     className: isAtStart ? `${CLS_HEADING} ${CLS_HEADING}_start` : CLS_HEADING,
     'data-id': i
   }
-  const keys = Object.keys(attrs)
   const text = trim($heading.innerHTML)
   let $anchor
   let $icon
 
-  keys.forEach((prop) => {
-    setAttribute($heading, prop, attrs[prop])
-  })
-
   if (showCode) {
-    $heading.innerHTML = chapterCode + ' ' + text
+    attrs.innerHTML = chapterCode + ' ' + text
   }
+  setAttributes($heading, attrs)
 
   if (!hasAnchor) {
     return false

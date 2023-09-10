@@ -1,0 +1,84 @@
+/**
+ * mixins.less - 工具函数
+ * =============================================================
+ * Created By: Yaohaixiao
+ * Update: 2022.3.11
+ */
+@import './colors';
+
+/* ====== 文本省略函数 ====== */
+.ellipsis (@lines) when (@lines=1) {
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+
+.ellipsis (@lines) when (@lines>=2) {
+  -webkit-line-clamp: @lines;
+  display: box;
+  -webkit-box-orient: vertical;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+
+/* ====== 圆角样式设置函数 ====== */
+.radius(@num: 2px) {
+  border-radius: @num;
+}
+
+.radius_none() {
+  .radius(0);
+}
+
+.radius_mini() {
+  .radius(2px);
+}
+
+.radius_small() {
+  .radius(3px);
+}
+
+.radius_regular() {
+  .radius(4px);
+}
+
+.radius_medium() {
+  .radius(5px);
+}
+
+.radius_large() {
+  .radius(10px);
+}
+
+.radius_huge() {
+  .radius(16px);
+}
+
+.radius_round() {
+  .radius(30px);
+}
+
+/* ====== 阴影样式设置函数 ====== */
+.shadow(@offset: 0 0 6px 1px, @color: @primary_border_color) {
+  box-shadow: @offset @color;
+}
+
+.shadow_regular(@color: @primary_border_color) {
+  .shadow(0 0 6px 1px, @color);
+}
+
+.shadow_large(@color: @primary_border_color) {
+  .shadow(0 0 12px 1px, @color);
+}
+
+.shadow_light_regular() {
+  .shadow_regular();
+}
+
+.shadow_light_large() {
+  .shadow_large();
+}
+
+.shadow_dark_regular() {
+  .shadow_regular(@secondary_border_color);
+}

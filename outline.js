@@ -17,7 +17,10 @@ import Anchors from './anchors'
 import Drawer from './drawer'
 import Chapters from './chapters'
 import Toolbar from './toolbar'
-import print from './print'
+import Message from './message'
+import paintPrint from './print'
+
+const ENTER_READING_TIP = '进入阅读模式，按 ESC 键可退出阅读模式'
 
 class Outline extends Base {
   constructor(options) {
@@ -53,9 +56,7 @@ class Outline extends Base {
 
   render() {
     const scrollElement = this.attr('scrollElement')
-    const $scrollElement =
-      document.querySelector(scrollElement) ||
-      document.getElementById(scrollElement)
+    const $scrollElement = document.querySelector(scrollElement)
 
     this._renderPrint()._renderAnchors()._renderChapters()._renderToolbar()
 
@@ -88,7 +89,7 @@ class Outline extends Base {
     }
 
     addClass($articleElement, 'outline-article')
-    print(option.element, option.title)
+    paintPrint(option.element, option.title)
 
     return this
   }
@@ -232,6 +233,15 @@ class Outline extends Base {
         handler: 'toolbar:action:reading'
       }
     }
+    const PRINT = {
+      name: 'print',
+      icon: 'print',
+      size: 20,
+      action: {
+        type: 'click',
+        handler: 'toolbar:action:print'
+      }
+    }
     const DOWN = {
       name: 'down',
       icon: 'down',
@@ -247,9 +257,6 @@ class Outline extends Base {
     if (count > 0) {
       buttons.push(MENU)
     }
-    if (option.element) {
-      buttons.push(READING)
-    }
     if (homepage) {
       buttons.push(HOME)
     }
@@ -262,6 +269,12 @@ class Outline extends Base {
     if (issues) {
       buttons.push(ISSUES)
     }
+    if (option.element) {
+      buttons.push(READING)
+      if (isFunction(print)) {
+        buttons.push(PRINT)
+      }
+    }
     if (tools?.length > 0) {
       buttons.push(...tools)
     }
@@ -270,7 +283,7 @@ class Outline extends Base {
 
     this.toolbar = new Toolbar({
       placement,
-      buttons: buttons
+      buttons
     })
 
     return this
@@ -361,6 +374,8 @@ class Outline extends Base {
     const HIDDEN = `${READING}_hidden`
     const $reading = document.querySelector('#outline-print')
     const $siblings = document.querySelectorAll('.outline-print_sibling')
+    const options = this.attr('print')
+    const enterReadingTip = options.enterReadingTip || ENTER_READING_TIP
 
     if (this.reading || !$reading) {
       return this
@@ -373,6 +388,11 @@ class Outline extends Base {
     this.reading = true
 
     this.toolbar.toggle()
+
+    Message.info({
+      round: true,
+      message: enterReadingTip
+    })
 
     this.$emit('enterReading')
 
@@ -516,6 +536,16 @@ class Outline extends Base {
     return this
   }
 
+  onPrint() {
+    if (!isFunction(print)) {
+      return this
+    }
+
+    print()
+
+    return this
+  }
+
   onToolbarUpdate({ top, min, max }) {
     const toolbar = this.toolbar
     const current = Math.ceil(top)
@@ -546,6 +576,7 @@ class Outline extends Base {
     if ($print) {
       at(document, 'keyup', this.onExitReading, this, true)
       on($print, '.outline-print__close', 'click', this.exitReading, this, true)
+      this.$on('toolbar:action:print', this.onPrint)
     }
 
     return this
@@ -562,6 +593,7 @@ class Outline extends Base {
     if ($print) {
       off(document, 'keyup', this.onExitReading)
       off($print, 'click', this.exitReading)
+      this.$off('toolbar:action:print')
     }
 
     return this
@@ -586,7 +618,8 @@ Outline.DEFAULTS = {
   tools: [],
   print: {
     element: '',
-    title: ''
+    title: '',
+    enterReadingTip: ENTER_READING_TIP
   },
   customClass: '',
   afterSticky: null,

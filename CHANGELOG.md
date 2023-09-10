@@ -1,3 +1,67 @@
+# [3.27.0](https://github.com/yaohaixiao/outline.js/compare/3.26.0...3.27.0) (2023-09-08)
+
+
+### Features
+
+* 配置 print 参数后，针对支持 print() 方法的浏览器，工具栏新增打印按钮，支持直接打印文章 ([d36c7e6](https://github.com/yaohaixiao/outline.js/commit/d36c7e68368b4f96a06a3b59966d1525fbe8b955))
+
+
+
+# [3.26.0](https://github.com/yaohaixiao/outline.js/compare/3.25.1...3.26.0) (2023-09-08)
+
+
+### Features
+
+* 调整 print 参数，添加 enterReadingTip 参数，用于设置进入阅读模式的提示文本（暂时还没有精力直接判断浏览器语言，翻译提示信息） ([87a96ba](https://github.com/yaohaixiao/outline.js/commit/87a96ba600fdb1de3002b4f4cfe6b07ee17b2572))
+
+
+
+## [3.25.1](https://github.com/yaohaixiao/outline.js/compare/3.25.0...3.25.1) (2023-09-08)
+
+
+### Bug Fixes
+
+* 修复 package.json 中 files 配置缺少 message.css 和 message.js 导致引入 outline.js 模块的编译错误 ([93630b5](https://github.com/yaohaixiao/outline.js/commit/93630b5d0f8c2f03e4e77cd2d9740a31980d0628))
+
+
+
+# [3.25.0](https://github.com/yaohaixiao/outline.js/compare/3.24.2...3.25.0) (2023-09-07)
+
+
+### Features
+
+* 优化体验，进入阅读模式添加提示信息 ([bb421c0](https://github.com/yaohaixiao/outline.js/commit/bb421c09162502f87f72a47fb535203a38c171d3))
+
+
+
+## [3.24.2](https://github.com/yaohaixiao/outline.js/compare/3.24.1...3.24.2) (2023-09-06)
+
+
+### Bug Fixes
+
+* 修复 utils 中 cloneDeep() 方法复制数据的逻辑错误 ([33ac030](https://github.com/yaohaixiao/outline.js/commit/33ac03040782df8d1ca7a26df27ecc996340e624))
+
+
+
+## [3.24.1](https://github.com/yaohaixiao/outline.js/compare/3.24.0...3.24.1) (2023-09-06)
+
+
+### Bug Fixes
+
+* 修复针对超长文章使用 timeSlice 机制异步绘制 anchors 链接后，针对标题的和导航菜单的 IntersectionObserver 同步高亮当前（异步绘制的）标题无效的问题； ([e3a468f](https://github.com/yaohaixiao/outline.js/commit/e3a468fd48f883a0dbf14fd98c6ed35f79b9afe8))
+
+
+
+# [3.24.0](https://github.com/yaohaixiao/outline.js/compare/3.23.4...3.24.0) (2023-09-04)
+
+
+### Features
+
+* 优化 anchors.js 中创建图标链接的性能； ([b23312c](https://github.com/yaohaixiao/outline.js/commit/b23312c2c6b88362ac4fbe1a4b582d81d944b722))
+* 针对超长文章，采用 time slice 机制优化性能； ([19d5ee8](https://github.com/yaohaixiao/outline.js/commit/19d5ee86c414fb5fc08cf15a5f35890c9a11bf43))
+
+
+
 ## [3.23.4](https://github.com/yaohaixiao/outline.js/compare/3.23.3...3.23.4) (2023-09-01)
 
 

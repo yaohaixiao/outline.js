@@ -118,6 +118,10 @@ class Chapters extends Base {
     return !this.isInside()
   }
 
+  count() {
+    return this.chapters.length
+  }
+
   _paintEdge() {
     const $fragment = document.createDocumentFragment()
     const STICKY = 'outline-chapters_sticky'
@@ -201,6 +205,7 @@ class Chapters extends Base {
     const mounted = this.attr('mounted')
     const $parentElement = this.$parentElement
     const chapters = this.chapters
+    const count = this.count()
     let $el
     let $list
 
@@ -214,7 +219,10 @@ class Chapters extends Base {
     $list = this.$list
     _paintChapters($list, chapters, showCode)
     removeClass($el, HIDDEN)
-    this.positionPlaceholder(this.active)
+
+    later(() => {
+      this.positionPlaceholder(this.active)
+    }, 60)
 
     this.offsetTop = offsetTop($el)
     this.offsetWidth = $el.offsetWidth
@@ -228,7 +236,9 @@ class Chapters extends Base {
       mounted.call(this)
     }
 
-    this.onObserver()
+    if (count < 400) {
+      this.onObserver()
+    }
 
     return this
   }
@@ -354,10 +364,8 @@ class Chapters extends Base {
 
     if (this.isInside()) {
       removeClass($parent, HIDDEN)
-      removeClass($el, HIDDEN)
       later(() => {
         removeClass($parent, FOLDED)
-        removeClass($el, FOLDED)
       }, 30)
     } else {
       removeClass($el, HIDDEN)
@@ -380,11 +388,9 @@ class Chapters extends Base {
 
     if (this.isInside()) {
       addClass($parent, FOLDED)
-      addClass($el, FOLDED)
       later(() => {
         addClass($parent, HIDDEN)
-        addClass($el, HIDDEN)
-      })
+      }, 30)
     } else {
       addClass($el, HIDDEN)
     }
@@ -577,6 +583,7 @@ class Chapters extends Base {
     if (this.isSticky()) {
       at(window, 'resize', this.onResize, this, true)
     }
+    this.$on('anchors:all:paint', this.onObserver, this)
 
     return this
   }
@@ -598,6 +605,8 @@ class Chapters extends Base {
     if (this.isSticky()) {
       at(window, 'resize', this.onResize)
     }
+
+    this.$off('anchors:all:paint')
 
     if (this.Observer) {
       document.querySelectorAll(selector).forEach((section) => {

@@ -1,6 +1,7 @@
 import isArray from '../types/isArray'
 import isString from '../types/isString'
 import isSVG from '../types/isSVG'
+import setAttributes from '../dom/setAttributes'
 
 /**
  * 创建 SVG 图标 DOM 元素
@@ -11,9 +12,11 @@ import isSVG from '../types/isSVG'
  * @param {Number|Array} [options.size]
  * @param {String} [options.color]
  * @param {String} [options.iconSet]
+ * @param {Object} [options.attrs]
  * @returns {HTMLElement}
  */
 const createElement = (name, options = {}) => {
+  const ICON = 'outline-icon'
   const size = options.size || 0
   const color = options.color || ''
   const iconSet = options.iconSet || ''
@@ -21,6 +24,7 @@ const createElement = (name, options = {}) => {
   const height = isArray(size) ? size[1] : size
   const defaultRules = size ? `width:${width}px;height:${height}px;` : ''
   const cssRules = color ? defaultRules + `color:${color}` : defaultRules
+  const attrs = options.attrs || {}
   const $icon = document.createElement('i')
   let binds = ''
   let svg = ''
@@ -37,24 +41,28 @@ const createElement = (name, options = {}) => {
       iconSet && iconSet !== 'icon'
         ? `xlink:href="#${iconSet}-icon-${name}"`
         : `xlink:href="#icon-${name}"`
-    svg =
-      `<svg aria-hidden="true" class="outline-icon__svg" style="${cssRules}">` +
-      `<use ${binds}></use>` +
-      `</svg>`
+    svg = `<svg><use ${binds}></use></svg>`
   }
 
-  $icon.className = 'outline-icon'
   $icon.innerHTML = svg
 
-  if (isSVG(name)) {
-    $svg = $icon.querySelector('svg')
-    $svg.setAttribute('aria-hidden', 'true')
-    $svg.setAttribute('xmlns', 'http://www.w3.org/2000/svg')
-    $svg.setAttribute('class', 'outline-icon__svg')
-    $svg.setAttribute('width', '200')
-    $svg.setAttribute('height', '200')
-    $svg.style.cssText = cssRules
+  if (attrs.className) {
+    attrs.className = `${ICON} ${attrs.className}`
+  } else {
+    attrs.className = ICON
   }
+
+  setAttributes($icon, attrs)
+
+  $svg = $icon.querySelector('svg')
+  setAttributes($svg, {
+    'aria-hidden': true,
+    xmlns: 'http://www.w3.org/2000/svg',
+    class: 'outline-icon__svg',
+    width: 200,
+    height: 200,
+    style: cssRules
+  })
 
   return $icon
 }

@@ -1,3 +1,4 @@
+import isObject from '../types/isObject'
 import isArray from '../types/isArray'
 
 /**
@@ -12,23 +13,19 @@ import isArray from '../types/isArray'
  * => [2,3,4,6]
  */
 const cloneDeep = (obj) => {
-  let clone
+  let clone = {}
 
   if (obj === null) {
     return null
   }
 
-  clone = Object.assign({}, obj)
-
-  Object.keys(clone).forEach((key) => {
-    return (clone[key] =
-      typeof obj[key] === 'object' ? cloneDeep(obj[key]) : obj[key])
-  })
-
   if (isArray(obj)) {
-    clone.length = obj.length
-
-    return Array.from(clone)
+    clone = Array.from(obj)
+  } else {
+    clone = Object.assign({}, obj)
+    Object.keys(clone).forEach((key) => {
+      return (clone[key] = isObject(obj[key]) ? cloneDeep(obj[key]) : obj[key])
+    })
   }
 
   return clone
