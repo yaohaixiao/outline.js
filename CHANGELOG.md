@@ -1,3 +1,12 @@
+# [3.28.0](https://github.com/yaohaixiao/outline.js/compare/3.27.0...3.28.0) (2023-09-14)
+
+
+### Features
+
+* 修复在文章中显示 chapters 导航，收起时没有动画的问题；采用延迟绘制合克隆节点的方式，优化 print 界面绘制的性能； ([1fad980](https://github.com/yaohaixiao/outline.js/commit/1fad98052523fce9fed7e1de7f4d1bbc0f3a3337))
+
+
+
 # [3.27.0](https://github.com/yaohaixiao/outline.js/compare/3.26.0...3.27.0) (2023-09-08)
 
 
