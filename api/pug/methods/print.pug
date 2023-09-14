@@ -1,0 +1,20 @@
+section.section
+  header.section__header
+    h3.section__h3 print()
+  div.section__content
+    h4.section__h4 Description
+    p print() 方法用于启动打印界面，打印当前文章。
+    h4.section__h4 Returns
+    dl.section__dl
+      dt.section__dt Type：
+      dd.section__dd Outline
+    p Outline 对象，便于链式方法调用。
+    pre.section__pre
+      code.section__code.
+        const outline = new Outline({
+             article: '#article',
+             title: 'Outline v2.0.0'
+        })
+
+        // 如果浏览器支持 print() 打印，则启动打印界面
+        outline.print()

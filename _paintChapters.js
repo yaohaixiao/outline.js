@@ -2,12 +2,11 @@ import createElement from './utils/dom/createElement'
 import timeSlice from './utils/lang/timeSlice'
 
 const _paintChapters = ($list, chapters, showCode = false) => {
-  const LIMIT = 600
+  const LIMIT = 400
   const count = chapters.length
   const clones = [...chapters]
   const paint = (parts) => {
     const byId = (id) => $list.querySelector(`#${id}`)
-
     parts.forEach((chapter) => {
       const pid = chapter.pid
       const id = chapter.id

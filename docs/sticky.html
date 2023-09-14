@@ -55,7 +55,7 @@ Outline.reload({
   // 调整位直接在文章内生成导航
   position: 'sticky',
   articleElement: '#article'
-})</code></pre><section class="section"><header class="section__header"><h2 class="section__title">Options</h2></header><div class="section__content"><p>outline.js 有者丰富的配置选项，以便适应不同的展示方式。</p></div><section class="section"><header class="section__header"><h3 class="section__h3">articleElement</h3></header><div class="section__content"><h4 class="section__h4">Description</h4><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">String|HTMLElement</dd></dl><dl class="section__dl"><dt class="section__dt">Default：</dt><dd class="section__dd">'#article'</dd></dl><dl class="section__dl"><dt class="section__dt">String：</dt><dd class="section__dd">选择器字符串，默认值：html,body（即 window 窗口）;</dd></dl><dl class="section__dl"><dt class="section__dt">HTMLElement：</dt><dd class="section__dd">'DOM 元素;</dd></dl><p>可选，用来指定页面中显示文章正文的 DOM 节点或者选择器字符串。</p><pre class="section__pre"><code class="section__code">// Default Selector
+})</code></pre><section class="section"><header class="section__header"><h2 class="section__title">Options</h2></header><div class="section__content"><p>outline.js 有者丰富的配置选项，以便适应不同的展示方式。</p></div><section class="section"><header class="section__header"><h3 class="section__h3">articleElement</h3></header><div class="section__content"><h4 class="section__h4">Description</h4><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">String|HTMLElement</dd></dl><dl class="section__dl"><dt class="section__dt">Default：</dt><dd class="section__dd">'#article'</dd></dl><ul><li>String：选择器字符串，默认值：html,body（即 window 窗口）;</li><li>HTMLElement：'DOM 元素;</li></ul><p>可选，用来指定页面中显示文章正文的 DOM 节点或者选择器字符串。</p><pre class="section__pre"><code class="section__code">// Default Selector
 const outline = new Outline(Outline.DEFAULTS)
 
 // Customize Selector
@@ -950,7 +950,7 @@ outline.toTop(() => {
 outline.toBottom() // 页面将滚动到底部，向下滚动按钮消失
 outline.toBottom(() => {
   console.log('滚动结束‘)
-})</code></pre></div></section><section class="section"><header class="section__header"><h3 class="section__h3" id="method-scrollTo">scrollTo(top[，afterScroll])</h3></header><div class="section__content"><h4 class="section__h4">Description</h4><p>scrollTo() 方法用于将窗口的滚动条滚动到指定 top 值的位置。</p><h4 class="section__h4">Parameters</h4><h5 class="section__h4">top</h5><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">Number</dd></dl><p>（必选）页面要滚动的 top 数值。</p><h5 class="section__h4">afterScroll</h5><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">Function</dd></dl><p>（可选）页面停止滚动后的回调函数。</p><h4 class="section__h4">Returns</h4><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">Outline</dd></dl><p>Outline 对象，便于链式方法调用。</p><pre class="section__pre"><code class="section__code">const outline = new Outline({
+})</code></pre></div></section><section class="section"><header class="section__header"><h3 class="section__h3">scrollTo(top[，afterScroll])</h3></header><div class="section__content"><h4 class="section__h4">Description</h4><p>scrollTo() 方法用于将窗口的滚动条滚动到指定 top 值的位置。</p><h4 class="section__h4">Parameters</h4><h5 class="section__h4">top</h5><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">Number</dd></dl><p>（必选）页面要滚动的 top 数值。</p><h5 class="section__h4">afterScroll</h5><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">Function</dd></dl><p>（可选）页面停止滚动后的回调函数。</p><h4 class="section__h4">Returns</h4><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">Outline</dd></dl><p>Outline 对象，便于链式方法调用。</p><pre class="section__pre"><code class="section__code">const outline = new Outline({
      article: '#article',
      title: 'Outline v2.0.0'
 })
@@ -965,7 +965,13 @@ outline.scrollTo(200, () => {
 })
 
 outline.toggle() // 如果已经隐藏，则显示
-outline.toggle() // 如果已显示，则隐藏</code></pre></div></section><section class="section"><header class="section__header"><h3 class="section__h3">destroy()</h3></header><div class="section__content"><h4 class="section__h4">Description</h4><p>destroy() 方法用于移除所有绘制的 DOM 节点，并移除绑定的事件处理器，同时重置所有 attrs 配置信息和 data 信息。</p><h4 class="section__h4">Returns</h4><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">Outline</dd></dl><p>Outline 对象，便于链式方法调用。</p><pre class="section__pre"><code class="section__code">const outline = new Outline({
+outline.toggle() // 如果已显示，则隐藏</code></pre></div></section><section class="section"><header class="section__header"><h3 class="section__h3">print()</h3></header><div class="section__content"><h4 class="section__h4">Description</h4><p>print() 方法用于启动打印界面，打印当前文章。</p><h4 class="section__h4">Returns</h4><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">Outline</dd></dl><p>Outline 对象，便于链式方法调用。</p><pre class="section__pre"><code class="section__code">const outline = new Outline({
+     article: '#article',
+     title: 'Outline v2.0.0'
+})
+
+// 如果浏览器支持 print() 打印，则启动打印界面
+outline.print()</code></pre></div></section><section class="section"><header class="section__header"><h3 class="section__h3">destroy()</h3></header><div class="section__content"><h4 class="section__h4">Description</h4><p>destroy() 方法用于移除所有绘制的 DOM 节点，并移除绑定的事件处理器，同时重置所有 attrs 配置信息和 data 信息。</p><h4 class="section__h4">Returns</h4><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">Outline</dd></dl><p>Outline 对象，便于链式方法调用。</p><pre class="section__pre"><code class="section__code">const outline = new Outline({
    article: '#article',
    title: 'Outline v2.0.0'
 })

@@ -24,26 +24,27 @@ const _updateSiblingElements = (siblingElement, isPrev) => {
   }
 }
 
-const paintPrint = (origins, title) => {
+const paintPrint = (el, title) => {
+  const $fragment = document.createDocumentFragment()
   let text = title
-  let $origins
+  let $el
   let $wrapper
   let $article
   let $title
   let $sibling
   let $icon
+  let $children
 
-  if (isString(origins)) {
-    $origins = document.querySelector(origins)
-  } else if (isElement(origins)) {
-    $origins = origins
+  if (isString(el)) {
+    $el = document.querySelector(el)
+  } else if (isElement(el)) {
+    $el = el
   }
 
-  if (!$origins) {
+  if (!$el) {
     return false
   }
 
-  // console.time('paintPrint')
   $icon = icon('close', {
     iconSet: 'outline',
     size: 20,
@@ -52,7 +53,7 @@ const paintPrint = (origins, title) => {
     }
   })
 
-  $title = $origins.querySelector('h1')
+  $title = $el.querySelector('h1')
 
   if (isElement(title)) {
     $title = title
@@ -62,12 +63,6 @@ const paintPrint = (origins, title) => {
     text = $title.innerText
   }
 
-  $article = createElement('article', {
-    id: 'outline-print__article',
-    className: 'outline-print__article',
-    innerHTML: $origins.innerHTML
-  })
-
   $title = createElement(
     'h1',
     {
@@ -75,6 +70,11 @@ const paintPrint = (origins, title) => {
     },
     text
   )
+
+  $article = createElement('article', {
+    id: 'outline-print__article',
+    className: 'outline-print__article'
+  })
 
   $wrapper = createElement(
     'section',
@@ -85,17 +85,22 @@ const paintPrint = (origins, title) => {
     [$icon, $title, $article]
   )
   document.body.appendChild($wrapper)
-  // console.timeEnd('paintPrint')
 
   later(() => {
+    // 设置邻居节点的打印样式
     $sibling = $wrapper.previousElementSibling
-
     _updateSiblingElements($sibling, true)
 
     $sibling = $wrapper.nextElementSibling
-
     _updateSiblingElements($sibling)
-  }, 350)
+
+    // 克隆文章内容
+    $children = $el.cloneNode(true).childNodes
+    $children.forEach(($child) => {
+      $fragment.appendChild($child)
+    })
+    $article.appendChild($fragment)
+  })
 }
 
 export default paintPrint

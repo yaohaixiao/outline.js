@@ -77,6 +77,8 @@ class Outline extends Base {
     const option = this.attr('print')
     const articleElement = this.attr('articleElement')
     let $articleElement
+    let $print
+    let element
 
     if (!option.element) {
       return this
@@ -89,7 +91,16 @@ class Outline extends Base {
     }
 
     addClass($articleElement, 'outline-article')
-    paintPrint(option.element, option.title)
+
+    element = option.element
+
+    if (isString(element)) {
+      $print = document.querySelector(element)
+    } else if (isElement(element)) {
+      $print = element
+    }
+
+    paintPrint($print, option.title)
 
     return this
   }
@@ -463,6 +474,16 @@ class Outline extends Base {
     return this
   }
 
+  print() {
+    if (!isFunction(print)) {
+      return this
+    }
+
+    print()
+
+    return this
+  }
+
   destroy() {
     let anchors = this.anchors
     let chapters = this.chapters
@@ -537,11 +558,7 @@ class Outline extends Base {
   }
 
   onPrint() {
-    if (!isFunction(print)) {
-      return this
-    }
-
-    print()
+    this.print()
 
     return this
   }

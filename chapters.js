@@ -390,7 +390,7 @@ class Chapters extends Base {
       addClass($parent, FOLDED)
       later(() => {
         addClass($parent, HIDDEN)
-      }, 30)
+      })
     } else {
       addClass($el, HIDDEN)
     }
