@@ -220,6 +220,10 @@ const outline = new Outline({
     stickyHeight: 0,
     // 是否显示标题编号
     showCode: true,
+    // 指定是否采用动画定位高亮当前的章节标题，默认值：true
+    // 当值为 false 时，则采用高亮当前章节标题的链接文字并加粗文字
+    // 如果喜欢更简洁的高亮效果，可以选择设置为 false
+    animationCurrent: true,
     // 标题图标链接的 URL 地址
     // （默认）没有设置定制，点击链接页面滚动到标题位置
     // 设置了链接地址，则不会滚动定位
@@ -473,6 +477,7 @@ Outline.DEFAULTS = {
   parentElement: '#aside',
   placement: 'rtl',
   showCode: true,
+  animationCurrent: true,
   anchorURL: '',
   stickyHeight: 0,
   homepage: '',

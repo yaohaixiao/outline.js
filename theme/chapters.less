@@ -7,8 +7,11 @@
   z-index: 1;
   margin: 0;
   width: var(--outline-chapters-width);
-  transition-duration: 0.3s;
   overflow: auto;
+
+  &-parent {
+    transition: 0.3s ease-in-out;
+  }
 
   &__title {
     margin: 0 16px;
@@ -89,13 +92,13 @@
     padding-right: 0.5em;
   }
 
-  &_active {
+  &_highlight {
     &.outline-chapters__anchor {
       &:link,
       &:visited,
       &:hover {
         color: @success_color;
-        font-weight: 400;
+        font-weight: bold;
       }
     }
   }
@@ -142,5 +145,6 @@
 
   &_folded {
     width: 0;
+    overflow: hidden;
   }
 }

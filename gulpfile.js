@@ -147,7 +147,7 @@ const buildStyle = () => {
 
 const minifyStyle = () => {
   return gulp
-    .src('./docs/**/*.css')
+    .src(['./docs/**/docs.css', './docs/**/example.css'])
     .pipe(sourcemaps.init())
     .pipe(cssmin())
     .pipe(rename({ suffix: '.min' }))

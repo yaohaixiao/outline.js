@@ -127,8 +127,10 @@ class Chapters extends Base {
     const STICKY = 'outline-chapters_sticky'
     const HIDDEN = 'outline-chapters_hidden'
     const title = this.attr('title')
+    const animationCurrent = this.attr('animationCurrent')
     const customClass = this.attr('customClass')
     const $parentElement = this.$parentElement
+    const children = []
     const contents = []
     let $title = null
     let $el
@@ -159,18 +161,22 @@ class Chapters extends Base {
       className: `outline-chapters__list`
     })
     this.$list = $list
+    children.push($list)
 
-    $placeholder = createElement('div', {
-      className: 'outline-chapters__placeholder'
-    })
-    this.$placeholder = $placeholder
+    if (animationCurrent) {
+      $placeholder = createElement('div', {
+        className: 'outline-chapters__placeholder'
+      })
+      this.$placeholder = $placeholder
+      children.push($placeholder)
+    }
 
     $main = createElement(
       'div',
       {
         className: 'outline-chapters__main'
       },
-      [$list, $placeholder]
+      children
     )
     this.$main = $main
     contents.push($main)
@@ -213,6 +219,10 @@ class Chapters extends Base {
       return this
     }
 
+    if (this.isInside()) {
+      addClass($parentElement, 'outline-chapters-parent')
+    }
+
     this._paintEdge()
 
     $el = this.$el
@@ -221,7 +231,7 @@ class Chapters extends Base {
     removeClass($el, HIDDEN)
 
     later(() => {
-      this.positionPlaceholder(this.active)
+      this.highlight(this.active)
     }, 60)
 
     this.offsetTop = offsetTop($el)
@@ -248,6 +258,7 @@ class Chapters extends Base {
     const $list = this.$list
     const $placeholder = this.$placeholder
     const $anchor = $list.querySelector('.outline-chapters__anchor')
+    const animationCurrent = this.attr('animationCurrent')
     const mainPaddingTop = parseInt(getStyle($main, 'padding-top'), 10)
     const mainBorderTop = parseInt(getStyle($main, 'border-top-width'), 10)
     const placeholderPaddingTop = parseInt(getStyle($list, 'padding-top'), 10)
@@ -259,6 +270,10 @@ class Chapters extends Base {
     let height = $anchor.offsetHeight
     let offsetTop = 0
     let top
+
+    if (!animationCurrent) {
+      return this
+    }
 
     if (mainPaddingTop) {
       offsetTop += mainPaddingTop
@@ -281,7 +296,6 @@ class Chapters extends Base {
     }
 
     top = height * index
-    // top:calc(${offsetTop}px + ${top}px);
     $placeholder.style.cssText = `transform: translateY(${
       offsetTop + top
     }px);height:${height}px;`
@@ -290,22 +304,30 @@ class Chapters extends Base {
   }
 
   highlight(id) {
+    const animationCurrent = this.attr('animationCurrent')
     const $anchor = this.$el.querySelector(`#chapter__anchor-${id}`)
-    const HIGHLIGHT = 'outline-chapters_active'
+    const ACTIVE = 'outline-chapters_active'
+    const HIGHLIGHT = 'outline-chapters_highlight'
 
     if (!$anchor) {
       return this
     }
 
+    this.active = parseInt($anchor.getAttribute('data-id'), 10)
+
     if (this.$active) {
       removeClass(this.$active, HIGHLIGHT)
+      removeClass(this.$active, ACTIVE)
     }
 
-    this.active = parseInt($anchor.getAttribute('data-id'), 10)
     this.$active = $anchor
-    addClass(this.$active, HIGHLIGHT)
+    addClass(this.$active, ACTIVE)
 
-    this.positionPlaceholder(this.active)
+    if (animationCurrent) {
+      this.positionPlaceholder(this.active)
+    } else {
+      addClass(this.$active, HIGHLIGHT)
+    }
 
     return this
   }
@@ -359,14 +381,19 @@ class Chapters extends Base {
     const FOLDED = 'outline-chapters_folded'
     const HIDDEN = 'outline-chapters_hidden'
     const opened = this.attr('afterOpened')
+    const count = this.count()
     const $el = this.$el
     const $parent = this.$parentElement
 
     if (this.isInside()) {
-      removeClass($parent, HIDDEN)
-      later(() => {
-        removeClass($parent, FOLDED)
-      }, 30)
+      if (count > 800) {
+        removeClass($parent, HIDDEN)
+      } else {
+        removeClass($parent, HIDDEN)
+        later(() => {
+          removeClass($parent, FOLDED)
+        }, 30)
+      }
     } else {
       removeClass($el, HIDDEN)
     }
@@ -383,14 +410,19 @@ class Chapters extends Base {
     const FOLDED = 'outline-chapters_folded'
     const HIDDEN = 'outline-chapters_hidden'
     const closed = this.attr('afterClosed')
+    const count = this.count()
     const $el = this.$el
     const $parent = this.$parentElement
 
     if (this.isInside()) {
-      addClass($parent, FOLDED)
-      later(() => {
+      if (count > 800) {
         addClass($parent, HIDDEN)
-      })
+      } else {
+        addClass($parent, FOLDED)
+        later(() => {
+          addClass($parent, HIDDEN)
+        })
+      }
     } else {
       addClass($el, HIDDEN)
     }
@@ -625,6 +657,7 @@ Chapters.DEFAULTS = {
   active: 0,
   closed: false,
   showCode: true,
+  animationCurrent: true,
   position: 'relative',
   stickyHeight: 0,
   chapters: [],

@@ -135,6 +135,7 @@ class Outline extends Base {
     const scrollElement = this.attr('scrollElement')
     const customClass = this.attr('customClass')
     const showCode = this.attr('showCode')
+    const animationCurrent = this.attr('animationCurrent')
     const position = this.attr('position')
     const placement = this.attr('placement')
     const afterSticky = this.attr('afterSticky')
@@ -151,6 +152,7 @@ class Outline extends Base {
     CHAPTERS_OPTIONS = {
       scrollElement,
       showCode,
+      animationCurrent,
       position,
       title,
       stickyHeight,
@@ -625,6 +627,7 @@ Outline.DEFAULTS = {
   position: 'relative',
   parentElement: '#aside',
   placement: 'rtl',
+  animationCurrent: true,
   showCode: true,
   anchorURL: '',
   stickyHeight: 0,

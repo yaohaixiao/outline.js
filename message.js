@@ -488,7 +488,7 @@ Message.DEFAULTS = {
   effect: 'default',
   round: false,
   offset: 30,
-  duration: 6,
+  duration: 3,
   delay: 2,
   message: '',
   customClass: '',
