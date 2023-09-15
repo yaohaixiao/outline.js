@@ -1,3 +1,12 @@
+# [3.29.0](https://github.com/yaohaixiao/outline.js/compare/3.28.0...3.29.0) (2023-09-15)
+
+
+### Features
+
+* 调整 toolbar 工具栏按钮默认颜色；添加新参数 animationCurrent，用于设置当前章节文字的高亮样式；针对超长文章页（1000个有效标题），sticky 和 fixed 布局的菜单直接隐藏，不再使用动画（避免动画卡顿的，优化性能）； ([ab9f202](https://github.com/yaohaixiao/outline.js/commit/ab9f2027bb541a3aa9df82fecceff0885e1011ea))
+
+
+
 # [3.28.0](https://github.com/yaohaixiao/outline.js/compare/3.27.0...3.28.0) (2023-09-14)
 
 
