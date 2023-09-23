@@ -59,14 +59,16 @@ outline.js 的支持的滚动元素可以是 Window 窗口，也可以是某个 
 * sticky 定位：[https://yaohaixiao.github.io/outline.js/sticky.html](https://yaohaixiao.github.io/outline.js/sticky.html)
 
 ![fixed 定位](https://yaohaixiao.github.io/outline.js/img/fixed.png)
-* fixed 定位：[https://yaohaixiao.github.io/outline.js/fixed.html](https://yaohaixiao.github.io/outline.js/fixed.html)
+* fixed 定位（不显示按钮工具栏）：[https://yaohaixiao.github.io/outline.js/fixed.html](https://yaohaixiao.github.io/outline.js/fixed.html)
 
 ### DOM 元素滚动
 
 ![flex 布局](https://yaohaixiao.github.io/outline.js/img/flex.png)
-* flex 布局：[https://yaohaixiao.github.io/outline.js/flex.html](https://yaohaixiao.github.io/outline.js/flex.html)
+* flex 布局（超长文章）：[https://yaohaixiao.github.io/outline.js/flex.html](https://yaohaixiao.github.io/outline.js/flex.html)
 
+### Anchors 模块独立调用
 
+* Anchors 模块（仅给文章的标题添加）：[https://yaohaixiao.github.io/outline.js/anchors.html](https://yaohaixiao.github.io/outline.js/anchors.html)
 
 ## 浏览器支持
 
@@ -224,6 +226,8 @@ const outline = new Outline({
     // 当值为 false 时，则采用高亮当前章节标题的链接文字并加粗文字
     // 如果喜欢更简洁的高亮效果，可以选择设置为 false
     animationCurrent: true,
+    // 是否显示侧边的按钮工具栏
+    hasToolbar: true,
     // 标题图标链接的 URL 地址
     // （默认）没有设置定制，点击链接页面滚动到标题位置
     // 设置了链接地址，则不会滚动定位
@@ -478,6 +482,7 @@ Outline.DEFAULTS = {
   placement: 'rtl',
   showCode: true,
   animationCurrent: true,
+  hasToolbar: true,
   anchorURL: '',
   stickyHeight: 0,
   homepage: '',

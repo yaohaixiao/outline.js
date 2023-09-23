@@ -71,16 +71,5 @@ export default [
       sourcemap: true
     },
     plugins: PLUGIN_CONFIG
-  },
-  // build for documentation
-  {
-    input: './outline.js',
-    output: {
-      name: 'Outline',
-      file: './docs/js/outline.min.js',
-      format: 'umd',
-      sourcemap: true
-    },
-    plugins: PLUGIN_CONFIG
   }
 ]

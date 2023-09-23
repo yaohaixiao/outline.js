@@ -61,6 +61,12 @@ const outline = new Outline(Outline.DEFAULTS)
 // Customize Selector
 const outline = new Outline({
   articleElement: $('#main')
+})</code></pre></div></section><section class="section"><header class="section__header"><h3 class="section__h3">selector</h3></header><div class="section__content"><h4 class="section__h4">Description</h4><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">String</dd></dl><dl class="section__dl"><dt class="section__dt">Default：</dt><dd class="section__dd">'h1,h2,h3,h4,h5,h6'</dd></dl><p>可选，用来指定 article 节点下，要生成导航的标题标签的选择器。</p><pre class="section__pre"><code class="section__code">// Default selector
+new Outline(Outline.DEFAULTS)
+
+// Customize selector
+new Outline({
+  selector: 'h2'
 })</code></pre></div></section><section class="section"><header class="section__header"><h3 class="section__h3">title</h3></header><div class="section__content"><h4 class="section__h4">Description</h4><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">String|Boolean</dd></dl><dl class="section__dl"><dt class="section__dt">Default：</dt><dd class="section__dd">'目录'</dd></dl><p>可选，用来指定文章导读导航菜单的标题文字。设置空字符串或者 false，则不显示标题。在插入导航菜单的 DOM 元素已有标题时，可以设置 title: '' 或者 false。</p><p>说明：本 API 文档的导航菜单便是使用 outline.js 生成，并且没有设置 title。</p><pre class="section__pre"><code class="section__code">(function(){
   const defaults = Outline.DEFAULTS
   let outline
@@ -113,7 +119,7 @@ new Outline({
 // 设置 stickyHeight（outline.js 的示例页面的主标题元素的高度）
 defaults.stickyHeight = 86
 // 默认生成独立的侧滑弹窗导航菜单
-new Outline(defaults)</code></pre></div></section><section class="section"><header class="section__header"><h class="section__h3">showCode</h></header><div class="section__content"><h4 class="section__h4">Description</h4><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">Boolean</dd></dl><dl class="section__dl"><dt class="section__dt">Default：</dt><dd class="section__dd">true</dd></dl><p>可选，是否显示段落章节编号：</p><ul><li>true - 显示编号（默认值）；</li><li>false - 不显示编号；</li></ul></div></section><section class="section"><header class="section__header"><h class="section__h3">animationCurrent</h></header><div class="section__content"><h4 class="section__h4">Description</h4><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">Boolean</dd></dl><dl class="section__dl"><dt class="section__dt">Default：</dt><dd class="section__dd">true</dd></dl><p>可选，是否采用动画定位高亮当前的章节标题：</p><ul><li>true - 采用动画定位高亮（默认值）；</li><li>false - 采用高亮当前章节标题的链接文字并加粗文字；</li></ul></div></section><section class="section"><header class="section__header"><h3 class="section__h3">anchorURL</h3></header><div class="section__content"><h4 class="section__h4">Description</h4><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">String</dd></dl><dl class="section__dl"><dt class="section__dt">Default：</dt><dd class="section__dd">''</dd></dl><p>可选，用来指定文章标题锚点链接图标的链接地址：</p><pre class="section__pre"><code class="section__code">// Default URL - 默认链接，点击图标，页面会滚动到当前标题位置
+new Outline(defaults)</code></pre></div></section><section class="section"><header class="section__header"><h3 class="section__h3">showCode</h3></header><div class="section__content"><h4 class="section__h4">Description</h4><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">Boolean</dd></dl><dl class="section__dl"><dt class="section__dt">Default：</dt><dd class="section__dd">true</dd></dl><p>可选，是否显示段落章节编号：</p><ul><li>true - 显示编号（默认值）；</li><li>false - 不显示编号；</li></ul></div></section><section class="section"><header class="section__header"><h3 class="section__h3">animationCurrent</h3></header><div class="section__content"><h4 class="section__h4">Description</h4><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">Boolean</dd></dl><dl class="section__dl"><dt class="section__dt">Default：</dt><dd class="section__dd">true</dd></dl><p>可选，是否采用动画定位高亮当前的章节标题：</p><ul><li>true - 采用动画定位高亮（默认值）；</li><li>false - 采用高亮当前章节标题的链接文字并加粗文字；</li></ul></div></section><section class="section"><header class="section__header"><h3 class="section__h3">hasToolbar</h3></header><div class="section__content"><h4 class="section__h4">Description</h4><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">Boolean</dd></dl><dl class="section__dl"><dt class="section__dt">Default：</dt><dd class="section__dd">true</dd></dl><p>可选，是否显示侧边的按钮工具栏：</p><ul><li>true - 显示按钮工具栏（默认值）；</li><li>false - 不显示按钮工具栏；</li></ul></div></section><section class="section"><header class="section__header"><h3 class="section__h3">anchorURL</h3></header><div class="section__content"><h4 class="section__h4">Description</h4><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">String</dd></dl><dl class="section__dl"><dt class="section__dt">Default：</dt><dd class="section__dd">''</dd></dl><p>可选，用来指定文章标题锚点链接图标的链接地址：</p><pre class="section__pre"><code class="section__code">// Default URL - 默认链接，点击图标，页面会滚动到当前标题位置
 new Outline()
 
 // Customize URL - 直接打开链接了
@@ -774,6 +780,8 @@ export default Toolbar</code></pre></div></section><section class="section"><hea
   stickyHeight: 0,
   // 是否显示标题编号
   showCode: true,
+  // 是否显示侧边的按钮工具栏
+  hasToolbar: true,
   // 指定是否采用动画定位高亮当前的章节标题，默认值：true
   // 当值为 false 时，则采用高亮当前章节标题的链接文字并加粗文字
   // 如果喜欢更简洁的高亮效果，可以选择设置为 false

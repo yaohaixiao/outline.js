@@ -118,6 +118,7 @@ const buildApi = () => {
   return gulp
     .src([
       'api/pug/index.pug',
+      'api/pug/anchors.pug',
       'api/pug/relative.pug',
       'api/pug/sticky.pug',
       'api/pug/fixed.pug',

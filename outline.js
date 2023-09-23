@@ -55,12 +55,13 @@ class Outline extends Base {
   }
 
   render() {
+    const hasToolbar = this.attr('hasToolbar')
     const scrollElement = this.attr('scrollElement')
     const $scrollElement = document.querySelector(scrollElement)
 
     this._renderPrint()._renderAnchors()._renderChapters()._renderToolbar()
 
-    if ($scrollElement) {
+    if ($scrollElement && hasToolbar) {
       this.onToolbarUpdate({
         top: $scrollElement.scrollTop,
         min: 0,
@@ -187,6 +188,7 @@ class Outline extends Base {
   }
 
   _renderToolbar() {
+    const hasToolbar = this.attr('hasToolbar')
     const placement = this.attr('placement')
     const homepage = this.attr('homepage')
     const git = this.attr('git')
@@ -265,6 +267,10 @@ class Outline extends Base {
       }
     }
     const buttons = []
+
+    if (!hasToolbar) {
+      return this
+    }
 
     buttons.push(UP)
     if (count > 0) {
@@ -584,13 +590,16 @@ class Outline extends Base {
   }
 
   addListeners() {
+    const hasToolbar = this.attr('hasToolbar')
     const $print = document.querySelector('#outline-print')
 
-    this.$on('toolbar:update', this.onToolbarUpdate)
-    this.$on('toolbar:action:up', this.onScrollTop)
-    this.$on('toolbar:action:toggle', this.onToggle)
-    this.$on('toolbar:action:reading', this.onEnterReading)
-    this.$on('toolbar:action:down', this.onScrollBottom)
+    if (hasToolbar) {
+      this.$on('toolbar:update', this.onToolbarUpdate)
+      this.$on('toolbar:action:up', this.onScrollTop)
+      this.$on('toolbar:action:toggle', this.onToggle)
+      this.$on('toolbar:action:reading', this.onEnterReading)
+      this.$on('toolbar:action:down', this.onScrollBottom)
+    }
 
     if ($print) {
       at(document, 'keyup', this.onExitReading, this, true)
@@ -602,12 +611,15 @@ class Outline extends Base {
   }
 
   removeListeners() {
+    const hasToolbar = this.attr('hasToolbar')
     const $print = document.querySelector('#outline-print')
 
-    this.$off('toolbar:update')
-    this.$off('toolbar:action:up')
-    this.$off('toolbar:action:toggle')
-    this.$off('toolbar:action:down')
+    if (hasToolbar) {
+      this.$off('toolbar:update')
+      this.$off('toolbar:action:up')
+      this.$off('toolbar:action:toggle')
+      this.$off('toolbar:action:down')
+    }
 
     if ($print) {
       off(document, 'keyup', this.onExitReading)
@@ -629,6 +641,7 @@ Outline.DEFAULTS = {
   placement: 'rtl',
   animationCurrent: true,
   showCode: true,
+  hasToolbar: true,
   anchorURL: '',
   stickyHeight: 0,
   homepage: '',
