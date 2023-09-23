@@ -1,3 +1,12 @@
+# [3.30.0](https://github.com/yaohaixiao/outline.js/compare/3.29.0...3.30.0) (2023-09-23)
+
+
+### Features
+
+* 添加 hasToolbar 配置，可以隐藏按钮工具栏；添加 Anchors 模块的独立调用实例； ([b5ec0d4](https://github.com/yaohaixiao/outline.js/commit/b5ec0d448663a7e6d29b8160b1a64c440ed06559))
+
+
+
 # [3.29.0](https://github.com/yaohaixiao/outline.js/compare/3.28.0...3.29.0) (2023-09-15)
 
 
