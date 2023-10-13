@@ -57,7 +57,13 @@ class Outline extends Base {
   render() {
     const hasToolbar = this.attr('hasToolbar')
     const scrollElement = this.attr('scrollElement')
-    const $scrollElement = document.querySelector(scrollElement)
+    let $scrollElement
+
+    if (isString(scrollElement)) {
+      $scrollElement = document.querySelector(scrollElement)
+    } else if (isElement(scrollElement)) {
+      $scrollElement = scrollElement
+    }
 
     this._renderPrint()._renderAnchors()._renderChapters()._renderToolbar()
 
