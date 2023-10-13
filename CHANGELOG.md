@@ -1,3 +1,12 @@
+## [3.30.1](https://github.com/yaohaixiao/outline.js/compare/3.30.0...3.30.1) (2023-10-13)
+
+
+### Bug Fixes
+
+* 修复 issuse [#35](https://github.com/yaohaixiao/outline.js/issues/35)，scrollElement 参数设置为 DOM 节点报错问题； ([5836750](https://github.com/yaohaixiao/outline.js/commit/5836750754d109c0904b973baa369ae5f1413090))
+
+
+
 # [3.30.0](https://github.com/yaohaixiao/outline.js/compare/3.29.0...3.30.0) (2023-09-23)
 
 
