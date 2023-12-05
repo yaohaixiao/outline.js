@@ -95,7 +95,7 @@ const paintPrint = (el, title) => {
     _updateSiblingElements($sibling)
 
     // 克隆文章内容
-    $children = $el.cloneNode(true).childNodes
+    $children = [...$el.cloneNode(true).children]
     $children.forEach(($child) => {
       $fragment.appendChild($child)
     })
