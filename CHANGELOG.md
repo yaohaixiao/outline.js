@@ -1,3 +1,12 @@
+## [3.30.2](https://github.com/yaohaixiao/outline.js/compare/3.30.1...3.30.2) (2023-12-05)
+
+
+### Bug Fixes
+
+* 修复缺陷 - issues([#36](https://github.com/yaohaixiao/outline.js/issues/36)) - 阅读模式显示正文内容不全 ([595b12f](https://github.com/yaohaixiao/outline.js/commit/595b12f7158f9f20feb50007286ac65f6b83cf66))
+
+
+
 ## [3.30.1](https://github.com/yaohaixiao/outline.js/compare/3.30.0...3.30.1) (2023-10-13)
 
 
