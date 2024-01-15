@@ -52,23 +52,23 @@ outline.js 的支持的滚动元素可以是 Window 窗口，也可以是某个 
 
 ![独立侧滑菜单](https://yaohaixiao.github.io/outline.js/img/screen-shot.png)
 
-* 独立侧滑菜单：[https://yaohaixiao.github.io/outline.js/examples/relative.html](https://yaohaixiao.github.io/outline.js/relative.html)
+* 独立侧滑菜单：[https://yaohaixiao.github.io/outline.js/examples/relative.html](https://yaohaixiao.github.io/outline.js/examples/relative.html)
 * WordPress：[http://www.yaohaixiao.com/blog/publish-subscribe-pattern-in-javascript/](http://www.yaohaixiao.com/blog/publish-subscribe-pattern-in-javascript/)
 
 ![sticky 定位](https://yaohaixiao.github.io/outline.js/img/sticky.png)
-* sticky 定位：[https://yaohaixiao.github.io/outline.js/examples/sticky.html](https://yaohaixiao.github.io/outline.js/sticky.html)
+* sticky 定位：[https://yaohaixiao.github.io/outline.js/examples/sticky.html](https://yaohaixiao.github.io/outline.js/examples/sticky.html)
 
 ![fixed 定位](https://yaohaixiao.github.io/outline.js/img/fixed.png)
-* fixed 定位（不显示按钮工具栏）：[https://yaohaixiao.github.io/outline.js/examples/fixed.html](https://yaohaixiao.github.io/outline.js/fixed.html)
+* fixed 定位（不显示按钮工具栏）：[https://yaohaixiao.github.io/outline.js/examples/fixed.html](https://yaohaixiao.github.io/outline.js/examples/fixed.html)
 
 ### DOM 元素滚动
 
 ![flex 布局](https://yaohaixiao.github.io/outline.js/img/flex.png)
-* flex 布局（超长文章）：[https://yaohaixiao.github.io/outline.js/examples/flex.html](https://yaohaixiao.github.io/outline.js/flex.html)
+* flex 布局（超长文章）：[https://yaohaixiao.github.io/outline.js/examples/flex.html](https://yaohaixiao.github.io/outline.js/examples/flex.html)
 
 ### Anchors 模块独立调用
 
-* Anchors 模块（仅给文章的标题添加）：[https://yaohaixiao.github.io/outline.js/examples/anchors.html](https://yaohaixiao.github.io/outline.js/anchors.html)
+* Anchors 模块（仅给文章的标题添加）：[https://yaohaixiao.github.io/outline.js/examples/anchors.html](https://yaohaixiao.github.io/outline.js/examples/anchors.html)
 
 ## 浏览器支持
 
