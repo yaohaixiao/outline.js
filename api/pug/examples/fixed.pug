@@ -1,9 +1,9 @@
 doctype html
 html(lang='en')
   head
-    include ./meta
+    include ../meta
     title outline.js - 自动生成文章导读（Table of Contents）导航的 JavaScript 工具
-    link(href="css/example.min.css" rel="stylesheet")
+    link(href="../css/example.min.css" rel="stylesheet")
   body
     .paper
       header#header.header
@@ -11,17 +11,17 @@ html(lang='en')
       article#article.article
         aside#aside.article__aside.ltr
         main#main.article__main
-          include ./example
-          include ./options/section
-          include ./properties/section
-          include ./methods/section
-          include ./events/section
+          include ./article
+          include ../options/section
+          include ../properties/section
+          include ../methods/section
+          include ../events/section
           h2 License
           p JavaScript Code Licensed under MIT License.
           p API Documentation Licensed under CC BY 3.0
       footer.footer
-        include ./footer
-    script(src="js/outline.min.js")
+        include ../footer
+    script(src="../js/outline.min.js")
     script.
       const $header = document.querySelector('#header')
         const HEADER_STICKY = 'header_sticky'

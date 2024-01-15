@@ -1,6 +1,6 @@
 .paper {
   .shadow_light_regular();
-  margin: 2em auto;
+  margin: 3em auto;
   max-width: 1200px;
   padding: 2em;
   background-color: @white;
@@ -138,11 +138,17 @@ code,
 }
 
 @media (max-width: 480px) {
-  .pager {
-    padding: 0 1em;
+  html,
+  body {
+    margin: 0;
+  }
+
+  .paper {
+    margin: 0;
+    padding: 0;
   }
 
   .article__main {
-    padding: 0 1em;
+    padding: 0 2em;
   }
 }

@@ -116,20 +116,30 @@ const buildScript = () => {
 
 const buildApi = () => {
   return gulp
-    .src([
-      'api/pug/index.pug',
-      'api/pug/anchors.pug',
-      'api/pug/relative.pug',
-      'api/pug/sticky.pug',
-      'api/pug/fixed.pug',
-      'api/pug/flex.pug'
-    ])
+    .src(['api/pug/index.pug'])
     .pipe(
       pug({
         verbose: true
       })
     )
     .pipe(gulp.dest('docs'))
+}
+
+const buildExamples = () => {
+  return gulp
+    .src([
+      'api/pug/examples/anchors.pug',
+      'api/pug/examples/relative.pug',
+      'api/pug/examples/sticky.pug',
+      'api/pug/examples/fixed.pug',
+      'api/pug/examples/flex.pug'
+    ])
+    .pipe(
+      pug({
+        verbose: true
+      })
+    )
+    .pipe(gulp.dest('docs/examples'))
 }
 
 const buildStyle = () => {
@@ -165,6 +175,7 @@ const buildApiScript = () => {
 const buildDocs = gulp.series(
   cleanDocs,
   buildApi,
+  buildExamples,
   buildApiStyle,
   buildApiScript
 )
@@ -226,6 +237,7 @@ module.exports.start = start
 module.exports.clean = cleanDocs
 module.exports.buildLibStyles = buildLibStyles
 module.exports.buildApi = buildApi
+module.exports.buildExamples = buildExamples
 module.exports.buildApiStyle = buildApiStyle
 module.exports.build = build
 module.exports.lint = lint
