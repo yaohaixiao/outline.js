@@ -27,12 +27,11 @@ class Chapters extends Base {
 
     this.attrs = cloneDeep(Chapters.DEFAULTS)
 
-    this._reset()
+    this._init()
 
-    this.offsetWidth = 0
-    this.playing = false
     this.scrollTimer = null
     this.resizeTimer = null
+    this.observerTimer = null
     this.Observer = null
 
     if (options) {
@@ -40,7 +39,7 @@ class Chapters extends Base {
     }
   }
 
-  _reset() {
+  _init() {
     this.$el = null
     this.$title = null
     this.$main = null
@@ -52,7 +51,9 @@ class Chapters extends Base {
 
     this.chapters = []
     this.active = 0
+    this.offsetWidth = 0
     this.offsetTop = 0
+    this.playing = false
     this.closed = false
 
     return this
@@ -304,10 +305,17 @@ class Chapters extends Base {
   }
 
   highlight(id) {
+    const $el = this.$el
     const animationCurrent = this.attr('animationCurrent')
-    const $anchor = this.$el.querySelector(`#chapter__anchor-${id}`)
     const ACTIVE = 'outline-chapters_active'
     const HIGHLIGHT = 'outline-chapters_highlight'
+    let $anchor = null
+
+    if (!$el) {
+      return this
+    }
+
+    $anchor = $el.querySelector(`#chapter__anchor-${id}`)
 
     if (!$anchor) {
       return this
@@ -466,9 +474,7 @@ class Chapters extends Base {
     }
 
     this.removeListeners()
-    this.$parentElement.removeChild(this.$el)
-
-    this.attr(Chapters.DEFAULTS)._reset()
+    this.attr(Chapters.DEFAULTS)
 
     if (this.scrollTimer) {
       clearTimeout(this.scrollTimer)
@@ -480,12 +486,20 @@ class Chapters extends Base {
       this.resizeTimer = null
     }
 
-    if (isFunction(afterDestroy)) {
-      afterDestroy.call(this)
+    if (this.observerTimer) {
+      clearTimeout(this.observerTimer)
+      this.observerTimer = null
     }
 
     if (this.Observer) {
       this.Observer = null
+    }
+
+    this.$parentElement.removeChild(this.$el)
+    this._init()
+
+    if (isFunction(afterDestroy)) {
+      afterDestroy.call(this)
     }
 
     return this
@@ -493,7 +507,6 @@ class Chapters extends Base {
 
   onObserver() {
     const selector = this.attr('selector')
-    let timer = null
 
     this.Observer = intersection(
       ($heading) => {
@@ -503,11 +516,11 @@ class Chapters extends Base {
           return false
         }
 
-        if (timer) {
-          clearTimeout(timer)
+        if (this.observerTimer) {
+          clearTimeout(this.observerTimer)
         }
 
-        timer = later(() => {
+        this.observerTimer = later(() => {
           this.highlight(id)
         }, 100)
       },

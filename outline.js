@@ -515,27 +515,29 @@ class Outline extends Base {
       document.body.removeChild($print)
     }
 
-    if (count > 0) {
+    if (count > 0 && chapters) {
       isOutside = chapters.isOutside()
 
       chapters.destroy()
       chapters = null
 
-      if (isOutside) {
+      if (isOutside && drawer) {
         drawer.destroy()
         drawer = null
       }
     }
 
-    toolbar.destroy()
-    toolbar = null
+    if (anchors) {
+      anchors.destroy()
+      anchors = null
+    }
 
-    anchors.destroy()
-    anchors = null
+    if (toolbar) {
+      toolbar.destroy()
+      toolbar = null
+    }
 
     this.attr(Outline.DEFAULTS)
-
-    this.$emit('destroyed')
 
     return this
   }

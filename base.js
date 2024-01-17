@@ -56,7 +56,7 @@ class Base {
   }
 
   reload(options) {
-    this.destroy().initialize(this.attr(options))
+    this.destroy().initialize(options)
     return this
   }
 
