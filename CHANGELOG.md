@@ -1,3 +1,12 @@
+## [3.30.3](https://github.com/yaohaixiao/outline.js/compare/3.20.2...3.30.3) (2024-01-17)
+
+
+### Bug Fixes
+
+* 修复 chapters 子组件 reload() 方法的BUG导致的 outline.reload() 失败的问题 ([b3b4626](https://github.com/yaohaixiao/outline.js/commit/b3b46267ec0d06166bb6d64ac087815fdb738575))
+
+
+
 ## [3.30.2](https://github.com/yaohaixiao/outline.js/compare/3.30.1...3.30.2) (2023-12-05)
 
 
