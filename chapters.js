@@ -619,6 +619,10 @@ class Chapters extends Base {
     const tagName = $scrollElement.tagName.toLowerCase()
     let $element = $scrollElement
 
+    if (this.count() < 1) {
+      return this
+    }
+
     if (tagName === 'html' || tagName === 'body') {
       $element = window
     }
@@ -639,6 +643,10 @@ class Chapters extends Base {
     const $scrollElement = this.$scrollElement
     const tagName = $scrollElement.tagName.toLowerCase()
     let $element = $scrollElement
+
+    if (this.count() < 1) {
+      return this
+    }
 
     if (tagName === 'html' || tagName === 'body') {
       $element = window

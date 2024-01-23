@@ -217,6 +217,10 @@ class Anchors extends Base {
   addListeners() {
     const $articleElement = this.$articleElement
 
+    if (this.count() < 1) {
+      return this
+    }
+
     on(
       $articleElement,
       '.outline-heading__anchor',
@@ -231,6 +235,10 @@ class Anchors extends Base {
 
   removeListeners() {
     const $articleElement = this.$articleElement
+
+    if (this.count() < 1) {
+      return this
+    }
 
     off($articleElement, 'click', this.onAnchorTrigger)
 
