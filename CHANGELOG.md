@@ -1,3 +1,10 @@
+## [3.30.4](https://github.com/yaohaixiao/outline.js/compare/3.20.3...3.30.4) (2024-01-23)
+
+
+### Bug Fixes
+
+* 修复文章无标题标签 anchors.js 和 chapters.js 子组件事件绑定的逻辑错误导致的报错； ([c853bb1](https://github.com/yaohaixiao/outline.js/commit/c853bb152a2263125d762732c1a465897c48b826))
+
 
 
 ## [3.30.3](https://github.com/yaohaixiao/outline.js/compare/3.20.2...3.30.3) (2024-01-17)
