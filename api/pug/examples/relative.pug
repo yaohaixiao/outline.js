@@ -28,5 +28,7 @@ html(lang='en')
         defaults.homepage = '../index.html'
         defaults.stickyHeight = 86
         defaults.placement = 'rtl'
-        outline = new Outline(Outline.DEFAULTS)
+        defaults.closeOnClickModal = false
+        defaults.showNavModalFirst = true
+        outline = new Outline(defaults)
         outline.reload()

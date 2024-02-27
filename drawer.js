@@ -267,13 +267,14 @@ class Drawer extends Base {
   addListeners() {
     const hasClose = this.attr('hasClose')
     const hasOverlay = this.attr('hasOverlay')
+    const closeOnClickModal = this.attr('closeOnClickModal')
     const $el = this.$el
 
     if (hasClose) {
       on($el, '.outline-drawer__close', 'click', this.onClose, this, true)
     }
 
-    if (hasOverlay) {
+    if (hasOverlay && closeOnClickModal) {
       on($el, '.outline-drawer__overlay', 'click', this.onClose, this, true)
     }
 
@@ -309,6 +310,7 @@ Drawer.DEFAULTS = {
   hasOffset: false,
   hasPadding: true,
   autoHeight: true,
+  closeOnClickModal: true,
   created: null,
   mounted: null,
   afterClosed: null,

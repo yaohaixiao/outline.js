@@ -143,6 +143,8 @@ class Outline extends Base {
     const customClass = this.attr('customClass')
     const showCode = this.attr('showCode')
     const animationCurrent = this.attr('animationCurrent')
+    const closeOnClickModal = this.attr('closeOnClickModal')
+    const showNavModalFirst = this.attr('showNavModalFirst')
     const position = this.attr('position')
     const placement = this.attr('placement')
     const afterSticky = this.attr('afterSticky')
@@ -176,6 +178,7 @@ class Outline extends Base {
         size: 'tiny',
         hasOffset: true,
         hasPadding: false,
+        closeOnClickModal,
         customClass,
         afterClosed: () => {
           const toolbar = this.toolbar
@@ -183,6 +186,10 @@ class Outline extends Base {
         }
       })
       parentElement = this.drawer.$main
+
+      if (showNavModalFirst) {
+        this.drawer.open()
+      }
     } else {
       CHAPTERS_OPTIONS.customClass = customClass
     }
@@ -194,7 +201,9 @@ class Outline extends Base {
   }
 
   _renderToolbar() {
+    const position = this.attr('position')
     const hasToolbar = this.attr('hasToolbar')
+    const showNavModalFirst = this.attr('showNavModalFirst')
     const placement = this.attr('placement')
     const homepage = this.attr('homepage')
     const git = this.attr('git')
@@ -310,6 +319,10 @@ class Outline extends Base {
       placement,
       buttons
     })
+
+    if (position === 'relative' && showNavModalFirst) {
+      this.toolbar.hide()
+    }
 
     return this
   }
@@ -650,6 +663,8 @@ Outline.DEFAULTS = {
   animationCurrent: true,
   showCode: true,
   hasToolbar: true,
+  closeOnClickModal: true,
+  showNavModalFirst: false,
   anchorURL: '',
   stickyHeight: 0,
   homepage: '',

@@ -228,6 +228,10 @@ const outline = new Outline({
     animationCurrent: true,
     // 是否显示侧边的按钮工具栏
     hasToolbar: true,
+    // 点击空白处（非独立导航菜单），收起导航菜单
+    closeOnClickModal: true,
+    // 有独立导航菜单时，是否默认显示菜单 
+    showNavModalFirst: false,
     // 标题图标链接的 URL 地址
     // （默认）没有设置定制，点击链接页面滚动到标题位置
     // 设置了链接地址，则不会滚动定位
