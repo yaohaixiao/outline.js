@@ -1,3 +1,12 @@
+# [3.31.0](https://github.com/yaohaixiao/outline.js/compare/3.30.4...3.31.0) (2024-02-27)
+
+
+### Features
+
+* 添加新的配置：closeOnClickModal 和 showNavModalFirst，用以解决 issues([#41](https://github.com/yaohaixiao/outline.js/issues/41)) 中的问题 ([0cb173a](https://github.com/yaohaixiao/outline.js/commit/0cb173a0051de981f37b5b8a281864b3fa33d886))
+
+
+
 ## [3.30.4](https://github.com/yaohaixiao/outline.js/compare/3.20.3...3.30.4) (2024-01-23)
 
 
