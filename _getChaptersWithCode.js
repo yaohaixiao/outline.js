@@ -13,6 +13,7 @@ const _getChaptersWithCode = (chapters) => {
     groups[group].push(o)
 
     o.index = groups[group].length
+
     if (o.pid === -1) {
       o.code = String(o.index)
     }
@@ -21,9 +22,11 @@ const _getChaptersWithCode = (chapters) => {
   Object.keys(groups).forEach((group) => {
     groups[group].forEach((c) => {
       const subjects = groups[`[${c.id}]`]
+
       if (!subjects || !isArray(subjects)) {
         return false
       }
+
       subjects.forEach((o) => {
         o.code = c.code + '.' + o.index
       })
