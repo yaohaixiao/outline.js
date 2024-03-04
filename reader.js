@@ -25,7 +25,7 @@ const _updateSiblingElements = (siblingElement, isPrev) => {
     tagName = $sibling.tagName.toLowerCase()
 
     if (tagName !== 'script' && tagName !== 'style') {
-      addClass($sibling, 'outline-print_sibling')
+      addClass($sibling, 'outline-reader_sibling')
     }
 
     if (isPrev) {
@@ -151,7 +151,7 @@ class Reader extends Base {
       'section',
       {
         id: 'outline-reader',
-        className: 'outline-reader'
+        className: 'outline-reader outline-reader_hidden'
       },
       [$icon, $title, $article]
     )
@@ -162,7 +162,7 @@ class Reader extends Base {
     later(() => {
       // 设置邻居节点的打印样式
       $sibling = $paper.previousElementSibling
-      _updateSiblingElements($paper, true)
+      _updateSiblingElements($sibling, true)
 
       $sibling = $paper.nextElementSibling
       _updateSiblingElements($sibling)
@@ -172,10 +172,11 @@ class Reader extends Base {
   }
 
   enter() {
-    const READING = 'outline-reading'
-    const HIDDEN = `${READING}_hidden`
+    const READER = 'outline-reader'
+    const READING = `${READER}--reading`
+    const HIDDEN = `${READER}_hidden`
     const $paper = this.$paper
-    const $siblings = document.querySelectorAll('.outline-print_sibling')
+    const $siblings = document.querySelectorAll('.outline-reader_sibling')
     const enterReadingTip = this.attr('enterReadingTip') || ENTER_READING_TIP
 
     if (this.reading || !$paper) {
@@ -186,6 +187,7 @@ class Reader extends Base {
       addClass($sibling, HIDDEN)
     })
     addClass($paper, READING)
+    removeClass($paper, HIDDEN)
     this.reading = true
 
     Message.info({
@@ -199,8 +201,9 @@ class Reader extends Base {
   }
 
   exit() {
-    const READING = 'outline-reading'
-    const HIDDEN = `${READING}_hidden`
+    const READER = 'outline-reader'
+    const READING = `${READER}--reading`
+    const HIDDEN = `${READER}_hidden`
     const $paper = this.$paper
     const $siblings = document.querySelectorAll('.outline-reader_sibling')
 
@@ -208,6 +211,7 @@ class Reader extends Base {
       return this
     }
 
+    addClass($paper, HIDDEN)
     removeClass($paper, READING)
     $siblings.forEach(($sibling) => {
       removeClass($sibling, HIDDEN)

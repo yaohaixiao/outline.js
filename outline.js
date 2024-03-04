@@ -72,7 +72,7 @@ class Outline extends Base {
     }
 
     $headings = [...$article.querySelectorAll(selector)]
-    getChapters($headings, showCode, chapterTextFilter)
+    chapters = getChapters($headings, showCode, chapterTextFilter)
 
     return isTreeStructured ? toTree(chapters, 'id', 'pid') : chapters
   }
@@ -322,7 +322,7 @@ class Outline extends Base {
     if (issues) {
       buttons.push(ISSUES)
     }
-    if (option.element) {
+    if (option.target) {
       buttons.push(READING)
       if (isFunction(print)) {
         buttons.push(PRINT)
