@@ -182,7 +182,7 @@ outline.reload({
       }
     }
   ]
-})</code></pre></div></section><section class="section"><header class="section__header"><h3 class="section__h3">print</h3></header><div class="section__content"><h4 class="section__h4">Description</h4><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">Object</dd></dl><dl class="section__dl"><dt class="section__dt">Default：</dt><dd class="section__dd">{element: '', title: ''}</dd></dl><p>可选，自定义的是否自动为文章页面创建打印样式。</p><dl class="section__dl"><dt class="section__dt">element：</dt><dd class="section__dd">（必须）要打印的文章区域，DOM 元素或者选择器字符串。</dd></dl><dl class="section__dl"><dt class="section__dt">title：</dt><dd class="section__dd">（可选）要打印的文章标题。如果 element 区域有 h1 标签则无需设置。可以直接设置标题文本，也可以是文章页的主标题 DOM 元素。</dd></dl><pre class="section__pre"><code class="section__code">const defaults = Outline.DEFAULTS
+})</code></pre></div></section><section class="section"><header class="section__header"><h3 class="section__h3">reader</h3></header><div class="section__content"><h4 class="section__h4">Description</h4><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">Object</dd></dl><dl class="section__dl"><dt class="section__dt">Default：</dt><dd class="section__dd">{target: '', title: ''}</dd></dl><p>可选，自定义的是否自动为文章页面创建打印样式。</p><dl class="section__dl"><dt class="section__dt">element：</dt><dd class="section__dd">（必须）要打印的文章区域，DOM 元素或者选择器字符串。</dd></dl><dl class="section__dl"><dt class="section__dt">title：</dt><dd class="section__dd">（可选）要打印的文章标题。如果 element 区域有 h1 标签则无需设置。可以直接设置标题文本，也可以是文章页的主标题 DOM 元素。</dd></dl><pre class="section__pre"><code class="section__code">const defaults = Outline.DEFAULTS
 let outline
 
 defaults.position = 'sticky'
@@ -193,8 +193,8 @@ defaults.homepage = './index.html'
 defaults.git = 'https://github.com/yaohaixiao/outline.js'
 defaults.tags = 'https://github.com/yaohaixiao/outline.js/tags'
 defaults.issues = 'https://github.com/yaohaixiao/outline.js/issues'
-defaults.print = {
-  element: '#article',
+defaults.reader = {
+  target: '#article',
   // 可以直接设置标题文本，也可以是文章页的主标题 DOM 元素。
   // 纯静态的页面，设置 DOM 元素，可能更好，确保每个页面的主标题 DOM 元素的选择器不变
   // 则 title 会是一个可变的值，这样比直接设置标题文本更加灵活；
@@ -327,7 +327,7 @@ defaults.print = {
 defaults.chapterTextFilter = (text) => {
   return text.replace(/\(.*?\)/, '()')
 }
-outline = new Outline(Outline.DEFAULTS)</code></pre></div></section></section><section class="section"><header class="section__header"><h2 class="section__title">Properties</h2></header><div class="section__content"><p>outline.js 重构后，对外放 4 个重要的属性：anchors、drawer、chapters 和 toolbar。它们都是独立的对象实例，提供了 outline.js 所有的能力（属性和方法）。</p></div><section class="section"><header class="section__header"><h3 class="section__h3">attrs</h3></header><div class="section__content"><h4 class="section__h4">Description</h4><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">Object</dd></dl><p>存储的是 Outline 对象当前使用中的配置选项：</p><p>说明：建议使用 attr(prop) 方法来获取属性，避免直接调用属性。</p><pre class="section__pre"><code class="section__code">// 设置默认配置项
+outline = new Outline(Outline.DEFAULTS)</code></pre></div></section></section><section class="section"><header class="section__header"><h2 class="section__title">Properties</h2></header><div class="section__content"><p>outline.js 重构后，对外放 4 个重要的属性：anchors、drawer、chapters、reader 和 toolbar。它们都是独立的对象实例，提供了 outline.js 所有的能力（属性和方法）。</p></div><section class="section"><header class="section__header"><h3 class="section__h3">attrs</h3></header><div class="section__content"><h4 class="section__h4">Description</h4><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">Object</dd></dl><p>存储的是 Outline 对象当前使用中的配置选项：</p><p>说明：建议使用 attr(prop) 方法来获取属性，避免直接调用属性。</p><pre class="section__pre"><code class="section__code">// 设置默认配置项
 const outline = new Outline(Outline.DEFAULTS)
 
 // 查看全部配置信息
@@ -624,7 +624,77 @@ Drawer.DEFAULTS = {
    afterDestroy: null
 }
 
-export default Drawer</code></pre></div></section><section class="section"><header class="section__header"><h3 class="section__h3">toolbar</h3></header><div class="section__content"><h4 class="section__h4">Description</h4><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">Object</dd></dl><p>Toolbar 模块：独立的固定定位的工具栏模块；</p><pre class="section__pre"><code class="section__code">// 仅展示 API 中对外公开的方法和属性
+export default Drawer</code></pre></div></section><section class="section"><header class="section__header"><h3 class="section__h3">reader</h3></header><div class="section__content"><h4 class="section__h4">Description</h4><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">Object</dd></dl><p>Reader 模块：独立的阅读视图模块。</p><pre class="section__pre"><code class="section__code">// 仅展示 API 中对外公开的方法和属性
+class Drawer extends Base {
+  constructor(options) {
+    super()
+
+    this.attrs = cloneDeep(Reader.DEFAULTS)
+    this.reading = false
+
+    this.$target = null
+    this.$paper = null
+    this.$title = null
+    this.$article = null
+    this.$icon = null
+
+    // 省略其它逻辑...
+  }
+
+  attr(prop, value) {
+    // 省略其它逻辑...
+    return this
+  }
+
+  render() {
+    // 省略其它逻辑...
+    return this
+  }
+
+  refresh() {
+    // 省略其它逻辑...
+    return this
+  }
+
+  enter() {
+    // 省略其它逻辑...
+    return this
+  }
+
+  exit() {
+    // 省略其它逻辑...
+    return this
+  }
+
+  toggle() {
+    // 省略其它逻辑...
+    return this
+  }
+
+  print() {
+    // 省略其它逻辑...
+    return this
+  }
+
+  destroy() {
+    this.removeListeners()
+    // 省略其它逻辑...
+    return this
+  }
+
+  reload(options) {
+    this.destroy().initialize(this.attr(options))
+    return this
+  }
+}
+
+Reader.DEFAULTS = {
+   target: '',
+   title: '标题',
+   enterReadingTip: '进入阅读模式，按 ESC 键可退出阅读模式'
+}
+
+export default Reader</code></pre></div></section><section class="section"><header class="section__header"><h3 class="section__h3">toolbar</h3></header><div class="section__content"><h4 class="section__h4">Description</h4><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">Object</dd></dl><p>Toolbar 模块：独立的固定定位的工具栏模块；</p><pre class="section__pre"><code class="section__code">// 仅展示 API 中对外公开的方法和属性
 class Toolbar extends Base {
   constructor(options) {
     super()
@@ -808,9 +878,9 @@ export default Toolbar</code></pre></div></section><section class="section"><hea
   tools: [],
   // 为文章页添加基础的打印样式
   // 如果您的页面已经有打印样式，就无需设置了
-  print: {
+  reader: {
     //（必须）要打印的文章区域，DOM 元素或者选择器字符串。
-    element: '',
+    target: '',
     // （可选）要打印的文章标题。如果 element 区域有 h1 标签则无需设置。
     // 可以直接设置标题文本，也可以是文章页的主标题 DOM 元素
     title: '',
@@ -1289,7 +1359,7 @@ outline.reload({
       }
     }
   ]
-})</code></pre></div></section><section class="section"><header class="section__header"><h3 class="section__h3">print</h3></header><div class="section__content"><h4 class="section__h4">Description</h4><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">Object</dd></dl><dl class="section__dl"><dt class="section__dt">Default：</dt><dd class="section__dd">{element: '', title: ''}</dd></dl><p>可选，自定义的是否自动为文章页面创建打印样式。</p><dl class="section__dl"><dt class="section__dt">element：</dt><dd class="section__dd">（必须）要打印的文章区域，DOM 元素或者选择器字符串。</dd></dl><dl class="section__dl"><dt class="section__dt">title：</dt><dd class="section__dd">（可选）要打印的文章标题。如果 element 区域有 h1 标签则无需设置。可以直接设置标题文本，也可以是文章页的主标题 DOM 元素。</dd></dl><pre class="section__pre"><code class="section__code">const defaults = Outline.DEFAULTS
+})</code></pre></div></section><section class="section"><header class="section__header"><h3 class="section__h3">reader</h3></header><div class="section__content"><h4 class="section__h4">Description</h4><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">Object</dd></dl><dl class="section__dl"><dt class="section__dt">Default：</dt><dd class="section__dd">{target: '', title: ''}</dd></dl><p>可选，自定义的是否自动为文章页面创建打印样式。</p><dl class="section__dl"><dt class="section__dt">element：</dt><dd class="section__dd">（必须）要打印的文章区域，DOM 元素或者选择器字符串。</dd></dl><dl class="section__dl"><dt class="section__dt">title：</dt><dd class="section__dd">（可选）要打印的文章标题。如果 element 区域有 h1 标签则无需设置。可以直接设置标题文本，也可以是文章页的主标题 DOM 元素。</dd></dl><pre class="section__pre"><code class="section__code">const defaults = Outline.DEFAULTS
 let outline
 
 defaults.position = 'sticky'
@@ -1300,8 +1370,8 @@ defaults.homepage = './index.html'
 defaults.git = 'https://github.com/yaohaixiao/outline.js'
 defaults.tags = 'https://github.com/yaohaixiao/outline.js/tags'
 defaults.issues = 'https://github.com/yaohaixiao/outline.js/issues'
-defaults.print = {
-  element: '#article',
+defaults.reader = {
+  target: '#article',
   // 可以直接设置标题文本，也可以是文章页的主标题 DOM 元素。
   // 纯静态的页面，设置 DOM 元素，可能更好，确保每个页面的主标题 DOM 元素的选择器不变
   // 则 title 会是一个可变的值，这样比直接设置标题文本更加灵活；
@@ -1434,7 +1504,7 @@ defaults.print = {
 defaults.chapterTextFilter = (text) => {
   return text.replace(/\(.*?\)/, '()')
 }
-outline = new Outline(Outline.DEFAULTS)</code></pre></div></section></section><section class="section"><header class="section__header"><h2 class="section__title">Properties</h2></header><div class="section__content"><p>outline.js 重构后，对外放 4 个重要的属性：anchors、drawer、chapters 和 toolbar。它们都是独立的对象实例，提供了 outline.js 所有的能力（属性和方法）。</p></div><section class="section"><header class="section__header"><h3 class="section__h3">attrs</h3></header><div class="section__content"><h4 class="section__h4">Description</h4><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">Object</dd></dl><p>存储的是 Outline 对象当前使用中的配置选项：</p><p>说明：建议使用 attr(prop) 方法来获取属性，避免直接调用属性。</p><pre class="section__pre"><code class="section__code">// 设置默认配置项
+outline = new Outline(Outline.DEFAULTS)</code></pre></div></section></section><section class="section"><header class="section__header"><h2 class="section__title">Properties</h2></header><div class="section__content"><p>outline.js 重构后，对外放 4 个重要的属性：anchors、drawer、chapters、reader 和 toolbar。它们都是独立的对象实例，提供了 outline.js 所有的能力（属性和方法）。</p></div><section class="section"><header class="section__header"><h3 class="section__h3">attrs</h3></header><div class="section__content"><h4 class="section__h4">Description</h4><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">Object</dd></dl><p>存储的是 Outline 对象当前使用中的配置选项：</p><p>说明：建议使用 attr(prop) 方法来获取属性，避免直接调用属性。</p><pre class="section__pre"><code class="section__code">// 设置默认配置项
 const outline = new Outline(Outline.DEFAULTS)
 
 // 查看全部配置信息
@@ -1731,7 +1801,77 @@ Drawer.DEFAULTS = {
    afterDestroy: null
 }
 
-export default Drawer</code></pre></div></section><section class="section"><header class="section__header"><h3 class="section__h3">toolbar</h3></header><div class="section__content"><h4 class="section__h4">Description</h4><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">Object</dd></dl><p>Toolbar 模块：独立的固定定位的工具栏模块；</p><pre class="section__pre"><code class="section__code">// 仅展示 API 中对外公开的方法和属性
+export default Drawer</code></pre></div></section><section class="section"><header class="section__header"><h3 class="section__h3">reader</h3></header><div class="section__content"><h4 class="section__h4">Description</h4><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">Object</dd></dl><p>Reader 模块：独立的阅读视图模块。</p><pre class="section__pre"><code class="section__code">// 仅展示 API 中对外公开的方法和属性
+class Drawer extends Base {
+  constructor(options) {
+    super()
+
+    this.attrs = cloneDeep(Reader.DEFAULTS)
+    this.reading = false
+
+    this.$target = null
+    this.$paper = null
+    this.$title = null
+    this.$article = null
+    this.$icon = null
+
+    // 省略其它逻辑...
+  }
+
+  attr(prop, value) {
+    // 省略其它逻辑...
+    return this
+  }
+
+  render() {
+    // 省略其它逻辑...
+    return this
+  }
+
+  refresh() {
+    // 省略其它逻辑...
+    return this
+  }
+
+  enter() {
+    // 省略其它逻辑...
+    return this
+  }
+
+  exit() {
+    // 省略其它逻辑...
+    return this
+  }
+
+  toggle() {
+    // 省略其它逻辑...
+    return this
+  }
+
+  print() {
+    // 省略其它逻辑...
+    return this
+  }
+
+  destroy() {
+    this.removeListeners()
+    // 省略其它逻辑...
+    return this
+  }
+
+  reload(options) {
+    this.destroy().initialize(this.attr(options))
+    return this
+  }
+}
+
+Reader.DEFAULTS = {
+   target: '',
+   title: '标题',
+   enterReadingTip: '进入阅读模式，按 ESC 键可退出阅读模式'
+}
+
+export default Reader</code></pre></div></section><section class="section"><header class="section__header"><h3 class="section__h3">toolbar</h3></header><div class="section__content"><h4 class="section__h4">Description</h4><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">Object</dd></dl><p>Toolbar 模块：独立的固定定位的工具栏模块；</p><pre class="section__pre"><code class="section__code">// 仅展示 API 中对外公开的方法和属性
 class Toolbar extends Base {
   constructor(options) {
     super()
@@ -1915,9 +2055,9 @@ export default Toolbar</code></pre></div></section><section class="section"><hea
   tools: [],
   // 为文章页添加基础的打印样式
   // 如果您的页面已经有打印样式，就无需设置了
-  print: {
+  reader: {
     //（必须）要打印的文章区域，DOM 元素或者选择器字符串。
-    element: '',
+    target: '',
     // （可选）要打印的文章标题。如果 element 区域有 h1 标签则无需设置。
     // 可以直接设置标题文本，也可以是文章页的主标题 DOM 元素
     title: '',
@@ -2396,7 +2536,7 @@ outline.reload({
       }
     }
   ]
-})</code></pre></div></section><section class="section"><header class="section__header"><h3 class="section__h3">print</h3></header><div class="section__content"><h4 class="section__h4">Description</h4><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">Object</dd></dl><dl class="section__dl"><dt class="section__dt">Default：</dt><dd class="section__dd">{element: '', title: ''}</dd></dl><p>可选，自定义的是否自动为文章页面创建打印样式。</p><dl class="section__dl"><dt class="section__dt">element：</dt><dd class="section__dd">（必须）要打印的文章区域，DOM 元素或者选择器字符串。</dd></dl><dl class="section__dl"><dt class="section__dt">title：</dt><dd class="section__dd">（可选）要打印的文章标题。如果 element 区域有 h1 标签则无需设置。可以直接设置标题文本，也可以是文章页的主标题 DOM 元素。</dd></dl><pre class="section__pre"><code class="section__code">const defaults = Outline.DEFAULTS
+})</code></pre></div></section><section class="section"><header class="section__header"><h3 class="section__h3">reader</h3></header><div class="section__content"><h4 class="section__h4">Description</h4><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">Object</dd></dl><dl class="section__dl"><dt class="section__dt">Default：</dt><dd class="section__dd">{target: '', title: ''}</dd></dl><p>可选，自定义的是否自动为文章页面创建打印样式。</p><dl class="section__dl"><dt class="section__dt">element：</dt><dd class="section__dd">（必须）要打印的文章区域，DOM 元素或者选择器字符串。</dd></dl><dl class="section__dl"><dt class="section__dt">title：</dt><dd class="section__dd">（可选）要打印的文章标题。如果 element 区域有 h1 标签则无需设置。可以直接设置标题文本，也可以是文章页的主标题 DOM 元素。</dd></dl><pre class="section__pre"><code class="section__code">const defaults = Outline.DEFAULTS
 let outline
 
 defaults.position = 'sticky'
@@ -2407,8 +2547,8 @@ defaults.homepage = './index.html'
 defaults.git = 'https://github.com/yaohaixiao/outline.js'
 defaults.tags = 'https://github.com/yaohaixiao/outline.js/tags'
 defaults.issues = 'https://github.com/yaohaixiao/outline.js/issues'
-defaults.print = {
-  element: '#article',
+defaults.reader = {
+  target: '#article',
   // 可以直接设置标题文本，也可以是文章页的主标题 DOM 元素。
   // 纯静态的页面，设置 DOM 元素，可能更好，确保每个页面的主标题 DOM 元素的选择器不变
   // 则 title 会是一个可变的值，这样比直接设置标题文本更加灵活；
@@ -2541,7 +2681,7 @@ defaults.print = {
 defaults.chapterTextFilter = (text) => {
   return text.replace(/\(.*?\)/, '()')
 }
-outline = new Outline(Outline.DEFAULTS)</code></pre></div></section></section><section class="section"><header class="section__header"><h2 class="section__title">Properties</h2></header><div class="section__content"><p>outline.js 重构后，对外放 4 个重要的属性：anchors、drawer、chapters 和 toolbar。它们都是独立的对象实例，提供了 outline.js 所有的能力（属性和方法）。</p></div><section class="section"><header class="section__header"><h3 class="section__h3">attrs</h3></header><div class="section__content"><h4 class="section__h4">Description</h4><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">Object</dd></dl><p>存储的是 Outline 对象当前使用中的配置选项：</p><p>说明：建议使用 attr(prop) 方法来获取属性，避免直接调用属性。</p><pre class="section__pre"><code class="section__code">// 设置默认配置项
+outline = new Outline(Outline.DEFAULTS)</code></pre></div></section></section><section class="section"><header class="section__header"><h2 class="section__title">Properties</h2></header><div class="section__content"><p>outline.js 重构后，对外放 4 个重要的属性：anchors、drawer、chapters、reader 和 toolbar。它们都是独立的对象实例，提供了 outline.js 所有的能力（属性和方法）。</p></div><section class="section"><header class="section__header"><h3 class="section__h3">attrs</h3></header><div class="section__content"><h4 class="section__h4">Description</h4><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">Object</dd></dl><p>存储的是 Outline 对象当前使用中的配置选项：</p><p>说明：建议使用 attr(prop) 方法来获取属性，避免直接调用属性。</p><pre class="section__pre"><code class="section__code">// 设置默认配置项
 const outline = new Outline(Outline.DEFAULTS)
 
 // 查看全部配置信息
@@ -2838,7 +2978,77 @@ Drawer.DEFAULTS = {
    afterDestroy: null
 }
 
-export default Drawer</code></pre></div></section><section class="section"><header class="section__header"><h3 class="section__h3">toolbar</h3></header><div class="section__content"><h4 class="section__h4">Description</h4><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">Object</dd></dl><p>Toolbar 模块：独立的固定定位的工具栏模块；</p><pre class="section__pre"><code class="section__code">// 仅展示 API 中对外公开的方法和属性
+export default Drawer</code></pre></div></section><section class="section"><header class="section__header"><h3 class="section__h3">reader</h3></header><div class="section__content"><h4 class="section__h4">Description</h4><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">Object</dd></dl><p>Reader 模块：独立的阅读视图模块。</p><pre class="section__pre"><code class="section__code">// 仅展示 API 中对外公开的方法和属性
+class Drawer extends Base {
+  constructor(options) {
+    super()
+
+    this.attrs = cloneDeep(Reader.DEFAULTS)
+    this.reading = false
+
+    this.$target = null
+    this.$paper = null
+    this.$title = null
+    this.$article = null
+    this.$icon = null
+
+    // 省略其它逻辑...
+  }
+
+  attr(prop, value) {
+    // 省略其它逻辑...
+    return this
+  }
+
+  render() {
+    // 省略其它逻辑...
+    return this
+  }
+
+  refresh() {
+    // 省略其它逻辑...
+    return this
+  }
+
+  enter() {
+    // 省略其它逻辑...
+    return this
+  }
+
+  exit() {
+    // 省略其它逻辑...
+    return this
+  }
+
+  toggle() {
+    // 省略其它逻辑...
+    return this
+  }
+
+  print() {
+    // 省略其它逻辑...
+    return this
+  }
+
+  destroy() {
+    this.removeListeners()
+    // 省略其它逻辑...
+    return this
+  }
+
+  reload(options) {
+    this.destroy().initialize(this.attr(options))
+    return this
+  }
+}
+
+Reader.DEFAULTS = {
+   target: '',
+   title: '标题',
+   enterReadingTip: '进入阅读模式，按 ESC 键可退出阅读模式'
+}
+
+export default Reader</code></pre></div></section><section class="section"><header class="section__header"><h3 class="section__h3">toolbar</h3></header><div class="section__content"><h4 class="section__h4">Description</h4><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">Object</dd></dl><p>Toolbar 模块：独立的固定定位的工具栏模块；</p><pre class="section__pre"><code class="section__code">// 仅展示 API 中对外公开的方法和属性
 class Toolbar extends Base {
   constructor(options) {
     super()
@@ -3022,9 +3232,9 @@ export default Toolbar</code></pre></div></section><section class="section"><hea
   tools: [],
   // 为文章页添加基础的打印样式
   // 如果您的页面已经有打印样式，就无需设置了
-  print: {
+  reader: {
     //（必须）要打印的文章区域，DOM 元素或者选择器字符串。
-    element: '',
+    target: '',
     // （可选）要打印的文章标题。如果 element 区域有 h1 标签则无需设置。
     // 可以直接设置标题文本，也可以是文章页的主标题 DOM 元素
     title: '',
@@ -3503,7 +3713,7 @@ outline.reload({
       }
     }
   ]
-})</code></pre></div></section><section class="section"><header class="section__header"><h3 class="section__h3">print</h3></header><div class="section__content"><h4 class="section__h4">Description</h4><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">Object</dd></dl><dl class="section__dl"><dt class="section__dt">Default：</dt><dd class="section__dd">{element: '', title: ''}</dd></dl><p>可选，自定义的是否自动为文章页面创建打印样式。</p><dl class="section__dl"><dt class="section__dt">element：</dt><dd class="section__dd">（必须）要打印的文章区域，DOM 元素或者选择器字符串。</dd></dl><dl class="section__dl"><dt class="section__dt">title：</dt><dd class="section__dd">（可选）要打印的文章标题。如果 element 区域有 h1 标签则无需设置。可以直接设置标题文本，也可以是文章页的主标题 DOM 元素。</dd></dl><pre class="section__pre"><code class="section__code">const defaults = Outline.DEFAULTS
+})</code></pre></div></section><section class="section"><header class="section__header"><h3 class="section__h3">reader</h3></header><div class="section__content"><h4 class="section__h4">Description</h4><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">Object</dd></dl><dl class="section__dl"><dt class="section__dt">Default：</dt><dd class="section__dd">{target: '', title: ''}</dd></dl><p>可选，自定义的是否自动为文章页面创建打印样式。</p><dl class="section__dl"><dt class="section__dt">element：</dt><dd class="section__dd">（必须）要打印的文章区域，DOM 元素或者选择器字符串。</dd></dl><dl class="section__dl"><dt class="section__dt">title：</dt><dd class="section__dd">（可选）要打印的文章标题。如果 element 区域有 h1 标签则无需设置。可以直接设置标题文本，也可以是文章页的主标题 DOM 元素。</dd></dl><pre class="section__pre"><code class="section__code">const defaults = Outline.DEFAULTS
 let outline
 
 defaults.position = 'sticky'
@@ -3514,8 +3724,8 @@ defaults.homepage = './index.html'
 defaults.git = 'https://github.com/yaohaixiao/outline.js'
 defaults.tags = 'https://github.com/yaohaixiao/outline.js/tags'
 defaults.issues = 'https://github.com/yaohaixiao/outline.js/issues'
-defaults.print = {
-  element: '#article',
+defaults.reader = {
+  target: '#article',
   // 可以直接设置标题文本，也可以是文章页的主标题 DOM 元素。
   // 纯静态的页面，设置 DOM 元素，可能更好，确保每个页面的主标题 DOM 元素的选择器不变
   // 则 title 会是一个可变的值，这样比直接设置标题文本更加灵活；
@@ -3648,7 +3858,7 @@ defaults.print = {
 defaults.chapterTextFilter = (text) => {
   return text.replace(/\(.*?\)/, '()')
 }
-outline = new Outline(Outline.DEFAULTS)</code></pre></div></section></section><section class="section"><header class="section__header"><h2 class="section__title">Properties</h2></header><div class="section__content"><p>outline.js 重构后，对外放 4 个重要的属性：anchors、drawer、chapters 和 toolbar。它们都是独立的对象实例，提供了 outline.js 所有的能力（属性和方法）。</p></div><section class="section"><header class="section__header"><h3 class="section__h3">attrs</h3></header><div class="section__content"><h4 class="section__h4">Description</h4><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">Object</dd></dl><p>存储的是 Outline 对象当前使用中的配置选项：</p><p>说明：建议使用 attr(prop) 方法来获取属性，避免直接调用属性。</p><pre class="section__pre"><code class="section__code">// 设置默认配置项
+outline = new Outline(Outline.DEFAULTS)</code></pre></div></section></section><section class="section"><header class="section__header"><h2 class="section__title">Properties</h2></header><div class="section__content"><p>outline.js 重构后，对外放 4 个重要的属性：anchors、drawer、chapters、reader 和 toolbar。它们都是独立的对象实例，提供了 outline.js 所有的能力（属性和方法）。</p></div><section class="section"><header class="section__header"><h3 class="section__h3">attrs</h3></header><div class="section__content"><h4 class="section__h4">Description</h4><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">Object</dd></dl><p>存储的是 Outline 对象当前使用中的配置选项：</p><p>说明：建议使用 attr(prop) 方法来获取属性，避免直接调用属性。</p><pre class="section__pre"><code class="section__code">// 设置默认配置项
 const outline = new Outline(Outline.DEFAULTS)
 
 // 查看全部配置信息
@@ -3945,7 +4155,77 @@ Drawer.DEFAULTS = {
    afterDestroy: null
 }
 
-export default Drawer</code></pre></div></section><section class="section"><header class="section__header"><h3 class="section__h3">toolbar</h3></header><div class="section__content"><h4 class="section__h4">Description</h4><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">Object</dd></dl><p>Toolbar 模块：独立的固定定位的工具栏模块；</p><pre class="section__pre"><code class="section__code">// 仅展示 API 中对外公开的方法和属性
+export default Drawer</code></pre></div></section><section class="section"><header class="section__header"><h3 class="section__h3">reader</h3></header><div class="section__content"><h4 class="section__h4">Description</h4><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">Object</dd></dl><p>Reader 模块：独立的阅读视图模块。</p><pre class="section__pre"><code class="section__code">// 仅展示 API 中对外公开的方法和属性
+class Drawer extends Base {
+  constructor(options) {
+    super()
+
+    this.attrs = cloneDeep(Reader.DEFAULTS)
+    this.reading = false
+
+    this.$target = null
+    this.$paper = null
+    this.$title = null
+    this.$article = null
+    this.$icon = null
+
+    // 省略其它逻辑...
+  }
+
+  attr(prop, value) {
+    // 省略其它逻辑...
+    return this
+  }
+
+  render() {
+    // 省略其它逻辑...
+    return this
+  }
+
+  refresh() {
+    // 省略其它逻辑...
+    return this
+  }
+
+  enter() {
+    // 省略其它逻辑...
+    return this
+  }
+
+  exit() {
+    // 省略其它逻辑...
+    return this
+  }
+
+  toggle() {
+    // 省略其它逻辑...
+    return this
+  }
+
+  print() {
+    // 省略其它逻辑...
+    return this
+  }
+
+  destroy() {
+    this.removeListeners()
+    // 省略其它逻辑...
+    return this
+  }
+
+  reload(options) {
+    this.destroy().initialize(this.attr(options))
+    return this
+  }
+}
+
+Reader.DEFAULTS = {
+   target: '',
+   title: '标题',
+   enterReadingTip: '进入阅读模式，按 ESC 键可退出阅读模式'
+}
+
+export default Reader</code></pre></div></section><section class="section"><header class="section__header"><h3 class="section__h3">toolbar</h3></header><div class="section__content"><h4 class="section__h4">Description</h4><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">Object</dd></dl><p>Toolbar 模块：独立的固定定位的工具栏模块；</p><pre class="section__pre"><code class="section__code">// 仅展示 API 中对外公开的方法和属性
 class Toolbar extends Base {
   constructor(options) {
     super()
@@ -4129,9 +4409,9 @@ export default Toolbar</code></pre></div></section><section class="section"><hea
   tools: [],
   // 为文章页添加基础的打印样式
   // 如果您的页面已经有打印样式，就无需设置了
-  print: {
+  reader: {
     //（必须）要打印的文章区域，DOM 元素或者选择器字符串。
-    element: '',
+    target: '',
     // （可选）要打印的文章标题。如果 element 区域有 h1 标签则无需设置。
     // 可以直接设置标题文本，也可以是文章页的主标题 DOM 元素
     title: '',
@@ -4610,7 +4890,7 @@ outline.reload({
       }
     }
   ]
-})</code></pre></div></section><section class="section"><header class="section__header"><h3 class="section__h3">print</h3></header><div class="section__content"><h4 class="section__h4">Description</h4><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">Object</dd></dl><dl class="section__dl"><dt class="section__dt">Default：</dt><dd class="section__dd">{element: '', title: ''}</dd></dl><p>可选，自定义的是否自动为文章页面创建打印样式。</p><dl class="section__dl"><dt class="section__dt">element：</dt><dd class="section__dd">（必须）要打印的文章区域，DOM 元素或者选择器字符串。</dd></dl><dl class="section__dl"><dt class="section__dt">title：</dt><dd class="section__dd">（可选）要打印的文章标题。如果 element 区域有 h1 标签则无需设置。可以直接设置标题文本，也可以是文章页的主标题 DOM 元素。</dd></dl><pre class="section__pre"><code class="section__code">const defaults = Outline.DEFAULTS
+})</code></pre></div></section><section class="section"><header class="section__header"><h3 class="section__h3">reader</h3></header><div class="section__content"><h4 class="section__h4">Description</h4><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">Object</dd></dl><dl class="section__dl"><dt class="section__dt">Default：</dt><dd class="section__dd">{target: '', title: ''}</dd></dl><p>可选，自定义的是否自动为文章页面创建打印样式。</p><dl class="section__dl"><dt class="section__dt">element：</dt><dd class="section__dd">（必须）要打印的文章区域，DOM 元素或者选择器字符串。</dd></dl><dl class="section__dl"><dt class="section__dt">title：</dt><dd class="section__dd">（可选）要打印的文章标题。如果 element 区域有 h1 标签则无需设置。可以直接设置标题文本，也可以是文章页的主标题 DOM 元素。</dd></dl><pre class="section__pre"><code class="section__code">const defaults = Outline.DEFAULTS
 let outline
 
 defaults.position = 'sticky'
@@ -4621,8 +4901,8 @@ defaults.homepage = './index.html'
 defaults.git = 'https://github.com/yaohaixiao/outline.js'
 defaults.tags = 'https://github.com/yaohaixiao/outline.js/tags'
 defaults.issues = 'https://github.com/yaohaixiao/outline.js/issues'
-defaults.print = {
-  element: '#article',
+defaults.reader = {
+  target: '#article',
   // 可以直接设置标题文本，也可以是文章页的主标题 DOM 元素。
   // 纯静态的页面，设置 DOM 元素，可能更好，确保每个页面的主标题 DOM 元素的选择器不变
   // 则 title 会是一个可变的值，这样比直接设置标题文本更加灵活；
@@ -4755,7 +5035,7 @@ defaults.print = {
 defaults.chapterTextFilter = (text) => {
   return text.replace(/\(.*?\)/, '()')
 }
-outline = new Outline(Outline.DEFAULTS)</code></pre></div></section></section><section class="section"><header class="section__header"><h2 class="section__title">Properties</h2></header><div class="section__content"><p>outline.js 重构后，对外放 4 个重要的属性：anchors、drawer、chapters 和 toolbar。它们都是独立的对象实例，提供了 outline.js 所有的能力（属性和方法）。</p></div><section class="section"><header class="section__header"><h3 class="section__h3">attrs</h3></header><div class="section__content"><h4 class="section__h4">Description</h4><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">Object</dd></dl><p>存储的是 Outline 对象当前使用中的配置选项：</p><p>说明：建议使用 attr(prop) 方法来获取属性，避免直接调用属性。</p><pre class="section__pre"><code class="section__code">// 设置默认配置项
+outline = new Outline(Outline.DEFAULTS)</code></pre></div></section></section><section class="section"><header class="section__header"><h2 class="section__title">Properties</h2></header><div class="section__content"><p>outline.js 重构后，对外放 4 个重要的属性：anchors、drawer、chapters、reader 和 toolbar。它们都是独立的对象实例，提供了 outline.js 所有的能力（属性和方法）。</p></div><section class="section"><header class="section__header"><h3 class="section__h3">attrs</h3></header><div class="section__content"><h4 class="section__h4">Description</h4><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">Object</dd></dl><p>存储的是 Outline 对象当前使用中的配置选项：</p><p>说明：建议使用 attr(prop) 方法来获取属性，避免直接调用属性。</p><pre class="section__pre"><code class="section__code">// 设置默认配置项
 const outline = new Outline(Outline.DEFAULTS)
 
 // 查看全部配置信息
@@ -5052,7 +5332,77 @@ Drawer.DEFAULTS = {
    afterDestroy: null
 }
 
-export default Drawer</code></pre></div></section><section class="section"><header class="section__header"><h3 class="section__h3">toolbar</h3></header><div class="section__content"><h4 class="section__h4">Description</h4><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">Object</dd></dl><p>Toolbar 模块：独立的固定定位的工具栏模块；</p><pre class="section__pre"><code class="section__code">// 仅展示 API 中对外公开的方法和属性
+export default Drawer</code></pre></div></section><section class="section"><header class="section__header"><h3 class="section__h3">reader</h3></header><div class="section__content"><h4 class="section__h4">Description</h4><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">Object</dd></dl><p>Reader 模块：独立的阅读视图模块。</p><pre class="section__pre"><code class="section__code">// 仅展示 API 中对外公开的方法和属性
+class Drawer extends Base {
+  constructor(options) {
+    super()
+
+    this.attrs = cloneDeep(Reader.DEFAULTS)
+    this.reading = false
+
+    this.$target = null
+    this.$paper = null
+    this.$title = null
+    this.$article = null
+    this.$icon = null
+
+    // 省略其它逻辑...
+  }
+
+  attr(prop, value) {
+    // 省略其它逻辑...
+    return this
+  }
+
+  render() {
+    // 省略其它逻辑...
+    return this
+  }
+
+  refresh() {
+    // 省略其它逻辑...
+    return this
+  }
+
+  enter() {
+    // 省略其它逻辑...
+    return this
+  }
+
+  exit() {
+    // 省略其它逻辑...
+    return this
+  }
+
+  toggle() {
+    // 省略其它逻辑...
+    return this
+  }
+
+  print() {
+    // 省略其它逻辑...
+    return this
+  }
+
+  destroy() {
+    this.removeListeners()
+    // 省略其它逻辑...
+    return this
+  }
+
+  reload(options) {
+    this.destroy().initialize(this.attr(options))
+    return this
+  }
+}
+
+Reader.DEFAULTS = {
+   target: '',
+   title: '标题',
+   enterReadingTip: '进入阅读模式，按 ESC 键可退出阅读模式'
+}
+
+export default Reader</code></pre></div></section><section class="section"><header class="section__header"><h3 class="section__h3">toolbar</h3></header><div class="section__content"><h4 class="section__h4">Description</h4><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">Object</dd></dl><p>Toolbar 模块：独立的固定定位的工具栏模块；</p><pre class="section__pre"><code class="section__code">// 仅展示 API 中对外公开的方法和属性
 class Toolbar extends Base {
   constructor(options) {
     super()
@@ -5236,9 +5586,9 @@ export default Toolbar</code></pre></div></section><section class="section"><hea
   tools: [],
   // 为文章页添加基础的打印样式
   // 如果您的页面已经有打印样式，就无需设置了
-  print: {
+  reader: {
     //（必须）要打印的文章区域，DOM 元素或者选择器字符串。
-    element: '',
+    target: '',
     // （可选）要打印的文章标题。如果 element 区域有 h1 标签则无需设置。
     // 可以直接设置标题文本，也可以是文章页的主标题 DOM 元素
     title: '',
@@ -5717,7 +6067,7 @@ outline.reload({
       }
     }
   ]
-})</code></pre></div></section><section class="section"><header class="section__header"><h3 class="section__h3">print</h3></header><div class="section__content"><h4 class="section__h4">Description</h4><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">Object</dd></dl><dl class="section__dl"><dt class="section__dt">Default：</dt><dd class="section__dd">{element: '', title: ''}</dd></dl><p>可选，自定义的是否自动为文章页面创建打印样式。</p><dl class="section__dl"><dt class="section__dt">element：</dt><dd class="section__dd">（必须）要打印的文章区域，DOM 元素或者选择器字符串。</dd></dl><dl class="section__dl"><dt class="section__dt">title：</dt><dd class="section__dd">（可选）要打印的文章标题。如果 element 区域有 h1 标签则无需设置。可以直接设置标题文本，也可以是文章页的主标题 DOM 元素。</dd></dl><pre class="section__pre"><code class="section__code">const defaults = Outline.DEFAULTS
+})</code></pre></div></section><section class="section"><header class="section__header"><h3 class="section__h3">reader</h3></header><div class="section__content"><h4 class="section__h4">Description</h4><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">Object</dd></dl><dl class="section__dl"><dt class="section__dt">Default：</dt><dd class="section__dd">{target: '', title: ''}</dd></dl><p>可选，自定义的是否自动为文章页面创建打印样式。</p><dl class="section__dl"><dt class="section__dt">element：</dt><dd class="section__dd">（必须）要打印的文章区域，DOM 元素或者选择器字符串。</dd></dl><dl class="section__dl"><dt class="section__dt">title：</dt><dd class="section__dd">（可选）要打印的文章标题。如果 element 区域有 h1 标签则无需设置。可以直接设置标题文本，也可以是文章页的主标题 DOM 元素。</dd></dl><pre class="section__pre"><code class="section__code">const defaults = Outline.DEFAULTS
 let outline
 
 defaults.position = 'sticky'
@@ -5728,8 +6078,8 @@ defaults.homepage = './index.html'
 defaults.git = 'https://github.com/yaohaixiao/outline.js'
 defaults.tags = 'https://github.com/yaohaixiao/outline.js/tags'
 defaults.issues = 'https://github.com/yaohaixiao/outline.js/issues'
-defaults.print = {
-  element: '#article',
+defaults.reader = {
+  target: '#article',
   // 可以直接设置标题文本，也可以是文章页的主标题 DOM 元素。
   // 纯静态的页面，设置 DOM 元素，可能更好，确保每个页面的主标题 DOM 元素的选择器不变
   // 则 title 会是一个可变的值，这样比直接设置标题文本更加灵活；
@@ -5862,7 +6212,7 @@ defaults.print = {
 defaults.chapterTextFilter = (text) => {
   return text.replace(/\(.*?\)/, '()')
 }
-outline = new Outline(Outline.DEFAULTS)</code></pre></div></section></section><section class="section"><header class="section__header"><h2 class="section__title">Properties</h2></header><div class="section__content"><p>outline.js 重构后，对外放 4 个重要的属性：anchors、drawer、chapters 和 toolbar。它们都是独立的对象实例，提供了 outline.js 所有的能力（属性和方法）。</p></div><section class="section"><header class="section__header"><h3 class="section__h3">attrs</h3></header><div class="section__content"><h4 class="section__h4">Description</h4><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">Object</dd></dl><p>存储的是 Outline 对象当前使用中的配置选项：</p><p>说明：建议使用 attr(prop) 方法来获取属性，避免直接调用属性。</p><pre class="section__pre"><code class="section__code">// 设置默认配置项
+outline = new Outline(Outline.DEFAULTS)</code></pre></div></section></section><section class="section"><header class="section__header"><h2 class="section__title">Properties</h2></header><div class="section__content"><p>outline.js 重构后，对外放 4 个重要的属性：anchors、drawer、chapters、reader 和 toolbar。它们都是独立的对象实例，提供了 outline.js 所有的能力（属性和方法）。</p></div><section class="section"><header class="section__header"><h3 class="section__h3">attrs</h3></header><div class="section__content"><h4 class="section__h4">Description</h4><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">Object</dd></dl><p>存储的是 Outline 对象当前使用中的配置选项：</p><p>说明：建议使用 attr(prop) 方法来获取属性，避免直接调用属性。</p><pre class="section__pre"><code class="section__code">// 设置默认配置项
 const outline = new Outline(Outline.DEFAULTS)
 
 // 查看全部配置信息
@@ -6159,7 +6509,77 @@ Drawer.DEFAULTS = {
    afterDestroy: null
 }
 
-export default Drawer</code></pre></div></section><section class="section"><header class="section__header"><h3 class="section__h3">toolbar</h3></header><div class="section__content"><h4 class="section__h4">Description</h4><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">Object</dd></dl><p>Toolbar 模块：独立的固定定位的工具栏模块；</p><pre class="section__pre"><code class="section__code">// 仅展示 API 中对外公开的方法和属性
+export default Drawer</code></pre></div></section><section class="section"><header class="section__header"><h3 class="section__h3">reader</h3></header><div class="section__content"><h4 class="section__h4">Description</h4><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">Object</dd></dl><p>Reader 模块：独立的阅读视图模块。</p><pre class="section__pre"><code class="section__code">// 仅展示 API 中对外公开的方法和属性
+class Drawer extends Base {
+  constructor(options) {
+    super()
+
+    this.attrs = cloneDeep(Reader.DEFAULTS)
+    this.reading = false
+
+    this.$target = null
+    this.$paper = null
+    this.$title = null
+    this.$article = null
+    this.$icon = null
+
+    // 省略其它逻辑...
+  }
+
+  attr(prop, value) {
+    // 省略其它逻辑...
+    return this
+  }
+
+  render() {
+    // 省略其它逻辑...
+    return this
+  }
+
+  refresh() {
+    // 省略其它逻辑...
+    return this
+  }
+
+  enter() {
+    // 省略其它逻辑...
+    return this
+  }
+
+  exit() {
+    // 省略其它逻辑...
+    return this
+  }
+
+  toggle() {
+    // 省略其它逻辑...
+    return this
+  }
+
+  print() {
+    // 省略其它逻辑...
+    return this
+  }
+
+  destroy() {
+    this.removeListeners()
+    // 省略其它逻辑...
+    return this
+  }
+
+  reload(options) {
+    this.destroy().initialize(this.attr(options))
+    return this
+  }
+}
+
+Reader.DEFAULTS = {
+   target: '',
+   title: '标题',
+   enterReadingTip: '进入阅读模式，按 ESC 键可退出阅读模式'
+}
+
+export default Reader</code></pre></div></section><section class="section"><header class="section__header"><h3 class="section__h3">toolbar</h3></header><div class="section__content"><h4 class="section__h4">Description</h4><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">Object</dd></dl><p>Toolbar 模块：独立的固定定位的工具栏模块；</p><pre class="section__pre"><code class="section__code">// 仅展示 API 中对外公开的方法和属性
 class Toolbar extends Base {
   constructor(options) {
     super()
@@ -6343,9 +6763,9 @@ export default Toolbar</code></pre></div></section><section class="section"><hea
   tools: [],
   // 为文章页添加基础的打印样式
   // 如果您的页面已经有打印样式，就无需设置了
-  print: {
+  reader: {
     //（必须）要打印的文章区域，DOM 元素或者选择器字符串。
-    element: '',
+    target: '',
     // （可选）要打印的文章标题。如果 element 区域有 h1 标签则无需设置。
     // 可以直接设置标题文本，也可以是文章页的主标题 DOM 元素
     title: '',
@@ -6824,7 +7244,7 @@ outline.reload({
       }
     }
   ]
-})</code></pre></div></section><section class="section"><header class="section__header"><h3 class="section__h3">print</h3></header><div class="section__content"><h4 class="section__h4">Description</h4><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">Object</dd></dl><dl class="section__dl"><dt class="section__dt">Default：</dt><dd class="section__dd">{element: '', title: ''}</dd></dl><p>可选，自定义的是否自动为文章页面创建打印样式。</p><dl class="section__dl"><dt class="section__dt">element：</dt><dd class="section__dd">（必须）要打印的文章区域，DOM 元素或者选择器字符串。</dd></dl><dl class="section__dl"><dt class="section__dt">title：</dt><dd class="section__dd">（可选）要打印的文章标题。如果 element 区域有 h1 标签则无需设置。可以直接设置标题文本，也可以是文章页的主标题 DOM 元素。</dd></dl><pre class="section__pre"><code class="section__code">const defaults = Outline.DEFAULTS
+})</code></pre></div></section><section class="section"><header class="section__header"><h3 class="section__h3">reader</h3></header><div class="section__content"><h4 class="section__h4">Description</h4><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">Object</dd></dl><dl class="section__dl"><dt class="section__dt">Default：</dt><dd class="section__dd">{target: '', title: ''}</dd></dl><p>可选，自定义的是否自动为文章页面创建打印样式。</p><dl class="section__dl"><dt class="section__dt">element：</dt><dd class="section__dd">（必须）要打印的文章区域，DOM 元素或者选择器字符串。</dd></dl><dl class="section__dl"><dt class="section__dt">title：</dt><dd class="section__dd">（可选）要打印的文章标题。如果 element 区域有 h1 标签则无需设置。可以直接设置标题文本，也可以是文章页的主标题 DOM 元素。</dd></dl><pre class="section__pre"><code class="section__code">const defaults = Outline.DEFAULTS
 let outline
 
 defaults.position = 'sticky'
@@ -6835,8 +7255,8 @@ defaults.homepage = './index.html'
 defaults.git = 'https://github.com/yaohaixiao/outline.js'
 defaults.tags = 'https://github.com/yaohaixiao/outline.js/tags'
 defaults.issues = 'https://github.com/yaohaixiao/outline.js/issues'
-defaults.print = {
-  element: '#article',
+defaults.reader = {
+  target: '#article',
   // 可以直接设置标题文本，也可以是文章页的主标题 DOM 元素。
   // 纯静态的页面，设置 DOM 元素，可能更好，确保每个页面的主标题 DOM 元素的选择器不变
   // 则 title 会是一个可变的值，这样比直接设置标题文本更加灵活；
@@ -6969,7 +7389,7 @@ defaults.print = {
 defaults.chapterTextFilter = (text) => {
   return text.replace(/\(.*?\)/, '()')
 }
-outline = new Outline(Outline.DEFAULTS)</code></pre></div></section></section><section class="section"><header class="section__header"><h2 class="section__title">Properties</h2></header><div class="section__content"><p>outline.js 重构后，对外放 4 个重要的属性：anchors、drawer、chapters 和 toolbar。它们都是独立的对象实例，提供了 outline.js 所有的能力（属性和方法）。</p></div><section class="section"><header class="section__header"><h3 class="section__h3">attrs</h3></header><div class="section__content"><h4 class="section__h4">Description</h4><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">Object</dd></dl><p>存储的是 Outline 对象当前使用中的配置选项：</p><p>说明：建议使用 attr(prop) 方法来获取属性，避免直接调用属性。</p><pre class="section__pre"><code class="section__code">// 设置默认配置项
+outline = new Outline(Outline.DEFAULTS)</code></pre></div></section></section><section class="section"><header class="section__header"><h2 class="section__title">Properties</h2></header><div class="section__content"><p>outline.js 重构后，对外放 4 个重要的属性：anchors、drawer、chapters、reader 和 toolbar。它们都是独立的对象实例，提供了 outline.js 所有的能力（属性和方法）。</p></div><section class="section"><header class="section__header"><h3 class="section__h3">attrs</h3></header><div class="section__content"><h4 class="section__h4">Description</h4><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">Object</dd></dl><p>存储的是 Outline 对象当前使用中的配置选项：</p><p>说明：建议使用 attr(prop) 方法来获取属性，避免直接调用属性。</p><pre class="section__pre"><code class="section__code">// 设置默认配置项
 const outline = new Outline(Outline.DEFAULTS)
 
 // 查看全部配置信息
@@ -7266,7 +7686,77 @@ Drawer.DEFAULTS = {
    afterDestroy: null
 }
 
-export default Drawer</code></pre></div></section><section class="section"><header class="section__header"><h3 class="section__h3">toolbar</h3></header><div class="section__content"><h4 class="section__h4">Description</h4><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">Object</dd></dl><p>Toolbar 模块：独立的固定定位的工具栏模块；</p><pre class="section__pre"><code class="section__code">// 仅展示 API 中对外公开的方法和属性
+export default Drawer</code></pre></div></section><section class="section"><header class="section__header"><h3 class="section__h3">reader</h3></header><div class="section__content"><h4 class="section__h4">Description</h4><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">Object</dd></dl><p>Reader 模块：独立的阅读视图模块。</p><pre class="section__pre"><code class="section__code">// 仅展示 API 中对外公开的方法和属性
+class Drawer extends Base {
+  constructor(options) {
+    super()
+
+    this.attrs = cloneDeep(Reader.DEFAULTS)
+    this.reading = false
+
+    this.$target = null
+    this.$paper = null
+    this.$title = null
+    this.$article = null
+    this.$icon = null
+
+    // 省略其它逻辑...
+  }
+
+  attr(prop, value) {
+    // 省略其它逻辑...
+    return this
+  }
+
+  render() {
+    // 省略其它逻辑...
+    return this
+  }
+
+  refresh() {
+    // 省略其它逻辑...
+    return this
+  }
+
+  enter() {
+    // 省略其它逻辑...
+    return this
+  }
+
+  exit() {
+    // 省略其它逻辑...
+    return this
+  }
+
+  toggle() {
+    // 省略其它逻辑...
+    return this
+  }
+
+  print() {
+    // 省略其它逻辑...
+    return this
+  }
+
+  destroy() {
+    this.removeListeners()
+    // 省略其它逻辑...
+    return this
+  }
+
+  reload(options) {
+    this.destroy().initialize(this.attr(options))
+    return this
+  }
+}
+
+Reader.DEFAULTS = {
+   target: '',
+   title: '标题',
+   enterReadingTip: '进入阅读模式，按 ESC 键可退出阅读模式'
+}
+
+export default Reader</code></pre></div></section><section class="section"><header class="section__header"><h3 class="section__h3">toolbar</h3></header><div class="section__content"><h4 class="section__h4">Description</h4><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">Object</dd></dl><p>Toolbar 模块：独立的固定定位的工具栏模块；</p><pre class="section__pre"><code class="section__code">// 仅展示 API 中对外公开的方法和属性
 class Toolbar extends Base {
   constructor(options) {
     super()
@@ -7450,9 +7940,9 @@ export default Toolbar</code></pre></div></section><section class="section"><hea
   tools: [],
   // 为文章页添加基础的打印样式
   // 如果您的页面已经有打印样式，就无需设置了
-  print: {
+  reader: {
     //（必须）要打印的文章区域，DOM 元素或者选择器字符串。
-    element: '',
+    target: '',
     // （可选）要打印的文章标题。如果 element 区域有 h1 标签则无需设置。
     // 可以直接设置标题文本，也可以是文章页的主标题 DOM 元素
     title: '',
@@ -7931,7 +8421,7 @@ outline.reload({
       }
     }
   ]
-})</code></pre></div></section><section class="section"><header class="section__header"><h3 class="section__h3">print</h3></header><div class="section__content"><h4 class="section__h4">Description</h4><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">Object</dd></dl><dl class="section__dl"><dt class="section__dt">Default：</dt><dd class="section__dd">{element: '', title: ''}</dd></dl><p>可选，自定义的是否自动为文章页面创建打印样式。</p><dl class="section__dl"><dt class="section__dt">element：</dt><dd class="section__dd">（必须）要打印的文章区域，DOM 元素或者选择器字符串。</dd></dl><dl class="section__dl"><dt class="section__dt">title：</dt><dd class="section__dd">（可选）要打印的文章标题。如果 element 区域有 h1 标签则无需设置。可以直接设置标题文本，也可以是文章页的主标题 DOM 元素。</dd></dl><pre class="section__pre"><code class="section__code">const defaults = Outline.DEFAULTS
+})</code></pre></div></section><section class="section"><header class="section__header"><h3 class="section__h3">reader</h3></header><div class="section__content"><h4 class="section__h4">Description</h4><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">Object</dd></dl><dl class="section__dl"><dt class="section__dt">Default：</dt><dd class="section__dd">{target: '', title: ''}</dd></dl><p>可选，自定义的是否自动为文章页面创建打印样式。</p><dl class="section__dl"><dt class="section__dt">element：</dt><dd class="section__dd">（必须）要打印的文章区域，DOM 元素或者选择器字符串。</dd></dl><dl class="section__dl"><dt class="section__dt">title：</dt><dd class="section__dd">（可选）要打印的文章标题。如果 element 区域有 h1 标签则无需设置。可以直接设置标题文本，也可以是文章页的主标题 DOM 元素。</dd></dl><pre class="section__pre"><code class="section__code">const defaults = Outline.DEFAULTS
 let outline
 
 defaults.position = 'sticky'
@@ -7942,8 +8432,8 @@ defaults.homepage = './index.html'
 defaults.git = 'https://github.com/yaohaixiao/outline.js'
 defaults.tags = 'https://github.com/yaohaixiao/outline.js/tags'
 defaults.issues = 'https://github.com/yaohaixiao/outline.js/issues'
-defaults.print = {
-  element: '#article',
+defaults.reader = {
+  target: '#article',
   // 可以直接设置标题文本，也可以是文章页的主标题 DOM 元素。
   // 纯静态的页面，设置 DOM 元素，可能更好，确保每个页面的主标题 DOM 元素的选择器不变
   // 则 title 会是一个可变的值，这样比直接设置标题文本更加灵活；
@@ -8076,7 +8566,7 @@ defaults.print = {
 defaults.chapterTextFilter = (text) => {
   return text.replace(/\(.*?\)/, '()')
 }
-outline = new Outline(Outline.DEFAULTS)</code></pre></div></section></section><section class="section"><header class="section__header"><h2 class="section__title">Properties</h2></header><div class="section__content"><p>outline.js 重构后，对外放 4 个重要的属性：anchors、drawer、chapters 和 toolbar。它们都是独立的对象实例，提供了 outline.js 所有的能力（属性和方法）。</p></div><section class="section"><header class="section__header"><h3 class="section__h3">attrs</h3></header><div class="section__content"><h4 class="section__h4">Description</h4><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">Object</dd></dl><p>存储的是 Outline 对象当前使用中的配置选项：</p><p>说明：建议使用 attr(prop) 方法来获取属性，避免直接调用属性。</p><pre class="section__pre"><code class="section__code">// 设置默认配置项
+outline = new Outline(Outline.DEFAULTS)</code></pre></div></section></section><section class="section"><header class="section__header"><h2 class="section__title">Properties</h2></header><div class="section__content"><p>outline.js 重构后，对外放 4 个重要的属性：anchors、drawer、chapters、reader 和 toolbar。它们都是独立的对象实例，提供了 outline.js 所有的能力（属性和方法）。</p></div><section class="section"><header class="section__header"><h3 class="section__h3">attrs</h3></header><div class="section__content"><h4 class="section__h4">Description</h4><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">Object</dd></dl><p>存储的是 Outline 对象当前使用中的配置选项：</p><p>说明：建议使用 attr(prop) 方法来获取属性，避免直接调用属性。</p><pre class="section__pre"><code class="section__code">// 设置默认配置项
 const outline = new Outline(Outline.DEFAULTS)
 
 // 查看全部配置信息
@@ -8373,7 +8863,77 @@ Drawer.DEFAULTS = {
    afterDestroy: null
 }
 
-export default Drawer</code></pre></div></section><section class="section"><header class="section__header"><h3 class="section__h3">toolbar</h3></header><div class="section__content"><h4 class="section__h4">Description</h4><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">Object</dd></dl><p>Toolbar 模块：独立的固定定位的工具栏模块；</p><pre class="section__pre"><code class="section__code">// 仅展示 API 中对外公开的方法和属性
+export default Drawer</code></pre></div></section><section class="section"><header class="section__header"><h3 class="section__h3">reader</h3></header><div class="section__content"><h4 class="section__h4">Description</h4><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">Object</dd></dl><p>Reader 模块：独立的阅读视图模块。</p><pre class="section__pre"><code class="section__code">// 仅展示 API 中对外公开的方法和属性
+class Drawer extends Base {
+  constructor(options) {
+    super()
+
+    this.attrs = cloneDeep(Reader.DEFAULTS)
+    this.reading = false
+
+    this.$target = null
+    this.$paper = null
+    this.$title = null
+    this.$article = null
+    this.$icon = null
+
+    // 省略其它逻辑...
+  }
+
+  attr(prop, value) {
+    // 省略其它逻辑...
+    return this
+  }
+
+  render() {
+    // 省略其它逻辑...
+    return this
+  }
+
+  refresh() {
+    // 省略其它逻辑...
+    return this
+  }
+
+  enter() {
+    // 省略其它逻辑...
+    return this
+  }
+
+  exit() {
+    // 省略其它逻辑...
+    return this
+  }
+
+  toggle() {
+    // 省略其它逻辑...
+    return this
+  }
+
+  print() {
+    // 省略其它逻辑...
+    return this
+  }
+
+  destroy() {
+    this.removeListeners()
+    // 省略其它逻辑...
+    return this
+  }
+
+  reload(options) {
+    this.destroy().initialize(this.attr(options))
+    return this
+  }
+}
+
+Reader.DEFAULTS = {
+   target: '',
+   title: '标题',
+   enterReadingTip: '进入阅读模式，按 ESC 键可退出阅读模式'
+}
+
+export default Reader</code></pre></div></section><section class="section"><header class="section__header"><h3 class="section__h3">toolbar</h3></header><div class="section__content"><h4 class="section__h4">Description</h4><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">Object</dd></dl><p>Toolbar 模块：独立的固定定位的工具栏模块；</p><pre class="section__pre"><code class="section__code">// 仅展示 API 中对外公开的方法和属性
 class Toolbar extends Base {
   constructor(options) {
     super()
@@ -8557,9 +9117,9 @@ export default Toolbar</code></pre></div></section><section class="section"><hea
   tools: [],
   // 为文章页添加基础的打印样式
   // 如果您的页面已经有打印样式，就无需设置了
-  print: {
+  reader: {
     //（必须）要打印的文章区域，DOM 元素或者选择器字符串。
-    element: '',
+    target: '',
     // （可选）要打印的文章标题。如果 element 区域有 h1 标签则无需设置。
     // 可以直接设置标题文本，也可以是文章页的主标题 DOM 元素
     title: '',
@@ -9038,7 +9598,7 @@ outline.reload({
       }
     }
   ]
-})</code></pre></div></section><section class="section"><header class="section__header"><h3 class="section__h3">print</h3></header><div class="section__content"><h4 class="section__h4">Description</h4><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">Object</dd></dl><dl class="section__dl"><dt class="section__dt">Default：</dt><dd class="section__dd">{element: '', title: ''}</dd></dl><p>可选，自定义的是否自动为文章页面创建打印样式。</p><dl class="section__dl"><dt class="section__dt">element：</dt><dd class="section__dd">（必须）要打印的文章区域，DOM 元素或者选择器字符串。</dd></dl><dl class="section__dl"><dt class="section__dt">title：</dt><dd class="section__dd">（可选）要打印的文章标题。如果 element 区域有 h1 标签则无需设置。可以直接设置标题文本，也可以是文章页的主标题 DOM 元素。</dd></dl><pre class="section__pre"><code class="section__code">const defaults = Outline.DEFAULTS
+})</code></pre></div></section><section class="section"><header class="section__header"><h3 class="section__h3">reader</h3></header><div class="section__content"><h4 class="section__h4">Description</h4><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">Object</dd></dl><dl class="section__dl"><dt class="section__dt">Default：</dt><dd class="section__dd">{target: '', title: ''}</dd></dl><p>可选，自定义的是否自动为文章页面创建打印样式。</p><dl class="section__dl"><dt class="section__dt">element：</dt><dd class="section__dd">（必须）要打印的文章区域，DOM 元素或者选择器字符串。</dd></dl><dl class="section__dl"><dt class="section__dt">title：</dt><dd class="section__dd">（可选）要打印的文章标题。如果 element 区域有 h1 标签则无需设置。可以直接设置标题文本，也可以是文章页的主标题 DOM 元素。</dd></dl><pre class="section__pre"><code class="section__code">const defaults = Outline.DEFAULTS
 let outline
 
 defaults.position = 'sticky'
@@ -9049,8 +9609,8 @@ defaults.homepage = './index.html'
 defaults.git = 'https://github.com/yaohaixiao/outline.js'
 defaults.tags = 'https://github.com/yaohaixiao/outline.js/tags'
 defaults.issues = 'https://github.com/yaohaixiao/outline.js/issues'
-defaults.print = {
-  element: '#article',
+defaults.reader = {
+  target: '#article',
   // 可以直接设置标题文本，也可以是文章页的主标题 DOM 元素。
   // 纯静态的页面，设置 DOM 元素，可能更好，确保每个页面的主标题 DOM 元素的选择器不变
   // 则 title 会是一个可变的值，这样比直接设置标题文本更加灵活；
@@ -9183,7 +9743,7 @@ defaults.print = {
 defaults.chapterTextFilter = (text) => {
   return text.replace(/\(.*?\)/, '()')
 }
-outline = new Outline(Outline.DEFAULTS)</code></pre></div></section></section><section class="section"><header class="section__header"><h2 class="section__title">Properties</h2></header><div class="section__content"><p>outline.js 重构后，对外放 4 个重要的属性：anchors、drawer、chapters 和 toolbar。它们都是独立的对象实例，提供了 outline.js 所有的能力（属性和方法）。</p></div><section class="section"><header class="section__header"><h3 class="section__h3">attrs</h3></header><div class="section__content"><h4 class="section__h4">Description</h4><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">Object</dd></dl><p>存储的是 Outline 对象当前使用中的配置选项：</p><p>说明：建议使用 attr(prop) 方法来获取属性，避免直接调用属性。</p><pre class="section__pre"><code class="section__code">// 设置默认配置项
+outline = new Outline(Outline.DEFAULTS)</code></pre></div></section></section><section class="section"><header class="section__header"><h2 class="section__title">Properties</h2></header><div class="section__content"><p>outline.js 重构后，对外放 4 个重要的属性：anchors、drawer、chapters、reader 和 toolbar。它们都是独立的对象实例，提供了 outline.js 所有的能力（属性和方法）。</p></div><section class="section"><header class="section__header"><h3 class="section__h3">attrs</h3></header><div class="section__content"><h4 class="section__h4">Description</h4><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">Object</dd></dl><p>存储的是 Outline 对象当前使用中的配置选项：</p><p>说明：建议使用 attr(prop) 方法来获取属性，避免直接调用属性。</p><pre class="section__pre"><code class="section__code">// 设置默认配置项
 const outline = new Outline(Outline.DEFAULTS)
 
 // 查看全部配置信息
@@ -9480,7 +10040,77 @@ Drawer.DEFAULTS = {
    afterDestroy: null
 }
 
-export default Drawer</code></pre></div></section><section class="section"><header class="section__header"><h3 class="section__h3">toolbar</h3></header><div class="section__content"><h4 class="section__h4">Description</h4><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">Object</dd></dl><p>Toolbar 模块：独立的固定定位的工具栏模块；</p><pre class="section__pre"><code class="section__code">// 仅展示 API 中对外公开的方法和属性
+export default Drawer</code></pre></div></section><section class="section"><header class="section__header"><h3 class="section__h3">reader</h3></header><div class="section__content"><h4 class="section__h4">Description</h4><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">Object</dd></dl><p>Reader 模块：独立的阅读视图模块。</p><pre class="section__pre"><code class="section__code">// 仅展示 API 中对外公开的方法和属性
+class Drawer extends Base {
+  constructor(options) {
+    super()
+
+    this.attrs = cloneDeep(Reader.DEFAULTS)
+    this.reading = false
+
+    this.$target = null
+    this.$paper = null
+    this.$title = null
+    this.$article = null
+    this.$icon = null
+
+    // 省略其它逻辑...
+  }
+
+  attr(prop, value) {
+    // 省略其它逻辑...
+    return this
+  }
+
+  render() {
+    // 省略其它逻辑...
+    return this
+  }
+
+  refresh() {
+    // 省略其它逻辑...
+    return this
+  }
+
+  enter() {
+    // 省略其它逻辑...
+    return this
+  }
+
+  exit() {
+    // 省略其它逻辑...
+    return this
+  }
+
+  toggle() {
+    // 省略其它逻辑...
+    return this
+  }
+
+  print() {
+    // 省略其它逻辑...
+    return this
+  }
+
+  destroy() {
+    this.removeListeners()
+    // 省略其它逻辑...
+    return this
+  }
+
+  reload(options) {
+    this.destroy().initialize(this.attr(options))
+    return this
+  }
+}
+
+Reader.DEFAULTS = {
+   target: '',
+   title: '标题',
+   enterReadingTip: '进入阅读模式，按 ESC 键可退出阅读模式'
+}
+
+export default Reader</code></pre></div></section><section class="section"><header class="section__header"><h3 class="section__h3">toolbar</h3></header><div class="section__content"><h4 class="section__h4">Description</h4><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">Object</dd></dl><p>Toolbar 模块：独立的固定定位的工具栏模块；</p><pre class="section__pre"><code class="section__code">// 仅展示 API 中对外公开的方法和属性
 class Toolbar extends Base {
   constructor(options) {
     super()
@@ -9664,9 +10294,9 @@ export default Toolbar</code></pre></div></section><section class="section"><hea
   tools: [],
   // 为文章页添加基础的打印样式
   // 如果您的页面已经有打印样式，就无需设置了
-  print: {
+  reader: {
     //（必须）要打印的文章区域，DOM 元素或者选择器字符串。
-    element: '',
+    target: '',
     // （可选）要打印的文章标题。如果 element 区域有 h1 标签则无需设置。
     // 可以直接设置标题文本，也可以是文章页的主标题 DOM 元素
     title: '',

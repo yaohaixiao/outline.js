@@ -1,24 +1,21 @@
 import later from './utils/lang/later'
 import cloneDeep from './utils/lang/cloneDeep'
+import toTree from './utils/lang/toTree'
 import isFunction from './utils/types/isFunction'
 import isString from './utils/types/isString'
 import isElement from './utils/types/isElement'
 import addClass from './utils/dom/addClass'
-import removeClass from './utils/dom/removeClass'
 import scrollTo from './utils/dom/scrollTo'
 import _getScrollElement from './utils/dom/_getScrollElement'
-import at from './utils/event/at'
-import on from './utils/event/on'
-import off from './utils/event/off'
-import stop from './utils/event/stop'
 
 import Base from './base'
 import Anchors from './anchors'
 import Drawer from './drawer'
 import Chapters from './chapters'
+import Reader from './reader'
 import Toolbar from './toolbar'
-import Message from './message'
-import paintPrint from './print'
+
+import getChapters from './getChapters'
 
 const ENTER_READING_TIP = '进入阅读模式，按 ESC 键可退出阅读模式'
 
@@ -27,11 +24,15 @@ class Outline extends Base {
     super()
 
     this.attrs = cloneDeep(Outline.DEFAULTS)
+    this.$article = null
+    this.buttons = []
+
     this.anchors = null
     this.drawer = null
     this.chapters = null
+    this.reader = null
     this.toolbar = null
-    this.buttons = []
+
     this.reading = false
 
     if (options) {
@@ -40,18 +41,44 @@ class Outline extends Base {
   }
 
   initialize(options) {
+    let articleElement = ''
+
     this.attr(options)
+
+    articleElement = this.attr('articleElement')
+
+    if (isString(articleElement)) {
+      this.$article = document.querySelector(articleElement)
+    } else if (isElement(articleElement)) {
+      this.$article = articleElement
+    }
+
     this.$emit('created', { ...this.attr() })
     this.render().addListeners()
+
     return this
   }
 
   getChapters(isTreeStructured = false) {
-    return this.anchors.getChapters(isTreeStructured)
+    const $article = this.$article
+    const selector = this.attr('selector')
+    const showCode = this.attr('showCode') || true
+    const chapterTextFilter = this.attr('chapterTextFilter')
+    let $headings = []
+    let chapters = []
+
+    if (!$article) {
+      return chapters
+    }
+
+    $headings = [...$article.querySelectorAll(selector)]
+    getChapters($headings, showCode, chapterTextFilter)
+
+    return isTreeStructured ? toTree(chapters, 'id', 'pid') : chapters
   }
 
   count() {
-    return this.anchors.count()
+    return this.getChapters().length
   }
 
   render() {
@@ -65,7 +92,7 @@ class Outline extends Base {
       $scrollElement = scrollElement
     }
 
-    this._renderPrint()._renderAnchors()._renderChapters()._renderToolbar()
+    this._renderReader()._renderAnchors()._renderChapters()._renderToolbar()
 
     if ($scrollElement && hasToolbar) {
       this.onToolbarUpdate({
@@ -80,34 +107,26 @@ class Outline extends Base {
     return this
   }
 
-  _renderPrint() {
-    const option = this.attr('print')
-    const articleElement = this.attr('articleElement')
-    let $articleElement
-    let $print
-    let element
+  refresh() {
+    const chapters = this.getChapters()
 
-    if (!option.element) {
+    this.anchors.refresh(chapters)
+    this.chapters.refresh(chapters)
+    this.$paper.refresh()
+
+    return this
+  }
+
+  _renderReader() {
+    const option = this.attr('reader')
+
+    if (!option.target) {
       return this
     }
 
-    if (isString(articleElement)) {
-      $articleElement = document.querySelector(articleElement)
-    } else if (isElement(articleElement)) {
-      $articleElement = articleElement
-    }
+    addClass(this.$article, 'outline-article')
 
-    addClass($articleElement, 'outline-article')
-
-    element = option.element
-
-    if (isString(element)) {
-      $print = document.querySelector(element)
-    } else if (isElement(element)) {
-      $print = element
-    }
-
-    paintPrint($print, option.title)
+    new Reader(option)
 
     return this
   }
@@ -210,7 +229,7 @@ class Outline extends Base {
     const tags = this.attr('tags')
     const issues = this.attr('issues')
     const tools = this.attr('tools')
-    const option = this.attr('print')
+    const option = this.attr('reader')
     const count = this.count()
     const UP = {
       name: 'up',
@@ -408,70 +427,27 @@ class Outline extends Base {
   }
 
   enterReading() {
-    const READING = 'outline-reading'
-    const HIDDEN = `${READING}_hidden`
-    const $reading = document.querySelector('#outline-print')
-    const $siblings = document.querySelectorAll('.outline-print_sibling')
-    const options = this.attr('print')
-    const enterReadingTip = options.enterReadingTip || ENTER_READING_TIP
-
-    if (this.reading || !$reading) {
-      return this
-    }
-
-    $siblings.forEach(($sibling) => {
-      addClass($sibling, HIDDEN)
-    })
-    addClass($reading, READING)
-    this.reading = true
-
+    this.reader.enter()
     this.toolbar.toggle()
-
-    Message.info({
-      round: true,
-      message: enterReadingTip
-    })
-
-    this.$emit('enterReading')
 
     return this
   }
 
   exitReading() {
-    const READING = 'outline-reading'
-    const HIDDEN = `${READING}_hidden`
-    const $reading = document.querySelector('#outline-print')
-    const $siblings = document.querySelectorAll('.outline-print_sibling')
-
-    if (!this.reading || !$reading) {
-      return this
-    }
-
-    removeClass($reading, READING)
-    $siblings.forEach(($sibling) => {
-      removeClass($sibling, HIDDEN)
-    })
-    this.reading = false
-
+    this.reader.exit()
     this.toolbar.toggle()
-
-    this.$emit('exitReading')
 
     return this
   }
 
   switchReading() {
-    const $print = document.querySelector('#outline-print')
+    const reader = this.reader
 
-    if (!$print) {
+    if (!reader) {
       return this
     }
 
-    if (!this.reading) {
-      this.enterReading()
-    } else {
-      this.exitReading()
-    }
+    reader.toggle()
 
     return this
   }
@@ -502,11 +478,7 @@ class Outline extends Base {
   }
 
   print() {
-    if (!isFunction(print)) {
-      return this
-    }
-
-    print()
+    this.reader.print()
 
     return this
   }
@@ -515,17 +487,18 @@ class Outline extends Base {
     let anchors = this.anchors
     let chapters = this.chapters
     let drawer = this.drawer
+    let reader = this.reader
     let toolbar = this.toolbar
     let isOutside = false
     const count = this.count()
-    const $print = document.querySelector('#outline-print')
 
     this.$emit('beforeDestroy')
 
     this.removeListeners()
 
-    if ($print) {
-      document.body.removeChild($print)
+    if (reader) {
+      reader.destroy()
+      reader = null
     }
 
     if (count > 0 && chapters) {
@@ -570,28 +543,6 @@ class Outline extends Base {
     return this
   }
 
-  onEnterReading() {
-    this.switchReading()
-    return this
-  }
-
-  onExitReading(evt) {
-    const keyCode = evt.keyCode
-
-    if (keyCode === 27 && this.reading) {
-      this.switchReading()
-      stop(evt)
-    }
-
-    return this
-  }
-
-  onPrint() {
-    this.print()
-
-    return this
-  }
-
   onToolbarUpdate({ top, min, max }) {
     const toolbar = this.toolbar
     const current = Math.ceil(top)
@@ -612,41 +563,30 @@ class Outline extends Base {
 
   addListeners() {
     const hasToolbar = this.attr('hasToolbar')
-    const $print = document.querySelector('#outline-print')
 
-    if (hasToolbar) {
-      this.$on('toolbar:update', this.onToolbarUpdate)
-      this.$on('toolbar:action:up', this.onScrollTop)
-      this.$on('toolbar:action:toggle', this.onToggle)
-      this.$on('toolbar:action:reading', this.onEnterReading)
-      this.$on('toolbar:action:down', this.onScrollBottom)
+    if (!hasToolbar) {
+      return this
     }
 
-    if ($print) {
-      at(document, 'keyup', this.onExitReading, this, true)
-      on($print, '.outline-print__close', 'click', this.exitReading, this, true)
-      this.$on('toolbar:action:print', this.onPrint)
-    }
+    this.$on('toolbar:update', this.onToolbarUpdate)
+    this.$on('toolbar:action:up', this.onScrollTop)
+    this.$on('toolbar:action:toggle', this.onToggle)
+    this.$on('toolbar:action:down', this.onScrollBottom)
 
     return this
   }
 
   removeListeners() {
     const hasToolbar = this.attr('hasToolbar')
-    const $print = document.querySelector('#outline-print')
 
-    if (hasToolbar) {
-      this.$off('toolbar:update')
-      this.$off('toolbar:action:up')
-      this.$off('toolbar:action:toggle')
-      this.$off('toolbar:action:down')
+    if (!hasToolbar) {
+      return this
     }
 
-    if ($print) {
-      off(document, 'keyup', this.onExitReading)
-      off($print, 'click', this.exitReading)
-      this.$off('toolbar:action:print')
-    }
+    this.$off('toolbar:update')
+    this.$off('toolbar:action:up')
+    this.$off('toolbar:action:toggle')
+    this.$off('toolbar:action:down')
 
     return this
   }
@@ -672,8 +612,8 @@ Outline.DEFAULTS = {
   tags: '',
   issues: '',
   tools: [],
-  print: {
-    element: '',
+  reader: {
+    target: '',
     title: '',
     enterReadingTip: ENTER_READING_TIP
   },

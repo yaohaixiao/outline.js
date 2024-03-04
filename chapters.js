@@ -207,14 +207,11 @@ class Chapters extends Base {
   }
 
   render() {
-    const HIDDEN = 'outline-chapters_hidden'
-    const showCode = this.attr('showCode')
     const mounted = this.attr('mounted')
     const $parentElement = this.$parentElement
     const chapters = this.chapters
     const count = this.count()
     let $el
-    let $list
 
     if (!$parentElement || chapters.length < 1) {
       return this
@@ -225,11 +222,9 @@ class Chapters extends Base {
     }
 
     this._paintEdge()
-
     $el = this.$el
-    $list = this.$list
-    _paintChapters($list, chapters, showCode)
-    removeClass($el, HIDDEN)
+
+    this._paint(chapters)
 
     later(() => {
       this.highlight(this.active)
@@ -250,6 +245,34 @@ class Chapters extends Base {
     if (count < 400) {
       this.onObserver()
     }
+
+    return this
+  }
+
+  erase() {
+    this.$list.innerHTML = ''
+
+    return this
+  }
+
+  _paint(chapters) {
+    const HIDDEN = 'outline-chapters_hidden'
+    const showCode = this.attr('showCode')
+    const $el = this.$el
+    const $list = this.$list
+
+    _paintChapters($list, chapters, showCode)
+    removeClass($el, HIDDEN)
+
+    return this
+  }
+
+  refresh(chapters) {
+    const HIDDEN = 'outline-chapters_hidden'
+    const $el = this.$el
+
+    removeClass($el, HIDDEN)
+    this.erase()._paint(chapters)
 
     return this
   }

@@ -53,6 +53,16 @@ export default [
     plugins: PLUGIN_CONFIG
   },
   {
+    input: './reader.js',
+    output: {
+      name: 'Reader',
+      file: './docs/js/reader.min.js',
+      format: 'umd',
+      sourcemap: true
+    },
+    plugins: PLUGIN_CONFIG
+  },
+  {
     input: './toolbar.js',
     output: {
       name: 'Toolbar',

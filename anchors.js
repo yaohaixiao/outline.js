@@ -90,15 +90,39 @@ class Anchors extends Base {
   }
 
   render() {
-    const LIMIT = 400
     const mounted = this.attr('mounted')
+
+    paint()
+
+    this._paint(this.chapters)
+
+    if (isFunction(mounted)) {
+      mounted.call(this)
+    }
+
+    return this
+  }
+
+  erase() {
+    const hasAnchor = this.attr('hasAnchor')
+    const isAtStart = this.attr('isAtStart')
+    const $headings = this.$headings
+
+    $headings.forEach(($heading) => {
+      _resetHeading($heading, hasAnchor, isAtStart)
+    })
+
+    return this
+  }
+
+  _paint(chapters) {
+    const LIMIT = 400
     const hasAnchor = this.attr('hasAnchor')
     const isAtStart = this.attr('isAtStart')
     const showCode = this.attr('showCode')
     const anchorURL = this.attr('anchorURL')
     const count = this.count()
     const $headings = [...this.$headings]
-    const chapters = this.getChapters()
     const update = (headings, group) => {
       headings.forEach(($heading, i) => {
         const id = i + group * LIMIT
@@ -113,8 +137,6 @@ class Anchors extends Base {
       })
     }
     let groupIndex = -1
-
-    paint()
 
     // 针对超长的文章，进行 timeSlice 处理
     if (count > LIMIT) {
@@ -137,9 +159,17 @@ class Anchors extends Base {
       update($headings, 0)
     }
 
-    if (isFunction(mounted)) {
-      mounted.call(this)
-    }
+    return this
+  }
+
+  refresh(chapters) {
+    const $articleElement = this.$articleElement
+    const selector = this.attr('selector')
+
+    this.$headings = [...$articleElement.querySelectorAll(selector)]
+    this.chapters = chapters
+
+    this.erase()._paint(chapters)
 
     return this
   }
@@ -153,20 +183,15 @@ class Anchors extends Base {
   }
 
   destroy() {
-    const hasAnchor = this.attr('hasAnchor')
-    const isAtStart = this.attr('isAtStart')
     const beforeDestroy = this.attr('beforeDestroy')
     const afterDestroy = this.attr('afterDestroy')
-    const $headings = this.$headings
 
     if (isFunction(beforeDestroy)) {
       beforeDestroy.call(this)
     }
 
     this.removeListeners()
-    $headings.forEach(($heading) => {
-      _resetHeading($heading, hasAnchor, isAtStart)
-    })
+    this.erase()
 
     this.attr(Anchors.DEFAULTS)
     this.$articleElement = null
@@ -177,6 +202,37 @@ class Anchors extends Base {
     if (isFunction(afterDestroy)) {
       afterDestroy.call(this)
     }
+
+    return this
+  }
+
+  addListeners() {
+    const $articleElement = this.$articleElement
+
+    if (this.count() < 1) {
+      return this
+    }
+
+    on(
+      $articleElement,
+      '.outline-heading__anchor',
+      'click',
+      this.onAnchorTrigger,
+      this,
+      true
+    )
+
+    return this
+  }
+
+  removeListeners() {
+    const $articleElement = this.$articleElement
+
+    if (this.count() < 1) {
+      return this
+    }
+
+    off($articleElement, 'click', this.onAnchorTrigger)
 
     return this
   }
@@ -210,37 +266,6 @@ class Anchors extends Base {
     if (!anchorURL) {
       stop(evt)
     }
-
-    return this
-  }
-
-  addListeners() {
-    const $articleElement = this.$articleElement
-
-    if (this.count() < 1) {
-      return this
-    }
-
-    on(
-      $articleElement,
-      '.outline-heading__anchor',
-      'click',
-      this.onAnchorTrigger,
-      this,
-      true
-    )
-
-    return this
-  }
-
-  removeListeners() {
-    const $articleElement = this.$articleElement
-
-    if (this.count() < 1) {
-      return this
-    }
-
-    off($articleElement, 'click', this.onAnchorTrigger)
 
     return this
   }

@@ -1,6 +1,6 @@
 section.section
   header.section__header
-    h3.section__h3 print
+    h3.section__h3 reader
   div.section__content
     h4.section__h4 Description
     dl.section__dl
@@ -8,7 +8,7 @@ section.section
       dd.section__dd Object
     dl.section__dl
       dt.section__dt Default：
-      dd.section__dd {element: '', title: ''}
+      dd.section__dd {target: '', title: ''}
     p 可选，自定义的是否自动为文章页面创建打印样式。
     dl.section__dl
       dt.section__dt element：
@@ -29,8 +29,8 @@ section.section
         defaults.git = 'https://github.com/yaohaixiao/outline.js'
         defaults.tags = 'https://github.com/yaohaixiao/outline.js/tags'
         defaults.issues = 'https://github.com/yaohaixiao/outline.js/issues'
-        defaults.print = {
-          element: '#article',
+        defaults.reader = {
+          target: '#article',
           // 可以直接设置标题文本，也可以是文章页的主标题 DOM 元素。
           // 纯静态的页面，设置 DOM 元素，可能更好，确保每个页面的主标题 DOM 元素的选择器不变
           // 则 title 会是一个可变的值，这样比直接设置标题文本更加灵活；
