@@ -28,7 +28,9 @@ const _resetHeading = ($heading, hasAnchor = true, isAtStart = true) => {
     $heading.removeAttribute('class')
   }
 
-  $heading.removeChild($anchor)
+  if ($anchor) {
+    $heading.removeChild($anchor)
+  }
 }
 
 export default _resetHeading

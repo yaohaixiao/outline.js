@@ -110,7 +110,7 @@ class Outline extends Base {
 
     this.anchors.refresh(chapters)
     this.chapters.refresh(chapters)
-    this.$paper.refresh()
+    this.reader.refresh()
 
     return this
   }
@@ -124,7 +124,7 @@ class Outline extends Base {
 
     addClass(this.$article, 'outline-article')
 
-    new Reader(option)
+    this.reader = new Reader(option)
 
     return this
   }
@@ -425,15 +425,27 @@ class Outline extends Base {
   }
 
   enterReading() {
+    const reader = this.reader
+
+    if (reader.reading) {
+      return this
+    }
+
     this.toolbar.toggle()
-    this.reader.enter()
+    reader.enter()
 
     return this
   }
 
   exitReading() {
+    const reader = this.reader
+
+    if (!reader.reading) {
+      return this
+    }
+
     this.toolbar.toggle()
-    this.reader.exit()
+    reader.exit()
 
     return this
   }
