@@ -28,6 +28,7 @@ const _resetHeading = ($heading, hasAnchor = true, isAtStart = true) => {
     $heading.removeAttribute('class')
   }
 
+  // 存在锚点才移除
   if ($anchor) {
     $heading.removeChild($anchor)
   }
