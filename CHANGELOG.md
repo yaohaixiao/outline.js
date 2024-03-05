@@ -1,3 +1,15 @@
+# [3.32.0](https://github.com/yaohaixiao/outline.js/compare/3.31.4...3.32.0) (2024-03-05)
+
+
+### Features
+
+* 调整 print 参数名为 reader；
+* 重构原来的 print.js 调整为 Reader 模块；
+* 添加 refresh() 方法；公开 enterReading()、exitReading() 和 switchReading() 方法；
+* 更新 API 文档；
+
+
+
 # [3.31.0](https://github.com/yaohaixiao/outline.js/compare/3.30.4...3.31.0) (2024-02-27)
 
 
