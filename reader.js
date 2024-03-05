@@ -274,14 +274,7 @@ class Reader extends Base {
     }
 
     at(document, 'keyup', this.onExitReading, this, true)
-    on(
-      $paper,
-      '.outline-reader__close',
-      'click',
-      this.onExitReading,
-      this,
-      true
-    )
+    on($paper, '.outline-reader__close', 'click', this.exit, this, true)
 
     this.$on('toolbar:action:print', this.onPrint)
     this.$on('toolbar:action:reading', this.onEnterReading)
@@ -297,7 +290,7 @@ class Reader extends Base {
     }
 
     off(document, 'keyup', this.onExitReading)
-    off($paper, 'click', this.onExitReading)
+    off($paper, 'click', this.exit)
 
     this.$off('toolbar:action:print')
     this.$off('toolbar:action:reading')

@@ -182,7 +182,7 @@ outline.reload({
       }
     }
   ]
-})</code></pre></div></section><section class="section"><header class="section__header"><h3 class="section__h3">reader</h3></header><div class="section__content"><h4 class="section__h4">Description</h4><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">Object</dd></dl><dl class="section__dl"><dt class="section__dt">Default：</dt><dd class="section__dd">{target: '', title: ''}</dd></dl><p>可选，自定义的是否自动为文章页面创建打印样式。</p><dl class="section__dl"><dt class="section__dt">element：</dt><dd class="section__dd">（必须）要打印的文章区域，DOM 元素或者选择器字符串。</dd></dl><dl class="section__dl"><dt class="section__dt">title：</dt><dd class="section__dd">（可选）要打印的文章标题。如果 element 区域有 h1 标签则无需设置。可以直接设置标题文本，也可以是文章页的主标题 DOM 元素。</dd></dl><pre class="section__pre"><code class="section__code">const defaults = Outline.DEFAULTS
+})</code></pre></div></section><section class="section"><header class="section__header"><h3 class="section__h3">reader</h3></header><div class="section__content"><h4 class="section__h4">Since</h4><p class="section__dd">3.32.0</p><p>说明：3.32.0 以前的版本，此属性的原名为 print，另外，reader.element 属性也调整为了 reader.target。请升级后在初始化配置参数时注意调整。</p><h4 class="section__h4">Description</h4><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">Object</dd></dl><dl class="section__dl"><dt class="section__dt">Default：</dt><dd class="section__dd">{target: '', title: ''}</dd></dl><p>可选，自定义的是否自动为文章页面创建打印样式。</p><dl class="section__dl"><dt class="section__dt">element：</dt><dd class="section__dd">（必须）要打印的文章区域，DOM 元素或者选择器字符串。</dd></dl><dl class="section__dl"><dt class="section__dt">title：</dt><dd class="section__dd">（可选）要打印的文章标题。如果 element 区域有 h1 标签则无需设置。可以直接设置标题文本，也可以是文章页的主标题 DOM 元素。</dd></dl><pre class="section__pre"><code class="section__code">const defaults = Outline.DEFAULTS
 let outline
 
 defaults.position = 'sticky'
@@ -331,7 +331,11 @@ outline = new Outline(Outline.DEFAULTS)</code></pre></div></section></section><s
 const outline = new Outline(Outline.DEFAULTS)
 
 // 查看全部配置信息
-outline.attrs</code></pre></div></section><section class="section"><header class="section__header"><h3 class="section__h3">buttons</h3></header><div class="section__content"><h4 class="section__h4">Description</h4><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">Array</dd></dl><p>存储的是 Outline 对象当前工具栏的完整的按钮配置信息：</p><pre class="section__pre"><code class="section__code">// 设置默认配置项
+outline.attrs</code></pre></div></section><section class="section"><header class="section__header"><h3 class="section__h3">$article</h3></header><div class="section__content"><h4 class="section__h4">Since</h4><p class="section__dd">3.32.0</p><h4 class="section__h4">Description</h4><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">HTMLElement</dd></dl><p>存储的是 Outline 对象要分析的文章正文内容显示区域的 DOM 元素：</p><pre class="section__pre"><code class="section__code">// 设置默认配置项
+const outline = new Outline(Outline.DEFAULTS)
+
+// 获取文章正文内容显示区域的 DOM 元素
+outline.$article</code></pre></div></section><section class="section"><header class="section__header"><h3 class="section__h3">buttons</h3></header><div class="section__content"><h4 class="section__h4">Description</h4><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">Array</dd></dl><p>存储的是 Outline 对象当前工具栏的完整的按钮配置信息：</p><pre class="section__pre"><code class="section__code">// 设置默认配置项
 const outline = new Outline(Outline.DEFAULTS)
 
 // 查看全部按钮配置信息
@@ -1114,7 +1118,78 @@ outline.toggle() // 如果已显示，则隐藏</code></pre></div></section><sec
 })
 
 // 如果浏览器支持 print() 打印，则启动打印界面
-outline.print()</code></pre></div></section><section class="section"><header class="section__header"><h3 class="section__h3">destroy()</h3></header><div class="section__content"><h4 class="section__h4">Description</h4><p>destroy() 方法用于移除所有绘制的 DOM 节点，并移除绑定的事件处理器，同时重置所有 attrs 配置信息和 data 信息。</p><h4 class="section__h4">Returns</h4><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">Outline</dd></dl><p>Outline 对象，便于链式方法调用。</p><pre class="section__pre"><code class="section__code">const outline = new Outline({
+outline.print()</code></pre></div></section><section class="section"><header class="section__header"><h3 class="section__h3">enterReading()</h3></header><div class="section__content"><h4 class="section__h4">Since</h4><p class="section__dd">3.32.0</p><h4 class="section__h4">Description</h4><p>enterReading() 方法来切换进入阅读模式。</p><h4 class="section__h4">Returns</h4><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">Outline</dd></dl><p>Outline 对象，便于链式方法调用。</p><pre class="section__pre"><code class="section__code">const defaults = Outline.DEFAULTS
+let outline
+
+defaults.position = 'sticky'
+defaults.stickyHeight = 86
+defaults.parentElement = '#aside'
+defaults.scrollElement = '#main'
+defaults.homepage = './index.html'
+defaults.git = 'https://github.com/yaohaixiao/outline.js'
+defaults.tags = 'https://github.com/yaohaixiao/outline.js/tags'
+defaults.issues = 'https://github.com/yaohaixiao/outline.js/issues'
+defaults.reader = {
+  target: '#article',
+  // 可以直接设置标题文本，也可以是文章页的主标题 DOM 元素。
+  // 纯静态的页面，设置 DOM 元素，可能更好，确保每个页面的主标题 DOM 元素的选择器不变
+  // 则 title 会是一个可变的值，这样比直接设置标题文本更加灵活；
+  title: document.querySelector('.title'),
+  // 进入阅读模式的提示消息文本
+  enterReadingTip: '进入阅读模式，按 ESC 键可退出阅读模式'
+}
+outline = new Outline(defaults)
+
+outline.enterReading()</code></pre><p>演示地址：<a target="_blank" href="https://yaohaixiao.github.io/outline.js/flex.html">https://yaohaixiao.github.io/outline.js/flex.html</a></p></div></section><section class="section"><header class="section__header"><h3 class="section__h3">exitReading()</h3></header><div class="section__content"><h4 class="section__h4">Since</h4><p class="section__dd">3.32.0</p><h4 class="section__h4">Description</h4><p>exitReading() 方法用来从阅读模式切换回普通文章页面模式。</p><h4 class="section__h4">Returns</h4><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">Outline</dd></dl><p>Outline 对象，便于链式方法调用。</p><pre class="section__pre"><code class="section__code">const defaults = Outline.DEFAULTS
+let outline
+
+defaults.position = 'sticky'
+defaults.stickyHeight = 86
+defaults.parentElement = '#aside'
+defaults.scrollElement = '#main'
+defaults.homepage = './index.html'
+defaults.git = 'https://github.com/yaohaixiao/outline.js'
+defaults.tags = 'https://github.com/yaohaixiao/outline.js/tags'
+defaults.issues = 'https://github.com/yaohaixiao/outline.js/issues'
+defaults.reader = {
+  target: '#article',
+  // 可以直接设置标题文本，也可以是文章页的主标题 DOM 元素。
+  // 纯静态的页面，设置 DOM 元素，可能更好，确保每个页面的主标题 DOM 元素的选择器不变
+  // 则 title 会是一个可变的值，这样比直接设置标题文本更加灵活；
+  title: document.querySelector('.title'),
+  // 进入阅读模式的提示消息文本
+  enterReadingTip: '进入阅读模式，按 ESC 键可退出阅读模式'
+}
+outline = new Outline(defaults)
+
+outline.enterReading()
+outline.exitReading()</code></pre><p>演示地址：<a target="_blank" href="https://yaohaixiao.github.io/outline.js/flex.html">https://yaohaixiao.github.io/outline.js/flex.html</a></p></div></section><section class="section"><header class="section__header"><h3 class="section__h3">switchReading()</h3></header><div class="section__content"><h4 class="section__h4">Since</h4><p class="section__dd">3.32.0</p><h4 class="section__h4">Description</h4><p>switchReading() 方法用来在阅读模式和回普通文章页面模式相互切换。</p><h4 class="section__h4">Returns</h4><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">Outline</dd></dl><p>Outline 对象，便于链式方法调用。</p><pre class="section__pre"><code class="section__code">const defaults = Outline.DEFAULTS
+let outline
+
+defaults.position = 'sticky'
+defaults.stickyHeight = 86
+defaults.parentElement = '#aside'
+defaults.scrollElement = '#main'
+defaults.homepage = './index.html'
+defaults.git = 'https://github.com/yaohaixiao/outline.js'
+defaults.tags = 'https://github.com/yaohaixiao/outline.js/tags'
+defaults.issues = 'https://github.com/yaohaixiao/outline.js/issues'
+defaults.reader = {
+  target: '#article',
+  // 可以直接设置标题文本，也可以是文章页的主标题 DOM 元素。
+  // 纯静态的页面，设置 DOM 元素，可能更好，确保每个页面的主标题 DOM 元素的选择器不变
+  // 则 title 会是一个可变的值，这样比直接设置标题文本更加灵活；
+  title: document.querySelector('.title'),
+  // 进入阅读模式的提示消息文本
+  enterReadingTip: '进入阅读模式，按 ESC 键可退出阅读模式'
+}
+outline = new Outline(defaults)
+
+// 进入阅读模式
+outline.switchReading()
+
+// 退出阅读模式
+outline.switchReading()</code></pre><p>演示地址：<a target="_blank" href="https://yaohaixiao.github.io/outline.js/flex.html">https://yaohaixiao.github.io/outline.js/flex.html</a></p></div></section><section class="section"><header class="section__header"><h3 class="section__h3">destroy()</h3></header><div class="section__content"><h4 class="section__h4">Description</h4><p>destroy() 方法用于移除所有绘制的 DOM 节点，并移除绑定的事件处理器，同时重置所有 attrs 配置信息和 data 信息。</p><h4 class="section__h4">Returns</h4><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">Outline</dd></dl><p>Outline 对象，便于链式方法调用。</p><pre class="section__pre"><code class="section__code">const outline = new Outline({
    article: '#article',
    title: 'Outline v2.0.0'
 })
@@ -1133,7 +1208,16 @@ outline.getChapters()
 outline.destroy()
 outline.getChapters()
 // 调用 destroy() 方法后，所有数据都清空了
-// -> []</code></pre></div></section><section class="section"><header class="section__header"><h3 class="section__h3">reload(options)</h3></header><div class="section__content"><h4 class="section__h4">Description</h4><p>reload (options) 方法是（根据新的配置信息）重启程序方法：</p><ol><li>先移除所有绘制的 DOM 元素和绑定的事件处理器；</li><li>重新初始化程序；</li></ol><h4 class="section__h4">Parameters</h4><h5 class="section__h4">options</h5><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">Object</dd></dl><p>（可选）初始化的配置参数。</p><h4 class="section__h4">Returns</h4><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">Outline</dd></dl><p>Outline 对象，便于链式方法调用。</p><pre class="section__pre"><code class="section__code">const outline = new Outline({
+// -> []</code></pre></div></section><section class="section"><header class="section__header"><h3 class="section__h3">refresh()</h3></header><div class="section__content"><h4 class="section__h4">Description</h4><p>refresh() 方法是（在文章政委内容改变后）重新绘制导航信息的方法：</p><h4 class="section__h4">Returns</h4><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">Outline</dd></dl><p>Outline 对象，便于链式方法调用。</p><pre class="section__pre"><code class="section__code">const outline = new Outline({
+  showCode: true
+})
+const REFRESH_METHOD = '&lt;h3&gt;添加 refresh() 方法&lt;/h3&gt;' +
+  '&lt;p&gt;refresh() 方法是（在文章政委内容改变后）重新绘制导航信息的方法&lt;/p&gt;'
+
+outline.$article.innerHTML += REFRESH_METHOD
+
+// 根据新的内容重新绘制导读信息
+outline.refresh()</code></pre></div></section><section class="section"><header class="section__header"><h3 class="section__h3">reload(options)</h3></header><div class="section__content"><h4 class="section__h4">Description</h4><p>reload (options) 方法是（根据新的配置信息）重启程序方法：</p><ol><li>先移除所有绘制的 DOM 元素和绑定的事件处理器；</li><li>重新初始化程序；</li></ol><h4 class="section__h4">Parameters</h4><h5 class="section__h4">options</h5><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">Object</dd></dl><p>（可选）初始化的配置参数。</p><h4 class="section__h4">Returns</h4><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">Outline</dd></dl><p>Outline 对象，便于链式方法调用。</p><pre class="section__pre"><code class="section__code">const outline = new Outline({
   showCode: true
 })
 
@@ -1359,7 +1443,7 @@ outline.reload({
       }
     }
   ]
-})</code></pre></div></section><section class="section"><header class="section__header"><h3 class="section__h3">reader</h3></header><div class="section__content"><h4 class="section__h4">Description</h4><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">Object</dd></dl><dl class="section__dl"><dt class="section__dt">Default：</dt><dd class="section__dd">{target: '', title: ''}</dd></dl><p>可选，自定义的是否自动为文章页面创建打印样式。</p><dl class="section__dl"><dt class="section__dt">element：</dt><dd class="section__dd">（必须）要打印的文章区域，DOM 元素或者选择器字符串。</dd></dl><dl class="section__dl"><dt class="section__dt">title：</dt><dd class="section__dd">（可选）要打印的文章标题。如果 element 区域有 h1 标签则无需设置。可以直接设置标题文本，也可以是文章页的主标题 DOM 元素。</dd></dl><pre class="section__pre"><code class="section__code">const defaults = Outline.DEFAULTS
+})</code></pre></div></section><section class="section"><header class="section__header"><h3 class="section__h3">reader</h3></header><div class="section__content"><h4 class="section__h4">Since</h4><p class="section__dd">3.32.0</p><p>说明：3.32.0 以前的版本，此属性的原名为 print，另外，reader.element 属性也调整为了 reader.target。请升级后在初始化配置参数时注意调整。</p><h4 class="section__h4">Description</h4><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">Object</dd></dl><dl class="section__dl"><dt class="section__dt">Default：</dt><dd class="section__dd">{target: '', title: ''}</dd></dl><p>可选，自定义的是否自动为文章页面创建打印样式。</p><dl class="section__dl"><dt class="section__dt">element：</dt><dd class="section__dd">（必须）要打印的文章区域，DOM 元素或者选择器字符串。</dd></dl><dl class="section__dl"><dt class="section__dt">title：</dt><dd class="section__dd">（可选）要打印的文章标题。如果 element 区域有 h1 标签则无需设置。可以直接设置标题文本，也可以是文章页的主标题 DOM 元素。</dd></dl><pre class="section__pre"><code class="section__code">const defaults = Outline.DEFAULTS
 let outline
 
 defaults.position = 'sticky'
@@ -1508,7 +1592,11 @@ outline = new Outline(Outline.DEFAULTS)</code></pre></div></section></section><s
 const outline = new Outline(Outline.DEFAULTS)
 
 // 查看全部配置信息
-outline.attrs</code></pre></div></section><section class="section"><header class="section__header"><h3 class="section__h3">buttons</h3></header><div class="section__content"><h4 class="section__h4">Description</h4><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">Array</dd></dl><p>存储的是 Outline 对象当前工具栏的完整的按钮配置信息：</p><pre class="section__pre"><code class="section__code">// 设置默认配置项
+outline.attrs</code></pre></div></section><section class="section"><header class="section__header"><h3 class="section__h3">$article</h3></header><div class="section__content"><h4 class="section__h4">Since</h4><p class="section__dd">3.32.0</p><h4 class="section__h4">Description</h4><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">HTMLElement</dd></dl><p>存储的是 Outline 对象要分析的文章正文内容显示区域的 DOM 元素：</p><pre class="section__pre"><code class="section__code">// 设置默认配置项
+const outline = new Outline(Outline.DEFAULTS)
+
+// 获取文章正文内容显示区域的 DOM 元素
+outline.$article</code></pre></div></section><section class="section"><header class="section__header"><h3 class="section__h3">buttons</h3></header><div class="section__content"><h4 class="section__h4">Description</h4><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">Array</dd></dl><p>存储的是 Outline 对象当前工具栏的完整的按钮配置信息：</p><pre class="section__pre"><code class="section__code">// 设置默认配置项
 const outline = new Outline(Outline.DEFAULTS)
 
 // 查看全部按钮配置信息
@@ -2291,7 +2379,78 @@ outline.toggle() // 如果已显示，则隐藏</code></pre></div></section><sec
 })
 
 // 如果浏览器支持 print() 打印，则启动打印界面
-outline.print()</code></pre></div></section><section class="section"><header class="section__header"><h3 class="section__h3">destroy()</h3></header><div class="section__content"><h4 class="section__h4">Description</h4><p>destroy() 方法用于移除所有绘制的 DOM 节点，并移除绑定的事件处理器，同时重置所有 attrs 配置信息和 data 信息。</p><h4 class="section__h4">Returns</h4><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">Outline</dd></dl><p>Outline 对象，便于链式方法调用。</p><pre class="section__pre"><code class="section__code">const outline = new Outline({
+outline.print()</code></pre></div></section><section class="section"><header class="section__header"><h3 class="section__h3">enterReading()</h3></header><div class="section__content"><h4 class="section__h4">Since</h4><p class="section__dd">3.32.0</p><h4 class="section__h4">Description</h4><p>enterReading() 方法来切换进入阅读模式。</p><h4 class="section__h4">Returns</h4><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">Outline</dd></dl><p>Outline 对象，便于链式方法调用。</p><pre class="section__pre"><code class="section__code">const defaults = Outline.DEFAULTS
+let outline
+
+defaults.position = 'sticky'
+defaults.stickyHeight = 86
+defaults.parentElement = '#aside'
+defaults.scrollElement = '#main'
+defaults.homepage = './index.html'
+defaults.git = 'https://github.com/yaohaixiao/outline.js'
+defaults.tags = 'https://github.com/yaohaixiao/outline.js/tags'
+defaults.issues = 'https://github.com/yaohaixiao/outline.js/issues'
+defaults.reader = {
+  target: '#article',
+  // 可以直接设置标题文本，也可以是文章页的主标题 DOM 元素。
+  // 纯静态的页面，设置 DOM 元素，可能更好，确保每个页面的主标题 DOM 元素的选择器不变
+  // 则 title 会是一个可变的值，这样比直接设置标题文本更加灵活；
+  title: document.querySelector('.title'),
+  // 进入阅读模式的提示消息文本
+  enterReadingTip: '进入阅读模式，按 ESC 键可退出阅读模式'
+}
+outline = new Outline(defaults)
+
+outline.enterReading()</code></pre><p>演示地址：<a target="_blank" href="https://yaohaixiao.github.io/outline.js/flex.html">https://yaohaixiao.github.io/outline.js/flex.html</a></p></div></section><section class="section"><header class="section__header"><h3 class="section__h3">exitReading()</h3></header><div class="section__content"><h4 class="section__h4">Since</h4><p class="section__dd">3.32.0</p><h4 class="section__h4">Description</h4><p>exitReading() 方法用来从阅读模式切换回普通文章页面模式。</p><h4 class="section__h4">Returns</h4><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">Outline</dd></dl><p>Outline 对象，便于链式方法调用。</p><pre class="section__pre"><code class="section__code">const defaults = Outline.DEFAULTS
+let outline
+
+defaults.position = 'sticky'
+defaults.stickyHeight = 86
+defaults.parentElement = '#aside'
+defaults.scrollElement = '#main'
+defaults.homepage = './index.html'
+defaults.git = 'https://github.com/yaohaixiao/outline.js'
+defaults.tags = 'https://github.com/yaohaixiao/outline.js/tags'
+defaults.issues = 'https://github.com/yaohaixiao/outline.js/issues'
+defaults.reader = {
+  target: '#article',
+  // 可以直接设置标题文本，也可以是文章页的主标题 DOM 元素。
+  // 纯静态的页面，设置 DOM 元素，可能更好，确保每个页面的主标题 DOM 元素的选择器不变
+  // 则 title 会是一个可变的值，这样比直接设置标题文本更加灵活；
+  title: document.querySelector('.title'),
+  // 进入阅读模式的提示消息文本
+  enterReadingTip: '进入阅读模式，按 ESC 键可退出阅读模式'
+}
+outline = new Outline(defaults)
+
+outline.enterReading()
+outline.exitReading()</code></pre><p>演示地址：<a target="_blank" href="https://yaohaixiao.github.io/outline.js/flex.html">https://yaohaixiao.github.io/outline.js/flex.html</a></p></div></section><section class="section"><header class="section__header"><h3 class="section__h3">switchReading()</h3></header><div class="section__content"><h4 class="section__h4">Since</h4><p class="section__dd">3.32.0</p><h4 class="section__h4">Description</h4><p>switchReading() 方法用来在阅读模式和回普通文章页面模式相互切换。</p><h4 class="section__h4">Returns</h4><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">Outline</dd></dl><p>Outline 对象，便于链式方法调用。</p><pre class="section__pre"><code class="section__code">const defaults = Outline.DEFAULTS
+let outline
+
+defaults.position = 'sticky'
+defaults.stickyHeight = 86
+defaults.parentElement = '#aside'
+defaults.scrollElement = '#main'
+defaults.homepage = './index.html'
+defaults.git = 'https://github.com/yaohaixiao/outline.js'
+defaults.tags = 'https://github.com/yaohaixiao/outline.js/tags'
+defaults.issues = 'https://github.com/yaohaixiao/outline.js/issues'
+defaults.reader = {
+  target: '#article',
+  // 可以直接设置标题文本，也可以是文章页的主标题 DOM 元素。
+  // 纯静态的页面，设置 DOM 元素，可能更好，确保每个页面的主标题 DOM 元素的选择器不变
+  // 则 title 会是一个可变的值，这样比直接设置标题文本更加灵活；
+  title: document.querySelector('.title'),
+  // 进入阅读模式的提示消息文本
+  enterReadingTip: '进入阅读模式，按 ESC 键可退出阅读模式'
+}
+outline = new Outline(defaults)
+
+// 进入阅读模式
+outline.switchReading()
+
+// 退出阅读模式
+outline.switchReading()</code></pre><p>演示地址：<a target="_blank" href="https://yaohaixiao.github.io/outline.js/flex.html">https://yaohaixiao.github.io/outline.js/flex.html</a></p></div></section><section class="section"><header class="section__header"><h3 class="section__h3">destroy()</h3></header><div class="section__content"><h4 class="section__h4">Description</h4><p>destroy() 方法用于移除所有绘制的 DOM 节点，并移除绑定的事件处理器，同时重置所有 attrs 配置信息和 data 信息。</p><h4 class="section__h4">Returns</h4><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">Outline</dd></dl><p>Outline 对象，便于链式方法调用。</p><pre class="section__pre"><code class="section__code">const outline = new Outline({
    article: '#article',
    title: 'Outline v2.0.0'
 })
@@ -2310,7 +2469,16 @@ outline.getChapters()
 outline.destroy()
 outline.getChapters()
 // 调用 destroy() 方法后，所有数据都清空了
-// -> []</code></pre></div></section><section class="section"><header class="section__header"><h3 class="section__h3">reload(options)</h3></header><div class="section__content"><h4 class="section__h4">Description</h4><p>reload (options) 方法是（根据新的配置信息）重启程序方法：</p><ol><li>先移除所有绘制的 DOM 元素和绑定的事件处理器；</li><li>重新初始化程序；</li></ol><h4 class="section__h4">Parameters</h4><h5 class="section__h4">options</h5><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">Object</dd></dl><p>（可选）初始化的配置参数。</p><h4 class="section__h4">Returns</h4><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">Outline</dd></dl><p>Outline 对象，便于链式方法调用。</p><pre class="section__pre"><code class="section__code">const outline = new Outline({
+// -> []</code></pre></div></section><section class="section"><header class="section__header"><h3 class="section__h3">refresh()</h3></header><div class="section__content"><h4 class="section__h4">Description</h4><p>refresh() 方法是（在文章政委内容改变后）重新绘制导航信息的方法：</p><h4 class="section__h4">Returns</h4><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">Outline</dd></dl><p>Outline 对象，便于链式方法调用。</p><pre class="section__pre"><code class="section__code">const outline = new Outline({
+  showCode: true
+})
+const REFRESH_METHOD = '&lt;h3&gt;添加 refresh() 方法&lt;/h3&gt;' +
+  '&lt;p&gt;refresh() 方法是（在文章政委内容改变后）重新绘制导航信息的方法&lt;/p&gt;'
+
+outline.$article.innerHTML += REFRESH_METHOD
+
+// 根据新的内容重新绘制导读信息
+outline.refresh()</code></pre></div></section><section class="section"><header class="section__header"><h3 class="section__h3">reload(options)</h3></header><div class="section__content"><h4 class="section__h4">Description</h4><p>reload (options) 方法是（根据新的配置信息）重启程序方法：</p><ol><li>先移除所有绘制的 DOM 元素和绑定的事件处理器；</li><li>重新初始化程序；</li></ol><h4 class="section__h4">Parameters</h4><h5 class="section__h4">options</h5><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">Object</dd></dl><p>（可选）初始化的配置参数。</p><h4 class="section__h4">Returns</h4><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">Outline</dd></dl><p>Outline 对象，便于链式方法调用。</p><pre class="section__pre"><code class="section__code">const outline = new Outline({
   showCode: true
 })
 
@@ -2536,7 +2704,7 @@ outline.reload({
       }
     }
   ]
-})</code></pre></div></section><section class="section"><header class="section__header"><h3 class="section__h3">reader</h3></header><div class="section__content"><h4 class="section__h4">Description</h4><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">Object</dd></dl><dl class="section__dl"><dt class="section__dt">Default：</dt><dd class="section__dd">{target: '', title: ''}</dd></dl><p>可选，自定义的是否自动为文章页面创建打印样式。</p><dl class="section__dl"><dt class="section__dt">element：</dt><dd class="section__dd">（必须）要打印的文章区域，DOM 元素或者选择器字符串。</dd></dl><dl class="section__dl"><dt class="section__dt">title：</dt><dd class="section__dd">（可选）要打印的文章标题。如果 element 区域有 h1 标签则无需设置。可以直接设置标题文本，也可以是文章页的主标题 DOM 元素。</dd></dl><pre class="section__pre"><code class="section__code">const defaults = Outline.DEFAULTS
+})</code></pre></div></section><section class="section"><header class="section__header"><h3 class="section__h3">reader</h3></header><div class="section__content"><h4 class="section__h4">Since</h4><p class="section__dd">3.32.0</p><p>说明：3.32.0 以前的版本，此属性的原名为 print，另外，reader.element 属性也调整为了 reader.target。请升级后在初始化配置参数时注意调整。</p><h4 class="section__h4">Description</h4><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">Object</dd></dl><dl class="section__dl"><dt class="section__dt">Default：</dt><dd class="section__dd">{target: '', title: ''}</dd></dl><p>可选，自定义的是否自动为文章页面创建打印样式。</p><dl class="section__dl"><dt class="section__dt">element：</dt><dd class="section__dd">（必须）要打印的文章区域，DOM 元素或者选择器字符串。</dd></dl><dl class="section__dl"><dt class="section__dt">title：</dt><dd class="section__dd">（可选）要打印的文章标题。如果 element 区域有 h1 标签则无需设置。可以直接设置标题文本，也可以是文章页的主标题 DOM 元素。</dd></dl><pre class="section__pre"><code class="section__code">const defaults = Outline.DEFAULTS
 let outline
 
 defaults.position = 'sticky'
@@ -2685,7 +2853,11 @@ outline = new Outline(Outline.DEFAULTS)</code></pre></div></section></section><s
 const outline = new Outline(Outline.DEFAULTS)
 
 // 查看全部配置信息
-outline.attrs</code></pre></div></section><section class="section"><header class="section__header"><h3 class="section__h3">buttons</h3></header><div class="section__content"><h4 class="section__h4">Description</h4><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">Array</dd></dl><p>存储的是 Outline 对象当前工具栏的完整的按钮配置信息：</p><pre class="section__pre"><code class="section__code">// 设置默认配置项
+outline.attrs</code></pre></div></section><section class="section"><header class="section__header"><h3 class="section__h3">$article</h3></header><div class="section__content"><h4 class="section__h4">Since</h4><p class="section__dd">3.32.0</p><h4 class="section__h4">Description</h4><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">HTMLElement</dd></dl><p>存储的是 Outline 对象要分析的文章正文内容显示区域的 DOM 元素：</p><pre class="section__pre"><code class="section__code">// 设置默认配置项
+const outline = new Outline(Outline.DEFAULTS)
+
+// 获取文章正文内容显示区域的 DOM 元素
+outline.$article</code></pre></div></section><section class="section"><header class="section__header"><h3 class="section__h3">buttons</h3></header><div class="section__content"><h4 class="section__h4">Description</h4><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">Array</dd></dl><p>存储的是 Outline 对象当前工具栏的完整的按钮配置信息：</p><pre class="section__pre"><code class="section__code">// 设置默认配置项
 const outline = new Outline(Outline.DEFAULTS)
 
 // 查看全部按钮配置信息
@@ -3468,7 +3640,78 @@ outline.toggle() // 如果已显示，则隐藏</code></pre></div></section><sec
 })
 
 // 如果浏览器支持 print() 打印，则启动打印界面
-outline.print()</code></pre></div></section><section class="section"><header class="section__header"><h3 class="section__h3">destroy()</h3></header><div class="section__content"><h4 class="section__h4">Description</h4><p>destroy() 方法用于移除所有绘制的 DOM 节点，并移除绑定的事件处理器，同时重置所有 attrs 配置信息和 data 信息。</p><h4 class="section__h4">Returns</h4><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">Outline</dd></dl><p>Outline 对象，便于链式方法调用。</p><pre class="section__pre"><code class="section__code">const outline = new Outline({
+outline.print()</code></pre></div></section><section class="section"><header class="section__header"><h3 class="section__h3">enterReading()</h3></header><div class="section__content"><h4 class="section__h4">Since</h4><p class="section__dd">3.32.0</p><h4 class="section__h4">Description</h4><p>enterReading() 方法来切换进入阅读模式。</p><h4 class="section__h4">Returns</h4><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">Outline</dd></dl><p>Outline 对象，便于链式方法调用。</p><pre class="section__pre"><code class="section__code">const defaults = Outline.DEFAULTS
+let outline
+
+defaults.position = 'sticky'
+defaults.stickyHeight = 86
+defaults.parentElement = '#aside'
+defaults.scrollElement = '#main'
+defaults.homepage = './index.html'
+defaults.git = 'https://github.com/yaohaixiao/outline.js'
+defaults.tags = 'https://github.com/yaohaixiao/outline.js/tags'
+defaults.issues = 'https://github.com/yaohaixiao/outline.js/issues'
+defaults.reader = {
+  target: '#article',
+  // 可以直接设置标题文本，也可以是文章页的主标题 DOM 元素。
+  // 纯静态的页面，设置 DOM 元素，可能更好，确保每个页面的主标题 DOM 元素的选择器不变
+  // 则 title 会是一个可变的值，这样比直接设置标题文本更加灵活；
+  title: document.querySelector('.title'),
+  // 进入阅读模式的提示消息文本
+  enterReadingTip: '进入阅读模式，按 ESC 键可退出阅读模式'
+}
+outline = new Outline(defaults)
+
+outline.enterReading()</code></pre><p>演示地址：<a target="_blank" href="https://yaohaixiao.github.io/outline.js/flex.html">https://yaohaixiao.github.io/outline.js/flex.html</a></p></div></section><section class="section"><header class="section__header"><h3 class="section__h3">exitReading()</h3></header><div class="section__content"><h4 class="section__h4">Since</h4><p class="section__dd">3.32.0</p><h4 class="section__h4">Description</h4><p>exitReading() 方法用来从阅读模式切换回普通文章页面模式。</p><h4 class="section__h4">Returns</h4><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">Outline</dd></dl><p>Outline 对象，便于链式方法调用。</p><pre class="section__pre"><code class="section__code">const defaults = Outline.DEFAULTS
+let outline
+
+defaults.position = 'sticky'
+defaults.stickyHeight = 86
+defaults.parentElement = '#aside'
+defaults.scrollElement = '#main'
+defaults.homepage = './index.html'
+defaults.git = 'https://github.com/yaohaixiao/outline.js'
+defaults.tags = 'https://github.com/yaohaixiao/outline.js/tags'
+defaults.issues = 'https://github.com/yaohaixiao/outline.js/issues'
+defaults.reader = {
+  target: '#article',
+  // 可以直接设置标题文本，也可以是文章页的主标题 DOM 元素。
+  // 纯静态的页面，设置 DOM 元素，可能更好，确保每个页面的主标题 DOM 元素的选择器不变
+  // 则 title 会是一个可变的值，这样比直接设置标题文本更加灵活；
+  title: document.querySelector('.title'),
+  // 进入阅读模式的提示消息文本
+  enterReadingTip: '进入阅读模式，按 ESC 键可退出阅读模式'
+}
+outline = new Outline(defaults)
+
+outline.enterReading()
+outline.exitReading()</code></pre><p>演示地址：<a target="_blank" href="https://yaohaixiao.github.io/outline.js/flex.html">https://yaohaixiao.github.io/outline.js/flex.html</a></p></div></section><section class="section"><header class="section__header"><h3 class="section__h3">switchReading()</h3></header><div class="section__content"><h4 class="section__h4">Since</h4><p class="section__dd">3.32.0</p><h4 class="section__h4">Description</h4><p>switchReading() 方法用来在阅读模式和回普通文章页面模式相互切换。</p><h4 class="section__h4">Returns</h4><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">Outline</dd></dl><p>Outline 对象，便于链式方法调用。</p><pre class="section__pre"><code class="section__code">const defaults = Outline.DEFAULTS
+let outline
+
+defaults.position = 'sticky'
+defaults.stickyHeight = 86
+defaults.parentElement = '#aside'
+defaults.scrollElement = '#main'
+defaults.homepage = './index.html'
+defaults.git = 'https://github.com/yaohaixiao/outline.js'
+defaults.tags = 'https://github.com/yaohaixiao/outline.js/tags'
+defaults.issues = 'https://github.com/yaohaixiao/outline.js/issues'
+defaults.reader = {
+  target: '#article',
+  // 可以直接设置标题文本，也可以是文章页的主标题 DOM 元素。
+  // 纯静态的页面，设置 DOM 元素，可能更好，确保每个页面的主标题 DOM 元素的选择器不变
+  // 则 title 会是一个可变的值，这样比直接设置标题文本更加灵活；
+  title: document.querySelector('.title'),
+  // 进入阅读模式的提示消息文本
+  enterReadingTip: '进入阅读模式，按 ESC 键可退出阅读模式'
+}
+outline = new Outline(defaults)
+
+// 进入阅读模式
+outline.switchReading()
+
+// 退出阅读模式
+outline.switchReading()</code></pre><p>演示地址：<a target="_blank" href="https://yaohaixiao.github.io/outline.js/flex.html">https://yaohaixiao.github.io/outline.js/flex.html</a></p></div></section><section class="section"><header class="section__header"><h3 class="section__h3">destroy()</h3></header><div class="section__content"><h4 class="section__h4">Description</h4><p>destroy() 方法用于移除所有绘制的 DOM 节点，并移除绑定的事件处理器，同时重置所有 attrs 配置信息和 data 信息。</p><h4 class="section__h4">Returns</h4><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">Outline</dd></dl><p>Outline 对象，便于链式方法调用。</p><pre class="section__pre"><code class="section__code">const outline = new Outline({
    article: '#article',
    title: 'Outline v2.0.0'
 })
@@ -3487,7 +3730,16 @@ outline.getChapters()
 outline.destroy()
 outline.getChapters()
 // 调用 destroy() 方法后，所有数据都清空了
-// -> []</code></pre></div></section><section class="section"><header class="section__header"><h3 class="section__h3">reload(options)</h3></header><div class="section__content"><h4 class="section__h4">Description</h4><p>reload (options) 方法是（根据新的配置信息）重启程序方法：</p><ol><li>先移除所有绘制的 DOM 元素和绑定的事件处理器；</li><li>重新初始化程序；</li></ol><h4 class="section__h4">Parameters</h4><h5 class="section__h4">options</h5><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">Object</dd></dl><p>（可选）初始化的配置参数。</p><h4 class="section__h4">Returns</h4><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">Outline</dd></dl><p>Outline 对象，便于链式方法调用。</p><pre class="section__pre"><code class="section__code">const outline = new Outline({
+// -> []</code></pre></div></section><section class="section"><header class="section__header"><h3 class="section__h3">refresh()</h3></header><div class="section__content"><h4 class="section__h4">Description</h4><p>refresh() 方法是（在文章政委内容改变后）重新绘制导航信息的方法：</p><h4 class="section__h4">Returns</h4><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">Outline</dd></dl><p>Outline 对象，便于链式方法调用。</p><pre class="section__pre"><code class="section__code">const outline = new Outline({
+  showCode: true
+})
+const REFRESH_METHOD = '&lt;h3&gt;添加 refresh() 方法&lt;/h3&gt;' +
+  '&lt;p&gt;refresh() 方法是（在文章政委内容改变后）重新绘制导航信息的方法&lt;/p&gt;'
+
+outline.$article.innerHTML += REFRESH_METHOD
+
+// 根据新的内容重新绘制导读信息
+outline.refresh()</code></pre></div></section><section class="section"><header class="section__header"><h3 class="section__h3">reload(options)</h3></header><div class="section__content"><h4 class="section__h4">Description</h4><p>reload (options) 方法是（根据新的配置信息）重启程序方法：</p><ol><li>先移除所有绘制的 DOM 元素和绑定的事件处理器；</li><li>重新初始化程序；</li></ol><h4 class="section__h4">Parameters</h4><h5 class="section__h4">options</h5><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">Object</dd></dl><p>（可选）初始化的配置参数。</p><h4 class="section__h4">Returns</h4><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">Outline</dd></dl><p>Outline 对象，便于链式方法调用。</p><pre class="section__pre"><code class="section__code">const outline = new Outline({
   showCode: true
 })
 
@@ -3713,7 +3965,7 @@ outline.reload({
       }
     }
   ]
-})</code></pre></div></section><section class="section"><header class="section__header"><h3 class="section__h3">reader</h3></header><div class="section__content"><h4 class="section__h4">Description</h4><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">Object</dd></dl><dl class="section__dl"><dt class="section__dt">Default：</dt><dd class="section__dd">{target: '', title: ''}</dd></dl><p>可选，自定义的是否自动为文章页面创建打印样式。</p><dl class="section__dl"><dt class="section__dt">element：</dt><dd class="section__dd">（必须）要打印的文章区域，DOM 元素或者选择器字符串。</dd></dl><dl class="section__dl"><dt class="section__dt">title：</dt><dd class="section__dd">（可选）要打印的文章标题。如果 element 区域有 h1 标签则无需设置。可以直接设置标题文本，也可以是文章页的主标题 DOM 元素。</dd></dl><pre class="section__pre"><code class="section__code">const defaults = Outline.DEFAULTS
+})</code></pre></div></section><section class="section"><header class="section__header"><h3 class="section__h3">reader</h3></header><div class="section__content"><h4 class="section__h4">Since</h4><p class="section__dd">3.32.0</p><p>说明：3.32.0 以前的版本，此属性的原名为 print，另外，reader.element 属性也调整为了 reader.target。请升级后在初始化配置参数时注意调整。</p><h4 class="section__h4">Description</h4><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">Object</dd></dl><dl class="section__dl"><dt class="section__dt">Default：</dt><dd class="section__dd">{target: '', title: ''}</dd></dl><p>可选，自定义的是否自动为文章页面创建打印样式。</p><dl class="section__dl"><dt class="section__dt">element：</dt><dd class="section__dd">（必须）要打印的文章区域，DOM 元素或者选择器字符串。</dd></dl><dl class="section__dl"><dt class="section__dt">title：</dt><dd class="section__dd">（可选）要打印的文章标题。如果 element 区域有 h1 标签则无需设置。可以直接设置标题文本，也可以是文章页的主标题 DOM 元素。</dd></dl><pre class="section__pre"><code class="section__code">const defaults = Outline.DEFAULTS
 let outline
 
 defaults.position = 'sticky'
@@ -3862,7 +4114,11 @@ outline = new Outline(Outline.DEFAULTS)</code></pre></div></section></section><s
 const outline = new Outline(Outline.DEFAULTS)
 
 // 查看全部配置信息
-outline.attrs</code></pre></div></section><section class="section"><header class="section__header"><h3 class="section__h3">buttons</h3></header><div class="section__content"><h4 class="section__h4">Description</h4><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">Array</dd></dl><p>存储的是 Outline 对象当前工具栏的完整的按钮配置信息：</p><pre class="section__pre"><code class="section__code">// 设置默认配置项
+outline.attrs</code></pre></div></section><section class="section"><header class="section__header"><h3 class="section__h3">$article</h3></header><div class="section__content"><h4 class="section__h4">Since</h4><p class="section__dd">3.32.0</p><h4 class="section__h4">Description</h4><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">HTMLElement</dd></dl><p>存储的是 Outline 对象要分析的文章正文内容显示区域的 DOM 元素：</p><pre class="section__pre"><code class="section__code">// 设置默认配置项
+const outline = new Outline(Outline.DEFAULTS)
+
+// 获取文章正文内容显示区域的 DOM 元素
+outline.$article</code></pre></div></section><section class="section"><header class="section__header"><h3 class="section__h3">buttons</h3></header><div class="section__content"><h4 class="section__h4">Description</h4><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">Array</dd></dl><p>存储的是 Outline 对象当前工具栏的完整的按钮配置信息：</p><pre class="section__pre"><code class="section__code">// 设置默认配置项
 const outline = new Outline(Outline.DEFAULTS)
 
 // 查看全部按钮配置信息
@@ -4645,7 +4901,78 @@ outline.toggle() // 如果已显示，则隐藏</code></pre></div></section><sec
 })
 
 // 如果浏览器支持 print() 打印，则启动打印界面
-outline.print()</code></pre></div></section><section class="section"><header class="section__header"><h3 class="section__h3">destroy()</h3></header><div class="section__content"><h4 class="section__h4">Description</h4><p>destroy() 方法用于移除所有绘制的 DOM 节点，并移除绑定的事件处理器，同时重置所有 attrs 配置信息和 data 信息。</p><h4 class="section__h4">Returns</h4><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">Outline</dd></dl><p>Outline 对象，便于链式方法调用。</p><pre class="section__pre"><code class="section__code">const outline = new Outline({
+outline.print()</code></pre></div></section><section class="section"><header class="section__header"><h3 class="section__h3">enterReading()</h3></header><div class="section__content"><h4 class="section__h4">Since</h4><p class="section__dd">3.32.0</p><h4 class="section__h4">Description</h4><p>enterReading() 方法来切换进入阅读模式。</p><h4 class="section__h4">Returns</h4><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">Outline</dd></dl><p>Outline 对象，便于链式方法调用。</p><pre class="section__pre"><code class="section__code">const defaults = Outline.DEFAULTS
+let outline
+
+defaults.position = 'sticky'
+defaults.stickyHeight = 86
+defaults.parentElement = '#aside'
+defaults.scrollElement = '#main'
+defaults.homepage = './index.html'
+defaults.git = 'https://github.com/yaohaixiao/outline.js'
+defaults.tags = 'https://github.com/yaohaixiao/outline.js/tags'
+defaults.issues = 'https://github.com/yaohaixiao/outline.js/issues'
+defaults.reader = {
+  target: '#article',
+  // 可以直接设置标题文本，也可以是文章页的主标题 DOM 元素。
+  // 纯静态的页面，设置 DOM 元素，可能更好，确保每个页面的主标题 DOM 元素的选择器不变
+  // 则 title 会是一个可变的值，这样比直接设置标题文本更加灵活；
+  title: document.querySelector('.title'),
+  // 进入阅读模式的提示消息文本
+  enterReadingTip: '进入阅读模式，按 ESC 键可退出阅读模式'
+}
+outline = new Outline(defaults)
+
+outline.enterReading()</code></pre><p>演示地址：<a target="_blank" href="https://yaohaixiao.github.io/outline.js/flex.html">https://yaohaixiao.github.io/outline.js/flex.html</a></p></div></section><section class="section"><header class="section__header"><h3 class="section__h3">exitReading()</h3></header><div class="section__content"><h4 class="section__h4">Since</h4><p class="section__dd">3.32.0</p><h4 class="section__h4">Description</h4><p>exitReading() 方法用来从阅读模式切换回普通文章页面模式。</p><h4 class="section__h4">Returns</h4><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">Outline</dd></dl><p>Outline 对象，便于链式方法调用。</p><pre class="section__pre"><code class="section__code">const defaults = Outline.DEFAULTS
+let outline
+
+defaults.position = 'sticky'
+defaults.stickyHeight = 86
+defaults.parentElement = '#aside'
+defaults.scrollElement = '#main'
+defaults.homepage = './index.html'
+defaults.git = 'https://github.com/yaohaixiao/outline.js'
+defaults.tags = 'https://github.com/yaohaixiao/outline.js/tags'
+defaults.issues = 'https://github.com/yaohaixiao/outline.js/issues'
+defaults.reader = {
+  target: '#article',
+  // 可以直接设置标题文本，也可以是文章页的主标题 DOM 元素。
+  // 纯静态的页面，设置 DOM 元素，可能更好，确保每个页面的主标题 DOM 元素的选择器不变
+  // 则 title 会是一个可变的值，这样比直接设置标题文本更加灵活；
+  title: document.querySelector('.title'),
+  // 进入阅读模式的提示消息文本
+  enterReadingTip: '进入阅读模式，按 ESC 键可退出阅读模式'
+}
+outline = new Outline(defaults)
+
+outline.enterReading()
+outline.exitReading()</code></pre><p>演示地址：<a target="_blank" href="https://yaohaixiao.github.io/outline.js/flex.html">https://yaohaixiao.github.io/outline.js/flex.html</a></p></div></section><section class="section"><header class="section__header"><h3 class="section__h3">switchReading()</h3></header><div class="section__content"><h4 class="section__h4">Since</h4><p class="section__dd">3.32.0</p><h4 class="section__h4">Description</h4><p>switchReading() 方法用来在阅读模式和回普通文章页面模式相互切换。</p><h4 class="section__h4">Returns</h4><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">Outline</dd></dl><p>Outline 对象，便于链式方法调用。</p><pre class="section__pre"><code class="section__code">const defaults = Outline.DEFAULTS
+let outline
+
+defaults.position = 'sticky'
+defaults.stickyHeight = 86
+defaults.parentElement = '#aside'
+defaults.scrollElement = '#main'
+defaults.homepage = './index.html'
+defaults.git = 'https://github.com/yaohaixiao/outline.js'
+defaults.tags = 'https://github.com/yaohaixiao/outline.js/tags'
+defaults.issues = 'https://github.com/yaohaixiao/outline.js/issues'
+defaults.reader = {
+  target: '#article',
+  // 可以直接设置标题文本，也可以是文章页的主标题 DOM 元素。
+  // 纯静态的页面，设置 DOM 元素，可能更好，确保每个页面的主标题 DOM 元素的选择器不变
+  // 则 title 会是一个可变的值，这样比直接设置标题文本更加灵活；
+  title: document.querySelector('.title'),
+  // 进入阅读模式的提示消息文本
+  enterReadingTip: '进入阅读模式，按 ESC 键可退出阅读模式'
+}
+outline = new Outline(defaults)
+
+// 进入阅读模式
+outline.switchReading()
+
+// 退出阅读模式
+outline.switchReading()</code></pre><p>演示地址：<a target="_blank" href="https://yaohaixiao.github.io/outline.js/flex.html">https://yaohaixiao.github.io/outline.js/flex.html</a></p></div></section><section class="section"><header class="section__header"><h3 class="section__h3">destroy()</h3></header><div class="section__content"><h4 class="section__h4">Description</h4><p>destroy() 方法用于移除所有绘制的 DOM 节点，并移除绑定的事件处理器，同时重置所有 attrs 配置信息和 data 信息。</p><h4 class="section__h4">Returns</h4><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">Outline</dd></dl><p>Outline 对象，便于链式方法调用。</p><pre class="section__pre"><code class="section__code">const outline = new Outline({
    article: '#article',
    title: 'Outline v2.0.0'
 })
@@ -4664,7 +4991,16 @@ outline.getChapters()
 outline.destroy()
 outline.getChapters()
 // 调用 destroy() 方法后，所有数据都清空了
-// -> []</code></pre></div></section><section class="section"><header class="section__header"><h3 class="section__h3">reload(options)</h3></header><div class="section__content"><h4 class="section__h4">Description</h4><p>reload (options) 方法是（根据新的配置信息）重启程序方法：</p><ol><li>先移除所有绘制的 DOM 元素和绑定的事件处理器；</li><li>重新初始化程序；</li></ol><h4 class="section__h4">Parameters</h4><h5 class="section__h4">options</h5><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">Object</dd></dl><p>（可选）初始化的配置参数。</p><h4 class="section__h4">Returns</h4><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">Outline</dd></dl><p>Outline 对象，便于链式方法调用。</p><pre class="section__pre"><code class="section__code">const outline = new Outline({
+// -> []</code></pre></div></section><section class="section"><header class="section__header"><h3 class="section__h3">refresh()</h3></header><div class="section__content"><h4 class="section__h4">Description</h4><p>refresh() 方法是（在文章政委内容改变后）重新绘制导航信息的方法：</p><h4 class="section__h4">Returns</h4><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">Outline</dd></dl><p>Outline 对象，便于链式方法调用。</p><pre class="section__pre"><code class="section__code">const outline = new Outline({
+  showCode: true
+})
+const REFRESH_METHOD = '&lt;h3&gt;添加 refresh() 方法&lt;/h3&gt;' +
+  '&lt;p&gt;refresh() 方法是（在文章政委内容改变后）重新绘制导航信息的方法&lt;/p&gt;'
+
+outline.$article.innerHTML += REFRESH_METHOD
+
+// 根据新的内容重新绘制导读信息
+outline.refresh()</code></pre></div></section><section class="section"><header class="section__header"><h3 class="section__h3">reload(options)</h3></header><div class="section__content"><h4 class="section__h4">Description</h4><p>reload (options) 方法是（根据新的配置信息）重启程序方法：</p><ol><li>先移除所有绘制的 DOM 元素和绑定的事件处理器；</li><li>重新初始化程序；</li></ol><h4 class="section__h4">Parameters</h4><h5 class="section__h4">options</h5><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">Object</dd></dl><p>（可选）初始化的配置参数。</p><h4 class="section__h4">Returns</h4><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">Outline</dd></dl><p>Outline 对象，便于链式方法调用。</p><pre class="section__pre"><code class="section__code">const outline = new Outline({
   showCode: true
 })
 
@@ -4890,7 +5226,7 @@ outline.reload({
       }
     }
   ]
-})</code></pre></div></section><section class="section"><header class="section__header"><h3 class="section__h3">reader</h3></header><div class="section__content"><h4 class="section__h4">Description</h4><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">Object</dd></dl><dl class="section__dl"><dt class="section__dt">Default：</dt><dd class="section__dd">{target: '', title: ''}</dd></dl><p>可选，自定义的是否自动为文章页面创建打印样式。</p><dl class="section__dl"><dt class="section__dt">element：</dt><dd class="section__dd">（必须）要打印的文章区域，DOM 元素或者选择器字符串。</dd></dl><dl class="section__dl"><dt class="section__dt">title：</dt><dd class="section__dd">（可选）要打印的文章标题。如果 element 区域有 h1 标签则无需设置。可以直接设置标题文本，也可以是文章页的主标题 DOM 元素。</dd></dl><pre class="section__pre"><code class="section__code">const defaults = Outline.DEFAULTS
+})</code></pre></div></section><section class="section"><header class="section__header"><h3 class="section__h3">reader</h3></header><div class="section__content"><h4 class="section__h4">Since</h4><p class="section__dd">3.32.0</p><p>说明：3.32.0 以前的版本，此属性的原名为 print，另外，reader.element 属性也调整为了 reader.target。请升级后在初始化配置参数时注意调整。</p><h4 class="section__h4">Description</h4><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">Object</dd></dl><dl class="section__dl"><dt class="section__dt">Default：</dt><dd class="section__dd">{target: '', title: ''}</dd></dl><p>可选，自定义的是否自动为文章页面创建打印样式。</p><dl class="section__dl"><dt class="section__dt">element：</dt><dd class="section__dd">（必须）要打印的文章区域，DOM 元素或者选择器字符串。</dd></dl><dl class="section__dl"><dt class="section__dt">title：</dt><dd class="section__dd">（可选）要打印的文章标题。如果 element 区域有 h1 标签则无需设置。可以直接设置标题文本，也可以是文章页的主标题 DOM 元素。</dd></dl><pre class="section__pre"><code class="section__code">const defaults = Outline.DEFAULTS
 let outline
 
 defaults.position = 'sticky'
@@ -5039,7 +5375,11 @@ outline = new Outline(Outline.DEFAULTS)</code></pre></div></section></section><s
 const outline = new Outline(Outline.DEFAULTS)
 
 // 查看全部配置信息
-outline.attrs</code></pre></div></section><section class="section"><header class="section__header"><h3 class="section__h3">buttons</h3></header><div class="section__content"><h4 class="section__h4">Description</h4><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">Array</dd></dl><p>存储的是 Outline 对象当前工具栏的完整的按钮配置信息：</p><pre class="section__pre"><code class="section__code">// 设置默认配置项
+outline.attrs</code></pre></div></section><section class="section"><header class="section__header"><h3 class="section__h3">$article</h3></header><div class="section__content"><h4 class="section__h4">Since</h4><p class="section__dd">3.32.0</p><h4 class="section__h4">Description</h4><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">HTMLElement</dd></dl><p>存储的是 Outline 对象要分析的文章正文内容显示区域的 DOM 元素：</p><pre class="section__pre"><code class="section__code">// 设置默认配置项
+const outline = new Outline(Outline.DEFAULTS)
+
+// 获取文章正文内容显示区域的 DOM 元素
+outline.$article</code></pre></div></section><section class="section"><header class="section__header"><h3 class="section__h3">buttons</h3></header><div class="section__content"><h4 class="section__h4">Description</h4><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">Array</dd></dl><p>存储的是 Outline 对象当前工具栏的完整的按钮配置信息：</p><pre class="section__pre"><code class="section__code">// 设置默认配置项
 const outline = new Outline(Outline.DEFAULTS)
 
 // 查看全部按钮配置信息
@@ -5822,7 +6162,78 @@ outline.toggle() // 如果已显示，则隐藏</code></pre></div></section><sec
 })
 
 // 如果浏览器支持 print() 打印，则启动打印界面
-outline.print()</code></pre></div></section><section class="section"><header class="section__header"><h3 class="section__h3">destroy()</h3></header><div class="section__content"><h4 class="section__h4">Description</h4><p>destroy() 方法用于移除所有绘制的 DOM 节点，并移除绑定的事件处理器，同时重置所有 attrs 配置信息和 data 信息。</p><h4 class="section__h4">Returns</h4><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">Outline</dd></dl><p>Outline 对象，便于链式方法调用。</p><pre class="section__pre"><code class="section__code">const outline = new Outline({
+outline.print()</code></pre></div></section><section class="section"><header class="section__header"><h3 class="section__h3">enterReading()</h3></header><div class="section__content"><h4 class="section__h4">Since</h4><p class="section__dd">3.32.0</p><h4 class="section__h4">Description</h4><p>enterReading() 方法来切换进入阅读模式。</p><h4 class="section__h4">Returns</h4><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">Outline</dd></dl><p>Outline 对象，便于链式方法调用。</p><pre class="section__pre"><code class="section__code">const defaults = Outline.DEFAULTS
+let outline
+
+defaults.position = 'sticky'
+defaults.stickyHeight = 86
+defaults.parentElement = '#aside'
+defaults.scrollElement = '#main'
+defaults.homepage = './index.html'
+defaults.git = 'https://github.com/yaohaixiao/outline.js'
+defaults.tags = 'https://github.com/yaohaixiao/outline.js/tags'
+defaults.issues = 'https://github.com/yaohaixiao/outline.js/issues'
+defaults.reader = {
+  target: '#article',
+  // 可以直接设置标题文本，也可以是文章页的主标题 DOM 元素。
+  // 纯静态的页面，设置 DOM 元素，可能更好，确保每个页面的主标题 DOM 元素的选择器不变
+  // 则 title 会是一个可变的值，这样比直接设置标题文本更加灵活；
+  title: document.querySelector('.title'),
+  // 进入阅读模式的提示消息文本
+  enterReadingTip: '进入阅读模式，按 ESC 键可退出阅读模式'
+}
+outline = new Outline(defaults)
+
+outline.enterReading()</code></pre><p>演示地址：<a target="_blank" href="https://yaohaixiao.github.io/outline.js/flex.html">https://yaohaixiao.github.io/outline.js/flex.html</a></p></div></section><section class="section"><header class="section__header"><h3 class="section__h3">exitReading()</h3></header><div class="section__content"><h4 class="section__h4">Since</h4><p class="section__dd">3.32.0</p><h4 class="section__h4">Description</h4><p>exitReading() 方法用来从阅读模式切换回普通文章页面模式。</p><h4 class="section__h4">Returns</h4><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">Outline</dd></dl><p>Outline 对象，便于链式方法调用。</p><pre class="section__pre"><code class="section__code">const defaults = Outline.DEFAULTS
+let outline
+
+defaults.position = 'sticky'
+defaults.stickyHeight = 86
+defaults.parentElement = '#aside'
+defaults.scrollElement = '#main'
+defaults.homepage = './index.html'
+defaults.git = 'https://github.com/yaohaixiao/outline.js'
+defaults.tags = 'https://github.com/yaohaixiao/outline.js/tags'
+defaults.issues = 'https://github.com/yaohaixiao/outline.js/issues'
+defaults.reader = {
+  target: '#article',
+  // 可以直接设置标题文本，也可以是文章页的主标题 DOM 元素。
+  // 纯静态的页面，设置 DOM 元素，可能更好，确保每个页面的主标题 DOM 元素的选择器不变
+  // 则 title 会是一个可变的值，这样比直接设置标题文本更加灵活；
+  title: document.querySelector('.title'),
+  // 进入阅读模式的提示消息文本
+  enterReadingTip: '进入阅读模式，按 ESC 键可退出阅读模式'
+}
+outline = new Outline(defaults)
+
+outline.enterReading()
+outline.exitReading()</code></pre><p>演示地址：<a target="_blank" href="https://yaohaixiao.github.io/outline.js/flex.html">https://yaohaixiao.github.io/outline.js/flex.html</a></p></div></section><section class="section"><header class="section__header"><h3 class="section__h3">switchReading()</h3></header><div class="section__content"><h4 class="section__h4">Since</h4><p class="section__dd">3.32.0</p><h4 class="section__h4">Description</h4><p>switchReading() 方法用来在阅读模式和回普通文章页面模式相互切换。</p><h4 class="section__h4">Returns</h4><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">Outline</dd></dl><p>Outline 对象，便于链式方法调用。</p><pre class="section__pre"><code class="section__code">const defaults = Outline.DEFAULTS
+let outline
+
+defaults.position = 'sticky'
+defaults.stickyHeight = 86
+defaults.parentElement = '#aside'
+defaults.scrollElement = '#main'
+defaults.homepage = './index.html'
+defaults.git = 'https://github.com/yaohaixiao/outline.js'
+defaults.tags = 'https://github.com/yaohaixiao/outline.js/tags'
+defaults.issues = 'https://github.com/yaohaixiao/outline.js/issues'
+defaults.reader = {
+  target: '#article',
+  // 可以直接设置标题文本，也可以是文章页的主标题 DOM 元素。
+  // 纯静态的页面，设置 DOM 元素，可能更好，确保每个页面的主标题 DOM 元素的选择器不变
+  // 则 title 会是一个可变的值，这样比直接设置标题文本更加灵活；
+  title: document.querySelector('.title'),
+  // 进入阅读模式的提示消息文本
+  enterReadingTip: '进入阅读模式，按 ESC 键可退出阅读模式'
+}
+outline = new Outline(defaults)
+
+// 进入阅读模式
+outline.switchReading()
+
+// 退出阅读模式
+outline.switchReading()</code></pre><p>演示地址：<a target="_blank" href="https://yaohaixiao.github.io/outline.js/flex.html">https://yaohaixiao.github.io/outline.js/flex.html</a></p></div></section><section class="section"><header class="section__header"><h3 class="section__h3">destroy()</h3></header><div class="section__content"><h4 class="section__h4">Description</h4><p>destroy() 方法用于移除所有绘制的 DOM 节点，并移除绑定的事件处理器，同时重置所有 attrs 配置信息和 data 信息。</p><h4 class="section__h4">Returns</h4><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">Outline</dd></dl><p>Outline 对象，便于链式方法调用。</p><pre class="section__pre"><code class="section__code">const outline = new Outline({
    article: '#article',
    title: 'Outline v2.0.0'
 })
@@ -5841,7 +6252,16 @@ outline.getChapters()
 outline.destroy()
 outline.getChapters()
 // 调用 destroy() 方法后，所有数据都清空了
-// -> []</code></pre></div></section><section class="section"><header class="section__header"><h3 class="section__h3">reload(options)</h3></header><div class="section__content"><h4 class="section__h4">Description</h4><p>reload (options) 方法是（根据新的配置信息）重启程序方法：</p><ol><li>先移除所有绘制的 DOM 元素和绑定的事件处理器；</li><li>重新初始化程序；</li></ol><h4 class="section__h4">Parameters</h4><h5 class="section__h4">options</h5><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">Object</dd></dl><p>（可选）初始化的配置参数。</p><h4 class="section__h4">Returns</h4><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">Outline</dd></dl><p>Outline 对象，便于链式方法调用。</p><pre class="section__pre"><code class="section__code">const outline = new Outline({
+// -> []</code></pre></div></section><section class="section"><header class="section__header"><h3 class="section__h3">refresh()</h3></header><div class="section__content"><h4 class="section__h4">Description</h4><p>refresh() 方法是（在文章政委内容改变后）重新绘制导航信息的方法：</p><h4 class="section__h4">Returns</h4><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">Outline</dd></dl><p>Outline 对象，便于链式方法调用。</p><pre class="section__pre"><code class="section__code">const outline = new Outline({
+  showCode: true
+})
+const REFRESH_METHOD = '&lt;h3&gt;添加 refresh() 方法&lt;/h3&gt;' +
+  '&lt;p&gt;refresh() 方法是（在文章政委内容改变后）重新绘制导航信息的方法&lt;/p&gt;'
+
+outline.$article.innerHTML += REFRESH_METHOD
+
+// 根据新的内容重新绘制导读信息
+outline.refresh()</code></pre></div></section><section class="section"><header class="section__header"><h3 class="section__h3">reload(options)</h3></header><div class="section__content"><h4 class="section__h4">Description</h4><p>reload (options) 方法是（根据新的配置信息）重启程序方法：</p><ol><li>先移除所有绘制的 DOM 元素和绑定的事件处理器；</li><li>重新初始化程序；</li></ol><h4 class="section__h4">Parameters</h4><h5 class="section__h4">options</h5><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">Object</dd></dl><p>（可选）初始化的配置参数。</p><h4 class="section__h4">Returns</h4><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">Outline</dd></dl><p>Outline 对象，便于链式方法调用。</p><pre class="section__pre"><code class="section__code">const outline = new Outline({
   showCode: true
 })
 
@@ -6067,7 +6487,7 @@ outline.reload({
       }
     }
   ]
-})</code></pre></div></section><section class="section"><header class="section__header"><h3 class="section__h3">reader</h3></header><div class="section__content"><h4 class="section__h4">Description</h4><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">Object</dd></dl><dl class="section__dl"><dt class="section__dt">Default：</dt><dd class="section__dd">{target: '', title: ''}</dd></dl><p>可选，自定义的是否自动为文章页面创建打印样式。</p><dl class="section__dl"><dt class="section__dt">element：</dt><dd class="section__dd">（必须）要打印的文章区域，DOM 元素或者选择器字符串。</dd></dl><dl class="section__dl"><dt class="section__dt">title：</dt><dd class="section__dd">（可选）要打印的文章标题。如果 element 区域有 h1 标签则无需设置。可以直接设置标题文本，也可以是文章页的主标题 DOM 元素。</dd></dl><pre class="section__pre"><code class="section__code">const defaults = Outline.DEFAULTS
+})</code></pre></div></section><section class="section"><header class="section__header"><h3 class="section__h3">reader</h3></header><div class="section__content"><h4 class="section__h4">Since</h4><p class="section__dd">3.32.0</p><p>说明：3.32.0 以前的版本，此属性的原名为 print，另外，reader.element 属性也调整为了 reader.target。请升级后在初始化配置参数时注意调整。</p><h4 class="section__h4">Description</h4><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">Object</dd></dl><dl class="section__dl"><dt class="section__dt">Default：</dt><dd class="section__dd">{target: '', title: ''}</dd></dl><p>可选，自定义的是否自动为文章页面创建打印样式。</p><dl class="section__dl"><dt class="section__dt">element：</dt><dd class="section__dd">（必须）要打印的文章区域，DOM 元素或者选择器字符串。</dd></dl><dl class="section__dl"><dt class="section__dt">title：</dt><dd class="section__dd">（可选）要打印的文章标题。如果 element 区域有 h1 标签则无需设置。可以直接设置标题文本，也可以是文章页的主标题 DOM 元素。</dd></dl><pre class="section__pre"><code class="section__code">const defaults = Outline.DEFAULTS
 let outline
 
 defaults.position = 'sticky'
@@ -6216,7 +6636,11 @@ outline = new Outline(Outline.DEFAULTS)</code></pre></div></section></section><s
 const outline = new Outline(Outline.DEFAULTS)
 
 // 查看全部配置信息
-outline.attrs</code></pre></div></section><section class="section"><header class="section__header"><h3 class="section__h3">buttons</h3></header><div class="section__content"><h4 class="section__h4">Description</h4><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">Array</dd></dl><p>存储的是 Outline 对象当前工具栏的完整的按钮配置信息：</p><pre class="section__pre"><code class="section__code">// 设置默认配置项
+outline.attrs</code></pre></div></section><section class="section"><header class="section__header"><h3 class="section__h3">$article</h3></header><div class="section__content"><h4 class="section__h4">Since</h4><p class="section__dd">3.32.0</p><h4 class="section__h4">Description</h4><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">HTMLElement</dd></dl><p>存储的是 Outline 对象要分析的文章正文内容显示区域的 DOM 元素：</p><pre class="section__pre"><code class="section__code">// 设置默认配置项
+const outline = new Outline(Outline.DEFAULTS)
+
+// 获取文章正文内容显示区域的 DOM 元素
+outline.$article</code></pre></div></section><section class="section"><header class="section__header"><h3 class="section__h3">buttons</h3></header><div class="section__content"><h4 class="section__h4">Description</h4><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">Array</dd></dl><p>存储的是 Outline 对象当前工具栏的完整的按钮配置信息：</p><pre class="section__pre"><code class="section__code">// 设置默认配置项
 const outline = new Outline(Outline.DEFAULTS)
 
 // 查看全部按钮配置信息
@@ -6999,7 +7423,78 @@ outline.toggle() // 如果已显示，则隐藏</code></pre></div></section><sec
 })
 
 // 如果浏览器支持 print() 打印，则启动打印界面
-outline.print()</code></pre></div></section><section class="section"><header class="section__header"><h3 class="section__h3">destroy()</h3></header><div class="section__content"><h4 class="section__h4">Description</h4><p>destroy() 方法用于移除所有绘制的 DOM 节点，并移除绑定的事件处理器，同时重置所有 attrs 配置信息和 data 信息。</p><h4 class="section__h4">Returns</h4><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">Outline</dd></dl><p>Outline 对象，便于链式方法调用。</p><pre class="section__pre"><code class="section__code">const outline = new Outline({
+outline.print()</code></pre></div></section><section class="section"><header class="section__header"><h3 class="section__h3">enterReading()</h3></header><div class="section__content"><h4 class="section__h4">Since</h4><p class="section__dd">3.32.0</p><h4 class="section__h4">Description</h4><p>enterReading() 方法来切换进入阅读模式。</p><h4 class="section__h4">Returns</h4><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">Outline</dd></dl><p>Outline 对象，便于链式方法调用。</p><pre class="section__pre"><code class="section__code">const defaults = Outline.DEFAULTS
+let outline
+
+defaults.position = 'sticky'
+defaults.stickyHeight = 86
+defaults.parentElement = '#aside'
+defaults.scrollElement = '#main'
+defaults.homepage = './index.html'
+defaults.git = 'https://github.com/yaohaixiao/outline.js'
+defaults.tags = 'https://github.com/yaohaixiao/outline.js/tags'
+defaults.issues = 'https://github.com/yaohaixiao/outline.js/issues'
+defaults.reader = {
+  target: '#article',
+  // 可以直接设置标题文本，也可以是文章页的主标题 DOM 元素。
+  // 纯静态的页面，设置 DOM 元素，可能更好，确保每个页面的主标题 DOM 元素的选择器不变
+  // 则 title 会是一个可变的值，这样比直接设置标题文本更加灵活；
+  title: document.querySelector('.title'),
+  // 进入阅读模式的提示消息文本
+  enterReadingTip: '进入阅读模式，按 ESC 键可退出阅读模式'
+}
+outline = new Outline(defaults)
+
+outline.enterReading()</code></pre><p>演示地址：<a target="_blank" href="https://yaohaixiao.github.io/outline.js/flex.html">https://yaohaixiao.github.io/outline.js/flex.html</a></p></div></section><section class="section"><header class="section__header"><h3 class="section__h3">exitReading()</h3></header><div class="section__content"><h4 class="section__h4">Since</h4><p class="section__dd">3.32.0</p><h4 class="section__h4">Description</h4><p>exitReading() 方法用来从阅读模式切换回普通文章页面模式。</p><h4 class="section__h4">Returns</h4><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">Outline</dd></dl><p>Outline 对象，便于链式方法调用。</p><pre class="section__pre"><code class="section__code">const defaults = Outline.DEFAULTS
+let outline
+
+defaults.position = 'sticky'
+defaults.stickyHeight = 86
+defaults.parentElement = '#aside'
+defaults.scrollElement = '#main'
+defaults.homepage = './index.html'
+defaults.git = 'https://github.com/yaohaixiao/outline.js'
+defaults.tags = 'https://github.com/yaohaixiao/outline.js/tags'
+defaults.issues = 'https://github.com/yaohaixiao/outline.js/issues'
+defaults.reader = {
+  target: '#article',
+  // 可以直接设置标题文本，也可以是文章页的主标题 DOM 元素。
+  // 纯静态的页面，设置 DOM 元素，可能更好，确保每个页面的主标题 DOM 元素的选择器不变
+  // 则 title 会是一个可变的值，这样比直接设置标题文本更加灵活；
+  title: document.querySelector('.title'),
+  // 进入阅读模式的提示消息文本
+  enterReadingTip: '进入阅读模式，按 ESC 键可退出阅读模式'
+}
+outline = new Outline(defaults)
+
+outline.enterReading()
+outline.exitReading()</code></pre><p>演示地址：<a target="_blank" href="https://yaohaixiao.github.io/outline.js/flex.html">https://yaohaixiao.github.io/outline.js/flex.html</a></p></div></section><section class="section"><header class="section__header"><h3 class="section__h3">switchReading()</h3></header><div class="section__content"><h4 class="section__h4">Since</h4><p class="section__dd">3.32.0</p><h4 class="section__h4">Description</h4><p>switchReading() 方法用来在阅读模式和回普通文章页面模式相互切换。</p><h4 class="section__h4">Returns</h4><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">Outline</dd></dl><p>Outline 对象，便于链式方法调用。</p><pre class="section__pre"><code class="section__code">const defaults = Outline.DEFAULTS
+let outline
+
+defaults.position = 'sticky'
+defaults.stickyHeight = 86
+defaults.parentElement = '#aside'
+defaults.scrollElement = '#main'
+defaults.homepage = './index.html'
+defaults.git = 'https://github.com/yaohaixiao/outline.js'
+defaults.tags = 'https://github.com/yaohaixiao/outline.js/tags'
+defaults.issues = 'https://github.com/yaohaixiao/outline.js/issues'
+defaults.reader = {
+  target: '#article',
+  // 可以直接设置标题文本，也可以是文章页的主标题 DOM 元素。
+  // 纯静态的页面，设置 DOM 元素，可能更好，确保每个页面的主标题 DOM 元素的选择器不变
+  // 则 title 会是一个可变的值，这样比直接设置标题文本更加灵活；
+  title: document.querySelector('.title'),
+  // 进入阅读模式的提示消息文本
+  enterReadingTip: '进入阅读模式，按 ESC 键可退出阅读模式'
+}
+outline = new Outline(defaults)
+
+// 进入阅读模式
+outline.switchReading()
+
+// 退出阅读模式
+outline.switchReading()</code></pre><p>演示地址：<a target="_blank" href="https://yaohaixiao.github.io/outline.js/flex.html">https://yaohaixiao.github.io/outline.js/flex.html</a></p></div></section><section class="section"><header class="section__header"><h3 class="section__h3">destroy()</h3></header><div class="section__content"><h4 class="section__h4">Description</h4><p>destroy() 方法用于移除所有绘制的 DOM 节点，并移除绑定的事件处理器，同时重置所有 attrs 配置信息和 data 信息。</p><h4 class="section__h4">Returns</h4><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">Outline</dd></dl><p>Outline 对象，便于链式方法调用。</p><pre class="section__pre"><code class="section__code">const outline = new Outline({
    article: '#article',
    title: 'Outline v2.0.0'
 })
@@ -7018,7 +7513,16 @@ outline.getChapters()
 outline.destroy()
 outline.getChapters()
 // 调用 destroy() 方法后，所有数据都清空了
-// -> []</code></pre></div></section><section class="section"><header class="section__header"><h3 class="section__h3">reload(options)</h3></header><div class="section__content"><h4 class="section__h4">Description</h4><p>reload (options) 方法是（根据新的配置信息）重启程序方法：</p><ol><li>先移除所有绘制的 DOM 元素和绑定的事件处理器；</li><li>重新初始化程序；</li></ol><h4 class="section__h4">Parameters</h4><h5 class="section__h4">options</h5><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">Object</dd></dl><p>（可选）初始化的配置参数。</p><h4 class="section__h4">Returns</h4><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">Outline</dd></dl><p>Outline 对象，便于链式方法调用。</p><pre class="section__pre"><code class="section__code">const outline = new Outline({
+// -> []</code></pre></div></section><section class="section"><header class="section__header"><h3 class="section__h3">refresh()</h3></header><div class="section__content"><h4 class="section__h4">Description</h4><p>refresh() 方法是（在文章政委内容改变后）重新绘制导航信息的方法：</p><h4 class="section__h4">Returns</h4><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">Outline</dd></dl><p>Outline 对象，便于链式方法调用。</p><pre class="section__pre"><code class="section__code">const outline = new Outline({
+  showCode: true
+})
+const REFRESH_METHOD = '&lt;h3&gt;添加 refresh() 方法&lt;/h3&gt;' +
+  '&lt;p&gt;refresh() 方法是（在文章政委内容改变后）重新绘制导航信息的方法&lt;/p&gt;'
+
+outline.$article.innerHTML += REFRESH_METHOD
+
+// 根据新的内容重新绘制导读信息
+outline.refresh()</code></pre></div></section><section class="section"><header class="section__header"><h3 class="section__h3">reload(options)</h3></header><div class="section__content"><h4 class="section__h4">Description</h4><p>reload (options) 方法是（根据新的配置信息）重启程序方法：</p><ol><li>先移除所有绘制的 DOM 元素和绑定的事件处理器；</li><li>重新初始化程序；</li></ol><h4 class="section__h4">Parameters</h4><h5 class="section__h4">options</h5><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">Object</dd></dl><p>（可选）初始化的配置参数。</p><h4 class="section__h4">Returns</h4><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">Outline</dd></dl><p>Outline 对象，便于链式方法调用。</p><pre class="section__pre"><code class="section__code">const outline = new Outline({
   showCode: true
 })
 
@@ -7244,7 +7748,7 @@ outline.reload({
       }
     }
   ]
-})</code></pre></div></section><section class="section"><header class="section__header"><h3 class="section__h3">reader</h3></header><div class="section__content"><h4 class="section__h4">Description</h4><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">Object</dd></dl><dl class="section__dl"><dt class="section__dt">Default：</dt><dd class="section__dd">{target: '', title: ''}</dd></dl><p>可选，自定义的是否自动为文章页面创建打印样式。</p><dl class="section__dl"><dt class="section__dt">element：</dt><dd class="section__dd">（必须）要打印的文章区域，DOM 元素或者选择器字符串。</dd></dl><dl class="section__dl"><dt class="section__dt">title：</dt><dd class="section__dd">（可选）要打印的文章标题。如果 element 区域有 h1 标签则无需设置。可以直接设置标题文本，也可以是文章页的主标题 DOM 元素。</dd></dl><pre class="section__pre"><code class="section__code">const defaults = Outline.DEFAULTS
+})</code></pre></div></section><section class="section"><header class="section__header"><h3 class="section__h3">reader</h3></header><div class="section__content"><h4 class="section__h4">Since</h4><p class="section__dd">3.32.0</p><p>说明：3.32.0 以前的版本，此属性的原名为 print，另外，reader.element 属性也调整为了 reader.target。请升级后在初始化配置参数时注意调整。</p><h4 class="section__h4">Description</h4><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">Object</dd></dl><dl class="section__dl"><dt class="section__dt">Default：</dt><dd class="section__dd">{target: '', title: ''}</dd></dl><p>可选，自定义的是否自动为文章页面创建打印样式。</p><dl class="section__dl"><dt class="section__dt">element：</dt><dd class="section__dd">（必须）要打印的文章区域，DOM 元素或者选择器字符串。</dd></dl><dl class="section__dl"><dt class="section__dt">title：</dt><dd class="section__dd">（可选）要打印的文章标题。如果 element 区域有 h1 标签则无需设置。可以直接设置标题文本，也可以是文章页的主标题 DOM 元素。</dd></dl><pre class="section__pre"><code class="section__code">const defaults = Outline.DEFAULTS
 let outline
 
 defaults.position = 'sticky'
@@ -7393,7 +7897,11 @@ outline = new Outline(Outline.DEFAULTS)</code></pre></div></section></section><s
 const outline = new Outline(Outline.DEFAULTS)
 
 // 查看全部配置信息
-outline.attrs</code></pre></div></section><section class="section"><header class="section__header"><h3 class="section__h3">buttons</h3></header><div class="section__content"><h4 class="section__h4">Description</h4><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">Array</dd></dl><p>存储的是 Outline 对象当前工具栏的完整的按钮配置信息：</p><pre class="section__pre"><code class="section__code">// 设置默认配置项
+outline.attrs</code></pre></div></section><section class="section"><header class="section__header"><h3 class="section__h3">$article</h3></header><div class="section__content"><h4 class="section__h4">Since</h4><p class="section__dd">3.32.0</p><h4 class="section__h4">Description</h4><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">HTMLElement</dd></dl><p>存储的是 Outline 对象要分析的文章正文内容显示区域的 DOM 元素：</p><pre class="section__pre"><code class="section__code">// 设置默认配置项
+const outline = new Outline(Outline.DEFAULTS)
+
+// 获取文章正文内容显示区域的 DOM 元素
+outline.$article</code></pre></div></section><section class="section"><header class="section__header"><h3 class="section__h3">buttons</h3></header><div class="section__content"><h4 class="section__h4">Description</h4><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">Array</dd></dl><p>存储的是 Outline 对象当前工具栏的完整的按钮配置信息：</p><pre class="section__pre"><code class="section__code">// 设置默认配置项
 const outline = new Outline(Outline.DEFAULTS)
 
 // 查看全部按钮配置信息
@@ -8176,7 +8684,78 @@ outline.toggle() // 如果已显示，则隐藏</code></pre></div></section><sec
 })
 
 // 如果浏览器支持 print() 打印，则启动打印界面
-outline.print()</code></pre></div></section><section class="section"><header class="section__header"><h3 class="section__h3">destroy()</h3></header><div class="section__content"><h4 class="section__h4">Description</h4><p>destroy() 方法用于移除所有绘制的 DOM 节点，并移除绑定的事件处理器，同时重置所有 attrs 配置信息和 data 信息。</p><h4 class="section__h4">Returns</h4><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">Outline</dd></dl><p>Outline 对象，便于链式方法调用。</p><pre class="section__pre"><code class="section__code">const outline = new Outline({
+outline.print()</code></pre></div></section><section class="section"><header class="section__header"><h3 class="section__h3">enterReading()</h3></header><div class="section__content"><h4 class="section__h4">Since</h4><p class="section__dd">3.32.0</p><h4 class="section__h4">Description</h4><p>enterReading() 方法来切换进入阅读模式。</p><h4 class="section__h4">Returns</h4><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">Outline</dd></dl><p>Outline 对象，便于链式方法调用。</p><pre class="section__pre"><code class="section__code">const defaults = Outline.DEFAULTS
+let outline
+
+defaults.position = 'sticky'
+defaults.stickyHeight = 86
+defaults.parentElement = '#aside'
+defaults.scrollElement = '#main'
+defaults.homepage = './index.html'
+defaults.git = 'https://github.com/yaohaixiao/outline.js'
+defaults.tags = 'https://github.com/yaohaixiao/outline.js/tags'
+defaults.issues = 'https://github.com/yaohaixiao/outline.js/issues'
+defaults.reader = {
+  target: '#article',
+  // 可以直接设置标题文本，也可以是文章页的主标题 DOM 元素。
+  // 纯静态的页面，设置 DOM 元素，可能更好，确保每个页面的主标题 DOM 元素的选择器不变
+  // 则 title 会是一个可变的值，这样比直接设置标题文本更加灵活；
+  title: document.querySelector('.title'),
+  // 进入阅读模式的提示消息文本
+  enterReadingTip: '进入阅读模式，按 ESC 键可退出阅读模式'
+}
+outline = new Outline(defaults)
+
+outline.enterReading()</code></pre><p>演示地址：<a target="_blank" href="https://yaohaixiao.github.io/outline.js/flex.html">https://yaohaixiao.github.io/outline.js/flex.html</a></p></div></section><section class="section"><header class="section__header"><h3 class="section__h3">exitReading()</h3></header><div class="section__content"><h4 class="section__h4">Since</h4><p class="section__dd">3.32.0</p><h4 class="section__h4">Description</h4><p>exitReading() 方法用来从阅读模式切换回普通文章页面模式。</p><h4 class="section__h4">Returns</h4><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">Outline</dd></dl><p>Outline 对象，便于链式方法调用。</p><pre class="section__pre"><code class="section__code">const defaults = Outline.DEFAULTS
+let outline
+
+defaults.position = 'sticky'
+defaults.stickyHeight = 86
+defaults.parentElement = '#aside'
+defaults.scrollElement = '#main'
+defaults.homepage = './index.html'
+defaults.git = 'https://github.com/yaohaixiao/outline.js'
+defaults.tags = 'https://github.com/yaohaixiao/outline.js/tags'
+defaults.issues = 'https://github.com/yaohaixiao/outline.js/issues'
+defaults.reader = {
+  target: '#article',
+  // 可以直接设置标题文本，也可以是文章页的主标题 DOM 元素。
+  // 纯静态的页面，设置 DOM 元素，可能更好，确保每个页面的主标题 DOM 元素的选择器不变
+  // 则 title 会是一个可变的值，这样比直接设置标题文本更加灵活；
+  title: document.querySelector('.title'),
+  // 进入阅读模式的提示消息文本
+  enterReadingTip: '进入阅读模式，按 ESC 键可退出阅读模式'
+}
+outline = new Outline(defaults)
+
+outline.enterReading()
+outline.exitReading()</code></pre><p>演示地址：<a target="_blank" href="https://yaohaixiao.github.io/outline.js/flex.html">https://yaohaixiao.github.io/outline.js/flex.html</a></p></div></section><section class="section"><header class="section__header"><h3 class="section__h3">switchReading()</h3></header><div class="section__content"><h4 class="section__h4">Since</h4><p class="section__dd">3.32.0</p><h4 class="section__h4">Description</h4><p>switchReading() 方法用来在阅读模式和回普通文章页面模式相互切换。</p><h4 class="section__h4">Returns</h4><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">Outline</dd></dl><p>Outline 对象，便于链式方法调用。</p><pre class="section__pre"><code class="section__code">const defaults = Outline.DEFAULTS
+let outline
+
+defaults.position = 'sticky'
+defaults.stickyHeight = 86
+defaults.parentElement = '#aside'
+defaults.scrollElement = '#main'
+defaults.homepage = './index.html'
+defaults.git = 'https://github.com/yaohaixiao/outline.js'
+defaults.tags = 'https://github.com/yaohaixiao/outline.js/tags'
+defaults.issues = 'https://github.com/yaohaixiao/outline.js/issues'
+defaults.reader = {
+  target: '#article',
+  // 可以直接设置标题文本，也可以是文章页的主标题 DOM 元素。
+  // 纯静态的页面，设置 DOM 元素，可能更好，确保每个页面的主标题 DOM 元素的选择器不变
+  // 则 title 会是一个可变的值，这样比直接设置标题文本更加灵活；
+  title: document.querySelector('.title'),
+  // 进入阅读模式的提示消息文本
+  enterReadingTip: '进入阅读模式，按 ESC 键可退出阅读模式'
+}
+outline = new Outline(defaults)
+
+// 进入阅读模式
+outline.switchReading()
+
+// 退出阅读模式
+outline.switchReading()</code></pre><p>演示地址：<a target="_blank" href="https://yaohaixiao.github.io/outline.js/flex.html">https://yaohaixiao.github.io/outline.js/flex.html</a></p></div></section><section class="section"><header class="section__header"><h3 class="section__h3">destroy()</h3></header><div class="section__content"><h4 class="section__h4">Description</h4><p>destroy() 方法用于移除所有绘制的 DOM 节点，并移除绑定的事件处理器，同时重置所有 attrs 配置信息和 data 信息。</p><h4 class="section__h4">Returns</h4><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">Outline</dd></dl><p>Outline 对象，便于链式方法调用。</p><pre class="section__pre"><code class="section__code">const outline = new Outline({
    article: '#article',
    title: 'Outline v2.0.0'
 })
@@ -8195,7 +8774,16 @@ outline.getChapters()
 outline.destroy()
 outline.getChapters()
 // 调用 destroy() 方法后，所有数据都清空了
-// -> []</code></pre></div></section><section class="section"><header class="section__header"><h3 class="section__h3">reload(options)</h3></header><div class="section__content"><h4 class="section__h4">Description</h4><p>reload (options) 方法是（根据新的配置信息）重启程序方法：</p><ol><li>先移除所有绘制的 DOM 元素和绑定的事件处理器；</li><li>重新初始化程序；</li></ol><h4 class="section__h4">Parameters</h4><h5 class="section__h4">options</h5><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">Object</dd></dl><p>（可选）初始化的配置参数。</p><h4 class="section__h4">Returns</h4><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">Outline</dd></dl><p>Outline 对象，便于链式方法调用。</p><pre class="section__pre"><code class="section__code">const outline = new Outline({
+// -> []</code></pre></div></section><section class="section"><header class="section__header"><h3 class="section__h3">refresh()</h3></header><div class="section__content"><h4 class="section__h4">Description</h4><p>refresh() 方法是（在文章政委内容改变后）重新绘制导航信息的方法：</p><h4 class="section__h4">Returns</h4><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">Outline</dd></dl><p>Outline 对象，便于链式方法调用。</p><pre class="section__pre"><code class="section__code">const outline = new Outline({
+  showCode: true
+})
+const REFRESH_METHOD = '&lt;h3&gt;添加 refresh() 方法&lt;/h3&gt;' +
+  '&lt;p&gt;refresh() 方法是（在文章政委内容改变后）重新绘制导航信息的方法&lt;/p&gt;'
+
+outline.$article.innerHTML += REFRESH_METHOD
+
+// 根据新的内容重新绘制导读信息
+outline.refresh()</code></pre></div></section><section class="section"><header class="section__header"><h3 class="section__h3">reload(options)</h3></header><div class="section__content"><h4 class="section__h4">Description</h4><p>reload (options) 方法是（根据新的配置信息）重启程序方法：</p><ol><li>先移除所有绘制的 DOM 元素和绑定的事件处理器；</li><li>重新初始化程序；</li></ol><h4 class="section__h4">Parameters</h4><h5 class="section__h4">options</h5><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">Object</dd></dl><p>（可选）初始化的配置参数。</p><h4 class="section__h4">Returns</h4><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">Outline</dd></dl><p>Outline 对象，便于链式方法调用。</p><pre class="section__pre"><code class="section__code">const outline = new Outline({
   showCode: true
 })
 
@@ -8421,7 +9009,7 @@ outline.reload({
       }
     }
   ]
-})</code></pre></div></section><section class="section"><header class="section__header"><h3 class="section__h3">reader</h3></header><div class="section__content"><h4 class="section__h4">Description</h4><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">Object</dd></dl><dl class="section__dl"><dt class="section__dt">Default：</dt><dd class="section__dd">{target: '', title: ''}</dd></dl><p>可选，自定义的是否自动为文章页面创建打印样式。</p><dl class="section__dl"><dt class="section__dt">element：</dt><dd class="section__dd">（必须）要打印的文章区域，DOM 元素或者选择器字符串。</dd></dl><dl class="section__dl"><dt class="section__dt">title：</dt><dd class="section__dd">（可选）要打印的文章标题。如果 element 区域有 h1 标签则无需设置。可以直接设置标题文本，也可以是文章页的主标题 DOM 元素。</dd></dl><pre class="section__pre"><code class="section__code">const defaults = Outline.DEFAULTS
+})</code></pre></div></section><section class="section"><header class="section__header"><h3 class="section__h3">reader</h3></header><div class="section__content"><h4 class="section__h4">Since</h4><p class="section__dd">3.32.0</p><p>说明：3.32.0 以前的版本，此属性的原名为 print，另外，reader.element 属性也调整为了 reader.target。请升级后在初始化配置参数时注意调整。</p><h4 class="section__h4">Description</h4><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">Object</dd></dl><dl class="section__dl"><dt class="section__dt">Default：</dt><dd class="section__dd">{target: '', title: ''}</dd></dl><p>可选，自定义的是否自动为文章页面创建打印样式。</p><dl class="section__dl"><dt class="section__dt">element：</dt><dd class="section__dd">（必须）要打印的文章区域，DOM 元素或者选择器字符串。</dd></dl><dl class="section__dl"><dt class="section__dt">title：</dt><dd class="section__dd">（可选）要打印的文章标题。如果 element 区域有 h1 标签则无需设置。可以直接设置标题文本，也可以是文章页的主标题 DOM 元素。</dd></dl><pre class="section__pre"><code class="section__code">const defaults = Outline.DEFAULTS
 let outline
 
 defaults.position = 'sticky'
@@ -8570,7 +9158,11 @@ outline = new Outline(Outline.DEFAULTS)</code></pre></div></section></section><s
 const outline = new Outline(Outline.DEFAULTS)
 
 // 查看全部配置信息
-outline.attrs</code></pre></div></section><section class="section"><header class="section__header"><h3 class="section__h3">buttons</h3></header><div class="section__content"><h4 class="section__h4">Description</h4><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">Array</dd></dl><p>存储的是 Outline 对象当前工具栏的完整的按钮配置信息：</p><pre class="section__pre"><code class="section__code">// 设置默认配置项
+outline.attrs</code></pre></div></section><section class="section"><header class="section__header"><h3 class="section__h3">$article</h3></header><div class="section__content"><h4 class="section__h4">Since</h4><p class="section__dd">3.32.0</p><h4 class="section__h4">Description</h4><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">HTMLElement</dd></dl><p>存储的是 Outline 对象要分析的文章正文内容显示区域的 DOM 元素：</p><pre class="section__pre"><code class="section__code">// 设置默认配置项
+const outline = new Outline(Outline.DEFAULTS)
+
+// 获取文章正文内容显示区域的 DOM 元素
+outline.$article</code></pre></div></section><section class="section"><header class="section__header"><h3 class="section__h3">buttons</h3></header><div class="section__content"><h4 class="section__h4">Description</h4><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">Array</dd></dl><p>存储的是 Outline 对象当前工具栏的完整的按钮配置信息：</p><pre class="section__pre"><code class="section__code">// 设置默认配置项
 const outline = new Outline(Outline.DEFAULTS)
 
 // 查看全部按钮配置信息
@@ -9353,7 +9945,78 @@ outline.toggle() // 如果已显示，则隐藏</code></pre></div></section><sec
 })
 
 // 如果浏览器支持 print() 打印，则启动打印界面
-outline.print()</code></pre></div></section><section class="section"><header class="section__header"><h3 class="section__h3">destroy()</h3></header><div class="section__content"><h4 class="section__h4">Description</h4><p>destroy() 方法用于移除所有绘制的 DOM 节点，并移除绑定的事件处理器，同时重置所有 attrs 配置信息和 data 信息。</p><h4 class="section__h4">Returns</h4><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">Outline</dd></dl><p>Outline 对象，便于链式方法调用。</p><pre class="section__pre"><code class="section__code">const outline = new Outline({
+outline.print()</code></pre></div></section><section class="section"><header class="section__header"><h3 class="section__h3">enterReading()</h3></header><div class="section__content"><h4 class="section__h4">Since</h4><p class="section__dd">3.32.0</p><h4 class="section__h4">Description</h4><p>enterReading() 方法来切换进入阅读模式。</p><h4 class="section__h4">Returns</h4><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">Outline</dd></dl><p>Outline 对象，便于链式方法调用。</p><pre class="section__pre"><code class="section__code">const defaults = Outline.DEFAULTS
+let outline
+
+defaults.position = 'sticky'
+defaults.stickyHeight = 86
+defaults.parentElement = '#aside'
+defaults.scrollElement = '#main'
+defaults.homepage = './index.html'
+defaults.git = 'https://github.com/yaohaixiao/outline.js'
+defaults.tags = 'https://github.com/yaohaixiao/outline.js/tags'
+defaults.issues = 'https://github.com/yaohaixiao/outline.js/issues'
+defaults.reader = {
+  target: '#article',
+  // 可以直接设置标题文本，也可以是文章页的主标题 DOM 元素。
+  // 纯静态的页面，设置 DOM 元素，可能更好，确保每个页面的主标题 DOM 元素的选择器不变
+  // 则 title 会是一个可变的值，这样比直接设置标题文本更加灵活；
+  title: document.querySelector('.title'),
+  // 进入阅读模式的提示消息文本
+  enterReadingTip: '进入阅读模式，按 ESC 键可退出阅读模式'
+}
+outline = new Outline(defaults)
+
+outline.enterReading()</code></pre><p>演示地址：<a target="_blank" href="https://yaohaixiao.github.io/outline.js/flex.html">https://yaohaixiao.github.io/outline.js/flex.html</a></p></div></section><section class="section"><header class="section__header"><h3 class="section__h3">exitReading()</h3></header><div class="section__content"><h4 class="section__h4">Since</h4><p class="section__dd">3.32.0</p><h4 class="section__h4">Description</h4><p>exitReading() 方法用来从阅读模式切换回普通文章页面模式。</p><h4 class="section__h4">Returns</h4><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">Outline</dd></dl><p>Outline 对象，便于链式方法调用。</p><pre class="section__pre"><code class="section__code">const defaults = Outline.DEFAULTS
+let outline
+
+defaults.position = 'sticky'
+defaults.stickyHeight = 86
+defaults.parentElement = '#aside'
+defaults.scrollElement = '#main'
+defaults.homepage = './index.html'
+defaults.git = 'https://github.com/yaohaixiao/outline.js'
+defaults.tags = 'https://github.com/yaohaixiao/outline.js/tags'
+defaults.issues = 'https://github.com/yaohaixiao/outline.js/issues'
+defaults.reader = {
+  target: '#article',
+  // 可以直接设置标题文本，也可以是文章页的主标题 DOM 元素。
+  // 纯静态的页面，设置 DOM 元素，可能更好，确保每个页面的主标题 DOM 元素的选择器不变
+  // 则 title 会是一个可变的值，这样比直接设置标题文本更加灵活；
+  title: document.querySelector('.title'),
+  // 进入阅读模式的提示消息文本
+  enterReadingTip: '进入阅读模式，按 ESC 键可退出阅读模式'
+}
+outline = new Outline(defaults)
+
+outline.enterReading()
+outline.exitReading()</code></pre><p>演示地址：<a target="_blank" href="https://yaohaixiao.github.io/outline.js/flex.html">https://yaohaixiao.github.io/outline.js/flex.html</a></p></div></section><section class="section"><header class="section__header"><h3 class="section__h3">switchReading()</h3></header><div class="section__content"><h4 class="section__h4">Since</h4><p class="section__dd">3.32.0</p><h4 class="section__h4">Description</h4><p>switchReading() 方法用来在阅读模式和回普通文章页面模式相互切换。</p><h4 class="section__h4">Returns</h4><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">Outline</dd></dl><p>Outline 对象，便于链式方法调用。</p><pre class="section__pre"><code class="section__code">const defaults = Outline.DEFAULTS
+let outline
+
+defaults.position = 'sticky'
+defaults.stickyHeight = 86
+defaults.parentElement = '#aside'
+defaults.scrollElement = '#main'
+defaults.homepage = './index.html'
+defaults.git = 'https://github.com/yaohaixiao/outline.js'
+defaults.tags = 'https://github.com/yaohaixiao/outline.js/tags'
+defaults.issues = 'https://github.com/yaohaixiao/outline.js/issues'
+defaults.reader = {
+  target: '#article',
+  // 可以直接设置标题文本，也可以是文章页的主标题 DOM 元素。
+  // 纯静态的页面，设置 DOM 元素，可能更好，确保每个页面的主标题 DOM 元素的选择器不变
+  // 则 title 会是一个可变的值，这样比直接设置标题文本更加灵活；
+  title: document.querySelector('.title'),
+  // 进入阅读模式的提示消息文本
+  enterReadingTip: '进入阅读模式，按 ESC 键可退出阅读模式'
+}
+outline = new Outline(defaults)
+
+// 进入阅读模式
+outline.switchReading()
+
+// 退出阅读模式
+outline.switchReading()</code></pre><p>演示地址：<a target="_blank" href="https://yaohaixiao.github.io/outline.js/flex.html">https://yaohaixiao.github.io/outline.js/flex.html</a></p></div></section><section class="section"><header class="section__header"><h3 class="section__h3">destroy()</h3></header><div class="section__content"><h4 class="section__h4">Description</h4><p>destroy() 方法用于移除所有绘制的 DOM 节点，并移除绑定的事件处理器，同时重置所有 attrs 配置信息和 data 信息。</p><h4 class="section__h4">Returns</h4><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">Outline</dd></dl><p>Outline 对象，便于链式方法调用。</p><pre class="section__pre"><code class="section__code">const outline = new Outline({
    article: '#article',
    title: 'Outline v2.0.0'
 })
@@ -9372,7 +10035,16 @@ outline.getChapters()
 outline.destroy()
 outline.getChapters()
 // 调用 destroy() 方法后，所有数据都清空了
-// -> []</code></pre></div></section><section class="section"><header class="section__header"><h3 class="section__h3">reload(options)</h3></header><div class="section__content"><h4 class="section__h4">Description</h4><p>reload (options) 方法是（根据新的配置信息）重启程序方法：</p><ol><li>先移除所有绘制的 DOM 元素和绑定的事件处理器；</li><li>重新初始化程序；</li></ol><h4 class="section__h4">Parameters</h4><h5 class="section__h4">options</h5><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">Object</dd></dl><p>（可选）初始化的配置参数。</p><h4 class="section__h4">Returns</h4><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">Outline</dd></dl><p>Outline 对象，便于链式方法调用。</p><pre class="section__pre"><code class="section__code">const outline = new Outline({
+// -> []</code></pre></div></section><section class="section"><header class="section__header"><h3 class="section__h3">refresh()</h3></header><div class="section__content"><h4 class="section__h4">Description</h4><p>refresh() 方法是（在文章政委内容改变后）重新绘制导航信息的方法：</p><h4 class="section__h4">Returns</h4><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">Outline</dd></dl><p>Outline 对象，便于链式方法调用。</p><pre class="section__pre"><code class="section__code">const outline = new Outline({
+  showCode: true
+})
+const REFRESH_METHOD = '&lt;h3&gt;添加 refresh() 方法&lt;/h3&gt;' +
+  '&lt;p&gt;refresh() 方法是（在文章政委内容改变后）重新绘制导航信息的方法&lt;/p&gt;'
+
+outline.$article.innerHTML += REFRESH_METHOD
+
+// 根据新的内容重新绘制导读信息
+outline.refresh()</code></pre></div></section><section class="section"><header class="section__header"><h3 class="section__h3">reload(options)</h3></header><div class="section__content"><h4 class="section__h4">Description</h4><p>reload (options) 方法是（根据新的配置信息）重启程序方法：</p><ol><li>先移除所有绘制的 DOM 元素和绑定的事件处理器；</li><li>重新初始化程序；</li></ol><h4 class="section__h4">Parameters</h4><h5 class="section__h4">options</h5><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">Object</dd></dl><p>（可选）初始化的配置参数。</p><h4 class="section__h4">Returns</h4><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">Outline</dd></dl><p>Outline 对象，便于链式方法调用。</p><pre class="section__pre"><code class="section__code">const outline = new Outline({
   showCode: true
 })
 
@@ -9598,7 +10270,7 @@ outline.reload({
       }
     }
   ]
-})</code></pre></div></section><section class="section"><header class="section__header"><h3 class="section__h3">reader</h3></header><div class="section__content"><h4 class="section__h4">Description</h4><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">Object</dd></dl><dl class="section__dl"><dt class="section__dt">Default：</dt><dd class="section__dd">{target: '', title: ''}</dd></dl><p>可选，自定义的是否自动为文章页面创建打印样式。</p><dl class="section__dl"><dt class="section__dt">element：</dt><dd class="section__dd">（必须）要打印的文章区域，DOM 元素或者选择器字符串。</dd></dl><dl class="section__dl"><dt class="section__dt">title：</dt><dd class="section__dd">（可选）要打印的文章标题。如果 element 区域有 h1 标签则无需设置。可以直接设置标题文本，也可以是文章页的主标题 DOM 元素。</dd></dl><pre class="section__pre"><code class="section__code">const defaults = Outline.DEFAULTS
+})</code></pre></div></section><section class="section"><header class="section__header"><h3 class="section__h3">reader</h3></header><div class="section__content"><h4 class="section__h4">Since</h4><p class="section__dd">3.32.0</p><p>说明：3.32.0 以前的版本，此属性的原名为 print，另外，reader.element 属性也调整为了 reader.target。请升级后在初始化配置参数时注意调整。</p><h4 class="section__h4">Description</h4><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">Object</dd></dl><dl class="section__dl"><dt class="section__dt">Default：</dt><dd class="section__dd">{target: '', title: ''}</dd></dl><p>可选，自定义的是否自动为文章页面创建打印样式。</p><dl class="section__dl"><dt class="section__dt">element：</dt><dd class="section__dd">（必须）要打印的文章区域，DOM 元素或者选择器字符串。</dd></dl><dl class="section__dl"><dt class="section__dt">title：</dt><dd class="section__dd">（可选）要打印的文章标题。如果 element 区域有 h1 标签则无需设置。可以直接设置标题文本，也可以是文章页的主标题 DOM 元素。</dd></dl><pre class="section__pre"><code class="section__code">const defaults = Outline.DEFAULTS
 let outline
 
 defaults.position = 'sticky'
@@ -9747,7 +10419,11 @@ outline = new Outline(Outline.DEFAULTS)</code></pre></div></section></section><s
 const outline = new Outline(Outline.DEFAULTS)
 
 // 查看全部配置信息
-outline.attrs</code></pre></div></section><section class="section"><header class="section__header"><h3 class="section__h3">buttons</h3></header><div class="section__content"><h4 class="section__h4">Description</h4><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">Array</dd></dl><p>存储的是 Outline 对象当前工具栏的完整的按钮配置信息：</p><pre class="section__pre"><code class="section__code">// 设置默认配置项
+outline.attrs</code></pre></div></section><section class="section"><header class="section__header"><h3 class="section__h3">$article</h3></header><div class="section__content"><h4 class="section__h4">Since</h4><p class="section__dd">3.32.0</p><h4 class="section__h4">Description</h4><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">HTMLElement</dd></dl><p>存储的是 Outline 对象要分析的文章正文内容显示区域的 DOM 元素：</p><pre class="section__pre"><code class="section__code">// 设置默认配置项
+const outline = new Outline(Outline.DEFAULTS)
+
+// 获取文章正文内容显示区域的 DOM 元素
+outline.$article</code></pre></div></section><section class="section"><header class="section__header"><h3 class="section__h3">buttons</h3></header><div class="section__content"><h4 class="section__h4">Description</h4><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">Array</dd></dl><p>存储的是 Outline 对象当前工具栏的完整的按钮配置信息：</p><pre class="section__pre"><code class="section__code">// 设置默认配置项
 const outline = new Outline(Outline.DEFAULTS)
 
 // 查看全部按钮配置信息
@@ -10530,7 +11206,78 @@ outline.toggle() // 如果已显示，则隐藏</code></pre></div></section><sec
 })
 
 // 如果浏览器支持 print() 打印，则启动打印界面
-outline.print()</code></pre></div></section><section class="section"><header class="section__header"><h3 class="section__h3">destroy()</h3></header><div class="section__content"><h4 class="section__h4">Description</h4><p>destroy() 方法用于移除所有绘制的 DOM 节点，并移除绑定的事件处理器，同时重置所有 attrs 配置信息和 data 信息。</p><h4 class="section__h4">Returns</h4><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">Outline</dd></dl><p>Outline 对象，便于链式方法调用。</p><pre class="section__pre"><code class="section__code">const outline = new Outline({
+outline.print()</code></pre></div></section><section class="section"><header class="section__header"><h3 class="section__h3">enterReading()</h3></header><div class="section__content"><h4 class="section__h4">Since</h4><p class="section__dd">3.32.0</p><h4 class="section__h4">Description</h4><p>enterReading() 方法来切换进入阅读模式。</p><h4 class="section__h4">Returns</h4><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">Outline</dd></dl><p>Outline 对象，便于链式方法调用。</p><pre class="section__pre"><code class="section__code">const defaults = Outline.DEFAULTS
+let outline
+
+defaults.position = 'sticky'
+defaults.stickyHeight = 86
+defaults.parentElement = '#aside'
+defaults.scrollElement = '#main'
+defaults.homepage = './index.html'
+defaults.git = 'https://github.com/yaohaixiao/outline.js'
+defaults.tags = 'https://github.com/yaohaixiao/outline.js/tags'
+defaults.issues = 'https://github.com/yaohaixiao/outline.js/issues'
+defaults.reader = {
+  target: '#article',
+  // 可以直接设置标题文本，也可以是文章页的主标题 DOM 元素。
+  // 纯静态的页面，设置 DOM 元素，可能更好，确保每个页面的主标题 DOM 元素的选择器不变
+  // 则 title 会是一个可变的值，这样比直接设置标题文本更加灵活；
+  title: document.querySelector('.title'),
+  // 进入阅读模式的提示消息文本
+  enterReadingTip: '进入阅读模式，按 ESC 键可退出阅读模式'
+}
+outline = new Outline(defaults)
+
+outline.enterReading()</code></pre><p>演示地址：<a target="_blank" href="https://yaohaixiao.github.io/outline.js/flex.html">https://yaohaixiao.github.io/outline.js/flex.html</a></p></div></section><section class="section"><header class="section__header"><h3 class="section__h3">exitReading()</h3></header><div class="section__content"><h4 class="section__h4">Since</h4><p class="section__dd">3.32.0</p><h4 class="section__h4">Description</h4><p>exitReading() 方法用来从阅读模式切换回普通文章页面模式。</p><h4 class="section__h4">Returns</h4><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">Outline</dd></dl><p>Outline 对象，便于链式方法调用。</p><pre class="section__pre"><code class="section__code">const defaults = Outline.DEFAULTS
+let outline
+
+defaults.position = 'sticky'
+defaults.stickyHeight = 86
+defaults.parentElement = '#aside'
+defaults.scrollElement = '#main'
+defaults.homepage = './index.html'
+defaults.git = 'https://github.com/yaohaixiao/outline.js'
+defaults.tags = 'https://github.com/yaohaixiao/outline.js/tags'
+defaults.issues = 'https://github.com/yaohaixiao/outline.js/issues'
+defaults.reader = {
+  target: '#article',
+  // 可以直接设置标题文本，也可以是文章页的主标题 DOM 元素。
+  // 纯静态的页面，设置 DOM 元素，可能更好，确保每个页面的主标题 DOM 元素的选择器不变
+  // 则 title 会是一个可变的值，这样比直接设置标题文本更加灵活；
+  title: document.querySelector('.title'),
+  // 进入阅读模式的提示消息文本
+  enterReadingTip: '进入阅读模式，按 ESC 键可退出阅读模式'
+}
+outline = new Outline(defaults)
+
+outline.enterReading()
+outline.exitReading()</code></pre><p>演示地址：<a target="_blank" href="https://yaohaixiao.github.io/outline.js/flex.html">https://yaohaixiao.github.io/outline.js/flex.html</a></p></div></section><section class="section"><header class="section__header"><h3 class="section__h3">switchReading()</h3></header><div class="section__content"><h4 class="section__h4">Since</h4><p class="section__dd">3.32.0</p><h4 class="section__h4">Description</h4><p>switchReading() 方法用来在阅读模式和回普通文章页面模式相互切换。</p><h4 class="section__h4">Returns</h4><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">Outline</dd></dl><p>Outline 对象，便于链式方法调用。</p><pre class="section__pre"><code class="section__code">const defaults = Outline.DEFAULTS
+let outline
+
+defaults.position = 'sticky'
+defaults.stickyHeight = 86
+defaults.parentElement = '#aside'
+defaults.scrollElement = '#main'
+defaults.homepage = './index.html'
+defaults.git = 'https://github.com/yaohaixiao/outline.js'
+defaults.tags = 'https://github.com/yaohaixiao/outline.js/tags'
+defaults.issues = 'https://github.com/yaohaixiao/outline.js/issues'
+defaults.reader = {
+  target: '#article',
+  // 可以直接设置标题文本，也可以是文章页的主标题 DOM 元素。
+  // 纯静态的页面，设置 DOM 元素，可能更好，确保每个页面的主标题 DOM 元素的选择器不变
+  // 则 title 会是一个可变的值，这样比直接设置标题文本更加灵活；
+  title: document.querySelector('.title'),
+  // 进入阅读模式的提示消息文本
+  enterReadingTip: '进入阅读模式，按 ESC 键可退出阅读模式'
+}
+outline = new Outline(defaults)
+
+// 进入阅读模式
+outline.switchReading()
+
+// 退出阅读模式
+outline.switchReading()</code></pre><p>演示地址：<a target="_blank" href="https://yaohaixiao.github.io/outline.js/flex.html">https://yaohaixiao.github.io/outline.js/flex.html</a></p></div></section><section class="section"><header class="section__header"><h3 class="section__h3">destroy()</h3></header><div class="section__content"><h4 class="section__h4">Description</h4><p>destroy() 方法用于移除所有绘制的 DOM 节点，并移除绑定的事件处理器，同时重置所有 attrs 配置信息和 data 信息。</p><h4 class="section__h4">Returns</h4><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">Outline</dd></dl><p>Outline 对象，便于链式方法调用。</p><pre class="section__pre"><code class="section__code">const outline = new Outline({
    article: '#article',
    title: 'Outline v2.0.0'
 })
@@ -10549,7 +11296,16 @@ outline.getChapters()
 outline.destroy()
 outline.getChapters()
 // 调用 destroy() 方法后，所有数据都清空了
-// -> []</code></pre></div></section><section class="section"><header class="section__header"><h3 class="section__h3">reload(options)</h3></header><div class="section__content"><h4 class="section__h4">Description</h4><p>reload (options) 方法是（根据新的配置信息）重启程序方法：</p><ol><li>先移除所有绘制的 DOM 元素和绑定的事件处理器；</li><li>重新初始化程序；</li></ol><h4 class="section__h4">Parameters</h4><h5 class="section__h4">options</h5><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">Object</dd></dl><p>（可选）初始化的配置参数。</p><h4 class="section__h4">Returns</h4><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">Outline</dd></dl><p>Outline 对象，便于链式方法调用。</p><pre class="section__pre"><code class="section__code">const outline = new Outline({
+// -> []</code></pre></div></section><section class="section"><header class="section__header"><h3 class="section__h3">refresh()</h3></header><div class="section__content"><h4 class="section__h4">Description</h4><p>refresh() 方法是（在文章政委内容改变后）重新绘制导航信息的方法：</p><h4 class="section__h4">Returns</h4><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">Outline</dd></dl><p>Outline 对象，便于链式方法调用。</p><pre class="section__pre"><code class="section__code">const outline = new Outline({
+  showCode: true
+})
+const REFRESH_METHOD = '&lt;h3&gt;添加 refresh() 方法&lt;/h3&gt;' +
+  '&lt;p&gt;refresh() 方法是（在文章政委内容改变后）重新绘制导航信息的方法&lt;/p&gt;'
+
+outline.$article.innerHTML += REFRESH_METHOD
+
+// 根据新的内容重新绘制导读信息
+outline.refresh()</code></pre></div></section><section class="section"><header class="section__header"><h3 class="section__h3">reload(options)</h3></header><div class="section__content"><h4 class="section__h4">Description</h4><p>reload (options) 方法是（根据新的配置信息）重启程序方法：</p><ol><li>先移除所有绘制的 DOM 元素和绑定的事件处理器；</li><li>重新初始化程序；</li></ol><h4 class="section__h4">Parameters</h4><h5 class="section__h4">options</h5><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">Object</dd></dl><p>（可选）初始化的配置参数。</p><h4 class="section__h4">Returns</h4><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">Outline</dd></dl><p>Outline 对象，便于链式方法调用。</p><pre class="section__pre"><code class="section__code">const outline = new Outline({
   showCode: true
 })
 

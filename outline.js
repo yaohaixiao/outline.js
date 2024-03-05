@@ -33,8 +33,6 @@ class Outline extends Base {
     this.reader = null
     this.toolbar = null
 
-    this.reading = false
-
     if (options) {
       this.initialize(options)
     }
@@ -427,15 +425,15 @@ class Outline extends Base {
   }
 
   enterReading() {
-    this.reader.enter()
     this.toolbar.toggle()
+    this.reader.enter()
 
     return this
   }
 
   exitReading() {
-    this.reader.exit()
     this.toolbar.toggle()
+    this.reader.exit()
 
     return this
   }

@@ -1,24 +1,16 @@
 section.section
   header.section__header
-    h3.section__h3 reader
+    h3.section__h3 enterReading()
   div.section__content
     h4.section__h4 Since
     p.section__dd 3.32.0
-    p 说明：3.32.0 以前的版本，此属性的原名为 print，另外，reader.element 属性也调整为了 reader.target。请升级后在初始化配置参数时注意调整。
     h4.section__h4 Description
+    p enterReading() 方法来切换进入阅读模式。
+    h4.section__h4 Returns
     dl.section__dl
       dt.section__dt Type：
-      dd.section__dd Object
-    dl.section__dl
-      dt.section__dt Default：
-      dd.section__dd {target: '', title: ''}
-    p 可选，自定义的是否自动为文章页面创建打印样式。
-    dl.section__dl
-      dt.section__dt element：
-      dd.section__dd （必须）要打印的文章区域，DOM 元素或者选择器字符串。
-    dl.section__dl
-      dt.section__dt title：
-      dd.section__dd （可选）要打印的文章标题。如果 element 区域有 h1 标签则无需设置。可以直接设置标题文本，也可以是文章页的主标题 DOM 元素。
+      dd.section__dd Outline
+    p Outline 对象，便于链式方法调用。
     pre.section__pre
       code.section__code.
         const defaults = Outline.DEFAULTS
@@ -41,6 +33,8 @@ section.section
           // 进入阅读模式的提示消息文本
           enterReadingTip: '进入阅读模式，按 ESC 键可退出阅读模式'
         }
-        outline = new Outline(Outline.DEFAULTS)
+        outline = new Outline(defaults)
+
+        outline.enterReading()
     p 演示地址：
       a(target="_blank" href="https://yaohaixiao.github.io/outline.js/flex.html") https://yaohaixiao.github.io/outline.js/flex.html

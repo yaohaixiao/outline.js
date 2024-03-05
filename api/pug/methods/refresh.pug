@@ -1,0 +1,23 @@
+section.section
+  header.section__header
+    h3.section__h3 refresh()
+  div.section__content
+    h4.section__h4 Description
+    p refresh() 方法是（在文章政委内容改变后）重新绘制导航信息的方法：
+    h4.section__h4 Returns
+    dl.section__dl
+      dt.section__dt Type：
+      dd.section__dd Outline
+    p Outline 对象，便于链式方法调用。
+    pre.section__pre
+      code.section__code.
+        const outline = new Outline({
+          showCode: true
+        })
+        const REFRESH_METHOD = '&lt;h3&gt;添加 refresh() 方法&lt;/h3&gt;' +
+          '&lt;p&gt;refresh() 方法是（在文章政委内容改变后）重新绘制导航信息的方法&lt;/p&gt;'
+
+        outline.$article.innerHTML += REFRESH_METHOD
+
+        // 根据新的内容重新绘制导读信息
+        outline.refresh()
