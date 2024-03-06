@@ -39,6 +39,15 @@ const _updateSiblingElements = (siblingElement, isPrev) => {
 class Reader extends Base {
   constructor(options) {
     super()
+
+    this._default()
+
+    if (options) {
+      this.initialize(options)
+    }
+  }
+
+  _default() {
     this.attrs = cloneDeep(Reader.DEFAULTS)
     this.reading = false
 
@@ -48,9 +57,7 @@ class Reader extends Base {
     this.$article = null
     this.$icon = null
 
-    if (options) {
-      this.initialize(options)
-    }
+    return this
   }
 
   initialize(options) {
@@ -93,8 +100,19 @@ class Reader extends Base {
       $children.forEach(($child) => {
         $fragment.appendChild($child)
       })
+
       this.$article.appendChild($fragment)
     })
+
+    return this
+  }
+
+  _remove() {
+    const $paper = this.$paper
+
+    if ($paper) {
+      document.body.removeChild($paper)
+    }
 
     return this
   }
@@ -250,18 +268,7 @@ class Reader extends Base {
       return this
     }
 
-    this.removeListeners()
-
-    document.body.removeChild($paper)
-
-    this.attr(Reader.DEFAULTS)
-    this.reading = false
-
-    this.$target = null
-    this.$paper = null
-    this.$title = null
-    this.$article = null
-    this.$icon = null
+    this.removeListeners()._remove()._default()
 
     return this
   }

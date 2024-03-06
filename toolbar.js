@@ -23,15 +23,23 @@ class Toolbar extends Base {
   constructor(options) {
     super()
 
-    this.attrs = cloneDeep(Toolbar.DEFAULTS)
-    this.$el = null
-    this.disabled = false
-    this.closed = false
-    this.buttons = []
+    this._default()
 
     if (options) {
       this.initialize(options)
     }
+  }
+
+  _default() {
+    this.attrs = cloneDeep(Toolbar.DEFAULTS)
+
+    this.disabled = false
+    this.closed = false
+
+    this.$el = null
+    this.buttons = []
+
+    return this
   }
 
   initialize(options) {
@@ -91,30 +99,15 @@ class Toolbar extends Base {
   render() {
     const mounted = this.attr('mounted')
     const buttons = this.attr('buttons') || []
-    const rounded = this.attr('rounded')
     const placement = this.attr('placement')
-    const $buttons = []
 
     paint()
 
-    buttons.forEach((button) => {
-      const $button = _createButton(button, rounded)
-
-      $buttons.push($button)
-      this.buttons.push({
-        name: button.name,
-        $el: $button
-      })
+    this.$el = createElement('div', {
+      id: 'outline-toolbar',
+      className: `outline-toolbar outline-toolbar_${placement}`
     })
-
-    this.$el = createElement(
-      'div',
-      {
-        id: 'outline-toolbar',
-        className: `outline-toolbar outline-toolbar_${placement}`
-      },
-      $buttons
-    )
+    this._paint(buttons)
     document.body.appendChild(this.$el)
 
     if (this.closed) {
@@ -129,6 +122,41 @@ class Toolbar extends Base {
       mounted.call(this)
     }
 
+    return this
+  }
+
+  erase() {
+    this.$el.innerHTML = ''
+    return this
+  }
+
+  _paint(buttons) {
+    const rounded = this.attr('rounded')
+    const $fragment = document.createDocumentFragment()
+
+    buttons.forEach((button) => {
+      const $button = _createButton(button, rounded)
+
+      $fragment.appendChild($button)
+
+      this.buttons.push({
+        name: button.name,
+        $el: $button
+      })
+    })
+
+    this.$el.appendChild($fragment)
+
+    return this
+  }
+
+  _remove() {
+    document.body.removeChild(this.$el)
+    return this
+  }
+
+  refresh(buttons) {
+    this.attr({ buttons }).erase()._paint(buttons)
     return this
   }
 
@@ -331,40 +359,16 @@ class Toolbar extends Base {
   destroy() {
     const beforeDestroy = this.attr('beforeDestroy')
     const afterDestroy = this.attr('afterDestroy')
-    let $el = this.$el
 
     if (isFunction(beforeDestroy)) {
       beforeDestroy.call(this)
     }
 
-    this.removeListeners()
-    document.body.removeChild($el)
-    $el = null
-
-    this.attr(Toolbar.DEFAULTS)
-    this.disabled = false
-    this.closed = false
-    this.buttons = []
+    this.removeListeners()._remove()._default()
 
     if (isFunction(afterDestroy)) {
       afterDestroy.call(this)
     }
-
-    return this
-  }
-
-  refresh() {
-    const $el = this.$el
-    const buttons = this.attr('buttons') || []
-
-    this.removeListeners()
-    $el.innerHTML = ''
-
-    buttons.forEach((button) => {
-      this.$el.appendChild(_createButton(button))
-    })
-
-    this.addListeners()
 
     return this
   }

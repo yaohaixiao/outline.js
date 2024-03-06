@@ -1,6 +1,7 @@
 import isString from './utils/types/isString'
 import isFunction from './utils/types/isFunction'
 import isElement from './utils/types/isElement'
+import cloneDeep from './utils/lang/cloneDeep'
 import timeSlice from './utils/lang/timeSlice'
 import toTree from './utils/lang/toTree'
 import later from './utils/lang/later'
@@ -13,7 +14,7 @@ import stop from './utils/event/stop'
 import paint from './utils/icons/paint'
 
 import _updateHeading from './_updateHeading'
-import _resetHeading from './_resetHeading'
+import _removeHeading from './_removeHeading'
 import getChapters from './getChapters'
 
 import Base from './base'
@@ -22,15 +23,22 @@ class Anchors extends Base {
   constructor(options) {
     super()
 
-    this.attrs = Anchors.DEFAULTS
+    this._default()
+
+    if (options) {
+      this.initialize(options)
+    }
+  }
+
+  _default() {
+    this.attrs = cloneDeep(Anchors.DEFAULTS)
+
     this.$articleElement = null
     this.$scrollElement = null
     this.$headings = []
     this.chapters = []
 
-    if (options) {
-      this.initialize(options)
-    }
+    return this
   }
 
   initialize(options) {
@@ -104,13 +112,7 @@ class Anchors extends Base {
   }
 
   erase() {
-    const hasAnchor = this.attr('hasAnchor')
-    const isAtStart = this.attr('isAtStart')
-    const $headings = this.$headings
-
-    $headings.forEach(($heading) => {
-      _resetHeading($heading, hasAnchor, isAtStart)
-    })
+    this._remove()
 
     return this
   }
@@ -162,6 +164,18 @@ class Anchors extends Base {
     return this
   }
 
+  _remove() {
+    const hasAnchor = this.attr('hasAnchor')
+    const isAtStart = this.attr('isAtStart')
+    const $headings = this.$headings
+
+    $headings.forEach(($heading) => {
+      _removeHeading($heading, hasAnchor, isAtStart)
+    })
+
+    return this
+  }
+
   refresh(chapters) {
     const $articleElement = this.$articleElement
     const selector = this.attr('selector')
@@ -190,14 +204,7 @@ class Anchors extends Base {
       beforeDestroy.call(this)
     }
 
-    this.removeListeners()
-    this.erase()
-
-    this.attr(Anchors.DEFAULTS)
-    this.$articleElement = null
-    this.$scrollElement = null
-    this.$headings = []
-    this.chapters = []
+    this.removeListeners()._remove()._default()
 
     if (isFunction(afterDestroy)) {
       afterDestroy.call(this)

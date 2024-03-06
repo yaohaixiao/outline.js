@@ -3,8 +3,11 @@ import Base from './base'
 import later from './utils/lang/later'
 import cloneDeep from './utils/lang/cloneDeep'
 import isFunction from './utils/types/isFunction'
+import isDOM from './utils/types/isDOM'
+import isHTML from './utils/types/isHTML'
 import addClass from './utils/dom/addClass'
 import removeClass from './utils/dom/removeClass'
+import html from './utils/dom/html'
 import createElement from './utils/dom/createElement'
 import on from './utils/event/on'
 import off from './utils/event/off'
@@ -17,9 +20,20 @@ class Drawer extends Base {
   constructor(options) {
     super()
 
+    this._default()
+
+    this.zIndex = 0
+
+    if (options) {
+      this.initialize(options)
+    }
+  }
+
+  _default() {
     this.attrs = cloneDeep(Drawer.DEFAULTS)
     this.title = ''
-    this.closed = true
+    this.closed = false
+
     this.$el = null
     this.$modal = null
     this.$header = null
@@ -28,11 +42,8 @@ class Drawer extends Base {
     this.$main = null
     this.$footer = null
     this.$overlay = null
-    this.zIndex = 0
 
-    if (options) {
-      this.initialize(options)
-    }
+    return this
   }
 
   initialize(options) {
@@ -173,6 +184,39 @@ class Drawer extends Base {
     return this
   }
 
+  erase() {
+    this.$main.innerHTML = ''
+    return this
+  }
+
+  _paint(content) {
+    let $content = null
+
+    if (isFunction(content)) {
+      $content = content()
+    } else if (isDOM(content)) {
+      $content = content
+    } else if (isHTML(content)) {
+      $content = html(content)
+    }
+
+    if ($content) {
+      this.$main.appendChild($content)
+    }
+
+    return this
+  }
+
+  _remove() {
+    document.body.removeChild(this.$el)
+    return this
+  }
+
+  refresh(content) {
+    this.erase()._paint(content)
+    return this
+  }
+
   open() {
     const opened = this.attr('afterOpened')
     const $modal = this.$modal
@@ -239,19 +283,7 @@ class Drawer extends Base {
       beforeDestroy.call(this)
     }
 
-    this.removeListeners()
-
-    this.attrs = Drawer.DEFAULTS
-    this.title = ''
-    this.closed = false
-    this.$el = null
-    this.$modal = null
-    this.$header = null
-    this.$title = null
-    this.$close = null
-    this.$main = null
-    this.$footer = null
-    this.$overlay = null
+    this.removeListeners()._remove()._default()
 
     index -= 1
     zIndex(index)

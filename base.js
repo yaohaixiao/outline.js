@@ -50,6 +50,10 @@ class Base {
     return this
   }
 
+  refresh() {
+    return this
+  }
+
   destroy() {
     this.removeListeners()
     return this

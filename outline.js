@@ -427,7 +427,7 @@ class Outline extends Base {
   enterReading() {
     const reader = this.reader
 
-    if (reader.reading) {
+    if (!reader || reader.reading) {
       return this
     }
 
@@ -440,7 +440,7 @@ class Outline extends Base {
   exitReading() {
     const reader = this.reader
 
-    if (!reader.reading) {
+    if (!reader || !reader.reading) {
       return this
     }
 
@@ -533,7 +533,7 @@ class Outline extends Base {
       toolbar = null
     }
 
-    this.attr(Outline.DEFAULTS)
+    this.attrs = cloneDeep(Outline.DEFAULTS)
 
     return this
   }

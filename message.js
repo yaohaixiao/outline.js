@@ -31,6 +31,15 @@ paint()
 class Message extends Base {
   constructor(options) {
     super()
+
+    this._default()
+
+    if (options) {
+      this.initialize(options)
+    }
+  }
+
+  _default() {
     this.attrs = cloneDeep(Message.DEFAULTS)
 
     this.$el = null
@@ -41,9 +50,7 @@ class Message extends Base {
     this.timer = null
     this.destroyed = false
 
-    if (options) {
-      this.initialize(options)
-    }
+    return this
   }
 
   initialize(options) {
@@ -404,19 +411,11 @@ class Message extends Base {
     }
 
     this.removeListeners()
+
     document.body.removeChild(this.$el)
 
-    this.attr(Message.DEFAULTS)
-
-    this.id = ''
-    this.closed = true
-    this.visible = false
-    this.offset = -50
     clearTimeout(this.timer)
-    this.timer = null
-    this.destroyed = true
-
-    this.$el = null
+    this._default()
 
     this.$emit('afterDestroy')
 

@@ -25,9 +25,7 @@ class Chapters extends Base {
   constructor(options) {
     super()
 
-    this.attrs = cloneDeep(Chapters.DEFAULTS)
-
-    this._init()
+    this._default()
 
     this.scrollTimer = null
     this.resizeTimer = null
@@ -39,7 +37,9 @@ class Chapters extends Base {
     }
   }
 
-  _init() {
+  _default() {
+    this.attrs = cloneDeep(Chapters.DEFAULTS)
+
     this.$el = null
     this.$title = null
     this.$main = null
@@ -264,6 +264,11 @@ class Chapters extends Base {
     _paintChapters($list, chapters, showCode)
     removeClass($el, HIDDEN)
 
+    return this
+  }
+
+  _remove() {
+    this.$parentElement.removeChild(this.$el)
     return this
   }
 
@@ -496,8 +501,7 @@ class Chapters extends Base {
       beforeDestroy.call(this)
     }
 
-    this.removeListeners()
-    this.attr(Chapters.DEFAULTS)
+    this.removeListeners()._remove()._default()
 
     if (this.scrollTimer) {
       clearTimeout(this.scrollTimer)
@@ -517,9 +521,6 @@ class Chapters extends Base {
     if (this.Observer) {
       this.Observer = null
     }
-
-    this.$parentElement.removeChild(this.$el)
-    this._init()
 
     if (isFunction(afterDestroy)) {
       afterDestroy.call(this)
