@@ -1,3 +1,12 @@
+# 3.32.1 (2024-03-06)
+
+
+### Bug Fixes
+
+* 修复 Anchors 模块初始化 attrs 属性直接复制等于 Anchors.DEFAULTS 在创建多个实例时出现的共用一个配置的问题；
+
+
+
 # [3.32.0](https://github.com/yaohaixiao/outline.js/compare/3.31.4...3.32.0) (2024-03-05)
 
 
