@@ -46,6 +46,7 @@
     "@babel/plugin-proposal-optional-chaining": "^7.21.0",
     "@babel/preset-env": "^7.14.8",
     "@commitlint/cli": "^17.4.4",
+    "@commitlint/config-angular": "^19.0.3",
     "@commitlint/config-conventional": "^17.4.4",
     "@rollup/plugin-babel": "^6.0.4",
     "@rollup/plugin-commonjs": "^25.0.2",
@@ -57,6 +58,7 @@
     "browserslist": "^4.22.2",
     "caniuse-lite": "^1.0.30001579",
     "commitlint": "^17.4.4",
+    "conventional-changelog": "^5.1.0",
     "conventional-changelog-cli": "^2.2.2",
     "eslint": "^8.34.0",
     "eslint-config-prettier": "^8.6.0",
@@ -90,7 +92,7 @@
   },
   "gitHooks": {
     "pre-commit": "lint-staged",
-    "commit-msg": "commitlint"
+    "commit-msg": "commitlint -e -V"
   },
   "lint-staged": {
     "**/*.js": [
