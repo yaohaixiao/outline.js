@@ -1,3 +1,12 @@
+# 3.32.2 (2024-03-08)
+
+
+### Bug Fixes
+
+* 修复缺陷-issues(#43)，添加  @babel/plugin-proposal-optional-chaining 插件，转化ES6 的可选链操作符语法，获得更好的浏览器兼容性；
+
+
+
 # 3.32.1 (2024-03-06)
 
 
