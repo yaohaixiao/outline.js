@@ -24,7 +24,7 @@ const hasClass = (el, className) => {
 
   classList = el.classList
 
-  if (classList?.contains) {
+  if (classList && classList.contains) {
     return el.classList.contains(className)
   }
 

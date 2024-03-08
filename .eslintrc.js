@@ -17,7 +17,7 @@ module.exports = {
     jest: true
   },
   extends: ['prettier', 'eslint:recommended', 'plugin:import/errors'],
-  plugins: ['import'],
+  plugins: ['import', 'compat'],
   globals: {
     Atomics: 'readonly',
     SharedArrayBuffer: 'readonly'
@@ -43,5 +43,8 @@ module.exports = {
         jestConfigFile: './jest.config.js'
       }
     }
+  },
+  rules: {
+    'compat/compat': 'error'
   }
 }

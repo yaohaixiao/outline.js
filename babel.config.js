@@ -5,5 +5,6 @@
  * Update: 2023.2.27
  */
 module.exports = {
-  presets: [['@babel/preset-env']]
+  presets: [['@babel/preset-env']],
+  plugins: ['@babel/plugin-transform-optional-chaining']
 }
