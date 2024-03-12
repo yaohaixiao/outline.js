@@ -21,6 +21,7 @@ const intersection = (fn, props = {}) => {
   const options = {
     rootMargin: rootMargin
   }
+  // eslint-disable-next-line compat/compat
   const Observer = new IntersectionObserver((entries) => {
     entries.forEach((entry) => {
       if (entry.intersectionRatio > 0) {

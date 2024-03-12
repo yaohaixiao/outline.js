@@ -46,9 +46,11 @@ const scrollTo = (scrollElement, top, afterStop) => {
       }
     }
 
+    // eslint-disable-next-line compat/compat
     requestAnimationFrame(play)
   }
 
+  // eslint-disable-next-line compat/compat
   requestAnimationFrame(play)
 }
 

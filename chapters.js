@@ -20,6 +20,7 @@ import _getScrollElement from './utils/dom/_getScrollElement'
 import cloneDeep from './utils/lang/cloneDeep'
 
 import _paintChapters from './_paintChapters'
+import inBounding from './utils/dom/inBounding'
 
 class Chapters extends Base {
   constructor(options) {
@@ -282,10 +283,9 @@ class Chapters extends Base {
     return this
   }
 
-  positionPlaceholder(index) {
+  _getPlaceholderOffset(index) {
     const $main = this.$main
     const $list = this.$list
-    const $placeholder = this.$placeholder
     const $anchor = $list.querySelector('.outline-chapters__anchor')
     const animationCurrent = this.attr('animationCurrent')
     const mainPaddingTop = parseInt(getStyle($main, 'padding-top'), 10)
@@ -325,9 +325,25 @@ class Chapters extends Base {
     }
 
     top = height * index
-    $placeholder.style.cssText = `transform: translateY(${
-      offsetTop + top
-    }px);height:${height}px;`
+
+    return offsetTop + top
+  }
+
+  positionPlaceholder(index) {
+    const $list = this.$list
+    const $placeholder = this.$placeholder
+    const $anchor = $list.querySelector('.outline-chapters__anchor')
+    const animationCurrent = this.attr('animationCurrent')
+    const height = $anchor.offsetHeight
+    let offsetTop = 0
+
+    if (!animationCurrent) {
+      return this
+    }
+
+    offsetTop = this._getPlaceholderOffset(index)
+
+    $placeholder.style.cssText = `transform: translateY(${offsetTop}px);height:${height}px;`
 
     return this
   }
@@ -338,6 +354,7 @@ class Chapters extends Base {
     const ACTIVE = 'outline-chapters_active'
     const HIGHLIGHT = 'outline-chapters_highlight'
     let $anchor = null
+    let placeholderOffsetTop = 0
 
     if (!$el) {
       return this
@@ -361,6 +378,13 @@ class Chapters extends Base {
 
     if (animationCurrent) {
       this.positionPlaceholder(this.active)
+
+      later(() => {
+        if (!inBounding(this.$active, this.$parentElement)) {
+          placeholderOffsetTop = this._getPlaceholderOffset(this.active)
+          scrollTo(this.$main, placeholderOffsetTop)
+        }
+      })
     } else {
       addClass(this.$active, HIGHLIGHT)
     }

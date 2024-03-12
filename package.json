@@ -104,6 +104,8 @@
     "last 2 versions",
     "> 1%",
     "not dead",
+    "not op_mini all",
+    "not kaios <= 2.5",
     "maintained node versions"
   ]
 }
