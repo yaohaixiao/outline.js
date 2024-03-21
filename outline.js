@@ -235,7 +235,8 @@ class Outline extends Base {
       size: 20,
       action: {
         type: 'click',
-        handler: 'toolbar:action:up'
+        context: this,
+        handler: this.toTop
       }
     }
     const HOME = {
@@ -263,12 +264,13 @@ class Outline extends Base {
       link: issues
     }
     const MENU = {
-      name: 'menu',
+      name: 'toggle',
       icon: 'menu',
       size: 18,
       action: {
         type: 'click',
-        handler: 'toolbar:action:toggle'
+        context: this,
+        handler: this.toggle
       }
     }
     const READING = {
@@ -277,6 +279,7 @@ class Outline extends Base {
       size: 18,
       action: {
         type: 'click',
+        context: this,
         handler: 'toolbar:action:reading'
       }
     }
@@ -295,7 +298,8 @@ class Outline extends Base {
       size: 20,
       action: {
         type: 'click',
-        handler: 'toolbar:action:down'
+        context: this,
+        handler: this.toBottom
       }
     }
     const buttons = []
@@ -475,7 +479,7 @@ class Outline extends Base {
 
     if (position !== 'relative') {
       chapters.toggle()
-      toolbar.highlight('menu')
+      toolbar.highlight('toggle')
     } else {
       toolbar.toggle()
 
@@ -579,9 +583,6 @@ class Outline extends Base {
     }
 
     this.$on('toolbar:update', this.onToolbarUpdate)
-    this.$on('toolbar:action:up', this.onScrollTop)
-    this.$on('toolbar:action:toggle', this.onToggle)
-    this.$on('toolbar:action:down', this.onScrollBottom)
 
     return this
   }
@@ -594,9 +595,6 @@ class Outline extends Base {
     }
 
     this.$off('toolbar:update')
-    this.$off('toolbar:action:up')
-    this.$off('toolbar:action:toggle')
-    this.$off('toolbar:action:down')
 
     return this
   }

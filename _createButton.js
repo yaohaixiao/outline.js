@@ -19,7 +19,8 @@ const _createButton = (button, rounded = true) => {
   const $button = createElement(
     'div',
     {
-      className: `outline-toolbar__button ${button.name}`
+      className: `outline-toolbar__button ${button.name}`,
+      'data-cmd': button.name
     },
     [button.link ? $anchor : $icon]
   )

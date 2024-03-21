@@ -14,6 +14,9 @@ import on from './utils/event/on'
 import off from './utils/event/off'
 import paint from './utils/icons/paint'
 
+import Command from './command'
+import Commands from './commands'
+
 import _createButton from './_createButton'
 
 const DISABLED = 'outline-toolbar_disabled'
@@ -38,6 +41,7 @@ class Toolbar extends Base {
 
     this.$el = null
     this.buttons = []
+    this.commands = null
 
     return this
   }
@@ -46,9 +50,11 @@ class Toolbar extends Base {
     let created
 
     this.attr(options)
-    created = this.attr('created')
     this.disabled = this.attr('disabled')
     this.closed = this.attr('closed')
+    this.commands = new Commands()
+
+    created = this.attr('created')
 
     if (isFunction(created)) {
       created.call(this)
@@ -81,7 +87,7 @@ class Toolbar extends Base {
     const ACTIVE = 'outline-toolbar_active'
     let $button
 
-    if ($button) {
+    if (button) {
       return this
     }
 
@@ -156,16 +162,22 @@ class Toolbar extends Base {
   }
 
   refresh(buttons) {
-    this.attr({ buttons }).erase()._paint(buttons)
+    this.attr({ buttons })
+    this.erase()._paint(buttons)
     return this
   }
 
   add(button) {
     const $el = this.$el
-    const buttons = this.attr('buttons')
+    const buttons = this.attr('buttons') || []
     const action = button.action
     const $fragment = document.createDocumentFragment()
+    const _self = this
+    let name
     let type
+    let context
+    let command
+    let listener
 
     if (isObject(button)) {
       buttons.push(button)
@@ -177,9 +189,24 @@ class Toolbar extends Base {
     }
     $el.appendChild($fragment)
 
-    if (action && isFunction(action.handler)) {
+    if (action) {
+      name = button.name
       type = action.type || 'click'
-      on($el, `.${button.name}`, type, action.handler)
+      listener = action.handler
+      context = action.context
+
+      if (isString(listener)) {
+        command = listener
+        action.handler = function () {
+          _self.$emit(command, name)
+        }
+        listener = action.handler
+      }
+
+      if (isFunction(listener)) {
+        this.commands.add(new Command(name, listener.bind(context)))
+        on($el, `.${name}`, type, listener, context | this, true)
+      }
     }
 
     return this
@@ -187,50 +214,77 @@ class Toolbar extends Base {
 
   remove(name) {
     const $el = this.$el
-    const buttons = this.attr('buttons')
+    const buttons = this.attr('buttons') || []
     const button = buttons.find((option) => option.name === name)
-    let index = -1
+    const index = buttons.indexOf(button)
     let $button
 
     if (!button) {
       return this
     }
 
-    buttons.forEach((button, i) => {
-      if (button.name === name) {
-        index = i
-      }
-    })
-
     if (index > -1) {
-      this.attr().buttons.splice(index, 1)
+      buttons.splice(index, 1)
     }
 
     $button = $el.querySelector(`.${name}`)
-    this.switch(name, false)
+    this._disable(name)
     $el.removeChild($button)
 
     return this
   }
 
-  switch(name, enabled) {
+  _disable(name) {
     const $el = this.$el
-    const buttons = this.attr('buttons')
+    const buttons = this.attr('buttons') || []
     const button = buttons.find((option) => option.name === name)
+    const index = buttons.indexOf(button)
     let action
-    let type
-    let listener
     let $button
+    let type
+    let context
+    let listener
 
-    if (!button) {
+    if (button.disabled) {
       return this
     }
 
-    buttons.forEach((option) => {
-      if (option.name === name) {
-        button.disabled = !enabled
+    buttons[index].disabled = true
+
+    action = button.action
+    $button = $el.querySelector(`.${name}`)
+
+    if (action) {
+      type = action.type || 'click'
+      context = action.context || this
+      listener = action.handler
+
+      if (isFunction(listener)) {
+        this.commands.add(new Command(button.name, listener.bind(context)))
+        on($el, `.${name}`, type, listener, context, true)
       }
-    })
+    }
+
+    addClass($button, DISABLED)
+
+    return this
+  }
+
+  _enable(name) {
+    const $el = this.$el
+    const buttons = this.attr('buttons') || []
+    const button = buttons.find((option) => option.name === name)
+    const index = buttons.indexOf(button)
+    let action
+    let $button
+    let type
+    let listener
+
+    if (!button.disabled) {
+      return this
+    }
+
+    buttons[index].disabled = false
 
     action = button.action
     $button = $el.querySelector(`.${name}`)
@@ -238,21 +292,14 @@ class Toolbar extends Base {
     if (action) {
       type = action.type || 'click'
       listener = action.handler
-    }
 
-    if (enabled) {
-      removeClass($button, DISABLED)
-
-      if (type && listener) {
-        on($el, `.${name}`, type, listener)
-      }
-    } else {
-      addClass($button, DISABLED)
-
-      if (type && listener) {
+      if (isFunction(listener)) {
+        this.commands.del(button.name)
         off($el, type, listener)
       }
     }
+
+    removeClass($button, DISABLED)
 
     return this
   }
@@ -261,7 +308,7 @@ class Toolbar extends Base {
     const disabled = this.attr('afterDisabled')
 
     if (name) {
-      this.switch(name, false)
+      this._disable(name)
     } else {
       addClass(this.$el, DISABLED)
       this.removeListeners()
@@ -279,7 +326,7 @@ class Toolbar extends Base {
     const enabled = this.attr('afterEnabled')
 
     if (name) {
-      this.switch(name, true)
+      this._enable(name)
     } else {
       this.disabled = false
       removeClass(this.$el, DISABLED)
@@ -295,7 +342,8 @@ class Toolbar extends Base {
 
   show(name) {
     const opened = this.attr('afterOpened')
-    const button = this.attr('buttons').find((option) => option.name === name)
+    const buttons = this.attr('buttons') || []
+    const button = buttons.find((option) => option.name === name)
     const $el = this.$el
     let $button
 
@@ -322,7 +370,8 @@ class Toolbar extends Base {
 
   hide(name) {
     const closed = this.attr('afterClosed')
-    const button = this.attr('buttons').find((option) => option.name === name)
+    const buttons = this.attr('buttons') || []
+    const button = buttons.find((option) => option.name === name)
     const $el = this.$el
     let $button
 
@@ -330,6 +379,7 @@ class Toolbar extends Base {
       if (!button) {
         return this
       }
+
       $button = $el.querySelector(`.${name}`)
       addClass($button, HIDDEN)
     } else {
@@ -373,8 +423,18 @@ class Toolbar extends Base {
     return this
   }
 
+  execute(name) {
+    if (this.isDisabled(name)) {
+      return this
+    }
+
+    this.commands.execute(name)
+
+    return this
+  }
+
   addListeners() {
-    const buttons = this.attr('buttons')
+    const buttons = this.attr('buttons') || []
     const $el = this.$el
 
     if (!buttons || buttons.length < 1) {
@@ -384,6 +444,8 @@ class Toolbar extends Base {
     buttons.forEach((button) => {
       const action = button.action
       const disabled = this.disabled
+      const _self = this
+      let name
       let type
       let listener
       let context
@@ -394,21 +456,24 @@ class Toolbar extends Base {
       }
 
       if (action) {
+        name = button.name
+        context = action.context || this
         listener = action.handler
+
         if (isString(listener)) {
           command = listener
           action.handler = function () {
-            this.$emit(command, button.name)
+            _self.$emit(command, name)
           }
           listener = action.handler
         }
 
-        type = action.type || 'click'
-        context = action.context
-      }
+        if (isFunction(listener)) {
+          type = action.type || 'click'
 
-      if (isFunction(listener)) {
-        on($el, `.${button.name}`, type, listener, context || this, true)
+          this.commands.add(new Command(name, listener.bind(context)))
+          on($el, `.${name}`, type, listener, context, true)
+        }
       }
     })
 
@@ -416,7 +481,7 @@ class Toolbar extends Base {
   }
 
   removeListeners() {
-    const buttons = this.attr('buttons')
+    const buttons = this.attr('buttons') || []
     const $el = this.$el
 
     if (!buttons || buttons.length < 1) {
@@ -439,6 +504,7 @@ class Toolbar extends Base {
       }
 
       if (isFunction(listener)) {
+        this.commands.del(button.name)
         off($el, type, listener)
       }
     })
