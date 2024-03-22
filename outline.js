@@ -34,9 +34,9 @@ class Outline extends Base {
     const options = Outline.DEFAULTS
 
     // 确保 reload() 时，以下属性被强制设置为默认属性
-    options.articleElement = '#article'
-    options.parentElement = '#aside'
-    options.scrollElement = 'html,body'
+    // options.articleElement = '#article'
+    // options.parentElement = '#aside'
+    // options.scrollElement = 'html,body'
 
     this.attrs = cloneDeep(options)
     this.$article = null
