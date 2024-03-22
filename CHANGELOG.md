@@ -1,6 +1,12 @@
 # [3.34.0](https://github.com/yaohaixiao/outline.js/compare/3.33.0...3.34.0) (2024-03-22)
 
 
+### Bug Fixes
+
+* 修复 chapters.js 模块中 removeListeners() 方法中移除 window.resize 事件的错误逻辑 ([d1f4eb7](https://github.com/yaohaixiao/outline.js/commit/d1f4eb7ac6384a4a3ea525861d480a2b2388475c))
+* 修复问题-添加缺失的 destroyed 事件； ([0afd149](https://github.com/yaohaixiao/outline.js/commit/0afd149fad1a19a0674ccc201f97b59ed0eb892c))
+
+
 ### Features
 
 * 调整 toolbar.js 模块，接入命令模式保存按钮命令，并且添加 execute() 方法；调整 outline.js 模块中关于工具栏命令配置的逻辑； ([5e52ee5](https://github.com/yaohaixiao/outline.js/commit/5e52ee5dc82c7e91afb4c8813bc8bf900186f7d2))
