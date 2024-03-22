@@ -15,7 +15,8 @@ import _off from './_off'
 const off = (el, type, fn) => {
   // 如果不设置 fn 参数，默认清除 el 元素上绑定的所有事件处理器
   if (!isFunction(fn)) {
-    return purgeElement(el, type)
+    purgeElement(el, type)
+    return false
   }
 
   _off(el, type, fn)

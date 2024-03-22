@@ -50,6 +50,7 @@ class Anchors extends Base {
     let articleElement
 
     this.attr(options)
+
     articleElement = this.attr('articleElement')
     scrollElement = this.attr('scrollElement')
     selector = this.attr('selector')
@@ -213,37 +214,6 @@ class Anchors extends Base {
     return this
   }
 
-  addListeners() {
-    const $articleElement = this.$articleElement
-
-    if (this.count() < 1) {
-      return this
-    }
-
-    on(
-      $articleElement,
-      '.outline-heading__anchor',
-      'click',
-      this.onAnchorTrigger,
-      this,
-      true
-    )
-
-    return this
-  }
-
-  removeListeners() {
-    const $articleElement = this.$articleElement
-
-    if (this.count() < 1) {
-      return this
-    }
-
-    off($articleElement, 'click', this.onAnchorTrigger)
-
-    return this
-  }
-
   onAnchorTrigger(evt) {
     const anchorURL = this.attr('anchorURL')
     const afterScroll = this.attr('afterScroll')
@@ -273,6 +243,37 @@ class Anchors extends Base {
     if (!anchorURL) {
       stop(evt)
     }
+
+    return this
+  }
+
+  addListeners() {
+    const $articleElement = this.$articleElement
+
+    if (this.count() < 1) {
+      return this
+    }
+
+    on(
+      $articleElement,
+      '.outline-heading__anchor',
+      'click',
+      this.onAnchorTrigger,
+      this,
+      true
+    )
+
+    return this
+  }
+
+  removeListeners() {
+    const $articleElement = this.$articleElement
+
+    if (this.count() < 1) {
+      return this
+    }
+
+    off($articleElement, 'click', this.onAnchorTrigger)
 
     return this
   }

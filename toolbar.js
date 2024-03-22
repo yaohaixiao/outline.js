@@ -66,40 +66,54 @@ class Toolbar extends Base {
   }
 
   isDisabled(name) {
-    const buttons = this.attr('buttons')
+    const buttons = this.buttons
     let button
 
     if (name) {
       button = buttons.find((option) => option.name === name)
 
-      return button?.disabled
+      return button.disabled
     }
 
     return this.disabled
+  }
+
+  isExist(name) {
+    return !!this.buttons.find((button) => button.name === name)
   }
 
   isClosed() {
     return this.closed
   }
 
-  highlight(name) {
-    const button = this.buttons.find((item) => item.name === name)
-    const ACTIVE = 'outline-toolbar_active'
-    let $button
+  _getCommand(button) {
+    const _self = this
+    const { action, name } = button
+    let command = null
+    let handler = null
+    let context
+    let listener
 
-    if (button) {
-      return this
+    if (!action) {
+      return command
     }
 
-    $button = button.$el
+    handler = action.handler
+    context = action.context
 
-    if (hasClass($button, ACTIVE)) {
-      removeClass($button, ACTIVE)
-    } else {
-      addClass($button, ACTIVE)
+    if (isFunction(handler)) {
+      listener = handler
+    } else if (isString(handler)) {
+      listener = function () {
+        _self.$emit(handler, name)
+      }
     }
 
-    return this
+    if (isFunction(listener)) {
+      command = new Command(name, listener.bind(context || this))
+    }
+
+    return command
   }
 
   render() {
@@ -142,13 +156,24 @@ class Toolbar extends Base {
 
     buttons.forEach((button) => {
       const $button = _createButton(button, rounded)
+      const command = this._getCommand(button)
+      const { name, disabled, context } = button
 
       $fragment.appendChild($button)
 
-      this.buttons.push({
-        name: button.name,
-        $el: $button
-      })
+      if (!this.isExist(name)) {
+        this.buttons.push({
+          $el: $button,
+          name,
+          disabled,
+          context,
+          command
+        })
+
+        if (command) {
+          this.commands.add(command)
+        }
+      }
     })
 
     this.$el.appendChild($fragment)
@@ -169,137 +194,102 @@ class Toolbar extends Base {
 
   add(button) {
     const $el = this.$el
-    const buttons = this.attr('buttons') || []
-    const action = button.action
     const $fragment = document.createDocumentFragment()
-    const _self = this
-    let name
-    let type
-    let context
-    let command
-    let listener
+    const buttons = this.attr('buttons') || []
+    const { name, disabled, context } = button
+    const command = this._getCommand(button)
+    const _add = (button) => {
+      const $button = _createButton(button)
+
+      $fragment.appendChild($button)
+
+      buttons.push(button)
+      this.buttons.push({
+        $el: $button,
+        name,
+        disabled,
+        context,
+        command
+      })
+
+      if (command) {
+        this.commands.add(command)
+      }
+    }
 
     if (isObject(button)) {
-      buttons.push(button)
-      $fragment.appendChild(_createButton(button))
+      _add(button)
     } else if (isArray(button)) {
       button.forEach((item) => {
-        $fragment.appendChild(_createButton(item))
+        if (isObject(item)) {
+          _add(item)
+        }
       })
     }
     $el.appendChild($fragment)
-
-    if (action) {
-      name = button.name
-      type = action.type || 'click'
-      listener = action.handler
-      context = action.context
-
-      if (isString(listener)) {
-        command = listener
-        action.handler = function () {
-          _self.$emit(command, name)
-        }
-        listener = action.handler
-      }
-
-      if (isFunction(listener)) {
-        this.commands.add(new Command(name, listener.bind(context)))
-        on($el, `.${name}`, type, listener, context | this, true)
-      }
-    }
 
     return this
   }
 
   remove(name) {
     const $el = this.$el
-    const buttons = this.attr('buttons') || []
+    const buttons = this.buttons
     const button = buttons.find((option) => option.name === name)
-    const index = buttons.indexOf(button)
-    let $button
+    let index = -1
 
     if (!button) {
       return this
     }
 
+    index = buttons.indexOf(button)
+
     if (index > -1) {
       buttons.splice(index, 1)
+      this.attrs('buttons').splice(index, 1)
     }
 
-    $button = $el.querySelector(`.${name}`)
     this._disable(name)
-    $el.removeChild($button)
+    $el.removeChild(button.$el)
 
     return this
   }
 
   _disable(name) {
-    const $el = this.$el
-    const buttons = this.attr('buttons') || []
+    const buttons = this.buttons
     const button = buttons.find((option) => option.name === name)
-    const index = buttons.indexOf(button)
-    let action
-    let $button
-    let type
-    let context
-    let listener
+    const command = button.command
 
     if (button.disabled) {
       return this
     }
 
-    buttons[index].disabled = true
+    button.disabled = true
 
-    action = button.action
-    $button = $el.querySelector(`.${name}`)
-
-    if (action) {
-      type = action.type || 'click'
-      context = action.context || this
-      listener = action.handler
-
-      if (isFunction(listener)) {
-        this.commands.add(new Command(button.name, listener.bind(context)))
-        on($el, `.${name}`, type, listener, context, true)
-      }
+    if (command) {
+      this.commands.del(command)
     }
 
-    addClass($button, DISABLED)
+    addClass(button.$el, DISABLED)
 
     return this
   }
 
   _enable(name) {
-    const $el = this.$el
-    const buttons = this.attr('buttons') || []
+    const buttons = this.buttons
     const button = buttons.find((option) => option.name === name)
-    const index = buttons.indexOf(button)
-    let action
-    let $button
-    let type
-    let listener
+    const command = button.command
 
     if (!button.disabled) {
       return this
     }
 
-    buttons[index].disabled = false
+    button.disabled = false
 
-    action = button.action
-    $button = $el.querySelector(`.${name}`)
-
-    if (action) {
-      type = action.type || 'click'
-      listener = action.handler
-
-      if (isFunction(listener)) {
-        this.commands.del(button.name)
-        off($el, type, listener)
-      }
+    if (command) {
+      this.commands.add(command)
     }
 
-    removeClass($button, DISABLED)
+    removeClass(button.$el, DISABLED)
 
     return this
   }
@@ -406,6 +396,26 @@ class Toolbar extends Base {
     return this
   }
 
+  highlight(name) {
+    const button = this.buttons.find((item) => item.name === name)
+    const ACTIVE = 'outline-toolbar_active'
+    let $button
+
+    if (button) {
+      return this
+    }
+
+    $button = button.$el
+
+    if (hasClass($button, ACTIVE)) {
+      removeClass($button, ACTIVE)
+    } else {
+      addClass($button, ACTIVE)
+    }
+
+    return this
+  }
+
   destroy() {
     const beforeDestroy = this.attr('beforeDestroy')
     const afterDestroy = this.attr('afterDestroy')
@@ -414,6 +424,7 @@ class Toolbar extends Base {
       beforeDestroy.call(this)
     }
 
+    this.commands.clear()
     this.removeListeners()._remove()._default()
 
     if (isFunction(afterDestroy)) {
@@ -433,6 +444,21 @@ class Toolbar extends Base {
     return this
   }
 
+  onExecute(evt) {
+    const $button = evt.delegateTarget
+    let cmd = ''
+
+    if ($button) {
+      cmd = $button.getAttribute('data-cmd')
+
+      if (cmd) {
+        this.execute(cmd)
+      }
+    }
+
+    return this
+  }
+
   addListeners() {
     const buttons = this.attr('buttons') || []
     const $el = this.$el
@@ -441,41 +467,7 @@ class Toolbar extends Base {
       return this
     }
 
-    buttons.forEach((button) => {
-      const action = button.action
-      const disabled = this.disabled
-      const _self = this
-      let name
-      let type
-      let listener
-      let context
-      let command
-
-      if (disabled) {
-        return false
-      }
-
-      if (action) {
-        name = button.name
-        context = action.context || this
-        listener = action.handler
-
-        if (isString(listener)) {
-          command = listener
-          action.handler = function () {
-            _self.$emit(command, name)
-          }
-          listener = action.handler
-        }
-
-        if (isFunction(listener)) {
-          type = action.type || 'click'
-
-          this.commands.add(new Command(name, listener.bind(context)))
-          on($el, `.${name}`, type, listener, context, true)
-        }
-      }
-    })
+    on($el, `.outline-toolbar__button`, 'click', this.onExecute, this, true)
 
     return this
   }
@@ -488,26 +480,7 @@ class Toolbar extends Base {
       return this
     }
 
-    buttons.forEach((button) => {
-      const action = button.action
-      const disabled = this.disabled
-      let type
-      let listener
-
-      if (disabled) {
-        return false
-      }
-
-      if (action) {
-        listener = action.handler
-        type = action.type || 'click'
-      }
-
-      if (isFunction(listener)) {
-        this.commands.del(button.name)
-        off($el, type, listener)
-      }
-    })
+    off($el, '.outline-toolbar__button', this.onExecute)
 
     return this
   }

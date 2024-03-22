@@ -296,6 +296,11 @@ class Drawer extends Base {
     return this
   }
 
+  onClose() {
+    this.close()
+    return this
+  }
+
   addListeners() {
     const hasClose = this.attr('hasClose')
     const hasOverlay = this.attr('hasOverlay')
@@ -324,11 +329,6 @@ class Drawer extends Base {
 
     off($el, 'click', this.onClose)
 
-    return this
-  }
-
-  onClose() {
-    this.close()
     return this
   }
 }

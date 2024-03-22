@@ -23,8 +23,17 @@ class Outline extends Base {
   constructor(options) {
     super()
 
+    this._default()
+
+    if (options) {
+      this.initialize(options)
+    }
+  }
+
+  _default() {
     this.attrs = cloneDeep(Outline.DEFAULTS)
     this.$article = null
+    this.$scrollElement = null
     this.buttons = []
 
     this.anchors = null
@@ -33,9 +42,7 @@ class Outline extends Base {
     this.reader = null
     this.toolbar = null
 
-    if (options) {
-      this.initialize(options)
-    }
+    return this
   }
 
   initialize(options) {
@@ -50,6 +57,7 @@ class Outline extends Base {
     } else if (isElement(articleElement)) {
       this.$article = articleElement
     }
+    this.$scrollElement = _getScrollElement(this.attr('scrollElement'))
 
     this.$emit('created', { ...this.attr() })
     this.render().addListeners()
@@ -81,14 +89,7 @@ class Outline extends Base {
 
   render() {
     const hasToolbar = this.attr('hasToolbar')
-    const scrollElement = this.attr('scrollElement')
-    let $scrollElement
-
-    if (isString(scrollElement)) {
-      $scrollElement = document.querySelector(scrollElement)
-    } else if (isElement(scrollElement)) {
-      $scrollElement = scrollElement
-    }
+    const $scrollElement = this.$scrollElement
 
     this._renderReader()._renderAnchors()._renderChapters()._renderToolbar()
 
@@ -234,7 +235,6 @@ class Outline extends Base {
       icon: 'up',
       size: 20,
       action: {
-        type: 'click',
         context: this,
         handler: this.toTop
       }
@@ -268,7 +268,6 @@ class Outline extends Base {
       icon: 'menu',
       size: 18,
       action: {
-        type: 'click',
         context: this,
         handler: this.toggle
       }
@@ -278,7 +277,6 @@ class Outline extends Base {
       icon: 'file',
       size: 18,
       action: {
-        type: 'click',
         context: this,
         handler: 'toolbar:action:reading'
       }
@@ -288,7 +286,6 @@ class Outline extends Base {
       icon: 'print',
       size: 20,
       action: {
-        type: 'click',
         handler: 'toolbar:action:print'
       }
     }
@@ -297,7 +294,6 @@ class Outline extends Base {
       icon: 'down',
       size: 20,
       action: {
-        type: 'click',
         context: this,
         handler: this.toBottom
       }
@@ -393,7 +389,7 @@ class Outline extends Base {
 
   toBottom() {
     const afterScroll = this.attr('afterScroll')
-    const $scrollElement = _getScrollElement(this.attr('scrollElement'))
+    const $scrollElement = this.$scrollElement
     const toolbar = this.toolbar
     const chapters = this.chapters
     const count = this.count()
@@ -417,14 +413,14 @@ class Outline extends Base {
     if (count > 0) {
       chapters.playing = true
     }
+
     this.scrollTo(top, afterDown)
 
     return this
   }
 
   scrollTo(top, afterScroll) {
-    const scrollElement = this.attr('scrollElement')
-    scrollTo(scrollElement, top, afterScroll)
+    scrollTo(this.$scrollElement, top, afterScroll)
     return this
   }
 
@@ -537,23 +533,11 @@ class Outline extends Base {
       toolbar = null
     }
 
-    this.attrs = cloneDeep(Outline.DEFAULTS)
+    this.attr(Outline.DEFAULTS)
+    this.$article = null
+    this.$scrollElement = null
+    this.buttons = []
 
-    return this
-  }
-
-  onToggle() {
-    this.toggle()
-    return this
-  }
-
-  onScrollTop() {
-    this.toTop()
-    return this
-  }
-
-  onScrollBottom() {
-    this.toBottom()
     return this
   }
 

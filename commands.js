@@ -23,7 +23,7 @@ class Commands {
     return this
   }
 
-  destroy() {
+  clear() {
     this.commands = []
 
     return this

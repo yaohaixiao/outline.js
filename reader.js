@@ -273,6 +273,27 @@ class Reader extends Base {
     return this
   }
 
+  onPrint() {
+    this.print()
+    return this
+  }
+
+  onEnterReading() {
+    this.toggle()
+    return this
+  }
+
+  onExitReading(evt) {
+    const keyCode = evt.keyCode
+
+    if (keyCode === 27 && this.reading) {
+      this.toggle()
+      stop(evt)
+    }
+
+    return this
+  }
+
   addListeners() {
     const $paper = this.$paper
 
@@ -301,27 +322,6 @@ class Reader extends Base {
 
     this.$off('toolbar:action:print')
     this.$off('toolbar:action:reading')
-
-    return this
-  }
-
-  onPrint() {
-    this.print()
-    return this
-  }
-
-  onEnterReading() {
-    this.toggle()
-    return this
-  }
-
-  onExitReading(evt) {
-    const keyCode = evt.keyCode
-
-    if (keyCode === 27 && this.reading) {
-      this.toggle()
-      stop(evt)
-    }
 
     return this
   }

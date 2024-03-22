@@ -67,6 +67,7 @@ class Chapters extends Base {
     let $parent
 
     this.attr(options)
+
     created = this.attr('created')
     parentElement = this.attr('parentElement')
     scrollElement = this.attr('scrollElement')

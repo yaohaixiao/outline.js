@@ -47,6 +47,10 @@ const on = (el, selector, type, fn, data, context, once = false) => {
     }
   }
 
+  if (!el) {
+    return false
+  }
+
   if (!el._listeners) {
     el._listeners = []
   }
