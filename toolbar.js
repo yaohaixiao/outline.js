@@ -50,6 +50,7 @@ class Toolbar extends Base {
     let created
 
     this.attr(options)
+
     this.disabled = this.attr('disabled')
     this.closed = this.attr('closed')
     this.commands = new Commands()
@@ -99,7 +100,7 @@ class Toolbar extends Base {
     }
 
     handler = action.handler
-    context = action.context
+    context = action.context || this
 
     if (isFunction(handler)) {
       listener = handler
@@ -110,7 +111,7 @@ class Toolbar extends Base {
     }
 
     if (isFunction(listener)) {
-      command = new Command(name, listener.bind(context || this))
+      command = new Command(name, listener.bind(context))
     }
 
     return command

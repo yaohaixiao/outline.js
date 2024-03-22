@@ -703,11 +703,9 @@ class Chapters extends Base {
 
     off($el, 'click', this.onSelect)
     off($element, 'scroll', this.onScroll)
-
     if (this.isSticky()) {
-      at(window, 'resize', this.onResize)
+      off(window, 'resize', this.onResize)
     }
-
     this.$off('anchors:all:paint')
 
     if (this.Observer) {

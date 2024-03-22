@@ -31,7 +31,14 @@ class Outline extends Base {
   }
 
   _default() {
-    this.attrs = cloneDeep(Outline.DEFAULTS)
+    const options = Outline.DEFAULTS
+
+    // 确保 reload() 时，以下属性被强制设置为默认属性
+    options.articleElement = '#article'
+    options.parentElement = '#aside'
+    options.scrollElement = 'html,body'
+
+    this.attrs = cloneDeep(options)
     this.$article = null
     this.$scrollElement = null
     this.buttons = []
@@ -47,17 +54,21 @@ class Outline extends Base {
 
   initialize(options) {
     let articleElement = ''
+    let scrollElement = ''
+    let $article = null
 
     this.attr(options)
 
     articleElement = this.attr('articleElement')
+    scrollElement = this.attr('scrollElement')
 
     if (isString(articleElement)) {
-      this.$article = document.querySelector(articleElement)
+      $article = document.querySelector(articleElement)
     } else if (isElement(articleElement)) {
-      this.$article = articleElement
+      $article = articleElement
     }
-    this.$scrollElement = _getScrollElement(this.attr('scrollElement'))
+    this.$article = $article
+    this.$scrollElement = _getScrollElement(scrollElement)
 
     this.$emit('created', { ...this.attr() })
     this.render().addListeners()
@@ -493,50 +504,46 @@ class Outline extends Base {
     return this
   }
 
-  destroy() {
+  _destroy() {
+    const count = this.count()
     let anchors = this.anchors
     let chapters = this.chapters
     let drawer = this.drawer
     let reader = this.reader
     let toolbar = this.toolbar
     let isOutside = false
-    const count = this.count()
-
-    this.$emit('beforeDestroy')
 
     this.removeListeners()
 
     if (reader) {
       reader.destroy()
-      reader = null
     }
 
     if (count > 0 && chapters) {
       isOutside = chapters.isOutside()
 
       chapters.destroy()
-      chapters = null
 
       if (isOutside && drawer) {
         drawer.destroy()
-        drawer = null
       }
     }
 
     if (anchors) {
       anchors.destroy()
-      anchors = null
     }
 
     if (toolbar) {
       toolbar.destroy()
-      toolbar = null
     }
 
-    this.attr(Outline.DEFAULTS)
-    this.$article = null
-    this.$scrollElement = null
-    this.buttons = []
+    return this
+  }
+
+  destroy() {
+    this.$emit('beforeDestroy')
+
+    this._destroy()._default()
 
     this.$emit('destroyed')
 
@@ -589,10 +596,10 @@ class Outline extends Base {
 Outline.DEFAULTS = {
   articleElement: '#article',
   selector: 'h2,h3,h4,h5,h6',
-  title: '目录',
-  scrollElement: 'html,body',
-  position: 'relative',
   parentElement: '#aside',
+  scrollElement: 'html,body',
+  title: '目录',
+  position: 'relative',
   placement: 'rtl',
   animationCurrent: true,
   showCode: true,
@@ -618,17 +625,19 @@ Outline.DEFAULTS = {
   chapterTextFilter: null
 }
 
-if (window.jQuery) {
+if (window?.jQuery) {
+  const $ = window.jQuery
+
   // 将 Outline 扩展为一个 jquery 插件
   // eslint-disable-next-line no-undef
-  jQuery.extend(jQuery.fn, {
+  $.extend($.fn, {
     outline: function (options) {
       // eslint-disable-next-line no-undef
-      let $article = jQuery(this)
+      let $article = $(this)
 
       return new Outline(
         // eslint-disable-next-line no-undef
-        jQuery.extend({}, options, {
+        $.extend({}, options, {
           articleElement: $article
         })
       )
