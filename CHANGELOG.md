@@ -1,3 +1,12 @@
+## [3.34.1](https://github.com/yaohaixiao/outline.js/compare/3.34.0...3.34.1) (2024-03-22)
+
+
+### Bug Fixes
+
+* 修复 outline.js 中处理 _default() 方法的错误； ([4bffd05](https://github.com/yaohaixiao/outline.js/commit/4bffd05c79bb056cab40cb3f65a3f9b50ecaeca2))
+
+
+
 # [3.34.0](https://github.com/yaohaixiao/outline.js/compare/3.33.0...3.34.0) (2024-03-22)
 
 
