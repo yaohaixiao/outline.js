@@ -1,0 +1,19 @@
+section.section
+  header.section__header
+    h3.section__h3 $scrollElement
+  div.section__content
+    h4.section__h4 Since
+    p.section__dd 3.34.0
+    h4.section__h4 Description
+    dl.section__dl
+      dt.section__dt Type：
+      dd.section__dd HTMLElement
+    p 存储的是 Outline 对象要分析的控制文章内容滚动的 DOM 元素：
+    pre.section__pre
+      code.section__code.
+        // 设置默认配置项
+        const outline = new Outline(Outline.DEFAULTS)
+
+        // 获取文章正文内容显示区域的 DOM 元素
+        outline.$scrollElement
+
