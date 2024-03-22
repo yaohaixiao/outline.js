@@ -5,6 +5,10 @@ class Commands {
     this.commands = []
   }
 
+  get(name) {
+    return this.commands.find((cmd) => cmd.name === name)
+  }
+
   add(command) {
     this.commands.push(command)
 

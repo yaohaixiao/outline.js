@@ -538,6 +538,8 @@ class Outline extends Base {
     this.$scrollElement = null
     this.buttons = []
 
+    this.$emit('destroyed')
+
     return this
   }
 

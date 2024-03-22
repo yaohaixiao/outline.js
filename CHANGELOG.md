@@ -1,3 +1,13 @@
+# [3.34.0](https://github.com/yaohaixiao/outline.js/compare/3.33.0...3.34.0) (2024-03-22)
+
+
+### Features
+
+* 调整 toolbar.js 模块，接入命令模式保存按钮命令，并且添加 execute() 方法；调整 outline.js 模块中关于工具栏命令配置的逻辑； ([5e52ee5](https://github.com/yaohaixiao/outline.js/commit/5e52ee5dc82c7e91afb4c8813bc8bf900186f7d2))
+* outline.js 模块添加 $scrollElement 属性，并添加其 API 文档说明； ([d8caae4](https://github.com/yaohaixiao/outline.js/commit/d8caae42e823580502382d09a8284d63fc6229bd))
+
+
+
 # 3.33.0 (2024-03-12)
 
 

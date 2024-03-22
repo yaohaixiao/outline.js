@@ -66,11 +66,10 @@ class Toolbar extends Base {
   }
 
   isDisabled(name) {
-    const buttons = this.buttons
     let button
 
     if (name) {
-      button = buttons.find((option) => option.name === name)
+      button = this.get(name)
 
       return button.disabled
     }
@@ -79,7 +78,8 @@ class Toolbar extends Base {
   }
 
   isExist(name) {
-    return !!this.buttons.find((button) => button.name === name)
+    const button = this.get(name)
+    return !!button
   }
 
   isClosed() {
@@ -114,6 +114,10 @@ class Toolbar extends Base {
     }
 
     return command
+  }
+
+  get(name) {
+    return this.buttons.find((button) => button.name === name)
   }
 
   render() {
@@ -166,8 +170,7 @@ class Toolbar extends Base {
           $el: $button,
           name,
           disabled,
-          context,
-          command
+          context
         })
 
         if (command) {
@@ -234,7 +237,7 @@ class Toolbar extends Base {
   remove(name) {
     const $el = this.$el
     const buttons = this.buttons
-    const button = buttons.find((option) => option.name === name)
+    const button = this.get(name)
     let index = -1
 
     if (!button) {
@@ -255,9 +258,8 @@ class Toolbar extends Base {
   }
 
   _disable(name) {
-    const buttons = this.buttons
-    const button = buttons.find((option) => option.name === name)
-    const command = button.command
+    const button = this.get(name)
+    const command = this.commands.get(name)
 
     if (button.disabled) {
       return this
@@ -275,9 +277,8 @@ class Toolbar extends Base {
   }
 
   _enable(name) {
-    const buttons = this.buttons
-    const button = buttons.find((option) => option.name === name)
-    const command = button.command
+    const button = this.get(name)
+    const command = this.commands.get(name)
 
     if (!button.disabled) {
       return this
@@ -332,18 +333,15 @@ class Toolbar extends Base {
 
   show(name) {
     const opened = this.attr('afterOpened')
-    const buttons = this.attr('buttons') || []
-    const button = buttons.find((option) => option.name === name)
+    const button = this.get(name)
     const $el = this.$el
-    let $button
 
     if (name) {
       if (!button) {
         return this
       }
 
-      $button = $el.querySelector(`.${name}`)
-      removeClass($button, HIDDEN)
+      removeClass(button.$el, HIDDEN)
     } else {
       removeClass($el, HIDDEN)
       this.closed = false
@@ -360,18 +358,15 @@ class Toolbar extends Base {
 
   hide(name) {
     const closed = this.attr('afterClosed')
-    const buttons = this.attr('buttons') || []
-    const button = buttons.find((option) => option.name === name)
+    const button = this.get(name)
     const $el = this.$el
-    let $button
 
     if (name) {
       if (!button) {
         return this
       }
 
-      $button = $el.querySelector(`.${name}`)
-      addClass($button, HIDDEN)
+      addClass(button.$el, HIDDEN)
     } else {
       addClass($el, HIDDEN)
       this.closed = true
@@ -397,7 +392,7 @@ class Toolbar extends Base {
   }
 
   highlight(name) {
-    const button = this.buttons.find((item) => item.name === name)
+    const button = this.get(name)
     const ACTIVE = 'outline-toolbar_active'
     let $button
 
