@@ -170,8 +170,8 @@ class Toolbar extends Base {
         this.buttons.push({
           $el: $button,
           name,
-          disabled,
-          context
+          disabled: disabled || false,
+          context: context || this
         })
 
         if (command) {
@@ -211,8 +211,8 @@ class Toolbar extends Base {
       this.buttons.push({
         $el: $button,
         name,
-        disabled,
-        context,
+        disabled: disabled || false,
+        context: context || this,
         command
       })
 
@@ -262,7 +262,7 @@ class Toolbar extends Base {
     const button = this.get(name)
     const command = this.commands.get(name)
 
-    if (button.disabled) {
+    if (!button || button.disabled) {
       return this
     }
 
@@ -281,7 +281,7 @@ class Toolbar extends Base {
     const button = this.get(name)
     const command = this.commands.get(name)
 
-    if (!button.disabled) {
+    if (!button || !button.disabled) {
       return this
     }
 
@@ -397,7 +397,7 @@ class Toolbar extends Base {
     const ACTIVE = 'outline-toolbar_active'
     let $button
 
-    if (button) {
+    if (!button) {
       return this
     }
 
@@ -482,20 +482,24 @@ class Toolbar extends Base {
   }
 }
 
-Toolbar.DEFAULTS = {
-  placement: 'ltr',
-  closed: false,
-  disabled: false,
-  rounded: true,
-  buttons: [],
-  created: null,
-  mounted: null,
-  afterClosed: null,
-  afterOpened: null,
-  afterDisabled: null,
-  afterEnabled: null,
-  beforeDestroy: null,
-  afterDestroy: null
-}
+Toolbar.DEFAULTS = (() => {
+  const OPTIONS = {
+    placement: 'ltr',
+    closed: false,
+    disabled: false,
+    rounded: true,
+    buttons: [],
+    created: null,
+    mounted: null,
+    afterClosed: null,
+    afterOpened: null,
+    afterDisabled: null,
+    afterEnabled: null,
+    beforeDestroy: null,
+    afterDestroy: null
+  }
+
+  return cloneDeep(OPTIONS)
+})()
 
 export default Toolbar

@@ -17,8 +17,6 @@ import Toolbar from './toolbar'
 
 import getChapters from './getChapters'
 
-const ENTER_READING_TIP = '进入阅读模式，按 ESC 键可退出阅读模式'
-
 class Outline extends Base {
   constructor(options) {
     super()
@@ -32,11 +30,6 @@ class Outline extends Base {
 
   _default() {
     const options = Outline.DEFAULTS
-
-    // 确保 reload() 时，以下属性被强制设置为默认属性
-    // options.articleElement = '#article'
-    // options.parentElement = '#aside'
-    // options.scrollElement = 'html,body'
 
     this.attrs = cloneDeep(options)
     this.$article = null
@@ -105,7 +98,7 @@ class Outline extends Base {
     this._renderReader()._renderAnchors()._renderChapters()._renderToolbar()
 
     if ($scrollElement && hasToolbar) {
-      this.onToolbarUpdate({
+      this._updateToolbar({
         top: $scrollElement.scrollTop,
         min: 0,
         max: $scrollElement.scrollHeight
@@ -398,6 +391,24 @@ class Outline extends Base {
     return this
   }
 
+  _updateToolbar({ top, min, max }) {
+    const toolbar = this.toolbar
+    const current = Math.ceil(top)
+
+    if (current <= min) {
+      toolbar.hide('up')
+      toolbar.show('down')
+    } else if (current >= max) {
+      toolbar.hide('down')
+      toolbar.show('up')
+    } else if (current > min && current < max) {
+      toolbar.show('up')
+      toolbar.show('down')
+    }
+
+    return this
+  }
+
   toBottom() {
     const afterScroll = this.attr('afterScroll')
     const $scrollElement = this.$scrollElement
@@ -551,20 +562,7 @@ class Outline extends Base {
   }
 
   onToolbarUpdate({ top, min, max }) {
-    const toolbar = this.toolbar
-    const current = Math.ceil(top)
-
-    if (current <= min) {
-      toolbar.hide('up')
-      toolbar.show('down')
-    } else if (current >= max) {
-      toolbar.hide('down')
-      toolbar.show('up')
-    } else if (current > min && current < max) {
-      toolbar.show('up')
-      toolbar.show('down')
-    }
-
+    this._updateToolbar({ top, min, max })
     return this
   }
 
@@ -593,37 +591,41 @@ class Outline extends Base {
   }
 }
 
-Outline.DEFAULTS = {
-  articleElement: '#article',
-  selector: 'h2,h3,h4,h5,h6',
-  parentElement: '#aside',
-  scrollElement: 'html,body',
-  title: '目录',
-  position: 'relative',
-  placement: 'rtl',
-  animationCurrent: true,
-  showCode: true,
-  hasToolbar: true,
-  closeOnClickModal: true,
-  showNavModalFirst: false,
-  anchorURL: '',
-  stickyHeight: 0,
-  homepage: '',
-  git: '',
-  tags: '',
-  issues: '',
-  tools: [],
-  reader: {
-    target: '',
-    title: '',
-    enterReadingTip: ENTER_READING_TIP
-  },
-  customClass: '',
-  afterSticky: null,
-  afterToggle: null,
-  afterScroll: null,
-  chapterTextFilter: null
-}
+Outline.DEFAULTS = (() => {
+  const OPTIONS = {
+    articleElement: '#article',
+    selector: 'h2,h3,h4,h5,h6',
+    parentElement: '#aside',
+    scrollElement: 'html,body',
+    title: '目录',
+    position: 'relative',
+    placement: 'rtl',
+    animationCurrent: true,
+    showCode: true,
+    hasToolbar: true,
+    closeOnClickModal: true,
+    showNavModalFirst: false,
+    anchorURL: '',
+    stickyHeight: 0,
+    homepage: '',
+    git: '',
+    tags: '',
+    issues: '',
+    tools: [],
+    reader: {
+      target: '',
+      title: '',
+      enterReadingTip: '进入阅读模式，按 ESC 键可退出阅读模式'
+    },
+    customClass: '',
+    afterSticky: null,
+    afterToggle: null,
+    afterScroll: null,
+    chapterTextFilter: null
+  }
+
+  return cloneDeep(OPTIONS)
+})()
 
 if (window?.jQuery) {
   const $ = window.jQuery

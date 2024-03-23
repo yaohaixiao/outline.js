@@ -60,7 +60,14 @@ class Base {
   }
 
   reload(options) {
-    this.destroy().initialize(options)
+    let attrs = this.attr()
+
+    if (options) {
+      attrs = this.attr(options)
+    }
+
+    this.destroy().initialize(attrs)
+
     return this
   }
 

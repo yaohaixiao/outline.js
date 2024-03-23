@@ -718,25 +718,29 @@ class Chapters extends Base {
   }
 }
 
-Chapters.DEFAULTS = {
-  parentElement: '',
-  scrollElement: '',
-  selector: '.outline-heading',
-  active: 0,
-  closed: false,
-  showCode: true,
-  animationCurrent: true,
-  position: 'relative',
-  stickyHeight: 0,
-  chapters: [],
-  created: null,
-  mounted: null,
-  afterClosed: null,
-  afterOpened: null,
-  afterScroll: null,
-  beforeDestroy: null,
-  afterDestroy: null,
-  afterSticky: null
-}
+Chapters.DEFAULTS = (() => {
+  const OPTIONS = {
+    parentElement: '',
+    scrollElement: '',
+    selector: '.outline-heading',
+    active: 0,
+    closed: false,
+    showCode: true,
+    animationCurrent: true,
+    position: 'relative',
+    stickyHeight: 0,
+    chapters: [],
+    created: null,
+    mounted: null,
+    afterClosed: null,
+    afterOpened: null,
+    afterScroll: null,
+    beforeDestroy: null,
+    afterDestroy: null,
+    afterSticky: null
+  }
+
+  return cloneDeep(OPTIONS)
+})()
 
 export default Chapters

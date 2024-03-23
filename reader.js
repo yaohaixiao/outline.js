@@ -15,26 +15,9 @@ import off from './utils/event/off'
 import Base from './base'
 import Message from './message'
 
+import _updateSiblingElements from './_updateSiblingElements'
+
 const ENTER_READING_TIP = '进入阅读模式，按 ESC 键可退出阅读模式'
-
-const _updateSiblingElements = (siblingElement, isPrev) => {
-  let tagName
-  let $sibling = siblingElement
-
-  while ($sibling) {
-    tagName = $sibling.tagName.toLowerCase()
-
-    if (tagName !== 'script' && tagName !== 'style') {
-      addClass($sibling, 'outline-reader_sibling')
-    }
-
-    if (isPrev) {
-      $sibling = $sibling.previousElementSibling
-    } else {
-      $sibling = $sibling.nextElementSibling
-    }
-  }
-}
 
 class Reader extends Base {
   constructor(options) {
@@ -327,10 +310,14 @@ class Reader extends Base {
   }
 }
 
-Reader.DEFAULTS = {
-  target: '',
-  title: '',
-  enterReadingTip: ENTER_READING_TIP
-}
+Reader.DEFAULTS = (() => {
+  const OPTIONS = {
+    target: '',
+    title: '',
+    enterReadingTip: ENTER_READING_TIP
+  }
+
+  return cloneDeep(OPTIONS)
+})()
 
 export default Reader

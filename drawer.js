@@ -333,24 +333,28 @@ class Drawer extends Base {
   }
 }
 
-Drawer.DEFAULTS = {
-  placement: 'rtl',
-  title: '标题',
-  size: 'regular',
-  hasClose: true,
-  hasOverlay: true,
-  hasOffset: false,
-  hasPadding: true,
-  autoHeight: true,
-  closeOnClickModal: true,
-  created: null,
-  mounted: null,
-  afterClosed: null,
-  afterOpened: null,
-  afterScroll: null,
-  beforeDestroy: null,
-  afterDestroy: null,
-  afterToggle: null
-}
+Drawer.DEFAULTS = (() => {
+  const OPTIONS = {
+    placement: 'rtl',
+    title: '标题',
+    size: 'regular',
+    hasClose: true,
+    hasOverlay: true,
+    hasOffset: false,
+    hasPadding: true,
+    autoHeight: true,
+    closeOnClickModal: true,
+    created: null,
+    mounted: null,
+    afterClosed: null,
+    afterOpened: null,
+    afterScroll: null,
+    beforeDestroy: null,
+    afterDestroy: null,
+    afterToggle: null
+  }
+
+  return cloneDeep(OPTIONS)
+})()
 
 export default Drawer

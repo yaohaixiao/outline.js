@@ -481,22 +481,26 @@ class Message extends Base {
   }
 }
 
-Message.DEFAULTS = {
-  id: '',
-  type: 'info',
-  effect: 'default',
-  round: false,
-  offset: 30,
-  duration: 3,
-  delay: 2,
-  message: '',
-  customClass: '',
-  closable: true,
-  visible: true,
-  dangerouslyUseHTMLString: false,
-  destroyAfterClosed: true,
-  beforeClose: null
-}
+Message.DEFAULTS = (() => {
+  const OPTIONS = {
+    id: '',
+    type: 'info',
+    effect: 'default',
+    round: false,
+    offset: 30,
+    duration: 3,
+    delay: 2,
+    message: '',
+    customClass: '',
+    closable: true,
+    visible: true,
+    dangerouslyUseHTMLString: false,
+    destroyAfterClosed: true,
+    beforeClose: null
+  }
+
+  return cloneDeep(OPTIONS)
+})()
 
 TYPES.forEach((type) => {
   Message[type] = (options) => {

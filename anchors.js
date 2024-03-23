@@ -279,21 +279,25 @@ class Anchors extends Base {
   }
 }
 
-Anchors.DEFAULTS = {
-  scrollElement: 'html,body',
-  articleElement: '#article',
-  selector: 'h1,h2,h3,h4,h5,h6',
-  stickyHeight: 0,
-  anchorURL: '',
-  hasAnchor: true,
-  isAtStart: true,
-  showCode: false,
-  created: null,
-  mounted: null,
-  afterScroll: null,
-  beforeDestroy: null,
-  afterDestroy: null,
-  chapterTextFilter: null
-}
+Anchors.DEFAULTS = (() => {
+  const OPTIONS = {
+    scrollElement: 'html,body',
+    articleElement: '#article',
+    selector: 'h1,h2,h3,h4,h5,h6',
+    stickyHeight: 0,
+    anchorURL: '',
+    hasAnchor: true,
+    isAtStart: true,
+    showCode: false,
+    created: null,
+    mounted: null,
+    afterScroll: null,
+    beforeDestroy: null,
+    afterDestroy: null,
+    chapterTextFilter: null
+  }
+
+  return cloneDeep(OPTIONS)
+})()
 
 export default Anchors
