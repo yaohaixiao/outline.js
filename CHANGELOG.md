@@ -1,3 +1,13 @@
+## [3.34.2](https://github.com/yaohaixiao/outline.js/compare/3.34.1...3.34.2) (2024-03-23)
+
+
+### Bug Fixes
+
+* 调整 base.js 模块中的 reload() 方法的实现，修复 reload() 方法报错的问题；
+* 修复 toolbar.js 模块中 highlight() 方法无效的错误； ([a00b155](https://github.com/yaohaixiao/outline.js/commit/a00b1550d08a98936769f9eeaf7a772fa74ef4ec))
+
+
+
 ## [3.34.1](https://github.com/yaohaixiao/outline.js/compare/3.34.0...3.34.1) (2024-03-22)
 
 
