@@ -39,6 +39,7 @@ class Reader extends Base {
     this.$title = null
     this.$article = null
     this.$icon = null
+    this.$progress = null
 
     return this
   }
@@ -112,6 +113,7 @@ class Reader extends Base {
     let $title
     let $article
     let $icon
+    let $progress
     let $sibling
 
     $title = $target.querySelector('h1')
@@ -148,13 +150,18 @@ class Reader extends Base {
     })
     this.$icon = $icon
 
+    $progress = createElement('div', {
+      className: 'outline-reader__progress'
+    })
+    this.$progress = $progress
+
     $paper = createElement(
       'section',
       {
         id: 'outline-reader',
         className: 'outline-reader outline-reader_hidden'
       },
-      [$icon, $title, $article]
+      [$progress, $icon, $title, $article]
     )
     this.$paper = $paper
 
