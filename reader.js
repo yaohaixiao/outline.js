@@ -3,17 +3,16 @@ import later from './utils/lang/later'
 import isString from './utils/types/isString'
 import isElement from './utils/types/isElement'
 import isFunction from './utils/types/isFunction'
-import icon from './utils/icons/icon'
 import createElement from './utils/dom/createElement'
 import addClass from './utils/dom/addClass'
 import removeClass from './utils/dom/removeClass'
 import at from './utils/event/at'
-import on from './utils/event/on'
 import stop from './utils/event/stop'
 import off from './utils/event/off'
 
 import Base from './base'
 import Message from './message'
+import Toolbar from './toolbar'
 
 import _updateSiblingElements from './_updateSiblingElements'
 
@@ -38,8 +37,9 @@ class Reader extends Base {
     this.$paper = null
     this.$title = null
     this.$article = null
-    this.$icon = null
     this.$progress = null
+
+    this.toolbar = null
 
     return this
   }
@@ -93,9 +93,14 @@ class Reader extends Base {
 
   _remove() {
     const $paper = this.$paper
+    const toolbar = this.toolbar
 
     if ($paper) {
       document.body.removeChild($paper)
+    }
+
+    if (toolbar) {
+      toolbar.destroy()
     }
 
     return this
@@ -112,7 +117,6 @@ class Reader extends Base {
     let $paper
     let $title
     let $article
-    let $icon
     let $progress
     let $sibling
 
@@ -141,19 +145,25 @@ class Reader extends Base {
     })
     this.$article = $article
 
-    $icon = icon('close', {
-      iconSet: 'outline',
-      size: 20,
-      attrs: {
-        className: 'outline-reader__close'
-      }
-    })
-    this.$icon = $icon
-
     $progress = createElement('div', {
       className: 'outline-reader__progress'
     })
     this.$progress = $progress
+
+    this.toolbar = new Toolbar({
+      placement: 'rtl',
+      buttons: [
+        {
+          name: 'exit',
+          icon: 'close',
+          size: 20,
+          action: {
+            context: this,
+            handler: this.exit
+          }
+        }
+      ]
+    })
 
     $paper = createElement(
       'section',
@@ -161,7 +171,7 @@ class Reader extends Base {
         id: 'outline-reader',
         className: 'outline-reader outline-reader_hidden'
       },
-      [$progress, $icon, $title, $article]
+      [$progress, $title, $article, this.toolbar.$el]
     )
     this.$paper = $paper
 
@@ -196,6 +206,7 @@ class Reader extends Base {
     })
     addClass($paper, READING)
     removeClass($paper, HIDDEN)
+    this.toolbar.show()
     this.reading = true
 
     Message.info({
@@ -224,6 +235,7 @@ class Reader extends Base {
     $siblings.forEach(($sibling) => {
       removeClass($sibling, HIDDEN)
     })
+    this.toolbar.hide()
     this.reading = false
 
     this.$emit('exitReading')
@@ -292,7 +304,6 @@ class Reader extends Base {
     }
 
     at(document, 'keyup', this.onExitReading, this, true)
-    on($paper, '.outline-reader__close', 'click', this.exit, this, true)
 
     this.$on('toolbar:action:print', this.onPrint)
     this.$on('toolbar:action:reading', this.onEnterReading)
@@ -308,7 +319,6 @@ class Reader extends Base {
     }
 
     off(document, 'keyup', this.onExitReading)
-    off($paper, 'click', this.exit)
 
     this.$off('toolbar:action:print')
     this.$off('toolbar:action:reading')

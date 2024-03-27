@@ -1,10 +1,9 @@
-import Base from './base'
-
 import isString from './utils/types/isString'
 import isFunction from './utils/types/isFunction'
 import isObject from './utils/types/isObject'
 import isArray from './utils/types/isArray'
 import later from './utils/lang/later'
+import guid from './utils/lang/guid'
 import cloneDeep from './utils/lang/cloneDeep'
 import createElement from './utils/dom/createElement'
 import addClass from './utils/dom/addClass'
@@ -14,6 +13,7 @@ import on from './utils/event/on'
 import off from './utils/event/off'
 import paint from './utils/icons/paint'
 
+import Base from './base'
 import Command from './command'
 import Commands from './commands'
 
@@ -129,7 +129,7 @@ class Toolbar extends Base {
     paint()
 
     this.$el = createElement('div', {
-      id: 'outline-toolbar',
+      id: guid('outline-toolbar'),
       className: `outline-toolbar outline-toolbar_${placement}`
     })
     this._paint(buttons)
