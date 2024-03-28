@@ -154,6 +154,15 @@ class Reader extends Base {
       placement: 'rtl',
       buttons: [
         {
+          name: 'print',
+          icon: 'print',
+          size: 20,
+          action: {
+            context: this,
+            handler: this.print
+          }
+        },
+        {
           name: 'exit',
           icon: 'close',
           size: 20,
