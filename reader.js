@@ -13,6 +13,7 @@ import off from './utils/event/off'
 import Base from './base'
 import Message from './message'
 import Toolbar from './toolbar'
+import Speech from './speech'
 
 import _updateSiblingElements from './_updateSiblingElements'
 
@@ -40,6 +41,7 @@ class Reader extends Base {
     this.$progress = null
 
     this.toolbar = null
+    this.speech = null
 
     return this
   }
@@ -61,9 +63,17 @@ class Reader extends Base {
       return this
     }
 
+    if (Speech.isSupport) {
+      this.speech = new Speech()
+    }
+
     this.render().addListeners()
 
     return this
+  }
+
+  isSpeaking() {
+    return this?.speech?.isSpeaking()
   }
 
   render() {
@@ -150,9 +160,22 @@ class Reader extends Base {
     })
     this.$progress = $progress
 
-    this.toolbar = new Toolbar({
-      placement: 'rtl',
-      buttons: [
+    const buttons = []
+
+    if (Speech.isSupport) {
+      buttons.push({
+        name: 'speak',
+        icon: 'sound',
+        size: 20,
+        action: {
+          context: this,
+          handler: this.speak
+        }
+      })
+    }
+
+    buttons.push(
+      ...[
         {
           name: 'print',
           icon: 'print',
@@ -172,6 +195,11 @@ class Reader extends Base {
           }
         }
       ]
+    )
+
+    this.toolbar = new Toolbar({
+      placement: 'rtl',
+      buttons
     })
 
     $paper = createElement(
@@ -257,6 +285,25 @@ class Reader extends Base {
       this.exit()
     } else {
       this.enter()
+    }
+
+    return this
+  }
+
+  speak() {
+    const text = this.$article.innerText
+    const speech = this.speech
+
+    if (!Speech.isSupport) {
+      return this
+    }
+
+    this.toolbar.highlight('speak')
+
+    if (this.isSpeaking()) {
+      speech.cancel()
+    } else {
+      speech.speak(text)
     }
 
     return this

@@ -382,11 +382,11 @@ class Toolbar extends Base {
     return this
   }
 
-  toggle() {
+  toggle(name) {
     if (this.isClosed()) {
-      this.show()
+      this.show(name)
     } else {
-      this.hide()
+      this.hide(name)
     }
 
     return this
