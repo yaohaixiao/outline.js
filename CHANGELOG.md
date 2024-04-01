@@ -1,3 +1,16 @@
+# [3.35.0](https://github.com/yaohaixiao/outline.js/compare/3.34.2...3.35.0) (2024-04-01)
+
+
+### Features
+
+* 调整 reader.js 模块，使用 toolbar 模块生成工具栏按钮； ([16f08e1](https://github.com/yaohaixiao/outline.js/commit/16f08e1e5f45437e32eefd3ce3bd1c4e3a85bc5e))
+* 添加 reader.allowSpeak 配置，用以配置是否启用 Web Speech API 阅读文章 ([1611cd6](https://github.com/yaohaixiao/outline.js/commit/1611cd6f4024a2cf482611348f44439474a699be))
+* 完善 speech.js 模块，并给 reader.js 模块添加 speak() 方法用以阅读文章； ([be6eef8](https://github.com/yaohaixiao/outline.js/commit/be6eef87e210e07c1633025f3a42c060acbdf7dc))
+* 阅读模式添加打印功能按钮；调整打印样式，隐藏调整后的阅读模式 toolbar 的显示； ([482e84e](https://github.com/yaohaixiao/outline.js/commit/482e84e33788af66b2fd84c699d1db5d54b780fb))
+* 阅读模式添加滚动阅读进度条交互； ([ceee986](https://github.com/yaohaixiao/outline.js/commit/ceee986bba8b25e18adcf1bb9e51d97564b122ca))
+
+
+
 ## [3.34.2](https://github.com/yaohaixiao/outline.js/compare/3.34.1...3.34.2) (2024-03-23)
 
 
