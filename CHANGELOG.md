@@ -1,3 +1,12 @@
+## [3.35.1](https://github.com/yaohaixiao/outline.js/compare/3.35.0...3.35.1) (2024-04-01)
+
+
+### Bug Fixes
+
+* 修复 Speech 模块，初始化逻辑错误导致阅读文档报错 ([0eb6837](https://github.com/yaohaixiao/outline.js/commit/0eb6837d410b1bb9012ae54cb4cad59b5a32422a))
+
+
+
 # [3.35.0](https://github.com/yaohaixiao/outline.js/compare/3.34.2...3.35.0) (2024-04-01)
 
 
