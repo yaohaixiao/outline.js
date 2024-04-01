@@ -2,7 +2,7 @@ import publish from './utils/observer/emit'
 
 class Speech {
   constructor(options) {
-    this.utterance = null
+    this.utterance = new SpeechSynthesisUtterance()
 
     if (options) {
       this.initialize(options)
@@ -10,8 +10,6 @@ class Speech {
   }
 
   _initialize(options) {
-    this.utterance = new SpeechSynthesisUtterance()
-
     if (options.lang) {
       this.setLang(options.lang)
     }
@@ -117,7 +115,7 @@ class Speech {
   }
 
   _addListeners() {
-    const EVENTS = [
+    const UTTERANCE_EVENTS = [
       'boundary',
       'end',
       'error',
@@ -129,7 +127,7 @@ class Speech {
     const utterance = this.utterance
     const speech = this
 
-    EVENTS.forEach((name) => {
+    UTTERANCE_EVENTS.forEach((name) => {
       utterance[`on${name}`] = (event) => {
         publish(name, {
           event,
@@ -138,7 +136,7 @@ class Speech {
       }
     })
 
-    speechSynthesis.onvoiceschanged = function (event) {
+    speechSynthesis.onvoiceschanged = (event) => {
       publish('voiceschanged', {
         event,
         speech
