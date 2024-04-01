@@ -256,7 +256,9 @@ const outline = new Outline({
       // 可以直接设置标题文本，也可以是文章页的主标题 DOM 元素
       title: '',
       // 进入阅读模式的提示消息文本
-      enterReadingTip: '进入阅读模式，按 ESC 键可退出阅读模式'
+      enterReadingTip: '进入阅读模式，按 ESC 键可退出阅读模式',
+      // 是否允许启用 Web Speech API 阅读文章
+      allowSpeak: false
     },
     // DIYer的福利
     // 独立侧滑菜单时，customClass 会追加到 drawer 侧滑窗口组件

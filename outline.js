@@ -615,7 +615,8 @@ Outline.DEFAULTS = (() => {
     reader: {
       target: '',
       title: '',
-      enterReadingTip: '进入阅读模式，按 ESC 键可退出阅读模式'
+      enterReadingTip: '进入阅读模式，按 ESC 键可退出阅读模式',
+      allowSpeak: false
     },
     customClass: '',
     afterSticky: null,

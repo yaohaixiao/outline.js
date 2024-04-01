@@ -2,7 +2,7 @@ import publish from './utils/observer/emit'
 
 class Speech {
   constructor(options) {
-    this.utterance = new SpeechSynthesisUtterance()
+    this.utterance = null
 
     if (options) {
       this.initialize(options)
@@ -10,6 +10,8 @@ class Speech {
   }
 
   _initialize(options) {
+    this.utterance = new SpeechSynthesisUtterance()
+
     if (options.lang) {
       this.setLang(options.lang)
     }

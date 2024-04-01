@@ -162,7 +162,7 @@ class Reader extends Base {
 
     const buttons = []
 
-    if (Speech.isSupport) {
+    if (Speech.isSupport && this.attr('allowSpeak')) {
       buttons.push({
         name: 'speak',
         icon: 'sound',
@@ -387,7 +387,8 @@ Reader.DEFAULTS = (() => {
   const OPTIONS = {
     target: '',
     title: '',
-    enterReadingTip: ENTER_READING_TIP
+    enterReadingTip: ENTER_READING_TIP,
+    allowSpeak: false
   }
 
   return cloneDeep(OPTIONS)

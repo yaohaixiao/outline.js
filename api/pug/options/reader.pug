@@ -11,14 +11,20 @@ section.section
       dd.section__dd Object
     dl.section__dl
       dt.section__dt Default：
-      dd.section__dd {target: '', title: ''}
+      dd.section__dd {target: '', title: '', enterReadingTip: ‘进入阅读模式，按 ESC 键可退出阅读模式’, allowSpeak: false}
     p 可选，自定义的是否自动为文章页面创建打印样式。
     dl.section__dl
-      dt.section__dt element：
-      dd.section__dd （必须）要打印的文章区域，DOM 元素或者选择器字符串。
+      dt.section__dt target：
+      dd.section__dd （必须）要打印的文章区域，DOM 元素或者选择器字符串；
     dl.section__dl
       dt.section__dt title：
-      dd.section__dd （可选）要打印的文章标题。如果 element 区域有 h1 标签则无需设置。可以直接设置标题文本，也可以是文章页的主标题 DOM 元素。
+      dd.section__dd （可选）要打印的文章标题。如果 element 区域有 h1 标签则无需设置。可以直接设置标题文本，也可以是文章页的主标题 DOM 元素；
+    dl.section__dl
+      dt.section__dt enterReadingTip：
+      dd.section__dd （可选）进入阅读模式的提示文本，默认值：‘进入阅读模式，按 ESC 键可退出阅读模式’；
+    dl.section__dl
+      dt.section__dt allowSpeak：
+      dd.section__dd （可选）针对现代浏览器支持 Web Speech API，是否开启语音阅读功能。默认值：false；
     pre.section__pre
       code.section__code.
         const defaults = Outline.DEFAULTS
@@ -39,8 +45,10 @@ section.section
           // 则 title 会是一个可变的值，这样比直接设置标题文本更加灵活；
           title: document.querySelector('.title'),
           // 进入阅读模式的提示消息文本
-          enterReadingTip: '进入阅读模式，按 ESC 键可退出阅读模式'
+          enterReadingTip: '进入阅读模式，按 ESC 键可退出阅读模式',
+          // 开启语音阅读
+          allowSpeak: true
         }
-        outline = new Outline(Outline.DEFAULTS)
+        outline = new Outline(defaults)
     p 演示地址：
-      a(target="_blank" href="https://yaohaixiao.github.io/outline.js/flex.html") https://yaohaixiao.github.io/outline.js/flex.html
+      a(target="_blank" href="https://yaohaixiao.github.io/outline.js/examples/flex.html") https://yaohaixiao.github.io/outline.js/examples/flex.html
