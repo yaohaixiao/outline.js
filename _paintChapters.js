@@ -10,6 +10,7 @@ const _paintChapters = ($list, chapters, showCode = false) => {
     parts.forEach((chapter) => {
       const pid = chapter.pid
       const id = chapter.id
+      const code = chapter.code
       const rel = chapter.rel
       const children = []
       const $text = createElement(
@@ -47,7 +48,8 @@ const _paintChapters = ($list, chapters, showCode = false) => {
           className: 'outline-navigator__anchor',
           href: '#' + rel,
           rel: rel,
-          'data-id': id
+          'data-id': id,
+          'data-code': code
         },
         children
       )
@@ -57,7 +59,8 @@ const _paintChapters = ($list, chapters, showCode = false) => {
         {
           id: `chapter-${id}`,
           className: 'outline-navigator__item',
-          'data-id': id
+          'data-id': id,
+          'data-code': code
         },
         $link
       )

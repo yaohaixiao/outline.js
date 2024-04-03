@@ -23,6 +23,7 @@ const _updateHeading = ($heading, i, options) => {
 
   if (showCode) {
     attrs.innerHTML = chapterCode + ' ' + text
+    attrs['data-code'] = chapterCode
   }
   setAttributes($heading, attrs)
 
