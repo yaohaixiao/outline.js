@@ -65,7 +65,7 @@ const buildSourceStyles = () => {
     .src(
       [
         './theme/anchors.less',
-        './theme/chapters.less',
+        './theme/navigator.less',
         './theme/drawer.less',
         './theme/toolbar.less',
         './theme/message.less',
@@ -91,7 +91,7 @@ const minifySourcesStyle = () => {
     .src(
       [
         './anchors.css',
-        './chapters.css',
+        './navigator.css',
         './drawer.css',
         './toolbar.css',
         './message.css',

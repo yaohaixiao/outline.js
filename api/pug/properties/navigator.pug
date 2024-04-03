@@ -1,20 +1,20 @@
 section.section
   header.section__header
-    h3.section__h3 chapters
+    h3.section__h3 navigator
   div.section__content
     h4.section__h4 Description
     dl.section__dl
       dt.section__dt Type：
       dd.section__dd Object
-    p Chapters 模块：独立的导航菜单模块；
+    p Navigator 模块：独立的导航菜单模块；
     pre.section__pre
       code.section__code.
         // 仅展示 API 中对外公开的方法和属性
-        class Chapters extends Base {
+        class Navigator extends Base {
           constructor(options) {
             super()
 
-            this.attrs = Chapters.DEFAULTS
+            this.attrs = Navigator.DEFAULTS
             this.$el = null
             this.$title = null
             this.$main = null
@@ -107,7 +107,7 @@ section.section
           }
         }
 
-        Chapters.DEFAULTS = {
+        Navigator.DEFAULTS = {
           parentElement: '',
           scrollElement: '',
           selector: '',
@@ -125,4 +125,4 @@ section.section
           afterDestroy: null
         }
 
-        export default Chapters
+        export default Navigator

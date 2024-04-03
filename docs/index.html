@@ -367,12 +367,12 @@ Anchors.DEFAULTS = {
   afterDestroy: null
 }
 
-export default Anchors</code></pre></div></section><section class="section"><header class="section__header"><h3 class="section__h3">chapters</h3></header><div class="section__content"><h4 class="section__h4">Description</h4><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">Object</dd></dl><p>Chapters 模块：独立的导航菜单模块；</p><pre class="section__pre"><code class="section__code">// 仅展示 API 中对外公开的方法和属性
-class Chapters extends Base {
+export default Anchors</code></pre></div></section><section class="section"><header class="section__header"><h3 class="section__h3">navigator</h3></header><div class="section__content"><h4 class="section__h4">Description</h4><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">Object</dd></dl><p>Navigator 模块：独立的导航菜单模块；</p><pre class="section__pre"><code class="section__code">// 仅展示 API 中对外公开的方法和属性
+class Navigator extends Base {
   constructor(options) {
     super()
 
-    this.attrs = Chapters.DEFAULTS
+    this.attrs = Navigator.DEFAULTS
     this.$el = null
     this.$title = null
     this.$main = null
@@ -465,7 +465,7 @@ class Chapters extends Base {
   }
 }
 
-Chapters.DEFAULTS = {
+Navigator.DEFAULTS = {
   parentElement: '',
   scrollElement: '',
   selector: '',
@@ -483,7 +483,7 @@ Chapters.DEFAULTS = {
   afterDestroy: null
 }
 
-export default Chapters</code></pre></div></section><section class="section"><header class="section__header"><h3 class="section__h3">drawer</h3></header><div class="section__content"><h4 class="section__h4">Description</h4><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">Object</dd></dl><p>Drawer 模块：独立的侧滑窗口模块。</p><pre class="section__pre"><code class="section__code">// 仅展示 API 中对外公开的方法和属性
+export default Navigator</code></pre></div></section><section class="section"><header class="section__header"><h3 class="section__h3">drawer</h3></header><div class="section__content"><h4 class="section__h4">Description</h4><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">Object</dd></dl><p>Drawer 模块：独立的侧滑窗口模块。</p><pre class="section__pre"><code class="section__code">// 仅展示 API 中对外公开的方法和属性
 class Drawer extends Base {
   constructor(options) {
     super()

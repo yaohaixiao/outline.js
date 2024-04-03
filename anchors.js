@@ -3,7 +3,6 @@ import isFunction from './utils/types/isFunction'
 import isElement from './utils/types/isElement'
 import cloneDeep from './utils/lang/cloneDeep'
 import timeSlice from './utils/lang/timeSlice'
-import toTree from './utils/lang/toTree'
 import later from './utils/lang/later'
 import scrollTo from './utils/dom/scrollTo'
 import _getScrollElement from './utils/dom/_getScrollElement'
@@ -36,16 +35,13 @@ class Anchors extends Base {
     this.$articleElement = null
     this.$scrollElement = null
     this.$headings = []
-    this.chapters = []
 
     return this
   }
 
   initialize(options) {
-    const showCode = this.attr('showCode') || true
     let created
     let scrollElement
-    let selector
     let $articleElement
     let articleElement
 
@@ -53,7 +49,6 @@ class Anchors extends Base {
 
     articleElement = this.attr('articleElement')
     scrollElement = this.attr('scrollElement')
-    selector = this.attr('selector')
     created = this.attr('created')
 
     if (isString(articleElement)) {
@@ -68,17 +63,11 @@ class Anchors extends Base {
 
     this.$articleElement = $articleElement
     this.$scrollElement = _getScrollElement(scrollElement)
-    this.$headings = [...$articleElement.querySelectorAll(selector)]
+    this.$headings = this.getHeadings()
 
     if (this.$headings.length < 1) {
       return this
     }
-
-    this.chapters = getChapters(
-      this.$headings,
-      showCode,
-      this.attr('chapterTextFilter')
-    )
 
     if (isFunction(created)) {
       created.call(this)
@@ -89,21 +78,33 @@ class Anchors extends Base {
     return this
   }
 
-  getChapters(isTreeStructured = false) {
-    const chapters = this.chapters
-    return isTreeStructured ? toTree(chapters, 'id', 'pid') : chapters
+  getHeadings() {
+    const $articleElement = this.$articleElement
+    const selector = this.attr('selector')
+
+    return [...$articleElement.querySelectorAll(selector)]
   }
 
   count() {
-    return this.chapters.length
+    return this.getHeadings().length
   }
 
   render() {
+    const articleElement = this.attr('articleElement')
+    const selector = this.attr('selector')
+    const showCode = this.attr('showCode') || true
+    const chapterTextFilter = this.attr('chapterTextFilter')
     const mounted = this.attr('mounted')
+    const chapters = getChapters({
+      articleElement,
+      selector,
+      showCode,
+      chapterTextFilter
+    })
 
     paint()
 
-    this._paint(this.chapters)
+    this._paint(chapters)
 
     if (isFunction(mounted)) {
       mounted.call(this)
@@ -178,13 +179,22 @@ class Anchors extends Base {
   }
 
   refresh(chapters) {
-    const $articleElement = this.$articleElement
+    const articleElement = this.attr('articleElement')
     const selector = this.attr('selector')
+    const showCode = this.attr('showCode') || true
+    const chapterTextFilter = this.attr('chapterTextFilter')
 
-    this.$headings = [...$articleElement.querySelectorAll(selector)]
-    this.chapters = chapters
+    this.$headings = this.getHeadings()
 
-    this.erase()._paint(chapters)
+    this.erase()._paint(
+      chapters ||
+        getChapters({
+          articleElement,
+          selector,
+          showCode,
+          chapterTextFilter
+        })
+    )
 
     return this
   }

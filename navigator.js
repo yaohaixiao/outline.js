@@ -1,5 +1,3 @@
-import Base from './base'
-
 import isString from './utils/types/isString'
 import isFunction from './utils/types/isFunction'
 import isElement from './utils/types/isElement'
@@ -22,7 +20,9 @@ import cloneDeep from './utils/lang/cloneDeep'
 import _paintChapters from './_paintChapters'
 import inBounding from './utils/dom/inBounding'
 
-class Chapters extends Base {
+import Base from './base'
+
+class Navigator extends Base {
   constructor(options) {
     super()
 
@@ -39,7 +39,7 @@ class Chapters extends Base {
   }
 
   _default() {
-    this.attrs = cloneDeep(Chapters.DEFAULTS)
+    this.attrs = cloneDeep(Navigator.DEFAULTS)
 
     this.$el = null
     this.$title = null
@@ -127,8 +127,8 @@ class Chapters extends Base {
 
   _paintEdge() {
     const $fragment = document.createDocumentFragment()
-    const STICKY = 'outline-chapters_sticky'
-    const HIDDEN = 'outline-chapters_hidden'
+    const STICKY = 'outline-navigator_sticky'
+    const HIDDEN = 'outline-navigator_hidden'
     const title = this.attr('title')
     const animationCurrent = this.attr('animationCurrent')
     const customClass = this.attr('customClass')
@@ -149,7 +149,7 @@ class Chapters extends Base {
       $title = createElement(
         'h2',
         {
-          className: 'outline-chapters__title'
+          className: 'outline-navigator__title'
         },
         title
       )
@@ -161,14 +161,14 @@ class Chapters extends Base {
       // 为优化性能，添加了 _fixed 和 _hidden
       // fixed 为了让 $list 脱离流布局
       // hidden 让 $list 不可见
-      className: `outline-chapters__list`
+      className: `outline-navigator__list`
     })
     this.$list = $list
     children.push($list)
 
     if (animationCurrent) {
       $placeholder = createElement('div', {
-        className: 'outline-chapters__placeholder'
+        className: 'outline-navigator__placeholder'
       })
       this.$placeholder = $placeholder
       children.push($placeholder)
@@ -177,7 +177,7 @@ class Chapters extends Base {
     $main = createElement(
       'div',
       {
-        className: 'outline-chapters__main'
+        className: 'outline-navigator__main'
       },
       children
     )
@@ -187,8 +187,8 @@ class Chapters extends Base {
     $el = createElement(
       'nav',
       {
-        id: 'outline-chapters',
-        className: `outline-chapters ${HIDDEN}`
+        id: 'outline-navigator',
+        className: `outline-navigator ${HIDDEN}`
       },
       contents
     )
@@ -220,7 +220,7 @@ class Chapters extends Base {
     }
 
     if (this.isInside()) {
-      addClass($parentElement, 'outline-chapters-parent')
+      addClass($parentElement, 'outline-navigator-parent')
     }
 
     this._paintEdge()
@@ -237,7 +237,7 @@ class Chapters extends Base {
 
     if (this.isFixed()) {
       this.sticky()
-      setProperty('--outline-chapters-width', `${this.offsetWidth}px`)
+      setProperty('--outline-navigator-width', `${this.offsetWidth}px`)
     }
 
     if (isFunction(mounted)) {
@@ -258,7 +258,7 @@ class Chapters extends Base {
   }
 
   _paint(chapters) {
-    const HIDDEN = 'outline-chapters_hidden'
+    const HIDDEN = 'outline-navigator_hidden'
     const showCode = this.attr('showCode')
     const $el = this.$el
     const $list = this.$list
@@ -275,7 +275,7 @@ class Chapters extends Base {
   }
 
   refresh(chapters) {
-    const HIDDEN = 'outline-chapters_hidden'
+    const HIDDEN = 'outline-navigator_hidden'
     const $el = this.$el
 
     removeClass($el, HIDDEN)
@@ -287,7 +287,7 @@ class Chapters extends Base {
   _getPlaceholderOffset(index) {
     const $main = this.$main
     const $list = this.$list
-    const $anchor = $list.querySelector('.outline-chapters__anchor')
+    const $anchor = $list.querySelector('.outline-navigator__anchor')
     const animationCurrent = this.attr('animationCurrent')
     const mainPaddingTop = parseInt(getStyle($main, 'padding-top'), 10)
     const mainBorderTop = parseInt(getStyle($main, 'border-top-width'), 10)
@@ -333,7 +333,7 @@ class Chapters extends Base {
   positionPlaceholder(index) {
     const $list = this.$list
     const $placeholder = this.$placeholder
-    const $anchor = $list.querySelector('.outline-chapters__anchor')
+    const $anchor = $list.querySelector('.outline-navigator__anchor')
     const animationCurrent = this.attr('animationCurrent')
     const height = $anchor.offsetHeight
     let offsetTop = 0
@@ -352,8 +352,8 @@ class Chapters extends Base {
   highlight(id) {
     const $el = this.$el
     const animationCurrent = this.attr('animationCurrent')
-    const ACTIVE = 'outline-chapters_active'
-    const HIGHLIGHT = 'outline-chapters_highlight'
+    const ACTIVE = 'outline-navigator_active'
+    const HIGHLIGHT = 'outline-navigator_highlight'
     let $anchor = null
     let placeholderOffsetTop = 0
 
@@ -395,7 +395,7 @@ class Chapters extends Base {
 
   sticky() {
     const afterSticky = this.attr('afterSticky')
-    const FIXED = 'outline-chapters_fixed'
+    const FIXED = 'outline-navigator_fixed'
     const $el = this.$el
     const top = this.offsetTop
     const scrollTop = this.$scrollElement.scrollTop
@@ -439,8 +439,8 @@ class Chapters extends Base {
   }
 
   show() {
-    const FOLDED = 'outline-chapters_folded'
-    const HIDDEN = 'outline-chapters_hidden'
+    const FOLDED = 'outline-navigator_folded'
+    const HIDDEN = 'outline-navigator_hidden'
     const opened = this.attr('afterOpened')
     const count = this.count()
     const $el = this.$el
@@ -468,8 +468,8 @@ class Chapters extends Base {
   }
 
   hide() {
-    const FOLDED = 'outline-chapters_folded'
-    const HIDDEN = 'outline-chapters_hidden'
+    const FOLDED = 'outline-navigator_folded'
+    const HIDDEN = 'outline-navigator_hidden'
     const closed = this.attr('afterClosed')
     const count = this.count()
     const $el = this.$el
@@ -676,7 +676,7 @@ class Chapters extends Base {
       $element = window
     }
 
-    on($el, '.outline-chapters__anchor', 'click', this.onSelect, this, true)
+    on($el, '.outline-navigator__anchor', 'click', this.onSelect, this, true)
     at($element, 'scroll', this.onScroll, this, true)
     if (this.isSticky()) {
       at(window, 'resize', this.onResize, this, true)
@@ -718,7 +718,7 @@ class Chapters extends Base {
   }
 }
 
-Chapters.DEFAULTS = (() => {
+Navigator.DEFAULTS = (() => {
   const OPTIONS = {
     parentElement: '',
     scrollElement: '',
@@ -743,4 +743,4 @@ Chapters.DEFAULTS = (() => {
   return cloneDeep(OPTIONS)
 })()
 
-export default Chapters
+export default Navigator

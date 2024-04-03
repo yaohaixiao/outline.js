@@ -25,7 +25,7 @@ AnchorJS 是 outline.js 的创作灵感来源。既然 AnchorJS 可创建标题�
 - 支持 E6 模块，提供功能独立的 ES6 模块；
   * Anchors 模块：类似 AnchorJS 基础功能模块，自动分析段落层级
   * Drawer 模块：独立的侧滑窗口模块
-  * Chapters 模块：独立的导航菜单模块；
+  * Navigator 模块：独立的导航菜单模块；
   * Toolbar 模块：独立的固定定位的工具栏模块；
 - 拥有 AnchorJS 基础功能；
 - 支持中文和英文标题文字生成ID；
@@ -146,8 +146,7 @@ $ npm install -S @yaohaixiao/outline.js
     defaults.articleElement = '#article'
     defaults.homepage = './index.html'
     // Outline.DEFAULTS 是对象，应用类型的
-    // defaults 的属性操作，就是在修改 Outline.DEFAULTS
-    outline = new Outline(Outline.DEFAULTS)
+    outline = new Outline(defaults)
   })()
 </script>
 </body>
@@ -165,15 +164,16 @@ outline.js 既支持在 node.js 环境中以 CommonJS 模块调用，也支持 E
 const Outline = require('@yaohaixiao/outline.js')
 // 调用其他独立模块（如果需要）
 const Anchors = require('@yaohaixiao/outline.js/anchors.min.js')
-const Chapters = require('@yaohaixiao/outline.js/chapters.min.js')
+const Navigator = require('@yaohaixiao/outline.js/navigator.min.js')
 const Drawer = require('@yaohaixiao/outline.js/drawer.min.js')
 const Toolbar = require('@yaohaixiao/outline.js/toolbar.min.js')
+const Reader = require('@yaohaixiao/outline.js/reader.min.js')
 
 // 作为 ES6 模块使用
 import Outline from '@yaohaixiao/outline.js/outline'
 // 调用其他独立模块（如果需要）
 import Anchors from '@yaohaixiao/outline.js/anchors'
-import Chapters from '@yaohaixiao/outline.js/chapters'
+import Navigator from '@yaohaixiao/outline.js/navigator'
 import Drawer from '@yaohaixiao/outline.js/drawer'
 import Toolbar from '@yaohaixiao/outline.js/toolbar'
 
@@ -199,7 +199,7 @@ const outline = new Outline({
     // sticky - 导航菜单将以 sticky 模式布局（需要确保菜单插入位置支持 sticky 模式布局）
     // fixed - 导航菜单将以 fixed 模式布局，会自动监听滚动位置，模拟 sticky 布局
     // sticky 和 fixed 布局时，需要设置 parentElement
-    // 2.0.0 暂时不支持之前版本那种 inside 模式，不会自动在文章开始位置插入 chapters 导航菜单
+    // 2.0.0 暂时不支持之前版本那种 inside 模式，不会自动在文章开始位置插入 navigator 导航菜单
     position: 'sticky',
     // 导航菜单将要插入的位置（DOM 元素）
     // String 类型 - 选择器字符串
@@ -262,7 +262,7 @@ const outline = new Outline({
     },
     // DIYer的福利
     // 独立侧滑菜单时，customClass 会追加到 drawer 侧滑窗口组件
-    // 在文章中显示导航菜单时，customClass 会追加到 chapters 导航菜单
+    // 在文章中显示导航菜单时，customClass 会追加到 navigator 导航菜单
     customClass,
     // position: fixed，当导航菜单样式进入 fixed 定位后，触发的回调函数
     afterSticky: null,
@@ -272,7 +272,7 @@ const outline = new Outline({
     afterScroll: null,
     // 文档的标题文本过滤回调函数
     // API 文档中，正文的方法会添加参数等信息，例如：getChapters(headings, showCode, chapterTextFilter)
-    // 而在 chapters 导航菜单，我希望显示为 getChapters()，这时我们就可以借助 chapterTextFilter 回调函数
+    // 而在 navigator 导航菜单，我希望显示为 getChapters()，这时我们就可以借助 chapterTextFilter 回调函数
     // 对原始的文本进行过滤，返回我们期望的 getChapters() 文本
     chapterTextFilter: null
 });
@@ -469,7 +469,7 @@ Default: `''`
 
 ## Properties
 
-outline.js 重构后，对外放 4 个重要的属性：anchors、drawer、chapters 和 toolbar。它们都是独立的对象实例，提供了 outline.js 所有的能力（属性和方法）。
+outline.js 重构后，对外放 4 个重要的属性：anchors、drawer、navigator 和 toolbar。它们都是独立的对象实例，提供了 outline.js 所有的能力（属性和方法）。
 
 
 ### DEFAULTS
@@ -524,11 +524,11 @@ Type: `Objects`
 Anchors 模块：类似 AnchorJS 基础功能模块，自动分析段落层级。
 
 
-### chapters
+### navigator
 
 Type: `Objects`
 
-Chapters 模块：独立的导航菜单模块。
+Navigator 模块：独立的导航菜单模块。
 
 
 ### drawer
@@ -605,13 +605,13 @@ Outline 对象，以便实现链式调用。
 
 ### count()
 
-返回 outline.js 分析后的 chapters 数据数量。
+返回 outline.js 分析后的 chapters 段落章节数据数量。
 
 #### Returns
 
 Type: `Number`
 
-chapters 数据数量。
+chapters 段落章数据数量。
 
 
 ### toTop()

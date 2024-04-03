@@ -2,11 +2,11 @@
 @import 'colors';
 @import 'ellipsis';
 
-.outline-chapters {
+.outline-navigator {
   position: relative;
   z-index: 1;
   margin: 0;
-  width: var(--outline-chapters-width);
+  width: var(--outline-navigator-width);
   overflow: auto;
 
   &-parent {
@@ -93,7 +93,7 @@
   }
 
   &_highlight {
-    &.outline-chapters__anchor {
+    &.outline-navigator__anchor {
       &:link,
       &:visited,
       &:hover {
@@ -112,7 +112,7 @@
     top: 0;
     overflow: hidden;
 
-    .outline-chapters {
+    .outline-navigator {
       &__title,
       &__main {
         box-sizing: border-box;

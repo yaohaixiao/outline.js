@@ -4,6 +4,7 @@
 import stop from '../../utils/event/stop'
 
 describe('stopEvent() 方法', () => {
+  const mockResponse = jest.fn()
   Object.defineProperty(window, 'location', {
     value: {
       hash: {
@@ -22,7 +23,6 @@ describe('stopEvent() 方法', () => {
     '</div>'
 
   let id = ''
-  const mockResponse = jest.fn()
   const $nav = document.querySelector('#nav')
   const showLog = function (evt) {
     const $target = evt.target

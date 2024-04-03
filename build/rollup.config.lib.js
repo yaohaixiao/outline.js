@@ -35,10 +35,10 @@ export default [
     plugins: PLUGIN_CONFIG
   },
   {
-    input: './chapters.js',
+    input: './navigator.js',
     output: {
-      name: 'Chapters',
-      file: './chapters.min.js',
+      name: 'Navigator',
+      file: './navigator.min.js',
       format: 'umd',
       sourcemap: true
     },

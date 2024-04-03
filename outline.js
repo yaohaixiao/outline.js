@@ -1,6 +1,5 @@
 import later from './utils/lang/later'
 import cloneDeep from './utils/lang/cloneDeep'
-import toTree from './utils/lang/toTree'
 import isFunction from './utils/types/isFunction'
 import isString from './utils/types/isString'
 import isElement from './utils/types/isElement'
@@ -8,14 +7,14 @@ import addClass from './utils/dom/addClass'
 import scrollTo from './utils/dom/scrollTo'
 import _getScrollElement from './utils/dom/_getScrollElement'
 
+import getChapters from './getChapters'
+
 import Base from './base'
 import Anchors from './anchors'
 import Drawer from './drawer'
-import Chapters from './chapters'
+import Navigator from './navigator'
 import Reader from './reader'
 import Toolbar from './toolbar'
-
-import getChapters from './getChapters'
 
 class Outline extends Base {
   constructor(options) {
@@ -38,7 +37,7 @@ class Outline extends Base {
 
     this.anchors = null
     this.drawer = null
-    this.chapters = null
+    this.navigator = null
     this.reader = null
     this.toolbar = null
 
@@ -70,21 +69,18 @@ class Outline extends Base {
   }
 
   getChapters(isTreeStructured = false) {
-    const $article = this.$article
+    const articleElement = this.$article
     const selector = this.attr('selector')
     const showCode = this.attr('showCode') || true
     const chapterTextFilter = this.attr('chapterTextFilter')
-    let $headings = []
-    let chapters = []
 
-    if (!$article) {
-      return chapters
-    }
-
-    $headings = [...$article.querySelectorAll(selector)]
-    chapters = getChapters($headings, showCode, chapterTextFilter)
-
-    return isTreeStructured ? toTree(chapters, 'id', 'pid') : chapters
+    return getChapters({
+      articleElement,
+      selector,
+      showCode,
+      chapterTextFilter,
+      isTreeStructured
+    })
   }
 
   count() {
@@ -95,7 +91,7 @@ class Outline extends Base {
     const hasToolbar = this.attr('hasToolbar')
     const $scrollElement = this.$scrollElement
 
-    this._renderReader()._renderAnchors()._renderChapters()._renderToolbar()
+    this._renderReader()._renderAnchors()._renderNavigator()._renderToolbar()
 
     if ($scrollElement && hasToolbar) {
       this._updateToolbar({
@@ -114,7 +110,7 @@ class Outline extends Base {
     const chapters = this.getChapters()
 
     this.anchors.refresh(chapters)
-    this.chapters.refresh(chapters)
+    this.navigator.refresh(chapters)
     this.reader.refresh()
 
     return this
@@ -158,7 +154,7 @@ class Outline extends Base {
     return this
   }
 
-  _renderChapters() {
+  _renderNavigator() {
     const title = this.attr('title')
     const stickyHeight = this.attr('stickyHeight')
     const scrollElement = this.attr('scrollElement')
@@ -174,13 +170,13 @@ class Outline extends Base {
     const afterScroll = this.attr('afterScroll')
     const count = this.count()
     let parentElement = this.attr('parentElement')
-    let CHAPTERS_OPTIONS
+    let OPTIONS
 
     if (count < 1) {
       return this
     }
 
-    CHAPTERS_OPTIONS = {
+    OPTIONS = {
       scrollElement,
       showCode,
       animationCurrent,
@@ -213,11 +209,11 @@ class Outline extends Base {
         this.drawer.open()
       }
     } else {
-      CHAPTERS_OPTIONS.customClass = customClass
+      OPTIONS.customClass = customClass
     }
 
-    CHAPTERS_OPTIONS.parentElement = parentElement
-    this.chapters = new Chapters(CHAPTERS_OPTIONS)
+    OPTIONS.parentElement = parentElement
+    this.navigator = new Navigator(OPTIONS)
 
     return this
   }
@@ -367,15 +363,15 @@ class Outline extends Base {
   toTop() {
     const afterScroll = this.attr('afterScroll')
     const toolbar = this.toolbar
-    const chapters = this.chapters
+    const navigator = this.navigator
     const count = this.count()
     const afterTop = () => {
       toolbar.hide('up')
       toolbar.show('down')
 
       if (count > 0) {
-        chapters.highlight(0)
-        chapters.playing = false
+        navigator.highlight(0)
+        navigator.playing = false
       }
 
       if (isFunction(afterScroll)) {
@@ -384,7 +380,7 @@ class Outline extends Base {
     }
 
     if (count > 0) {
-      chapters.playing = true
+      navigator.playing = true
     }
     this.scrollTo(0, afterTop)
 
@@ -413,7 +409,7 @@ class Outline extends Base {
     const afterScroll = this.attr('afterScroll')
     const $scrollElement = this.$scrollElement
     const toolbar = this.toolbar
-    const chapters = this.chapters
+    const navigator = this.navigator
     const count = this.count()
     const top = Math.floor(
       $scrollElement.scrollHeight - $scrollElement.clientHeight
@@ -423,8 +419,8 @@ class Outline extends Base {
       toolbar.show('up')
 
       if (count > 0) {
-        chapters.highlight(count - 1)
-        chapters.playing = false
+        navigator.highlight(count - 1)
+        navigator.playing = false
       }
 
       if (isFunction(afterScroll)) {
@@ -433,7 +429,7 @@ class Outline extends Base {
     }
 
     if (count > 0) {
-      chapters.playing = true
+      navigator.playing = true
     }
 
     this.scrollTo(top, afterDown)
@@ -488,7 +484,7 @@ class Outline extends Base {
     const position = this.attr('position')
     const toolbar = this.toolbar
     const drawer = this.drawer
-    const chapters = this.chapters
+    const navigator = this.navigator
     const count = this.count()
 
     if (count < 1) {
@@ -496,7 +492,7 @@ class Outline extends Base {
     }
 
     if (position !== 'relative') {
-      chapters.toggle()
+      navigator.toggle()
       toolbar.highlight('toggle')
     } else {
       toolbar.toggle()
@@ -518,7 +514,7 @@ class Outline extends Base {
   _destroy() {
     const count = this.count()
     let anchors = this.anchors
-    let chapters = this.chapters
+    let navigator = this.navigator
     let drawer = this.drawer
     let reader = this.reader
     let toolbar = this.toolbar
@@ -530,10 +526,10 @@ class Outline extends Base {
       reader.destroy()
     }
 
-    if (count > 0 && chapters) {
-      isOutside = chapters.isOutside()
+    if (count > 0 && navigator) {
+      isOutside = navigator.isOutside()
 
-      chapters.destroy()
+      navigator.destroy()
 
       if (isOutside && drawer) {
         drawer.destroy()

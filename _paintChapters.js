@@ -15,7 +15,7 @@ const _paintChapters = ($list, chapters, showCode = false) => {
       const $text = createElement(
         'span',
         {
-          className: 'outline-chapters__text'
+          className: 'outline-navigator__text'
         },
         chapter.text
       )
@@ -29,7 +29,7 @@ const _paintChapters = ($list, chapters, showCode = false) => {
         $code = createElement(
           'span',
           {
-            className: 'outline-chapters__code',
+            className: 'outline-navigator__code',
             'data-id': id
           },
           chapter.code
@@ -44,7 +44,7 @@ const _paintChapters = ($list, chapters, showCode = false) => {
         'a',
         {
           id: `chapter__anchor-${id}`,
-          className: 'outline-chapters__anchor',
+          className: 'outline-navigator__anchor',
           href: '#' + rel,
           rel: rel,
           'data-id': id
@@ -56,7 +56,7 @@ const _paintChapters = ($list, chapters, showCode = false) => {
         'li',
         {
           id: `chapter-${id}`,
-          className: 'outline-chapters__item',
+          className: 'outline-navigator__item',
           'data-id': id
         },
         $link
@@ -73,7 +73,7 @@ const _paintChapters = ($list, chapters, showCode = false) => {
             'ul',
             {
               id: 'subject-' + pid,
-              className: 'outline-chapters__subject'
+              className: 'outline-navigator__subject'
             },
             $li
           )

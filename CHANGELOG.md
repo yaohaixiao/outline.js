@@ -44,7 +44,7 @@
 
 ### Bug Fixes
 
-* 修复 chapters.js 模块中 removeListeners() 方法中移除 window.resize 事件的错误逻辑 ([d1f4eb7](https://github.com/yaohaixiao/outline.js/commit/d1f4eb7ac6384a4a3ea525861d480a2b2388475c))
+* 修复 navigator.js 模块中 removeListeners() 方法中移除 window.resize 事件的错误逻辑 ([d1f4eb7](https://github.com/yaohaixiao/outline.js/commit/d1f4eb7ac6384a4a3ea525861d480a2b2388475c))
 * 修复问题-添加缺失的 destroyed 事件； ([0afd149](https://github.com/yaohaixiao/outline.js/commit/0afd149fad1a19a0674ccc201f97b59ed0eb892c))
 
 
@@ -108,7 +108,7 @@
 
 ### Bug Fixes
 
-* 修复文章无标题标签 anchors.js 和 chapters.js 子组件事件绑定的逻辑错误导致的报错； ([c853bb1](https://github.com/yaohaixiao/outline.js/commit/c853bb152a2263125d762732c1a465897c48b826))
+* 修复文章无标题标签 anchors.js 和 navigator.js 子组件事件绑定的逻辑错误导致的报错； ([c853bb1](https://github.com/yaohaixiao/outline.js/commit/c853bb152a2263125d762732c1a465897c48b826))
 
 
 
@@ -686,4 +686,4 @@
 ### Features
 
 * 完全重构，发布 3.0.0 版本 ([9856338](https://github.com/yaohaixiao/outline.js/commit/9856338b9a7afe3effb6adc98b40a7546d7c2c41))
-* 生成独立模块：anchors.min.js、chapters.min.js、drawer.min.js 和 toolbar.min.js ([47ab76b](https://github.com/yaohaixiao/outline.js/commit/47ab76b2824d2df7de1e780970c76c67173cbe25))
+* 生成独立模块：anchors.min.js、navigator.min.js、drawer.min.js 和 toolbar.min.js ([47ab76b](https://github.com/yaohaixiao/outline.js/commit/47ab76b2824d2df7de1e780970c76c67173cbe25))
