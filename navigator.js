@@ -379,16 +379,17 @@ class Navigator extends Base {
 
     if (animationCurrent) {
       this.positionPlaceholder(this.active)
-
-      later(() => {
-        if (!inBounding(this.$active, this.$parentElement)) {
-          placeholderOffsetTop = this._getPlaceholderOffset(this.active)
-          scrollTo(this.$main, placeholderOffsetTop)
-        }
-      })
     } else {
       addClass(this.$active, HIGHLIGHT)
     }
+
+    later(() => {
+      if (!inBounding(this.$active, this.$main)) {
+        placeholderOffsetTop = this._getPlaceholderOffset(this.active)
+        console.log('placeholderOffsetTop', placeholderOffsetTop)
+        scrollTo(this.$main, placeholderOffsetTop)
+      }
+    })
 
     return this
   }

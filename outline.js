@@ -360,33 +360,6 @@ class Outline extends Base {
     return this
   }
 
-  toTop() {
-    const afterScroll = this.attr('afterScroll')
-    const toolbar = this.toolbar
-    const navigator = this.navigator
-    const count = this.count()
-    const afterTop = () => {
-      toolbar.hide('up')
-      toolbar.show('down')
-
-      if (count > 0) {
-        navigator.highlight(0)
-        navigator.playing = false
-      }
-
-      if (isFunction(afterScroll)) {
-        afterScroll.call(toolbar, 'up')
-      }
-    }
-
-    if (count > 0) {
-      navigator.playing = true
-    }
-    this.scrollTo(0, afterTop)
-
-    return this
-  }
-
   _updateToolbar({ top, min, max }) {
     const toolbar = this.toolbar
     const current = Math.ceil(top)
@@ -405,6 +378,34 @@ class Outline extends Base {
     return this
   }
 
+  toTop() {
+    const afterScroll = this.attr('afterScroll')
+    const toolbar = this.toolbar
+    const navigator = this.navigator
+    const count = this.count()
+    const afterTop = () => {
+      toolbar.hide('up')
+      toolbar.show('down')
+
+      if (count > 0) {
+        navigator.highlight(0)
+        navigator.playing = false
+        scrollTo(navigator.$main, 0)
+      }
+
+      if (isFunction(afterScroll)) {
+        afterScroll.call(toolbar, 'up')
+      }
+    }
+
+    if (count > 0) {
+      navigator.playing = true
+    }
+    this.scrollTo(0, afterTop)
+
+    return this
+  }
+
   toBottom() {
     const afterScroll = this.attr('afterScroll')
     const $scrollElement = this.$scrollElement
@@ -415,11 +416,13 @@ class Outline extends Base {
       $scrollElement.scrollHeight - $scrollElement.clientHeight
     )
     const afterDown = () => {
+      const $main = navigator.$main
       toolbar.hide('down')
       toolbar.show('up')
 
       if (count > 0) {
         navigator.highlight(count - 1)
+        scrollTo($main, $main.scrollHeight)
         navigator.playing = false
       }
 
