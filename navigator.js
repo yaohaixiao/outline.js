@@ -288,7 +288,6 @@ class Navigator extends Base {
     const $main = this.$main
     const $list = this.$list
     const $anchor = $list.querySelector('.outline-navigator__anchor')
-    const animationCurrent = this.attr('animationCurrent')
     const mainPaddingTop = parseInt(getStyle($main, 'padding-top'), 10)
     const mainBorderTop = parseInt(getStyle($main, 'border-top-width'), 10)
     const placeholderPaddingTop = parseInt(getStyle($list, 'padding-top'), 10)
@@ -300,10 +299,6 @@ class Navigator extends Base {
     let height = $anchor.offsetHeight
     let offsetTop = 0
     let top
-
-    if (!animationCurrent) {
-      return this
-    }
 
     if (mainPaddingTop) {
       offsetTop += mainPaddingTop
@@ -384,6 +379,7 @@ class Navigator extends Base {
     }
 
     later(() => {
+      console.log(!inBounding(this.$active, this.$main))
       if (!inBounding(this.$active, this.$main)) {
         placeholderOffsetTop = this._getPlaceholderOffset(this.active)
         console.log('placeholderOffsetTop', placeholderOffsetTop)
