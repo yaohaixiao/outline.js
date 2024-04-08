@@ -83,7 +83,9 @@ class Drawer extends Base {
     const hasOffset = this.attr('hasOffset')
     const hasPadding = this.attr('hasPadding')
     const autoHeight = this.attr('autoHeight')
+    const overflow = this.attr('overflow')
     const customClass = this.attr('customClass')
+    let mainClassName = 'outline-drawer__main'
     let $el
     let $modal
     let $header
@@ -125,8 +127,12 @@ class Drawer extends Base {
     )
     this.$header = $header
 
+    if (overflow === 'hidden') {
+      mainClassName += ' overflow-hidden'
+    }
+
     $main = createElement('div', {
-      className: 'outline-drawer__main'
+      className: mainClassName
     })
     this.$main = $main
 
@@ -344,6 +350,7 @@ Drawer.DEFAULTS = (() => {
     hasPadding: true,
     autoHeight: true,
     closeOnClickModal: true,
+    overflow: 'auto',
     created: null,
     mounted: null,
     afterClosed: null,

@@ -347,8 +347,10 @@ class Navigator extends Base {
   highlight(id) {
     const $el = this.$el
     const animationCurrent = this.attr('animationCurrent')
+    const position = this.attr('position')
     const ACTIVE = 'outline-navigator_active'
     const HIGHLIGHT = 'outline-navigator_highlight'
+    let $parent = position === 'relative' ? this.$parentElement : this.$main
     let $anchor = null
     let placeholderOffsetTop = 0
 
@@ -379,11 +381,9 @@ class Navigator extends Base {
     }
 
     later(() => {
-      console.log(!inBounding(this.$active, this.$main))
-      if (!inBounding(this.$active, this.$main)) {
+      if (!inBounding(this.$active, $parent)) {
         placeholderOffsetTop = this._getPlaceholderOffset(this.active)
-        console.log('placeholderOffsetTop', placeholderOffsetTop)
-        scrollTo(this.$main, placeholderOffsetTop)
+        scrollTo($parent, placeholderOffsetTop)
       }
     })
 
