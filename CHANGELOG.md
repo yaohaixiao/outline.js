@@ -1,3 +1,19 @@
+## [3.35.2](https://github.com/yaohaixiao/outline.js/compare/3.35.1...3.35.2) (2024-04-08)
+
+
+### Bug Fixes
+
+* 修复 position: 'relative' 定位，导航菜单与文档滚动位置无法同步的问题； ([69ac8bf](https://github.com/yaohaixiao/outline.js/commit/69ac8bfa249156c60dee9623b6f55e533649174f))
+* 修复仅高亮定位当前标题时，文章滚动到导航菜单在 viewport 中无法看到的章节，无法自动定位的问题； ([84a032a](https://github.com/yaohaixiao/outline.js/commit/84a032ae9ffa18f269fb044764c4b0c559ed31e0))
+
+
+### Features
+
+* 调整 anchors.js 模块，调整绘制逻辑 ([307ee81](https://github.com/yaohaixiao/outline.js/commit/307ee817b7cb4bd020357ad722121eed49d557fc))
+* 调整模块名称，将 chapters.js 调整为 navigator.js，并更新样式和 API 文档； ([fbd5ee8](https://github.com/yaohaixiao/outline.js/commit/fbd5ee88e142b6d3765643cfd818f5b4a5b22c7f))
+
+
+
 ## [3.35.1](https://github.com/yaohaixiao/outline.js/compare/3.35.0...3.35.1) (2024-04-01)
 
 
