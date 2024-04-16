@@ -1,7 +1,6 @@
 # outline.js
 
 [![npm version](https://img.shields.io/npm/v/@yaohaixiao/outline.js)](https://www.npmjs.com/package/@yaohaixiao/outline.js)
-![Gzip size](http://img.badgesize.io/https://cdn.jsdelivr.net/gh/yaohaixiao/outline.js/outline.min.js?compression=gzip&label=gzip%20size)
 [![prettier code style](https://img.shields.io/badge/code_style-prettier-07b759.svg)](https://prettier.io)
 [![Coverage](https://codecov.io/gh/yaohaixiao/outline.js/branch/master/graph/badge.svg)](https://codecov.io/gh/yaohaixiao/outline.js)
 [![npm downloads](https://img.shields.io/npm/dt/@yaohaixiao/outline.js)](https://npmcharts.com/compare/@yaohaixiao/outline.js?minimal=true)
