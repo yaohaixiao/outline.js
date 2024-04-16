@@ -37,6 +37,12 @@
     overflow: hidden;
   }
 
+  &__article {
+    .outline-reader__progress {
+      display: none;
+    }
+  }
+
   &_hidden {
     display: none;
 
@@ -77,9 +83,7 @@
 @media (max-width: 480px) {
   .outline {
     &-reader {
-      margin: 48px 0;
-      height: calc(100% - 96px);
-      overflow-x: hidden;
+      overflow: hidden;
 
       .outline-toolbar {
         display: flex;
@@ -106,20 +110,24 @@
       }
 
       &--reading {
-        padding: 0 1.25em;
+        padding: 0;
         background-color: @white;
         box-sizing: border-box;
       }
 
       &__paper {
+        position: relative;
+        z-index: 1;
         margin: 0;
         padding: 0;
+        height: 100%;
         box-shadow: none;
+        overflow: hidden;
       }
 
       &__title {
         .ellipsis(1);
-        position: fixed;
+        position: absolute;
         z-index: 3;
         top: 0;
         left: 0;
@@ -132,6 +140,19 @@
         font-weight: 400;
         background-color: @white;
         overflow: hidden;
+      }
+
+      &__article {
+        margin: 48px 0;
+        height: calc(100% - 96px);
+        padding: 0 1.25em;
+        scroll-timeline-name: --ProgressTimeline;
+        overflow: scroll;
+
+        .outline-reader__progress {
+          position: absolute;
+          display: block;
+        }
       }
     }
   }

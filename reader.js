@@ -156,10 +156,14 @@ class Reader extends Base {
     )
     this.$title = $title
 
-    $article = createElement('article', {
-      id: 'outline-reader__article',
-      className: 'outline-reader__article'
-    })
+    $article = createElement(
+      'article',
+      {
+        id: 'outline-reader__article',
+        className: 'outline-reader__article'
+      },
+      [$progress.cloneNode()]
+    )
     this.$article = $article
 
     $paper = createElement(
