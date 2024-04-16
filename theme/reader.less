@@ -1,21 +1,44 @@
-@import 'colors';
-@import 'mixins';
+@import './colors';
+@import './font';
+@import './mixins';
 
 .outline-reader {
-  &__close {
-    display: none;
+  &__progress {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 3;
+    height: 4px;
+    width: 100%;
+    background-color: @primary_color;
+    scale: 0 1;
+    transform-origin: left;
+    animation: outline-reader-progress linear;
+    animation-timeline: --ProgressTimeline;
+  }
+
+  &__paper {
+    .shadow_dark_regular();
+    margin: 2em auto;
+    max-width: 1200px;
+    padding: 3.2em;
+    box-sizing: border-box;
+    background-color: @white;
+    overflow: hidden;
   }
 
   &__title {
-    margin: 0.67em 0 !important;
-    text-align: center !important;
-    font-family: 'Microsoft YaHei UI', Arial, sans-serif;
+    margin: 0.67em 0;
+    text-align: center;
+    font-family: @font_text_family;
     font-weight: normal;
+    line-height: 1.3em;
+    font-size: 4.2em;
     overflow: hidden;
   }
 
   &_hidden {
-    display: none !important;
+    display: none;
 
     &.outline-reader_sibling {
       display: none !important;
@@ -39,59 +62,9 @@
     margin: 0;
     box-sizing: border-box;
     padding: 3em 4em;
-    background-color: @white;
+    background-color: @bg_color;
     scroll-timeline-name: --ProgressTimeline;
     overflow: scroll;
-
-    .outline-reader {
-      &__progress {
-        position: fixed;
-        top: 0;
-        left: 0;
-        z-index: 3;
-        height: 4px;
-        width: 100%;
-        background-color: @primary_color;
-        scale: 0 1;
-        transform-origin: left;
-        animation: outline-reader-progress linear;
-        animation-timeline: --ProgressTimeline;
-      }
-
-      &__close {
-        .shadow_light_regular();
-        display: block;
-        position: fixed;
-        z-index: 3;
-        top: 50%;
-        right: 22px;
-        margin: 0;
-        width: 36px;
-        height: 36px;
-        border-radius: 18px;
-        border: 1px solid @primary_border_color;
-        line-height: 30px;
-        text-align: center;
-        transform: translateY(-50%);
-        cursor: pointer;
-        box-shadow: 0 0 8px @secondary_border_color;
-        color: @fourth_text_color;
-        background-color: @white;
-        overflow: hidden;
-
-        &:hover {
-          background-color: @success_color;
-          color: @white;
-        }
-      }
-
-      h1,
-      &__title {
-        margin: 0.67em 0 !important;
-        line-height: 1.3em;
-        font-size: 3.5em;
-      }
-    }
   }
 }
 
@@ -105,15 +78,17 @@
   .outline-reader {
     &--reading {
       padding: 0 1.25em;
+      background-color: @white;
     }
 
-    &__close {
-      right: 12px !important;
-      opacity: 0.8;
+    &__paper {
+      margin: 0;
+      padding: 0;
+      box-shadow: none;
     }
 
     &__title {
-      font-size: 2em;
+      font-size: 2.2em;
     }
   }
 }
@@ -134,32 +109,26 @@
       display: block !important;
       overflow: hidden;
 
-      h1,
       &__title {
         margin: 13.4pt 0 28pt !important;
         text-align: center !important;
-        font-size: 20pt !important;
+        font-size: 32pt !important;
       }
 
-      &.outline-reader {
-        &--reading {
-          position: relative !important;
-          height: auto !important;
-          padding: 0 !important;
-          overflow: hidden !important;
-        }
+      &--reading {
+        position: relative !important;
+        height: auto !important;
+        padding: 0 !important;
+        background-color: @white;
+        overflow: hidden !important;
+      }
 
-        h1,
-        &__title {
-          margin: 13.4pt 0 28pt !important;
-          text-align: center !important;
-          font-size: 20pt !important;
-        }
+      &__progress {
+        display: none !important;
+      }
 
-        &__close,
-        &__progress {
-          display: none !important;
-        }
+      &__paper {
+        box-shadow: none;
       }
 
       pre {

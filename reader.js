@@ -35,6 +35,7 @@ class Reader extends Base {
     this.reading = false
 
     this.$target = null
+    this.$wrapper = null
     this.$paper = null
     this.$title = null
     this.$article = null
@@ -102,11 +103,11 @@ class Reader extends Base {
   }
 
   _remove() {
-    const $paper = this.$paper
+    const $wrapper = this.$wrapper
     const toolbar = this.toolbar
 
-    if ($paper) {
-      document.body.removeChild($paper)
+    if ($wrapper) {
+      document.body.removeChild($wrapper)
     }
 
     if (toolbar) {
@@ -124,11 +125,17 @@ class Reader extends Base {
   _renderEdge() {
     const $target = this.$target
     let title = this.attr('title')
+    let $wrapper
     let $paper
     let $title
     let $article
     let $progress
     let $sibling
+
+    $progress = createElement('div', {
+      className: 'outline-reader__progress'
+    })
+    this.$progress = $progress
 
     $title = $target.querySelector('h1')
 
@@ -155,10 +162,15 @@ class Reader extends Base {
     })
     this.$article = $article
 
-    $progress = createElement('div', {
-      className: 'outline-reader__progress'
-    })
-    this.$progress = $progress
+    $paper = createElement(
+      'div',
+      {
+        id: 'outline-reader__paper',
+        className: 'outline-reader__paper'
+      },
+      [$title, $article]
+    )
+    this.$paper = $paper
 
     const buttons = []
 
@@ -202,24 +214,24 @@ class Reader extends Base {
       buttons
     })
 
-    $paper = createElement(
+    $wrapper = createElement(
       'section',
       {
         id: 'outline-reader',
         className: 'outline-reader outline-reader_hidden'
       },
-      [$progress, $title, $article, this.toolbar.$el]
+      [$progress, $paper, this.toolbar.$el]
     )
-    this.$paper = $paper
+    this.$wrapper = $wrapper
 
-    document.body.appendChild($paper)
+    document.body.appendChild($wrapper)
 
     later(() => {
       // 设置邻居节点的打印样式
-      $sibling = $paper.previousElementSibling
+      $sibling = $wrapper.previousElementSibling
       _updateSiblingElements($sibling, true)
 
-      $sibling = $paper.nextElementSibling
+      $sibling = $wrapper.nextElementSibling
       _updateSiblingElements($sibling)
     })
 
@@ -230,19 +242,19 @@ class Reader extends Base {
     const READER = 'outline-reader'
     const READING = `${READER}--reading`
     const HIDDEN = `${READER}_hidden`
-    const $paper = this.$paper
+    const $wrapper = this.$wrapper
     const $siblings = document.querySelectorAll('.outline-reader_sibling')
     const enterReadingTip = this.attr('enterReadingTip') || ENTER_READING_TIP
 
-    if (this.reading || !$paper) {
+    if (this.reading || !$wrapper) {
       return this
     }
 
     $siblings.forEach(($sibling) => {
       addClass($sibling, HIDDEN)
     })
-    addClass($paper, READING)
-    removeClass($paper, HIDDEN)
+    addClass($wrapper, READING)
+    removeClass($wrapper, HIDDEN)
     this.toolbar.show()
     this.reading = true
 
@@ -260,15 +272,15 @@ class Reader extends Base {
     const READER = 'outline-reader'
     const READING = `${READER}--reading`
     const HIDDEN = `${READER}_hidden`
-    const $paper = this.$paper
+    const $wrapper = this.$wrapper
     const $siblings = document.querySelectorAll('.outline-reader_sibling')
 
-    if (!this.reading || !$paper) {
+    if (!this.reading || !$wrapper) {
       return this
     }
 
-    addClass($paper, HIDDEN)
-    removeClass($paper, READING)
+    addClass($wrapper, HIDDEN)
+    removeClass($wrapper, READING)
     $siblings.forEach(($sibling) => {
       removeClass($sibling, HIDDEN)
     })
@@ -320,9 +332,9 @@ class Reader extends Base {
   }
 
   destroy() {
-    const $paper = this.$paper
+    const $wrapper = this.$wrapper
 
-    if (!$paper) {
+    if (!$wrapper) {
       return this
     }
 
@@ -353,9 +365,9 @@ class Reader extends Base {
   }
 
   addListeners() {
-    const $paper = this.$paper
+    const $wrapper = this.$wrapper
 
-    if (!$paper) {
+    if (!$wrapper) {
       return this
     }
 
@@ -368,9 +380,9 @@ class Reader extends Base {
   }
 
   removeListeners() {
-    const $paper = this.$paper
+    const $wrapper = this.$wrapper
 
-    if (!$paper) {
+    if (!$wrapper) {
       return this
     }
 

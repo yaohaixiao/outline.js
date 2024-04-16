@@ -20,17 +20,12 @@ const inBounding = (child, parent) => {
   parentRect = parent.getBoundingClientRect()
   childRect = child.getBoundingClientRect()
 
-  console.log('parentRect', parentRect)
-  console.log('childRect', childRect)
-
   isInBounding = !!(
     childRect.top >= parentRect.top &&
     childRect.right <= parentRect.right &&
     childRect.bottom <= parentRect.bottom &&
     childRect.left >= parentRect.left
   )
-
-  console.log('isInBounding', isInBounding)
 
   return isInBounding
 }

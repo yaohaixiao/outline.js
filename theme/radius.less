@@ -1,0 +1,43 @@
+/**
+ * radius.less - 圆角设置 mixinx 函数
+ * =============================================================
+ * Created By: Yaohaixiao
+ * Update: 2024.4.16
+ */
+
+/* ====== 圆角样式设置函数 ====== */
+.radius(@num: 2px) {
+  border-radius: @num;
+}
+
+.radius_none() {
+  .radius(0);
+}
+
+.radius_mini() {
+  .radius(2px);
+}
+
+.radius_small() {
+  .radius(3px);
+}
+
+.radius_regular() {
+  .radius(4px);
+}
+
+.radius_medium() {
+  .radius(5px);
+}
+
+.radius_large() {
+  .radius(10px);
+}
+
+.radius_huge() {
+  .radius(16px);
+}
+
+.radius_round() {
+  .radius(30px);
+}
