@@ -146,11 +146,14 @@
         margin: 48px 0;
         height: calc(100% - 96px);
         padding: 0 1.25em;
-        scroll-timeline-name: --ProgressTimeline;
-        overflow: scroll;
+        scroll-timeline-name: --MobileProgressTimeline;
+        overflow-x: hidden;
+        overflow-y: scroll;
 
         .outline-reader__progress {
           z-index: 4;
+          animation: outline-reader-progress linear;
+          animation-timeline: --MobileProgressTimeline;
           display: block;
         }
       }
