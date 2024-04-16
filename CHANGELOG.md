@@ -1,3 +1,12 @@
+## [3.36.1](https://github.com/yaohaixiao/outline.js/compare/3.36.0...3.36.1) (2024-04-16)
+
+
+### Bug Fixes
+
+* 修复阅读模式在移动设备的显示问题； ([9c6ccb6](https://github.com/yaohaixiao/outline.js/commit/9c6ccb68ee38c37c97b1776a064bc67adc5d45a6))
+
+
+
 # [3.36.0](https://github.com/yaohaixiao/outline.js/compare/3.35.2...3.36.0) (2024-04-16)
 
 
