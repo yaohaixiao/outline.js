@@ -1,3 +1,13 @@
+# [3.36.0](https://github.com/yaohaixiao/outline.js/compare/3.35.2...3.36.0) (2024-04-16)
+
+
+### Features
+
+* 调整阅读模式的样式，并优化样式代码； ([70da824](https://github.com/yaohaixiao/outline.js/commit/70da8241a677ea99716f96c7435b051f414de632))
+* 优化阅读模式在移动设备中的显示效果； ([3de1e90](https://github.com/yaohaixiao/outline.js/commit/3de1e9026660a9923709b9eb2c1e72854da3550c))
+
+
+
 ## [3.35.2](https://github.com/yaohaixiao/outline.js/compare/3.35.1...3.35.2) (2024-04-08)
 
 
