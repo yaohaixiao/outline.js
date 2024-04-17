@@ -1,3 +1,13 @@
+## [3.37.0](https://github.com/yaohaixiao/outline.js/compare/3.36.1...3.36.2) (2024-04-17)
+
+
+### Features
+
+* 更新阅读模式工具栏图标样式和排列顺序 ([172810f](https://github.com/yaohaixiao/outline.js/commit/172810fe1e46ccdee1c249fd18cb2b8a6ffd2110))
+* 针对部分支持 ScrollTimeline 的移动设备添加阅读模式的阅读滚动进度条动画 ([e3e6375](https://github.com/yaohaixiao/outline.js/commit/e3e63751b6c91ee02fd0d9fe70a03a5112687010))
+
+
+
 ## [3.36.1](https://github.com/yaohaixiao/outline.js/compare/3.36.0...3.36.1) (2024-04-16)
 
 
