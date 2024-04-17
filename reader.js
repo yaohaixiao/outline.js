@@ -149,7 +149,7 @@ class Reader extends Base {
   _renderEdge() {
     const $target = this.$target
     const mobile = isMobile()
-    const size = mobile ? 24 : 20
+    const size = mobile ? 26 : 20
     let title = this.attr('title')
     let $wrapper
     let $paper
