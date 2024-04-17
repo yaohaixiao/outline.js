@@ -16,6 +16,7 @@ import Toolbar from './toolbar'
 import Speech from './speech'
 
 import _updateSiblingElements from './_updateSiblingElements'
+import isMobile from './utils/dom/isMobile'
 
 const ENTER_READING_TIP = '进入阅读模式，按 ESC 键可退出阅读模式'
 
@@ -122,6 +123,29 @@ class Reader extends Base {
     return this
   }
 
+  _animateTimeline() {
+    // eslint-disable-next-line
+    if (!window.ScrollTimeline && !isMobile()) {
+      return this
+    }
+
+    this.$progress.animate(
+      {
+        // from
+        scale: ['0 1', '1 1']
+      },
+      {
+        // eslint-disable-next-line
+        timeline: new ScrollTimeline({
+          source: this.$article,
+          axis: 'block'
+        })
+      }
+    )
+
+    return this
+  }
+
   _renderEdge() {
     const $target = this.$target
     let title = this.attr('title')
@@ -162,7 +186,7 @@ class Reader extends Base {
         id: 'outline-reader__article',
         className: 'outline-reader__article'
       },
-      [$progress.cloneNode()]
+      isMobile() ? [] : [$progress.cloneNode()]
     )
     this.$article = $article
 
@@ -229,6 +253,8 @@ class Reader extends Base {
     this.$wrapper = $wrapper
 
     document.body.appendChild($wrapper)
+
+    this._animateTimeline()
 
     later(() => {
       // 设置邻居节点的打印样式
