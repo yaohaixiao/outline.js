@@ -148,6 +148,8 @@ class Reader extends Base {
 
   _renderEdge() {
     const $target = this.$target
+    const mobile = isMobile()
+    const size = mobile ? 24 : 20
     let title = this.attr('title')
     let $wrapper
     let $paper
@@ -202,11 +204,21 @@ class Reader extends Base {
 
     const buttons = []
 
+    buttons.push({
+      name: 'print',
+      icon: 'print',
+      size,
+      action: {
+        context: this,
+        handler: this.print
+      }
+    })
+
     if (Speech.isSupport && this.attr('allowSpeak')) {
       buttons.push({
         name: 'speak',
         icon: 'sound',
-        size: 20,
+        size,
         action: {
           context: this,
           handler: this.speak
@@ -214,28 +226,15 @@ class Reader extends Base {
       })
     }
 
-    buttons.push(
-      ...[
-        {
-          name: 'print',
-          icon: 'print',
-          size: 20,
-          action: {
-            context: this,
-            handler: this.print
-          }
-        },
-        {
-          name: 'exit',
-          icon: 'close',
-          size: 20,
-          action: {
-            context: this,
-            handler: this.exit
-          }
-        }
-      ]
-    )
+    buttons.push({
+      name: 'exit',
+      icon: 'close',
+      size,
+      action: {
+        context: this,
+        handler: this.exit
+      }
+    })
 
     this.toolbar = new Toolbar({
       placement: 'rtl',
