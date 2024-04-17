@@ -125,7 +125,7 @@ class Reader extends Base {
 
   _animateTimeline() {
     // eslint-disable-next-line
-    if (!window.ScrollTimeline && !isMobile()) {
+    if (!window.ScrollTimeline || !isMobile()) {
       return this
     }
 
