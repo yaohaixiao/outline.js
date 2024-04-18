@@ -48,47 +48,49 @@
     overflow: hidden;
   }
 
-  .outline-navigator {
+  &-navigator {
     flex: 1;
 
-    &__main {
-      &::-webkit-scrollbar-thumb {
-        background-color: @third_text_color;
+    .outline-navigator {
+      &__main {
+        &::-webkit-scrollbar-thumb {
+          background-color: @third_text_color;
 
-        &:hover {
-          background-color: @fourth_text_color;
+          &:hover {
+            background-color: @fourth_text_color;
+          }
         }
       }
-    }
 
-    &__placeholder {
-      background-color: @secondary_text_color;
-      border-left: 3px solid @white;
-    }
-
-    &__anchor {
-      &:link {
-        color: @border_color;
-        text-decoration: none;
+      &__placeholder {
+        background-color: @secondary_text_color;
+        border-left: 3px solid @white;
       }
 
-      &:visited {
-        color: @border_color;
-        text-decoration: none;
-      }
+      &__anchor {
+        &:link {
+          color: @border_color;
+          text-decoration: none;
+        }
 
-      &:hover {
-        color: @border_color;
-        text-decoration: underline;
-      }
-    }
+        &:visited {
+          color: @border_color;
+          text-decoration: none;
+        }
 
-    &_active {
-      &.outline-navigator__anchor {
-        &:link,
-        &:visited,
         &:hover {
-          color: @white;
+          color: @border_color;
+          text-decoration: underline;
+        }
+      }
+
+      &_active {
+        &.outline-navigator__anchor {
+          &:link,
+          &:visited,
+          &:hover {
+            color: @white;
+          }
         }
       }
     }

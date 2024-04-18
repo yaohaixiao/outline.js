@@ -38,3 +38,30 @@
   background-color: @white;
   overflow: auto;
 }
+
+@media (max-width: 500px) {
+  .docs {
+    flex-direction: column;
+  }
+
+  .aside,
+  .main {
+    width: 100%;
+  }
+
+  .aside {
+    position: fixed;
+    z-index: 3;
+    top: 0;
+
+    &.outline-navigator {
+      &_folded {
+        left: -100%;
+      }
+
+      &_expanded {
+        left: 0;
+      }
+    }
+  }
+}

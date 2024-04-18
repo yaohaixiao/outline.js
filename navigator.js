@@ -22,6 +22,10 @@ import inBounding from './utils/dom/inBounding'
 
 import Base from './base'
 
+const HIDDEN = 'outline-navigator_hidden'
+const EXPANDED = 'outline-navigator_expanded'
+const FOLDED = 'outline-navigator_folded'
+
 class Navigator extends Base {
   constructor(options) {
     super()
@@ -128,7 +132,6 @@ class Navigator extends Base {
   _paintEdge() {
     const $fragment = document.createDocumentFragment()
     const STICKY = 'outline-navigator_sticky'
-    const HIDDEN = 'outline-navigator_hidden'
     const title = this.attr('title')
     const animationCurrent = this.attr('animationCurrent')
     const customClass = this.attr('customClass')
@@ -258,13 +261,13 @@ class Navigator extends Base {
   }
 
   _paint(chapters) {
-    const HIDDEN = 'outline-navigator_hidden'
     const showCode = this.attr('showCode')
     const $el = this.$el
     const $list = this.$list
 
     _paintChapters($list, chapters, showCode)
     removeClass($el, HIDDEN)
+    addClass($el, EXPANDED)
 
     return this
   }
@@ -275,7 +278,6 @@ class Navigator extends Base {
   }
 
   refresh(chapters) {
-    const HIDDEN = 'outline-navigator_hidden'
     const $el = this.$el
 
     removeClass($el, HIDDEN)
@@ -436,8 +438,6 @@ class Navigator extends Base {
   }
 
   show() {
-    const FOLDED = 'outline-navigator_folded'
-    const HIDDEN = 'outline-navigator_hidden'
     const opened = this.attr('afterOpened')
     const count = this.count()
     const $el = this.$el
@@ -450,6 +450,7 @@ class Navigator extends Base {
         removeClass($parent, HIDDEN)
         later(() => {
           removeClass($parent, FOLDED)
+          addClass($parent, EXPANDED)
         }, 30)
       }
     } else {
@@ -465,8 +466,6 @@ class Navigator extends Base {
   }
 
   hide() {
-    const FOLDED = 'outline-navigator_folded'
-    const HIDDEN = 'outline-navigator_hidden'
     const closed = this.attr('afterClosed')
     const count = this.count()
     const $el = this.$el
@@ -477,6 +476,7 @@ class Navigator extends Base {
         addClass($parent, HIDDEN)
       } else {
         addClass($parent, FOLDED)
+        removeClass($parent, EXPANDED)
         later(() => {
           addClass($parent, HIDDEN)
         })
