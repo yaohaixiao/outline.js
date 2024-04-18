@@ -913,7 +913,18 @@ export default Toolbar</code></pre></div></section><section class="section"><hea
 
 outline.attr('title') // -> 'Outline v2.0.0'
 outline.attr('title', '目录') // -> 设置 title 配置信息的值为 '目录'
-outline.attr() // -> 返回完整配置参数 attrs 信息</code></pre></div></section><section class="section"><header class="section__header"><h3 class="section__h3">getChapters([isTreeStructured])</h3></header><div class="section__content"><h4 class="section__h4">Description</h4><p>getChapters() 方法来获取 outline.js 分析的文章段落层次数据。</p><h4 class="section__h4">Parameters</h4><h5 class="section__h4">isTreeStructured</h5><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">Boolean</dd></dl><dl class="section__dl"><dt class="section__dt">Default：</dt><dd class="section__dd">false</dd></dl><p>（可选）是否为树结构的数据。</p><ul><li>false: (默认值）输出打平的一维数组格式数据；</li><li>true: 输出树结构格式的数据；</li></ul><h4 class="section__h4">Returns</h4><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">Object</dd></dl><p>outline.js 分析的文章段落层次数据。</p><pre class="section__pre"><code class="section__code">const outline = new Outline({
+outline.attr() // -> 返回完整配置参数 attrs 信息</code></pre></div></section><section class="section"><header class="section__header"><h3 class="section__h3">isExpanded()</h3></header><div class="section__content"><h4 class="section__h4">Description</h4><p>isExpanded() 方法来判断导航菜单是否展开（可见）。</p><h4 class="section__h4">Returns</h4><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">Boolean</dd></dl><p>返回菜单展开状态。</p><pre class="section__pre"><code class="section__code">const outline = new Outline({
+   article: '#article',
+   title: 'Outline v2.0.0'
+})
+
+// 展开
+outline.toggle()
+outline.isExpanded() // -> true
+
+// 收起
+outline.toggle()
+outline.isExpanded() // -> false</code></pre></div></section><section class="section"><header class="section__header"><h3 class="section__h3">getChapters([isTreeStructured])</h3></header><div class="section__content"><h4 class="section__h4">Description</h4><p>getChapters() 方法来获取 outline.js 分析的文章段落层次数据。</p><h4 class="section__h4">Parameters</h4><h5 class="section__h4">isTreeStructured</h5><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">Boolean</dd></dl><dl class="section__dl"><dt class="section__dt">Default：</dt><dd class="section__dd">false</dd></dl><p>（可选）是否为树结构的数据。</p><ul><li>false: (默认值）输出打平的一维数组格式数据；</li><li>true: 输出树结构格式的数据；</li></ul><h4 class="section__h4">Returns</h4><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">Object</dd></dl><p>outline.js 分析的文章段落层次数据。</p><pre class="section__pre"><code class="section__code">const outline = new Outline({
    article: '#article',
    title: 'Outline v2.0.0'
 })
@@ -1106,7 +1117,21 @@ outline.toBottom(() => {
 outline.scrollTo(200)
 outline.scrollTo(200, () => {
   console.log('滚动结束‘)
-})</code></pre></div></section><section class="section"><header class="section__header"><h3 class="section__h3">toggle()</h3></header><div class="section__content"><h4 class="section__h4">Description</h4><p>toggle() 方法用来隐藏或显示侧边栏菜单。</p><h4 class="section__h4">Returns</h4><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">Outline</dd></dl><p>Outline 对象，便于链式方法调用。</p><pre class="section__pre"><code class="section__code">const outline = new Outline({
+})</code></pre></div></section><section class="section"><header class="section__header"><h3 class="section__h3">expand()</h3></header><div class="section__content"><h4 class="section__h4">Description</h4><p>expand() 方法来展开导航菜单。</p><h4 class="section__h4">Returns</h4><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">Number</dd></dl><p>Outline 对象，便于链式调用。</p><pre class="section__pre"><code class="section__code">const outline = new Outline({
+   article: '#article',
+   title: 'Outline v2.0.0'
+})
+
+// 收起菜单
+outline.expand()
+outline.isExpanded() // -> true</code></pre></div></section><section class="section"><header class="section__header"><h3 class="section__h3">collapses()</h3></header><div class="section__content"><h4 class="section__h4">Description</h4><p>collapses() 方法来收起导航菜单。</p><h4 class="section__h4">Returns</h4><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">Number</dd></dl><p>Outline 对象，便于链式调用。</p><pre class="section__pre"><code class="section__code">const outline = new Outline({
+   article: '#article',
+   title: 'Outline v2.0.0'
+})
+
+// 收起菜单
+outline.collapses()
+outline.isExpanded() // -> false</code></pre></div></section><section class="section"><header class="section__header"><h3 class="section__h3">toggle()</h3></header><div class="section__content"><h4 class="section__h4">Description</h4><p>toggle() 方法用来隐藏或显示侧边栏菜单。</p><h4 class="section__h4">Returns</h4><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">Outline</dd></dl><p>Outline 对象，便于链式方法调用。</p><pre class="section__pre"><code class="section__code">const outline = new Outline({
   article: '#article',
   title: 'Outline v2.0.0'
 })

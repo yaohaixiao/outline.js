@@ -1,0 +1,21 @@
+section.section
+  header.section__header
+    h3.section__h3 expand()
+  div.section__content
+    h4.section__h4 Description
+    p expand() 方法来展开导航菜单。
+    h4.section__h4 Returns
+    dl.section__dl
+      dt.section__dt Type：
+      dd.section__dd Number
+    p Outline 对象，便于链式调用。
+    pre.section__pre
+      code.section__code.
+        const outline = new Outline({
+           article: '#article',
+           title: 'Outline v2.0.0'
+        })
+
+        // 收起菜单
+        outline.expand()
+        outline.isExpanded() // -> true

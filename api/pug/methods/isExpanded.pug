@@ -1,0 +1,25 @@
+section.section
+  header.section__header
+    h3.section__h3 isExpanded()
+  div.section__content
+    h4.section__h4 Description
+    p isExpanded() 方法来判断导航菜单是否展开（可见）。
+    h4.section__h4 Returns
+    dl.section__dl
+      dt.section__dt Type：
+      dd.section__dd Boolean
+    p 返回菜单展开状态。
+    pre.section__pre
+      code.section__code.
+          const outline = new Outline({
+             article: '#article',
+             title: 'Outline v2.0.0'
+          })
+
+          // 展开
+          outline.toggle()
+          outline.isExpanded() // -> true
+
+          // 收起
+          outline.toggle()
+          outline.isExpanded() // -> false

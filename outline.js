@@ -20,7 +20,7 @@ class Outline extends Base {
   constructor(options) {
     super()
 
-    this.version = ''
+    this.version = '3.38.0'
     this._default()
 
     if (options) {
@@ -67,6 +67,23 @@ class Outline extends Base {
     this.render().addListeners()
 
     return this
+  }
+
+  isExpanded() {
+    const position = this.attr('position')
+    const drawer = this.drawer
+    const navigator = this.navigator
+    const count = this.count()
+
+    if (count < 0) {
+      return false
+    }
+
+    if (position === 'relative') {
+      return !drawer.isClosed()
+    } else {
+      return !navigator.isClosed()
+    }
   }
 
   getChapters(isTreeStructured = false) {
@@ -484,7 +501,7 @@ class Outline extends Base {
     return this
   }
 
-  toggle() {
+  expand() {
     const position = this.attr('position')
     const toolbar = this.toolbar
     const drawer = this.drawer
@@ -496,14 +513,49 @@ class Outline extends Base {
     }
 
     if (position !== 'relative') {
-      navigator.toggle()
+      navigator.show()
       toolbar.highlight('toggle')
     } else {
-      toolbar.toggle()
+      toolbar.hide()
 
       later(() => {
-        drawer.toggle()
+        drawer.open()
       })
+    }
+
+    return this
+  }
+
+  collapses() {
+    const position = this.attr('position')
+    const toolbar = this.toolbar
+    const drawer = this.drawer
+    const navigator = this.navigator
+    const count = this.count()
+
+    if (count < 1) {
+      return this
+    }
+
+    if (position !== 'relative') {
+      navigator.hide()
+      toolbar.highlight('toggle')
+    } else {
+      toolbar.show()
+
+      later(() => {
+        drawer.close()
+      })
+    }
+
+    return this
+  }
+
+  toggle() {
+    if (this.isExpanded()) {
+      this.collapses()
+    } else {
+      this.expand()
     }
 
     return this
