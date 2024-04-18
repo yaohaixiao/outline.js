@@ -1,3 +1,18 @@
+# [3.38.0](https://github.com/yaohaixiao/outline.js/compare/3.37.0...3.38.0) (2024-04-18)
+
+
+### Bug Fixes
+
+* 修复调整 getChaptersByHeadings() 方法逻辑后，设置显示编码，导航菜单会显示重复的编码问题； ([ee4ee83](https://github.com/yaohaixiao/outline.js/commit/ee4ee83d3551ce54d75ba82fb8ccf47b60c5283b))
+
+
+### Features
+
+* 调整 Navigator 模块的绘制逻辑，展开时添加 outline-navigator_expanded 样式表示展开样式 ([bf7a61e](https://github.com/yaohaixiao/outline.js/commit/bf7a61ead37cce849e8cb8f2bce1dabbffd78322))
+* 添加 isExpanded()、expand() 和 collapses() 方法，并添加 API 文档； ([64c3f0b](https://github.com/yaohaixiao/outline.js/commit/64c3f0babb237b37670562ba8d6771ef95179624))
+
+
+
 ## [3.37.0](https://github.com/yaohaixiao/outline.js/compare/3.36.1...3.36.2) (2024-04-17)
 
 
