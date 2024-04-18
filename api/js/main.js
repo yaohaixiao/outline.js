@@ -1,5 +1,6 @@
 import Outline from '../../outline'
-import isMobile from '../../utils/dom/isMobile'
+import observeResize from './observeResize'
+import getViewportWidth from './getViewportWidth'
 
 const defaults = Outline.DEFAULTS
 let outline
@@ -22,11 +23,20 @@ defaults.chapterTextFilter = (text) => {
   return text.replace(/\s*\(.*?\)/, '()')
 }
 defaults.customClass = 'aside-navigator'
+defaults.afterScroll = () => {
+  const viewportWidth = getViewportWidth()
+  if (viewportWidth <= 500) {
+    outline.toggle()
+  }
+}
 
 outline = new Outline(defaults)
 
-if (isMobile()) {
-  outline.toggle()
-}
+observeResize(document.querySelector('#docs'), () => {
+  const viewportWidth = getViewportWidth()
+  if (viewportWidth <= 500 && outline.isExpanded()) {
+    outline.toggle()
+  }
+})
 
 export default outline
