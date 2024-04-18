@@ -19,10 +19,11 @@ const getChaptersByHeadings = (
   showCode = true,
   chapterTextFilter = null
 ) => {
+  const pattern = /^\d(\.\d+)*\s?/gi
+  const chapters = []
   let previous = 1
   let level = 0
   let text = ''
-  const chapters = []
 
   headings.forEach((heading, i) => {
     const tagName = heading.tagName
@@ -85,7 +86,7 @@ const getChaptersByHeadings = (
 
     previous = current
 
-    text = stripTags(trim(heading.innerHTML))
+    text = stripTags(trim(heading.innerHTML.replace(pattern, '')))
 
     if (isFunction(chapterTextFilter)) {
       text = chapterTextFilter(text)
