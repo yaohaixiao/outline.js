@@ -21,6 +21,7 @@ import _createButton from './_createButton'
 
 const DISABLED = 'outline-toolbar_disabled'
 const HIDDEN = 'outline-toolbar_hidden'
+const ACTIVE = 'outline-toolbar_active'
 
 class Toolbar extends Base {
   constructor(options) {
@@ -64,6 +65,16 @@ class Toolbar extends Base {
     this.render().addListeners()
 
     return this
+  }
+
+  isHighlight(name) {
+    const button = this.get(name)
+
+    if (!button) {
+      return false
+    }
+
+    return hasClass(button.$el, ACTIVE)
   }
 
   isDisabled(name) {
@@ -394,7 +405,6 @@ class Toolbar extends Base {
 
   highlight(name) {
     const button = this.get(name)
-    const ACTIVE = 'outline-toolbar_active'
     let $button
 
     if (!button) {

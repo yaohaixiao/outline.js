@@ -49,7 +49,7 @@ class Reader extends Base {
   }
 
   initialize(options) {
-    let target = null
+    let target
 
     this.attr(options)
 
@@ -298,11 +298,14 @@ class Reader extends Base {
   }
 
   exit() {
+    const SPEAK = 'speak'
     const READER = 'outline-reader'
     const READING = `${READER}--reading`
     const HIDDEN = `${READER}_hidden`
     const $wrapper = this.$wrapper
     const $siblings = document.querySelectorAll('.outline-reader_sibling')
+    const speech = this.speech
+    const toolbar = this.toolbar
 
     if (!this.reading || !$wrapper) {
       return this
@@ -313,8 +316,16 @@ class Reader extends Base {
     $siblings.forEach(($sibling) => {
       removeClass($sibling, HIDDEN)
     })
-    this.toolbar.hide()
+    toolbar.hide()
     this.reading = false
+
+    if (speech) {
+      if (toolbar.isHighlight(SPEAK)) {
+        toolbar.highlight(SPEAK)
+      }
+
+      speech.cancel()
+    }
 
     this.$emit('exitReading')
 
@@ -335,7 +346,7 @@ class Reader extends Base {
     const text = this.$article.innerText
     const speech = this.speech
 
-    if (!Speech.isSupport) {
+    if (!Speech.isSupport || !speech) {
       return this
     }
 
