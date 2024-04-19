@@ -36,7 +36,7 @@ class Reader extends Base {
     this.reading = false
 
     this.$target = null
-    this.$wrapper = null
+    this.$el = null
     this.$paper = null
     this.$title = null
     this.$article = null
@@ -104,11 +104,11 @@ class Reader extends Base {
   }
 
   _remove() {
-    const $wrapper = this.$wrapper
+    const $el = this.$el
     const toolbar = this.toolbar
 
-    if ($wrapper) {
-      document.body.removeChild($wrapper)
+    if ($el) {
+      document.body.removeChild($el)
     }
 
     if (toolbar) {
@@ -151,7 +151,7 @@ class Reader extends Base {
     const mobile = isMobile()
     const size = mobile ? 26 : 20
     let title = this.attr('title')
-    let $wrapper
+    let $el
     let $paper
     let $title
     let $article
@@ -241,7 +241,7 @@ class Reader extends Base {
       buttons
     })
 
-    $wrapper = createElement(
+    $el = createElement(
       'section',
       {
         id: 'outline-reader',
@@ -249,18 +249,18 @@ class Reader extends Base {
       },
       [$progress, $paper, this.toolbar.$el]
     )
-    this.$wrapper = $wrapper
+    this.$el = $el
 
-    document.body.appendChild($wrapper)
+    document.body.appendChild($el)
 
     this._animateTimeline()
 
     later(() => {
       // 设置邻居节点的打印样式
-      $sibling = $wrapper.previousElementSibling
+      $sibling = $el.previousElementSibling
       _updateSiblingElements($sibling, true)
 
-      $sibling = $wrapper.nextElementSibling
+      $sibling = $el.nextElementSibling
       _updateSiblingElements($sibling)
     })
 
@@ -271,19 +271,19 @@ class Reader extends Base {
     const READER = 'outline-reader'
     const READING = `${READER}--reading`
     const HIDDEN = `${READER}_hidden`
-    const $wrapper = this.$wrapper
+    const $el = this.$el
     const $siblings = document.querySelectorAll('.outline-reader_sibling')
     const enterReadingTip = this.attr('enterReadingTip') || ENTER_READING_TIP
 
-    if (this.reading || !$wrapper) {
+    if (this.reading || !$el) {
       return this
     }
 
     $siblings.forEach(($sibling) => {
       addClass($sibling, HIDDEN)
     })
-    addClass($wrapper, READING)
-    removeClass($wrapper, HIDDEN)
+    addClass($el, READING)
+    removeClass($el, HIDDEN)
     this.toolbar.show()
     this.reading = true
 
@@ -302,17 +302,17 @@ class Reader extends Base {
     const READER = 'outline-reader'
     const READING = `${READER}--reading`
     const HIDDEN = `${READER}_hidden`
-    const $wrapper = this.$wrapper
+    const $el = this.$el
     const $siblings = document.querySelectorAll('.outline-reader_sibling')
     const speech = this.speech
     const toolbar = this.toolbar
 
-    if (!this.reading || !$wrapper) {
+    if (!this.reading || !$el) {
       return this
     }
 
-    addClass($wrapper, HIDDEN)
-    removeClass($wrapper, READING)
+    addClass($el, HIDDEN)
+    removeClass($el, READING)
     $siblings.forEach(($sibling) => {
       removeClass($sibling, HIDDEN)
     })
@@ -372,9 +372,9 @@ class Reader extends Base {
   }
 
   destroy() {
-    const $wrapper = this.$wrapper
+    const $el = this.$el
 
-    if (!$wrapper) {
+    if (!$el) {
       return this
     }
 
@@ -405,9 +405,9 @@ class Reader extends Base {
   }
 
   addListeners() {
-    const $wrapper = this.$wrapper
+    const $el = this.$el
 
-    if (!$wrapper) {
+    if (!$el) {
       return this
     }
 
@@ -420,9 +420,9 @@ class Reader extends Base {
   }
 
   removeListeners() {
-    const $wrapper = this.$wrapper
+    const $el = this.$el
 
-    if (!$wrapper) {
+    if (!$el) {
       return this
     }
 
