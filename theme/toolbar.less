@@ -23,11 +23,13 @@
     cursor: pointer;
     text-align: center;
     color: @fourth_text_color;
+    transition: all 0.3s 0.1s ease-in-out;
     overflow: hidden;
 
     &:hover {
       color: @success_color;
       border-color: @success_color;
+      transform: scale(1.35);
     }
 
     &.hide {
