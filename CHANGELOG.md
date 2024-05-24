@@ -1,3 +1,18 @@
+## [3.38.1](https://github.com/yaohaixiao/outline.js/compare/3.38.0...3.38.1) (2024-05-24)
+
+
+### Bug Fixes
+
+* 修复 ES6 语法 扩展运算符（spread）在低版本浏览器中的兼容性问题； ([afdae86](https://github.com/yaohaixiao/outline.js/commit/afdae866c94dc024d8386c8285baab0aee88f2c5))
+* 修复使用语音阅读时，推出阅读模式，未关闭语音阅读的问题； ([fdacca6](https://github.com/yaohaixiao/outline.js/commit/fdacca6e2eff673715c35674797d362b1d115f34))
+
+
+### Features
+
+* 优化交互体验，给工具栏按钮添加缩放动画效果； ([5ddadb0](https://github.com/yaohaixiao/outline.js/commit/5ddadb0637618a8bdfd8a7eb84690b55431e8239))
+
+
+
 # [3.38.0](https://github.com/yaohaixiao/outline.js/compare/3.37.0...3.38.0) (2024-04-18)
 
 
