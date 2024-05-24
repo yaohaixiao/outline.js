@@ -1,6 +1,6 @@
 {
   "name": "@yaohaixiao/outline.js",
-  "version": "3.38.0",
+  "version": "3.38.1",
   "description": "outline.js - 自动生成文章导读（Table of Contents）导航的 JavaScript 工具。",
   "main": "outline.min.js",
   "scripts": {
@@ -44,6 +44,8 @@
   "devDependencies": {
     "@babel/core": "^7.21.0",
     "@babel/plugin-proposal-optional-chaining": "^7.21.0",
+    "@babel/plugin-transform-object-rest-spread": "^7.24.6",
+    "@babel/plugin-transform-spread": "^7.24.6",
     "@babel/preset-env": "^7.14.8",
     "@commitlint/cli": "^17.4.4",
     "@commitlint/config-angular": "^19.0.3",

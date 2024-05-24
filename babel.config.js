@@ -6,5 +6,12 @@
  */
 module.exports = {
   presets: [['@babel/preset-env']],
-  plugins: ['@babel/plugin-transform-optional-chaining']
+  plugins: [
+    '@babel/plugin-transform-optional-chaining',
+    '@babel/plugin-transform-spread',
+    '@babel/plugin-transform-object-rest-spread'
+  ],
+  assumptions: {
+    arrayLikeIsIterable: true
+  }
 }
