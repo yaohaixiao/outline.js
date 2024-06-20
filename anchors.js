@@ -92,7 +92,7 @@ class Anchors extends Base {
   render() {
     const articleElement = this.attr('articleElement')
     const selector = this.attr('selector')
-    const showCode = this.attr('showCode') || true
+    const showCode = this.attr('showCode')
     const chapterTextFilter = this.attr('chapterTextFilter')
     const mounted = this.attr('mounted')
     const chapters = getChapters({
@@ -181,7 +181,7 @@ class Anchors extends Base {
   refresh(chapters) {
     const articleElement = this.attr('articleElement')
     const selector = this.attr('selector')
-    const showCode = this.attr('showCode') || true
+    const showCode = this.attr('showCode')
     const chapterTextFilter = this.attr('chapterTextFilter')
 
     this.$headings = this.getHeadings()

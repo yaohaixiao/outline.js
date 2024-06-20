@@ -89,7 +89,7 @@ class Outline extends Base {
   getChapters(isTreeStructured = false) {
     const articleElement = this.$article
     const selector = this.attr('selector')
-    const showCode = this.attr('showCode') || true
+    const showCode = this.attr('showCode')
     const chapterTextFilter = this.attr('chapterTextFilter')
 
     return getChapters({
@@ -653,7 +653,7 @@ Outline.DEFAULTS = (() => {
     position: 'relative',
     placement: 'rtl',
     animationCurrent: true,
-    showCode: true,
+    showCode: false,
     hasToolbar: true,
     closeOnClickModal: true,
     showNavModalFirst: false,

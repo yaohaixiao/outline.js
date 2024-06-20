@@ -486,7 +486,8 @@ Outline.DEFAULTS = {
   position: 'relative',
   parentElement: '#aside',
   placement: 'rtl',
-  showCode: true,
+  // 注意：3.38.2 开始 showCode 默认为 false
+  showCode: false,
   animationCurrent: true,
   hasToolbar: true,
   anchorURL: '',
