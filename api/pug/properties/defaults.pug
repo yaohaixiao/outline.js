@@ -21,6 +21,8 @@ section.section
           // 负责文章区域滚动的元素
           // String 类型 - 选择器字符串，默认值：html,body（window窗口）
           // HTMLElement 类型 - DOM 元素
+          // 注意：如果您使用的是比较旧的 chrome 浏览器，例如：Chromium 60.x 版本或者以下版本
+          // 请手动设置 scrollElement = 'body'，否则点击导航无法滚动定位
           scrollElement: 'html,body',
           // 文章导读菜单的位置
           // relative - （默认值）创建独立的侧滑菜单

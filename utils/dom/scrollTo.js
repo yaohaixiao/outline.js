@@ -32,6 +32,14 @@ const scrollTo = (scrollElement, top, afterStop) => {
       scrollTop -= easeInQuad(step)
       $scrollElement.scrollTop = scrollTop
 
+      console.log(
+        '$scrollElement up',
+        scrollElement,
+        $scrollElement,
+        scrollTop,
+        $scrollElement.scrollTop
+      )
+
       if (scrollTop <= top) {
         $scrollElement.scrollTop = top
         return stop(top)
@@ -39,6 +47,14 @@ const scrollTo = (scrollElement, top, afterStop) => {
     } else {
       scrollTop += easeInQuad(step)
       $scrollElement.scrollTop = scrollTop
+
+      console.log(
+        '$scrollElement down',
+        scrollElement,
+        $scrollElement,
+        scrollTop,
+        $scrollElement.scrollTop
+      )
 
       if (scrollTop >= MAX_TOP) {
         $scrollElement.scrollTop = MAX_TOP

@@ -482,6 +482,8 @@ Outline.DEFAULTS = {
   articleElement: '#article',
   selector: 'h2,h3,h4,h5,h6',
   title: '目录',
+  // 如果您使用的是比较旧的 chrome 浏览器，例如：Chromium 60.x 版本或者以下版本
+  // 请手动设置 scrollElement = 'body'，否则点击导航无法滚动定位
   scrollElement: 'html,body',
   position: 'relative',
   parentElement: '#aside',
