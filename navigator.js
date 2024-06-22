@@ -648,6 +648,7 @@ class Navigator extends Base {
   }
 
   onResize() {
+    // 添加判断
     if (!this.isSticky()) {
       return this
     }
