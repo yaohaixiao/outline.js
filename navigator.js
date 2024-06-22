@@ -648,6 +648,10 @@ class Navigator extends Base {
   }
 
   onResize() {
+    if (!this.isSticky()) {
+      return this
+    }
+
     if (this.resizeTimer) {
       clearTimeout(this.resizeTimer)
     }

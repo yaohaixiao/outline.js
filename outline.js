@@ -20,7 +20,7 @@ class Outline extends Base {
   constructor(options) {
     super()
 
-    this.version = '3.38.0'
+    this.version = '3.38.3'
     this._default()
 
     if (options) {
