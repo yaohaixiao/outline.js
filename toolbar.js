@@ -260,7 +260,7 @@ class Toolbar extends Base {
 
     if (index > -1) {
       buttons.splice(index, 1)
-      this.attrs('buttons').splice(index, 1)
+      this.attr('buttons').splice(index, 1)
     }
 
     this._disable(name)
@@ -465,6 +465,42 @@ class Toolbar extends Base {
     return this
   }
 
+  _updateToolbar({ top, min, max }) {
+    const current = Math.ceil(top)
+
+    if (current <= min) {
+      this.hide('up')
+      this.show('down')
+    } else if (current >= max) {
+      this.hide('down')
+      this.show('up')
+    } else if (current > min && current < max) {
+      this.show('up')
+      this.show('down')
+    }
+
+    return this
+  }
+
+  onToolbarUpdate({ top, min, max }) {
+    this._updateToolbar({ top, min, max })
+    return this
+  }
+
+  onAddButton(buttons) {
+    this.attr({
+      buttons
+    })
+    this.refresh(buttons)
+
+    return this
+  }
+
+  onRemoveButton(name) {
+    this.remove(name)
+    return this
+  }
+
   addListeners() {
     const buttons = this.attr('buttons') || []
     const $el = this.$el
@@ -474,6 +510,11 @@ class Toolbar extends Base {
     }
 
     on($el, `.outline-toolbar__button`, 'click', this.onExecute, this, true)
+
+    this.$on('toolbar:update', this.onToolbarUpdate)
+    this.$on('toolbar:add:button', this.onAddButton)
+    this.$on('toolbar:remove:button', this.onRemoveButton)
+    this.$on('toolbar:toggle', this.toggle)
 
     return this
   }
@@ -487,6 +528,11 @@ class Toolbar extends Base {
     }
 
     off($el, '.outline-toolbar__button', this.onExecute)
+
+    this.$off('toolbar:update')
+    this.$off('toolbar:add:button')
+    this.$off('toolbar:remove:button')
+    this.$off('toolbar:toggle')
 
     return this
   }
