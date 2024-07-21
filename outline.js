@@ -112,7 +112,7 @@ class Outline extends Base {
     this._renderReader()._renderAnchors()._renderNavigator()._renderToolbar()
 
     if ($scrollElement && hasToolbar) {
-      this._updateToolbar({
+      this.$emit('toolbar:update', {
         top: $scrollElement.scrollTop,
         min: 0,
         max: $scrollElement.scrollHeight
@@ -120,16 +120,6 @@ class Outline extends Base {
     }
 
     this.$emit('mounted')
-
-    return this
-  }
-
-  refresh() {
-    const chapters = this.getChapters()
-
-    this.anchors.refresh(chapters)
-    this.navigator.refresh(chapters)
-    this.reader.refresh()
 
     return this
   }
@@ -362,37 +352,29 @@ class Outline extends Base {
     return this
   }
 
+  refresh() {
+    const chapters = this.getChapters()
+
+    this.$emit('anchors:refresh', chapters)
+    this.$emit('navigator:refresh', chapters)
+    this.$emit('reader:refresh')
+
+    this.$emit('refresh', chapters)
+
+    return this
+  }
+
   addButton(button) {
-    const toolbar = this.toolbar
     const buttons = this.buttons
+
     buttons.splice(-1, 0, button)
-    toolbar.attr({
-      buttons
-    })
-    toolbar.refresh()
+    this.$emit('toolbar:add:button', buttons)
+
     return this
   }
 
   removeButton(name) {
-    this.toolbar.remove(name)
-    return this
-  }
-
-  _updateToolbar({ top, min, max }) {
-    const toolbar = this.toolbar
-    const current = Math.ceil(top)
-
-    if (current <= min) {
-      toolbar.hide('up')
-      toolbar.show('down')
-    } else if (current >= max) {
-      toolbar.hide('down')
-      toolbar.show('up')
-    } else if (current > min && current < max) {
-      toolbar.show('up')
-      toolbar.show('down')
-    }
-
+    this.$emit('toolbar:remove:button', name)
     return this
   }
 
@@ -464,39 +446,22 @@ class Outline extends Base {
   }
 
   enterReading() {
-    const reader = this.reader
-
-    if (!reader || reader.reading) {
-      return this
-    }
-
-    this.toolbar.toggle()
-    reader.enter()
+    this.$emit('toolbar:toggle')
+    this.$emit('reader:enter')
 
     return this
   }
 
   exitReading() {
-    const reader = this.reader
-
-    if (!reader || !reader.reading) {
-      return this
-    }
-
-    this.toolbar.toggle()
-    reader.exit()
+    this.$emit('toolbar:toggle')
+    this.$emit('reader:exit')
 
     return this
   }
 
   switchReading() {
-    const reader = this.reader
-
-    if (!reader) {
-      return this
-    }
-
-    reader.toggle()
+    this.$emit('toolbar:toggle')
+    this.$emit('reader:toggle')
 
     return this
   }
@@ -562,7 +527,7 @@ class Outline extends Base {
   }
 
   print() {
-    this.reader.print()
+    this.$emit('reader:print')
 
     return this
   }
@@ -610,11 +575,6 @@ class Outline extends Base {
 
     this.$emit('destroyed')
 
-    return this
-  }
-
-  onToolbarUpdate({ top, min, max }) {
-    this._updateToolbar({ top, min, max })
     return this
   }
 

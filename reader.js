@@ -292,7 +292,7 @@ class Reader extends Base {
       message: enterReadingTip
     })
 
-    this.$emit('enterReading')
+    this.$emit('reader:enter')
 
     return this
   }
@@ -327,7 +327,7 @@ class Reader extends Base {
       speech.cancel()
     }
 
-    this.$emit('exitReading')
+    this.$emit('reader:exit')
 
     return this
   }
@@ -404,6 +404,12 @@ class Reader extends Base {
     return this
   }
 
+  onRefresh() {
+    this.refresh()
+
+    return this
+  }
+
   addListeners() {
     const $el = this.$el
 
@@ -415,6 +421,11 @@ class Reader extends Base {
 
     this.$on('toolbar:action:print', this.onPrint)
     this.$on('toolbar:action:reading', this.onEnterReading)
+    this.$on('reader:print', this.onPrint)
+    this.$on('reader:refresh', this.onRefresh)
+    this.$on('reader:enter', this.onEnterReading)
+    this.$on('reader:exit', this.onExitReading)
+    this.$on('reader:toggle', this.toggle)
 
     return this
   }
@@ -430,6 +441,8 @@ class Reader extends Base {
 
     this.$off('toolbar:action:print')
     this.$off('toolbar:action:reading')
+    this.$off('reader:refresh')
+    this.$off('reader:toggle')
 
     return this
   }

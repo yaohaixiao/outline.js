@@ -257,6 +257,12 @@ class Anchors extends Base {
     return this
   }
 
+  onRefresh(chapters) {
+    this.refresh(chapters)
+
+    return this
+  }
+
   addListeners() {
     const $articleElement = this.$articleElement
 
@@ -273,6 +279,8 @@ class Anchors extends Base {
       true
     )
 
+    this.$on('anchors:refresh', this.onRefresh)
+
     return this
   }
 
@@ -284,6 +292,7 @@ class Anchors extends Base {
     }
 
     off($articleElement, 'click', this.onAnchorTrigger)
+    this.$off('anchors:refresh', this.onRefresh)
 
     return this
   }

@@ -659,6 +659,12 @@ class Navigator extends Base {
     return this
   }
 
+  onRefresh(chapters) {
+    this.refresh(chapters)
+
+    return this
+  }
+
   addListeners() {
     const $el = this.$el
     const $scrollElement = this.$scrollElement
@@ -678,7 +684,9 @@ class Navigator extends Base {
     if (this.isSticky()) {
       at(window, 'resize', this.onResize, this, true)
     }
+
     this.$on('anchors:all:paint', this.onObserver, this)
+    this.$on('navigator:refresh', this.onRefresh, this)
 
     return this
   }
@@ -704,6 +712,7 @@ class Navigator extends Base {
       off(window, 'resize', this.onResize)
     }
     this.$off('anchors:all:paint')
+    this.$off('navigator:refresh')
 
     if (this.Observer) {
       document.querySelectorAll(selector).forEach((section) => {
