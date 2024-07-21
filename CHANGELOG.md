@@ -1,3 +1,17 @@
+# [3.39.0](https://github.com/yaohaixiao/outline.js/compare/3.38.3...3.39.0) (2024-07-21)
+
+
+### Bug Fixes
+
+* 修复缺陷-issues([#48](https://github.com/yaohaixiao/outline.js/issues/48))-处理 sticky 定位 onResize() 方法中没有判断是否 sticky 定位，直接调用 this.calculateStickyHeight() 方法报错的问题 ([ad4f25c](https://github.com/yaohaixiao/outline.js/commit/ad4f25ce98becaea715053c66a46d464c6895d92))
+* 修复 remove() 方法中 attr() 方法写错成 attrs的问题 ([877505c](https://github.com/yaohaixiao/outline.js/commit/877505cc7ca14da3de15ca6de3f891082a95b966))
+
+### Features
+
+* 调整 outline 等模块的消息订阅发布方法 ([8a6ad40](https://github.com/yaohaixiao/outline.js/commit/8a6ad4060b7f4565594ba90a7b8c7053782cd963))
+
+
+
 ## [3.38.2](https://github.com/yaohaixiao/outline.js/compare/3.38.1...3.38.2) (2024-06-20)
 
 
