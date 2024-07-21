@@ -1,3 +1,13 @@
+## [3.38.2](https://github.com/yaohaixiao/outline.js/compare/3.38.1...3.38.2) (2024-06-20)
+
+
+### Bug Fixes
+
+* 修复缺陷 - issues([#47](https://github.com/yaohaixiao/outline.js/issues/47)) - 配置参数 showCode 默认值调整为：false ([5bba55f](https://github.com/yaohaixiao/outline.js/commit/5bba55f11096f625df2e3bff90f4ca3b79a5314e))
+* 修复缺陷 - issues([#45](https://github.com/yaohaixiao/outline.js/issues/45)) - 兼容问题，默认 scrollElement = 'html,body' 在老版本 chrome(Chromium 60.0.3112.113)以下需要手动设置为 ‘body’ ([68c6ffa](https://github.com/yaohaixiao/outline.js/commit/68c6ffa7923ab1fa2205ab8c79883a02ce1cdc23))
+
+
+
 ## [3.38.1](https://github.com/yaohaixiao/outline.js/compare/3.38.0...3.38.1) (2024-05-24)
 
 

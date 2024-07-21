@@ -273,7 +273,14 @@ const outline = new Outline({
     // API 文档中，正文的方法会添加参数等信息，例如：getChapters(headings, showCode, chapterTextFilter)
     // 而在 navigator 导航菜单，我希望显示为 getChapters()，这时我们就可以借助 chapterTextFilter 回调函数
     // 对原始的文本进行过滤，返回我们期望的 getChapters() 文本
-    chapterTextFilter: null
+    chapterTextFilter: null,
+    // 锚点链接的生成回调函数
+    // anchorLinkFilter(tag, title, id)
+    // tag - 当前标题的 tagName 小写：h1~6
+    // title - 当前标题的文本内容
+    // id - outline 为当前标题生成的 id 号，是个数值
+    // 如果设置了 anchorURL，则会统一使用 anchorURL 参数的地址
+    anchorLinkFilter: null
 });
 
 // 可以在创建导航后，重置配置信息，重新生成新的导航
@@ -482,11 +489,14 @@ Outline.DEFAULTS = {
   articleElement: '#article',
   selector: 'h2,h3,h4,h5,h6',
   title: '目录',
+  // 如果您使用的是比较旧的 chrome 浏览器，例如：Chromium 60.x 版本或者以下版本
+  // 请手动设置 scrollElement = 'body'，否则点击导航无法滚动定位
   scrollElement: 'html,body',
   position: 'relative',
   parentElement: '#aside',
   placement: 'rtl',
-  showCode: true,
+  // 注意：3.38.2 开始 showCode 默认为 false
+  showCode: false,
   animationCurrent: true,
   hasToolbar: true,
   anchorURL: '',
@@ -721,6 +731,7 @@ outline.js 从 3.21.0 开始提供了 6 事件。通过 outline.js 在 3.21.0 �
 | exitReading   | 配置了 reader 参数，在离开阅读模式后会触发。                                      | --                                   |
 | beforeDestroy | Outline 实例销毁前事件，在调用 destroy() 方法后会触发。                           | --                                   |
 | destroyed     | Outline 实例销毁后事件，在调用 destroy() 方法后会触发。                           | --                                   |
+| refresh       | Outline 在调用 refresh() 方法后会触发。                                   | --                                   |
 
 具体使用方法参阅 API 文档的 [Events](https://yaohaixiao.github.io/outline.js/#heading-44) 相关说明。
 

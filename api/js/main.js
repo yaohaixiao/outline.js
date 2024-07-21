@@ -22,6 +22,9 @@ defaults.reader = {
 defaults.chapterTextFilter = (text) => {
   return text.replace(/\s*\(.*?\)/, '()')
 }
+defaults.anchorLinkFilter = (tag, title, id) => {
+  return `${tag}-${title}-${id}`
+}
 defaults.customClass = 'aside-navigator'
 defaults.afterScroll = (type) => {
   const viewportWidth = getViewportWidth()

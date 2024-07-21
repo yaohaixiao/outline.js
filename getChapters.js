@@ -45,7 +45,7 @@ const getChapters = (options) => {
   }
 
   $headings = [...$article.querySelectorAll(selector || 'h1,h2,h3,h4,h5,h6')]
-  chapters = getChaptersByHeadings($headings, showCode || true, filter)
+  chapters = getChaptersByHeadings($headings, showCode, filter)
 
   return isTreeStructured === true ? toTree(chapters, 'id', 'pid') : chapters
 }

@@ -92,7 +92,7 @@ class Anchors extends Base {
   render() {
     const articleElement = this.attr('articleElement')
     const selector = this.attr('selector')
-    const showCode = this.attr('showCode') || true
+    const showCode = this.attr('showCode')
     const chapterTextFilter = this.attr('chapterTextFilter')
     const mounted = this.attr('mounted')
     const chapters = getChapters({
@@ -125,6 +125,7 @@ class Anchors extends Base {
     const isAtStart = this.attr('isAtStart')
     const showCode = this.attr('showCode')
     const anchorURL = this.attr('anchorURL')
+    const anchorLinkFilter = this.attr('anchorLinkFilter')
     const count = this.count()
     const $headings = [...this.$headings]
     const update = (headings, group) => {
@@ -136,7 +137,8 @@ class Anchors extends Base {
           isAtStart,
           showCode,
           chapterCode,
-          anchorURL
+          anchorURL,
+          anchorLinkFilter
         })
       })
     }
@@ -181,7 +183,7 @@ class Anchors extends Base {
   refresh(chapters) {
     const articleElement = this.attr('articleElement')
     const selector = this.attr('selector')
-    const showCode = this.attr('showCode') || true
+    const showCode = this.attr('showCode')
     const chapterTextFilter = this.attr('chapterTextFilter')
 
     this.$headings = this.getHeadings()
@@ -313,7 +315,8 @@ Anchors.DEFAULTS = (() => {
     afterScroll: null,
     beforeDestroy: null,
     afterDestroy: null,
-    chapterTextFilter: null
+    chapterTextFilter: null,
+    anchorLinkFilter: null
   }
 
   return cloneDeep(OPTIONS)

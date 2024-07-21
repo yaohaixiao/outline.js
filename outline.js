@@ -20,7 +20,7 @@ class Outline extends Base {
   constructor(options) {
     super()
 
-    this.version = '3.38.0'
+    this.version = '3.39.0'
     this._default()
 
     if (options) {
@@ -89,7 +89,7 @@ class Outline extends Base {
   getChapters(isTreeStructured = false) {
     const articleElement = this.$article
     const selector = this.attr('selector')
-    const showCode = this.attr('showCode') || true
+    const showCode = this.attr('showCode')
     const chapterTextFilter = this.attr('chapterTextFilter')
 
     return getChapters({
@@ -147,6 +147,7 @@ class Outline extends Base {
     const anchorURL = this.attr('anchorURL')
     const afterScroll = this.attr('afterScroll')
     const chapterTextFilter = this.attr('chapterTextFilter')
+    const anchorLinkFilter = this.attr('anchorLinkFilter')
 
     this.anchors = new Anchors({
       articleElement,
@@ -156,7 +157,8 @@ class Outline extends Base {
       showCode,
       anchorURL,
       afterScroll,
-      chapterTextFilter
+      chapterTextFilter,
+      anchorLinkFilter
     })
 
     return this
@@ -613,7 +615,7 @@ Outline.DEFAULTS = (() => {
     position: 'relative',
     placement: 'rtl',
     animationCurrent: true,
-    showCode: true,
+    showCode: false,
     hasToolbar: true,
     closeOnClickModal: true,
     showNavModalFirst: false,
@@ -634,7 +636,8 @@ Outline.DEFAULTS = (() => {
     afterSticky: null,
     afterToggle: null,
     afterScroll: null,
-    chapterTextFilter: null
+    chapterTextFilter: null,
+    anchorLinkFilter: null
   }
 
   return cloneDeep(OPTIONS)

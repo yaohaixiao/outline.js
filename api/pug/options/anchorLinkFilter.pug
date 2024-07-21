@@ -1,6 +1,6 @@
 section.section
   header.section__header
-    h3.section__h3 chapterTextFilter
+    h3.section__h3 anchorLinkFilter
   div.section__content
     h4.section__h4 Description
     dl.section__dl
@@ -9,18 +9,28 @@ section.section
     dl.section__dl
       dt.section__dt Default：
       dd.section__dd null
-    p 可选，API 文档中，正文的方法会添加参数等信息，例如：getChapters(headings, showCode, chapterTextFilter)。而在 chapters 导航菜单，我希望显示为 getChapters()，这时我们就可以借助 chapterTextFilter 回调函数。对原始的文本进行过滤，返回我们期望的 getChapters() 文本。
+    p 可选，API 文档中，正文标题的锚点链接地址生成函数。
     h4.section__h4 Parameters
-    h5.section__h4 text
+    h5.section__h4 tag
     dl.section__dl
       dt.section__dt Type：
       dd.section__dd String
-    p chapterTextFilter() 回调函数有一个参数 text，返回的是当前 hx 标题中的文本。
+    p 当前标题的 tagName。小写的：h1~6。
+    h5.section__h4 title
+    dl.section__dl
+      dt.section__dt Type：
+      dd.section__dd String
+    p 当前标题的文本内容。
+    h5.section__h4 id
+    dl.section__dl
+      dt.section__dt Type：
+      dd.section__dd Number
+    p outline.js 为当前标题生成 id 号。
     h4.section__h4 Returns
     dl.section__dl
       dt.section__dt Type：
       dd.section__dd String
-    p 返回最终希望生成的标题文本内容。
+    p 返回最终希望生成锚点链接的文本内容。
     pre.section__pre
       code.section__code.
         const defaults = Outline.DEFAULTS
@@ -43,5 +53,8 @@ section.section
         }
         defaults.chapterTextFilter = (text) => {
           return text.replace(/\(.*?\)/, '()')
+        }
+        defaults.anchorLinkFilter = (tag, title, id) => {
+          return `${tag}-${title}-${id}`
         }
         outline = new Outline(defaults)

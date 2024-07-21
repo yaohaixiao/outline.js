@@ -126,7 +126,7 @@ new Outline({
 // 设置 stickyHeight（outline.js 的示例页面的主标题元素的高度）
 defaults.stickyHeight = 86
 // 默认生成独立的侧滑弹窗导航菜单
-new Outline(defaults)</code></pre></div></section><section class="section"><header class="section__header"><h3 class="section__h3">showCode</h3></header><div class="section__content"><h4 class="section__h4">Description</h4><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">Boolean</dd></dl><dl class="section__dl"><dt class="section__dt">Default：</dt><dd class="section__dd">true</dd></dl><p>可选，是否显示段落章节编号：</p><ul><li>true - 显示编号（默认值）；</li><li>false - 不显示编号；</li></ul></div></section><section class="section"><header class="section__header"><h3 class="section__h3">animationCurrent</h3></header><div class="section__content"><h4 class="section__h4">Description</h4><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">Boolean</dd></dl><dl class="section__dl"><dt class="section__dt">Default：</dt><dd class="section__dd">true</dd></dl><p>可选，是否采用动画定位高亮当前的章节标题：</p><ul><li>true - 采用动画定位高亮（默认值）；</li><li>false - 采用高亮当前章节标题的链接文字并加粗文字；</li></ul></div></section><section class="section"><header class="section__header"><h3 class="section__h3">hasToolbar</h3></header><div class="section__content"><h4 class="section__h4">Description</h4><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">Boolean</dd></dl><dl class="section__dl"><dt class="section__dt">Default：</dt><dd class="section__dd">true</dd></dl><p>可选，是否显示侧边的按钮工具栏：</p><ul><li>true - 显示按钮工具栏（默认值）；</li><li>false - 不显示按钮工具栏；</li></ul></div></section><section class="section"><header class="section__header"><h3 class="section__h3">closeOnClickModal</h3></header><div class="section__content"><h4 class="section__h4">Description</h4><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">Boolean</dd></dl><dl class="section__dl"><dt class="section__dt">Default：</dt><dd class="section__dd">true</dd></dl><p>可选，点击空白处（非独立导航菜单），收起导航菜单：</p><ul><li>true - 点击空白处，收起菜单（默认值）；</li><li>false - 点击空白处，不收起菜单；</li></ul></div></section><section class="section"><header class="section__header"><h3 class="section__h3">showNavModalFirst</h3></header><div class="section__content"><h4 class="section__h4">Description</h4><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">Boolean</dd></dl><dl class="section__dl"><dt class="section__dt">Default：</dt><dd class="section__dd">false</dd></dl><p>可选，有独立导航菜单时，是否默认显示菜单：</p><ul><li>false - 默认先显示按钮工具栏（默认值）；</li><li>true - 默认先显示独立导航菜单弹窗；</li></ul></div></section><section class="section"><header class="section__header"><h3 class="section__h3">anchorURL</h3></header><div class="section__content"><h4 class="section__h4">Description</h4><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">String</dd></dl><dl class="section__dl"><dt class="section__dt">Default：</dt><dd class="section__dd">''</dd></dl><p>可选，用来指定文章标题锚点链接图标的链接地址：</p><pre class="section__pre"><code class="section__code">// Default URL - 默认链接，点击图标，页面会滚动到当前标题位置
+new Outline(defaults)</code></pre></div></section><section class="section"><header class="section__header"><h3 class="section__h3">showCode</h3></header><div class="section__content"><h4 class="section__h4">Description</h4><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">Boolean</dd></dl><dl class="section__dl"><dt class="section__dt">Default：</dt><dd class="section__dd">true</dd></dl><p>可选，是否显示段落章节编号（注意：3.38.2 开始 showCode 默认为 false）：</p><ul><li>false - 显示编号；</li><li>false - 不显示编号（默认值）；</li></ul></div></section><section class="section"><header class="section__header"><h3 class="section__h3">animationCurrent</h3></header><div class="section__content"><h4 class="section__h4">Description</h4><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">Boolean</dd></dl><dl class="section__dl"><dt class="section__dt">Default：</dt><dd class="section__dd">true</dd></dl><p>可选，是否采用动画定位高亮当前的章节标题：</p><ul><li>true - 采用动画定位高亮（默认值）；</li><li>false - 采用高亮当前章节标题的链接文字并加粗文字；</li></ul></div></section><section class="section"><header class="section__header"><h3 class="section__h3">hasToolbar</h3></header><div class="section__content"><h4 class="section__h4">Description</h4><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">Boolean</dd></dl><dl class="section__dl"><dt class="section__dt">Default：</dt><dd class="section__dd">true</dd></dl><p>可选，是否显示侧边的按钮工具栏：</p><ul><li>true - 显示按钮工具栏（默认值）；</li><li>false - 不显示按钮工具栏；</li></ul></div></section><section class="section"><header class="section__header"><h3 class="section__h3">closeOnClickModal</h3></header><div class="section__content"><h4 class="section__h4">Description</h4><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">Boolean</dd></dl><dl class="section__dl"><dt class="section__dt">Default：</dt><dd class="section__dd">true</dd></dl><p>可选，点击空白处（非独立导航菜单），收起导航菜单：</p><ul><li>true - 点击空白处，收起菜单（默认值）；</li><li>false - 点击空白处，不收起菜单；</li></ul></div></section><section class="section"><header class="section__header"><h3 class="section__h3">showNavModalFirst</h3></header><div class="section__content"><h4 class="section__h4">Description</h4><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">Boolean</dd></dl><dl class="section__dl"><dt class="section__dt">Default：</dt><dd class="section__dd">false</dd></dl><p>可选，有独立导航菜单时，是否默认显示菜单：</p><ul><li>false - 默认先显示按钮工具栏（默认值）；</li><li>true - 默认先显示独立导航菜单弹窗；</li></ul></div></section><section class="section"><header class="section__header"><h3 class="section__h3">anchorURL</h3></header><div class="section__content"><h4 class="section__h4">Description</h4><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">String</dd></dl><dl class="section__dl"><dt class="section__dt">Default：</dt><dd class="section__dd">''</dd></dl><p>可选，用来指定文章标题锚点链接图标的链接地址：</p><pre class="section__pre"><code class="section__code">// Default URL - 默认链接，点击图标，页面会滚动到当前标题位置
 new Outline()
 
 // Customize URL - 直接打开链接了
@@ -308,7 +308,7 @@ defaults.afterToggle = function(closed, isStickying) {
     $header.classList.add(HEADER_STICKY)
   }
 }
-outline = new Outline(Outline.DEFAULTS)</code></pre></div></section><section class="section"><header class="section__header"><h3 class="section__h3">chapterTextFilter</h3></header><div class="section__content"><h4 class="section__h4">Description</h4><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">Function</dd></dl><dl class="section__dl"><dt class="section__dt">Default：</dt><dd class="section__dd">null</dd></dl><p>可选，API 文档中，正文的方法会添加参数等信息，例如：getChapters(headings, showCode, chapterTextFilter)。而在 chapters 导航菜单，我希望显示为 getChapters()，这时我们就可以借助 chapterTextFilter 回调函数。对原始的文本进行过滤，返回我们期望的 getChapters() 文本。</p><h4 class="section__h4">Parameters</h4><h5 class="section__h4">text</h5><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">String</dd></dl><p>chapterTextFilter() 回调函数有一个参数 text，返回的是当前 hx 标题中的文本。</p><pre class="section__pre"><code class="section__code">const defaults = Outline.DEFAULTS
+outline = new Outline(Outline.DEFAULTS)</code></pre></div></section><section class="section"><header class="section__header"><h3 class="section__h3">chapterTextFilter</h3></header><div class="section__content"><h4 class="section__h4">Description</h4><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">Function</dd></dl><dl class="section__dl"><dt class="section__dt">Default：</dt><dd class="section__dd">null</dd></dl><p>可选，API 文档中，正文的方法会添加参数等信息，例如：getChapters(headings, showCode, chapterTextFilter)。而在 chapters 导航菜单，我希望显示为 getChapters()，这时我们就可以借助 chapterTextFilter 回调函数。对原始的文本进行过滤，返回我们期望的 getChapters() 文本。</p><h4 class="section__h4">Parameters</h4><h5 class="section__h4">text</h5><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">String</dd></dl><p>chapterTextFilter() 回调函数有一个参数 text，返回的是当前 hx 标题中的文本。</p><h4 class="section__h4">Returns</h4><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">String</dd></dl><p>返回最终希望生成的标题文本内容。</p><pre class="section__pre"><code class="section__code">const defaults = Outline.DEFAULTS
 let outline
 
 defaults.selector = 'h2,h3'
@@ -329,7 +329,31 @@ defaults.print = {
 defaults.chapterTextFilter = (text) => {
   return text.replace(/\(.*?\)/, '()')
 }
-outline = new Outline(Outline.DEFAULTS)</code></pre></div></section></section><section class="section"><header class="section__header"><h2 class="section__title">Properties</h2></header><div class="section__content"><p>outline.js 重构后，对外放 4 个重要的属性：anchors、drawer、chapters、reader 和 toolbar。它们都是独立的对象实例，提供了 outline.js 所有的能力（属性和方法）。</p></div><section class="section"><header class="section__header"><h3 class="section__h3">attrs</h3></header><div class="section__content"><h4 class="section__h4">Description</h4><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">Object</dd></dl><p>存储的是 Outline 对象当前使用中的配置选项：</p><p>说明：建议使用 attr(prop) 方法来获取属性，避免直接调用属性。</p><pre class="section__pre"><code class="section__code">// 设置默认配置项
+outline = new Outline(defaults)</code></pre></div></section><section class="section"><header class="section__header"><h3 class="section__h3">anchorLinkFilter</h3></header><div class="section__content"><h4 class="section__h4">Description</h4><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">Function</dd></dl><dl class="section__dl"><dt class="section__dt">Default：</dt><dd class="section__dd">null</dd></dl><p>可选，API 文档中，正文标题的锚点链接地址生成函数。</p><h4 class="section__h4">Parameters</h4><h5 class="section__h4">tag</h5><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">String</dd></dl><p>当前标题的 tagName。小写的：h1~6。</p><h5 class="section__h4">title</h5><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">String</dd></dl><p>当前标题的文本内容。</p><h5 class="section__h4">id</h5><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">Number</dd></dl><p>outline.js 为当前标题生成 id 号。</p><h4 class="section__h4">Returns</h4><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">String</dd></dl><p>返回最终希望生成锚点链接的文本内容。</p><pre class="section__pre"><code class="section__code">const defaults = Outline.DEFAULTS
+let outline
+
+defaults.selector = 'h2,h3'
+defaults.title = false
+defaults.showCode = false
+defaults.position = 'sticky'
+defaults.parentElement = '#aside'
+defaults.scrollElement = '#main'
+defaults.articleElement = '#article'
+defaults.homepage = './index.html'
+defaults.git = 'https://github.com/yaohaixiao/outline.js'
+defaults.tags = 'https://github.com/yaohaixiao/outline.js/tags'
+defaults.issues = 'https://github.com/yaohaixiao/outline.js/issues'
+defaults.print = {
+  element: '#article',
+  title: 'Outline.js'
+}
+defaults.chapterTextFilter = (text) => {
+  return text.replace(/\(.*?\)/, '()')
+}
+defaults.anchorLinkFilter = (tag, title, id) => {
+  return `${tag}-${title}-${id}`
+}
+outline = new Outline(defaults)</code></pre></div></section></section><section class="section"><header class="section__header"><h2 class="section__title">Properties</h2></header><div class="section__content"><p>outline.js 重构后，对外放 4 个重要的属性：anchors、drawer、chapters、reader 和 toolbar。它们都是独立的对象实例，提供了 outline.js 所有的能力（属性和方法）。</p></div><section class="section"><header class="section__header"><h3 class="section__h3">attrs</h3></header><div class="section__content"><h4 class="section__h4">Description</h4><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">Object</dd></dl><p>存储的是 Outline 对象当前使用中的配置选项：</p><p>说明：建议使用 attr(prop) 方法来获取属性，避免直接调用属性。</p><pre class="section__pre"><code class="section__code">// 设置默认配置项
 const outline = new Outline(Outline.DEFAULTS)
 
 // 查看全部配置信息
@@ -837,6 +861,8 @@ export default Toolbar</code></pre></div></section><section class="section"><hea
   // 负责文章区域滚动的元素
   // String 类型 - 选择器字符串，默认值：html,body（window窗口）
   // HTMLElement 类型 - DOM 元素
+  // 注意：如果您使用的是比较旧的 chrome 浏览器，例如：Chromium 60.x 版本或者以下版本
+  // 请手动设置 scrollElement = 'body'，否则点击导航无法滚动定位
   scrollElement: 'html,body',
   // 文章导读菜单的位置
   // relative - （默认值）创建独立的侧滑菜单
@@ -864,8 +890,8 @@ export default Toolbar</code></pre></div></section><section class="section"><hea
   // 说明：outline.js 主要用于文章详情页面，
   // 因此 stickyHeight 仅针对 top: 0，且 sticky 定位元素在文章内容区域上方的位置；
   stickyHeight: 0,
-  // 是否显示标题编号
-  showCode: true,
+  // 是否显示标题编号（注意：3.38.2 开始 showCode 默认为 false）
+  showCode: false,
   // 是否显示侧边的按钮工具栏
   hasToolbar: true,
   // 指定是否采用动画定位高亮当前的章节标题，默认值：true
@@ -911,7 +937,14 @@ export default Toolbar</code></pre></div></section><section class="section"><hea
   // API 文档中，正文的方法会添加参数等信息，例如：getChapters(headings, showCode, chapterTextFilter)
   // 而在 chapters 导航菜单，我希望显示为 getChapters()，这时我们就可以借助 chapterTextFilter 回调函数
   // 对原始的文本进行过滤，返回我们期望的 getChapters() 文本
-  chapterTextFilter: null
+  chapterTextFilter: null,
+  // 锚点链接的生成回调函数
+  // anchorLinkFilter(tag, title, id)
+  // tag - 当前标题的 tagName 小写：h1~6
+  // title - 当前标题的文本内容
+  // id - outline 为当前标题生成的 id 号，是个数值
+  // 如果设置了 anchorURL，则会统一使用 anchorURL 参数的地址
+  anchorLinkFilter: null
 }</code></pre></div></section></section><section class="section"><header class="section__header"><h2 class="section__title">Methods</h2></header><div class="section__content"><p>outline.js 的提供的方法如下：</p></div><section class="section"><header class="section__header"><h3 class="section__h3">attr([prop, value])</h3></header><div class="section__content"><h4 class="section__h4">Description</h4><p>attr() 方法用来设置或者获取初始化时配置的 attrs 信息的。</p><h4 class="section__h4">Parameters</h4><h5 class="section__h4">prop</h5><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">String|HTMLElement</dd></dl><p>（可选）options 中的属性名称或者要配置的 attrs 信息。</p><h5 class="section__h4">value</h5><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">Any</dd></dl><p>（可选）要设置的 prop 属性的值</p><ul><li>不传递任何参数：返回完整的 attrs 配置信息；</li><li>仅传递 prop：</li><ul><li>String: 返回 attrs 配型信息中与 prop 对应的值；</li><li>Object: 用来设置 attrs 配置信息；</li></ul><li>同时传递 prop 和 value 参数：设置 attrs 配置信息中的某个属性值；</li></ul><h4 class="section__h4">Returns</h4><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">Any</dd></dl><p>配置信息 attrs 的属性值或者 Outline 对象。</p><pre class="section__pre"><code class="section__code">const outline = new Outline({
    article: '#article',
    title: 'Outline v2.0.0'
@@ -1417,7 +1450,7 @@ new Outline({
 // 设置 stickyHeight（outline.js 的示例页面的主标题元素的高度）
 defaults.stickyHeight = 86
 // 默认生成独立的侧滑弹窗导航菜单
-new Outline(defaults)</code></pre></div></section><section class="section"><header class="section__header"><h3 class="section__h3">showCode</h3></header><div class="section__content"><h4 class="section__h4">Description</h4><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">Boolean</dd></dl><dl class="section__dl"><dt class="section__dt">Default：</dt><dd class="section__dd">true</dd></dl><p>可选，是否显示段落章节编号：</p><ul><li>true - 显示编号（默认值）；</li><li>false - 不显示编号；</li></ul></div></section><section class="section"><header class="section__header"><h3 class="section__h3">animationCurrent</h3></header><div class="section__content"><h4 class="section__h4">Description</h4><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">Boolean</dd></dl><dl class="section__dl"><dt class="section__dt">Default：</dt><dd class="section__dd">true</dd></dl><p>可选，是否采用动画定位高亮当前的章节标题：</p><ul><li>true - 采用动画定位高亮（默认值）；</li><li>false - 采用高亮当前章节标题的链接文字并加粗文字；</li></ul></div></section><section class="section"><header class="section__header"><h3 class="section__h3">hasToolbar</h3></header><div class="section__content"><h4 class="section__h4">Description</h4><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">Boolean</dd></dl><dl class="section__dl"><dt class="section__dt">Default：</dt><dd class="section__dd">true</dd></dl><p>可选，是否显示侧边的按钮工具栏：</p><ul><li>true - 显示按钮工具栏（默认值）；</li><li>false - 不显示按钮工具栏；</li></ul></div></section><section class="section"><header class="section__header"><h3 class="section__h3">closeOnClickModal</h3></header><div class="section__content"><h4 class="section__h4">Description</h4><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">Boolean</dd></dl><dl class="section__dl"><dt class="section__dt">Default：</dt><dd class="section__dd">true</dd></dl><p>可选，点击空白处（非独立导航菜单），收起导航菜单：</p><ul><li>true - 点击空白处，收起菜单（默认值）；</li><li>false - 点击空白处，不收起菜单；</li></ul></div></section><section class="section"><header class="section__header"><h3 class="section__h3">showNavModalFirst</h3></header><div class="section__content"><h4 class="section__h4">Description</h4><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">Boolean</dd></dl><dl class="section__dl"><dt class="section__dt">Default：</dt><dd class="section__dd">false</dd></dl><p>可选，有独立导航菜单时，是否默认显示菜单：</p><ul><li>false - 默认先显示按钮工具栏（默认值）；</li><li>true - 默认先显示独立导航菜单弹窗；</li></ul></div></section><section class="section"><header class="section__header"><h3 class="section__h3">anchorURL</h3></header><div class="section__content"><h4 class="section__h4">Description</h4><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">String</dd></dl><dl class="section__dl"><dt class="section__dt">Default：</dt><dd class="section__dd">''</dd></dl><p>可选，用来指定文章标题锚点链接图标的链接地址：</p><pre class="section__pre"><code class="section__code">// Default URL - 默认链接，点击图标，页面会滚动到当前标题位置
+new Outline(defaults)</code></pre></div></section><section class="section"><header class="section__header"><h3 class="section__h3">showCode</h3></header><div class="section__content"><h4 class="section__h4">Description</h4><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">Boolean</dd></dl><dl class="section__dl"><dt class="section__dt">Default：</dt><dd class="section__dd">true</dd></dl><p>可选，是否显示段落章节编号（注意：3.38.2 开始 showCode 默认为 false）：</p><ul><li>false - 显示编号；</li><li>false - 不显示编号（默认值）；</li></ul></div></section><section class="section"><header class="section__header"><h3 class="section__h3">animationCurrent</h3></header><div class="section__content"><h4 class="section__h4">Description</h4><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">Boolean</dd></dl><dl class="section__dl"><dt class="section__dt">Default：</dt><dd class="section__dd">true</dd></dl><p>可选，是否采用动画定位高亮当前的章节标题：</p><ul><li>true - 采用动画定位高亮（默认值）；</li><li>false - 采用高亮当前章节标题的链接文字并加粗文字；</li></ul></div></section><section class="section"><header class="section__header"><h3 class="section__h3">hasToolbar</h3></header><div class="section__content"><h4 class="section__h4">Description</h4><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">Boolean</dd></dl><dl class="section__dl"><dt class="section__dt">Default：</dt><dd class="section__dd">true</dd></dl><p>可选，是否显示侧边的按钮工具栏：</p><ul><li>true - 显示按钮工具栏（默认值）；</li><li>false - 不显示按钮工具栏；</li></ul></div></section><section class="section"><header class="section__header"><h3 class="section__h3">closeOnClickModal</h3></header><div class="section__content"><h4 class="section__h4">Description</h4><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">Boolean</dd></dl><dl class="section__dl"><dt class="section__dt">Default：</dt><dd class="section__dd">true</dd></dl><p>可选，点击空白处（非独立导航菜单），收起导航菜单：</p><ul><li>true - 点击空白处，收起菜单（默认值）；</li><li>false - 点击空白处，不收起菜单；</li></ul></div></section><section class="section"><header class="section__header"><h3 class="section__h3">showNavModalFirst</h3></header><div class="section__content"><h4 class="section__h4">Description</h4><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">Boolean</dd></dl><dl class="section__dl"><dt class="section__dt">Default：</dt><dd class="section__dd">false</dd></dl><p>可选，有独立导航菜单时，是否默认显示菜单：</p><ul><li>false - 默认先显示按钮工具栏（默认值）；</li><li>true - 默认先显示独立导航菜单弹窗；</li></ul></div></section><section class="section"><header class="section__header"><h3 class="section__h3">anchorURL</h3></header><div class="section__content"><h4 class="section__h4">Description</h4><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">String</dd></dl><dl class="section__dl"><dt class="section__dt">Default：</dt><dd class="section__dd">''</dd></dl><p>可选，用来指定文章标题锚点链接图标的链接地址：</p><pre class="section__pre"><code class="section__code">// Default URL - 默认链接，点击图标，页面会滚动到当前标题位置
 new Outline()
 
 // Customize URL - 直接打开链接了
@@ -1599,7 +1632,7 @@ defaults.afterToggle = function(closed, isStickying) {
     $header.classList.add(HEADER_STICKY)
   }
 }
-outline = new Outline(Outline.DEFAULTS)</code></pre></div></section><section class="section"><header class="section__header"><h3 class="section__h3">chapterTextFilter</h3></header><div class="section__content"><h4 class="section__h4">Description</h4><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">Function</dd></dl><dl class="section__dl"><dt class="section__dt">Default：</dt><dd class="section__dd">null</dd></dl><p>可选，API 文档中，正文的方法会添加参数等信息，例如：getChapters(headings, showCode, chapterTextFilter)。而在 chapters 导航菜单，我希望显示为 getChapters()，这时我们就可以借助 chapterTextFilter 回调函数。对原始的文本进行过滤，返回我们期望的 getChapters() 文本。</p><h4 class="section__h4">Parameters</h4><h5 class="section__h4">text</h5><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">String</dd></dl><p>chapterTextFilter() 回调函数有一个参数 text，返回的是当前 hx 标题中的文本。</p><pre class="section__pre"><code class="section__code">const defaults = Outline.DEFAULTS
+outline = new Outline(Outline.DEFAULTS)</code></pre></div></section><section class="section"><header class="section__header"><h3 class="section__h3">chapterTextFilter</h3></header><div class="section__content"><h4 class="section__h4">Description</h4><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">Function</dd></dl><dl class="section__dl"><dt class="section__dt">Default：</dt><dd class="section__dd">null</dd></dl><p>可选，API 文档中，正文的方法会添加参数等信息，例如：getChapters(headings, showCode, chapterTextFilter)。而在 chapters 导航菜单，我希望显示为 getChapters()，这时我们就可以借助 chapterTextFilter 回调函数。对原始的文本进行过滤，返回我们期望的 getChapters() 文本。</p><h4 class="section__h4">Parameters</h4><h5 class="section__h4">text</h5><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">String</dd></dl><p>chapterTextFilter() 回调函数有一个参数 text，返回的是当前 hx 标题中的文本。</p><h4 class="section__h4">Returns</h4><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">String</dd></dl><p>返回最终希望生成的标题文本内容。</p><pre class="section__pre"><code class="section__code">const defaults = Outline.DEFAULTS
 let outline
 
 defaults.selector = 'h2,h3'
@@ -1620,7 +1653,31 @@ defaults.print = {
 defaults.chapterTextFilter = (text) => {
   return text.replace(/\(.*?\)/, '()')
 }
-outline = new Outline(Outline.DEFAULTS)</code></pre></div></section></section><section class="section"><header class="section__header"><h2 class="section__title">Properties</h2></header><div class="section__content"><p>outline.js 重构后，对外放 4 个重要的属性：anchors、drawer、chapters、reader 和 toolbar。它们都是独立的对象实例，提供了 outline.js 所有的能力（属性和方法）。</p></div><section class="section"><header class="section__header"><h3 class="section__h3">attrs</h3></header><div class="section__content"><h4 class="section__h4">Description</h4><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">Object</dd></dl><p>存储的是 Outline 对象当前使用中的配置选项：</p><p>说明：建议使用 attr(prop) 方法来获取属性，避免直接调用属性。</p><pre class="section__pre"><code class="section__code">// 设置默认配置项
+outline = new Outline(defaults)</code></pre></div></section><section class="section"><header class="section__header"><h3 class="section__h3">anchorLinkFilter</h3></header><div class="section__content"><h4 class="section__h4">Description</h4><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">Function</dd></dl><dl class="section__dl"><dt class="section__dt">Default：</dt><dd class="section__dd">null</dd></dl><p>可选，API 文档中，正文标题的锚点链接地址生成函数。</p><h4 class="section__h4">Parameters</h4><h5 class="section__h4">tag</h5><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">String</dd></dl><p>当前标题的 tagName。小写的：h1~6。</p><h5 class="section__h4">title</h5><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">String</dd></dl><p>当前标题的文本内容。</p><h5 class="section__h4">id</h5><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">Number</dd></dl><p>outline.js 为当前标题生成 id 号。</p><h4 class="section__h4">Returns</h4><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">String</dd></dl><p>返回最终希望生成锚点链接的文本内容。</p><pre class="section__pre"><code class="section__code">const defaults = Outline.DEFAULTS
+let outline
+
+defaults.selector = 'h2,h3'
+defaults.title = false
+defaults.showCode = false
+defaults.position = 'sticky'
+defaults.parentElement = '#aside'
+defaults.scrollElement = '#main'
+defaults.articleElement = '#article'
+defaults.homepage = './index.html'
+defaults.git = 'https://github.com/yaohaixiao/outline.js'
+defaults.tags = 'https://github.com/yaohaixiao/outline.js/tags'
+defaults.issues = 'https://github.com/yaohaixiao/outline.js/issues'
+defaults.print = {
+  element: '#article',
+  title: 'Outline.js'
+}
+defaults.chapterTextFilter = (text) => {
+  return text.replace(/\(.*?\)/, '()')
+}
+defaults.anchorLinkFilter = (tag, title, id) => {
+  return `${tag}-${title}-${id}`
+}
+outline = new Outline(defaults)</code></pre></div></section></section><section class="section"><header class="section__header"><h2 class="section__title">Properties</h2></header><div class="section__content"><p>outline.js 重构后，对外放 4 个重要的属性：anchors、drawer、chapters、reader 和 toolbar。它们都是独立的对象实例，提供了 outline.js 所有的能力（属性和方法）。</p></div><section class="section"><header class="section__header"><h3 class="section__h3">attrs</h3></header><div class="section__content"><h4 class="section__h4">Description</h4><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">Object</dd></dl><p>存储的是 Outline 对象当前使用中的配置选项：</p><p>说明：建议使用 attr(prop) 方法来获取属性，避免直接调用属性。</p><pre class="section__pre"><code class="section__code">// 设置默认配置项
 const outline = new Outline(Outline.DEFAULTS)
 
 // 查看全部配置信息
@@ -2128,6 +2185,8 @@ export default Toolbar</code></pre></div></section><section class="section"><hea
   // 负责文章区域滚动的元素
   // String 类型 - 选择器字符串，默认值：html,body（window窗口）
   // HTMLElement 类型 - DOM 元素
+  // 注意：如果您使用的是比较旧的 chrome 浏览器，例如：Chromium 60.x 版本或者以下版本
+  // 请手动设置 scrollElement = 'body'，否则点击导航无法滚动定位
   scrollElement: 'html,body',
   // 文章导读菜单的位置
   // relative - （默认值）创建独立的侧滑菜单
@@ -2155,8 +2214,8 @@ export default Toolbar</code></pre></div></section><section class="section"><hea
   // 说明：outline.js 主要用于文章详情页面，
   // 因此 stickyHeight 仅针对 top: 0，且 sticky 定位元素在文章内容区域上方的位置；
   stickyHeight: 0,
-  // 是否显示标题编号
-  showCode: true,
+  // 是否显示标题编号（注意：3.38.2 开始 showCode 默认为 false）
+  showCode: false,
   // 是否显示侧边的按钮工具栏
   hasToolbar: true,
   // 指定是否采用动画定位高亮当前的章节标题，默认值：true
@@ -2202,7 +2261,14 @@ export default Toolbar</code></pre></div></section><section class="section"><hea
   // API 文档中，正文的方法会添加参数等信息，例如：getChapters(headings, showCode, chapterTextFilter)
   // 而在 chapters 导航菜单，我希望显示为 getChapters()，这时我们就可以借助 chapterTextFilter 回调函数
   // 对原始的文本进行过滤，返回我们期望的 getChapters() 文本
-  chapterTextFilter: null
+  chapterTextFilter: null,
+  // 锚点链接的生成回调函数
+  // anchorLinkFilter(tag, title, id)
+  // tag - 当前标题的 tagName 小写：h1~6
+  // title - 当前标题的文本内容
+  // id - outline 为当前标题生成的 id 号，是个数值
+  // 如果设置了 anchorURL，则会统一使用 anchorURL 参数的地址
+  anchorLinkFilter: null
 }</code></pre></div></section></section><section class="section"><header class="section__header"><h2 class="section__title">Methods</h2></header><div class="section__content"><p>outline.js 的提供的方法如下：</p></div><section class="section"><header class="section__header"><h3 class="section__h3">attr([prop, value])</h3></header><div class="section__content"><h4 class="section__h4">Description</h4><p>attr() 方法用来设置或者获取初始化时配置的 attrs 信息的。</p><h4 class="section__h4">Parameters</h4><h5 class="section__h4">prop</h5><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">String|HTMLElement</dd></dl><p>（可选）options 中的属性名称或者要配置的 attrs 信息。</p><h5 class="section__h4">value</h5><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">Any</dd></dl><p>（可选）要设置的 prop 属性的值</p><ul><li>不传递任何参数：返回完整的 attrs 配置信息；</li><li>仅传递 prop：</li><ul><li>String: 返回 attrs 配型信息中与 prop 对应的值；</li><li>Object: 用来设置 attrs 配置信息；</li></ul><li>同时传递 prop 和 value 参数：设置 attrs 配置信息中的某个属性值；</li></ul><h4 class="section__h4">Returns</h4><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">Any</dd></dl><p>配置信息 attrs 的属性值或者 Outline 对象。</p><pre class="section__pre"><code class="section__code">const outline = new Outline({
    article: '#article',
    title: 'Outline v2.0.0'
@@ -2708,7 +2774,7 @@ new Outline({
 // 设置 stickyHeight（outline.js 的示例页面的主标题元素的高度）
 defaults.stickyHeight = 86
 // 默认生成独立的侧滑弹窗导航菜单
-new Outline(defaults)</code></pre></div></section><section class="section"><header class="section__header"><h3 class="section__h3">showCode</h3></header><div class="section__content"><h4 class="section__h4">Description</h4><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">Boolean</dd></dl><dl class="section__dl"><dt class="section__dt">Default：</dt><dd class="section__dd">true</dd></dl><p>可选，是否显示段落章节编号：</p><ul><li>true - 显示编号（默认值）；</li><li>false - 不显示编号；</li></ul></div></section><section class="section"><header class="section__header"><h3 class="section__h3">animationCurrent</h3></header><div class="section__content"><h4 class="section__h4">Description</h4><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">Boolean</dd></dl><dl class="section__dl"><dt class="section__dt">Default：</dt><dd class="section__dd">true</dd></dl><p>可选，是否采用动画定位高亮当前的章节标题：</p><ul><li>true - 采用动画定位高亮（默认值）；</li><li>false - 采用高亮当前章节标题的链接文字并加粗文字；</li></ul></div></section><section class="section"><header class="section__header"><h3 class="section__h3">hasToolbar</h3></header><div class="section__content"><h4 class="section__h4">Description</h4><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">Boolean</dd></dl><dl class="section__dl"><dt class="section__dt">Default：</dt><dd class="section__dd">true</dd></dl><p>可选，是否显示侧边的按钮工具栏：</p><ul><li>true - 显示按钮工具栏（默认值）；</li><li>false - 不显示按钮工具栏；</li></ul></div></section><section class="section"><header class="section__header"><h3 class="section__h3">closeOnClickModal</h3></header><div class="section__content"><h4 class="section__h4">Description</h4><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">Boolean</dd></dl><dl class="section__dl"><dt class="section__dt">Default：</dt><dd class="section__dd">true</dd></dl><p>可选，点击空白处（非独立导航菜单），收起导航菜单：</p><ul><li>true - 点击空白处，收起菜单（默认值）；</li><li>false - 点击空白处，不收起菜单；</li></ul></div></section><section class="section"><header class="section__header"><h3 class="section__h3">showNavModalFirst</h3></header><div class="section__content"><h4 class="section__h4">Description</h4><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">Boolean</dd></dl><dl class="section__dl"><dt class="section__dt">Default：</dt><dd class="section__dd">false</dd></dl><p>可选，有独立导航菜单时，是否默认显示菜单：</p><ul><li>false - 默认先显示按钮工具栏（默认值）；</li><li>true - 默认先显示独立导航菜单弹窗；</li></ul></div></section><section class="section"><header class="section__header"><h3 class="section__h3">anchorURL</h3></header><div class="section__content"><h4 class="section__h4">Description</h4><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">String</dd></dl><dl class="section__dl"><dt class="section__dt">Default：</dt><dd class="section__dd">''</dd></dl><p>可选，用来指定文章标题锚点链接图标的链接地址：</p><pre class="section__pre"><code class="section__code">// Default URL - 默认链接，点击图标，页面会滚动到当前标题位置
+new Outline(defaults)</code></pre></div></section><section class="section"><header class="section__header"><h3 class="section__h3">showCode</h3></header><div class="section__content"><h4 class="section__h4">Description</h4><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">Boolean</dd></dl><dl class="section__dl"><dt class="section__dt">Default：</dt><dd class="section__dd">true</dd></dl><p>可选，是否显示段落章节编号（注意：3.38.2 开始 showCode 默认为 false）：</p><ul><li>false - 显示编号；</li><li>false - 不显示编号（默认值）；</li></ul></div></section><section class="section"><header class="section__header"><h3 class="section__h3">animationCurrent</h3></header><div class="section__content"><h4 class="section__h4">Description</h4><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">Boolean</dd></dl><dl class="section__dl"><dt class="section__dt">Default：</dt><dd class="section__dd">true</dd></dl><p>可选，是否采用动画定位高亮当前的章节标题：</p><ul><li>true - 采用动画定位高亮（默认值）；</li><li>false - 采用高亮当前章节标题的链接文字并加粗文字；</li></ul></div></section><section class="section"><header class="section__header"><h3 class="section__h3">hasToolbar</h3></header><div class="section__content"><h4 class="section__h4">Description</h4><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">Boolean</dd></dl><dl class="section__dl"><dt class="section__dt">Default：</dt><dd class="section__dd">true</dd></dl><p>可选，是否显示侧边的按钮工具栏：</p><ul><li>true - 显示按钮工具栏（默认值）；</li><li>false - 不显示按钮工具栏；</li></ul></div></section><section class="section"><header class="section__header"><h3 class="section__h3">closeOnClickModal</h3></header><div class="section__content"><h4 class="section__h4">Description</h4><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">Boolean</dd></dl><dl class="section__dl"><dt class="section__dt">Default：</dt><dd class="section__dd">true</dd></dl><p>可选，点击空白处（非独立导航菜单），收起导航菜单：</p><ul><li>true - 点击空白处，收起菜单（默认值）；</li><li>false - 点击空白处，不收起菜单；</li></ul></div></section><section class="section"><header class="section__header"><h3 class="section__h3">showNavModalFirst</h3></header><div class="section__content"><h4 class="section__h4">Description</h4><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">Boolean</dd></dl><dl class="section__dl"><dt class="section__dt">Default：</dt><dd class="section__dd">false</dd></dl><p>可选，有独立导航菜单时，是否默认显示菜单：</p><ul><li>false - 默认先显示按钮工具栏（默认值）；</li><li>true - 默认先显示独立导航菜单弹窗；</li></ul></div></section><section class="section"><header class="section__header"><h3 class="section__h3">anchorURL</h3></header><div class="section__content"><h4 class="section__h4">Description</h4><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">String</dd></dl><dl class="section__dl"><dt class="section__dt">Default：</dt><dd class="section__dd">''</dd></dl><p>可选，用来指定文章标题锚点链接图标的链接地址：</p><pre class="section__pre"><code class="section__code">// Default URL - 默认链接，点击图标，页面会滚动到当前标题位置
 new Outline()
 
 // Customize URL - 直接打开链接了
@@ -2890,7 +2956,7 @@ defaults.afterToggle = function(closed, isStickying) {
     $header.classList.add(HEADER_STICKY)
   }
 }
-outline = new Outline(Outline.DEFAULTS)</code></pre></div></section><section class="section"><header class="section__header"><h3 class="section__h3">chapterTextFilter</h3></header><div class="section__content"><h4 class="section__h4">Description</h4><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">Function</dd></dl><dl class="section__dl"><dt class="section__dt">Default：</dt><dd class="section__dd">null</dd></dl><p>可选，API 文档中，正文的方法会添加参数等信息，例如：getChapters(headings, showCode, chapterTextFilter)。而在 chapters 导航菜单，我希望显示为 getChapters()，这时我们就可以借助 chapterTextFilter 回调函数。对原始的文本进行过滤，返回我们期望的 getChapters() 文本。</p><h4 class="section__h4">Parameters</h4><h5 class="section__h4">text</h5><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">String</dd></dl><p>chapterTextFilter() 回调函数有一个参数 text，返回的是当前 hx 标题中的文本。</p><pre class="section__pre"><code class="section__code">const defaults = Outline.DEFAULTS
+outline = new Outline(Outline.DEFAULTS)</code></pre></div></section><section class="section"><header class="section__header"><h3 class="section__h3">chapterTextFilter</h3></header><div class="section__content"><h4 class="section__h4">Description</h4><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">Function</dd></dl><dl class="section__dl"><dt class="section__dt">Default：</dt><dd class="section__dd">null</dd></dl><p>可选，API 文档中，正文的方法会添加参数等信息，例如：getChapters(headings, showCode, chapterTextFilter)。而在 chapters 导航菜单，我希望显示为 getChapters()，这时我们就可以借助 chapterTextFilter 回调函数。对原始的文本进行过滤，返回我们期望的 getChapters() 文本。</p><h4 class="section__h4">Parameters</h4><h5 class="section__h4">text</h5><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">String</dd></dl><p>chapterTextFilter() 回调函数有一个参数 text，返回的是当前 hx 标题中的文本。</p><h4 class="section__h4">Returns</h4><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">String</dd></dl><p>返回最终希望生成的标题文本内容。</p><pre class="section__pre"><code class="section__code">const defaults = Outline.DEFAULTS
 let outline
 
 defaults.selector = 'h2,h3'
@@ -2911,7 +2977,31 @@ defaults.print = {
 defaults.chapterTextFilter = (text) => {
   return text.replace(/\(.*?\)/, '()')
 }
-outline = new Outline(Outline.DEFAULTS)</code></pre></div></section></section><section class="section"><header class="section__header"><h2 class="section__title">Properties</h2></header><div class="section__content"><p>outline.js 重构后，对外放 4 个重要的属性：anchors、drawer、chapters、reader 和 toolbar。它们都是独立的对象实例，提供了 outline.js 所有的能力（属性和方法）。</p></div><section class="section"><header class="section__header"><h3 class="section__h3">attrs</h3></header><div class="section__content"><h4 class="section__h4">Description</h4><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">Object</dd></dl><p>存储的是 Outline 对象当前使用中的配置选项：</p><p>说明：建议使用 attr(prop) 方法来获取属性，避免直接调用属性。</p><pre class="section__pre"><code class="section__code">// 设置默认配置项
+outline = new Outline(defaults)</code></pre></div></section><section class="section"><header class="section__header"><h3 class="section__h3">anchorLinkFilter</h3></header><div class="section__content"><h4 class="section__h4">Description</h4><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">Function</dd></dl><dl class="section__dl"><dt class="section__dt">Default：</dt><dd class="section__dd">null</dd></dl><p>可选，API 文档中，正文标题的锚点链接地址生成函数。</p><h4 class="section__h4">Parameters</h4><h5 class="section__h4">tag</h5><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">String</dd></dl><p>当前标题的 tagName。小写的：h1~6。</p><h5 class="section__h4">title</h5><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">String</dd></dl><p>当前标题的文本内容。</p><h5 class="section__h4">id</h5><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">Number</dd></dl><p>outline.js 为当前标题生成 id 号。</p><h4 class="section__h4">Returns</h4><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">String</dd></dl><p>返回最终希望生成锚点链接的文本内容。</p><pre class="section__pre"><code class="section__code">const defaults = Outline.DEFAULTS
+let outline
+
+defaults.selector = 'h2,h3'
+defaults.title = false
+defaults.showCode = false
+defaults.position = 'sticky'
+defaults.parentElement = '#aside'
+defaults.scrollElement = '#main'
+defaults.articleElement = '#article'
+defaults.homepage = './index.html'
+defaults.git = 'https://github.com/yaohaixiao/outline.js'
+defaults.tags = 'https://github.com/yaohaixiao/outline.js/tags'
+defaults.issues = 'https://github.com/yaohaixiao/outline.js/issues'
+defaults.print = {
+  element: '#article',
+  title: 'Outline.js'
+}
+defaults.chapterTextFilter = (text) => {
+  return text.replace(/\(.*?\)/, '()')
+}
+defaults.anchorLinkFilter = (tag, title, id) => {
+  return `${tag}-${title}-${id}`
+}
+outline = new Outline(defaults)</code></pre></div></section></section><section class="section"><header class="section__header"><h2 class="section__title">Properties</h2></header><div class="section__content"><p>outline.js 重构后，对外放 4 个重要的属性：anchors、drawer、chapters、reader 和 toolbar。它们都是独立的对象实例，提供了 outline.js 所有的能力（属性和方法）。</p></div><section class="section"><header class="section__header"><h3 class="section__h3">attrs</h3></header><div class="section__content"><h4 class="section__h4">Description</h4><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">Object</dd></dl><p>存储的是 Outline 对象当前使用中的配置选项：</p><p>说明：建议使用 attr(prop) 方法来获取属性，避免直接调用属性。</p><pre class="section__pre"><code class="section__code">// 设置默认配置项
 const outline = new Outline(Outline.DEFAULTS)
 
 // 查看全部配置信息
@@ -3419,6 +3509,8 @@ export default Toolbar</code></pre></div></section><section class="section"><hea
   // 负责文章区域滚动的元素
   // String 类型 - 选择器字符串，默认值：html,body（window窗口）
   // HTMLElement 类型 - DOM 元素
+  // 注意：如果您使用的是比较旧的 chrome 浏览器，例如：Chromium 60.x 版本或者以下版本
+  // 请手动设置 scrollElement = 'body'，否则点击导航无法滚动定位
   scrollElement: 'html,body',
   // 文章导读菜单的位置
   // relative - （默认值）创建独立的侧滑菜单
@@ -3446,8 +3538,8 @@ export default Toolbar</code></pre></div></section><section class="section"><hea
   // 说明：outline.js 主要用于文章详情页面，
   // 因此 stickyHeight 仅针对 top: 0，且 sticky 定位元素在文章内容区域上方的位置；
   stickyHeight: 0,
-  // 是否显示标题编号
-  showCode: true,
+  // 是否显示标题编号（注意：3.38.2 开始 showCode 默认为 false）
+  showCode: false,
   // 是否显示侧边的按钮工具栏
   hasToolbar: true,
   // 指定是否采用动画定位高亮当前的章节标题，默认值：true
@@ -3493,7 +3585,14 @@ export default Toolbar</code></pre></div></section><section class="section"><hea
   // API 文档中，正文的方法会添加参数等信息，例如：getChapters(headings, showCode, chapterTextFilter)
   // 而在 chapters 导航菜单，我希望显示为 getChapters()，这时我们就可以借助 chapterTextFilter 回调函数
   // 对原始的文本进行过滤，返回我们期望的 getChapters() 文本
-  chapterTextFilter: null
+  chapterTextFilter: null,
+  // 锚点链接的生成回调函数
+  // anchorLinkFilter(tag, title, id)
+  // tag - 当前标题的 tagName 小写：h1~6
+  // title - 当前标题的文本内容
+  // id - outline 为当前标题生成的 id 号，是个数值
+  // 如果设置了 anchorURL，则会统一使用 anchorURL 参数的地址
+  anchorLinkFilter: null
 }</code></pre></div></section></section><section class="section"><header class="section__header"><h2 class="section__title">Methods</h2></header><div class="section__content"><p>outline.js 的提供的方法如下：</p></div><section class="section"><header class="section__header"><h3 class="section__h3">attr([prop, value])</h3></header><div class="section__content"><h4 class="section__h4">Description</h4><p>attr() 方法用来设置或者获取初始化时配置的 attrs 信息的。</p><h4 class="section__h4">Parameters</h4><h5 class="section__h4">prop</h5><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">String|HTMLElement</dd></dl><p>（可选）options 中的属性名称或者要配置的 attrs 信息。</p><h5 class="section__h4">value</h5><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">Any</dd></dl><p>（可选）要设置的 prop 属性的值</p><ul><li>不传递任何参数：返回完整的 attrs 配置信息；</li><li>仅传递 prop：</li><ul><li>String: 返回 attrs 配型信息中与 prop 对应的值；</li><li>Object: 用来设置 attrs 配置信息；</li></ul><li>同时传递 prop 和 value 参数：设置 attrs 配置信息中的某个属性值；</li></ul><h4 class="section__h4">Returns</h4><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">Any</dd></dl><p>配置信息 attrs 的属性值或者 Outline 对象。</p><pre class="section__pre"><code class="section__code">const outline = new Outline({
    article: '#article',
    title: 'Outline v2.0.0'
@@ -3999,7 +4098,7 @@ new Outline({
 // 设置 stickyHeight（outline.js 的示例页面的主标题元素的高度）
 defaults.stickyHeight = 86
 // 默认生成独立的侧滑弹窗导航菜单
-new Outline(defaults)</code></pre></div></section><section class="section"><header class="section__header"><h3 class="section__h3">showCode</h3></header><div class="section__content"><h4 class="section__h4">Description</h4><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">Boolean</dd></dl><dl class="section__dl"><dt class="section__dt">Default：</dt><dd class="section__dd">true</dd></dl><p>可选，是否显示段落章节编号：</p><ul><li>true - 显示编号（默认值）；</li><li>false - 不显示编号；</li></ul></div></section><section class="section"><header class="section__header"><h3 class="section__h3">animationCurrent</h3></header><div class="section__content"><h4 class="section__h4">Description</h4><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">Boolean</dd></dl><dl class="section__dl"><dt class="section__dt">Default：</dt><dd class="section__dd">true</dd></dl><p>可选，是否采用动画定位高亮当前的章节标题：</p><ul><li>true - 采用动画定位高亮（默认值）；</li><li>false - 采用高亮当前章节标题的链接文字并加粗文字；</li></ul></div></section><section class="section"><header class="section__header"><h3 class="section__h3">hasToolbar</h3></header><div class="section__content"><h4 class="section__h4">Description</h4><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">Boolean</dd></dl><dl class="section__dl"><dt class="section__dt">Default：</dt><dd class="section__dd">true</dd></dl><p>可选，是否显示侧边的按钮工具栏：</p><ul><li>true - 显示按钮工具栏（默认值）；</li><li>false - 不显示按钮工具栏；</li></ul></div></section><section class="section"><header class="section__header"><h3 class="section__h3">closeOnClickModal</h3></header><div class="section__content"><h4 class="section__h4">Description</h4><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">Boolean</dd></dl><dl class="section__dl"><dt class="section__dt">Default：</dt><dd class="section__dd">true</dd></dl><p>可选，点击空白处（非独立导航菜单），收起导航菜单：</p><ul><li>true - 点击空白处，收起菜单（默认值）；</li><li>false - 点击空白处，不收起菜单；</li></ul></div></section><section class="section"><header class="section__header"><h3 class="section__h3">showNavModalFirst</h3></header><div class="section__content"><h4 class="section__h4">Description</h4><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">Boolean</dd></dl><dl class="section__dl"><dt class="section__dt">Default：</dt><dd class="section__dd">false</dd></dl><p>可选，有独立导航菜单时，是否默认显示菜单：</p><ul><li>false - 默认先显示按钮工具栏（默认值）；</li><li>true - 默认先显示独立导航菜单弹窗；</li></ul></div></section><section class="section"><header class="section__header"><h3 class="section__h3">anchorURL</h3></header><div class="section__content"><h4 class="section__h4">Description</h4><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">String</dd></dl><dl class="section__dl"><dt class="section__dt">Default：</dt><dd class="section__dd">''</dd></dl><p>可选，用来指定文章标题锚点链接图标的链接地址：</p><pre class="section__pre"><code class="section__code">// Default URL - 默认链接，点击图标，页面会滚动到当前标题位置
+new Outline(defaults)</code></pre></div></section><section class="section"><header class="section__header"><h3 class="section__h3">showCode</h3></header><div class="section__content"><h4 class="section__h4">Description</h4><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">Boolean</dd></dl><dl class="section__dl"><dt class="section__dt">Default：</dt><dd class="section__dd">true</dd></dl><p>可选，是否显示段落章节编号（注意：3.38.2 开始 showCode 默认为 false）：</p><ul><li>false - 显示编号；</li><li>false - 不显示编号（默认值）；</li></ul></div></section><section class="section"><header class="section__header"><h3 class="section__h3">animationCurrent</h3></header><div class="section__content"><h4 class="section__h4">Description</h4><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">Boolean</dd></dl><dl class="section__dl"><dt class="section__dt">Default：</dt><dd class="section__dd">true</dd></dl><p>可选，是否采用动画定位高亮当前的章节标题：</p><ul><li>true - 采用动画定位高亮（默认值）；</li><li>false - 采用高亮当前章节标题的链接文字并加粗文字；</li></ul></div></section><section class="section"><header class="section__header"><h3 class="section__h3">hasToolbar</h3></header><div class="section__content"><h4 class="section__h4">Description</h4><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">Boolean</dd></dl><dl class="section__dl"><dt class="section__dt">Default：</dt><dd class="section__dd">true</dd></dl><p>可选，是否显示侧边的按钮工具栏：</p><ul><li>true - 显示按钮工具栏（默认值）；</li><li>false - 不显示按钮工具栏；</li></ul></div></section><section class="section"><header class="section__header"><h3 class="section__h3">closeOnClickModal</h3></header><div class="section__content"><h4 class="section__h4">Description</h4><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">Boolean</dd></dl><dl class="section__dl"><dt class="section__dt">Default：</dt><dd class="section__dd">true</dd></dl><p>可选，点击空白处（非独立导航菜单），收起导航菜单：</p><ul><li>true - 点击空白处，收起菜单（默认值）；</li><li>false - 点击空白处，不收起菜单；</li></ul></div></section><section class="section"><header class="section__header"><h3 class="section__h3">showNavModalFirst</h3></header><div class="section__content"><h4 class="section__h4">Description</h4><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">Boolean</dd></dl><dl class="section__dl"><dt class="section__dt">Default：</dt><dd class="section__dd">false</dd></dl><p>可选，有独立导航菜单时，是否默认显示菜单：</p><ul><li>false - 默认先显示按钮工具栏（默认值）；</li><li>true - 默认先显示独立导航菜单弹窗；</li></ul></div></section><section class="section"><header class="section__header"><h3 class="section__h3">anchorURL</h3></header><div class="section__content"><h4 class="section__h4">Description</h4><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">String</dd></dl><dl class="section__dl"><dt class="section__dt">Default：</dt><dd class="section__dd">''</dd></dl><p>可选，用来指定文章标题锚点链接图标的链接地址：</p><pre class="section__pre"><code class="section__code">// Default URL - 默认链接，点击图标，页面会滚动到当前标题位置
 new Outline()
 
 // Customize URL - 直接打开链接了
@@ -4181,7 +4280,7 @@ defaults.afterToggle = function(closed, isStickying) {
     $header.classList.add(HEADER_STICKY)
   }
 }
-outline = new Outline(Outline.DEFAULTS)</code></pre></div></section><section class="section"><header class="section__header"><h3 class="section__h3">chapterTextFilter</h3></header><div class="section__content"><h4 class="section__h4">Description</h4><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">Function</dd></dl><dl class="section__dl"><dt class="section__dt">Default：</dt><dd class="section__dd">null</dd></dl><p>可选，API 文档中，正文的方法会添加参数等信息，例如：getChapters(headings, showCode, chapterTextFilter)。而在 chapters 导航菜单，我希望显示为 getChapters()，这时我们就可以借助 chapterTextFilter 回调函数。对原始的文本进行过滤，返回我们期望的 getChapters() 文本。</p><h4 class="section__h4">Parameters</h4><h5 class="section__h4">text</h5><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">String</dd></dl><p>chapterTextFilter() 回调函数有一个参数 text，返回的是当前 hx 标题中的文本。</p><pre class="section__pre"><code class="section__code">const defaults = Outline.DEFAULTS
+outline = new Outline(Outline.DEFAULTS)</code></pre></div></section><section class="section"><header class="section__header"><h3 class="section__h3">chapterTextFilter</h3></header><div class="section__content"><h4 class="section__h4">Description</h4><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">Function</dd></dl><dl class="section__dl"><dt class="section__dt">Default：</dt><dd class="section__dd">null</dd></dl><p>可选，API 文档中，正文的方法会添加参数等信息，例如：getChapters(headings, showCode, chapterTextFilter)。而在 chapters 导航菜单，我希望显示为 getChapters()，这时我们就可以借助 chapterTextFilter 回调函数。对原始的文本进行过滤，返回我们期望的 getChapters() 文本。</p><h4 class="section__h4">Parameters</h4><h5 class="section__h4">text</h5><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">String</dd></dl><p>chapterTextFilter() 回调函数有一个参数 text，返回的是当前 hx 标题中的文本。</p><h4 class="section__h4">Returns</h4><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">String</dd></dl><p>返回最终希望生成的标题文本内容。</p><pre class="section__pre"><code class="section__code">const defaults = Outline.DEFAULTS
 let outline
 
 defaults.selector = 'h2,h3'
@@ -4202,7 +4301,31 @@ defaults.print = {
 defaults.chapterTextFilter = (text) => {
   return text.replace(/\(.*?\)/, '()')
 }
-outline = new Outline(Outline.DEFAULTS)</code></pre></div></section></section><section class="section"><header class="section__header"><h2 class="section__title">Properties</h2></header><div class="section__content"><p>outline.js 重构后，对外放 4 个重要的属性：anchors、drawer、chapters、reader 和 toolbar。它们都是独立的对象实例，提供了 outline.js 所有的能力（属性和方法）。</p></div><section class="section"><header class="section__header"><h3 class="section__h3">attrs</h3></header><div class="section__content"><h4 class="section__h4">Description</h4><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">Object</dd></dl><p>存储的是 Outline 对象当前使用中的配置选项：</p><p>说明：建议使用 attr(prop) 方法来获取属性，避免直接调用属性。</p><pre class="section__pre"><code class="section__code">// 设置默认配置项
+outline = new Outline(defaults)</code></pre></div></section><section class="section"><header class="section__header"><h3 class="section__h3">anchorLinkFilter</h3></header><div class="section__content"><h4 class="section__h4">Description</h4><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">Function</dd></dl><dl class="section__dl"><dt class="section__dt">Default：</dt><dd class="section__dd">null</dd></dl><p>可选，API 文档中，正文标题的锚点链接地址生成函数。</p><h4 class="section__h4">Parameters</h4><h5 class="section__h4">tag</h5><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">String</dd></dl><p>当前标题的 tagName。小写的：h1~6。</p><h5 class="section__h4">title</h5><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">String</dd></dl><p>当前标题的文本内容。</p><h5 class="section__h4">id</h5><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">Number</dd></dl><p>outline.js 为当前标题生成 id 号。</p><h4 class="section__h4">Returns</h4><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">String</dd></dl><p>返回最终希望生成锚点链接的文本内容。</p><pre class="section__pre"><code class="section__code">const defaults = Outline.DEFAULTS
+let outline
+
+defaults.selector = 'h2,h3'
+defaults.title = false
+defaults.showCode = false
+defaults.position = 'sticky'
+defaults.parentElement = '#aside'
+defaults.scrollElement = '#main'
+defaults.articleElement = '#article'
+defaults.homepage = './index.html'
+defaults.git = 'https://github.com/yaohaixiao/outline.js'
+defaults.tags = 'https://github.com/yaohaixiao/outline.js/tags'
+defaults.issues = 'https://github.com/yaohaixiao/outline.js/issues'
+defaults.print = {
+  element: '#article',
+  title: 'Outline.js'
+}
+defaults.chapterTextFilter = (text) => {
+  return text.replace(/\(.*?\)/, '()')
+}
+defaults.anchorLinkFilter = (tag, title, id) => {
+  return `${tag}-${title}-${id}`
+}
+outline = new Outline(defaults)</code></pre></div></section></section><section class="section"><header class="section__header"><h2 class="section__title">Properties</h2></header><div class="section__content"><p>outline.js 重构后，对外放 4 个重要的属性：anchors、drawer、chapters、reader 和 toolbar。它们都是独立的对象实例，提供了 outline.js 所有的能力（属性和方法）。</p></div><section class="section"><header class="section__header"><h3 class="section__h3">attrs</h3></header><div class="section__content"><h4 class="section__h4">Description</h4><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">Object</dd></dl><p>存储的是 Outline 对象当前使用中的配置选项：</p><p>说明：建议使用 attr(prop) 方法来获取属性，避免直接调用属性。</p><pre class="section__pre"><code class="section__code">// 设置默认配置项
 const outline = new Outline(Outline.DEFAULTS)
 
 // 查看全部配置信息
@@ -4710,6 +4833,8 @@ export default Toolbar</code></pre></div></section><section class="section"><hea
   // 负责文章区域滚动的元素
   // String 类型 - 选择器字符串，默认值：html,body（window窗口）
   // HTMLElement 类型 - DOM 元素
+  // 注意：如果您使用的是比较旧的 chrome 浏览器，例如：Chromium 60.x 版本或者以下版本
+  // 请手动设置 scrollElement = 'body'，否则点击导航无法滚动定位
   scrollElement: 'html,body',
   // 文章导读菜单的位置
   // relative - （默认值）创建独立的侧滑菜单
@@ -4737,8 +4862,8 @@ export default Toolbar</code></pre></div></section><section class="section"><hea
   // 说明：outline.js 主要用于文章详情页面，
   // 因此 stickyHeight 仅针对 top: 0，且 sticky 定位元素在文章内容区域上方的位置；
   stickyHeight: 0,
-  // 是否显示标题编号
-  showCode: true,
+  // 是否显示标题编号（注意：3.38.2 开始 showCode 默认为 false）
+  showCode: false,
   // 是否显示侧边的按钮工具栏
   hasToolbar: true,
   // 指定是否采用动画定位高亮当前的章节标题，默认值：true
@@ -4784,7 +4909,14 @@ export default Toolbar</code></pre></div></section><section class="section"><hea
   // API 文档中，正文的方法会添加参数等信息，例如：getChapters(headings, showCode, chapterTextFilter)
   // 而在 chapters 导航菜单，我希望显示为 getChapters()，这时我们就可以借助 chapterTextFilter 回调函数
   // 对原始的文本进行过滤，返回我们期望的 getChapters() 文本
-  chapterTextFilter: null
+  chapterTextFilter: null,
+  // 锚点链接的生成回调函数
+  // anchorLinkFilter(tag, title, id)
+  // tag - 当前标题的 tagName 小写：h1~6
+  // title - 当前标题的文本内容
+  // id - outline 为当前标题生成的 id 号，是个数值
+  // 如果设置了 anchorURL，则会统一使用 anchorURL 参数的地址
+  anchorLinkFilter: null
 }</code></pre></div></section></section><section class="section"><header class="section__header"><h2 class="section__title">Methods</h2></header><div class="section__content"><p>outline.js 的提供的方法如下：</p></div><section class="section"><header class="section__header"><h3 class="section__h3">attr([prop, value])</h3></header><div class="section__content"><h4 class="section__h4">Description</h4><p>attr() 方法用来设置或者获取初始化时配置的 attrs 信息的。</p><h4 class="section__h4">Parameters</h4><h5 class="section__h4">prop</h5><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">String|HTMLElement</dd></dl><p>（可选）options 中的属性名称或者要配置的 attrs 信息。</p><h5 class="section__h4">value</h5><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">Any</dd></dl><p>（可选）要设置的 prop 属性的值</p><ul><li>不传递任何参数：返回完整的 attrs 配置信息；</li><li>仅传递 prop：</li><ul><li>String: 返回 attrs 配型信息中与 prop 对应的值；</li><li>Object: 用来设置 attrs 配置信息；</li></ul><li>同时传递 prop 和 value 参数：设置 attrs 配置信息中的某个属性值；</li></ul><h4 class="section__h4">Returns</h4><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">Any</dd></dl><p>配置信息 attrs 的属性值或者 Outline 对象。</p><pre class="section__pre"><code class="section__code">const outline = new Outline({
    article: '#article',
    title: 'Outline v2.0.0'
@@ -5290,7 +5422,7 @@ new Outline({
 // 设置 stickyHeight（outline.js 的示例页面的主标题元素的高度）
 defaults.stickyHeight = 86
 // 默认生成独立的侧滑弹窗导航菜单
-new Outline(defaults)</code></pre></div></section><section class="section"><header class="section__header"><h3 class="section__h3">showCode</h3></header><div class="section__content"><h4 class="section__h4">Description</h4><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">Boolean</dd></dl><dl class="section__dl"><dt class="section__dt">Default：</dt><dd class="section__dd">true</dd></dl><p>可选，是否显示段落章节编号：</p><ul><li>true - 显示编号（默认值）；</li><li>false - 不显示编号；</li></ul></div></section><section class="section"><header class="section__header"><h3 class="section__h3">animationCurrent</h3></header><div class="section__content"><h4 class="section__h4">Description</h4><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">Boolean</dd></dl><dl class="section__dl"><dt class="section__dt">Default：</dt><dd class="section__dd">true</dd></dl><p>可选，是否采用动画定位高亮当前的章节标题：</p><ul><li>true - 采用动画定位高亮（默认值）；</li><li>false - 采用高亮当前章节标题的链接文字并加粗文字；</li></ul></div></section><section class="section"><header class="section__header"><h3 class="section__h3">hasToolbar</h3></header><div class="section__content"><h4 class="section__h4">Description</h4><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">Boolean</dd></dl><dl class="section__dl"><dt class="section__dt">Default：</dt><dd class="section__dd">true</dd></dl><p>可选，是否显示侧边的按钮工具栏：</p><ul><li>true - 显示按钮工具栏（默认值）；</li><li>false - 不显示按钮工具栏；</li></ul></div></section><section class="section"><header class="section__header"><h3 class="section__h3">closeOnClickModal</h3></header><div class="section__content"><h4 class="section__h4">Description</h4><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">Boolean</dd></dl><dl class="section__dl"><dt class="section__dt">Default：</dt><dd class="section__dd">true</dd></dl><p>可选，点击空白处（非独立导航菜单），收起导航菜单：</p><ul><li>true - 点击空白处，收起菜单（默认值）；</li><li>false - 点击空白处，不收起菜单；</li></ul></div></section><section class="section"><header class="section__header"><h3 class="section__h3">showNavModalFirst</h3></header><div class="section__content"><h4 class="section__h4">Description</h4><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">Boolean</dd></dl><dl class="section__dl"><dt class="section__dt">Default：</dt><dd class="section__dd">false</dd></dl><p>可选，有独立导航菜单时，是否默认显示菜单：</p><ul><li>false - 默认先显示按钮工具栏（默认值）；</li><li>true - 默认先显示独立导航菜单弹窗；</li></ul></div></section><section class="section"><header class="section__header"><h3 class="section__h3">anchorURL</h3></header><div class="section__content"><h4 class="section__h4">Description</h4><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">String</dd></dl><dl class="section__dl"><dt class="section__dt">Default：</dt><dd class="section__dd">''</dd></dl><p>可选，用来指定文章标题锚点链接图标的链接地址：</p><pre class="section__pre"><code class="section__code">// Default URL - 默认链接，点击图标，页面会滚动到当前标题位置
+new Outline(defaults)</code></pre></div></section><section class="section"><header class="section__header"><h3 class="section__h3">showCode</h3></header><div class="section__content"><h4 class="section__h4">Description</h4><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">Boolean</dd></dl><dl class="section__dl"><dt class="section__dt">Default：</dt><dd class="section__dd">true</dd></dl><p>可选，是否显示段落章节编号（注意：3.38.2 开始 showCode 默认为 false）：</p><ul><li>false - 显示编号；</li><li>false - 不显示编号（默认值）；</li></ul></div></section><section class="section"><header class="section__header"><h3 class="section__h3">animationCurrent</h3></header><div class="section__content"><h4 class="section__h4">Description</h4><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">Boolean</dd></dl><dl class="section__dl"><dt class="section__dt">Default：</dt><dd class="section__dd">true</dd></dl><p>可选，是否采用动画定位高亮当前的章节标题：</p><ul><li>true - 采用动画定位高亮（默认值）；</li><li>false - 采用高亮当前章节标题的链接文字并加粗文字；</li></ul></div></section><section class="section"><header class="section__header"><h3 class="section__h3">hasToolbar</h3></header><div class="section__content"><h4 class="section__h4">Description</h4><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">Boolean</dd></dl><dl class="section__dl"><dt class="section__dt">Default：</dt><dd class="section__dd">true</dd></dl><p>可选，是否显示侧边的按钮工具栏：</p><ul><li>true - 显示按钮工具栏（默认值）；</li><li>false - 不显示按钮工具栏；</li></ul></div></section><section class="section"><header class="section__header"><h3 class="section__h3">closeOnClickModal</h3></header><div class="section__content"><h4 class="section__h4">Description</h4><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">Boolean</dd></dl><dl class="section__dl"><dt class="section__dt">Default：</dt><dd class="section__dd">true</dd></dl><p>可选，点击空白处（非独立导航菜单），收起导航菜单：</p><ul><li>true - 点击空白处，收起菜单（默认值）；</li><li>false - 点击空白处，不收起菜单；</li></ul></div></section><section class="section"><header class="section__header"><h3 class="section__h3">showNavModalFirst</h3></header><div class="section__content"><h4 class="section__h4">Description</h4><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">Boolean</dd></dl><dl class="section__dl"><dt class="section__dt">Default：</dt><dd class="section__dd">false</dd></dl><p>可选，有独立导航菜单时，是否默认显示菜单：</p><ul><li>false - 默认先显示按钮工具栏（默认值）；</li><li>true - 默认先显示独立导航菜单弹窗；</li></ul></div></section><section class="section"><header class="section__header"><h3 class="section__h3">anchorURL</h3></header><div class="section__content"><h4 class="section__h4">Description</h4><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">String</dd></dl><dl class="section__dl"><dt class="section__dt">Default：</dt><dd class="section__dd">''</dd></dl><p>可选，用来指定文章标题锚点链接图标的链接地址：</p><pre class="section__pre"><code class="section__code">// Default URL - 默认链接，点击图标，页面会滚动到当前标题位置
 new Outline()
 
 // Customize URL - 直接打开链接了
@@ -5472,7 +5604,7 @@ defaults.afterToggle = function(closed, isStickying) {
     $header.classList.add(HEADER_STICKY)
   }
 }
-outline = new Outline(Outline.DEFAULTS)</code></pre></div></section><section class="section"><header class="section__header"><h3 class="section__h3">chapterTextFilter</h3></header><div class="section__content"><h4 class="section__h4">Description</h4><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">Function</dd></dl><dl class="section__dl"><dt class="section__dt">Default：</dt><dd class="section__dd">null</dd></dl><p>可选，API 文档中，正文的方法会添加参数等信息，例如：getChapters(headings, showCode, chapterTextFilter)。而在 chapters 导航菜单，我希望显示为 getChapters()，这时我们就可以借助 chapterTextFilter 回调函数。对原始的文本进行过滤，返回我们期望的 getChapters() 文本。</p><h4 class="section__h4">Parameters</h4><h5 class="section__h4">text</h5><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">String</dd></dl><p>chapterTextFilter() 回调函数有一个参数 text，返回的是当前 hx 标题中的文本。</p><pre class="section__pre"><code class="section__code">const defaults = Outline.DEFAULTS
+outline = new Outline(Outline.DEFAULTS)</code></pre></div></section><section class="section"><header class="section__header"><h3 class="section__h3">chapterTextFilter</h3></header><div class="section__content"><h4 class="section__h4">Description</h4><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">Function</dd></dl><dl class="section__dl"><dt class="section__dt">Default：</dt><dd class="section__dd">null</dd></dl><p>可选，API 文档中，正文的方法会添加参数等信息，例如：getChapters(headings, showCode, chapterTextFilter)。而在 chapters 导航菜单，我希望显示为 getChapters()，这时我们就可以借助 chapterTextFilter 回调函数。对原始的文本进行过滤，返回我们期望的 getChapters() 文本。</p><h4 class="section__h4">Parameters</h4><h5 class="section__h4">text</h5><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">String</dd></dl><p>chapterTextFilter() 回调函数有一个参数 text，返回的是当前 hx 标题中的文本。</p><h4 class="section__h4">Returns</h4><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">String</dd></dl><p>返回最终希望生成的标题文本内容。</p><pre class="section__pre"><code class="section__code">const defaults = Outline.DEFAULTS
 let outline
 
 defaults.selector = 'h2,h3'
@@ -5493,7 +5625,31 @@ defaults.print = {
 defaults.chapterTextFilter = (text) => {
   return text.replace(/\(.*?\)/, '()')
 }
-outline = new Outline(Outline.DEFAULTS)</code></pre></div></section></section><section class="section"><header class="section__header"><h2 class="section__title">Properties</h2></header><div class="section__content"><p>outline.js 重构后，对外放 4 个重要的属性：anchors、drawer、chapters、reader 和 toolbar。它们都是独立的对象实例，提供了 outline.js 所有的能力（属性和方法）。</p></div><section class="section"><header class="section__header"><h3 class="section__h3">attrs</h3></header><div class="section__content"><h4 class="section__h4">Description</h4><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">Object</dd></dl><p>存储的是 Outline 对象当前使用中的配置选项：</p><p>说明：建议使用 attr(prop) 方法来获取属性，避免直接调用属性。</p><pre class="section__pre"><code class="section__code">// 设置默认配置项
+outline = new Outline(defaults)</code></pre></div></section><section class="section"><header class="section__header"><h3 class="section__h3">anchorLinkFilter</h3></header><div class="section__content"><h4 class="section__h4">Description</h4><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">Function</dd></dl><dl class="section__dl"><dt class="section__dt">Default：</dt><dd class="section__dd">null</dd></dl><p>可选，API 文档中，正文标题的锚点链接地址生成函数。</p><h4 class="section__h4">Parameters</h4><h5 class="section__h4">tag</h5><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">String</dd></dl><p>当前标题的 tagName。小写的：h1~6。</p><h5 class="section__h4">title</h5><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">String</dd></dl><p>当前标题的文本内容。</p><h5 class="section__h4">id</h5><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">Number</dd></dl><p>outline.js 为当前标题生成 id 号。</p><h4 class="section__h4">Returns</h4><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">String</dd></dl><p>返回最终希望生成锚点链接的文本内容。</p><pre class="section__pre"><code class="section__code">const defaults = Outline.DEFAULTS
+let outline
+
+defaults.selector = 'h2,h3'
+defaults.title = false
+defaults.showCode = false
+defaults.position = 'sticky'
+defaults.parentElement = '#aside'
+defaults.scrollElement = '#main'
+defaults.articleElement = '#article'
+defaults.homepage = './index.html'
+defaults.git = 'https://github.com/yaohaixiao/outline.js'
+defaults.tags = 'https://github.com/yaohaixiao/outline.js/tags'
+defaults.issues = 'https://github.com/yaohaixiao/outline.js/issues'
+defaults.print = {
+  element: '#article',
+  title: 'Outline.js'
+}
+defaults.chapterTextFilter = (text) => {
+  return text.replace(/\(.*?\)/, '()')
+}
+defaults.anchorLinkFilter = (tag, title, id) => {
+  return `${tag}-${title}-${id}`
+}
+outline = new Outline(defaults)</code></pre></div></section></section><section class="section"><header class="section__header"><h2 class="section__title">Properties</h2></header><div class="section__content"><p>outline.js 重构后，对外放 4 个重要的属性：anchors、drawer、chapters、reader 和 toolbar。它们都是独立的对象实例，提供了 outline.js 所有的能力（属性和方法）。</p></div><section class="section"><header class="section__header"><h3 class="section__h3">attrs</h3></header><div class="section__content"><h4 class="section__h4">Description</h4><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">Object</dd></dl><p>存储的是 Outline 对象当前使用中的配置选项：</p><p>说明：建议使用 attr(prop) 方法来获取属性，避免直接调用属性。</p><pre class="section__pre"><code class="section__code">// 设置默认配置项
 const outline = new Outline(Outline.DEFAULTS)
 
 // 查看全部配置信息
@@ -6001,6 +6157,8 @@ export default Toolbar</code></pre></div></section><section class="section"><hea
   // 负责文章区域滚动的元素
   // String 类型 - 选择器字符串，默认值：html,body（window窗口）
   // HTMLElement 类型 - DOM 元素
+  // 注意：如果您使用的是比较旧的 chrome 浏览器，例如：Chromium 60.x 版本或者以下版本
+  // 请手动设置 scrollElement = 'body'，否则点击导航无法滚动定位
   scrollElement: 'html,body',
   // 文章导读菜单的位置
   // relative - （默认值）创建独立的侧滑菜单
@@ -6028,8 +6186,8 @@ export default Toolbar</code></pre></div></section><section class="section"><hea
   // 说明：outline.js 主要用于文章详情页面，
   // 因此 stickyHeight 仅针对 top: 0，且 sticky 定位元素在文章内容区域上方的位置；
   stickyHeight: 0,
-  // 是否显示标题编号
-  showCode: true,
+  // 是否显示标题编号（注意：3.38.2 开始 showCode 默认为 false）
+  showCode: false,
   // 是否显示侧边的按钮工具栏
   hasToolbar: true,
   // 指定是否采用动画定位高亮当前的章节标题，默认值：true
@@ -6075,7 +6233,14 @@ export default Toolbar</code></pre></div></section><section class="section"><hea
   // API 文档中，正文的方法会添加参数等信息，例如：getChapters(headings, showCode, chapterTextFilter)
   // 而在 chapters 导航菜单，我希望显示为 getChapters()，这时我们就可以借助 chapterTextFilter 回调函数
   // 对原始的文本进行过滤，返回我们期望的 getChapters() 文本
-  chapterTextFilter: null
+  chapterTextFilter: null,
+  // 锚点链接的生成回调函数
+  // anchorLinkFilter(tag, title, id)
+  // tag - 当前标题的 tagName 小写：h1~6
+  // title - 当前标题的文本内容
+  // id - outline 为当前标题生成的 id 号，是个数值
+  // 如果设置了 anchorURL，则会统一使用 anchorURL 参数的地址
+  anchorLinkFilter: null
 }</code></pre></div></section></section><section class="section"><header class="section__header"><h2 class="section__title">Methods</h2></header><div class="section__content"><p>outline.js 的提供的方法如下：</p></div><section class="section"><header class="section__header"><h3 class="section__h3">attr([prop, value])</h3></header><div class="section__content"><h4 class="section__h4">Description</h4><p>attr() 方法用来设置或者获取初始化时配置的 attrs 信息的。</p><h4 class="section__h4">Parameters</h4><h5 class="section__h4">prop</h5><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">String|HTMLElement</dd></dl><p>（可选）options 中的属性名称或者要配置的 attrs 信息。</p><h5 class="section__h4">value</h5><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">Any</dd></dl><p>（可选）要设置的 prop 属性的值</p><ul><li>不传递任何参数：返回完整的 attrs 配置信息；</li><li>仅传递 prop：</li><ul><li>String: 返回 attrs 配型信息中与 prop 对应的值；</li><li>Object: 用来设置 attrs 配置信息；</li></ul><li>同时传递 prop 和 value 参数：设置 attrs 配置信息中的某个属性值；</li></ul><h4 class="section__h4">Returns</h4><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">Any</dd></dl><p>配置信息 attrs 的属性值或者 Outline 对象。</p><pre class="section__pre"><code class="section__code">const outline = new Outline({
    article: '#article',
    title: 'Outline v2.0.0'
@@ -6581,7 +6746,7 @@ new Outline({
 // 设置 stickyHeight（outline.js 的示例页面的主标题元素的高度）
 defaults.stickyHeight = 86
 // 默认生成独立的侧滑弹窗导航菜单
-new Outline(defaults)</code></pre></div></section><section class="section"><header class="section__header"><h3 class="section__h3">showCode</h3></header><div class="section__content"><h4 class="section__h4">Description</h4><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">Boolean</dd></dl><dl class="section__dl"><dt class="section__dt">Default：</dt><dd class="section__dd">true</dd></dl><p>可选，是否显示段落章节编号：</p><ul><li>true - 显示编号（默认值）；</li><li>false - 不显示编号；</li></ul></div></section><section class="section"><header class="section__header"><h3 class="section__h3">animationCurrent</h3></header><div class="section__content"><h4 class="section__h4">Description</h4><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">Boolean</dd></dl><dl class="section__dl"><dt class="section__dt">Default：</dt><dd class="section__dd">true</dd></dl><p>可选，是否采用动画定位高亮当前的章节标题：</p><ul><li>true - 采用动画定位高亮（默认值）；</li><li>false - 采用高亮当前章节标题的链接文字并加粗文字；</li></ul></div></section><section class="section"><header class="section__header"><h3 class="section__h3">hasToolbar</h3></header><div class="section__content"><h4 class="section__h4">Description</h4><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">Boolean</dd></dl><dl class="section__dl"><dt class="section__dt">Default：</dt><dd class="section__dd">true</dd></dl><p>可选，是否显示侧边的按钮工具栏：</p><ul><li>true - 显示按钮工具栏（默认值）；</li><li>false - 不显示按钮工具栏；</li></ul></div></section><section class="section"><header class="section__header"><h3 class="section__h3">closeOnClickModal</h3></header><div class="section__content"><h4 class="section__h4">Description</h4><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">Boolean</dd></dl><dl class="section__dl"><dt class="section__dt">Default：</dt><dd class="section__dd">true</dd></dl><p>可选，点击空白处（非独立导航菜单），收起导航菜单：</p><ul><li>true - 点击空白处，收起菜单（默认值）；</li><li>false - 点击空白处，不收起菜单；</li></ul></div></section><section class="section"><header class="section__header"><h3 class="section__h3">showNavModalFirst</h3></header><div class="section__content"><h4 class="section__h4">Description</h4><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">Boolean</dd></dl><dl class="section__dl"><dt class="section__dt">Default：</dt><dd class="section__dd">false</dd></dl><p>可选，有独立导航菜单时，是否默认显示菜单：</p><ul><li>false - 默认先显示按钮工具栏（默认值）；</li><li>true - 默认先显示独立导航菜单弹窗；</li></ul></div></section><section class="section"><header class="section__header"><h3 class="section__h3">anchorURL</h3></header><div class="section__content"><h4 class="section__h4">Description</h4><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">String</dd></dl><dl class="section__dl"><dt class="section__dt">Default：</dt><dd class="section__dd">''</dd></dl><p>可选，用来指定文章标题锚点链接图标的链接地址：</p><pre class="section__pre"><code class="section__code">// Default URL - 默认链接，点击图标，页面会滚动到当前标题位置
+new Outline(defaults)</code></pre></div></section><section class="section"><header class="section__header"><h3 class="section__h3">showCode</h3></header><div class="section__content"><h4 class="section__h4">Description</h4><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">Boolean</dd></dl><dl class="section__dl"><dt class="section__dt">Default：</dt><dd class="section__dd">true</dd></dl><p>可选，是否显示段落章节编号（注意：3.38.2 开始 showCode 默认为 false）：</p><ul><li>false - 显示编号；</li><li>false - 不显示编号（默认值）；</li></ul></div></section><section class="section"><header class="section__header"><h3 class="section__h3">animationCurrent</h3></header><div class="section__content"><h4 class="section__h4">Description</h4><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">Boolean</dd></dl><dl class="section__dl"><dt class="section__dt">Default：</dt><dd class="section__dd">true</dd></dl><p>可选，是否采用动画定位高亮当前的章节标题：</p><ul><li>true - 采用动画定位高亮（默认值）；</li><li>false - 采用高亮当前章节标题的链接文字并加粗文字；</li></ul></div></section><section class="section"><header class="section__header"><h3 class="section__h3">hasToolbar</h3></header><div class="section__content"><h4 class="section__h4">Description</h4><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">Boolean</dd></dl><dl class="section__dl"><dt class="section__dt">Default：</dt><dd class="section__dd">true</dd></dl><p>可选，是否显示侧边的按钮工具栏：</p><ul><li>true - 显示按钮工具栏（默认值）；</li><li>false - 不显示按钮工具栏；</li></ul></div></section><section class="section"><header class="section__header"><h3 class="section__h3">closeOnClickModal</h3></header><div class="section__content"><h4 class="section__h4">Description</h4><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">Boolean</dd></dl><dl class="section__dl"><dt class="section__dt">Default：</dt><dd class="section__dd">true</dd></dl><p>可选，点击空白处（非独立导航菜单），收起导航菜单：</p><ul><li>true - 点击空白处，收起菜单（默认值）；</li><li>false - 点击空白处，不收起菜单；</li></ul></div></section><section class="section"><header class="section__header"><h3 class="section__h3">showNavModalFirst</h3></header><div class="section__content"><h4 class="section__h4">Description</h4><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">Boolean</dd></dl><dl class="section__dl"><dt class="section__dt">Default：</dt><dd class="section__dd">false</dd></dl><p>可选，有独立导航菜单时，是否默认显示菜单：</p><ul><li>false - 默认先显示按钮工具栏（默认值）；</li><li>true - 默认先显示独立导航菜单弹窗；</li></ul></div></section><section class="section"><header class="section__header"><h3 class="section__h3">anchorURL</h3></header><div class="section__content"><h4 class="section__h4">Description</h4><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">String</dd></dl><dl class="section__dl"><dt class="section__dt">Default：</dt><dd class="section__dd">''</dd></dl><p>可选，用来指定文章标题锚点链接图标的链接地址：</p><pre class="section__pre"><code class="section__code">// Default URL - 默认链接，点击图标，页面会滚动到当前标题位置
 new Outline()
 
 // Customize URL - 直接打开链接了
@@ -6763,7 +6928,7 @@ defaults.afterToggle = function(closed, isStickying) {
     $header.classList.add(HEADER_STICKY)
   }
 }
-outline = new Outline(Outline.DEFAULTS)</code></pre></div></section><section class="section"><header class="section__header"><h3 class="section__h3">chapterTextFilter</h3></header><div class="section__content"><h4 class="section__h4">Description</h4><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">Function</dd></dl><dl class="section__dl"><dt class="section__dt">Default：</dt><dd class="section__dd">null</dd></dl><p>可选，API 文档中，正文的方法会添加参数等信息，例如：getChapters(headings, showCode, chapterTextFilter)。而在 chapters 导航菜单，我希望显示为 getChapters()，这时我们就可以借助 chapterTextFilter 回调函数。对原始的文本进行过滤，返回我们期望的 getChapters() 文本。</p><h4 class="section__h4">Parameters</h4><h5 class="section__h4">text</h5><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">String</dd></dl><p>chapterTextFilter() 回调函数有一个参数 text，返回的是当前 hx 标题中的文本。</p><pre class="section__pre"><code class="section__code">const defaults = Outline.DEFAULTS
+outline = new Outline(Outline.DEFAULTS)</code></pre></div></section><section class="section"><header class="section__header"><h3 class="section__h3">chapterTextFilter</h3></header><div class="section__content"><h4 class="section__h4">Description</h4><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">Function</dd></dl><dl class="section__dl"><dt class="section__dt">Default：</dt><dd class="section__dd">null</dd></dl><p>可选，API 文档中，正文的方法会添加参数等信息，例如：getChapters(headings, showCode, chapterTextFilter)。而在 chapters 导航菜单，我希望显示为 getChapters()，这时我们就可以借助 chapterTextFilter 回调函数。对原始的文本进行过滤，返回我们期望的 getChapters() 文本。</p><h4 class="section__h4">Parameters</h4><h5 class="section__h4">text</h5><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">String</dd></dl><p>chapterTextFilter() 回调函数有一个参数 text，返回的是当前 hx 标题中的文本。</p><h4 class="section__h4">Returns</h4><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">String</dd></dl><p>返回最终希望生成的标题文本内容。</p><pre class="section__pre"><code class="section__code">const defaults = Outline.DEFAULTS
 let outline
 
 defaults.selector = 'h2,h3'
@@ -6784,7 +6949,31 @@ defaults.print = {
 defaults.chapterTextFilter = (text) => {
   return text.replace(/\(.*?\)/, '()')
 }
-outline = new Outline(Outline.DEFAULTS)</code></pre></div></section></section><section class="section"><header class="section__header"><h2 class="section__title">Properties</h2></header><div class="section__content"><p>outline.js 重构后，对外放 4 个重要的属性：anchors、drawer、chapters、reader 和 toolbar。它们都是独立的对象实例，提供了 outline.js 所有的能力（属性和方法）。</p></div><section class="section"><header class="section__header"><h3 class="section__h3">attrs</h3></header><div class="section__content"><h4 class="section__h4">Description</h4><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">Object</dd></dl><p>存储的是 Outline 对象当前使用中的配置选项：</p><p>说明：建议使用 attr(prop) 方法来获取属性，避免直接调用属性。</p><pre class="section__pre"><code class="section__code">// 设置默认配置项
+outline = new Outline(defaults)</code></pre></div></section><section class="section"><header class="section__header"><h3 class="section__h3">anchorLinkFilter</h3></header><div class="section__content"><h4 class="section__h4">Description</h4><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">Function</dd></dl><dl class="section__dl"><dt class="section__dt">Default：</dt><dd class="section__dd">null</dd></dl><p>可选，API 文档中，正文标题的锚点链接地址生成函数。</p><h4 class="section__h4">Parameters</h4><h5 class="section__h4">tag</h5><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">String</dd></dl><p>当前标题的 tagName。小写的：h1~6。</p><h5 class="section__h4">title</h5><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">String</dd></dl><p>当前标题的文本内容。</p><h5 class="section__h4">id</h5><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">Number</dd></dl><p>outline.js 为当前标题生成 id 号。</p><h4 class="section__h4">Returns</h4><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">String</dd></dl><p>返回最终希望生成锚点链接的文本内容。</p><pre class="section__pre"><code class="section__code">const defaults = Outline.DEFAULTS
+let outline
+
+defaults.selector = 'h2,h3'
+defaults.title = false
+defaults.showCode = false
+defaults.position = 'sticky'
+defaults.parentElement = '#aside'
+defaults.scrollElement = '#main'
+defaults.articleElement = '#article'
+defaults.homepage = './index.html'
+defaults.git = 'https://github.com/yaohaixiao/outline.js'
+defaults.tags = 'https://github.com/yaohaixiao/outline.js/tags'
+defaults.issues = 'https://github.com/yaohaixiao/outline.js/issues'
+defaults.print = {
+  element: '#article',
+  title: 'Outline.js'
+}
+defaults.chapterTextFilter = (text) => {
+  return text.replace(/\(.*?\)/, '()')
+}
+defaults.anchorLinkFilter = (tag, title, id) => {
+  return `${tag}-${title}-${id}`
+}
+outline = new Outline(defaults)</code></pre></div></section></section><section class="section"><header class="section__header"><h2 class="section__title">Properties</h2></header><div class="section__content"><p>outline.js 重构后，对外放 4 个重要的属性：anchors、drawer、chapters、reader 和 toolbar。它们都是独立的对象实例，提供了 outline.js 所有的能力（属性和方法）。</p></div><section class="section"><header class="section__header"><h3 class="section__h3">attrs</h3></header><div class="section__content"><h4 class="section__h4">Description</h4><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">Object</dd></dl><p>存储的是 Outline 对象当前使用中的配置选项：</p><p>说明：建议使用 attr(prop) 方法来获取属性，避免直接调用属性。</p><pre class="section__pre"><code class="section__code">// 设置默认配置项
 const outline = new Outline(Outline.DEFAULTS)
 
 // 查看全部配置信息
@@ -7292,6 +7481,8 @@ export default Toolbar</code></pre></div></section><section class="section"><hea
   // 负责文章区域滚动的元素
   // String 类型 - 选择器字符串，默认值：html,body（window窗口）
   // HTMLElement 类型 - DOM 元素
+  // 注意：如果您使用的是比较旧的 chrome 浏览器，例如：Chromium 60.x 版本或者以下版本
+  // 请手动设置 scrollElement = 'body'，否则点击导航无法滚动定位
   scrollElement: 'html,body',
   // 文章导读菜单的位置
   // relative - （默认值）创建独立的侧滑菜单
@@ -7319,8 +7510,8 @@ export default Toolbar</code></pre></div></section><section class="section"><hea
   // 说明：outline.js 主要用于文章详情页面，
   // 因此 stickyHeight 仅针对 top: 0，且 sticky 定位元素在文章内容区域上方的位置；
   stickyHeight: 0,
-  // 是否显示标题编号
-  showCode: true,
+  // 是否显示标题编号（注意：3.38.2 开始 showCode 默认为 false）
+  showCode: false,
   // 是否显示侧边的按钮工具栏
   hasToolbar: true,
   // 指定是否采用动画定位高亮当前的章节标题，默认值：true
@@ -7366,7 +7557,14 @@ export default Toolbar</code></pre></div></section><section class="section"><hea
   // API 文档中，正文的方法会添加参数等信息，例如：getChapters(headings, showCode, chapterTextFilter)
   // 而在 chapters 导航菜单，我希望显示为 getChapters()，这时我们就可以借助 chapterTextFilter 回调函数
   // 对原始的文本进行过滤，返回我们期望的 getChapters() 文本
-  chapterTextFilter: null
+  chapterTextFilter: null,
+  // 锚点链接的生成回调函数
+  // anchorLinkFilter(tag, title, id)
+  // tag - 当前标题的 tagName 小写：h1~6
+  // title - 当前标题的文本内容
+  // id - outline 为当前标题生成的 id 号，是个数值
+  // 如果设置了 anchorURL，则会统一使用 anchorURL 参数的地址
+  anchorLinkFilter: null
 }</code></pre></div></section></section><section class="section"><header class="section__header"><h2 class="section__title">Methods</h2></header><div class="section__content"><p>outline.js 的提供的方法如下：</p></div><section class="section"><header class="section__header"><h3 class="section__h3">attr([prop, value])</h3></header><div class="section__content"><h4 class="section__h4">Description</h4><p>attr() 方法用来设置或者获取初始化时配置的 attrs 信息的。</p><h4 class="section__h4">Parameters</h4><h5 class="section__h4">prop</h5><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">String|HTMLElement</dd></dl><p>（可选）options 中的属性名称或者要配置的 attrs 信息。</p><h5 class="section__h4">value</h5><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">Any</dd></dl><p>（可选）要设置的 prop 属性的值</p><ul><li>不传递任何参数：返回完整的 attrs 配置信息；</li><li>仅传递 prop：</li><ul><li>String: 返回 attrs 配型信息中与 prop 对应的值；</li><li>Object: 用来设置 attrs 配置信息；</li></ul><li>同时传递 prop 和 value 参数：设置 attrs 配置信息中的某个属性值；</li></ul><h4 class="section__h4">Returns</h4><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">Any</dd></dl><p>配置信息 attrs 的属性值或者 Outline 对象。</p><pre class="section__pre"><code class="section__code">const outline = new Outline({
    article: '#article',
    title: 'Outline v2.0.0'
@@ -7872,7 +8070,7 @@ new Outline({
 // 设置 stickyHeight（outline.js 的示例页面的主标题元素的高度）
 defaults.stickyHeight = 86
 // 默认生成独立的侧滑弹窗导航菜单
-new Outline(defaults)</code></pre></div></section><section class="section"><header class="section__header"><h3 class="section__h3">showCode</h3></header><div class="section__content"><h4 class="section__h4">Description</h4><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">Boolean</dd></dl><dl class="section__dl"><dt class="section__dt">Default：</dt><dd class="section__dd">true</dd></dl><p>可选，是否显示段落章节编号：</p><ul><li>true - 显示编号（默认值）；</li><li>false - 不显示编号；</li></ul></div></section><section class="section"><header class="section__header"><h3 class="section__h3">animationCurrent</h3></header><div class="section__content"><h4 class="section__h4">Description</h4><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">Boolean</dd></dl><dl class="section__dl"><dt class="section__dt">Default：</dt><dd class="section__dd">true</dd></dl><p>可选，是否采用动画定位高亮当前的章节标题：</p><ul><li>true - 采用动画定位高亮（默认值）；</li><li>false - 采用高亮当前章节标题的链接文字并加粗文字；</li></ul></div></section><section class="section"><header class="section__header"><h3 class="section__h3">hasToolbar</h3></header><div class="section__content"><h4 class="section__h4">Description</h4><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">Boolean</dd></dl><dl class="section__dl"><dt class="section__dt">Default：</dt><dd class="section__dd">true</dd></dl><p>可选，是否显示侧边的按钮工具栏：</p><ul><li>true - 显示按钮工具栏（默认值）；</li><li>false - 不显示按钮工具栏；</li></ul></div></section><section class="section"><header class="section__header"><h3 class="section__h3">closeOnClickModal</h3></header><div class="section__content"><h4 class="section__h4">Description</h4><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">Boolean</dd></dl><dl class="section__dl"><dt class="section__dt">Default：</dt><dd class="section__dd">true</dd></dl><p>可选，点击空白处（非独立导航菜单），收起导航菜单：</p><ul><li>true - 点击空白处，收起菜单（默认值）；</li><li>false - 点击空白处，不收起菜单；</li></ul></div></section><section class="section"><header class="section__header"><h3 class="section__h3">showNavModalFirst</h3></header><div class="section__content"><h4 class="section__h4">Description</h4><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">Boolean</dd></dl><dl class="section__dl"><dt class="section__dt">Default：</dt><dd class="section__dd">false</dd></dl><p>可选，有独立导航菜单时，是否默认显示菜单：</p><ul><li>false - 默认先显示按钮工具栏（默认值）；</li><li>true - 默认先显示独立导航菜单弹窗；</li></ul></div></section><section class="section"><header class="section__header"><h3 class="section__h3">anchorURL</h3></header><div class="section__content"><h4 class="section__h4">Description</h4><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">String</dd></dl><dl class="section__dl"><dt class="section__dt">Default：</dt><dd class="section__dd">''</dd></dl><p>可选，用来指定文章标题锚点链接图标的链接地址：</p><pre class="section__pre"><code class="section__code">// Default URL - 默认链接，点击图标，页面会滚动到当前标题位置
+new Outline(defaults)</code></pre></div></section><section class="section"><header class="section__header"><h3 class="section__h3">showCode</h3></header><div class="section__content"><h4 class="section__h4">Description</h4><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">Boolean</dd></dl><dl class="section__dl"><dt class="section__dt">Default：</dt><dd class="section__dd">true</dd></dl><p>可选，是否显示段落章节编号（注意：3.38.2 开始 showCode 默认为 false）：</p><ul><li>false - 显示编号；</li><li>false - 不显示编号（默认值）；</li></ul></div></section><section class="section"><header class="section__header"><h3 class="section__h3">animationCurrent</h3></header><div class="section__content"><h4 class="section__h4">Description</h4><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">Boolean</dd></dl><dl class="section__dl"><dt class="section__dt">Default：</dt><dd class="section__dd">true</dd></dl><p>可选，是否采用动画定位高亮当前的章节标题：</p><ul><li>true - 采用动画定位高亮（默认值）；</li><li>false - 采用高亮当前章节标题的链接文字并加粗文字；</li></ul></div></section><section class="section"><header class="section__header"><h3 class="section__h3">hasToolbar</h3></header><div class="section__content"><h4 class="section__h4">Description</h4><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">Boolean</dd></dl><dl class="section__dl"><dt class="section__dt">Default：</dt><dd class="section__dd">true</dd></dl><p>可选，是否显示侧边的按钮工具栏：</p><ul><li>true - 显示按钮工具栏（默认值）；</li><li>false - 不显示按钮工具栏；</li></ul></div></section><section class="section"><header class="section__header"><h3 class="section__h3">closeOnClickModal</h3></header><div class="section__content"><h4 class="section__h4">Description</h4><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">Boolean</dd></dl><dl class="section__dl"><dt class="section__dt">Default：</dt><dd class="section__dd">true</dd></dl><p>可选，点击空白处（非独立导航菜单），收起导航菜单：</p><ul><li>true - 点击空白处，收起菜单（默认值）；</li><li>false - 点击空白处，不收起菜单；</li></ul></div></section><section class="section"><header class="section__header"><h3 class="section__h3">showNavModalFirst</h3></header><div class="section__content"><h4 class="section__h4">Description</h4><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">Boolean</dd></dl><dl class="section__dl"><dt class="section__dt">Default：</dt><dd class="section__dd">false</dd></dl><p>可选，有独立导航菜单时，是否默认显示菜单：</p><ul><li>false - 默认先显示按钮工具栏（默认值）；</li><li>true - 默认先显示独立导航菜单弹窗；</li></ul></div></section><section class="section"><header class="section__header"><h3 class="section__h3">anchorURL</h3></header><div class="section__content"><h4 class="section__h4">Description</h4><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">String</dd></dl><dl class="section__dl"><dt class="section__dt">Default：</dt><dd class="section__dd">''</dd></dl><p>可选，用来指定文章标题锚点链接图标的链接地址：</p><pre class="section__pre"><code class="section__code">// Default URL - 默认链接，点击图标，页面会滚动到当前标题位置
 new Outline()
 
 // Customize URL - 直接打开链接了
@@ -8054,7 +8252,7 @@ defaults.afterToggle = function(closed, isStickying) {
     $header.classList.add(HEADER_STICKY)
   }
 }
-outline = new Outline(Outline.DEFAULTS)</code></pre></div></section><section class="section"><header class="section__header"><h3 class="section__h3">chapterTextFilter</h3></header><div class="section__content"><h4 class="section__h4">Description</h4><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">Function</dd></dl><dl class="section__dl"><dt class="section__dt">Default：</dt><dd class="section__dd">null</dd></dl><p>可选，API 文档中，正文的方法会添加参数等信息，例如：getChapters(headings, showCode, chapterTextFilter)。而在 chapters 导航菜单，我希望显示为 getChapters()，这时我们就可以借助 chapterTextFilter 回调函数。对原始的文本进行过滤，返回我们期望的 getChapters() 文本。</p><h4 class="section__h4">Parameters</h4><h5 class="section__h4">text</h5><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">String</dd></dl><p>chapterTextFilter() 回调函数有一个参数 text，返回的是当前 hx 标题中的文本。</p><pre class="section__pre"><code class="section__code">const defaults = Outline.DEFAULTS
+outline = new Outline(Outline.DEFAULTS)</code></pre></div></section><section class="section"><header class="section__header"><h3 class="section__h3">chapterTextFilter</h3></header><div class="section__content"><h4 class="section__h4">Description</h4><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">Function</dd></dl><dl class="section__dl"><dt class="section__dt">Default：</dt><dd class="section__dd">null</dd></dl><p>可选，API 文档中，正文的方法会添加参数等信息，例如：getChapters(headings, showCode, chapterTextFilter)。而在 chapters 导航菜单，我希望显示为 getChapters()，这时我们就可以借助 chapterTextFilter 回调函数。对原始的文本进行过滤，返回我们期望的 getChapters() 文本。</p><h4 class="section__h4">Parameters</h4><h5 class="section__h4">text</h5><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">String</dd></dl><p>chapterTextFilter() 回调函数有一个参数 text，返回的是当前 hx 标题中的文本。</p><h4 class="section__h4">Returns</h4><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">String</dd></dl><p>返回最终希望生成的标题文本内容。</p><pre class="section__pre"><code class="section__code">const defaults = Outline.DEFAULTS
 let outline
 
 defaults.selector = 'h2,h3'
@@ -8075,7 +8273,31 @@ defaults.print = {
 defaults.chapterTextFilter = (text) => {
   return text.replace(/\(.*?\)/, '()')
 }
-outline = new Outline(Outline.DEFAULTS)</code></pre></div></section></section><section class="section"><header class="section__header"><h2 class="section__title">Properties</h2></header><div class="section__content"><p>outline.js 重构后，对外放 4 个重要的属性：anchors、drawer、chapters、reader 和 toolbar。它们都是独立的对象实例，提供了 outline.js 所有的能力（属性和方法）。</p></div><section class="section"><header class="section__header"><h3 class="section__h3">attrs</h3></header><div class="section__content"><h4 class="section__h4">Description</h4><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">Object</dd></dl><p>存储的是 Outline 对象当前使用中的配置选项：</p><p>说明：建议使用 attr(prop) 方法来获取属性，避免直接调用属性。</p><pre class="section__pre"><code class="section__code">// 设置默认配置项
+outline = new Outline(defaults)</code></pre></div></section><section class="section"><header class="section__header"><h3 class="section__h3">anchorLinkFilter</h3></header><div class="section__content"><h4 class="section__h4">Description</h4><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">Function</dd></dl><dl class="section__dl"><dt class="section__dt">Default：</dt><dd class="section__dd">null</dd></dl><p>可选，API 文档中，正文标题的锚点链接地址生成函数。</p><h4 class="section__h4">Parameters</h4><h5 class="section__h4">tag</h5><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">String</dd></dl><p>当前标题的 tagName。小写的：h1~6。</p><h5 class="section__h4">title</h5><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">String</dd></dl><p>当前标题的文本内容。</p><h5 class="section__h4">id</h5><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">Number</dd></dl><p>outline.js 为当前标题生成 id 号。</p><h4 class="section__h4">Returns</h4><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">String</dd></dl><p>返回最终希望生成锚点链接的文本内容。</p><pre class="section__pre"><code class="section__code">const defaults = Outline.DEFAULTS
+let outline
+
+defaults.selector = 'h2,h3'
+defaults.title = false
+defaults.showCode = false
+defaults.position = 'sticky'
+defaults.parentElement = '#aside'
+defaults.scrollElement = '#main'
+defaults.articleElement = '#article'
+defaults.homepage = './index.html'
+defaults.git = 'https://github.com/yaohaixiao/outline.js'
+defaults.tags = 'https://github.com/yaohaixiao/outline.js/tags'
+defaults.issues = 'https://github.com/yaohaixiao/outline.js/issues'
+defaults.print = {
+  element: '#article',
+  title: 'Outline.js'
+}
+defaults.chapterTextFilter = (text) => {
+  return text.replace(/\(.*?\)/, '()')
+}
+defaults.anchorLinkFilter = (tag, title, id) => {
+  return `${tag}-${title}-${id}`
+}
+outline = new Outline(defaults)</code></pre></div></section></section><section class="section"><header class="section__header"><h2 class="section__title">Properties</h2></header><div class="section__content"><p>outline.js 重构后，对外放 4 个重要的属性：anchors、drawer、chapters、reader 和 toolbar。它们都是独立的对象实例，提供了 outline.js 所有的能力（属性和方法）。</p></div><section class="section"><header class="section__header"><h3 class="section__h3">attrs</h3></header><div class="section__content"><h4 class="section__h4">Description</h4><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">Object</dd></dl><p>存储的是 Outline 对象当前使用中的配置选项：</p><p>说明：建议使用 attr(prop) 方法来获取属性，避免直接调用属性。</p><pre class="section__pre"><code class="section__code">// 设置默认配置项
 const outline = new Outline(Outline.DEFAULTS)
 
 // 查看全部配置信息
@@ -8583,6 +8805,8 @@ export default Toolbar</code></pre></div></section><section class="section"><hea
   // 负责文章区域滚动的元素
   // String 类型 - 选择器字符串，默认值：html,body（window窗口）
   // HTMLElement 类型 - DOM 元素
+  // 注意：如果您使用的是比较旧的 chrome 浏览器，例如：Chromium 60.x 版本或者以下版本
+  // 请手动设置 scrollElement = 'body'，否则点击导航无法滚动定位
   scrollElement: 'html,body',
   // 文章导读菜单的位置
   // relative - （默认值）创建独立的侧滑菜单
@@ -8610,8 +8834,8 @@ export default Toolbar</code></pre></div></section><section class="section"><hea
   // 说明：outline.js 主要用于文章详情页面，
   // 因此 stickyHeight 仅针对 top: 0，且 sticky 定位元素在文章内容区域上方的位置；
   stickyHeight: 0,
-  // 是否显示标题编号
-  showCode: true,
+  // 是否显示标题编号（注意：3.38.2 开始 showCode 默认为 false）
+  showCode: false,
   // 是否显示侧边的按钮工具栏
   hasToolbar: true,
   // 指定是否采用动画定位高亮当前的章节标题，默认值：true
@@ -8657,7 +8881,14 @@ export default Toolbar</code></pre></div></section><section class="section"><hea
   // API 文档中，正文的方法会添加参数等信息，例如：getChapters(headings, showCode, chapterTextFilter)
   // 而在 chapters 导航菜单，我希望显示为 getChapters()，这时我们就可以借助 chapterTextFilter 回调函数
   // 对原始的文本进行过滤，返回我们期望的 getChapters() 文本
-  chapterTextFilter: null
+  chapterTextFilter: null,
+  // 锚点链接的生成回调函数
+  // anchorLinkFilter(tag, title, id)
+  // tag - 当前标题的 tagName 小写：h1~6
+  // title - 当前标题的文本内容
+  // id - outline 为当前标题生成的 id 号，是个数值
+  // 如果设置了 anchorURL，则会统一使用 anchorURL 参数的地址
+  anchorLinkFilter: null
 }</code></pre></div></section></section><section class="section"><header class="section__header"><h2 class="section__title">Methods</h2></header><div class="section__content"><p>outline.js 的提供的方法如下：</p></div><section class="section"><header class="section__header"><h3 class="section__h3">attr([prop, value])</h3></header><div class="section__content"><h4 class="section__h4">Description</h4><p>attr() 方法用来设置或者获取初始化时配置的 attrs 信息的。</p><h4 class="section__h4">Parameters</h4><h5 class="section__h4">prop</h5><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">String|HTMLElement</dd></dl><p>（可选）options 中的属性名称或者要配置的 attrs 信息。</p><h5 class="section__h4">value</h5><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">Any</dd></dl><p>（可选）要设置的 prop 属性的值</p><ul><li>不传递任何参数：返回完整的 attrs 配置信息；</li><li>仅传递 prop：</li><ul><li>String: 返回 attrs 配型信息中与 prop 对应的值；</li><li>Object: 用来设置 attrs 配置信息；</li></ul><li>同时传递 prop 和 value 参数：设置 attrs 配置信息中的某个属性值；</li></ul><h4 class="section__h4">Returns</h4><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">Any</dd></dl><p>配置信息 attrs 的属性值或者 Outline 对象。</p><pre class="section__pre"><code class="section__code">const outline = new Outline({
    article: '#article',
    title: 'Outline v2.0.0'
@@ -9163,7 +9394,7 @@ new Outline({
 // 设置 stickyHeight（outline.js 的示例页面的主标题元素的高度）
 defaults.stickyHeight = 86
 // 默认生成独立的侧滑弹窗导航菜单
-new Outline(defaults)</code></pre></div></section><section class="section"><header class="section__header"><h3 class="section__h3">showCode</h3></header><div class="section__content"><h4 class="section__h4">Description</h4><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">Boolean</dd></dl><dl class="section__dl"><dt class="section__dt">Default：</dt><dd class="section__dd">true</dd></dl><p>可选，是否显示段落章节编号：</p><ul><li>true - 显示编号（默认值）；</li><li>false - 不显示编号；</li></ul></div></section><section class="section"><header class="section__header"><h3 class="section__h3">animationCurrent</h3></header><div class="section__content"><h4 class="section__h4">Description</h4><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">Boolean</dd></dl><dl class="section__dl"><dt class="section__dt">Default：</dt><dd class="section__dd">true</dd></dl><p>可选，是否采用动画定位高亮当前的章节标题：</p><ul><li>true - 采用动画定位高亮（默认值）；</li><li>false - 采用高亮当前章节标题的链接文字并加粗文字；</li></ul></div></section><section class="section"><header class="section__header"><h3 class="section__h3">hasToolbar</h3></header><div class="section__content"><h4 class="section__h4">Description</h4><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">Boolean</dd></dl><dl class="section__dl"><dt class="section__dt">Default：</dt><dd class="section__dd">true</dd></dl><p>可选，是否显示侧边的按钮工具栏：</p><ul><li>true - 显示按钮工具栏（默认值）；</li><li>false - 不显示按钮工具栏；</li></ul></div></section><section class="section"><header class="section__header"><h3 class="section__h3">closeOnClickModal</h3></header><div class="section__content"><h4 class="section__h4">Description</h4><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">Boolean</dd></dl><dl class="section__dl"><dt class="section__dt">Default：</dt><dd class="section__dd">true</dd></dl><p>可选，点击空白处（非独立导航菜单），收起导航菜单：</p><ul><li>true - 点击空白处，收起菜单（默认值）；</li><li>false - 点击空白处，不收起菜单；</li></ul></div></section><section class="section"><header class="section__header"><h3 class="section__h3">showNavModalFirst</h3></header><div class="section__content"><h4 class="section__h4">Description</h4><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">Boolean</dd></dl><dl class="section__dl"><dt class="section__dt">Default：</dt><dd class="section__dd">false</dd></dl><p>可选，有独立导航菜单时，是否默认显示菜单：</p><ul><li>false - 默认先显示按钮工具栏（默认值）；</li><li>true - 默认先显示独立导航菜单弹窗；</li></ul></div></section><section class="section"><header class="section__header"><h3 class="section__h3">anchorURL</h3></header><div class="section__content"><h4 class="section__h4">Description</h4><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">String</dd></dl><dl class="section__dl"><dt class="section__dt">Default：</dt><dd class="section__dd">''</dd></dl><p>可选，用来指定文章标题锚点链接图标的链接地址：</p><pre class="section__pre"><code class="section__code">// Default URL - 默认链接，点击图标，页面会滚动到当前标题位置
+new Outline(defaults)</code></pre></div></section><section class="section"><header class="section__header"><h3 class="section__h3">showCode</h3></header><div class="section__content"><h4 class="section__h4">Description</h4><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">Boolean</dd></dl><dl class="section__dl"><dt class="section__dt">Default：</dt><dd class="section__dd">true</dd></dl><p>可选，是否显示段落章节编号（注意：3.38.2 开始 showCode 默认为 false）：</p><ul><li>false - 显示编号；</li><li>false - 不显示编号（默认值）；</li></ul></div></section><section class="section"><header class="section__header"><h3 class="section__h3">animationCurrent</h3></header><div class="section__content"><h4 class="section__h4">Description</h4><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">Boolean</dd></dl><dl class="section__dl"><dt class="section__dt">Default：</dt><dd class="section__dd">true</dd></dl><p>可选，是否采用动画定位高亮当前的章节标题：</p><ul><li>true - 采用动画定位高亮（默认值）；</li><li>false - 采用高亮当前章节标题的链接文字并加粗文字；</li></ul></div></section><section class="section"><header class="section__header"><h3 class="section__h3">hasToolbar</h3></header><div class="section__content"><h4 class="section__h4">Description</h4><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">Boolean</dd></dl><dl class="section__dl"><dt class="section__dt">Default：</dt><dd class="section__dd">true</dd></dl><p>可选，是否显示侧边的按钮工具栏：</p><ul><li>true - 显示按钮工具栏（默认值）；</li><li>false - 不显示按钮工具栏；</li></ul></div></section><section class="section"><header class="section__header"><h3 class="section__h3">closeOnClickModal</h3></header><div class="section__content"><h4 class="section__h4">Description</h4><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">Boolean</dd></dl><dl class="section__dl"><dt class="section__dt">Default：</dt><dd class="section__dd">true</dd></dl><p>可选，点击空白处（非独立导航菜单），收起导航菜单：</p><ul><li>true - 点击空白处，收起菜单（默认值）；</li><li>false - 点击空白处，不收起菜单；</li></ul></div></section><section class="section"><header class="section__header"><h3 class="section__h3">showNavModalFirst</h3></header><div class="section__content"><h4 class="section__h4">Description</h4><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">Boolean</dd></dl><dl class="section__dl"><dt class="section__dt">Default：</dt><dd class="section__dd">false</dd></dl><p>可选，有独立导航菜单时，是否默认显示菜单：</p><ul><li>false - 默认先显示按钮工具栏（默认值）；</li><li>true - 默认先显示独立导航菜单弹窗；</li></ul></div></section><section class="section"><header class="section__header"><h3 class="section__h3">anchorURL</h3></header><div class="section__content"><h4 class="section__h4">Description</h4><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">String</dd></dl><dl class="section__dl"><dt class="section__dt">Default：</dt><dd class="section__dd">''</dd></dl><p>可选，用来指定文章标题锚点链接图标的链接地址：</p><pre class="section__pre"><code class="section__code">// Default URL - 默认链接，点击图标，页面会滚动到当前标题位置
 new Outline()
 
 // Customize URL - 直接打开链接了
@@ -9345,7 +9576,7 @@ defaults.afterToggle = function(closed, isStickying) {
     $header.classList.add(HEADER_STICKY)
   }
 }
-outline = new Outline(Outline.DEFAULTS)</code></pre></div></section><section class="section"><header class="section__header"><h3 class="section__h3">chapterTextFilter</h3></header><div class="section__content"><h4 class="section__h4">Description</h4><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">Function</dd></dl><dl class="section__dl"><dt class="section__dt">Default：</dt><dd class="section__dd">null</dd></dl><p>可选，API 文档中，正文的方法会添加参数等信息，例如：getChapters(headings, showCode, chapterTextFilter)。而在 chapters 导航菜单，我希望显示为 getChapters()，这时我们就可以借助 chapterTextFilter 回调函数。对原始的文本进行过滤，返回我们期望的 getChapters() 文本。</p><h4 class="section__h4">Parameters</h4><h5 class="section__h4">text</h5><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">String</dd></dl><p>chapterTextFilter() 回调函数有一个参数 text，返回的是当前 hx 标题中的文本。</p><pre class="section__pre"><code class="section__code">const defaults = Outline.DEFAULTS
+outline = new Outline(Outline.DEFAULTS)</code></pre></div></section><section class="section"><header class="section__header"><h3 class="section__h3">chapterTextFilter</h3></header><div class="section__content"><h4 class="section__h4">Description</h4><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">Function</dd></dl><dl class="section__dl"><dt class="section__dt">Default：</dt><dd class="section__dd">null</dd></dl><p>可选，API 文档中，正文的方法会添加参数等信息，例如：getChapters(headings, showCode, chapterTextFilter)。而在 chapters 导航菜单，我希望显示为 getChapters()，这时我们就可以借助 chapterTextFilter 回调函数。对原始的文本进行过滤，返回我们期望的 getChapters() 文本。</p><h4 class="section__h4">Parameters</h4><h5 class="section__h4">text</h5><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">String</dd></dl><p>chapterTextFilter() 回调函数有一个参数 text，返回的是当前 hx 标题中的文本。</p><h4 class="section__h4">Returns</h4><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">String</dd></dl><p>返回最终希望生成的标题文本内容。</p><pre class="section__pre"><code class="section__code">const defaults = Outline.DEFAULTS
 let outline
 
 defaults.selector = 'h2,h3'
@@ -9366,7 +9597,31 @@ defaults.print = {
 defaults.chapterTextFilter = (text) => {
   return text.replace(/\(.*?\)/, '()')
 }
-outline = new Outline(Outline.DEFAULTS)</code></pre></div></section></section><section class="section"><header class="section__header"><h2 class="section__title">Properties</h2></header><div class="section__content"><p>outline.js 重构后，对外放 4 个重要的属性：anchors、drawer、chapters、reader 和 toolbar。它们都是独立的对象实例，提供了 outline.js 所有的能力（属性和方法）。</p></div><section class="section"><header class="section__header"><h3 class="section__h3">attrs</h3></header><div class="section__content"><h4 class="section__h4">Description</h4><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">Object</dd></dl><p>存储的是 Outline 对象当前使用中的配置选项：</p><p>说明：建议使用 attr(prop) 方法来获取属性，避免直接调用属性。</p><pre class="section__pre"><code class="section__code">// 设置默认配置项
+outline = new Outline(defaults)</code></pre></div></section><section class="section"><header class="section__header"><h3 class="section__h3">anchorLinkFilter</h3></header><div class="section__content"><h4 class="section__h4">Description</h4><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">Function</dd></dl><dl class="section__dl"><dt class="section__dt">Default：</dt><dd class="section__dd">null</dd></dl><p>可选，API 文档中，正文标题的锚点链接地址生成函数。</p><h4 class="section__h4">Parameters</h4><h5 class="section__h4">tag</h5><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">String</dd></dl><p>当前标题的 tagName。小写的：h1~6。</p><h5 class="section__h4">title</h5><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">String</dd></dl><p>当前标题的文本内容。</p><h5 class="section__h4">id</h5><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">Number</dd></dl><p>outline.js 为当前标题生成 id 号。</p><h4 class="section__h4">Returns</h4><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">String</dd></dl><p>返回最终希望生成锚点链接的文本内容。</p><pre class="section__pre"><code class="section__code">const defaults = Outline.DEFAULTS
+let outline
+
+defaults.selector = 'h2,h3'
+defaults.title = false
+defaults.showCode = false
+defaults.position = 'sticky'
+defaults.parentElement = '#aside'
+defaults.scrollElement = '#main'
+defaults.articleElement = '#article'
+defaults.homepage = './index.html'
+defaults.git = 'https://github.com/yaohaixiao/outline.js'
+defaults.tags = 'https://github.com/yaohaixiao/outline.js/tags'
+defaults.issues = 'https://github.com/yaohaixiao/outline.js/issues'
+defaults.print = {
+  element: '#article',
+  title: 'Outline.js'
+}
+defaults.chapterTextFilter = (text) => {
+  return text.replace(/\(.*?\)/, '()')
+}
+defaults.anchorLinkFilter = (tag, title, id) => {
+  return `${tag}-${title}-${id}`
+}
+outline = new Outline(defaults)</code></pre></div></section></section><section class="section"><header class="section__header"><h2 class="section__title">Properties</h2></header><div class="section__content"><p>outline.js 重构后，对外放 4 个重要的属性：anchors、drawer、chapters、reader 和 toolbar。它们都是独立的对象实例，提供了 outline.js 所有的能力（属性和方法）。</p></div><section class="section"><header class="section__header"><h3 class="section__h3">attrs</h3></header><div class="section__content"><h4 class="section__h4">Description</h4><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">Object</dd></dl><p>存储的是 Outline 对象当前使用中的配置选项：</p><p>说明：建议使用 attr(prop) 方法来获取属性，避免直接调用属性。</p><pre class="section__pre"><code class="section__code">// 设置默认配置项
 const outline = new Outline(Outline.DEFAULTS)
 
 // 查看全部配置信息
@@ -9874,6 +10129,8 @@ export default Toolbar</code></pre></div></section><section class="section"><hea
   // 负责文章区域滚动的元素
   // String 类型 - 选择器字符串，默认值：html,body（window窗口）
   // HTMLElement 类型 - DOM 元素
+  // 注意：如果您使用的是比较旧的 chrome 浏览器，例如：Chromium 60.x 版本或者以下版本
+  // 请手动设置 scrollElement = 'body'，否则点击导航无法滚动定位
   scrollElement: 'html,body',
   // 文章导读菜单的位置
   // relative - （默认值）创建独立的侧滑菜单
@@ -9901,8 +10158,8 @@ export default Toolbar</code></pre></div></section><section class="section"><hea
   // 说明：outline.js 主要用于文章详情页面，
   // 因此 stickyHeight 仅针对 top: 0，且 sticky 定位元素在文章内容区域上方的位置；
   stickyHeight: 0,
-  // 是否显示标题编号
-  showCode: true,
+  // 是否显示标题编号（注意：3.38.2 开始 showCode 默认为 false）
+  showCode: false,
   // 是否显示侧边的按钮工具栏
   hasToolbar: true,
   // 指定是否采用动画定位高亮当前的章节标题，默认值：true
@@ -9948,7 +10205,14 @@ export default Toolbar</code></pre></div></section><section class="section"><hea
   // API 文档中，正文的方法会添加参数等信息，例如：getChapters(headings, showCode, chapterTextFilter)
   // 而在 chapters 导航菜单，我希望显示为 getChapters()，这时我们就可以借助 chapterTextFilter 回调函数
   // 对原始的文本进行过滤，返回我们期望的 getChapters() 文本
-  chapterTextFilter: null
+  chapterTextFilter: null,
+  // 锚点链接的生成回调函数
+  // anchorLinkFilter(tag, title, id)
+  // tag - 当前标题的 tagName 小写：h1~6
+  // title - 当前标题的文本内容
+  // id - outline 为当前标题生成的 id 号，是个数值
+  // 如果设置了 anchorURL，则会统一使用 anchorURL 参数的地址
+  anchorLinkFilter: null
 }</code></pre></div></section></section><section class="section"><header class="section__header"><h2 class="section__title">Methods</h2></header><div class="section__content"><p>outline.js 的提供的方法如下：</p></div><section class="section"><header class="section__header"><h3 class="section__h3">attr([prop, value])</h3></header><div class="section__content"><h4 class="section__h4">Description</h4><p>attr() 方法用来设置或者获取初始化时配置的 attrs 信息的。</p><h4 class="section__h4">Parameters</h4><h5 class="section__h4">prop</h5><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">String|HTMLElement</dd></dl><p>（可选）options 中的属性名称或者要配置的 attrs 信息。</p><h5 class="section__h4">value</h5><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">Any</dd></dl><p>（可选）要设置的 prop 属性的值</p><ul><li>不传递任何参数：返回完整的 attrs 配置信息；</li><li>仅传递 prop：</li><ul><li>String: 返回 attrs 配型信息中与 prop 对应的值；</li><li>Object: 用来设置 attrs 配置信息；</li></ul><li>同时传递 prop 和 value 参数：设置 attrs 配置信息中的某个属性值；</li></ul><h4 class="section__h4">Returns</h4><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">Any</dd></dl><p>配置信息 attrs 的属性值或者 Outline 对象。</p><pre class="section__pre"><code class="section__code">const outline = new Outline({
    article: '#article',
    title: 'Outline v2.0.0'
@@ -10454,7 +10718,7 @@ new Outline({
 // 设置 stickyHeight（outline.js 的示例页面的主标题元素的高度）
 defaults.stickyHeight = 86
 // 默认生成独立的侧滑弹窗导航菜单
-new Outline(defaults)</code></pre></div></section><section class="section"><header class="section__header"><h3 class="section__h3">showCode</h3></header><div class="section__content"><h4 class="section__h4">Description</h4><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">Boolean</dd></dl><dl class="section__dl"><dt class="section__dt">Default：</dt><dd class="section__dd">true</dd></dl><p>可选，是否显示段落章节编号：</p><ul><li>true - 显示编号（默认值）；</li><li>false - 不显示编号；</li></ul></div></section><section class="section"><header class="section__header"><h3 class="section__h3">animationCurrent</h3></header><div class="section__content"><h4 class="section__h4">Description</h4><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">Boolean</dd></dl><dl class="section__dl"><dt class="section__dt">Default：</dt><dd class="section__dd">true</dd></dl><p>可选，是否采用动画定位高亮当前的章节标题：</p><ul><li>true - 采用动画定位高亮（默认值）；</li><li>false - 采用高亮当前章节标题的链接文字并加粗文字；</li></ul></div></section><section class="section"><header class="section__header"><h3 class="section__h3">hasToolbar</h3></header><div class="section__content"><h4 class="section__h4">Description</h4><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">Boolean</dd></dl><dl class="section__dl"><dt class="section__dt">Default：</dt><dd class="section__dd">true</dd></dl><p>可选，是否显示侧边的按钮工具栏：</p><ul><li>true - 显示按钮工具栏（默认值）；</li><li>false - 不显示按钮工具栏；</li></ul></div></section><section class="section"><header class="section__header"><h3 class="section__h3">closeOnClickModal</h3></header><div class="section__content"><h4 class="section__h4">Description</h4><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">Boolean</dd></dl><dl class="section__dl"><dt class="section__dt">Default：</dt><dd class="section__dd">true</dd></dl><p>可选，点击空白处（非独立导航菜单），收起导航菜单：</p><ul><li>true - 点击空白处，收起菜单（默认值）；</li><li>false - 点击空白处，不收起菜单；</li></ul></div></section><section class="section"><header class="section__header"><h3 class="section__h3">showNavModalFirst</h3></header><div class="section__content"><h4 class="section__h4">Description</h4><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">Boolean</dd></dl><dl class="section__dl"><dt class="section__dt">Default：</dt><dd class="section__dd">false</dd></dl><p>可选，有独立导航菜单时，是否默认显示菜单：</p><ul><li>false - 默认先显示按钮工具栏（默认值）；</li><li>true - 默认先显示独立导航菜单弹窗；</li></ul></div></section><section class="section"><header class="section__header"><h3 class="section__h3">anchorURL</h3></header><div class="section__content"><h4 class="section__h4">Description</h4><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">String</dd></dl><dl class="section__dl"><dt class="section__dt">Default：</dt><dd class="section__dd">''</dd></dl><p>可选，用来指定文章标题锚点链接图标的链接地址：</p><pre class="section__pre"><code class="section__code">// Default URL - 默认链接，点击图标，页面会滚动到当前标题位置
+new Outline(defaults)</code></pre></div></section><section class="section"><header class="section__header"><h3 class="section__h3">showCode</h3></header><div class="section__content"><h4 class="section__h4">Description</h4><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">Boolean</dd></dl><dl class="section__dl"><dt class="section__dt">Default：</dt><dd class="section__dd">true</dd></dl><p>可选，是否显示段落章节编号（注意：3.38.2 开始 showCode 默认为 false）：</p><ul><li>false - 显示编号；</li><li>false - 不显示编号（默认值）；</li></ul></div></section><section class="section"><header class="section__header"><h3 class="section__h3">animationCurrent</h3></header><div class="section__content"><h4 class="section__h4">Description</h4><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">Boolean</dd></dl><dl class="section__dl"><dt class="section__dt">Default：</dt><dd class="section__dd">true</dd></dl><p>可选，是否采用动画定位高亮当前的章节标题：</p><ul><li>true - 采用动画定位高亮（默认值）；</li><li>false - 采用高亮当前章节标题的链接文字并加粗文字；</li></ul></div></section><section class="section"><header class="section__header"><h3 class="section__h3">hasToolbar</h3></header><div class="section__content"><h4 class="section__h4">Description</h4><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">Boolean</dd></dl><dl class="section__dl"><dt class="section__dt">Default：</dt><dd class="section__dd">true</dd></dl><p>可选，是否显示侧边的按钮工具栏：</p><ul><li>true - 显示按钮工具栏（默认值）；</li><li>false - 不显示按钮工具栏；</li></ul></div></section><section class="section"><header class="section__header"><h3 class="section__h3">closeOnClickModal</h3></header><div class="section__content"><h4 class="section__h4">Description</h4><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">Boolean</dd></dl><dl class="section__dl"><dt class="section__dt">Default：</dt><dd class="section__dd">true</dd></dl><p>可选，点击空白处（非独立导航菜单），收起导航菜单：</p><ul><li>true - 点击空白处，收起菜单（默认值）；</li><li>false - 点击空白处，不收起菜单；</li></ul></div></section><section class="section"><header class="section__header"><h3 class="section__h3">showNavModalFirst</h3></header><div class="section__content"><h4 class="section__h4">Description</h4><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">Boolean</dd></dl><dl class="section__dl"><dt class="section__dt">Default：</dt><dd class="section__dd">false</dd></dl><p>可选，有独立导航菜单时，是否默认显示菜单：</p><ul><li>false - 默认先显示按钮工具栏（默认值）；</li><li>true - 默认先显示独立导航菜单弹窗；</li></ul></div></section><section class="section"><header class="section__header"><h3 class="section__h3">anchorURL</h3></header><div class="section__content"><h4 class="section__h4">Description</h4><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">String</dd></dl><dl class="section__dl"><dt class="section__dt">Default：</dt><dd class="section__dd">''</dd></dl><p>可选，用来指定文章标题锚点链接图标的链接地址：</p><pre class="section__pre"><code class="section__code">// Default URL - 默认链接，点击图标，页面会滚动到当前标题位置
 new Outline()
 
 // Customize URL - 直接打开链接了
@@ -10636,7 +10900,7 @@ defaults.afterToggle = function(closed, isStickying) {
     $header.classList.add(HEADER_STICKY)
   }
 }
-outline = new Outline(Outline.DEFAULTS)</code></pre></div></section><section class="section"><header class="section__header"><h3 class="section__h3">chapterTextFilter</h3></header><div class="section__content"><h4 class="section__h4">Description</h4><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">Function</dd></dl><dl class="section__dl"><dt class="section__dt">Default：</dt><dd class="section__dd">null</dd></dl><p>可选，API 文档中，正文的方法会添加参数等信息，例如：getChapters(headings, showCode, chapterTextFilter)。而在 chapters 导航菜单，我希望显示为 getChapters()，这时我们就可以借助 chapterTextFilter 回调函数。对原始的文本进行过滤，返回我们期望的 getChapters() 文本。</p><h4 class="section__h4">Parameters</h4><h5 class="section__h4">text</h5><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">String</dd></dl><p>chapterTextFilter() 回调函数有一个参数 text，返回的是当前 hx 标题中的文本。</p><pre class="section__pre"><code class="section__code">const defaults = Outline.DEFAULTS
+outline = new Outline(Outline.DEFAULTS)</code></pre></div></section><section class="section"><header class="section__header"><h3 class="section__h3">chapterTextFilter</h3></header><div class="section__content"><h4 class="section__h4">Description</h4><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">Function</dd></dl><dl class="section__dl"><dt class="section__dt">Default：</dt><dd class="section__dd">null</dd></dl><p>可选，API 文档中，正文的方法会添加参数等信息，例如：getChapters(headings, showCode, chapterTextFilter)。而在 chapters 导航菜单，我希望显示为 getChapters()，这时我们就可以借助 chapterTextFilter 回调函数。对原始的文本进行过滤，返回我们期望的 getChapters() 文本。</p><h4 class="section__h4">Parameters</h4><h5 class="section__h4">text</h5><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">String</dd></dl><p>chapterTextFilter() 回调函数有一个参数 text，返回的是当前 hx 标题中的文本。</p><h4 class="section__h4">Returns</h4><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">String</dd></dl><p>返回最终希望生成的标题文本内容。</p><pre class="section__pre"><code class="section__code">const defaults = Outline.DEFAULTS
 let outline
 
 defaults.selector = 'h2,h3'
@@ -10657,7 +10921,31 @@ defaults.print = {
 defaults.chapterTextFilter = (text) => {
   return text.replace(/\(.*?\)/, '()')
 }
-outline = new Outline(Outline.DEFAULTS)</code></pre></div></section></section><section class="section"><header class="section__header"><h2 class="section__title">Properties</h2></header><div class="section__content"><p>outline.js 重构后，对外放 4 个重要的属性：anchors、drawer、chapters、reader 和 toolbar。它们都是独立的对象实例，提供了 outline.js 所有的能力（属性和方法）。</p></div><section class="section"><header class="section__header"><h3 class="section__h3">attrs</h3></header><div class="section__content"><h4 class="section__h4">Description</h4><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">Object</dd></dl><p>存储的是 Outline 对象当前使用中的配置选项：</p><p>说明：建议使用 attr(prop) 方法来获取属性，避免直接调用属性。</p><pre class="section__pre"><code class="section__code">// 设置默认配置项
+outline = new Outline(defaults)</code></pre></div></section><section class="section"><header class="section__header"><h3 class="section__h3">anchorLinkFilter</h3></header><div class="section__content"><h4 class="section__h4">Description</h4><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">Function</dd></dl><dl class="section__dl"><dt class="section__dt">Default：</dt><dd class="section__dd">null</dd></dl><p>可选，API 文档中，正文标题的锚点链接地址生成函数。</p><h4 class="section__h4">Parameters</h4><h5 class="section__h4">tag</h5><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">String</dd></dl><p>当前标题的 tagName。小写的：h1~6。</p><h5 class="section__h4">title</h5><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">String</dd></dl><p>当前标题的文本内容。</p><h5 class="section__h4">id</h5><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">Number</dd></dl><p>outline.js 为当前标题生成 id 号。</p><h4 class="section__h4">Returns</h4><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">String</dd></dl><p>返回最终希望生成锚点链接的文本内容。</p><pre class="section__pre"><code class="section__code">const defaults = Outline.DEFAULTS
+let outline
+
+defaults.selector = 'h2,h3'
+defaults.title = false
+defaults.showCode = false
+defaults.position = 'sticky'
+defaults.parentElement = '#aside'
+defaults.scrollElement = '#main'
+defaults.articleElement = '#article'
+defaults.homepage = './index.html'
+defaults.git = 'https://github.com/yaohaixiao/outline.js'
+defaults.tags = 'https://github.com/yaohaixiao/outline.js/tags'
+defaults.issues = 'https://github.com/yaohaixiao/outline.js/issues'
+defaults.print = {
+  element: '#article',
+  title: 'Outline.js'
+}
+defaults.chapterTextFilter = (text) => {
+  return text.replace(/\(.*?\)/, '()')
+}
+defaults.anchorLinkFilter = (tag, title, id) => {
+  return `${tag}-${title}-${id}`
+}
+outline = new Outline(defaults)</code></pre></div></section></section><section class="section"><header class="section__header"><h2 class="section__title">Properties</h2></header><div class="section__content"><p>outline.js 重构后，对外放 4 个重要的属性：anchors、drawer、chapters、reader 和 toolbar。它们都是独立的对象实例，提供了 outline.js 所有的能力（属性和方法）。</p></div><section class="section"><header class="section__header"><h3 class="section__h3">attrs</h3></header><div class="section__content"><h4 class="section__h4">Description</h4><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">Object</dd></dl><p>存储的是 Outline 对象当前使用中的配置选项：</p><p>说明：建议使用 attr(prop) 方法来获取属性，避免直接调用属性。</p><pre class="section__pre"><code class="section__code">// 设置默认配置项
 const outline = new Outline(Outline.DEFAULTS)
 
 // 查看全部配置信息
@@ -11165,6 +11453,8 @@ export default Toolbar</code></pre></div></section><section class="section"><hea
   // 负责文章区域滚动的元素
   // String 类型 - 选择器字符串，默认值：html,body（window窗口）
   // HTMLElement 类型 - DOM 元素
+  // 注意：如果您使用的是比较旧的 chrome 浏览器，例如：Chromium 60.x 版本或者以下版本
+  // 请手动设置 scrollElement = 'body'，否则点击导航无法滚动定位
   scrollElement: 'html,body',
   // 文章导读菜单的位置
   // relative - （默认值）创建独立的侧滑菜单
@@ -11192,8 +11482,8 @@ export default Toolbar</code></pre></div></section><section class="section"><hea
   // 说明：outline.js 主要用于文章详情页面，
   // 因此 stickyHeight 仅针对 top: 0，且 sticky 定位元素在文章内容区域上方的位置；
   stickyHeight: 0,
-  // 是否显示标题编号
-  showCode: true,
+  // 是否显示标题编号（注意：3.38.2 开始 showCode 默认为 false）
+  showCode: false,
   // 是否显示侧边的按钮工具栏
   hasToolbar: true,
   // 指定是否采用动画定位高亮当前的章节标题，默认值：true
@@ -11239,7 +11529,14 @@ export default Toolbar</code></pre></div></section><section class="section"><hea
   // API 文档中，正文的方法会添加参数等信息，例如：getChapters(headings, showCode, chapterTextFilter)
   // 而在 chapters 导航菜单，我希望显示为 getChapters()，这时我们就可以借助 chapterTextFilter 回调函数
   // 对原始的文本进行过滤，返回我们期望的 getChapters() 文本
-  chapterTextFilter: null
+  chapterTextFilter: null,
+  // 锚点链接的生成回调函数
+  // anchorLinkFilter(tag, title, id)
+  // tag - 当前标题的 tagName 小写：h1~6
+  // title - 当前标题的文本内容
+  // id - outline 为当前标题生成的 id 号，是个数值
+  // 如果设置了 anchorURL，则会统一使用 anchorURL 参数的地址
+  anchorLinkFilter: null
 }</code></pre></div></section></section><section class="section"><header class="section__header"><h2 class="section__title">Methods</h2></header><div class="section__content"><p>outline.js 的提供的方法如下：</p></div><section class="section"><header class="section__header"><h3 class="section__h3">attr([prop, value])</h3></header><div class="section__content"><h4 class="section__h4">Description</h4><p>attr() 方法用来设置或者获取初始化时配置的 attrs 信息的。</p><h4 class="section__h4">Parameters</h4><h5 class="section__h4">prop</h5><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">String|HTMLElement</dd></dl><p>（可选）options 中的属性名称或者要配置的 attrs 信息。</p><h5 class="section__h4">value</h5><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">Any</dd></dl><p>（可选）要设置的 prop 属性的值</p><ul><li>不传递任何参数：返回完整的 attrs 配置信息；</li><li>仅传递 prop：</li><ul><li>String: 返回 attrs 配型信息中与 prop 对应的值；</li><li>Object: 用来设置 attrs 配置信息；</li></ul><li>同时传递 prop 和 value 参数：设置 attrs 配置信息中的某个属性值；</li></ul><h4 class="section__h4">Returns</h4><dl class="section__dl"><dt class="section__dt">Type：</dt><dd class="section__dd">Any</dd></dl><p>配置信息 attrs 的属性值或者 Outline 对象。</p><pre class="section__pre"><code class="section__code">const outline = new Outline({
    article: '#article',
    title: 'Outline v2.0.0'

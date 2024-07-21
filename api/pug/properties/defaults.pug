@@ -21,6 +21,8 @@ section.section
           // 负责文章区域滚动的元素
           // String 类型 - 选择器字符串，默认值：html,body（window窗口）
           // HTMLElement 类型 - DOM 元素
+          // 注意：如果您使用的是比较旧的 chrome 浏览器，例如：Chromium 60.x 版本或者以下版本
+          // 请手动设置 scrollElement = 'body'，否则点击导航无法滚动定位
           scrollElement: 'html,body',
           // 文章导读菜单的位置
           // relative - （默认值）创建独立的侧滑菜单
@@ -48,8 +50,8 @@ section.section
           // 说明：outline.js 主要用于文章详情页面，
           // 因此 stickyHeight 仅针对 top: 0，且 sticky 定位元素在文章内容区域上方的位置；
           stickyHeight: 0,
-          // 是否显示标题编号
-          showCode: true,
+          // 是否显示标题编号（注意：3.38.2 开始 showCode 默认为 false）
+          showCode: false,
           // 是否显示侧边的按钮工具栏
           hasToolbar: true,
           // 指定是否采用动画定位高亮当前的章节标题，默认值：true
@@ -95,5 +97,12 @@ section.section
           // API 文档中，正文的方法会添加参数等信息，例如：getChapters(headings, showCode, chapterTextFilter)
           // 而在 chapters 导航菜单，我希望显示为 getChapters()，这时我们就可以借助 chapterTextFilter 回调函数
           // 对原始的文本进行过滤，返回我们期望的 getChapters() 文本
-          chapterTextFilter: null
+          chapterTextFilter: null,
+          // 锚点链接的生成回调函数
+          // anchorLinkFilter(tag, title, id)
+          // tag - 当前标题的 tagName 小写：h1~6
+          // title - 当前标题的文本内容
+          // id - outline 为当前标题生成的 id 号，是个数值
+          // 如果设置了 anchorURL，则会统一使用 anchorURL 参数的地址
+          anchorLinkFilter: null
         }

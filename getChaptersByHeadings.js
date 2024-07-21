@@ -16,10 +16,10 @@ import _getChaptersWithCode from './_getChaptersWithCode'
  */
 const getChaptersByHeadings = (
   headings,
-  showCode = true,
+  showCode = false,
   chapterTextFilter = null
 ) => {
-  const pattern = /^\d(\.\d+)*\s?/gi
+  const pattern = /^\d(\.|(\.\d+)*)\s?/gi
   const chapters = []
   let previous = 1
   let level = 0
@@ -86,7 +86,12 @@ const getChaptersByHeadings = (
 
     previous = current
 
-    text = stripTags(trim(heading.innerHTML.replace(pattern, '')))
+    text = trim(stripTags(heading.innerHTML))
+
+    // 如果自动生成章节编号，则去掉标题中自带的编号文本
+    if (showCode) {
+      text = trim(text.replace(pattern, ''))
+    }
 
     if (isFunction(chapterTextFilter)) {
       text = chapterTextFilter(text)

@@ -29,5 +29,7 @@ html(lang='en')
         defaults.position = 'sticky'
         defaults.stickyHeight = 86
         defaults.parentElement = '#aside'
+        defaults.scrollElement = 'body'
         defaults.homepage = '../index.html'
         outline = new Outline(defaults)
+        outline.reload()
