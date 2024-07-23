@@ -36,6 +36,7 @@ AnchorJS 是 outline.js 的创作灵感来源。既然 AnchorJS 可创建标题�
   * 支持自定义图标的自定义按钮，并且支持配置自定义按钮的触发事件和事件处理器；
 - 自动为文章页面添加通用的打印样式；
 - （在配置打印样式后）有纯净的阅读视图（按ESC键可退出），并引入 Web Speech API 提供自动语音阅读功能；
+- 阅读模式引入 scroll-timeline-name 和 animation-timeline 实现动画显示文章阅读进度；
 - 针对超长文章，采用 time slice 机制生成导航菜单，充分优化性能；
 - 可以作为 jQuery 插件使用；
 - 界面简洁大方；
