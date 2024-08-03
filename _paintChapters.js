@@ -89,9 +89,12 @@ const _paintChapters = ($list, chapters, showCode = false) => {
     })
   }
 
+  // 在大量 DOM 菜单绘制的时候，使用 TIME SLICE 拆分绘制任务
+  // 以避免一次绘制大量 DOM 导致占用资源过高，导致卡死
   if (count > LIMIT) {
     // 同步绘制
     paint(clones.splice(0, LIMIT))
+
     // 剩余的采用 timeSlice 机制绘制
     while (clones.length > 0) {
       const once = clones.splice(0, LIMIT)
