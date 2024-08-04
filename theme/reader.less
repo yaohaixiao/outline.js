@@ -164,12 +164,43 @@
 @media print {
   html,
   body {
+    /* 打印的基础字体大小 */
+    font-size: 12pt;
+    /* 显示设置文字颜色和背景颜色 */
+    background-color: @white;
+    color: @primary_text_color;
     height: initial !important;
+  }
+
+  /* 设置链接样式 */
+  a:link,
+  a:visited,
+  a:hover {
+    text-decoration: underline !important;
+    color: @primary_color;
+  }
+
+  /* 隐藏媒体标签 */
+  video,
+  audio {
+    display: none !important;
+  }
+
+  /* 确保表格在打印时的边框和对齐方式清晰 */
+  table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  th,
+  td {
+    border: 1px solid @primary_border_color;
+    padding: 8px 20px;
   }
 
   .outline {
     &-message,
     &-toolbar {
+      /* 隐藏了工具栏和信息提示框 */
       display: none !important;
     }
 
@@ -183,6 +214,7 @@
         font-size: 32pt !important;
       }
 
+      /* 取消了绝对定位 */
       &--reading {
         position: relative !important;
         height: auto !important;
@@ -191,10 +223,12 @@
         overflow: hidden !important;
       }
 
+      /* 隐藏阅读进度条 */
       &__progress {
         display: none !important;
       }
 
+      /* 打印时不显示正文 DOM 的阴影效果 */
       &__paper {
         box-shadow: none;
       }
@@ -216,6 +250,7 @@
         break-inside: avoid;
       }
 
+      /* 所有文章内容 DOM 相关的邻居节点都隐藏了 */
       &_sibling {
         display: none !important;
       }
