@@ -423,8 +423,8 @@ class Reader extends Base {
     this.$on('toolbar:action:reading', this.onEnterReading)
     this.$on('reader:print', this.onPrint)
     this.$on('reader:refresh', this.onRefresh)
-    this.$on('reader:enter', this.onEnterReading)
-    this.$on('reader:exit', this.onExitReading)
+    this.$on('reader:enter', this.enter)
+    this.$on('reader:exit', this.exit)
     this.$on('reader:toggle', this.toggle)
 
     return this
