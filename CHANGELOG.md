@@ -1,3 +1,17 @@
+## [3.39.1](https://github.com/yaohaixiao/outline.js/compare/3.39.0...3.39.1) (2024-08-10)
+
+
+### Bug Fixes
+
+* 修复 print 样式针对表格和媒体内容的显示问题 ([0fa85f8](https://github.com/yaohaixiao/outline.js/commit/0fa85f8a50455bea147c3ab6d8e42f09393d6e5f))
+
+
+### Features
+
+* 优化 print 打印样式 ([297db48](https://github.com/yaohaixiao/outline.js/commit/297db48c7cd70f6770c7eaeab9f65777b5787fa2))
+
+
+
 # [3.39.0](https://github.com/yaohaixiao/outline.js/compare/3.38.3...3.39.0) (2024-07-21)
 
 
