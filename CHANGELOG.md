@@ -1,3 +1,12 @@
+## [3.39.2](https://github.com/yaohaixiao/outline.js/compare/3.39.1...3.39.2) (2024-09-03)
+
+
+### Bug Fixes
+
+* 修复 outline.js 为文章标题添加 class 样式时，删除标题原有样式的问题； ([f02953b](https://github.com/yaohaixiao/outline.js/commit/f02953b6b5221cd3fa8e22e876e63c685e0c9ccd))
+
+
+
 ## [3.39.1](https://github.com/yaohaixiao/outline.js/compare/3.39.0...3.39.1) (2024-08-10)
 
 
