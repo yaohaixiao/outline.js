@@ -19,9 +19,7 @@ defaults.reader = {
   title: document.querySelector('.main__h1'),
   allowSpeak: true
 }
-defaults.chapterTextFilter = (text) => {
-  return text.replace(/\s*\(.*?\)/, '()')
-}
+defaults.chapterTextFilter = true
 defaults.anchorLinkFilter = (tag, title, id) => {
   return `${tag}-${title}-${id}`
 }

@@ -26,9 +26,7 @@ const getChapters = (options) => {
   let $article = document.querySelector('#article')
   let $headings = []
   let chapters = []
-  let filter = (text) => {
-    return text.replace(/\(.*?\)/, '()')
-  }
+  let filter = null
 
   if (isString(articleElement)) {
     $article = document.querySelector(articleElement)
@@ -42,6 +40,12 @@ const getChapters = (options) => {
 
   if (isFunction(chapterTextFilter)) {
     filter = chapterTextFilter
+  } else {
+    if (chapterTextFilter === true) {
+      filter = (text) => {
+        return text.replace(/\(.*?\)/, '()')
+      }
+    }
   }
 
   $headings = [...$article.querySelectorAll(selector || 'h1,h2,h3,h4,h5,h6')]
