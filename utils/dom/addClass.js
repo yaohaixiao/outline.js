@@ -19,7 +19,13 @@ const addClass = (el, className) => {
   classList = el.classList
 
   if (classList?.add) {
-    classList.add(className)
+    if (className.indexOf(' ') > -1) {
+      className.split(' ').forEach((name) => {
+        classList.add(name)
+      })
+    } else {
+      classList.add(className)
+    }
   } else {
     allClass = el.className
     allClass += allClass.length > 0 ? ' ' + className : className

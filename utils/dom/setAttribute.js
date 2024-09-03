@@ -1,3 +1,5 @@
+import addClass from './addClass.js'
+
 /**
  * 给 DOM 节点设置属性/值
  * ========================================================================
@@ -24,7 +26,7 @@ const setAttribute = (el, attr, value) => {
       el.setAttribute('for', value)
       break
     case 'className':
-      el.className = value
+      addClass(el, value)
       break
     case 'innerHTML':
       el.innerHTML = value
