@@ -1,3 +1,12 @@
+## [3.39.3](https://github.com/yaohaixiao/outline.js/compare/3.39.2...3.39.3) (2024-09-03)
+
+
+### Bug Fixes
+
+* 修复 chapterTextFilter 参数内置的方法会删除标题括号内容的问题； ([b7f7204](https://github.com/yaohaixiao/outline.js/commit/b7f720471400d55c8652b0a526e4417c96f6523b))
+
+
+
 ## [3.39.2](https://github.com/yaohaixiao/outline.js/compare/3.39.1...3.39.2) (2024-09-03)
 
 
