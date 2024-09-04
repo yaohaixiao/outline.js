@@ -2,8 +2,6 @@ const path = require('path')
 const gulp = require('gulp')
 const clean = require('gulp-clean')
 const connect = require('gulp-connect')
-const os = require('os')
-const open = require('gulp-open')
 const pug = require('gulp-pug')
 const less = require('gulp-less')
 const LessAutoPrefix = require('less-plugin-autoprefix')
@@ -43,7 +41,7 @@ const cleanDocs = gulp.parallel(cleanHtml, cleanStyle, cleanScript)
 /* ==================== 编译代码的 gulp 任务 ==================== */
 const buildLibOutlineStyle = () => {
   return gulp
-    .src(['./theme/outline.less'], {
+    .src(['./outline.less'], {
       allowEmpty: true
     })
     .pipe(sourcemaps.init())
@@ -184,21 +182,6 @@ const buildApi = gulp.series(
 )
 
 /* ==================== 文档查看相关的 gulp 任务 ==================== */
-const openDocs = () => {
-  let browser
-  if (os.platform() === 'darwin') {
-    browser = os.platform() === 'linux' ? 'google-chrome' : 'google chrome'
-  } else {
-    browser = os.platform() === 'linux' ? 'google-chrome' : 'chrome'
-  }
-  return gulp.src('docs/index.html').pipe(
-    open({
-      app: browser,
-      uri: 'http://localhost:8481'
-    })
-  )
-}
-
 const connectDocs = () => {
   return connect.server({
     root: 'docs',
@@ -207,7 +190,7 @@ const connectDocs = () => {
   })
 }
 
-const start = gulp.series(buildApi, connectDocs, openDocs)
+const start = gulp.series(buildApi, connectDocs)
 
 // 导出公共方法
 module.exports.start = start

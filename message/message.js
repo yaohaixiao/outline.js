@@ -21,7 +21,7 @@ import icon from '@/utils/icons/icon'
 import on from '@/utils/event/on'
 import off from '@/utils/event/off'
 
-import Component from '@/component/component'
+import Component from '@/base/component'
 
 import SYMBOLS from './symbols'
 

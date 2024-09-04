@@ -15,9 +15,8 @@ import off from '@/utils/event/off'
 import Message from '@/message/message'
 import Toolbar from '@/toolbar/toolbar'
 
-import Component from '@/component/component'
-
-import Speech from './speech'
+import Component from '@/base/component'
+import Speech from '@/base/speech'
 
 import _updateSiblingElements from './utils/_updateSiblingElements'
 

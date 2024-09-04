@@ -17,10 +17,9 @@ import off from '@/utils/event/off'
 
 import paint from '@/utils/icons/paint'
 
-import Component from '@/component/component'
-
-import Command from './command'
-import Commands from './commands'
+import Component from '@/base/component'
+import Command from '@/base/command'
+import Commands from '@/base/commands'
 
 import _createButton from './utils/_createButton'
 import SYMBOLS from './symbols'

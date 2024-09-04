@@ -20,7 +20,7 @@ import setProperty from '@/utils/dom/setProperty'
 import inBounding from '@/utils/dom/inBounding'
 import getScrollElement from '@/utils/dom/getScrollElement'
 
-import Component from '@/component/component'
+import Component from '@/base/component'
 
 import _paintChapters from './utils/_paintChapters'
 

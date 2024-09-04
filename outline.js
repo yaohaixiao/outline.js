@@ -11,7 +11,7 @@ import getScrollElement from './utils/dom/getScrollElement'
 
 import getChapters from './chapters/getChapters'
 
-import Component from './component/component'
+import Component from '@/base/component'
 import Anchors from './anchors/anchors'
 import Drawer from './drawer/drawer'
 import Navigator from './navigator/navigator'

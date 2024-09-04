@@ -18,7 +18,7 @@ import paint from '@/utils/icons/paint'
 
 import getChapters from '@/chapters/getChapters'
 
-import Component from '@/component/component'
+import Component from '@/base/component'
 
 import _updateHeading from './utils/_updateHeading'
 import _removeHeading from './utils/_removeHeading'
