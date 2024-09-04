@@ -1,6 +1,6 @@
 import easeInQuad from '../lang/easeInQuad'
 import isFunction from '../types/isFunction'
-import _getScrollElement from './_getScrollElement'
+import _getScrollElement from '../../navigator/utils/_getScrollElement'
 
 /**
  * 指定 rootElement DOM 节点滚动到指定 top 位置
@@ -32,14 +32,6 @@ const scrollTo = (scrollElement, top, afterStop) => {
       scrollTop -= easeInQuad(step)
       $scrollElement.scrollTop = scrollTop
 
-      console.log(
-        '$scrollElement up',
-        scrollElement,
-        $scrollElement,
-        scrollTop,
-        $scrollElement.scrollTop
-      )
-
       if (scrollTop <= top) {
         $scrollElement.scrollTop = top
         return stop(top)
@@ -47,14 +39,6 @@ const scrollTo = (scrollElement, top, afterStop) => {
     } else {
       scrollTop += easeInQuad(step)
       $scrollElement.scrollTop = scrollTop
-
-      console.log(
-        '$scrollElement down',
-        scrollElement,
-        $scrollElement,
-        scrollTop,
-        $scrollElement.scrollTop
-      )
 
       if (scrollTop >= MAX_TOP) {
         $scrollElement.scrollTop = MAX_TOP

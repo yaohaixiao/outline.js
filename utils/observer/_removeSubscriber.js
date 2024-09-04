@@ -1,5 +1,5 @@
+import hasOwn from '@/utils/lang/hasOwn'
 import _subscribers from './_subscribers'
-import hasOwn from '../lang/hasOwn'
 
 /**
  * 删除与给定 topic 相同的订阅者信息

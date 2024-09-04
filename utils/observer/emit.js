@@ -1,7 +1,7 @@
-import isTypedArray from '../types/isTypedArray'
-import _subscribers from './_subscribers'
+import isTypedArray from '@/utils/types/isTypedArray'
 import has from './has'
 import _hasDirectSubscribersFor from './_hasDirectSubscribersFor'
+import _subscribers from './_subscribers'
 
 /**
  * （异步）发布订阅主题信息

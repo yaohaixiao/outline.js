@@ -1,16 +1,4 @@
-import { nodeResolve } from '@rollup/plugin-node-resolve'
-import { babel } from '@rollup/plugin-babel'
-import commonjs from '@rollup/plugin-commonjs'
-import terser from '@rollup/plugin-terser'
-
-const PLUGIN_CONFIG = [
-  nodeResolve({
-    mainFields: ['module', 'jsnext', 'main', 'browser']
-  }),
-  commonjs(),
-  babel({ babelHelpers: 'bundled' }),
-  terser()
-]
+import getRollupPluginConfig from './rollup.plugin.config'
 
 export default [
   // For full functions module
@@ -22,66 +10,66 @@ export default [
       format: 'umd',
       sourcemap: true
     },
-    plugins: PLUGIN_CONFIG
+    plugins: getRollupPluginConfig('outline')
   },
   {
-    input: './anchors.js',
+    input: './anchors/anchors.js',
     output: {
       name: 'Anchors',
-      file: './anchors.min.js',
+      file: './anchors/anchors.min.js',
       format: 'umd',
       sourcemap: true
     },
-    plugins: PLUGIN_CONFIG
+    plugins: getRollupPluginConfig('anchors')
   },
   {
-    input: './navigator.js',
+    input: './navigator/navigator.js',
     output: {
       name: 'Navigator',
-      file: './navigator.min.js',
+      file: './navigator/navigator.min.js',
       format: 'umd',
       sourcemap: true
     },
-    plugins: PLUGIN_CONFIG
+    plugins: getRollupPluginConfig('navigator')
   },
   {
-    input: './drawer.js',
+    input: './drawer/drawer.js',
     output: {
       name: 'Drawer',
-      file: './drawer.min.js',
+      file: './drawer/drawer.min.js',
       format: 'umd',
       sourcemap: true
     },
-    plugins: PLUGIN_CONFIG
+    plugins: getRollupPluginConfig('drawer')
   },
   {
-    input: './reader.js',
+    input: './reader/reader.js',
     output: {
       name: 'Reader',
-      file: './reader.min.js',
+      file: './reader/reader.min.js',
       format: 'umd',
       sourcemap: true
     },
-    plugins: PLUGIN_CONFIG
+    plugins: getRollupPluginConfig('reader')
   },
   {
-    input: './toolbar.js',
+    input: './toolbar/toolbar.js',
     output: {
       name: 'Toolbar',
-      file: './toolbar.min.js',
+      file: './toolbar/toolbar.min.js',
       format: 'umd',
       sourcemap: true
     },
-    plugins: PLUGIN_CONFIG
+    plugins: getRollupPluginConfig('toolbar')
   },
   {
-    input: './message.js',
+    input: './message/message.js',
     output: {
       name: 'Message',
-      file: './message.min.js',
+      file: './message/message.min.js',
       format: 'umd',
       sourcemap: true
     },
-    plugins: PLUGIN_CONFIG
+    plugins: getRollupPluginConfig('message')
   }
 ]

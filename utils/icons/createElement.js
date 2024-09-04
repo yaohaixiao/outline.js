@@ -1,7 +1,7 @@
-import isArray from '../types/isArray'
-import isString from '../types/isString'
-import isSVG from '../types/isSVG'
-import setAttributes from '../dom/setAttributes'
+import isArray from '@/utils/types/isArray'
+import isString from '@/utils/types/isString'
+import isSVG from '@/utils/types/isSVG'
+import setAttributes from '@/utils/dom/setAttributes'
 
 /**
  * 创建 SVG 图标 DOM 元素

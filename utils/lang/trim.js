@@ -1,4 +1,4 @@
-import isString from '../types/isString'
+import isString from '@/utils/types/isString'
 
 /**
  * 清楚字符串起始位置所有的空格

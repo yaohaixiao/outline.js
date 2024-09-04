@@ -1,6 +1,7 @@
+import isFunction from '@/utils/types/isFunction'
+import guid from '@/utils/lang/guid'
+
 import _subscribers from './_subscribers'
-import isFunction from '../types/isFunction'
-import guid from '../lang/guid'
 
 /**
  * 订阅主题，并给出处理器函数

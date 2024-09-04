@@ -1,5 +1,5 @@
+import hasOwn from '@/utils/lang/hasOwn'
 import _subscribers from './_subscribers'
-import hasOwn from '../lang/hasOwn'
 
 /**
  * 判断是否存在与给定 topic 完全匹配的订阅者信息

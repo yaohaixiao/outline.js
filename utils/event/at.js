@@ -1,4 +1,4 @@
-import isFunction from '../types/isFunction'
+import isFunction from '@/utils/types/isFunction'
 import off from './off'
 
 import { CAPTURE_EVENTS } from './enum'

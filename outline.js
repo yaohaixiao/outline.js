@@ -1,22 +1,24 @@
 import later from './utils/lang/later'
 import cloneDeep from './utils/lang/cloneDeep'
+
 import isFunction from './utils/types/isFunction'
 import isString from './utils/types/isString'
 import isElement from './utils/types/isElement'
+
 import addClass from './utils/dom/addClass'
 import scrollTo from './utils/dom/scrollTo'
-import _getScrollElement from './utils/dom/_getScrollElement'
+import getScrollElement from './utils/dom/getScrollElement'
 
-import getChapters from './getChapters'
+import getChapters from './chapters/getChapters'
 
-import Base from './base'
-import Anchors from './anchors'
-import Drawer from './drawer'
-import Navigator from './navigator'
-import Reader from './reader'
-import Toolbar from './toolbar'
+import Component from './component'
+import Anchors from './anchors/anchors'
+import Drawer from './drawer/drawer'
+import Navigator from './navigator/navigator'
+import Reader from './reader/reader'
+import Toolbar from './toolbar/toolbar'
 
-class Outline extends Base {
+class Outline extends Component {
   constructor(options) {
     super()
 
@@ -61,7 +63,7 @@ class Outline extends Base {
       $article = articleElement
     }
     this.$article = $article
-    this.$scrollElement = _getScrollElement(scrollElement)
+    this.$scrollElement = getScrollElement(scrollElement)
 
     this.$emit('created', { ...this.attr() })
     this.render().addListeners()

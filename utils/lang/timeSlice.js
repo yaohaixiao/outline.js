@@ -4,7 +4,7 @@
  * Created By: Yaohaixiao
  * Update: 2023.09.04
  */
-import isFunction from '../types/isFunction'
+import isFunction from '@/utils/types/isFunction'
 import later from './later'
 
 const queue = []

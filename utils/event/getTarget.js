@@ -1,4 +1,4 @@
-import resolveTextNode from '../dom/resolveTextNode'
+import resolveTextNode from '@/utils/dom/resolveTextNode'
 
 /**
  * 返回触发事件的 target DOM 元素

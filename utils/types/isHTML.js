@@ -1,5 +1,5 @@
+import trim from '@/utils/lang/trim'
 import isString from './isString'
-import trim from '../lang/trim'
 import TAGS from './tags'
 
 /**

@@ -1,4 +1,4 @@
-import closest from '../dom/closest'
+import closest from '@/utils/dom/closest'
 import off from './off'
 import getTarget from './getTarget'
 

@@ -60,56 +60,6 @@ const check = () => {
 const test = gulp.series(lint, check)
 
 /* ==================== 编译代码的 gulp 任务 ==================== */
-const buildSourceStyles = () => {
-  return gulp
-    .src(
-      [
-        './theme/anchors.less',
-        './theme/navigator.less',
-        './theme/drawer.less',
-        './theme/toolbar.less',
-        './theme/message.less',
-        './theme/outline.less'
-      ],
-      {
-        allowEmpty: true
-      }
-    )
-    .pipe(sourcemaps.init())
-    .pipe(
-      less({
-        paths: [path.join(__dirname, 'less', 'includes')],
-        plugins: [autoprefixer]
-      })
-    )
-    .pipe(sourcemaps.write())
-    .pipe(gulp.dest('./'))
-}
-
-const minifySourcesStyle = () => {
-  return gulp
-    .src(
-      [
-        './anchors.css',
-        './navigator.css',
-        './drawer.css',
-        './toolbar.css',
-        './message.css',
-        './outline.css'
-      ],
-      {
-        allowEmpty: true
-      }
-    )
-    .pipe(sourcemaps.init())
-    .pipe(cssmin())
-    .pipe(rename({ suffix: '.min' }))
-    .pipe(sourcemaps.write())
-    .pipe(gulp.dest('./'))
-}
-
-const buildLibStyles = gulp.series(buildSourceStyles, minifySourcesStyle)
-
 const buildScript = () => {
   return run('npm run build:lib').exec()
 }
@@ -128,7 +78,6 @@ const buildApi = () => {
 const buildExamples = () => {
   return gulp
     .src([
-      'api/pug/examples/anchors.pug',
       'api/pug/examples/relative.pug',
       'api/pug/examples/sticky.pug',
       'api/pug/examples/fixed.pug',
@@ -214,10 +163,7 @@ const start = gulp.series(build, connectDocs, openDocs)
 
 /* ==================== 检测源代码变更相关的 gulp 任务 ==================== */
 const watchSource = () => {
-  return watch(
-    ['**/*.(js|less)'],
-    gulp.series(lint, buildScript, buildLibStyles)
-  )
+  return watch(['**/*.(js|less)'], gulp.series(lint, buildScript))
 }
 
 const watchApi = () => {
@@ -235,7 +181,6 @@ const watchAll = gulp.parallel(watchSource, watchApi, watchDocs)
 // 导出公共方法
 module.exports.start = start
 module.exports.clean = cleanDocs
-module.exports.buildLibStyles = buildLibStyles
 module.exports.buildApi = buildApi
 module.exports.buildExamples = buildExamples
 module.exports.buildApiStyle = buildApiStyle

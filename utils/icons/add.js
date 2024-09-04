@@ -1,5 +1,5 @@
-import isArray from '../types/isArray'
-import isString from '../types/isString'
+import isArray from '@/utils/types/isArray'
+import isString from '@/utils/types/isString'
 import SYMBOLS from './symbols'
 
 /**
