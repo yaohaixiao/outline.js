@@ -1,4 +1,4 @@
-import isArray from '../utils/types/isArray'
+import isArray from '@/utils/types/isArray'
 
 const _getChaptersWithCode = (chapters) => {
   const groups = {}

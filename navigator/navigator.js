@@ -20,11 +20,9 @@ import setProperty from '@/utils/dom/setProperty'
 import inBounding from '@/utils/dom/inBounding'
 import getScrollElement from '@/utils/dom/getScrollElement'
 
-import Component from '@/component'
+import Component from '@/component/component'
 
 import _paintChapters from './utils/_paintChapters'
-
-import './navigator.less'
 
 const HIDDEN = 'outline-navigator_hidden'
 const EXPANDED = 'outline-navigator_expanded'
@@ -34,6 +32,7 @@ class Navigator extends Component {
   constructor(options) {
     super()
 
+    this.name = 'navigator'
     this._default()
 
     this.scrollTimer = null

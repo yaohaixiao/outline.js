@@ -20,12 +20,7 @@ AnchorJS 是 outline.js 的创作灵感来源。既然 AnchorJS 可创建标题�
 ## 特点
 
 - 原生 JavaScript 编写，无需任何依赖；
-- 支持 UMD 规范；
-- 支持 E6 模块，提供功能独立的 ES6 模块；
-  * Anchors 模块：类似 AnchorJS 基础功能模块，自动分析段落层级
-  * Drawer 模块：独立的侧滑窗口模块
-  * Navigator 模块：独立的导航菜单模块；
-  * Toolbar 模块：独立的固定定位的工具栏模块；
+- 支持 UMD 规范，同时支持 E6 模块；
 - 拥有 AnchorJS 基础功能；
 - 支持中文和英文标题文字生成ID，并提供配置参数 anchorLinkFilter 提供独立的回调函数生成语义化的 ID；
 - 支持生成独立的侧边栏导航菜单；
@@ -162,12 +157,6 @@ outline.js 既支持在 node.js 环境中以 CommonJS 模块调用，也支持 E
 ```js
 // Node.js 环境中使用
 const Outline = require('@yaohaixiao/outline.js')
-// 调用其他独立模块（如果需要）
-const Anchors = require('@yaohaixiao/outline.js/anchors.min.js')
-const Navigator = require('@yaohaixiao/outline.js/navigator.min.js')
-const Drawer = require('@yaohaixiao/outline.js/drawer.min.js')
-const Toolbar = require('@yaohaixiao/outline.js/toolbar.min.js')
-const Reader = require('@yaohaixiao/outline.js/reader.min.js')
 
 // 作为 ES6 模块使用
 import Outline from '@yaohaixiao/outline.js/outline'

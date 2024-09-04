@@ -11,7 +11,7 @@ import getScrollElement from './utils/dom/getScrollElement'
 
 import getChapters from './chapters/getChapters'
 
-import Component from './component'
+import Component from './component/component'
 import Anchors from './anchors/anchors'
 import Drawer from './drawer/drawer'
 import Navigator from './navigator/navigator'
@@ -22,7 +22,8 @@ class Outline extends Component {
   constructor(options) {
     super()
 
-    this.version = '3.39.0'
+    this.version = '3.39.3'
+    this.name = 'outline'
     this._default()
 
     if (options) {

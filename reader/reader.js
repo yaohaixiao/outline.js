@@ -15,12 +15,11 @@ import off from '@/utils/event/off'
 import Message from '@/message/message'
 import Toolbar from '@/toolbar/toolbar'
 
-import Speech from '@/speech'
-import Component from '@/component'
+import Component from '@/component/component'
+
+import Speech from './speech'
 
 import _updateSiblingElements from './utils/_updateSiblingElements'
-
-import './reader.less'
 
 const ENTER_READING_TIP = '进入阅读模式，按 ESC 键可退出阅读模式'
 
@@ -28,6 +27,7 @@ class Reader extends Component {
   constructor(options) {
     super()
 
+    this.name = 'reader'
     this._default()
 
     if (options) {

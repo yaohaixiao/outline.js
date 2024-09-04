@@ -1,4 +1,4 @@
-import publish from './utils/observer/emit'
+import publish from '../utils/observer/emit'
 
 class Speech {
   constructor(options) {

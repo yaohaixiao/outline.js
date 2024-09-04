@@ -14,14 +14,15 @@ import off from '@/utils/event/off'
 import paint from '@/utils/icons/paint'
 import icon from '@/utils/icons/icon'
 
-import Component from '@/component'
+import Component from '@/component/component'
 
-import './drawer.less'
+import SYMBOLS from './symbols'
 
 class Drawer extends Component {
   constructor(options) {
     super()
 
+    this.name = 'drawer'
     this._default()
 
     this.zIndex = 0
@@ -97,7 +98,8 @@ class Drawer extends Component {
     let $footer
     let $overlay
 
-    paint()
+    paint(SYMBOLS)
+
     this.zIndex = zIndex()
 
     $title = createElement(

@@ -1,5 +1,3 @@
-import DEFAULTS from './defaults'
-
-const SYMBOLS = [...DEFAULTS]
+const SYMBOLS = []
 
 export default SYMBOLS

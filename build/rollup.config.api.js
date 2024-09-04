@@ -1,4 +1,4 @@
-import getRollupPluginConfig from './rollup.plugin.config'
+import ROLLUP_PLUGIN_CONFIG from './rollup.plugin.config'
 
 export default [
   {
@@ -9,7 +9,7 @@ export default [
       format: 'umd',
       sourcemap: true
     },
-    plugins: getRollupPluginConfig('docs', true)
+    plugins: ROLLUP_PLUGIN_CONFIG
   },
   {
     input: './outline.js',
@@ -19,6 +19,6 @@ export default [
       format: 'umd',
       sourcemap: true
     },
-    plugins: getRollupPluginConfig('outline', true)
+    plugins: ROLLUP_PLUGIN_CONFIG
   }
 ]

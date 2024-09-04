@@ -1,13 +1,13 @@
-import isString from './utils/types/isString'
+import isString from '@/utils/types/isString'
 
-import extend from './utils/lang/extend'
-import hasOwn from './utils/lang/hasOwn'
+import extend from '@/utils/lang/extend'
+import hasOwn from '@/utils/lang/hasOwn'
 
-import isObject from './utils/types/isObject'
+import isObject from '@/utils/types/isObject'
 
-import publish from './utils/observer/emit'
-import subscribe from './utils/observer/on'
-import unsubscribe from './utils/observer/off'
+import publish from '@/utils/observer/emit'
+import subscribe from '@/utils/observer/on'
+import unsubscribe from '@/utils/observer/off'
 
 class Component {
   constructor(options) {

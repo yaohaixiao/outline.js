@@ -2,7 +2,6 @@ const path = require('path')
 const gulp = require('gulp')
 const clean = require('gulp-clean')
 const connect = require('gulp-connect')
-const eslint = require('gulp-eslint')
 const os = require('os')
 const open = require('gulp-open')
 const pug = require('gulp-pug')
@@ -13,9 +12,6 @@ const cssmin = require('gulp-cssmin')
 const rename = require('gulp-rename')
 const sourcemaps = require('gulp-sourcemaps')
 const run = require('gulp-run')
-const watch = require('gulp-watch')
-
-const SOURCE_PATH = ['./utils/**/*.js', './*.js']
 
 /* ==================== 清理相关 gulp 任务 ==================== */
 const cleanHtml = () => {
@@ -44,27 +40,85 @@ const cleanScript = () => {
 
 const cleanDocs = gulp.parallel(cleanHtml, cleanStyle, cleanScript)
 
-/* ==================== 代码规范校验相关的 gulp 任务 ==================== */
-const lint = () => {
-  return gulp
-    .src(SOURCE_PATH)
-    .pipe(eslint())
-    .pipe(eslint.format())
-    .pipe(eslint.failOnError())
-}
-
-const check = () => {
-  return run('npm run prettier:write').exec()
-}
-
-const test = gulp.series(lint, check)
-
 /* ==================== 编译代码的 gulp 任务 ==================== */
-const buildScript = () => {
-  return run('npm run build:lib').exec()
+const buildLibOutlineStyle = () => {
+  return gulp
+    .src(['./theme/outline.less'], {
+      allowEmpty: true
+    })
+    .pipe(sourcemaps.init())
+    .pipe(
+      less({
+        paths: [path.join(__dirname, 'less', 'includes')],
+        plugins: [autoprefixer]
+      })
+    )
+    .pipe(sourcemaps.write())
+    .pipe(gulp.dest('./'))
 }
 
-const buildApi = () => {
+const minifyLibOutlineStyle = () => {
+  return gulp
+    .src(['./outline.css'], {
+      allowEmpty: true
+    })
+    .pipe(sourcemaps.init())
+    .pipe(cssmin())
+    .pipe(rename({ suffix: '.min' }))
+    .pipe(sourcemaps.write())
+    .pipe(gulp.dest('./'))
+}
+
+const buildLibComponentStyle = (component) => {
+  return () => {
+    return gulp
+      .src([`./${component}/${component}.less`], {
+        allowEmpty: true
+      })
+      .pipe(sourcemaps.init())
+      .pipe(
+        less({
+          paths: [path.join(__dirname, 'less', 'includes')],
+          plugins: [autoprefixer]
+        })
+      )
+      .pipe(sourcemaps.write())
+      .pipe(gulp.dest(`./${component}`))
+  }
+}
+
+const minifyLibComponentStyle = (component) => {
+  return () => {
+    return gulp
+      .src([`./${component}/${component}.css`], {
+        allowEmpty: true
+      })
+      .pipe(sourcemaps.init())
+      .pipe(cssmin())
+      .pipe(rename({ suffix: '.min' }))
+      .pipe(sourcemaps.write())
+      .pipe(gulp.dest(`./${component}`))
+  }
+}
+
+const buildLibStyle = gulp.series(
+  buildLibComponentStyle('anchors'),
+  buildLibComponentStyle('drawer'),
+  buildLibComponentStyle('message'),
+  buildLibComponentStyle('navigator'),
+  buildLibComponentStyle('reader'),
+  buildLibComponentStyle('toolbar'),
+  minifyLibComponentStyle('anchors'),
+  minifyLibComponentStyle('drawer'),
+  minifyLibComponentStyle('message'),
+  minifyLibComponentStyle('navigator'),
+  minifyLibComponentStyle('reader'),
+  minifyLibComponentStyle('toolbar'),
+  buildLibOutlineStyle,
+  minifyLibOutlineStyle
+)
+
+const buildDocs = () => {
   return gulp
     .src(['api/pug/index.pug'])
     .pipe(
@@ -91,7 +145,7 @@ const buildExamples = () => {
     .pipe(gulp.dest('docs/examples'))
 }
 
-const buildStyle = () => {
+const buildDocsStyle = () => {
   return gulp
     .src(['./api/less/docs.less', './api/less/example.less'])
     .pipe(sourcemaps.init())
@@ -105,7 +159,7 @@ const buildStyle = () => {
     .pipe(gulp.dest('./docs/css'))
 }
 
-const minifyStyle = () => {
+const minifyDocsStyle = () => {
   return gulp
     .src(['./docs/**/docs.css', './docs/**/example.css'])
     .pipe(sourcemaps.init())
@@ -115,21 +169,19 @@ const minifyStyle = () => {
     .pipe(gulp.dest('./docs'))
 }
 
-const buildApiStyle = gulp.series(buildStyle, minifyStyle)
+const buildApiStyle = gulp.series(buildDocsStyle, minifyDocsStyle)
 
 const buildApiScript = () => {
   return run('npm run build:api:script').exec()
 }
 
-const buildDocs = gulp.series(
+const buildApi = gulp.series(
   cleanDocs,
-  buildApi,
+  buildDocs,
   buildExamples,
   buildApiStyle,
   buildApiScript
 )
-
-const build = gulp.series(test, cleanDocs, buildDocs)
 
 /* ==================== 文档查看相关的 gulp 任务 ==================== */
 const openDocs = () => {
@@ -155,37 +207,14 @@ const connectDocs = () => {
   })
 }
 
-const reload = () => {
-  return connect.reload()
-}
-
-const start = gulp.series(build, connectDocs, openDocs)
-
-/* ==================== 检测源代码变更相关的 gulp 任务 ==================== */
-const watchSource = () => {
-  return watch(['**/*.(js|less)'], gulp.series(lint, buildScript))
-}
-
-const watchApi = () => {
-  return watch(['api/**/*.*'], gulp.series(buildDocs))
-}
-
-const watchDocs = () => {
-  return watch('docs/**/*.*', {
-    ignoreInitial: false
-  }).pipe(reload())
-}
-
-const watchAll = gulp.parallel(watchSource, watchApi, watchDocs)
+const start = gulp.series(buildApi, connectDocs, openDocs)
 
 // 导出公共方法
 module.exports.start = start
 module.exports.clean = cleanDocs
-module.exports.buildApi = buildApi
+module.exports.buildLibStyle = buildLibStyle
+module.exports.buildDocs = buildDocs
 module.exports.buildExamples = buildExamples
+module.exports.buildApiScript = buildApiScript
 module.exports.buildApiStyle = buildApiStyle
-module.exports.build = build
-module.exports.lint = lint
-module.exports.check = check
-module.exports.test = test
-module.exports.watch = watchAll
+module.exports.buildApi = buildApi

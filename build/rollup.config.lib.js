@@ -1,4 +1,4 @@
-import getRollupPluginConfig from './rollup.plugin.config'
+import ROLLUP_PLUGIN_CONFIG from './rollup.plugin.config'
 
 export default [
   // For full functions module
@@ -10,7 +10,7 @@ export default [
       format: 'umd',
       sourcemap: true
     },
-    plugins: getRollupPluginConfig('outline')
+    plugins: ROLLUP_PLUGIN_CONFIG
   },
   {
     input: './anchors/anchors.js',
@@ -20,7 +20,7 @@ export default [
       format: 'umd',
       sourcemap: true
     },
-    plugins: getRollupPluginConfig('anchors')
+    plugins: ROLLUP_PLUGIN_CONFIG
   },
   {
     input: './navigator/navigator.js',
@@ -30,7 +30,7 @@ export default [
       format: 'umd',
       sourcemap: true
     },
-    plugins: getRollupPluginConfig('navigator')
+    plugins: ROLLUP_PLUGIN_CONFIG
   },
   {
     input: './drawer/drawer.js',
@@ -40,7 +40,7 @@ export default [
       format: 'umd',
       sourcemap: true
     },
-    plugins: getRollupPluginConfig('drawer')
+    plugins: ROLLUP_PLUGIN_CONFIG
   },
   {
     input: './reader/reader.js',
@@ -50,7 +50,7 @@ export default [
       format: 'umd',
       sourcemap: true
     },
-    plugins: getRollupPluginConfig('reader')
+    plugins: ROLLUP_PLUGIN_CONFIG
   },
   {
     input: './toolbar/toolbar.js',
@@ -60,7 +60,7 @@ export default [
       format: 'umd',
       sourcemap: true
     },
-    plugins: getRollupPluginConfig('toolbar')
+    plugins: ROLLUP_PLUGIN_CONFIG
   },
   {
     input: './message/message.js',
@@ -70,6 +70,6 @@ export default [
       format: 'umd',
       sourcemap: true
     },
-    plugins: getRollupPluginConfig('message')
+    plugins: ROLLUP_PLUGIN_CONFIG
   }
 ]

@@ -18,17 +18,18 @@ import paint from '@/utils/icons/paint'
 
 import getChapters from '@/chapters/getChapters'
 
-import Component from '@/component'
+import Component from '@/component/component'
 
 import _updateHeading from './utils/_updateHeading'
 import _removeHeading from './utils/_removeHeading'
 
-import './anchors.less'
+import SYMBOLS from './symbols'
 
 class Anchors extends Component {
   constructor(options) {
     super()
 
+    this.name = 'anchors'
     this._default()
 
     if (options) {
@@ -109,7 +110,7 @@ class Anchors extends Component {
       chapterTextFilter
     })
 
-    paint()
+    paint(SYMBOLS)
 
     this._paint(chapters)
 

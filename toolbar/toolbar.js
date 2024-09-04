@@ -17,13 +17,13 @@ import off from '@/utils/event/off'
 
 import paint from '@/utils/icons/paint'
 
-import Command from '@/command'
-import Commands from '@/commands'
-import Component from '@/component'
+import Component from '@/component/component'
+
+import Command from './command'
+import Commands from './commands'
 
 import _createButton from './utils/_createButton'
-
-import './toolbar.less'
+import SYMBOLS from './symbols'
 
 const DISABLED = 'outline-toolbar_disabled'
 const HIDDEN = 'outline-toolbar_hidden'
@@ -33,6 +33,7 @@ class Toolbar extends Component {
   constructor(options) {
     super()
 
+    this.name = 'toolbar'
     this._default()
 
     if (options) {
@@ -143,7 +144,7 @@ class Toolbar extends Component {
     const buttons = this.attr('buttons') || []
     const placement = this.attr('placement')
 
-    paint()
+    paint(SYMBOLS)
 
     this.$el = createElement('div', {
       id: guid('outline-toolbar'),

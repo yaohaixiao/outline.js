@@ -15,26 +15,27 @@ import removeClass from '@/utils/dom/removeClass'
 import setAttribute from '@/utils/dom/setAttribute'
 import setAttributes from '@/utils/dom/setAttributes'
 
-import icon from '@/utils/icons/icon'
 import paint from '@/utils/icons/paint'
+import icon from '@/utils/icons/icon'
 
 import on from '@/utils/event/on'
 import off from '@/utils/event/off'
 
-import Component from '@/component'
+import Component from '@/component/component'
 
-import './message.less'
+import SYMBOLS from './symbols'
 
 const TYPES = ['info', 'success', 'warning', 'error']
 const instances = []
 let instance
 
-paint()
+paint(SYMBOLS)
 
 class Message extends Component {
   constructor(options) {
     super()
 
+    this.name = 'message'
     this._default()
 
     if (options) {
