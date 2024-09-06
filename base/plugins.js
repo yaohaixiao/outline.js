@@ -1,7 +1,6 @@
 class Plugins {
   constructor() {
     this.plugins = []
-    this.instances = []
 
     return this
   }
@@ -13,16 +12,29 @@ class Plugins {
    * @return {Object}
    */
   find(name, type = 'plugin') {
-    const elements = type === 'plugin' ? this.plugins : this.instances
-    return elements.find((element) => element.name === name)
+    return type === 'plugin'
+      ? this.plugins.find((plugin) => plugin.name === name)
+      : this[name]
   }
 
   exists(name, type = 'plugin') {
     return !!this.find(name, type)
   }
 
-  use(plugin, options) {
+  register(plugin, options) {
     this.add(plugin).load(plugin?.name, options)
+
+    return this
+  }
+
+  destroy(plugin) {
+    const name = plugin.name
+
+    if (!name) {
+      return false
+    }
+
+    this.unload(name).remove(name)
 
     return this
   }
@@ -55,22 +67,25 @@ class Plugins {
   }
 
   load(name, options) {
-    const plugin = this.find(name)
     let instance = this.find(name, 'instance')
 
-    if (!plugin || instance) {
+    if (instance) {
+      return this
+    }
+
+    const plugin = this.find(name)
+
+    if (!plugin) {
       return this
     }
 
     instance = new plugin(options)
-
-    this.instances.push(instance)
+    this[name] = instance
 
     return this
   }
 
   unload(name) {
-    const instances = this.instances
     const instance = this.find(name, 'instance')
 
     if (!instance) {
@@ -78,7 +93,7 @@ class Plugins {
     }
 
     instance.destroy()
-    instances.splice(instances.indexOf(instance), 1)
+    delete this[name]
 
     return this
   }
@@ -87,8 +102,7 @@ class Plugins {
     const plugins = this.plugins.map((plugin) => plugin.name)
 
     plugins.forEach((name) => {
-      this.unload(name)
-      this.remove(name)
+      this.unload(name).remove(name)
     })
 
     return this

@@ -596,6 +596,23 @@ class Outline extends Component {
   }
 }
 
+Outline.use = (plugin, options) => {
+  const plugins = this.plugins
+  const name = plugin.name
+
+  if (!name) {
+    throw new Error('Plugin name required')
+  }
+
+  if (plugins.exists(name)) {
+    return this
+  }
+
+  plugins.register(plugin, options)
+
+  return this
+}
+
 Outline.DEFAULTS = (() => {
   const OPTIONS = {
     articleElement: '#article',
