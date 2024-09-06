@@ -1,16 +1,30 @@
 class Plugins {
   constructor() {
     this.plugins = []
+    this.instances = []
 
     return this
   }
 
-  getPlugin(name) {
-    return this.plugins.find((plugin) => plugin.name === name)
+  /**
+   * @find
+   * @param {String} name
+   * @param  {String} type
+   * @return {Object}
+   */
+  find(name, type = 'plugin') {
+    const elements = type === 'plugin' ? this.plugins : this.instances
+    return elements.find((element) => element.name === name)
   }
 
-  isExists(name) {
-    return !!this.getPlugin(name)
+  exists(name, type = 'plugin') {
+    return !!this.find(name, type)
+  }
+
+  use(plugin, options) {
+    this.add(plugin).load(plugin?.name, options)
+
+    return this
   }
 
   add(plugin) {
@@ -20,7 +34,7 @@ class Plugins {
       throw new Error('Plugin name required')
     }
 
-    if (this.isExists(name)) {
+    if (this.exists(name)) {
       return this
     }
 
@@ -31,7 +45,7 @@ class Plugins {
 
   remove(name) {
     const plugins = this.plugins
-    const plugin = this.getPlugin(name)
+    const plugin = this.find(name)
 
     if (plugin) {
       plugins.splice(plugins.indexOf(plugin), 1)
@@ -40,8 +54,42 @@ class Plugins {
     return this
   }
 
+  load(name, options) {
+    const plugin = this.find(name)
+    let instance = this.find(name, 'instance')
+
+    if (!plugin || instance) {
+      return this
+    }
+
+    instance = new plugin(options)
+
+    this.instances.push(instance)
+
+    return this
+  }
+
+  unload(name) {
+    const instances = this.instances
+    const instance = this.find(name, 'instance')
+
+    if (!instance) {
+      return this
+    }
+
+    instance.destroy()
+    instances.splice(instances.indexOf(instance), 1)
+
+    return this
+  }
+
   clear() {
-    this.plugins = []
+    const plugins = this.plugins.map((plugin) => plugin.name)
+
+    plugins.forEach((name) => {
+      this.unload(name)
+      this.remove(name)
+    })
 
     return this
   }

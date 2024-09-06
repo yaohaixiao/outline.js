@@ -1,22 +1,22 @@
-import later from './utils/lang/later'
-import cloneDeep from './utils/lang/cloneDeep'
+import later from '@/utils/lang/later'
+import cloneDeep from '@/utils/lang/cloneDeep'
 
-import isFunction from './utils/types/isFunction'
-import isString from './utils/types/isString'
-import isElement from './utils/types/isElement'
+import isFunction from '@/utils/types/isFunction'
+import isString from '@/utils/types/isString'
+import isElement from '@/utils/types/isElement'
 
-import addClass from './utils/dom/addClass'
-import scrollTo from './utils/dom/scrollTo'
-import getScrollElement from './utils/dom/getScrollElement'
+import addClass from '@/utils/dom/addClass'
+import scrollTo from '@/utils/dom/scrollTo'
+import getScrollElement from '@/utils/dom/getScrollElement'
 
-import getChapters from './chapters/getChapters'
+import getChapters from '@/chapters/getChapters'
 
-import Component from './base/component'
-import Anchors from './anchors/anchors'
-import Drawer from './drawer/drawer'
-import Navigator from './navigator/navigator'
-import Reader from './reader/reader'
-import Toolbar from './toolbar/toolbar'
+import Component from '@/base/component'
+import Anchors from '@/anchors/anchors'
+import Drawer from '@/drawer/drawer'
+import Navigator from '@/navigator/navigator'
+import Reader from '@/reader/reader'
+import Toolbar from '@/toolbar/toolbar'
 
 class Outline extends Component {
   constructor(options) {
@@ -37,13 +37,6 @@ class Outline extends Component {
     this.attrs = cloneDeep(options)
     this.$article = null
     this.$scrollElement = null
-    this.buttons = []
-
-    this.anchors = null
-    this.drawer = null
-    this.navigator = null
-    this.reader = null
-    this.toolbar = null
 
     return this
   }
@@ -135,7 +128,6 @@ class Outline extends Component {
     }
 
     addClass(this.$article, 'outline-article')
-
     this.reader = new Reader(option)
 
     return this
@@ -343,7 +335,6 @@ class Outline extends Component {
       buttons.push(...tools)
     }
     buttons.push(DOWN)
-    this.buttons = [...buttons]
 
     this.toolbar = new Toolbar({
       placement,
@@ -370,10 +361,7 @@ class Outline extends Component {
   }
 
   addButton(button) {
-    const buttons = this.buttons
-
-    buttons.splice(-1, 0, button)
-    this.$emit('toolbar:add:button', buttons)
+    this.$emit('toolbar:add:button', button)
 
     return this
   }
