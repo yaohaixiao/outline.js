@@ -336,7 +336,9 @@ Outline.cmd('console', function(options) {
 ```
 
 ```js
-Outline.plug('message', Message, { message: 'message 插件的消息' })
+Outline.plug('message', Message, { 
+  message: 'message 插件的消息' 
+})
 ```
 
 以上两种插件在 Outline 界面绘制完成后会制动执行插件的功能。每个 Outline 的实例也可以手动执行注册的插件功能：
@@ -344,9 +346,13 @@ Outline.plug('message', Message, { message: 'message 插件的消息' })
 ```js
 const instance  = new Outeline({selector: 'h1, h2'})
 
-instance.execute('message', {message: '实例手动执行 message 插件的消息'})
+instance.execute('message', {
+  message: '实例手动执行 message 插件的消息'
+})
 
-instance.execute('console', {name: 'console 插件'})
+instance.execute('console', {
+  name: 'console 插件'
+})
 ```
 
 以上两种方式添加的插件，会在 Outline 模块销毁后自动销毁。
@@ -360,7 +366,9 @@ Outline.proto('message', Message)
 
 const instance  = new Outeline({selector: 'h1, h2'})
 
-instance.message.open({message: '给 outline 示例扩展了 message 模块'})
+instance.message.open({
+  message: '给 outline 示例扩展了 message 模块'
+})
 
 Outline.proto('success', Message.success)
 
