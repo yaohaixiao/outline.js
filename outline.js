@@ -587,7 +587,6 @@ class Outline extends Component {
 }
 
 Outline.plugins = new Plugins()
-
 Outline.proto = (name, plugin, options) => {
   if (hasOwn(Outline.prototype, name)) {
     return false
@@ -605,11 +604,9 @@ Outline.proto = (name, plugin, options) => {
 
   Outline.prototype[name] = instance
 }
-
 Outline.cmd = (name, action, options) => {
   Outline.plugins.add(new Command(name, action, options))
 }
-
 Outline.plug = (name, plugin, options) => {
   Outline.plugins.add(new Plugin(name, plugin, options))
 }

@@ -1,21 +1,17 @@
 import isString from '@/utils/types/isString'
+import isObject from '@/utils/types/isObject'
 
 import extend from '@/utils/lang/extend'
 import hasOwn from '@/utils/lang/hasOwn'
-
-import isObject from '@/utils/types/isObject'
 
 import publish from '@/utils/observer/emit'
 import subscribe from '@/utils/observer/on'
 import unsubscribe from '@/utils/observer/off'
 
-import Plugins from './plugins'
-
 class Component {
   constructor(options) {
     this.name = 'component'
     this.attrs = {}
-    this.plugins = new Plugins()
 
     if (options) {
       this.initialize(options)
