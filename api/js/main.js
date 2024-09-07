@@ -1,9 +1,6 @@
 import Outline from '@/outline'
-import Message from '@/message/message'
 import observeResize from './observeResize'
 import getViewportWidth from './getViewportWidth'
-
-Outline.proto('message', Message)
 
 const defaults = Outline.DEFAULTS
 

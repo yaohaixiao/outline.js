@@ -536,6 +536,7 @@ TYPES.forEach((type) => {
     config.type = type
     config.offset = offset
     config.visible = false
+    config.destroyAfterClosed = true
     config.beforeClose = () => {
       Message.close(id, beforeClose)
     }
