@@ -12,6 +12,8 @@
     "build:api:script": "rollup -c build/rollup.config.api.js --bundleConfigAsCjs",
     "build:api:style": "gulp buildApiStyle",
     "build:api": "gulp buildApi",
+    "build:script": "npm run build:lib:script && npm run build:api:script",
+    "build:style": "npm run build:lib:style && npm run build:api:style",
     "build": "npm run test && npm run build:lib && npm run build:api",
     "lint": "eslint \"./**/**/*.js\"",
     "lint:fix": "eslint \"./**/**/*.js\" --cache --fix",

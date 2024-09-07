@@ -1,19 +1,26 @@
-import Component from './component'
+class Plugin {
+  constructor(name, module, options) {
+    this.name = name
+    this.module = module
+    this.options = options
+    this.instance = null
 
-class Plugin extends Component {
-  constructor(options) {
-    super()
-
-    this.attrs = {}
-    this.name = 'plugin'
-
-    if (options) {
-      this.execute(options)
-    }
+    return this
   }
 
   execute(options) {
-    this.attr(options).render().addListeners()
+    if (options) {
+      this.options = options
+    }
+
+    this.instance = new this.module(this.options)
+
+    return this
+  }
+
+  destroy() {
+    this.instances = null
+
     return this
   }
 }

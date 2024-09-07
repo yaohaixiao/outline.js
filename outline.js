@@ -1,5 +1,6 @@
 import later from '@/utils/lang/later'
 import cloneDeep from '@/utils/lang/cloneDeep'
+import hasOwn from '@/utils/lang/hasOwn'
 
 import isFunction from '@/utils/types/isFunction'
 import isString from '@/utils/types/isString'
@@ -11,7 +12,13 @@ import getScrollElement from '@/utils/dom/getScrollElement'
 
 import getChapters from '@/chapters/getChapters'
 
+import Plugins from '@/base/plugins'
+import Plugin from '@/base/plugin'
+
+import Command from '@/base/command'
+
 import Component from '@/base/component'
+
 import Anchors from '@/anchors/anchors'
 import Drawer from '@/drawer/drawer'
 import Navigator from '@/navigator/navigator'
@@ -32,9 +39,7 @@ class Outline extends Component {
   }
 
   _default() {
-    const options = Outline.DEFAULTS
-
-    this.attrs = cloneDeep(options)
+    this.attrs = Outline.DEFAULTS
     this.$article = null
     this.$scrollElement = null
 
@@ -60,7 +65,8 @@ class Outline extends Component {
     this.$scrollElement = getScrollElement(scrollElement)
 
     this.$emit('created', { ...this.attr() })
-    this.render().addListeners()
+
+    this.render()
 
     return this
   }
@@ -108,12 +114,14 @@ class Outline extends Component {
     this._renderReader()._renderAnchors()._renderNavigator()._renderToolbar()
 
     if ($scrollElement && hasToolbar) {
-      this.$emit('toolbar:update', {
+      this.toolbar.updateUpAndDown({
         top: $scrollElement.scrollTop,
         min: 0,
         max: $scrollElement.scrollHeight
       })
     }
+
+    Outline.plugins.executeAll()
 
     this.$emit('mounted')
 
@@ -351,9 +359,9 @@ class Outline extends Component {
   refresh() {
     const chapters = this.getChapters()
 
-    this.$emit('anchors:refresh', chapters)
-    this.$emit('navigator:refresh', chapters)
-    this.$emit('reader:refresh')
+    this.anchors.refresh(chapters)
+    this.navigator.refresh(chapters)
+    this.reader.refresh()
 
     this.$emit('refresh', chapters)
 
@@ -361,13 +369,12 @@ class Outline extends Component {
   }
 
   addButton(button) {
-    this.$emit('toolbar:add:button', button)
-
+    this.toolbar.add(button)
     return this
   }
 
   removeButton(name) {
-    this.$emit('toolbar:remove:button', name)
+    this.toolbar.remove(name)
     return this
   }
 
@@ -435,26 +442,27 @@ class Outline extends Component {
 
   scrollTo(top, afterScroll) {
     scrollTo(this.$scrollElement, top, afterScroll)
+
     return this
   }
 
   enterReading() {
-    this.$emit('toolbar:toggle')
-    this.$emit('reader:enter')
+    this.toolbar.toggle()
+    this.reader.enter()
 
     return this
   }
 
   exitReading() {
-    this.$emit('toolbar:toggle')
-    this.$emit('reader:exit')
+    this.toolbar.toggle()
+    this.reader.exit()
 
     return this
   }
 
   switchReading() {
-    this.$emit('toolbar:toggle')
-    this.$emit('reader:toggle')
+    this.toolbar.toggle()
+    this.reader.exit()
 
     return this
   }
@@ -520,7 +528,13 @@ class Outline extends Component {
   }
 
   print() {
-    this.$emit('reader:print')
+    this.reader.print()
+
+    return this
+  }
+
+  execute(name, options) {
+    Outline.plugins.execute(name, options)
 
     return this
   }
@@ -533,8 +547,6 @@ class Outline extends Component {
     let reader = this.reader
     let toolbar = this.toolbar
     let isOutside = false
-
-    this.removeListeners()
 
     if (reader) {
       reader.destroy()
@@ -558,6 +570,8 @@ class Outline extends Component {
       toolbar.destroy()
     }
 
+    Outline.plugins.destroyAll()
+
     return this
   }
 
@@ -570,47 +584,34 @@ class Outline extends Component {
 
     return this
   }
-
-  addListeners() {
-    const hasToolbar = this.attr('hasToolbar')
-
-    if (!hasToolbar) {
-      return this
-    }
-
-    this.$on('toolbar:update', this.onToolbarUpdate)
-
-    return this
-  }
-
-  removeListeners() {
-    const hasToolbar = this.attr('hasToolbar')
-
-    if (!hasToolbar) {
-      return this
-    }
-
-    this.$off('toolbar:update')
-
-    return this
-  }
 }
 
-Outline.use = (plugin, options) => {
-  const plugins = this.plugins
-  const name = plugin.name
+Outline.plugins = new Plugins()
 
-  if (!name) {
-    throw new Error('Plugin name required')
+Outline.proto = (name, plugin, options) => {
+  if (hasOwn(Outline.prototype, name)) {
+    return false
   }
 
-  if (plugins.exists(name)) {
-    return this
+  let instance
+
+  if (plugin.DEFAULTS) {
+    instance = new plugin(options)
+  } else {
+    if (isFunction(plugin)) {
+      instance = plugin
+    }
   }
 
-  plugins.register(plugin, options)
+  Outline.prototype[name] = instance
+}
 
-  return this
+Outline.cmd = (name, action, options) => {
+  Outline.plugins.add(new Command(name, action, options))
+}
+
+Outline.plug = (name, plugin, options) => {
+  Outline.plugins.add(new Plugin(name, plugin, options))
 }
 
 Outline.DEFAULTS = (() => {

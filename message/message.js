@@ -35,12 +35,9 @@ class Message extends Component {
   constructor(options) {
     super()
 
-    this.name = 'message'
-    this._default()
+    this._default().initialize(options)
 
-    if (options) {
-      this.initialize(options)
-    }
+    return this
   }
 
   _default() {
@@ -63,10 +60,9 @@ class Message extends Component {
     this.offset = this.attr('offset') || -50
 
     this.$emit('created', { ...this.attr() })
-
     this.render().addListeners()
 
-    if (this.attr('visible')) {
+    if (this.attr('visible') && this.getText()) {
       this.open()
     }
 
@@ -111,6 +107,20 @@ class Message extends Component {
     }
 
     return className
+  }
+
+  getText() {
+    const dangerouslyUseHTMLString = this.attr('dangerouslyUseHTMLString')
+    let message = this.attr('message')
+    let text = ''
+
+    if (!dangerouslyUseHTMLString) {
+      text = encodeHTML(stripScripts(message))
+    } else {
+      text = message
+    }
+
+    return text
   }
 
   render() {
@@ -499,7 +509,7 @@ Message.DEFAULTS = (() => {
     closable: true,
     visible: true,
     dangerouslyUseHTMLString: false,
-    destroyAfterClosed: true,
+    destroyAfterClosed: false,
     beforeClose: null
   }
 
@@ -510,8 +520,9 @@ TYPES.forEach((type) => {
   Message[type] = (options) => {
     const config = {}
     const id = guid(`outline-message-`)
-    const beforeClose = options.beforeClose || null
-    let offset = options.offset || 30
+    const beforeClose =
+      options && options.beforeClose ? options.beforeClose : null
+    let offset = options && options.offset ? options.offset : 30
 
     if (isString(options)) {
       config.message = options
@@ -520,6 +531,7 @@ TYPES.forEach((type) => {
         extend(config, options)
       }
     }
+
     config.id = id
     config.type = type
     config.offset = offset
@@ -533,7 +545,9 @@ TYPES.forEach((type) => {
       offset += item.$el.offsetHeight + 16
     })
     instance.offset = offset
-    instance.open()
+    if (config.message) {
+      instance.open()
+    }
     instances.push(instance)
 
     return instance

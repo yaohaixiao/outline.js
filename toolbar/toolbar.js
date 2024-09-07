@@ -277,7 +277,7 @@ class Toolbar extends Component {
 
   _disable(name) {
     const button = this.get(name)
-    const command = this.commands.get(name)
+    const command = this.commands.find(name)
 
     if (!button || button.disabled) {
       return this
@@ -286,7 +286,7 @@ class Toolbar extends Component {
     button.disabled = true
 
     if (command) {
-      this.commands.del(command)
+      this.commands.remove(command)
     }
 
     addClass(button.$el, DISABLED)
@@ -296,7 +296,7 @@ class Toolbar extends Component {
 
   _enable(name) {
     const button = this.get(name)
-    const command = this.commands.get(name)
+    const command = this.commands.find(name)
 
     if (!button || !button.disabled) {
       return this
@@ -428,6 +428,23 @@ class Toolbar extends Component {
     return this
   }
 
+  updateUpAndDown({ top, min, max }) {
+    const current = Math.ceil(top)
+
+    if (current <= min) {
+      this.hide('up')
+      this.show('down')
+    } else if (current >= max) {
+      this.hide('down')
+      this.show('up')
+    } else if (current > min && current < max) {
+      this.show('up')
+      this.show('down')
+    }
+
+    return this
+  }
+
   destroy() {
     const beforeDestroy = this.attr('beforeDestroy')
     const afterDestroy = this.attr('afterDestroy')
@@ -471,25 +488,8 @@ class Toolbar extends Component {
     return this
   }
 
-  _updateToolbar({ top, min, max }) {
-    const current = Math.ceil(top)
-
-    if (current <= min) {
-      this.hide('up')
-      this.show('down')
-    } else if (current >= max) {
-      this.hide('down')
-      this.show('up')
-    } else if (current > min && current < max) {
-      this.show('up')
-      this.show('down')
-    }
-
-    return this
-  }
-
   onToolbarUpdate({ top, min, max }) {
-    this._updateToolbar({ top, min, max })
+    this.updateUpAndDown({ top, min, max })
     return this
   }
 

@@ -5,23 +5,43 @@ class Commands {
     this.commands = []
   }
 
-  get(name) {
+  find(name) {
     return this.commands.find((cmd) => cmd.name === name)
   }
 
+  exists(name) {
+    return !!this.find(name)
+  }
+
   add(command) {
+    if (this.exists(command)) {
+      return this
+    }
+
     this.commands.push(command)
 
     return this
   }
 
-  del(name) {
-    const commands = this.commands
-    const command = commands.find((cmd) => cmd.name === name)
-    const index = command ? commands.indexOf(command) : -1
+  remove(name) {
+    const command = this.find(name)
 
-    if (index > -1) {
-      commands.splice(index, 1)
+    if (!command) {
+      return this
+    }
+
+    const commands = this.commands
+
+    commands.splice(commands.indexOf(command), 1)
+
+    return this
+  }
+
+  execute(name) {
+    const command = this.find(name)
+
+    if (isFunction(command?.execute)) {
+      command.execute()
     }
 
     return this
@@ -29,16 +49,6 @@ class Commands {
 
   clear() {
     this.commands = []
-
-    return this
-  }
-
-  execute(name) {
-    const command = this.commands.find((cmd) => cmd.name === name)
-
-    if (isFunction(command?.execute)) {
-      command.execute()
-    }
 
     return this
   }

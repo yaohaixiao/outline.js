@@ -5,42 +5,16 @@ class Plugins {
     return this
   }
 
-  /**
-   * @find
-   * @param {String} name
-   * @param  {String} type
-   * @return {Object}
-   */
-  find(name, type = 'plugin') {
-    return type === 'plugin'
-      ? this.plugins.find((plugin) => plugin.name === name)
-      : this[name]
+  find(name) {
+    return this.plugins.find((plugin) => plugin.name === name)
   }
 
-  exists(name, type = 'plugin') {
-    return !!this.find(name, type)
-  }
-
-  register(plugin, options) {
-    this.add(plugin).load(plugin?.name, options)
-
-    return this
-  }
-
-  destroy(plugin) {
-    const name = plugin.name
-
-    if (!name) {
-      return false
-    }
-
-    this.unload(name).remove(name)
-
-    return this
+  exists(name) {
+    return !!this.find(name)
   }
 
   add(plugin) {
-    const name = plugin.name
+    const { name } = plugin
 
     if (!name) {
       throw new Error('Plugin name required')
@@ -56,53 +30,60 @@ class Plugins {
   }
 
   remove(name) {
-    const plugins = this.plugins
-    const plugin = this.find(name)
-
-    if (plugin) {
-      plugins.splice(plugins.indexOf(plugin), 1)
-    }
-
-    return this
-  }
-
-  load(name, options) {
-    let instance = this.find(name, 'instance')
-
-    if (instance) {
-      return this
-    }
-
     const plugin = this.find(name)
 
     if (!plugin) {
       return this
     }
 
-    instance = new plugin(options)
-    this[name] = instance
+    const plugins = this.plugins
+
+    plugins.splice(plugins.indexOf(plugin), 1)
 
     return this
   }
 
-  unload(name) {
-    const instance = this.find(name, 'instance')
+  execute(name, options) {
+    const plugin = this.find(name)
 
-    if (!instance) {
+    if (!plugin) {
       return this
     }
 
-    instance.destroy()
-    delete this[name]
+    plugin.execute(options)
 
     return this
   }
 
-  clear() {
+  executeAll() {
+    const plugins = this.plugins
+
+    plugins.forEach((plugin) => {
+      this.execute(plugin.name)
+    })
+
+    return this
+  }
+
+  destroy(name) {
+    const plugin = this.find(name)
+
+    if (!plugin) {
+      return this
+    }
+
+    plugin.destroy()
+
+    this.remove(name)
+
+    return this
+  }
+
+  destroyAll() {
     const plugins = this.plugins.map((plugin) => plugin.name)
 
     plugins.forEach((name) => {
-      this.unload(name).remove(name)
+      this.destroy(name)
     })
 
     return this
