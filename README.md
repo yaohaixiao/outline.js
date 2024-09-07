@@ -33,6 +33,10 @@ AnchorJS 是 outline.js 的创作灵感来源。既然 AnchorJS 可创建标题�
 - （在配置打印样式后）有纯净的阅读视图（按ESC键可退出），并引入 Web Speech API 提供自动语音阅读功能；
 - 阅读模式引入 scroll-timeline-name 和 animation-timeline 实现动画显示文章阅读进度；
 - 针对超长文章，采用 time slice 机制生成导航菜单，充分优化性能；
+- 支持添加插件：
+  * 命令式功能函数插件
+  * 独立模块式插件
+  * Outline.prototype 扩展插件
 - 可以作为 jQuery 插件使用；
 - 界面简洁大方；
 - 配置灵活，丰富，让你随心所欲掌控 outline.js；
@@ -70,7 +74,6 @@ outline.js 的支持的滚动元素可以是 Window 窗口，也可以是某个 
 | [<img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/edge/edge_48x48.png" alt="IE / Edge" width="24px" height="24px" />](https://github.com/yaohaixiao/outline.js/)</br>IE / Edge | [<img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/firefox/firefox_48x48.png" alt="Firefox" width="24px" height="24px" />](https://github.com/yaohaixiao/outline.js/)</br>Firefox | [<img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/chrome/chrome_48x48.png" alt="Chrome" width="24px" height="24px" />](https://github.com/yaohaixiao/outline.js/)</br>Chrome | [<img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/safari/safari_48x48.png" alt="Safari" width="24px" height="24px" />](https://github.com/yaohaixiao/outline.js/)</br>Safari | [<img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/opera/opera_48x48.png" alt="Opera" width="24px" height="24px" />](https://github.com/yaohaixiao/outline.js/)</br>Opera |
 |----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | IE11, Edge                                                                                                                                                                                               | last 10 versions                                                                                                                                                                                           | last 10 versions                                                                                                                                                                                       | last 10 versions                                                                                                                                                                                       | last 10 versions                                                                                                                                                                                   |
-
 
 
 ## 安装说明
@@ -310,6 +313,61 @@ export default {
 }
 ```
 
+## 插件应用说明
+
+Outline 提供3中创建插件的方式：
+
+- Outline.cmd(name, plugin, options)：添加命令式功能函数插件
+- Outline.plug(name, plugin, options)：添加独立模块式插件
+- Outline.proto(name, plugin, options)：添加 Outline.prototype 扩展插件
+
+### 参数说明
+
+- name：必须，插件名称
+- plugin：必须，插件实际执行功能的函数或者模块
+- options：可选，函数或者模块初始化需要的参数
+
+### 代码示例
+
+```js
+Outline.cmd('console', function(options) {
+  console.log(options.name)
+}, { name: 'command' })
+```
+
+```js
+Outline.plug('message', Message, { message: 'message 插件的消息' })
+```
+
+以上两种插件在 Outline 界面绘制完成后会制动执行插件的功能。每个 Outline 的实例也可以手动执行注册的插件功能：
+
+```js
+const instance  = new Outeline({selector: 'h1, h2'})
+
+instance.execute('message', {message: '实例手动执行 message 插件的消息'})
+
+instance.execute('console', {name: 'console 插件'})
+```
+
+以上两种方式添加的插件，会在 Outline 模块销毁后自动销毁。
+
+以下是扩展 Outline.prototype 方式的插件的示例：
+
+```js
+// Message 模块需要是扩展至 Component 类，并且需要又 DEFAULTS 属性
+// Commponent 模块请查看源代码：https://github.com/yaohaixiao/outline.js/blob/master/base/component.js
+Outline.proto('message', Message)
+
+const instance  = new Outeline({selector: 'h1, h2'})
+
+instance.message.open({message: '给 outline 示例扩展了 message 模块'})
+
+Outline.proto('success', Message.success)
+
+const instance  = new Outeline({selector: 'h1, h2'})
+
+instance.success('给 outline 示例扩展了 message 模块')
+```
 
 ## API Documentation
 
