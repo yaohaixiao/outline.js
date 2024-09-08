@@ -41,29 +41,31 @@ const _paintChapters = ($list, chapters, showCode = false) => {
 
       children.push($text)
 
-      $link = createElement(
-        'a',
-        {
-          id: `chapter__anchor-${id}`,
-          className: 'outline-navigator__anchor',
-          href: '#' + rel,
-          rel: rel,
-          'data-id': id,
-          'data-code': code
-        },
-        children
-      )
+      const linkAttrs = {
+        id: `chapter__anchor-${id}`,
+        className: 'outline-navigator__anchor',
+        href: '#' + rel,
+        rel: rel,
+        'data-id': id
+      }
 
-      $li = createElement(
-        'li',
-        {
-          id: `chapter-${id}`,
-          className: 'outline-navigator__item',
-          'data-id': id,
-          'data-code': code
-        },
-        $link
-      )
+      if (showCode) {
+        linkAttrs['data-code'] = code
+      }
+
+      $link = createElement('a', linkAttrs, children)
+
+      const liAttrs = {
+        id: `chapter-${id}`,
+        className: 'outline-navigator__item',
+        'data-id': id
+      }
+
+      if (showCode) {
+        liAttrs['data-code'] = code
+      }
+
+      $li = createElement('li', liAttrs, $link)
 
       if (pid === -1) {
         $list.appendChild($li)
