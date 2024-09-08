@@ -1,4 +1,4 @@
-import toString from '@/utils/lang/toString'
+import toString from '../../utils/lang/toString'
 /**
  * 判断检测数据是否为 Typed Arrays 类型的数据
  * ========================================================================

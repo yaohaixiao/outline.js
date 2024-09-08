@@ -1,5 +1,5 @@
-import createElement from '@/utils/dom/createElement'
-import timeSlice from '@/utils/lang/timeSlice'
+import createElement from '../../utils/dom/createElement'
+import timeSlice from '../../utils/lang/timeSlice'
 
 const _paintChapters = ($list, chapters, showCode = false) => {
   const LIMIT = 400

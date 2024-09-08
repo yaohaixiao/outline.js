@@ -1,29 +1,29 @@
-import later from '@/utils/lang/later'
-import cloneDeep from '@/utils/lang/cloneDeep'
-import hasOwn from '@/utils/lang/hasOwn'
+import later from './utils/lang/later'
+import cloneDeep from './utils/lang/cloneDeep'
+import hasOwn from './utils/lang/hasOwn'
 
-import isFunction from '@/utils/types/isFunction'
-import isString from '@/utils/types/isString'
-import isElement from '@/utils/types/isElement'
+import isFunction from './utils/types/isFunction'
+import isString from './utils/types/isString'
+import isElement from './utils/types/isElement'
 
-import addClass from '@/utils/dom/addClass'
-import scrollTo from '@/utils/dom/scrollTo'
-import getScrollElement from '@/utils/dom/getScrollElement'
+import addClass from './utils/dom/addClass'
+import scrollTo from './utils/dom/scrollTo'
+import getScrollElement from './utils/dom/getScrollElement'
 
-import getChapters from '@/chapters/getChapters'
+import getChapters from './chapters/getChapters'
 
-import Plugins from '@/base/plugins'
-import Plugin from '@/base/plugin'
+import Plugins from './base/plugins'
+import Plugin from './base/plugin'
 
-import Command from '@/base/command'
+import Command from './base/command'
 
-import Component from '@/base/component'
+import Component from './base/component'
 
-import Anchors from '@/anchors/anchors'
-import Drawer from '@/drawer/drawer'
-import Navigator from '@/navigator/navigator'
-import Reader from '@/reader/reader'
-import Toolbar from '@/toolbar/toolbar'
+import Anchors from './anchors/anchors'
+import Drawer from './drawer/drawer'
+import Navigator from './navigator/navigator'
+import Reader from './reader/reader'
+import Toolbar from './toolbar/toolbar'
 
 class Outline extends Component {
   constructor(options) {

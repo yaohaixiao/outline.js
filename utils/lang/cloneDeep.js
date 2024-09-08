@@ -1,5 +1,5 @@
-import isObject from '@/utils/types/isObject'
-import isArray from '@/utils/types/isArray'
+import isObject from '../../utils/types/isObject'
+import isArray from '../../utils/types/isArray'
 
 /**
  * 深拷贝对象函数

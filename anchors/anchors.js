@@ -1,24 +1,24 @@
-import isString from '@/utils/types/isString'
-import isFunction from '@/utils/types/isFunction'
-import isElement from '@/utils/types/isElement'
+import isString from '../utils/types/isString'
+import isFunction from '../utils/types/isFunction'
+import isElement from '../utils/types/isElement'
 
-import cloneDeep from '@/utils/lang/cloneDeep'
-import timeSlice from '@/utils/lang/timeSlice'
-import later from '@/utils/lang/later'
+import cloneDeep from '../utils/lang/cloneDeep'
+import timeSlice from '../utils/lang/timeSlice'
+import later from '../utils/lang/later'
 
-import scrollTo from '@/utils/dom/scrollTo'
-import getScrollElement from '@/utils/dom/getScrollElement'
-import offsetTop from '@/utils/dom/offsetTop'
+import scrollTo from '../utils/dom/scrollTo'
+import getScrollElement from '../utils/dom/getScrollElement'
+import offsetTop from '../utils/dom/offsetTop'
 
-import on from '@/utils/event/on'
-import off from '@/utils/event/off'
-import stop from '@/utils/event/stop'
+import on from '../utils/event/on'
+import off from '../utils/event/off'
+import stop from '../utils/event/stop'
 
-import paint from '@/utils/icons/paint'
+import paint from '../utils/icons/paint'
 
-import getChapters from '@/chapters/getChapters'
+import getChapters from '../chapters/getChapters'
 
-import Component from '@/base/component'
+import Component from '../base/component'
 
 import _updateHeading from './utils/_updateHeading'
 import _removeHeading from './utils/_removeHeading'

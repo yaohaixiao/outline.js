@@ -1,4 +1,4 @@
-import isTypedArray from '@/utils/types/isTypedArray'
+import isTypedArray from '../../utils/types/isTypedArray'
 import has from './has'
 import _hasDirectSubscribersFor from './_hasDirectSubscribersFor'
 import _subscribers from './_subscribers'

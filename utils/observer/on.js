@@ -1,5 +1,5 @@
-import isFunction from '@/utils/types/isFunction'
-import guid from '@/utils/lang/guid'
+import isFunction from '../../utils/types/isFunction'
+import guid from '../../utils/lang/guid'
 
 import _subscribers from './_subscribers'
 

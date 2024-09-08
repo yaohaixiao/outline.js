@@ -1,4 +1,4 @@
-import isFunction from '@/utils/types/isFunction'
+import isFunction from '../../utils/types/isFunction'
 
 /**
  * later - 延迟执行方法

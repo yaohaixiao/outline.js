@@ -1,4 +1,4 @@
-import hasOwn from '@/utils/lang/hasOwn'
+import hasOwn from '../../utils/lang/hasOwn'
 import _subscribers from './_subscribers'
 
 /**

@@ -1,9 +1,9 @@
-import isFunction from '@/utils/types/isFunction'
-import trim from '@/utils/lang/trim'
-import createElement from '@/utils/dom/createElement'
-import setAttributes from '@/utils/dom/setAttributes'
+import isFunction from '../../utils/types/isFunction'
+import trim from '../../utils/lang/trim'
+import createElement from '../../utils/dom/createElement'
+import setAttributes from '../../utils/dom/setAttributes'
 
-import icon from '@/utils/icons/icon'
+import icon from '../../utils/icons/icon'
 
 const _updateHeading = ($heading, i, options) => {
   const CLS_HEADING = 'outline-heading'

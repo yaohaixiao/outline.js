@@ -1,6 +1,6 @@
-import trim from '@/utils/lang/trim'
-import stripTags from '@/utils/lang/stripTags'
-import isFunction from '@/utils/types/isFunction'
+import trim from '../utils/lang/trim'
+import stripTags from '../utils/lang/stripTags'
+import isFunction from '../utils/types/isFunction'
 
 import _getChapterParentIdByDiffer from './_getChapterParentIdByDiffer'
 import _getChaptersWithCode from './_getChaptersWithCode'
