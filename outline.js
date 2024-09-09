@@ -29,7 +29,7 @@ class Outline extends Component {
   constructor(options) {
     super()
 
-    this.version = '3.39.3'
+    this.version = '3.40.1'
     this.name = 'outline'
     this._default()
 
