@@ -1,8 +1,20 @@
 import Outline from '@/outline'
+import PluginKeywordAnchors from '@/plugins/plugin-keyword-anchors'
 import observeResize from './observeResize'
 import getViewportWidth from './getViewportWidth'
 
 const defaults = Outline.DEFAULTS
+
+Outline.plug('plugin-keyword-anchors', PluginKeywordAnchors, {
+  articleElement: '#article',
+  keywords: [
+    {
+      text: 'outline',
+      link: 'https://github.com/yaohaixiao/outline.js',
+      target: '_self'
+    }
+  ]
+})
 
 defaults.articleElement = document.querySelector('#article')
 defaults.parentElement = document.querySelector('#aside')
