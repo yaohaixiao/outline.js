@@ -1,6 +1,6 @@
-import debounce from './debounce'
-import isFunction from '@/utils/types/isFunction'
-import isElement from '@/utils/types/isElement'
+import debounce from '../lang/debounce'
+import isFunction from '../types/isFunction'
+import isElement from '../types/isElement'
 
 /**
  * 通用的 ResizeObserver 观察者处理器

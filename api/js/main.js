@@ -1,16 +1,16 @@
 import Outline from '@/outline'
-import PluginKeywordAnchors from '@/plugins/plugin-keyword-anchors'
-import observeResize from './observeResize'
-import getViewportWidth from './getViewportWidth'
+import PluginKeywordToLink from '@/plugins/keyword-to-link'
+import observeResize from '@/utils/dom/observeResize'
+import getViewportWidth from '@/utils/dom/getViewportWidth'
 
 const defaults = Outline.DEFAULTS
 
-Outline.plug('plugin-keyword-anchors', PluginKeywordAnchors, {
+Outline.plug('KeywordToLink', PluginKeywordToLink, {
   articleElement: '#article',
   keywords: [
     {
       text: 'outline',
-      link: 'https://github.com/yaohaixiao/outline.js',
+      url: 'https://github.com/yaohaixiao/outline.js',
       target: '_self'
     }
   ]

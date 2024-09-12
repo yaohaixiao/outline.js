@@ -3,18 +3,18 @@ import isElement from '../utils/types/isElement'
 
 import Component from '../base/component'
 
-class PluginKeywordAnchors extends Component {
+class KeywordToLink extends Component {
   constructor(options) {
     super()
 
-    this.name = 'plugin-keyword-anchors'
+    this.name = 'KeywordToLink'
     this.initialize(options)
 
     return this
   }
 
   _default() {
-    this.attrs = PluginKeywordAnchors.DEFAULTS
+    this.attrs = KeywordToLink.DEFAULTS
     this.$el = null
     this.$anchors = []
 
@@ -61,15 +61,15 @@ class PluginKeywordAnchors extends Component {
 
       content = content.replace(pattern, (match) => {
         return match.replace(
-          new RegExp(text, 'ig'),
-          `<a class="outline-keyword-anchor" href="${url}" target="${target}">${text}</a>`
+          new RegExp(`(${text})`, 'ig'),
+          `<a class="outline-keyword" href="${url}" target="${target}">$1</a>`
         )
       })
     })
 
     $el.innerHTML = content
 
-    this.$anchors = $el.querySelectorAll('.outline-keyword-anchor')
+    this.$anchors = $el.querySelectorAll('.outline-keyword')
 
     return this
   }
@@ -105,7 +105,7 @@ class PluginKeywordAnchors extends Component {
 
   refresh() {
     this._remove().render()
-    this.$emit('keyword:anchors:refresh')
+    this.$emit('keyword:to:link:refresh')
     return this
   }
 
@@ -120,7 +120,7 @@ class PluginKeywordAnchors extends Component {
 
     keywords.forEach((keyword) => {
       const pattern = new RegExp(
-        `<a class="outline-keyword-anchor" .*?>(${keyword.text})</a>`,
+        `<a class="outline-keyword" .*?>(${keyword.text})</a>`,
         'ig'
       )
 
@@ -134,7 +134,7 @@ class PluginKeywordAnchors extends Component {
 
   _destroy() {
     this.removeListeners()._default()
-    this.$emit('keyword:anchors:destroy')
+    this.$emit('keyword:to:link:destroy')
     return this
   }
 
@@ -159,7 +159,7 @@ class PluginKeywordAnchors extends Component {
   }
 }
 
-PluginKeywordAnchors.DEFAULTS = (() => {
+KeywordToLink.DEFAULTS = (() => {
   const OPTIONS = {
     articleElement: '#article',
     keywords: []
@@ -168,4 +168,4 @@ PluginKeywordAnchors.DEFAULTS = (() => {
   return cloneDeep(OPTIONS)
 })()
 
-export default PluginKeywordAnchors
+export default KeywordToLink
