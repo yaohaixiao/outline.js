@@ -1,3 +1,23 @@
+## [3.40.1](https://github.com/yaohaixiao/outline.js/compare/3.40.0...3.40.1) (2024-09-08)
+
+
+### Bug Fixes
+
+* 修复未设置 showCode 时，导航菜单创建 data-code 属性节点的问题； ([f450c80](https://github.com/yaohaixiao/outline.js/commit/f450c803285ef063b62da9d749dfb524924a24b8))
+* 修复资源引用路径问题 ([d421380](https://github.com/yaohaixiao/outline.js/commit/d42138022cbf982e39e00d70160263404f19f751))
+
+
+
+# [3.40.0](https://github.com/yaohaixiao/outline.js/compare/3.39.3...3.40.0) (2024-09-07)
+
+
+### Features
+
+* 调整代码结构，模块化组织子组件 ([be5f17e](https://github.com/yaohaixiao/outline.js/commit/be5f17ee22c2f090adbd459e57a92995275fb87e))
+* 添加简易的插件系统 ([de7778e](https://github.com/yaohaixiao/outline.js/commit/de7778efbd4468c7db131c4a646eea0130d8b1dd))
+
+
+
 ## [3.39.3](https://github.com/yaohaixiao/outline.js/compare/3.39.2...3.39.3) (2024-09-03)
 
 

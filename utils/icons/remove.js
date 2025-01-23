@@ -1,4 +1,4 @@
-import isString from '@/utils/types/isString'
+import isString from '../../utils/types/isString'
 import getSymbol from './getSymbol'
 import getSymbols from './getSymbols'
 import SYMBOLS from './symbols'

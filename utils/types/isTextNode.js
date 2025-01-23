@@ -1,4 +1,4 @@
-import toString from '@/utils/lang/toString'
+import toString from '../../utils/lang/toString'
 import isObject from './isObject'
 
 const isTextNode = (el) => {

@@ -1,7 +1,7 @@
-import isString from '@/utils/types/isString'
-import isFunction from '@/utils/types/isFunction'
-import isElement from '@/utils/types/isElement'
-import toTree from '@/utils/lang/toTree'
+import isString from '../utils/types/isString'
+import isFunction from '../utils/types/isFunction'
+import isElement from '../utils/types/isElement'
+import toTree from '../utils/lang/toTree'
 
 import getChaptersByHeadings from './getChaptersByHeadings'
 

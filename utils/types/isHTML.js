@@ -1,4 +1,4 @@
-import trim from '@/utils/lang/trim'
+import trim from '../../utils/lang/trim'
 import isString from './isString'
 import TAGS from './tags'
 

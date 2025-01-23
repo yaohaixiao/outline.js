@@ -1,6 +1,6 @@
-import removeClass from '@/utils/dom/removeClass'
-import isEmpty from '@/utils/types/isEmpty'
-import trim from '@/utils/lang/trim'
+import removeClass from '../../utils/dom/removeClass'
+import isEmpty from '../../utils/types/isEmpty'
+import trim from '../../utils/lang/trim'
 
 const _removeHeading = ($heading, hasAnchor = true, isAtStart = true) => {
   const CLS_HEADING = 'outline-heading'

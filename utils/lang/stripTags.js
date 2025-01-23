@@ -1,4 +1,4 @@
-import isString from '@/utils/types/isString'
+import isString from '../../utils/types/isString'
 
 /**
  * 过滤所有 HTML 标签
